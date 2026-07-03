@@ -1,0 +1,443 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Trình Tạo Ảnh AI Miễn Phí Bằng Prompt - Trợ Lý Số"
+  description="Tạo hình ảnh nghệ thuật độc đáo, ảnh thực tế, anime từ văn bản hoàn toàn miễn phí bằng công nghệ AI tiên tiến, tải ảnh chất lượng cao tức thì."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</span>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tạo ảnh AI</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Trình Tạo Ảnh AI Bằng Prompt Miễn Phí
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Nhập ý tưởng của bạn bằng chữ (Prompt) và chọn phong cách để AI biến suy nghĩ thành tác phẩm nghệ thuật tuyệt đẹp chỉ trong vài giây.
+      </p>
+    </div>
+
+    <!-- Tool Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors">
+        
+      <!-- Left inputs (6 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-6 flex flex-col justify-between">
+        <div>
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+            🎨 Thiết kế ý tưởng hình ảnh
+          </h2>
+
+          <div class="space-y-5">
+            <!-- Prompt Input -->
+            <div>
+              <label for="promptInput" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Mô tả hình ảnh (khuyên dùng tiếng Anh)</label>
+              <textarea id="promptInput" rows="4" placeholder="Ví dụ: A cute orange cat wearing a space helmet, digital art, highly detailed, cyberpunk style..." class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint text-sm font-medium transition-all">A beautiful tropical sunset over a calm ocean, digital art, high quality</textarea>
+            </div>
+
+            <!-- Tỷ lệ khung hình & Phong cách -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="aspectRatio" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Tỷ lệ khung hình</label>
+                <select id="aspectRatio" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-semibold text-sm">
+                  <option value="1:1">1:1 (Hình vuông)</option>
+                  <option value="16:9">16:9 (Nằm ngang)</option>
+                  <option value="9:16">9:16 (Nổi bật dọc)</option>
+                  <option value="4:3">4:3 (Studio)</option>
+                </select>
+              </div>
+              <div>
+                <label for="artStyle" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Phong cách nghệ thuật</label>
+                <select id="artStyle" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-semibold text-sm">
+                  <option value="digital-art">Digital Art (Mặc định)</option>
+                  <option value="realistic">Realistic (Ảnh chụp thực)</option>
+                  <option value="anime">Anime / Ghibli Style</option>
+                  <option value="cyberpunk">Cyberpunk / Neon</option>
+                  <option value="watercolor">Watercolor (Màu nước)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Nâng cao (Seed & Enhance) -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="seedInput" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Seed (Tùy chọn số)</label>
+                <input type="number" id="seedInput" placeholder="Ngẫu nhiên" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm font-bold text-center" />
+              </div>
+              <div class="flex items-center pt-8 pl-2">
+                <label class="flex items-center text-sm font-semibold text-slate-750 dark:text-slate-300 cursor-pointer select-none">
+                  <input type="checkbox" id="enhancePrompt" checked class="mr-2 rounded border-slate-300 text-brand-blue focus:ring-brand-blue" /> Tối ưu Prompt tự động
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <button id="btnGenerate" class="w-full bg-brand-blue hover:bg-blue-700 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg flex items-center justify-center gap-2">
+            ✨ <span>Tạo Ảnh AI</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right image viewport (6 cols) -->
+      <div class="p-6 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 md:col-span-6 flex flex-col justify-center items-center border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800 min-h-[350px]">
+        
+        <!-- Placeholder State -->
+        <div id="viewportPlaceholder" class="text-center py-12 flex flex-col items-center">
+          <div class="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-indigo-950 text-indigo-500 dark:text-indigo-400 flex items-center justify-center text-2xl font-bold mb-4">
+            🖼️
+          </div>
+          <h3 class="text-base font-bold text-slate-800 dark:text-slate-250 mb-1" id="placeholderTitle">Sẵn sàng tạo ảnh</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 max-w-[280px]" id="placeholderText">Hãy nhập mô tả ảnh của bạn ở cột bên trái và bấm nút Tạo Ảnh.</p>
+        </div>
+
+        <!-- Loading State -->
+        <div id="viewportLoading" class="hidden text-center py-12 flex flex-col items-center w-full">
+          <div class="relative w-full max-w-[400px] aspect-square rounded-2xl bg-slate-200 dark:bg-slate-800 animate-pulse overflow-hidden flex items-center justify-center">
+            <!-- Shimmer effect overlay -->
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-[shimmer_1.5s_infinite] pointer-events-none"></div>
+            <!-- Spinner -->
+            <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+          <div class="mt-6">
+            <span class="text-sm font-bold text-slate-700 dark:text-slate-350" id="loadingStatus">Đang gửi yêu cầu đến máy chủ AI...</span>
+            <div class="text-[10px] text-slate-400 mt-1">Quá trình này thường mất khoảng 3 - 7 giây.</div>
+          </div>
+        </div>
+
+        <!-- Output State -->
+        <div id="viewportOutput" class="hidden w-full flex flex-col items-center">
+          <div class="relative w-full max-w-[450px] overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-850 shadow-md">
+            <img id="outputImage" src="" alt="Generated AI artwork" class="w-full h-auto object-contain bg-slate-100 dark:bg-slate-950" />
+          </div>
+          <div class="grid grid-cols-2 gap-3 w-full max-w-[450px] mt-6">
+            <button id="btnDownload" class="flex items-center justify-center gap-1.5 py-3 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 font-bold text-sm text-slate-700 dark:text-slate-300 transition">
+              📥 Tải ảnh về
+            </button>
+            <button id="btnCopyLink" class="flex items-center justify-center gap-1.5 py-3 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 font-bold text-sm text-slate-700 dark:text-slate-300 transition">
+              🔗 Sao chép link
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- History List Section -->
+    <div id="historySection" class="hidden">
+      <h3 class="text-lg font-heading font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+        🕒 Lịch sử tạo ảnh trong phiên
+      </h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4" id="historyGrid">
+        <!-- Dynmic list items go here -->
+      </div>
+    </div>
+
+  </main>
+</Layout>
+
+<script>
+  const promptInput = document.getElementById('promptInput') as HTMLTextAreaElement;
+  const aspectRatioSelect = document.getElementById('aspectRatio') as HTMLSelectElement;
+  const artStyleSelect = document.getElementById('artStyle') as HTMLSelectElement;
+  const seedInput = document.getElementById('seedInput') as HTMLInputElement;
+  const enhancePromptCheckbox = document.getElementById('enhancePrompt') as HTMLInputElement;
+  const btnGenerate = document.getElementById('btnGenerate');
+
+  const viewportPlaceholder = document.getElementById('viewportPlaceholder');
+  const viewportLoading = document.getElementById('viewportLoading');
+  const viewportOutput = document.getElementById('viewportOutput');
+  const outputImage = document.getElementById('outputImage') as HTMLImageElement;
+  const loadingStatus = document.getElementById('loadingStatus');
+
+  const btnDownload = document.getElementById('btnDownload');
+  const btnCopyLink = document.getElementById('btnCopyLink');
+
+  const historySection = document.getElementById('historySection');
+  const historyGrid = document.getElementById('historyGrid');
+
+  let currentImageUrl = '';
+  let activeHistory: Array<{ url: string; prompt: string }> = [];
+
+  // Status message rotation during loading
+  const statusMessages = [
+    "Đang gửi yêu cầu đến máy chủ AI...",
+    "Đang phân tích cấu trúc prompt...",
+    "Đang khởi tạo các điểm ảnh nghệ thuật...",
+    "Đang lọc nét và tăng độ nét hình ảnh...",
+    "Hoàn thiện tác phẩm nghệ thuật..."
+  ];
+  const statusMessagesEn = [
+    "Sending request to AI server...",
+    "Analyzing prompt architecture...",
+    "Synthesizing art pixels...",
+    "Refining image details and resolution...",
+    "Finalizing AI masterpiece..."
+  ];
+
+  let statusInterval: any = null;
+
+  function rotateStatus() {
+    const isEn = localStorage.getItem('lang') === 'en';
+    const list = isEn ? statusMessagesEn : statusMessages;
+    let idx = 0;
+    if (loadingStatus) loadingStatus.innerText = list[0];
+    
+    statusInterval = setInterval(() => {
+      idx = (idx + 1) % list.length;
+      if (loadingStatus) loadingStatus.innerText = list[idx];
+    }, 1500);
+  }
+
+  function stopStatusRotation() {
+    if (statusInterval) {
+      clearInterval(statusInterval);
+      statusInterval = null;
+    }
+  }
+
+  function getDimension(ratio: string) {
+    switch (ratio) {
+      case '16:9': return { w: 1024, h: 576 };
+      case '9:16': return { w: 576, h: 1024 };
+      case '4:3': return { w: 1024, h: 768 };
+      default: return { w: 1024, h: 1024 }; // 1:1
+    }
+  }
+
+  function getStylePrompt(style: string) {
+    switch (style) {
+      case 'realistic':
+        return ", realistic photography, highly detailed, 8k resolution, cinematic lighting, photorealistic look";
+      case 'anime':
+        return ", anime illustration style, studio ghibli aesthetic, vibrant colors, clean vector lines, masterpiece artwork";
+      case 'cyberpunk':
+        return ", cyberpunk style, neon lighting accents, futuristic high-tech city elements, atmospheric depth, artstation trend";
+      case 'watercolor':
+        return ", beautiful watercolor painting style, soft color palette, artistic texture, wet brush strokes, elegant look";
+      default:
+        return ", high quality digital art style, vivid colors, creative composition, detailed illustration";
+    }
+  }
+
+  async function generateImage() {
+    let prompt = promptInput.value.trim();
+    if (!prompt) {
+      alert(localStorage.getItem('lang') === 'en' ? "Please enter a prompt!" : "Vui lòng nhập mô tả ảnh!");
+      return;
+    }
+
+    // Show loading state
+    viewportPlaceholder?.classList.add('hidden');
+    viewportOutput?.classList.add('hidden');
+    viewportLoading?.classList.remove('hidden');
+    
+    if (btnGenerate) {
+      const span = btnGenerate.querySelector('span');
+      if (span) span.innerText = localStorage.getItem('lang') === 'en' ? "Generating..." : "Đang tạo ảnh...";
+      btnGenerate.setAttribute('disabled', 'true');
+    }
+    
+    rotateStatus();
+
+    // Build optimized prompt
+    if (enhancePromptCheckbox.checked) {
+      prompt += getStylePrompt(artStyleSelect.value);
+    }
+
+    const { w, h } = getDimension(aspectRatioSelect.value);
+    const seed = seedInput.value ? parseInt(seedInput.value) : Math.floor(Math.random() * 9999999);
+
+    // Pollinations GET Image URL
+    const encodedPrompt = encodeURIComponent(prompt);
+    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${w}&height=${h}&seed=${seed}&nologo=true&private=true&model=flux`;
+
+    currentImageUrl = imageUrl;
+
+    // Load image in background to ensure caching is completed before rendering
+    const imgLoader = new Image();
+    imgLoader.onload = () => {
+      // Success: render output
+      outputImage.src = imageUrl;
+      stopStatusRotation();
+      viewportLoading?.classList.add('hidden');
+      viewportOutput?.classList.remove('hidden');
+      
+      if (btnGenerate) {
+        const span = btnGenerate.querySelector('span');
+        if (span) span.innerText = localStorage.getItem('lang') === 'en' ? "Tạo Ảnh AI" : "Tạo Ảnh AI";
+        btnGenerate.removeAttribute('disabled');
+      }
+
+      // Add to history
+      addToHistory(imageUrl, promptInput.value);
+    };
+
+    imgLoader.onerror = () => {
+      stopStatusRotation();
+      viewportLoading?.classList.add('hidden');
+      viewportPlaceholder?.classList.remove('hidden');
+      alert(localStorage.getItem('lang') === 'en' ? "Failed to generate image. Please try again." : "Tạo ảnh thất bại. Vui lòng thử lại!");
+      
+      if (btnGenerate) {
+        const span = btnGenerate.querySelector('span');
+        if (span) span.innerText = localStorage.getItem('lang') === 'en' ? "Tạo Ảnh AI" : "Tạo Ảnh AI";
+        btnGenerate.removeAttribute('disabled');
+      }
+    };
+
+    imgLoader.src = imageUrl;
+  }
+
+  function addToHistory(url: string, rawPrompt: string) {
+    // Avoid duplicate URLs
+    if (activeHistory.some(item => item.url === url)) return;
+
+    activeHistory.unshift({ url, prompt: rawPrompt });
+    if (activeHistory.length > 12) activeHistory.pop(); // limit to 12 items
+    
+    // Save to localStorage
+    try {
+      localStorage.setItem('trolyso_ai_history', JSON.stringify(activeHistory));
+    } catch(e) {}
+
+    renderHistory();
+  }
+
+  function renderHistory() {
+    if (activeHistory.length === 0) {
+      historySection?.classList.add('hidden');
+      return;
+    }
+
+    historySection?.classList.remove('hidden');
+    if (historyGrid) {
+      historyGrid.innerHTML = '';
+      activeHistory.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = "group relative aspect-square rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 cursor-pointer shadow-sm hover:shadow transition";
+        
+        div.innerHTML = `
+          <img src="${item.url}" alt="${item.prompt}" class="w-full h-full object-cover transition duration-300 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-200 flex flex-col justify-end p-2">
+            <p class="text-[10px] text-white font-semibold line-clamp-2 leading-tight">${item.prompt}</p>
+          </div>
+          <button class="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-red-650 transition text-xs font-bold" data-index="${index}">×</button>
+        `;
+        
+        // Load image back into main viewport when clicking thumbnail
+        div.addEventListener('click', (e) => {
+          const target = e.target as HTMLElement;
+          if (target.tagName === 'BUTTON') {
+            // Delete history item
+            e.stopPropagation();
+            const idx = parseInt(target.getAttribute('data-index') || '0');
+            activeHistory.splice(idx, 1);
+            try {
+              localStorage.setItem('trolyso_ai_history', JSON.stringify(activeHistory));
+            } catch(e) {}
+            renderHistory();
+            return;
+          }
+
+          // Load to main preview
+          viewportPlaceholder?.classList.add('hidden');
+          viewportLoading?.classList.add('hidden');
+          viewportOutput?.classList.remove('hidden');
+          outputImage.src = item.url;
+          currentImageUrl = item.url;
+          promptInput.value = item.prompt;
+        });
+
+        historyGrid.appendChild(div);
+      });
+    }
+  }
+
+  // Load history on initialization
+  try {
+    const saved = localStorage.getItem('trolyso_ai_history');
+    if (saved) {
+      activeHistory = JSON.parse(saved);
+      renderHistory();
+    }
+  } catch (e) {}
+
+  // Safe client-side file downloader to bypass CORS
+  async function downloadImage() {
+    if (!currentImageUrl) return;
+    
+    const isEn = localStorage.getItem('lang') === 'en';
+    const oldText = btnDownload ? btnDownload.innerHTML : '';
+    if (btnDownload) {
+      btnDownload.innerHTML = isEn ? "Downloading..." : "Đang tải...";
+      btnDownload.setAttribute('disabled', 'true');
+    }
+
+    try {
+      const response = await fetch(currentImageUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `trolyso-ai-image-${Date.now()}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      // Fallback if fetch fails
+      window.open(currentImageUrl, '_blank');
+    } finally {
+      if (btnDownload) {
+        btnDownload.innerHTML = oldText;
+        btnDownload.removeAttribute('disabled');
+      }
+    }
+  }
+
+  // Copy URL Link
+  function copyLink() {
+    if (!currentImageUrl) return;
+    navigator.clipboard.writeText(currentImageUrl).then(() => {
+      alert(localStorage.getItem('lang') === 'en' ? "Image link copied to clipboard!" : "Đã sao chép đường dẫn ảnh vào bộ nhớ tạm!");
+    });
+  }
+
+  btnGenerate?.addEventListener('click', generateImage);
+  btnDownload?.addEventListener('click', downloadImage);
+  btnCopyLink?.addEventListener('click', copyLink);
+</script>
+
+<style>
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+</style>

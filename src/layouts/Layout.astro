@@ -185,6 +185,7 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
           { title: "Tạo chữ ký Email chuyên nghiệp", desc: "Thiết kế chữ ký email HTML chuyên nghiệp Outlook Gmail", url: "/calculators/chu-ky-email/" },
           { title: "Tạo văn bản hành chính chuẩn Nghị định 30", desc: "Soạn thảo 15 loại văn bản quy phạm pháp luật và 29 loại văn bản hành chính", url: "/calculators/tao-van-ban/" },
           { title: "Dự tính tuổi nghỉ hưu & lương hưu", desc: "Tính tuổi nghỉ hưu lộ trình Nghị định 135 và mức hưởng lương hưu dự kiến", url: "/calculators/tinh-luong-huu/" },
+          { title: "Trình tạo ảnh AI miễn phí bằng Prompt", desc: "Tạo hình ảnh nghệ thuật, ảnh anime bằng văn bản qua công nghệ AI", url: "/calculators/tao-anh-ai/" },
           { title: "Blog Cẩm Nang", desc: "Danh sách bài viết hướng dẫn thuế, bảo hiểm, kế toán", url: "/blog/" },
           { title: "Bài viết: Hướng dẫn tính thuế TNCN", desc: "Cẩm nang tính thuế TNCN bậc lũy tiến từng phần", url: "/blog/huong-dan-tinh-thue-tncn/" },
           { title: "Bài viết: Cách tính BHXH 1 lần", desc: "Thủ tục và cách tính bảo hiểm xã hội một lần", url: "/blog/cach-tinh-bhxh-1-lan/" },
@@ -440,7 +441,35 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
         "(Nhận trọn đời)": "(Paid for life)",
         "Trợ cấp một lần (đóng dư):": "One-time Excess Allowance:",
         "(0.5 tháng lương/năm dư)": "(0.5 months salary per excess year)",
-        "* Lưu ý: Kết quả trên tính theo điều kiện làm việc bình thường. Số năm đóng tối thiểu để hưởng lương hưu là 20 năm đối với nam và 15 năm đối với nữ (Luật mới có lộ trình giảm dần năm đóng tối thiểu xuống 15 năm).": "* Note: Calculations assume normal working conditions. Minimum contributions required is 20 years for men and 15 years for women (new law reduces the threshold to 15 years)."
+        "* Lưu ý: Kết quả trên tính theo điều kiện làm việc bình thường. Số năm đóng tối thiểu để hưởng lương hưu là 20 năm đối với nam và 15 năm đối với nữ (Luật mới có lộ trình giảm dần năm đóng tối thiểu xuống 15 năm).": "* Note: Calculations assume normal working conditions. Minimum contributions required is 20 years for men and 15 years for women (new law reduces the threshold to 15 years).",
+
+        // AI Image Generator translations
+        "Trình Tạo Ảnh AI Bằng Prompt Miễn Phí": "Free AI Image Generator via Prompt",
+        "Nhập ý tưởng của bạn bằng chữ (Prompt) và chọn phong cách để AI biến suy nghĩ thành tác phẩm nghệ thuật tuyệt đẹp chỉ trong vài giây.": "Enter your text description (Prompt) and select style to let AI transform your thoughts into gorgeous artwork in seconds.",
+        "🎨 Thiết kế ý tưởng hình ảnh": "🎨 Design Image Concepts",
+        "Mô tả hình ảnh (khuyên dùng tiếng Anh)": "Image description (English recommended)",
+        "Tỷ lệ khung hình": "Aspect Ratio",
+        "1:1 (Hình vuông)": "1:1 (Square)",
+        "16:9 (Nằm ngang)": "16:9 (Landscape)",
+        "9:16 (Nổi bật dọc)": "9:16 (Portrait)",
+        "4:3 (Studio)": "4:3 (Classic)",
+        "Phong cách nghệ thuật": "Art Style",
+        "Digital Art (Mặc định)": "Digital Art (Default)",
+        "Anime / Ghibli Style": "Anime / Ghibli Style",
+        "Cyberpunk / Neon": "Cyberpunk / Neon",
+        "Watercolor (Màu nước)": "Watercolor (Màu nước)",
+        "Seed (Tùy chọn số)": "Seed (Optional number)",
+        "Tối ưu Prompt tự động": "Auto-enhance Prompt",
+        "Tạo Ảnh AI": "Generate AI Image",
+        "Sẵn sàng tạo ảnh": "Ready to generate image",
+        "Hãy nhập mô tả ảnh của bạn ở cột bên trái và bấm nút Tạo Ảnh.": "Please enter your image description in the left column and click Generate.",
+        "Đang gửi yêu cầu đến máy chủ AI...": "Sending request to AI server...",
+        "Tải ảnh về": "Download image",
+        "Sao chép link": "Copy link",
+        "Lịch sử tạo ảnh trong phiên": "Session Image History",
+        "Trình Tạo Ảnh AI Miễn Phí": "Free AI Image Generator",
+        "Tạo ảnh nghệ thuật, ảnh anime bằng văn bản qua công nghệ AI.": "Generate artistic and anime images using text via AI.",
+        "Tạo ảnh nghệ thuật, ảnh anime bằng văn bản qua công nghệ AI": "Generate artistic and anime images using text via AI"
       };
 
       function translateTextNode(node: Node) {
