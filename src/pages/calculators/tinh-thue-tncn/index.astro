@@ -1,0 +1,321 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Công Cụ Tính Thuế Thu Nhập Cá Nhân Chuẩn 2026 - Trợ Lý Số"
+  description="Công cụ tính thuế thu nhập cá nhân (TNCN) online chuẩn pháp luật Việt Nam. Hỗ trợ tính thuế lũy tiến từng phần và phân tích chi tiết số thuế phải nộp ở từng bậc."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</span>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tính thuế TNCN</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Công Cụ Tính Thuế Thu Nhập Cá Nhân 2026
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Tính toán số tiền thuế TNCN phải nộp hàng tháng và hiển thị bảng phân tích số tiền thuế chi tiết ở từng bậc lũy tiến.
+      </p>
+    </div>
+
+    <!-- Tool Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors">
+        
+      <!-- Left inputs (7 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-7">
+        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+          📝 Nhập thông tin thu nhập & Khấu trừ
+        </h2>
+
+        <div class="space-y-5">
+          <!-- Tổng thu nhập tháng -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Tổng thu nhập chịu thuế tháng (VND)</label>
+            <input type="number" id="incomeInput" value="30000000" step="1000000" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
+          </div>
+
+          <!-- Lựa chọn tính bảo hiểm -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Đóng bảo hiểm bắt buộc</label>
+            <select id="insuranceType" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-medium">
+              <option value="auto">Tự động tính bảo hiểm bắt buộc (10.5%)</option>
+              <option value="custom">Tự nhập số tiền đóng bảo hiểm</option>
+              <option value="none">Không đóng bảo hiểm bắt buộc</option>
+            </select>
+          </div>
+
+          <!-- Nhập bảo hiểm tùy chỉnh -->
+          <div id="customInsuranceWrapper" class="hidden">
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số tiền đóng bảo hiểm thực tế (VND)</label>
+            <input type="number" id="customInsurance" value="0" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold" />
+          </div>
+
+          <!-- Số người phụ thuộc -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số người phụ thuộc (Giảm trừ gia cảnh)</label>
+            <div class="flex items-center gap-3">
+              <button id="btnMinus" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">-</button>
+              <input type="number" id="dependents" value="0" min="0" class="w-20 text-center py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
+              <button id="btnPlus" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">+</button>
+            </div>
+          </div>
+
+          <!-- Từ thiện, nhân đạo -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Đóng góp từ thiện, nhân đạo (VND)</label>
+            <input type="number" id="charity" value="0" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold" />
+          </div>
+
+          <button id="btnCalculate" class="w-full bg-brand-blue hover:bg-blue-700 dark:bg-brand-mint dark:hover:bg-emerald-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg">
+            ⚡ Tính Thuế TNCN
+          </button>
+        </div>
+      </div>
+
+      <!-- Right outputs (5 cols) -->
+      <div class="p-6 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 md:col-span-5 flex flex-col justify-between border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800">
+        <div>
+          <h3 class="text-lg font-heading font-bold text-slate-900 dark:text-white mb-6">Kết quả tính thuế</h3>
+
+          <div class="space-y-4 text-sm">
+            <div class="flex justify-between items-center py-2 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-slate-500">Thu nhập chịu thuế:</span>
+              <span class="font-bold text-slate-900 dark:text-white" id="resIncome">0đ</span>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-slate-500">Giảm trừ bảo hiểm:</span>
+              <span class="font-semibold text-red-500" id="resInsurance">0đ</span>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-slate-500">Giảm trừ gia cảnh (Bản thân):</span>
+              <span class="font-semibold text-slate-700 dark:text-slate-300">-11,000,000đ</span>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-slate-500">Giảm trừ gia cảnh (Phụ thuộc):</span>
+              <span class="font-semibold text-slate-700 dark:text-slate-300" id="resDependents">0đ</span>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-slate-500">Khấu trừ từ thiện:</span>
+              <span class="font-semibold text-slate-700 dark:text-slate-300" id="resCharity">0đ</span>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-slate-500">Thu nhập tính thuế:</span>
+              <span class="font-bold text-brand-blue dark:text-brand-mint" id="resTaxable">0đ</span>
+            </div>
+            <div class="flex justify-between items-center pt-6 pb-2">
+              <span class="text-base font-bold text-slate-800 dark:text-slate-200">THUẾ TNCN PHẢI NỘP:</span>
+              <span class="text-2xl font-extrabold text-red-500" id="resTax">0đ</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-xs text-slate-400 mt-8 pt-4 border-t border-slate-200 dark:border-slate-800">
+          * Đã trừ bảo hiểm bắt buộc và các khoản giảm trừ gia cảnh quy định mới nhất.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bậc Thuế Chi Tiết (UX Feature: Bảng phân tích chi tiết) -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl p-6 sm:p-10 shadow-xl border border-slate-200 dark:border-slate-800 transition-colors">
+      <h3 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6">📊 Bảng Phân Tích Lũy Tiến Từng Bậc</h3>
+      
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-slate-200 dark:border-slate-800 text-slate-400">
+              <th class="py-3 px-4">Bậc</th>
+              <th class="py-3 px-4">Thu nhập tính thuế / tháng</th>
+              <th class="py-3 px-4">Thuế suất</th>
+              <th class="py-3 px-4 text-right">Số thuế phải nộp từng bậc</th>
+            </tr>
+          </thead>
+          <tbody id="taxBracketsBody" class="divide-y divide-slate-100 dark:divide-slate-800 font-medium text-slate-700 dark:text-slate-300">
+            <!-- Sẽ được điền bằng Javascript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</Layout>
+
+<script>
+  function formatMoney(amount: number) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+  }
+
+  const incomeInput = document.getElementById('incomeInput') as HTMLInputElement;
+  const insuranceType = document.getElementById('insuranceType') as HTMLSelectElement;
+  const customInsuranceWrapper = document.getElementById('customInsuranceWrapper');
+  const customInsurance = document.getElementById('customInsurance') as HTMLInputElement;
+  const dependentsInput = document.getElementById('dependents') as HTMLInputElement;
+  const charityInput = document.getElementById('charity') as HTMLInputElement;
+
+  const btnMinus = document.getElementById('btnMinus');
+  const btnPlus = document.getElementById('btnPlus');
+  const btnCalculate = document.getElementById('btnCalculate');
+
+  const resIncome = document.getElementById('resIncome');
+  const resInsurance = document.getElementById('resInsurance');
+  const resDependents = document.getElementById('resDependents');
+  const resCharity = document.getElementById('resCharity');
+  const resTaxable = document.getElementById('resTaxable');
+  const resTax = document.getElementById('resTax');
+  const taxBracketsBody = document.getElementById('taxBracketsBody');
+
+  // Đổi trạng thái hiển thị nhập bảo hiểm thủ công
+  insuranceType.addEventListener('change', () => {
+    if (insuranceType.value === 'custom') {
+      customInsuranceWrapper?.classList.remove('hidden');
+    } else {
+      customInsuranceWrapper?.classList.add('hidden');
+    }
+    calculateTax();
+  });
+
+  function calculateTax() {
+    const income = parseFloat(incomeInput.value) || 0;
+    const type = insuranceType.value;
+    const dependents = parseInt(dependentsInput.value) || 0;
+    const charity = parseFloat(charityInput.value) || 0;
+
+    // 1. Tính bảo hiểm bắt buộc
+    let insurance = 0;
+    if (type === 'auto') {
+      insurance = income * 0.105;
+    } else if (type === 'custom') {
+      insurance = parseFloat(customInsurance.value) || 0;
+    }
+
+    // 2. Các khoản giảm trừ gia cảnh
+    const selfDeduction = 11000000;
+    const dependentDeduction = dependents * 4400000;
+
+    // 3. Tính thu nhập tính thuế
+    const totalDeductions = insurance + selfDeduction + dependentDeduction + charity;
+    const taxableIncome = Math.max(0, income - totalDeductions);
+
+    // 4. Biểu thuế lũy tiến từng phần
+    const brackets = [
+      { limit: 5000000, rate: 0.05, maxTax: 250000 },
+      { limit: 10000000, rate: 0.10, maxTax: 500000 },
+      { limit: 18000000, rate: 0.15, maxTax: 1200000 },
+      { limit: 32000000, rate: 0.20, maxTax: 2800000 },
+      { limit: 52000000, rate: 0.25, maxTax: 5000000 },
+      { limit: 80000000, rate: 0.30, maxTax: 8400000 },
+      { limit: Infinity, rate: 0.35, maxTax: Infinity }
+    ];
+
+    let tax = 0;
+    let tempIncome = taxableIncome;
+    let previousLimit = 0;
+    const bracketPayments: number[] = [];
+
+    for (let i = 0; i < brackets.length; i++) {
+      const b = brackets[i];
+      const bracketRange = b.limit - previousLimit;
+      
+      if (tempIncome > 0) {
+        if (tempIncome >= bracketRange) {
+          const bracketTax = bracketRange * b.rate;
+          tax += bracketTax;
+          bracketPayments.push(bracketTax);
+          tempIncome -= bracketRange;
+        } else {
+          const bracketTax = tempIncome * b.rate;
+          tax += bracketTax;
+          bracketPayments.push(bracketTax);
+          tempIncome = 0;
+        }
+      } else {
+        bracketPayments.push(0);
+      }
+      previousLimit = b.limit;
+    }
+
+    // 5. Hiển thị kết quả đầu ra
+    if (resIncome) resIncome.innerText = formatMoney(income);
+    if (resInsurance) resInsurance.innerText = "-" + formatMoney(insurance);
+    if (resDependents) resDependents.innerText = "-" + formatMoney(dependentDeduction);
+    if (resCharity) resCharity.innerText = "-" + formatMoney(charity);
+    if (resTaxable) resTaxable.innerText = formatMoney(taxableIncome);
+    if (resTax) resTax.innerText = formatMoney(tax);
+
+    // 6. Vẽ bảng phân tích lũy tiến từng bậc
+    if (taxBracketsBody) {
+      taxBracketsBody.innerHTML = "";
+      const ranges = [
+        "Đến 5 triệu",
+        "Trên 5 triệu đến 10 triệu",
+        "Trên 10 triệu đến 18 triệu",
+        "Trên 18 triệu đến 32 triệu",
+        "Trên 32 triệu đến 52 triệu",
+        "Trên 52 triệu đến 80 triệu",
+        "Trên 80 triệu"
+      ];
+
+      for (let i = 0; i < brackets.length; i++) {
+        const tr = document.createElement('tr');
+        tr.className = "border-b border-slate-100 dark:border-slate-800/50 hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors";
+        
+        const pay = bracketPayments[i] || 0;
+        const isCurrent = pay > 0;
+        
+        tr.innerHTML = `
+          <td class="py-4.5 px-4 text-slate-500">${i + 1}</td>
+          <td class="py-4.5 px-4 font-semibold text-slate-800 dark:text-slate-200">${ranges[i]}</td>
+          <td class="py-4.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-xs font-bold">${brackets[i].rate * 100}%</span></td>
+          <td class="py-4.5 px-4 text-right font-bold ${isCurrent ? 'text-red-500' : 'text-slate-400'}">${pay > 0 ? formatMoney(pay) : '0đ'}</td>
+        `;
+        taxBracketsBody.appendChild(tr);
+      }
+    }
+  }
+
+  // Bind Events
+  btnMinus?.addEventListener('click', () => {
+    let val = parseInt(dependentsInput.value) || 0;
+    val = Math.max(0, val - 1);
+    dependentsInput.value = val.toString();
+    calculateTax();
+  });
+
+  btnPlus?.addEventListener('click', () => {
+    let val = parseInt(dependentsInput.value) || 0;
+    dependentsInput.value = (val + 1).toString();
+    calculateTax();
+  });
+
+  btnCalculate?.addEventListener('click', calculateTax);
+  incomeInput.addEventListener('input', calculateTax);
+  customInsurance.addEventListener('input', calculateTax);
+  charityInput.addEventListener('input', calculateTax);
+
+  // Initial Calculation
+  calculateTax();
+</script>
