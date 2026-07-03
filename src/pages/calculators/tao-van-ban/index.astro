@@ -1,0 +1,331 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Trình Tạo Văn Bản Hành Chính Theo Chuẩn Nghị Định 30 - Trợ Lý Số"
+  description="Công cụ soạn thảo và tạo văn bản hành chính, văn bản quy phạm pháp luật trực tuyến chuẩn Nghị định 30/2020/NĐ-CP của Chính phủ."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-7xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</span>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tạo văn bản hành chính</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Trình Tạo Văn Bản Chuẩn Nghị Định 30/2020/NĐ-CP
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Soạn thảo 15 loại văn bản quy phạm pháp luật và 29 loại văn bản hành chính đúng chuẩn kích thước, căn lề, quốc hiệu và tiêu ngữ của Chính phủ.
+      </p>
+    </div>
+
+    <!-- Tool Container -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 lg:grid-cols-12 mb-12 transition-colors">
+        
+      <!-- Left Inputs Form (5 cols) -->
+      <div class="p-6 sm:p-8 lg:col-span-5 border-b lg:border-b-0 lg:border-r border-slate-200 dark:border-slate-800 space-y-5">
+        <h2 class="text-lg font-heading font-bold text-slate-900 dark:text-white flex items-center gap-3">
+          📝 Nhập thông tin văn bản
+        </h2>
+
+        <div>
+          <label for="docGroup" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Nhóm văn bản</label>
+          <select id="docGroup" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm font-semibold">
+            <option value="hanhchinh" selected>Văn bản hành chính (29 loại)</option>
+            <option value="quypfam">Văn bản quy phạm pháp luật (15 loại)</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="docType" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Loại văn bản</label>
+          <select id="docType" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm font-semibold">
+            <!-- Sẽ được fill bằng JS dựa trên Nhóm văn bản -->
+          </select>
+        </div>
+
+        <div>
+          <label for="issuingAuthority" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Cơ quan ban hành (Dòng trên)</label>
+          <input type="text" id="issuingAuthority" value="ỦY BAN NHÂN DÂN TỈNH LÂM ĐỒNG" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm font-semibold" />
+        </div>
+
+        <div>
+          <label for="issuingSubAuthority" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Cơ quan trực thuộc / Số hiệu (Dòng dưới)</label>
+          <input type="text" id="issuingSubAuthority" value="Số: 124/QĐ-UBND" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm" />
+        </div>
+
+        <div>
+          <label for="locationDate" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Địa danh & Ngày tháng</label>
+          <input type="text" id="locationDate" value="Lâm Đồng, ngày 03 tháng 07 năm 2026" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm" />
+        </div>
+
+        <div>
+          <label for="docTitle" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Tiêu đề chính văn bản</label>
+          <input type="text" id="docTitle" value="QUYẾT ĐỊNH" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm font-bold" />
+        </div>
+
+        <div>
+          <label for="docSummary" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Trích yếu nội dung (Dưới tiêu đề)</label>
+          <input type="text" id="docSummary" value="Về việc ban hành quy chế làm việc của cơ quan" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm" />
+        </div>
+
+        <div>
+          <label for="docBody" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Nội dung chính văn bản</label>
+          <textarea id="docBody" rows="6" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm font-mono">Điều 1. Ban hành kèm theo Quyết định này Quy chế hoạt động văn phòng mới nhất.
+Điều 2. Quyết định này có hiệu lực kể từ ngày ký ban hành.
+Điều 3. Chánh văn phòng Ủy ban nhân dân và các tổ chức liên quan chịu trách nhiệm thi hành quyết định này.</textarea>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="signerRole" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Chức vụ người ký</label>
+            <input type="text" id="signerRole" value="CHỦ TỊCH" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm font-semibold" />
+          </div>
+          <div>
+            <label for="signerName" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Họ tên người ký</label>
+            <input type="text" id="signerName" value="Nguyễn Quốc Dũng" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm font-semibold" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Live Preview (7 cols) -->
+      <div class="p-6 sm:p-8 lg:col-span-7 bg-slate-100 dark:bg-slate-900/50 flex flex-col justify-between">
+        <div>
+          <h3 class="text-lg font-heading font-bold text-slate-900 dark:text-white mb-4">👁️ Bản xem trước văn bản chuẩn Nghị định 30</h3>
+          
+          <!-- Outer Paper Box -->
+          <div class="border border-slate-300 dark:border-slate-800 rounded-xl bg-white p-8 min-h-[500px] shadow-lg overflow-x-auto">
+            
+            <!-- Real HTML Document Target for Copy -->
+            <div id="paperDocument" class="bg-white text-black font-serif text-[13px] leading-relaxed w-full max-w-[650px] mx-auto select-text" style="font-family: 'Times New Roman', Times, serif;">
+              <!-- Sẽ được vẽ bằng script -->
+            </div>
+
+          </div>
+        </div>
+
+        <div class="mt-8 space-y-4">
+          <button id="btnCopyDoc" class="w-full bg-brand-blue hover:bg-blue-700 dark:bg-brand-mint dark:hover:bg-emerald-600 text-white font-bold py-3.5 px-6 rounded-xl transition duration-200 shadow-md flex items-center justify-center gap-2">
+            📋 Sao Chép Văn Bản (Rich HTML để dán vào Word)
+          </button>
+          
+          <div class="text-[11px] text-slate-400 leading-normal text-center">
+            * Sau khi bấm **Sao chép**, bạn mở file Microsoft Word mới ra và bấm **Ctrl + V** để dán. Cấu trúc lề, bảng Quốc hiệu và ký tên sẽ giữ nguyên chuẩn chỉnh.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const docGroup = document.getElementById('docGroup') as HTMLSelectElement;
+  const docType = document.getElementById('docType') as HTMLSelectElement;
+  const issuingAuthority = document.getElementById('issuingAuthority') as HTMLInputElement;
+  const issuingSubAuthority = document.getElementById('issuingSubAuthority') as HTMLInputElement;
+  const locationDate = document.getElementById('locationDate') as HTMLInputElement;
+  const docTitle = document.getElementById('docTitle') as HTMLInputElement;
+  const docSummary = document.getElementById('docSummary') as HTMLInputElement;
+  const docBody = document.getElementById('docBody') as HTMLTextAreaElement;
+  const signerRole = document.getElementById('signerRole') as HTMLInputElement;
+  const signerName = document.getElementById('signerName') as HTMLInputElement;
+  const paperDocument = document.getElementById('paperDocument');
+  const btnCopyDoc = document.getElementById('btnCopyDoc');
+
+  // Khai báo 15 loại VB quy phạm pháp luật và 29 loại VB hành chính
+  const docTypes = {
+    hanhchinh: [
+      { value: "QuyetDinh", name: "Quyết định (cá biệt)" },
+      { value: "NghiQuyet", name: "Nghị quyết (cá biệt)" },
+      { value: "ChiThi", name: "Chỉ thị" },
+      { value: "QuyChe", name: "Quy chế" },
+      { value: "QuyDinh", name: "Quy định" },
+      { value: "ThongBao", name: "Thông báo" },
+      { value: "HuongDan", name: "Hướng dẫn" },
+      { value: "ChuongTrinh", name: "Chương trình" },
+      { value: "KeHoach", name: "Kế hoạch" },
+      { value: "PhuongAn", name: "Phương án" },
+      { value: "DeAn", name: "Đề án" },
+      { value: "DuAn", name: "Dự án" },
+      { value: "BaoCao", name: "Báo cáo" },
+      { value: "BienBan", name: "Biên bản" },
+      { value: "ToTrinh", name: "Tờ trình" },
+      { value: "HopDong", name: "Hợp đồng" },
+      { value: "CongVan", name: "Công văn" },
+      { value: "CongDien", name: "Công điện" },
+      { value: "BanGhiNho", name: "Bản ghi nhớ" },
+      { value: "BanThoaThuan", name: "Bản thỏa thuận" },
+      { value: "GiayUyQuyen", name: "Giấy ủy quyền" },
+      { value: "GiayMoi", name: "Giấy mời" },
+      { value: "GiayGioiThieu", name: "Giấy giới thiệu" },
+      { value: "GiayNghiPhep", name: "Giấy nghỉ phép" },
+      { value: "GiayDiDuong", name: "Giấy đi đường" },
+      { value: "BienNhan", name: "Biên nhận" },
+      { value: "PhieuGui", name: "Phiếu gửi" },
+      { value: "PhieuChuyen", name: "Phiếu chuyển" },
+      { value: "ThuCong", name: "Thư công" }
+    ],
+    quypfam: [
+      { value: "Luat", name: "Luật" },
+      { value: "NghiQuyetQP", name: "Nghị quyết" },
+      { value: "PhapLenh", name: "Pháp lệnh" },
+      { value: "Lenh", name: "Lệnh" },
+      { value: "QuyetDinhQP", name: "Quyết định" },
+      { value: "ChiThiQP", name: "Chỉ thị" },
+      { value: "ThongTu", name: "Thông tư" },
+      { value: "NghiDinh", name: "Nghị định" },
+      { value: "NghiQuyetLienTich", name: "Nghị quyết liên tịch" },
+      { value: "ThongTuLienTich", name: "Thông tư liên tịch" },
+      { value: "QuyCheQP", name: "Quy chế" },
+      { value: "QuyDinhQP", name: "Quy định" },
+      { value: "HienPhap", name: "Hiến pháp" },
+      { value: "BoLuat", name: "Bộ luật" },
+      { value: "LuatSuaDoi", name: "Luật sửa đổi, bổ sung" }
+    ]
+  };
+
+  // Cập nhật danh sách loại văn bản khi đổi nhóm
+  function updateDocTypes() {
+    const group = docGroup.value as 'hanhchinh' | 'quypfam';
+    const list = docTypes[group];
+    
+    if (docType) {
+      docType.innerHTML = list.map(item => `<option value="${item.value}">${item.name}</option>`).join('');
+    }
+  }
+
+  // Khi thay đổi loại văn bản, tự cập nhật một số thông tin mẫu
+  docType?.addEventListener('change', () => {
+    const selectedText = docType.options[docType.selectedIndex].text;
+    if (docTitle) {
+      docTitle.value = selectedText.toUpperCase();
+    }
+    renderDocument();
+  });
+
+  docGroup?.addEventListener('change', () => {
+    updateDocTypes();
+    const selectedText = docType.options[docType.selectedIndex].text;
+    if (docTitle) {
+      docTitle.value = selectedText.toUpperCase();
+    }
+    renderDocument();
+  });
+
+  function renderDocument() {
+    if (!paperDocument) return;
+
+    const authority = issuingAuthority.value || 'TÊN CƠ QUAN CHỦ QUẢN';
+    const subAuthority = issuingSubAuthority.value || 'Số: ...';
+    const locDate = locationDate.value || '..., ngày ... tháng ... năm ...';
+    const title = docTitle.value || 'TÊN VĂN BẢN';
+    const summary = docSummary.value || 'Về việc ...';
+    const body = (docBody.value || '').replace(/\n/g, '<br />');
+    const role = signerRole.value || 'CHỨC VỤ';
+    const name = signerName.value || 'Họ và tên';
+
+    // Cấu trúc bảng và định dạng đúng Nghị định 30
+    const html = `
+      <!-- Header double-column table layout -->
+      <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman', Times, serif; font-size: 13px; margin-bottom: 30px;">
+        <tr>
+          <td style="width: 45%; text-align: center; vertical-align: top;">
+            <div style="font-weight: bold; text-transform: uppercase;">${authority}</div>
+            <div style="font-weight: bold; margin-top: 3px;">${subAuthority}</div>
+            <div style="width: 60px; border-bottom: 1px solid black; margin: 8px auto 0 auto;"></div>
+          </td>
+          <td style="width: 55%; text-align: center; vertical-align: top; padding-left: 10px;">
+            <div style="font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+            <div style="font-weight: bold; text-decoration: underline; margin-top: 3px;">Độc lập - Tự do - Hạnh phúc</div>
+            <div style="font-style: italic; margin-top: 8px;">${locDate}</div>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Title area -->
+      <div style="text-align: center; font-family: 'Times New Roman', Times, serif; margin-bottom: 25px;">
+        <h2 style="font-size: 15px; font-weight: bold; margin: 0; text-transform: uppercase; line-height: 1.3;">${title}</h2>
+        <div style="font-size: 13px; font-style: italic; margin-top: 5px; font-weight: bold;">${summary}</div>
+        <div style="width: 100px; border-bottom: 1px solid black; margin: 10px auto 0 auto;"></div>
+      </div>
+
+      <!-- Main Body content -->
+      <div style="font-family: 'Times New Roman', Times, serif; font-size: 13px; line-height: 1.5; text-align: justify; margin-bottom: 40px; text-indent: 20px;">
+        ${body}
+      </div>
+
+      <!-- Signature & Recipient Area -->
+      <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman', Times, serif; font-size: 13px;">
+        <tr>
+          <!-- Left column: Recipient (Nơi nhận) -->
+          <td style="width: 50%; vertical-align: top; font-size: 11px; line-height: 1.4;">
+            <div style="font-weight: bold; font-style: italic; font-size: 12px; margin-bottom: 5px;">Nơi nhận:</div>
+            <div>- Như Điều 3;</div>
+            <div>- Lưu: VT, HC.</div>
+          </td>
+          <!-- Right column: Signer -->
+          <td style="width: 50%; text-align: center; vertical-align: top;">
+            <div style="font-weight: bold; text-transform: uppercase;">${role}</div>
+            <div style="font-style: italic; font-size: 12px; margin-top: 3px; color: #888888; height: 70px; display: flex; items-center; justify-content: center;">(Chữ ký, dấu)</div>
+            <div style="font-weight: bold; margin-top: 10px; font-size: 14px;">${name}</div>
+          </td>
+        </tr>
+      </table>
+    `;
+
+    paperDocument.innerHTML = html;
+  }
+
+  // Bind input events
+  [issuingAuthority, issuingSubAuthority, locationDate, docTitle, docSummary, docBody, signerRole, signerName].forEach(input => {
+    input.addEventListener('input', renderDocument);
+  });
+
+  // Sao chép dạng Rich HTML để paste trực tiếp vào Word
+  btnCopyDoc?.addEventListener('click', async () => {
+    if (!paperDocument) return;
+
+    try {
+      const type = "text/html";
+      const blob = new Blob([paperDocument.innerHTML], { type });
+      const data = [new ClipboardItem({ [type]: blob })];
+      
+      await navigator.clipboard.write(data);
+      alert("Đã sao chép văn bản! Hãy mở Microsoft Word ra nhấn Ctrl+V để dán chuẩn Nghị định 30.");
+    } catch (err) {
+      try {
+        await navigator.clipboard.writeText(paperDocument.innerText);
+        alert("Đã sao chép văn bản dạng chữ thường!");
+      } catch (e) {
+        alert("Không thể tự động sao chép. Vui lòng tự bôi đen văn bản và nhấn Ctrl+C!");
+      }
+    }
+  });
+
+  // Initialize
+  updateDocTypes();
+  renderDocument();
+</script>

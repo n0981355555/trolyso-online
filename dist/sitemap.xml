@@ -45,6 +45,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://trolyso.online/calculators/tao-van-ban/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
   <!-- Blog Index -->
   <url>
@@ -81,6 +87,24 @@
   </url>
   <url>
     <loc>https://trolyso.online/blog/quy-tac-doc-so-thanh-chu-ke-toan/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://trolyso.online/blog/huong-dan-nen-anh-webp/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://trolyso.online/blog/cach-tao-chu-ky-email-html/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://trolyso.online/blog/huong-dan-trinh-bay-van-ban-hanh-chinh/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
