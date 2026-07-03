@@ -84,6 +84,19 @@ const posts = [
     badge: "Kế toán"
   }
 ];
+
+function getGroupByCategory(category: string) {
+  if (category === "Lao động" || category === "Thuế & Lương") {
+    return "laodong-luong";
+  }
+  if (category === "Bảo hiểm") {
+    return "baohiem";
+  }
+  if (category === "Hành chính" || category === "Văn phòng") {
+    return "hanhchinh-vanphong";
+  }
+  return "tienich-web";
+}
 ---
 
 <Layout 
@@ -96,7 +109,7 @@ const posts = [
   <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
     
     <!-- Hero Section -->
-    <div class="text-center max-w-2xl mx-auto mb-16">
+    <div class="text-center max-w-2xl mx-auto mb-12">
       <h1 class="text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
         Cẩm Nang Trợ Lý Số
       </h1>
@@ -105,10 +118,29 @@ const posts = [
       </p>
     </div>
 
+    <!-- Categories Filter Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-10">
+      <button class="tab-btn px-4 py-2 text-xs sm:text-sm font-bold rounded-xl border transition-all duration-200 shadow-sm bg-brand-blue border-brand-blue text-white" data-target="all">
+        ✨ Tất cả bài viết
+      </button>
+      <button class="tab-btn px-4 py-2 text-xs sm:text-sm font-bold rounded-xl border transition-all duration-200 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-455 hover:border-brand-blue dark:hover:border-brand-mint hover:text-brand-blue dark:hover:text-brand-mint bg-white dark:bg-brand-darkCard shadow-sm" data-target="laodong-luong">
+        💼 Lao động & Tiền lương
+      </button>
+      <button class="tab-btn px-4 py-2 text-xs sm:text-sm font-bold rounded-xl border transition-all duration-200 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-455 hover:border-brand-blue dark:hover:border-brand-mint hover:text-brand-blue dark:hover:text-brand-mint bg-white dark:bg-brand-darkCard shadow-sm" data-target="baohiem">
+        🛡️ Bảo hiểm xã hội
+      </button>
+      <button class="tab-btn px-4 py-2 text-xs sm:text-sm font-bold rounded-xl border transition-all duration-200 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-455 hover:border-brand-blue dark:hover:border-brand-mint hover:text-brand-blue dark:hover:text-brand-mint bg-white dark:bg-brand-darkCard shadow-sm" data-target="hanhchinh-vanphong">
+        📂 Hành chính & Văn phòng
+      </button>
+      <button class="tab-btn px-4 py-2 text-xs sm:text-sm font-bold rounded-xl border transition-all duration-200 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-455 hover:border-brand-blue dark:hover:border-brand-mint hover:text-brand-blue dark:hover:text-brand-mint bg-white dark:bg-brand-darkCard shadow-sm" data-target="tienich-web">
+        🌐 Tiện ích số & Website
+      </button>
+    </div>
+
     <!-- Blog Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {posts.map(post => (
-        <article class="bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg transition">
+        <article class="blog-article bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg transition" data-group={getGroupByCategory(post.category)}>
           <div class="p-6">
             <!-- Category and Badge -->
             <div class="flex items-center gap-2 mb-4">
@@ -143,3 +175,34 @@ const posts = [
 
   </main>
 </Layout>
+
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const articles = document.querySelectorAll('.blog-article');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Bỏ kích hoạt các nút khác
+      tabBtns.forEach(b => {
+        b.classList.remove('bg-brand-blue', 'border-brand-blue', 'text-white');
+        b.classList.add('border-slate-200', 'dark:border-slate-800', 'text-slate-600', 'dark:text-slate-455', 'bg-white', 'dark:bg-brand-darkCard');
+      });
+
+      // Kích hoạt nút hiện tại
+      btn.classList.remove('border-slate-200', 'dark:border-slate-800', 'text-slate-600', 'dark:text-slate-455', 'bg-white', 'dark:bg-brand-darkCard');
+      btn.classList.add('bg-brand-blue', 'border-brand-blue', 'text-white');
+
+      const target = btn.getAttribute('data-target');
+      
+      // Lọc các bài viết
+      articles.forEach(article => {
+        const group = article.getAttribute('data-group');
+        if (target === 'all' || group === target) {
+          article.classList.remove('hidden');
+        } else {
+          article.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
