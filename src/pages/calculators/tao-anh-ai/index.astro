@@ -245,6 +245,41 @@ import Layout from '../../../layouts/Layout.astro';
     }
   }
 
+  // Gắn sự kiện lắng nghe trực tiếp trên thẻ ảnh kết quả
+  if (outputImage) {
+    outputImage.onload = () => {
+      stopStatusRotation();
+      viewportLoading?.classList.add('hidden');
+      viewportOutput?.classList.remove('hidden');
+      
+      if (btnGenerate) {
+        const span = btnGenerate.querySelector('span');
+        if (span) span.innerText = localStorage.getItem('lang') === 'en' ? "Generate AI Image" : "Tạo Ảnh AI";
+        btnGenerate.removeAttribute('disabled');
+      }
+
+      // Lưu vào lịch sử
+      addToHistory(currentImageUrl, promptInput.value);
+    };
+
+    outputImage.onerror = () => {
+      stopStatusRotation();
+      viewportLoading?.classList.add('hidden');
+      viewportPlaceholder?.classList.remove('hidden');
+      
+      const isEn = localStorage.getItem('lang') === 'en';
+      alert(isEn 
+        ? "Failed to generate image. Please check your internet, disable adblocker/Brave Shields and try again!" 
+        : "Tạo ảnh thất bại. Vui lòng kiểm tra kết nối mạng, tắt các trình chặn quảng cáo (AdBlock, Brave Shields) và thử lại!");
+      
+      if (btnGenerate) {
+        const span = btnGenerate.querySelector('span');
+        if (span) span.innerText = isEn ? "Generate AI Image" : "Tạo Ảnh AI";
+        btnGenerate.removeAttribute('disabled');
+      }
+    };
+  }
+
   async function generateImage() {
     let prompt = promptInput.value.trim();
     if (!prompt) {
@@ -275,43 +310,12 @@ import Layout from '../../../layouts/Layout.astro';
 
     // Pollinations GET Image URL
     const encodedPrompt = encodeURIComponent(prompt);
-    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${w}&height=${h}&seed=${seed}&nologo=true&private=true&model=flux`;
+    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${w}&height=${h}&seed=${seed}&nologo=true&private=true`;
 
     currentImageUrl = imageUrl;
 
-    // Load image in background to ensure caching is completed before rendering
-    const imgLoader = new Image();
-    imgLoader.onload = () => {
-      // Success: render output
-      outputImage.src = imageUrl;
-      stopStatusRotation();
-      viewportLoading?.classList.add('hidden');
-      viewportOutput?.classList.remove('hidden');
-      
-      if (btnGenerate) {
-        const span = btnGenerate.querySelector('span');
-        if (span) span.innerText = localStorage.getItem('lang') === 'en' ? "Tạo Ảnh AI" : "Tạo Ảnh AI";
-        btnGenerate.removeAttribute('disabled');
-      }
-
-      // Add to history
-      addToHistory(imageUrl, promptInput.value);
-    };
-
-    imgLoader.onerror = () => {
-      stopStatusRotation();
-      viewportLoading?.classList.add('hidden');
-      viewportPlaceholder?.classList.remove('hidden');
-      alert(localStorage.getItem('lang') === 'en' ? "Failed to generate image. Please try again." : "Tạo ảnh thất bại. Vui lòng thử lại!");
-      
-      if (btnGenerate) {
-        const span = btnGenerate.querySelector('span');
-        if (span) span.innerText = localStorage.getItem('lang') === 'en' ? "Tạo Ảnh AI" : "Tạo Ảnh AI";
-        btnGenerate.removeAttribute('disabled');
-      }
-    };
-
-    imgLoader.src = imageUrl;
+    // Gán trực tiếp cho thẻ img để trình duyệt tự tải và kích hoạt sự kiện onload
+    outputImage.src = imageUrl;
   }
 
   function addToHistory(url: string, rawPrompt: string) {
