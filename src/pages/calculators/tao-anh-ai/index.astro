@@ -354,7 +354,7 @@ import Layout from '../../../layouts/Layout.astro';
 
     // Pollinations GET Image URL
     const encodedPrompt = encodeURIComponent(prompt);
-    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${w}&height=${h}&seed=${seed}`;
+    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${w}&height=${h}&seed=${seed}&model=flux`;
 
     currentImageUrl = imageUrl;
 
