@@ -1,0 +1,244 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Nén Ảnh WebP Trực Tuyến Tối Ưu Dung Lượng Miễn Phí - Trợ Lý Số"
+  description="Công cụ nén ảnh và chuyển đổi hình ảnh sang định dạng WebP trực tiếp trên trình duyệt. Giảm dung lượng ảnh JPG, PNG lên tới 80% giữ nguyên chất lượng."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</span>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Nén ảnh WebP</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Nén Ảnh & Chuyển Đổi WebP Tối Ưu
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Giảm dung lượng hình ảnh của bạn trực tiếp trên trình duyệt, không tải ảnh lên máy chủ, bảo mật tuyệt đối 100% hình ảnh của bạn.
+      </p>
+    </div>
+
+    <!-- Tool Container -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors">
+        
+      <!-- Left controls (7 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-7 flex flex-col justify-between">
+        <div>
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+            📷 Tải ảnh lên & Cấu hình nén
+          </h2>
+
+          <!-- Drag and drop zone -->
+          <div id="dropZone" class="border-2 border-dashed border-slate-200 dark:border-slate-700 hover:border-brand-blue dark:hover:border-brand-mint rounded-2xl p-8 text-center cursor-pointer bg-slate-50/50 dark:bg-slate-900/50 transition-colors flex flex-col items-center justify-center min-h-[220px]">
+            <input type="file" id="fileInput" accept="image/*" class="hidden" />
+            <span class="text-4xl mb-4">📤</span>
+            <p class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
+              Kéo thả hình ảnh vào đây hoặc nhấp để chọn file
+            </p>
+            <p class="text-xs text-slate-400">
+              Hỗ trợ định dạng PNG, JPG, JPEG, WEBP.
+            </p>
+          </div>
+
+          <!-- Slider chất lượng -->
+          <div class="mt-8 space-y-3">
+            <div class="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+              <span>Chất lượng hình ảnh đầu ra (WebP):</span>
+              <span id="qualityVal" class="text-brand-blue dark:text-brand-mint text-base font-bold">80%</span>
+            </div>
+            <input type="range" id="qualityRange" min="10" max="100" value="80" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-blue" />
+          </div>
+        </div>
+
+        <button id="btnCompress" class="w-full mt-8 bg-brand-blue hover:bg-blue-700 dark:bg-brand-mint dark:hover:bg-emerald-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg flex items-center justify-center gap-2">
+          ⚡ Tiến Hành Nén Ảnh
+        </button>
+      </div>
+
+      <!-- Right preview (5 cols) -->
+      <div class="p-6 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 md:col-span-5 flex flex-col justify-between border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800">
+        <div>
+          <h3 class="text-lg font-heading font-bold text-slate-900 dark:text-white mb-6 text-center">Bảng phân tích dung lượng</h3>
+          
+          <div class="space-y-4 text-sm mb-6">
+            <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-slate-500">Dung lượng gốc:</span>
+              <span id="origSize" class="font-bold text-slate-700 dark:text-slate-300">0 KB</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-slate-500">Dung lượng sau nén:</span>
+              <span id="compSize" class="font-bold text-emerald-600 dark:text-brand-mint">0 KB</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-slate-500">Tỷ lệ giảm thiểu:</span>
+              <span id="savingPercent" class="font-extrabold text-emerald-600 dark:text-brand-mint">0%</span>
+            </div>
+          </div>
+
+          <!-- Image Preview Area -->
+          <div class="border border-slate-200 dark:border-slate-800 rounded-xl bg-white dark:bg-brand-darkCard p-2 flex items-center justify-center min-h-[160px] relative overflow-hidden group">
+            <img id="previewImg" src="" alt="Xem trước hình ảnh" class="max-h-[160px] max-w-full object-contain hidden" />
+            <span id="previewPlaceholder" class="text-slate-400 text-xs font-semibold">Chưa có hình ảnh được tải lên</span>
+          </div>
+        </div>
+
+        <a id="btnDownload" href="#" download="trolyso-compressed.webp" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition inline-flex items-center justify-center gap-2 shadow-md hidden mt-6">
+          📥 Tải Ảnh WebP Đã Nén
+        </a>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+  const dropZone = document.getElementById('dropZone');
+  const qualityRange = document.getElementById('qualityRange') as HTMLInputElement;
+  const qualityVal = document.getElementById('qualityVal');
+  const btnCompress = document.getElementById('btnCompress');
+  const previewImg = document.getElementById('previewImg') as HTMLImageElement;
+  const previewPlaceholder = document.getElementById('previewPlaceholder');
+  const btnDownload = document.getElementById('btnDownload') as HTMLAnchorElement;
+  
+  const origSizeSpan = document.getElementById('origSize');
+  const compSizeSpan = document.getElementById('compSize');
+  const savingPercentSpan = document.getElementById('savingPercent');
+
+  let selectedFile: File | null = null;
+
+  // Cập nhật nhãn chất lượng khi trượt thanh range
+  qualityRange?.addEventListener('input', () => {
+    if (qualityVal) qualityVal.innerText = qualityRange.value + "%";
+  });
+
+  // Sự kiện kéo thả file
+  dropZone?.addEventListener('click', () => fileInput.click());
+  
+  dropZone?.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('border-brand-blue');
+  });
+
+  dropZone?.addEventListener('dragleave', () => {
+    dropZone.classList.remove('border-brand-blue');
+  });
+
+  dropZone?.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('border-brand-blue');
+    if (e.dataTransfer?.files && e.dataTransfer.files.length > 0) {
+      handleFile(e.dataTransfer.files[0]);
+    }
+  });
+
+  fileInput?.addEventListener('change', () => {
+    if (fileInput.files && fileInput.files.length > 0) {
+      handleFile(fileInput.files[0]);
+    }
+  });
+
+  function handleFile(file: File) {
+    if (!file.type.startsWith('image/')) {
+      alert('Vui lòng chỉ tải lên file hình ảnh!');
+      return;
+    }
+    selectedFile = file;
+    if (origSizeSpan) origSizeSpan.innerText = formatSize(file.size);
+    
+    // Đọc ảnh và hiển thị tạm thời
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      if (previewImg && e.target?.result) {
+        previewImg.src = e.target.result as string;
+        previewImg.classList.remove('hidden');
+        if (previewPlaceholder) previewPlaceholder.classList.add('hidden');
+      }
+    };
+    reader.readAsDataURL(file);
+    
+    // Ẩn nút tải cũ nếu tải ảnh mới lên
+    btnDownload?.classList.add('hidden');
+  }
+
+  function formatSize(bytes: number) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  }
+
+  btnCompress?.addEventListener('click', () => {
+    if (!selectedFile) {
+      alert('Vui lòng tải ảnh lên trước khi nén!');
+      return;
+    }
+
+    const quality = parseFloat(qualityRange.value) / 100;
+    const img = new Image();
+    
+    // Sử dụng URL tạo tạm thời cho đối tượng Image
+    img.src = URL.createObjectURL(selectedFile);
+    
+    img.onload = () => {
+      // Khởi tạo Canvas để vẽ nén ảnh
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      
+      ctx?.drawImage(img, 0, 0, canvas.width, canvas.height);
+      
+      // Chuyển đổi sang định dạng WebP trực tiếp trên Client
+      const compressedDataUrl = canvas.toDataURL('image/webp', quality);
+      
+      // Tính toán kích cỡ file sau khi nén
+      const base64Length = compressedDataUrl.length - (compressedDataUrl.indexOf(',') + 1);
+      const padding = (compressedDataUrl.charAt(compressedDataUrl.length - 2) === '=') ? 2 : ((compressedDataUrl.charAt(compressedDataUrl.length - 1) === '=') ? 1 : 0);
+      const compressedSize = (base64Length * 0.75) - padding;
+      
+      // Hiển thị kết quả lên giao diện
+      if (compSizeSpan) compSizeSpan.innerText = formatSize(compressedSize);
+      
+      const saving = ((selectedFile!.size - compressedSize) / selectedFile!.size) * 100;
+      if (savingPercentSpan) {
+        savingPercentSpan.innerText = Math.max(0, saving).toFixed(1) + "%";
+      }
+
+      if (previewImg) {
+        previewImg.src = compressedDataUrl;
+      }
+
+      if (btnDownload) {
+        btnDownload.href = compressedDataUrl;
+        btnDownload.classList.remove('hidden');
+      }
+    };
+  });
+</script>

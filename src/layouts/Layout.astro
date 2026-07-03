@@ -58,12 +58,20 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
         </a>
         
         <!-- Dark Mode Toggle & Menu -->
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-3 sm:gap-4">
+          <!-- Search Bar -->
+          <div class="relative hidden sm:block">
+            <input type="text" id="globalSearchInput" placeholder="Tìm công cụ, bài viết..." class="w-48 lg:w-56 pl-9 pr-4 py-2 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint text-xs font-medium transition-all" />
+            <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <div id="searchDropdown" class="absolute right-0 top-full mt-2 w-72 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-xl shadow-xl z-50 p-2 hidden max-h-80 overflow-y-auto">
+              <!-- Results -->
+            </div>
+          </div>
+
           <a href="/blog/" class="text-sm font-semibold hover:text-brand-blue dark:hover:text-brand-mint">
             Cẩm Nang
-          </a>
-          <a href="/calculators/tinh-bhxh-1-lan/" class="text-sm font-semibold hover:text-brand-blue dark:hover:text-brand-mint hidden sm:inline-block">
-            Tính BHXH 1 Lần
           </a>
           
           <!-- Theme Toggle Button -->
@@ -95,7 +103,7 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
       </div>
     </footer>
 
-    <!-- Theme toggle client logic -->
+    <!-- Theme toggle & Global search client logic -->
     <script>
       const themeToggleBtn = document.getElementById('themeToggle');
       const themeSun = document.getElementById('themeSun');
@@ -104,16 +112,16 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
       // Update toggle icon visibility on load
       function updateIcons() {
         if (document.documentElement.classList.contains('dark')) {
-          themeSun.classList.remove('hidden');
-          themeMoon.classList.add('hidden');
+          themeSun?.classList.remove('hidden');
+          themeMoon?.classList.add('hidden');
         } else {
-          themeSun.classList.add('hidden');
-          themeMoon.classList.remove('hidden');
+          themeSun?.classList.add('hidden');
+          themeMoon?.classList.remove('hidden');
         }
       }
       updateIcons();
 
-      themeToggleBtn.addEventListener('click', () => {
+      themeToggleBtn?.addEventListener('click', () => {
         if (document.documentElement.classList.contains('dark')) {
           document.documentElement.classList.remove('dark');
           localStorage.setItem('color-theme', 'light');
@@ -122,6 +130,73 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
           localStorage.setItem('color-theme', 'dark');
         }
         updateIcons();
+      });
+
+      // Global Search Engine
+      const searchInput = document.getElementById('globalSearchInput') as HTMLInputElement;
+      const searchDropdown = document.getElementById('searchDropdown');
+
+      const searchIndex = [
+        { title: "Tính lương Gross sang Net (2026)", desc: "Quy đổi lương Gross sang Net chuẩn bảo hiểm thuế", url: "/" },
+        { title: "Tính bảo hiểm xã hội 1 lần", desc: "Ước tính số tiền rút BHXH một lần nhanh chóng", url: "/calculators/tinh-bhxh-1-lan/" },
+        { title: "Trình tạo mã VietQR thanh toán", desc: "Tạo mã QR chuyển khoản nhanh hơn 40 ngân hàng", url: "/calculators/tao-ma-qr/" },
+        { title: "Đọc số thành chữ tiếng Việt", desc: "Chuyển số tiền thành chữ viết hóa đơn kế toán", url: "/calculators/doc-so-thanh-chu/" },
+        { title: "Tính thuế thu nhập cá nhân 2026", desc: "Tính thuế TNCN lũy tiến từng phần chi tiết", url: "/calculators/tinh-thue-tncn/" },
+        { title: "Nén ảnh WebP trực tuyến", desc: "Nén tối ưu dung lượng ảnh JPG PNG sang WebP", url: "/calculators/nen-anh/" },
+        { title: "Tạo chữ ký Email chuyên nghiệp", desc: "Thiết kế chữ ký email HTML chuyên nghiệp Outlook Gmail", url: "/calculators/chu-ky-email/" },
+        { title: "Blog Cẩm Nang", desc: "Danh sách bài viết hướng dẫn thuế, bảo hiểm, kế toán", url: "/blog/" },
+        { title: "Bài viết: Hướng dẫn tính thuế TNCN", desc: "Cẩm nang tính thuế TNCN bậc lũy tiến từng phần", url: "/blog/huong-dan-tinh-thue-tncn/" },
+        { title: "Bài viết: Cách tính BHXH 1 lần", desc: "Thủ tục và cách tính bảo hiểm xã hội một lần", url: "/blog/cach-tinh-bhxh-1-lan/" },
+        { title: "Bài viết: Phân biệt lương Gross và Net", desc: "Nên đàm phán lương Gross hay lương Net khi phỏng vấn", url: "/blog/phan-biet-luong-gross-va-net/" },
+        { title: "Bài viết: Hướng dẫn tạo mã VietQR", desc: "Chuẩn thanh toán VietQR Napas tại cửa hàng", url: "/blog/huong-dan-tao-ma-vietqr/" },
+        { title: "Bài viết: Quy tắc đọc số thành chữ", desc: "Cách viết số tiền bằng chữ trên hóa đơn đỏ không sai sót", url: "/blog/quy-tac-doc-so-thanh-chu-ke-toan/" },
+      ];
+
+      function removeVietnameseTones(str: string) {
+        return str
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/đ/g, 'd')
+          .replace(/Đ/g, 'D')
+          .toLowerCase();
+      }
+
+      searchInput?.addEventListener('input', () => {
+        const query = removeVietnameseTones(searchInput.value.trim());
+        if (!query) {
+          searchDropdown?.classList.add('hidden');
+          return;
+        }
+
+        const results = searchIndex.filter(item => 
+          removeVietnameseTones(item.title).includes(query) || 
+          removeVietnameseTones(item.desc).includes(query)
+        );
+
+        if (results.length === 0) {
+          if (searchDropdown) {
+            searchDropdown.innerHTML = `<div class="p-3 text-xs text-slate-400 text-center">Không tìm thấy kết quả phù hợp</div>`;
+            searchDropdown.classList.remove('hidden');
+          }
+          return;
+        }
+
+        if (searchDropdown) {
+          searchDropdown.innerHTML = results.map(item => `
+            <a href="${item.url}" class="block p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-left transition select-none">
+              <div class="font-semibold text-xs text-slate-900 dark:text-white">${item.title}</div>
+              <div class="text-[10px] text-slate-400 line-clamp-1 mt-0.5">${item.desc}</div>
+            </a>
+          `).join('');
+          searchDropdown.classList.remove('hidden');
+        }
+      });
+
+      // Đóng dropdown khi click bên ngoài
+      document.addEventListener('click', (e) => {
+        if (e.target !== searchInput && e.target !== searchDropdown) {
+          searchDropdown?.classList.add('hidden');
+        }
       });
     </script>
   </body>
