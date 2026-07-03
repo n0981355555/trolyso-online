@@ -54,29 +54,29 @@ import Layout from '../../../layouts/Layout.astro';
         <div class="space-y-6">
           <!-- Bình quân tiền lương đóng BHXH -->
           <div>
-            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Bình quân tiền lương tháng đóng BHXH (VND)</label>
+            <label for="avgSalary" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Bình quân tiền lương tháng đóng BHXH (VND)</label>
             <input type="number" id="avgSalary" value="8000000" step="500000" class="w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-bold text-lg" />
           </div>
 
           <!-- Thời gian đóng trước 2014 -->
           <div>
-            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số năm đóng BHXH trước năm 2014</label>
+            <label for="yearsBefore" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số năm đóng BHXH trước năm 2014</label>
             <div class="flex items-center gap-3">
-              <button id="btnMinusBefore" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">-</button>
+              <button id="btnMinusBefore" aria-label="Giảm số năm đóng bảo hiểm trước 2014" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">-</button>
               <input type="number" id="yearsBefore" value="2" step="0.5" min="0" class="w-24 text-center py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
               <span class="text-sm text-slate-400">năm</span>
-              <button id="btnPlusBefore" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">+</button>
+              <button id="btnPlusBefore" aria-label="Tăng số năm đóng bảo hiểm trước 2014" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">+</button>
             </div>
           </div>
 
           <!-- Thời gian đóng từ 2014 -->
           <div>
-            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số năm đóng BHXH từ năm 2014 trở đi</label>
+            <label for="yearsAfter" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số năm đóng BHXH từ năm 2014 trở đi</label>
             <div class="flex items-center gap-3">
-              <button id="btnMinusAfter" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">-</button>
+              <button id="btnMinusAfter" aria-label="Giảm số năm đóng bảo hiểm sau 2014" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">-</button>
               <input type="number" id="yearsAfter" value="3.5" step="0.5" min="0" class="w-24 text-center py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
               <span class="text-sm text-slate-400">năm</span>
-              <button id="btnPlusAfter" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">+</button>
+              <button id="btnPlusAfter" aria-label="Tăng số năm đóng bảo hiểm sau 2014" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">+</button>
             </div>
           </div>
 

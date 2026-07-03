@@ -54,13 +54,13 @@ import Layout from '../../../layouts/Layout.astro';
         <div class="space-y-5">
           <!-- Tổng thu nhập tháng -->
           <div>
-            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Tổng thu nhập chịu thuế tháng (VND)</label>
+            <label for="incomeInput" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Tổng thu nhập chịu thuế tháng (VND)</label>
             <input type="number" id="incomeInput" value="30000000" step="1000000" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
           </div>
 
           <!-- Lựa chọn tính bảo hiểm -->
           <div>
-            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Đóng bảo hiểm bắt buộc</label>
+            <label for="insuranceType" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Đóng bảo hiểm bắt buộc</label>
             <select id="insuranceType" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-medium">
               <option value="auto">Tự động tính bảo hiểm bắt buộc (10.5%)</option>
               <option value="custom">Tự nhập số tiền đóng bảo hiểm</option>
@@ -70,23 +70,23 @@ import Layout from '../../../layouts/Layout.astro';
 
           <!-- Nhập bảo hiểm tùy chỉnh -->
           <div id="customInsuranceWrapper" class="hidden">
-            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số tiền đóng bảo hiểm thực tế (VND)</label>
+            <label for="customInsurance" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số tiền đóng bảo hiểm thực tế (VND)</label>
             <input type="number" id="customInsurance" value="0" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold" />
           </div>
 
           <!-- Số người phụ thuộc -->
           <div>
-            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số người phụ thuộc (Giảm trừ gia cảnh)</label>
+            <label for="dependents" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số người phụ thuộc (Giảm trừ gia cảnh)</label>
             <div class="flex items-center gap-3">
-              <button id="btnMinus" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">-</button>
+              <button id="btnMinus" aria-label="Giảm số người phụ thuộc" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">-</button>
               <input type="number" id="dependents" value="0" min="0" class="w-20 text-center py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
-              <button id="btnPlus" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">+</button>
+              <button id="btnPlus" aria-label="Tăng số người phụ thuộc" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">+</button>
             </div>
           </div>
 
           <!-- Từ thiện, nhân đạo -->
           <div>
-            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Đóng góp từ thiện, nhân đạo (VND)</label>
+            <label for="charity" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Đóng góp từ thiện, nhân đạo (VND)</label>
             <input type="number" id="charity" value="0" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold" />
           </div>
 
