@@ -1,0 +1,288 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Trình Đọc Số Thành Chữ Tiếng Việt Online Miễn Phí - Trợ Lý Số"
+  description="Công cụ chuyển đổi số tiền thành chữ viết tiếng Việt tự động chính xác cho hóa đơn, phiếu thu, phiếu chi và hợp đồng kinh tế."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</span>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Đọc Số Thành Chữ</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Đọc Số Thành Chữ Tiếng Việt
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Chuyển đổi số thành chữ viết tiếng Việt chuẩn chính tả kế toán, phục vụ viết phiếu thu, phiếu chi, viết hóa đơn đỏ và soạn hợp đồng kinh tế.
+      </p>
+    </div>
+
+    <!-- Tool Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors">
+        
+      <!-- Left inputs (7 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-7">
+        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+          🔢 Nhập con số cần chuyển đổi
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Nhập số -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Nhập giá trị số (Tối đa 15 chữ số)</label>
+            <div class="relative">
+              <input type="text" id="numberInput" value="1254000000" class="w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-2xl tracking-wide" placeholder="Ví dụ: 1254000000" />
+              <button id="btnClear" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 font-bold p-1 bg-slate-200 dark:bg-slate-800 rounded-full w-7 h-7 flex items-center justify-center text-xs">✕</button>
+            </div>
+          </div>
+
+          <!-- Lựa chọn hậu tố -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Đơn vị tiền tệ (Hậu tố)</label>
+            <div class="grid grid-cols-3 gap-3">
+              <label class="flex items-center justify-center p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer font-semibold text-sm">
+                <input type="radio" name="suffix" value="dong" checked class="mr-2" /> đồng
+              </label>
+              <label class="flex items-center justify-center p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer font-semibold text-sm">
+                <input type="radio" name="suffix" value="usd" class="mr-2" /> đô la Mỹ
+              </label>
+              <label class="flex items-center justify-center p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer font-semibold text-sm">
+                <input type="radio" name="suffix" value="none" class="mr-2" /> Không đuôi
+              </label>
+            </div>
+          </div>
+
+          <!-- Các tùy chọn hiển thị -->
+          <div class="flex flex-wrap gap-6 py-2">
+            <label class="flex items-center cursor-pointer text-sm font-semibold text-slate-700 dark:text-slate-300">
+              <input type="checkbox" id="optCap" checked class="mr-2 rounded border-slate-300 focus:ring-brand-blue" /> Viết hoa chữ đầu tiên
+            </label>
+            <label class="flex items-center cursor-pointer text-sm font-semibold text-slate-700 dark:text-slate-300">
+              <input type="checkbox" id="optChan" checked class="mr-2 rounded border-slate-300 focus:ring-brand-blue" /> Thêm chữ "chẵn" ở cuối
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right outputs (5 cols) -->
+      <div class="p-6 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 md:col-span-5 flex flex-col justify-between border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800">
+        <div>
+          <h3 class="text-lg font-heading font-bold text-slate-900 dark:text-white mb-6">Kết quả chữ viết</h3>
+          
+          <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkCard min-h-[160px] flex flex-col justify-between relative">
+            <div id="textOutput" class="font-medium text-slate-900 dark:text-white text-lg leading-relaxed break-words">
+              Mười hai triệu năm trăm bốn mươi nghìn đồng.
+            </div>
+            
+            <div class="flex justify-end mt-4">
+              <button id="btnCopy" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold rounded-lg text-sm transition flex items-center gap-1.5 shadow-sm">
+                📋 Sao Chép
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-xs text-slate-400 mt-8 pt-4 border-t border-slate-200 dark:border-slate-800">
+          * Định dạng đọc số tuân thủ văn phong Việt Nam hiện đại, xử lý chính xác các trường hợp hàng nghìn, hàng triệu, tỷ và các từ đệm "linh/lẻ", "mốt", "lăm".
+        </div>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const numberInput = document.getElementById('numberInput') as HTMLInputElement;
+  const btnClear = document.getElementById('btnClear');
+  const textOutput = document.getElementById('textOutput');
+  const btnCopy = document.getElementById('btnCopy');
+  const optCap = document.getElementById('optCap') as HTMLInputElement;
+  const optChan = document.getElementById('optChan') as HTMLInputElement;
+  const suffixes = document.getElementsByName('suffix') as NodeListOf<HTMLInputElement>;
+
+  // Thuật toán đọc số tiếng Việt chuẩn xác
+  const chuSo = ["không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+
+  function docGroup3(n: string, showZeroHundred: boolean): string {
+    let output = "";
+    const tram = parseInt(n[0]);
+    const chuc = parseInt(n[1]);
+    const donvi = parseInt(n[2]);
+
+    if (tram === 0 && chuc === 0 && donvi === 0) return "";
+
+    // Đọc hàng trăm
+    if (tram !== 0 || showZeroHundred) {
+      output += chuSo[tram] + " trăm ";
+    }
+
+    // Đọc hàng chục
+    if (chuc === 0) {
+      if (donvi !== 0 && (tram !== 0 || showZeroHundred)) {
+        output += "lẻ ";
+      }
+    } else if (chuc === 1) {
+      output += "mười ";
+    } else {
+      output += chuSo[chuc] + " mươi ";
+    }
+
+    // Đọc hàng đơn vị
+    if (donvi === 1) {
+      if (chuc > 1) {
+        output += "mốt";
+      } else {
+        output += "một";
+      }
+    } else if (donvi === 5) {
+      if (chuc > 0) {
+        output += "lăm";
+      } else {
+        output += "năm";
+      }
+    } else if (donvi !== 0) {
+      output += chuSo[donvi];
+    }
+
+    return output.trim();
+  }
+
+  function readNumber(numStr: string): string {
+    // Rút sạch các ký tự không phải số
+    numStr = numStr.replace(/[^0-9]/g, "");
+    if (!numStr) return "";
+    
+    let num = parseInt(numStr);
+    if (num === 0) return "Không";
+
+    // Pad số thành các cụm 3 chữ số
+    while (numStr.length % 3 !== 0) {
+      numStr = "0" + numStr;
+    }
+
+    const groups: string[] = [];
+    for (let i = 0; i < numStr.length; i += 3) {
+      groups.push(numStr.substr(i, 3));
+    }
+
+    const donViNhom = ["", " nghìn", " triệu", " tỷ", " nghìn tỷ", " triệu tỷ", " tỷ tỷ"];
+    let output = "";
+    
+    for (let i = 0; i < groups.length; i++) {
+      const idx = groups.length - 1 - i;
+      // Chỉ đọc số không nếu là cụm giữa, không đọc số không thừa ở đầu tiên
+      const showZero = i > 0;
+      const groupText = docGroup3(groups[i], showZero);
+      
+      if (groupText !== "") {
+        output += " " + groupText + donViNhom[idx];
+      }
+    }
+
+    // Làm sạch dấu cách thừa
+    return output.replace(/\s+/g, " ").trim();
+  }
+
+  function renderResult() {
+    let rawNum = numberInput.value.replace(/[^0-9]/g, "");
+    
+    // Giới hạn độ dài 15 chữ số (tránh tràn số hệ thống)
+    if (rawNum.length > 15) {
+      rawNum = rawNum.substr(0, 15);
+    }
+    
+    // Format hiển thị dấu chấm phân cách hàng nghìn khi người dùng gõ
+    if (rawNum) {
+      numberInput.value = new Intl.NumberFormat('vi-VN').format(parseFloat(rawNum));
+    } else {
+      numberInput.value = "";
+    }
+
+    let text = readNumber(rawNum);
+    if (!text) {
+      if (textOutput) textOutput.innerText = "Chưa có con số.";
+      return;
+    }
+
+    // Thêm hậu tố tiền tệ
+    let activeSuffix = "";
+    suffixes.forEach(radio => {
+      if (radio.checked) activeSuffix = radio.value;
+    });
+
+    let suffixText = "";
+    if (activeSuffix === "dong") {
+      suffixText = " đồng";
+      if (optChan.checked) {
+        suffixText += " chẵn";
+      }
+    } else if (activeSuffix === "usd") {
+      suffixText = " đô la Mỹ";
+      if (optChan.checked) {
+        suffixText += " chẵn";
+      }
+    }
+
+    text = text + suffixText;
+
+    // Viết hoa chữ đầu tiên
+    if (optCap.checked) {
+      text = text.charAt(0).toUpperCase() + text.slice(1);
+    } else {
+      text = text.charAt(0).toLowerCase() + text.slice(1);
+    }
+
+    // Thêm dấu chấm câu cuối cùng
+    text = text.trim() + ".";
+
+    if (textOutput) textOutput.innerText = text;
+  }
+
+  // Bind events
+  numberInput.addEventListener('input', renderResult);
+  btnClear?.addEventListener('click', () => {
+    numberInput.value = "";
+    renderResult();
+  });
+
+  optCap.addEventListener('change', renderResult);
+  optChan.addEventListener('change', renderResult);
+  suffixes.forEach(radio => {
+    radio.addEventListener('change', renderResult);
+  });
+
+  btnCopy?.addEventListener('click', () => {
+    if (textOutput) {
+      navigator.clipboard.writeText(textOutput.innerText);
+      alert("Đã sao chép chữ vào bộ nhớ tạm!");
+    }
+  });
+
+  // Khởi chạy
+  renderResult();
+</script>

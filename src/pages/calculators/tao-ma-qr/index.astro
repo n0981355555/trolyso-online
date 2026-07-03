@@ -1,0 +1,225 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Trình Tạo Mã VietQR Thanh Toán Ngân Hàng Miễn Phí - Trợ Lý Số"
+  description="Công cụ tạo mã QR chuyển khoản nhanh (VietQR) cho hơn 40 ngân hàng Việt Nam. Nhập số tiền và nội dung để tự động tạo mã QR quét thanh toán."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</span>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tạo mã VietQR</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Trình Tạo Mã VietQR Chuyển Khoản Nhanh
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Tạo mã QR thanh toán ngân hàng có sẵn số tiền và nội dung chuyển khoản tự động, giúp khách hàng quét trả tiền nhanh gọn.
+      </p>
+    </div>
+
+    <!-- Tool Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors">
+        
+      <!-- Left inputs (7 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-7">
+        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+          💳 Thông tin tài khoản & Thanh toán
+        </h2>
+
+        <div class="space-y-5">
+          <!-- Chọn ngân hàng -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Chọn Ngân hàng</label>
+            <select id="bankSelect" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-medium">
+              <option value="vietcombank">Vietcombank (VCB)</option>
+              <option value="mbbank" selected>MBBank (MB)</option>
+              <option value="techcombank">Techcombank (TCB)</option>
+              <option value="vietinbank">VietinBank (CTG)</option>
+              <option value="bidv">BIDV</option>
+              <option value="acb">ACB</option>
+              <option value="tpb">TPBank (TPB)</option>
+              <option value="vpbank">VPBank (VPB)</option>
+              <option value="sacombank">Sacombank (STB)</option>
+              <option value="agribank">Agribank (VBA)</option>
+              <option value="vcb">Vietcombank</option>
+              <option value="shb">SHB</option>
+              <option value="hdbank">HDBank (HDB)</option>
+              <option value="vib">VIB</option>
+              <option value="ocb">OCB</option>
+            </select>
+          </div>
+
+          <!-- Số tài khoản -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số tài khoản thụ hưởng</label>
+            <input type="text" id="accountNo" value="9999999999" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold tracking-wider" placeholder="Nhập số tài khoản ngân hàng" />
+          </div>
+
+          <!-- Tên chủ tài khoản -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Tên chủ tài khoản (Viết hoa không dấu)</label>
+            <input type="text" id="accountName" value="NGUYEN VAN A" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold uppercase" placeholder="Ví dụ: NGUYEN VAN A" />
+          </div>
+
+          <!-- Số tiền -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số tiền thanh toán (VND)</label>
+            <input type="number" id="amount" value="100000" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold" placeholder="Nhập số tiền cần nhận" />
+          </div>
+
+          <!-- Nội dung chuyển khoản -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Nội dung chuyển khoản (Không dấu)</label>
+            <input type="text" id="addInfo" value="THANH TOAN DON HANG" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-medium" placeholder="Ví dụ: THANH TOAN DON HANG" />
+          </div>
+
+          <!-- Mẫu hiển thị QR -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Giao diện thẻ QR</label>
+            <select id="templateSelect" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-medium">
+              <option value="qr_only">Chỉ mã QR (Không kèm thông tin chữ)</option>
+              <option value="compact" selected>Rút gọn (Mã QR kèm Logo ngân hàng)</option>
+              <option value="print">Bản in chuyển khoản (Đầy đủ thông tin chủ thẻ)</option>
+            </select>
+          </div>
+
+          <button id="btnGenerate" class="w-full bg-brand-blue hover:bg-blue-700 dark:bg-brand-mint dark:hover:bg-emerald-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg flex items-center justify-center gap-2">
+            ✨ Tạo Mã VietQR
+          </button>
+        </div>
+      </div>
+
+      <!-- Right outputs (5 cols) -->
+      <div class="p-6 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 md:col-span-5 flex flex-col justify-center items-center border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800 text-center">
+        <h3 class="text-lg font-heading font-bold text-slate-900 dark:text-white mb-6">Mã QR Thanh Toán Của Bạn</h3>
+        
+        <!-- QR Code Image Wrapper -->
+        <div class="bg-white p-4 rounded-2xl shadow-md border border-slate-200 inline-block mb-6 relative group overflow-hidden">
+          <img id="qrImage" src="" alt="Mã VietQR" class="w-[240px] h-[330px] object-contain transition duration-300 group-hover:scale-102" />
+          
+          <div id="loadingOverlay" class="absolute inset-0 bg-white/90 flex flex-col items-center justify-center z-10">
+            <svg class="animate-spin h-8 w-8 text-brand-blue mb-2" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span class="text-xs text-slate-500 font-semibold">Đang tạo mã QR...</span>
+          </div>
+        </div>
+
+        <div class="space-y-3 w-full max-w-[280px]">
+          <a id="btnDownload" href="#" target="_blank" download="vietqr.png" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition inline-flex items-center justify-center gap-2 shadow-md">
+            📥 Tải Mã QR Về Máy
+          </a>
+          <button id="btnCopyLink" class="w-full py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold rounded-xl transition inline-flex items-center justify-center gap-2">
+            🔗 Sao Chép Đường Link QR
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const bankSelect = document.getElementById('bankSelect') as HTMLSelectElement;
+  const accountNoInput = document.getElementById('accountNo') as HTMLInputElement;
+  const accountNameInput = document.getElementById('accountName') as HTMLInputElement;
+  const amountInput = document.getElementById('amount') as HTMLInputElement;
+  const addInfoInput = document.getElementById('addInfo') as HTMLInputElement;
+  const templateSelect = document.getElementById('templateSelect') as HTMLSelectElement;
+  const btnGenerate = document.getElementById('btnGenerate');
+  const qrImage = document.getElementById('qrImage') as HTMLImageElement;
+  const loadingOverlay = document.getElementById('loadingOverlay');
+  const btnDownload = document.getElementById('btnDownload') as HTMLAnchorElement;
+  const btnCopyLink = document.getElementById('btnCopyLink');
+
+  // Hàm chuyển đổi tiếng Việt có dấu sang không dấu
+  function removeVietnameseTones(str: string) {
+    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+    str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+    str = str.replace(/ò|ó|ọ|ỏ|ã|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+    str = str.replace(/đ/g, "d");
+    str = str.replace(/À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ/g, "A");
+    str = str.replace(/È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g, "E");
+    str = str.replace(/Ì|Í|Ị|B|Ĩ/g, "I");
+    str = str.replace(/Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g, "O");
+    str = str.replace(/Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g, "U");
+    str = str.replace(/Ỳ|Ý|Ỵ|Ỷ|Ỹ/g, "Y");
+    str = str.replace(/Đ/g, "D");
+    // Loại bỏ một số ký tự đặc biệt không được chấp nhận trong nội dung chuyển khoản
+    return str.replace(/[^a-zA-Z0-9\s]/g, "");
+  }
+
+  function generateVietQR() {
+    if (loadingOverlay) loadingOverlay.classList.remove('hidden');
+
+    const bank = bankSelect.value;
+    const accountNo = accountNoInput.value.trim();
+    const accountName = encodeURIComponent(removeVietnameseTones(accountNameInput.value.toUpperCase()));
+    const amount = amountInput.value || '0';
+    const addInfo = encodeURIComponent(removeVietnameseTones(addInfoInput.value));
+    const template = templateSelect.value;
+
+    // Sử dụng img.vietqr.io để tạo ảnh VietQR tự động
+    const qrUrl = `https://img.vietqr.io/image/${bank}-${accountNo}-${template}.png?amount=${amount}&addInfo=${addInfo}&accountName=${accountName}`;
+
+    qrImage.src = qrUrl;
+    btnDownload.href = qrUrl;
+
+    qrImage.onload = () => {
+      if (loadingOverlay) loadingOverlay.classList.add('hidden');
+    };
+
+    qrImage.onerror = () => {
+      alert("Lỗi khi tải mã QR. Vui lòng kiểm tra lại thông tin ngân hàng!");
+      if (loadingOverlay) loadingOverlay.classList.add('hidden');
+    };
+  }
+
+  // Tự động chuẩn hóa viết hoa không dấu khi người dùng gõ
+  accountNameInput.addEventListener('input', () => {
+    accountNameInput.value = removeVietnameseTones(accountNameInput.value).toUpperCase();
+  });
+  
+  addInfoInput.addEventListener('input', () => {
+    addInfoInput.value = removeVietnameseTones(addInfoInput.value).toUpperCase();
+  });
+
+  btnGenerate?.addEventListener('click', generateVietQR);
+
+  btnCopyLink?.addEventListener('click', () => {
+    navigator.clipboard.writeText(qrImage.src);
+    alert("Đã sao chép link ảnh VietQR vào bộ nhớ tạm!");
+  });
+
+  // Tạo mặc định khi load trang
+  generateVietQR();
+</script>
