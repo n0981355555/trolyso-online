@@ -5,8 +5,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        heading: ['Outfit', 'sans-serif'],
+        sans: ['"Google Sans Flex"', 'sans-serif'],
+        heading: ['"Google Sans Flex"', 'sans-serif'],
       },
       colors: {
         brand: {
