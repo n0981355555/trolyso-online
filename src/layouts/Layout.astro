@@ -1,0 +1,115 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tuyến miễn phí" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Inline script to prevent theme flash -->
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('color-theme')) {
+          return localStorage.getItem('color-theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+    
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </head>
+  <body class="bg-slate-50 dark:bg-brand-darkBg text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-white/80 dark:bg-brand-darkCard/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50 transition-colors">
+      <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <!-- Logo -->
+        <a href="/" class="text-2xl font-heading font-extrabold text-brand-blue dark:text-brand-mint flex items-center gap-2">
+          ⚡ Trợ Lý Số
+        </a>
+        
+        <!-- Dark Mode Toggle & Menu -->
+        <div class="flex items-center gap-4">
+          <a href="/calculators/tinh-bhxh-1-lan/" class="text-sm font-semibold hover:text-brand-blue dark:hover:text-brand-mint hidden sm:inline-block">
+            Tính BHXH 1 Lần
+          </a>
+          
+          <!-- Theme Toggle Button -->
+          <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:ring-2 hover:ring-slate-300 dark:hover:ring-slate-700 transition" aria-label="Toggle theme">
+            <!-- Sun Icon (shown in dark mode) -->
+            <svg id="themeSun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707-.707m12.728 0l-.707.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 115.52 12a9 9 0 0112.728 12.728z"></path>
+            </svg>
+            <!-- Moon Icon (shown in light mode) -->
+            <svg id="themeMoon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content Slot -->
+    <slot />
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-brand-darkCard border-t border-slate-200 dark:border-slate-800 py-8 text-center text-sm text-slate-500 dark:text-slate-400 mt-auto transition-colors">
+      <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p>© 2026 Trợ Lý Số (trolyso.online). Bảo lưu mọi quyền.</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:underline">Điều khoản</a>
+          <a href="#" class="hover:underline">Chính sách bảo mật</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Theme toggle client logic -->
+    <script>
+      const themeToggleBtn = document.getElementById('themeToggle');
+      const themeSun = document.getElementById('themeSun');
+      const themeMoon = document.getElementById('themeMoon');
+
+      // Update toggle icon visibility on load
+      function updateIcons() {
+        if (document.documentElement.classList.contains('dark')) {
+          themeSun.classList.remove('hidden');
+          themeMoon.classList.add('hidden');
+        } else {
+          themeSun.classList.add('hidden');
+          themeMoon.classList.remove('hidden');
+        }
+      }
+      updateIcons();
+
+      themeToggleBtn.addEventListener('click', () => {
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('color-theme', 'light');
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('color-theme', 'dark');
+        }
+        updateIcons();
+      });
+    </script>
+  </body>
+</html>

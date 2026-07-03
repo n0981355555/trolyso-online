@@ -1,0 +1,193 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Tính Bảo Hiểm Xã Hội 1 Lần - Trợ Lý Số"
+  description="Công cụ tính bảo hiểm xã hội 1 lần trực tuyến miễn phí, chính xác chuẩn pháp luật Việt Nam."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</span>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tính BHXH 1 Lần</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Công Cụ Tính Bảo Hiểm Xã Hội 1 Lần
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Ước tính nhanh số tiền nhận về khi thanh toán BHXH một lần theo Luật Bảo hiểm xã hội Việt Nam.
+      </p>
+    </div>
+
+    <!-- Tool Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors">
+        
+      <!-- Left inputs (7 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-7">
+        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+          🛡️ Nhập thông tin đóng BHXH
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Bình quân tiền lương đóng BHXH -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Bình quân tiền lương tháng đóng BHXH (VND)</label>
+            <input type="number" id="avgSalary" value="8000000" step="500000" class="w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-bold text-lg" />
+          </div>
+
+          <!-- Thời gian đóng trước 2014 -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số năm đóng BHXH trước năm 2014</label>
+            <div class="flex items-center gap-3">
+              <button id="btnMinusBefore" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">-</button>
+              <input type="number" id="yearsBefore" value="2" step="0.5" min="0" class="w-24 text-center py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
+              <span class="text-sm text-slate-400">năm</span>
+              <button id="btnPlusBefore" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">+</button>
+            </div>
+          </div>
+
+          <!-- Thời gian đóng từ 2014 -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số năm đóng BHXH từ năm 2014 trở đi</label>
+            <div class="flex items-center gap-3">
+              <button id="btnMinusAfter" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">-</button>
+              <input type="number" id="yearsAfter" value="3.5" step="0.5" min="0" class="w-24 text-center py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
+              <span class="text-sm text-slate-400">năm</span>
+              <button id="btnPlusAfter" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">+</button>
+            </div>
+          </div>
+
+          <button id="btnCalculate" class="w-full bg-brand-blue hover:bg-blue-700 dark:bg-brand-mint dark:hover:bg-emerald-600 text-white font-bold py-4.5 px-6 rounded-xl transition duration-200 shadow-lg">
+            ⚡ Tính Số Tiền Nhận Về
+          </button>
+        </div>
+      </div>
+
+      <!-- Right outputs (5 cols) -->
+      <div class="p-6 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 md:col-span-5 flex flex-col justify-between border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800">
+        <div>
+          <h3 class="text-lg font-heading font-bold text-slate-900 dark:text-white mb-6">Kết quả ước tính</h3>
+
+          <div class="space-y-4 text-sm">
+            <div class="flex justify-between items-center py-2.5 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-slate-500">Hệ số nhận trước 2014 (x1.5):</span>
+              <span class="font-semibold text-slate-900 dark:text-white" id="coeffBefore">0 năm</span>
+            </div>
+            <div class="flex justify-between items-center py-2.5 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-slate-500">Hệ số nhận sau 2014 (x2.0):</span>
+              <span class="font-semibold text-slate-900 dark:text-white" id="coeffAfter">0 năm</span>
+            </div>
+            <div class="flex justify-between items-center py-2.5 border-b border-slate-200 dark:border-slate-800">
+              <span class="text-slate-500">Tổng hệ số hưởng:</span>
+              <span class="font-bold text-brand-blue dark:text-brand-mint" id="totalCoeff">0 tháng lương</span>
+            </div>
+            <div class="flex justify-between items-center pt-6 pb-2">
+              <span class="text-base font-bold text-slate-800 dark:text-slate-200">TỔNG TIỀN BHXH 1 LẦN:</span>
+              <span class="text-2xl font-extrabold text-emerald-600 dark:text-brand-mint" id="totalBHXH">0đ</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-xs text-slate-400 mt-8 pt-4 border-t border-slate-200 dark:border-slate-800">
+          * Lưu ý: Cách tính trên áp dụng quy định làm tròn thời gian đóng BHXH: từ 1 đến 6 tháng làm tròn thành 0.5 năm; từ 7 đến 12 tháng làm tròn thành 1 năm.
+        </div>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<script>
+  function formatMoney(amount: number) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+  }
+
+  const avgSalaryInput = document.getElementById('avgSalary') as HTMLInputElement;
+  const yearsBeforeInput = document.getElementById('yearsBefore') as HTMLInputElement;
+  const yearsAfterInput = document.getElementById('yearsAfter') as HTMLInputElement;
+
+  const btnMinusBefore = document.getElementById('btnMinusBefore');
+  const btnPlusBefore = document.getElementById('btnPlusBefore');
+  const btnMinusAfter = document.getElementById('btnMinusAfter');
+  const btnPlusAfter = document.getElementById('btnPlusAfter');
+  const btnCalculate = document.getElementById('btnCalculate');
+
+  const coeffBeforeEl = document.getElementById('coeffBefore');
+  const coeffAfterEl = document.getElementById('coeffAfter');
+  const totalCoeffEl = document.getElementById('totalCoeff');
+  const totalBHXHEl = document.getElementById('totalBHXH');
+
+  function calculateBHXH() {
+    const avgSalary = parseFloat(avgSalaryInput.value) || 0;
+    const yearsBefore = parseFloat(yearsBeforeInput.value) || 0;
+    const yearsAfter = parseFloat(yearsAfterInput.value) || 0;
+
+    const coeffBefore = yearsBefore * 1.5;
+    const coeffAfter = yearsAfter * 2.0;
+    const totalCoeff = coeffBefore + coeffAfter;
+    const totalMoney = totalCoeff * avgSalary;
+
+    if (coeffBeforeEl) coeffBeforeEl.innerText = `${yearsBefore} năm x 1.5 = ${coeffBefore.toFixed(1)}`;
+    if (coeffAfterEl) coeffAfterEl.innerText = `${yearsAfter} năm x 2.0 = ${coeffAfter.toFixed(1)}`;
+    if (totalCoeffEl) totalCoeffEl.innerText = `${totalCoeff.toFixed(1)} tháng lương`;
+    if (totalBHXHEl) totalBHXHEl.innerText = formatMoney(totalMoney);
+  }
+
+  // Bind events
+  btnMinusBefore?.addEventListener('click', () => {
+    let val = parseFloat(yearsBeforeInput.value) || 0;
+    val = Math.max(0, val - 0.5);
+    yearsBeforeInput.value = val.toString();
+    calculateBHXH();
+  });
+
+  btnPlusBefore?.addEventListener('click', () => {
+    let val = parseFloat(yearsBeforeInput.value) || 0;
+    yearsBeforeInput.value = (val + 0.5).toString();
+    calculateBHXH();
+  });
+
+  btnMinusAfter?.addEventListener('click', () => {
+    let val = parseFloat(yearsAfterInput.value) || 0;
+    val = Math.max(0, val - 0.5);
+    yearsAfterInput.value = val.toString();
+    calculateBHXH();
+  });
+
+  btnPlusAfter?.addEventListener('click', () => {
+    let val = parseFloat(yearsAfterInput.value) || 0;
+    yearsAfterInput.value = (val + 0.5).toString();
+    calculateBHXH();
+  });
+
+  btnCalculate?.addEventListener('click', calculateBHXH);
+  avgSalaryInput?.addEventListener('input', calculateBHXH);
+  yearsBeforeInput?.addEventListener('input', calculateBHXH);
+  yearsAfterInput?.addEventListener('input', calculateBHXH);
+
+  // Initial Calculation
+  calculateBHXH();
+</script>
