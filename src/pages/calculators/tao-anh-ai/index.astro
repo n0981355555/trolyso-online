@@ -352,9 +352,9 @@ import Layout from '../../../layouts/Layout.astro';
     const { w, h } = getDimension(aspectRatioSelect.value);
     const seed = seedInput.value ? parseInt(seedInput.value) : Math.floor(Math.random() * 9999999);
 
-    // Pollinations GET Image URL
+    // Pollinations GET Image URL (Sử dụng cổng API hợp nhất mới gen.pollinations.ai)
     const encodedPrompt = encodeURIComponent(prompt);
-    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${w}&height=${h}&seed=${seed}&model=flux`;
+    const imageUrl = `https://gen.pollinations.ai/image/${encodedPrompt}?width=${w}&height=${h}&seed=${seed}&model=flux`;
 
     currentImageUrl = imageUrl;
 
