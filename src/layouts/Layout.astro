@@ -184,6 +184,7 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
           { title: "Nén ảnh WebP trực tuyến", desc: "Nén tối ưu dung lượng ảnh JPG PNG sang WebP", url: "/calculators/nen-anh/" },
           { title: "Tạo chữ ký Email chuyên nghiệp", desc: "Thiết kế chữ ký email HTML chuyên nghiệp Outlook Gmail", url: "/calculators/chu-ky-email/" },
           { title: "Tạo văn bản hành chính chuẩn Nghị định 30", desc: "Soạn thảo 15 loại văn bản quy phạm pháp luật và 29 loại văn bản hành chính", url: "/calculators/tao-van-ban/" },
+          { title: "Dự tính tuổi nghỉ hưu & lương hưu", desc: "Tính tuổi nghỉ hưu lộ trình Nghị định 135 và mức hưởng lương hưu dự kiến", url: "/calculators/tinh-luong-huu/" },
           { title: "Blog Cẩm Nang", desc: "Danh sách bài viết hướng dẫn thuế, bảo hiểm, kế toán", url: "/blog/" },
           { title: "Bài viết: Hướng dẫn tính thuế TNCN", desc: "Cẩm nang tính thuế TNCN bậc lũy tiến từng phần", url: "/blog/huong-dan-tinh-thue-tncn/" },
           { title: "Bài viết: Cách tính BHXH 1 lần", desc: "Thủ tục và cách tính bảo hiểm xã hội một lần", url: "/blog/cach-tinh-bhxh-1-lan/" },
@@ -413,7 +414,32 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
         "5 người ký": "5 signers",
         "Bản xem trước văn bản chuẩn Nghị định 30": "Government Document Preview (Decree 30)",
         "📋 Sao Chép Văn Bản (Rich HTML để dán vào Word)": "📋 Copy Document (Rich HTML for Word)",
-        "📥 Tải Văn Bản (.doc mở bằng Word)": "📥 Download Document (.doc for Word)"
+        "📥 Tải Văn Bản (.doc mở bằng Word)": "📥 Download Document (.doc for Word)",
+
+        // Pension calculator translations
+        "Tính Lương Hưu Dự Kiến": "Projected Pension Calculator",
+        "Tính tuổi nghỉ hưu lộ trình Nghị định 135 và mức hưởng lương hưu dự kiến hàng tháng.": "Calculate retirement age under Decree 135 and projected monthly pension payout.",
+        "Tính Tuổi Nghỉ Hưu & Lương Hưu Dự Kiến": "Calculate retirement age & projected pension",
+        "Tính toán tự động thời điểm nghỉ hưu theo lộ trình tăng tuổi Nghị định 135, tỷ lệ hưởng lương hưu và số tiền trợ cấp đóng dư năm.": "Calculate retirement age based on Decree 135 timeline, pension rate, and excess contribution allowance.",
+        "💼 Thông tin người lao động & BHXH": "💼 Employee & Social Insurance Details",
+        "Giới tính": "Gender",
+        "Nam": "Male",
+        "Nữ": "Female",
+        "Tháng sinh": "Birth Month",
+        "Năm sinh": "Birth Year",
+        "Tổng số năm đóng BHXH": "Total contribution years",
+        "năm đóng": "years of contribution",
+        "Bình quân tiền lương tháng đóng BHXH (VND)": "Average Monthly Salary for BHXH (VND)",
+        "⚡ Dự Tính Lương Hưu": "⚡ Estimate Pension",
+        "Kết quả dự kiến": "Estimation Results",
+        "Thời điểm nghỉ hưu:": "Retirement Date:",
+        "Tuổi nghỉ hưu chính thức:" : "Official Retirement Age:",
+        "Tỷ lệ hưởng lương hưu:": "Pension payout rate:",
+        "Lương hưu hàng tháng:": "Monthly Pension Payout:",
+        "(Nhận trọn đời)": "(Paid for life)",
+        "Trợ cấp một lần (đóng dư):": "One-time Excess Allowance:",
+        "(0.5 tháng lương/năm dư)": "(0.5 months salary per excess year)",
+        "* Lưu ý: Kết quả trên tính theo điều kiện làm việc bình thường. Số năm đóng tối thiểu để hưởng lương hưu là 20 năm đối với nam và 15 năm đối với nữ (Luật mới có lộ trình giảm dần năm đóng tối thiểu xuống 15 năm).": "* Note: Calculations assume normal working conditions. Minimum contributions required is 20 years for men and 15 years for women (new law reduces the threshold to 15 years)."
       };
 
       function translateTextNode(node: Node) {
