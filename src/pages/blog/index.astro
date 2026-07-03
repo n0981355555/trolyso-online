@@ -1,0 +1,109 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const posts = [
+  {
+    title: "Hướng dẫn tính thuế thu nhập cá nhân mới nhất năm 2026",
+    description: "Cẩm nang hướng dẫn chi tiết các bậc thuế lũy tiến, các khoản giảm trừ gia cảnh và cách tự tính thuế TNCN chuẩn xác.",
+    slug: "huong-dan-tinh-thue-tncn",
+    category: "Thuế & Lương",
+    date: "03/07/2026",
+    readTime: "5 phút",
+    badge: "Bảo chứng bởi CPA"
+  },
+  {
+    title: "Cách tính bảo hiểm xã hội 1 lần và quy trình làm hồ sơ nhận nhanh",
+    description: "Hướng dẫn các bước tính tiền rút BHXH 1 lần, các thủ tục chuẩn bị hồ sơ nộp BHXH theo đúng luật hiện hành.",
+    slug: "cach-tinh-bhxh-1-lan",
+    category: "Bảo hiểm",
+    date: "02/07/2026",
+    readTime: "6 phút",
+    badge: "Tin cậy"
+  },
+  {
+    title: "Phân biệt lương Gross và lương Net: Nên đàm phán loại nào có lợi hơn?",
+    description: "So sánh chi tiết ưu nhược điểm của lương Gross và Net, cách quy đổi và kinh nghiệm đàm phán lương khi phỏng vấn xin việc.",
+    slug: "phan-biet-luong-gross-va-net",
+    category: "Thuế & Lương",
+    date: "01/07/2026",
+    readTime: "4 phút",
+    badge: "Phổ biến"
+  },
+  {
+    title: "Hướng dẫn cách tạo mã QR ngân hàng thanh toán chuẩn VietQR nhanh gọn",
+    description: "Cách tạo mã QR chuyển khoản nhanh chứa sẵn số tiền và nội dung cho chủ shop, hộ kinh doanh không bị nhầm lẫn.",
+    slug: "huong-dan-tao-ma-vietqr",
+    category: "Tiện ích số",
+    date: "30/06/2026",
+    readTime: "4 phút",
+    badge: "Hướng dẫn"
+  },
+  {
+    title: "Quy tắc đọc số thành chữ trong kế toán và cách viết hóa đơn không sai sót",
+    description: "Tìm hiểu quy tắc chuyển đổi số tiền thành chữ viết tiếng Việt chuẩn xác trong viết hóa đơn, phiếu thu chi kế toán.",
+    slug: "quy-tac-doc-so-thanh-chu-ke-toan",
+    category: "Văn phòng",
+    date: "29/06/2026",
+    readTime: "3 phút",
+    badge: "Kế toán"
+  }
+];
+---
+
+<Layout 
+  title="Cẩm Nang Trợ Lý Số - Kiến Thức Tài Chính & Tiện Ích Số Dành Cho Người Việt"
+  description="Chuyên mục chia sẻ kiến thức, hướng dẫn chi tiết các thủ tục thuế, bảo hiểm xã hội, kế toán văn phòng chính xác chuẩn E-E-A-T."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.03),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Hero Section -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h1 class="text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Cẩm Nang Trợ Lý Số
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Các bài viết hướng dẫn chuyên sâu về thuế, lương, thủ tục hành chính được cố vấn bởi các chuyên gia tài chính và kế toán uy tín.
+      </p>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {posts.map(post => (
+        <article class="bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg transition">
+          <div class="p-6">
+            <!-- Category and Badge -->
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-xs font-bold text-brand-blue dark:text-brand-mint bg-blue-50 dark:bg-blue-950 px-2.5 py-1 rounded-md">
+                {post.category}
+              </span>
+              <span class="text-[11px] font-medium text-slate-400">
+                • {post.date}
+              </span>
+            </div>
+            
+            <!-- Title -->
+            <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-3 hover:text-brand-blue dark:hover:text-brand-mint transition">
+              <a href={`/blog/${post.slug}/`}>{post.title}</a>
+            </h2>
+            
+            <!-- Description -->
+            <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-3">
+              {post.description}
+            </p>
+          </div>
+          
+          <div class="p-6 pt-0 border-t border-slate-100 dark:border-slate-800/50 flex justify-between items-center text-xs">
+            <span class="text-slate-400">Thời gian đọc: {post.readTime}</span>
+            <a href={`/blog/${post.slug}/`} class="font-bold text-brand-blue dark:text-brand-mint flex items-center gap-1 hover:underline">
+              Đọc tiếp <span>→</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </main>
+</Layout>
