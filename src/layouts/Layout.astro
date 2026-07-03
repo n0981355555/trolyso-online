@@ -248,50 +248,243 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
       // Language Switcher Logic
       const langSelector = document.getElementById('langSelector') as HTMLSelectElement;
 
+      const translations: Record<string, string> = {
+        // Navigation & Search
+        "Cẩm Nang": "Handbook",
+        "Điều khoản": "Terms",
+        "Chính sách bảo mật": "Privacy Policy",
+        "Ngôn ngữ:": "Language:",
+        "Tìm công cụ, bài viết...": "Search tools, articles...",
+        "Không tìm thấy kết quả phù hợp": "No matching results found",
+        "Trang chủ": "Home",
+        "Blog": "Blog",
+
+        // Homepage
+        "Hộp Công Cụ Số Thông Minh Cho Người Việt": "Smart Digital Toolbox for Vietnamese",
+        "Tổng hợp các công cụ tiện ích trực tuyến giúp tự động hóa công việc văn phòng, tính toán tài chính, thuế và bảo hiểm xã hội chuẩn xác nhất.": "Summary of online utilities to automate office work, calculate finance, tax, and social insurance.",
+        "⚡ Tính Lương Gross Sang Net (Chuẩn 2026)": "⚡ Gross to Net Salary Calculator (2026)",
+        "Mức lương Gross (VND/Tháng)": "Gross Salary (VND/Month)",
+        "Số người phụ thuộc (Giảm trừ gia cảnh)": "Number of Dependents (Family deductions)",
+        "⚡ Tính Toán Ngay": "⚡ Calculate Now",
+        "Bảng Phân Tích Lương Net": "Net Salary Breakdown",
+        "LƯƠNG THỰC NHẬN:": "NET SALARY:",
+        "Lương Gross:": "Gross Salary:",
+        "Bảo hiểm bắt buộc (10.5%):": "Compulsory Insurance (10.5%):",
+        "Giảm trừ bản thân:": "Personal Deduction:",
+        "Giảm trừ phụ thuộc:": "Dependent Deduction:",
+        "Thuế thu nhập cá nhân:": "Personal Income Tax:",
+        "Chi tiết các khoản đóng bảo hiểm (Người lao động)": "Detailed insurance contributions (Employee)",
+        "Bảo hiểm xã hội (8%):": "Social Insurance (8%):",
+        "Bảo hiểm y tế (1.5%):": "Health Insurance (1.5%):",
+        "Bảo hiểm thất nghiệp (1%):": "Unemployment Insurance (1%):",
+        "Mức đóng bảo hiểm của Công ty (Tham khảo)": "Employer's insurance contributions (Reference)",
+        "Tổng chi phí công ty chi trả:": "Total cost paid by Company:",
+        "Bảo hiểm xã hội (17.5%):": "Social Insurance (17.5%):",
+        "Bảo hiểm y tế (3%):": "Health Insurance (3%):",
+        "Các công cụ tiện ích khác:": "Other Digital Utilities:",
+        "Xem thêm công cụ": "View more tools",
+        "Thu gọn bớt": "Collapse list",
+
+        // Calculator names & descriptions
+        "Tính Bảo Hiểm Xã Hội 1 Lần": "One-time Social Insurance",
+        "Ước tính số tiền rút BHXH một lần nhanh chóng": "Quickly estimate your one-time social insurance payout",
+        "Trình Tạo Mã VietQR Thanh Toán": "VietQR Payment Generator",
+        "Tạo mã QR chuyển khoản nhanh hơn 40 ngân hàng": "Create bank transfer QR codes for over 40 banks",
+        "Đọc Số Thành Chữ Tiếng Việt": "Number to Words Converter",
+        "Chuyển số tiền thành chữ viết hóa đơn kế toán": "Convert currency numbers to Vietnamese writing for invoicing",
+        "Tính Thuế Thu Nhập Cá Nhân": "Personal Income Tax",
+        "Tính thuế TNCN lũy tiến từng phần chi tiết": "Calculate personal income tax with progressive brackets",
+        "Nén Ảnh WebP Trực Tuyến": "Optimized WebP Compressor",
+        "Nén tối ưu dung lượng ảnh JPG PNG sang WebP": "Compress JPG/PNG files to high-performance WebP",
+        "Tạo Chữ Ký Email HTML": "HTML Email Signature Creator",
+        "Thiết kế chữ ký email HTML chuyên nghiệp Outlook Gmail": "Design professional HTML email signatures for Outlook/Gmail",
+        "Tạo Văn Bản Hành Chính NĐ 30": "Gov Doc Generator (ND 30)",
+        "Soạn thảo 15 loại văn bản quy phạm pháp luật và 29 loại văn bản hành chính": "Draft 15 legal and 29 administrative document templates",
+        "Tạo Văn Bản Hành Chính chuẩn Nghị định 30": "Draft Gov Documents (Decree 30)",
+        "Rút Gọn Link An Toàn": "Safe URL Shortener",
+        "Trình Tạo Mật Khẩu Mạnh": "Strong Password Generator",
+        "Trình Tạo Biểu Đồ PDF": "PDF Chart Creator",
+        "Sắp ra mắt": "Coming Soon",
+        "Mở công cụ": "Open Tool",
+
+        // Common Calculator Elements
+        "Nhập thông tin tính toán": "Enter calculation details",
+        "Nhập thông tin": "Enter details",
+        "Bản xem trước": "Preview",
+        "Kết quả tính toán": "Calculation Results",
+        "Sao chép": "Copy",
+        "Tải file": "Download",
+        "Tải văn bản": "Download document",
+        "Sao chép văn bản": "Copy document",
+        "Mô phỏng": "Simulation",
+        "Chức vụ": "Title / Role",
+        "Họ tên": "Full name",
+        "Số tiền": "Amount",
+        "Nội dung": "Content",
+        "Địa danh": "Location",
+        "Ngày tháng": "Date",
+        "Tải xuống": "Download",
+        "Xem chi tiết": "View Details",
+        "Quay lại": "Back",
+        "Quay lại danh mục Blog": "Back to Blog list",
+        
+        // BHXH 1 lan
+        "Nhập thông tin đóng BHXH": "Enter Social Insurance details",
+        "Mức lương đóng BHXH trung bình (VND)": "Average Monthly Salary for BHXH (VND)",
+        "Tổng thời gian đóng bảo hiểm (Tháng)": "Total Contribution Time (Months)",
+        "Số năm đóng BHXH trước 2014": "Years of contribution before 2014",
+        "Số năm đóng BHXH từ 2014 trở đi": "Years of contribution from 2014 onwards",
+        "Số tiền nhận về ước tính:": "Estimated payout amount:",
+        "Hệ số trượt giá áp dụng:": "Inflation adjustment multiplier applied:",
+        "Chi tiết cách tính:": "Detailed calculation:",
+
+        // VietQR
+        "Nhập thông tin thanh toán": "Enter payment details",
+        "Chọn ngân hàng": "Select Bank",
+        "Số tài khoản": "Account Number",
+        "Tên chủ tài khoản": "Account Holder Name",
+        "Số tiền thanh toán (VND)": "Payment Amount (VND)",
+        "Nội dung chuyển khoản": "Transfer Message",
+        "Mã QR thanh toán VietQR": "VietQR Payment Code",
+        "Quét mã để chuyển khoản": "Scan to transfer",
+        "Tải Mã QR (Ảnh PNG)": "Download QR Code (PNG)",
+
+        // Doc so thanh chu
+        "Nhập số tiền cần đọc": "Enter number to convert",
+        "Số tiền cần đọc (Ví dụ: 15200000)": "Number to convert (Example: 15200000)",
+        "Kết quả đọc chữ:": "Converted text:",
+        "Đọc chữ chuẩn kế toán:": "Accounting format:",
+        "📋 Sao Chép Kết Quả": "📋 Copy Result",
+
+        // Thue TNCN
+        "Nhập thu nhập chịu thuế": "Enter Taxable Income",
+        "Thu nhập chịu thuế (VND/Tháng)": "Taxable Income (VND/Month)",
+        "Chi tiết thuế lũy tiến từng phần:": "Detailed progressive tax brackets:",
+        "Bậc": "Bracket",
+        "Thu nhập tính thuế": "Taxable Income",
+        "Thuế suất": "Tax Rate",
+        "Số thuế phải nộp": "Tax Amount",
+
+        // Nen anh WebP
+        "Kéo thả hình ảnh vào đây hoặc click để chọn ảnh": "Drag & drop image here or click to select",
+        "Hỗ trợ định dạng: JPG, PNG, WEBP (Tối đa 10MB)": "Supports: JPG, PNG, WEBP (Max 10MB)",
+        "Đang nén ảnh...": "Compressing image...",
+        "Hình ảnh gốc": "Original Image",
+        "Hình ảnh sau nén": "Compressed Image",
+        "Dung lượng gốc:": "Original size:",
+        "Dung lượng nén:": "Compressed size:",
+        "Giảm:": "Reduced:",
+        "Tải Ảnh WebP": "Download WebP",
+
+        // Chu ky email
+        "Nhập thông tin chữ ký": "Enter signature details",
+        "Họ và tên": "Full Name",
+        "Chức vụ / Phòng ban": "Title / Department",
+        "Số điện thoại": "Phone Number",
+        "Email công việc": "Work Email",
+        "Địa chỉ công ty": "Company Address",
+        "Đường dẫn Logo (Ảnh online)": "Logo URL (Online image)",
+        "Tên Công ty": "Company Name",
+        "Đường dẫn Website": "Website URL",
+        "Chọn mẫu thiết kế": "Select Design Template",
+        "Mẫu 1: Hiện đại & Tinh tế": "Template 1: Modern & Elegant",
+        "Mẫu 2: Tối giản & Chuyên nghiệp": "Template 2: Minimalist & Professional",
+        "Mẫu 3: Cột bên & Ấn tượng": "Template 3: Sidebar & Impressive",
+        "Thiết kế chữ ký Email của bạn": "Your Email Signature Design",
+        "📋 Sao Chép Chữ Ký (Rich HTML)": "📋 Copy Signature (Rich HTML)",
+
+        // Tao van ban
+        "Nhập thông tin văn bản": "Enter document details",
+        "Nhóm văn bản": "Document Group",
+        "Văn bản hành chính": "Administrative Document",
+        "Quy phạm pháp luật": "Legal Document",
+        "Loại văn bản": "Document Type",
+        "Cơ quan ban hành (Dòng trên)": "Issuing Authority (Top line)",
+        "Số hiệu văn bản (Dòng dưới)": "Document Number / ID (Bottom line)",
+        "Cơ quan trực thuộc / Số hiệu (Dòng dưới)": "Sub-authority / ID (Bottom line)",
+        "Địa danh & Ngày tháng": "Location & Date",
+        "Tiêu đề chính văn bản": "Main Title",
+        "Trích yếu nội dung (Dưới tiêu đề)": "Subject / Summary (Below title)",
+        "Nội dung chính văn bản": "Main Content",
+        "Nơi nhận văn bản": "Recipients",
+        "Hiển thị": "Show",
+        "Người ký văn bản": "Signee(s)",
+        "chức vụ": "role",
+        "họ tên": "full name",
+        "1 người ký": "1 signer",
+        "2 người ký": "2 signers",
+        "3 người ký": "3 signers",
+        "4 người ký": "4 signers",
+        "5 người ký": "5 signers",
+        "Bản xem trước văn bản chuẩn Nghị định 30": "Government Document Preview (Decree 30)",
+        "📋 Sao Chép Văn Bản (Rich HTML để dán vào Word)": "📋 Copy Document (Rich HTML for Word)",
+        "📥 Tải Văn Bản (.doc mở bằng Word)": "📥 Download Document (.doc for Word)"
+      };
+
+      function translateTextNode(node: Node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const original = node.nodeValue?.trim();
+          if (original && translations[original]) {
+            node.nodeValue = translations[original];
+          } else if (original) {
+            let translated = original;
+            let matched = false;
+            
+            if (translated.includes("Thời gian đọc:")) {
+              translated = translated.replace("Thời gian đọc:", "Read time:");
+              translated = translated.replace("phút", "min");
+              matched = true;
+            }
+            if (translated.includes("người phụ thuộc")) {
+              translated = translated.replace("người phụ thuộc", "dependents");
+              matched = true;
+            }
+            if (translated.includes("Sắp ra mắt")) {
+              translated = translated.replace("Sắp ra mắt", "Coming Soon");
+              matched = true;
+            }
+            if (translated.includes("Mở công cụ")) {
+              translated = translated.replace("Mở công cụ", "Open Tool");
+              matched = true;
+            }
+
+            if (matched) {
+              node.nodeValue = translated;
+            }
+          }
+        } else {
+          if (node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE') {
+            for (let child of Array.from(node.childNodes)) {
+              translateTextNode(child);
+            }
+          }
+        }
+      }
+
       function applyLanguage(lang: string) {
         if (lang === 'en') {
           document.title = document.title.replace("Trợ Lý Số", "Trolyso");
           
-          const translations: Record<string, string> = {
-            "Cẩm Nang": "Handbook",
-            "Điều khoản": "Terms",
-            "Chính sách bảo mật": "Privacy Policy",
-            "Ngôn ngữ:": "Language:",
-            "Tính Lương Gross Sang Net (Chuẩn 2026)": "Gross to Net Salary Calculator (2026)",
-            "Bảng Phân Tích Lương Net": "Net Salary Breakdown",
-            "Lương Gross:": "Gross Salary:",
-            "Bảo hiểm bắt buộc (10.5%):": "Compulsory Insurance (10.5%):",
-            "Giảm trừ bản thân:": "Personal Deduction:",
-            "Giảm trừ phụ thuộc:": "Dependent Deduction:",
-            "Thuế thu nhập cá nhân:": "Personal Income Tax:",
-            "LƯƠNG THỰC NHẬN:": "NET SALARY:",
-            "Mức lương Gross (VND/Tháng)": "Gross Salary (VND/Month)",
-            "Số người phụ thuộc (Giảm trừ gia cảnh)": "Number of Dependents",
-            "⚡ Tính Toán Ngay": "⚡ Calculate Now",
-            "Các công cụ tiện ích khác:": "Other Digital Utilities:",
-            "Xem thêm công cụ": "View more tools",
-            "Thu gọn bớt": "Collapse list",
-            "Tính Bảo Hiểm Xã Hội 1 Lần": "One-time Social Insurance",
-            "Trình Tạo Mã VietQR Thanh Toán": "VietQR Payment Generator",
-            "Đọc Số Thành Chữ Tiếng Việt": "Number to Words Converter",
-            "Tính Thuế Thu Nhập Cá Nhân": "Personal Income Tax",
-            "Nén Ảnh WebP Tối Ưu": "Optimized WebP Compressor",
-            "Tạo Chữ Ký Email HTML": "HTML Email Signature Creator",
-            "Tạo Văn Bản Hành Chính NĐ 30": "Gov Doc Generator (ND 30)"
-          };
+          translateTextNode(document.body);
 
-          // Dịch toàn bộ các text node tương ứng
-          document.querySelectorAll('a, label, h1, h2, h3, h4, span, button, p').forEach(el => {
-            const text = el.textContent?.trim();
-            if (text && translations[text]) {
-              el.textContent = translations[text];
+          document.querySelectorAll('input, textarea').forEach(el => {
+            const input = el as HTMLInputElement | HTMLTextAreaElement;
+            const ph = input.placeholder?.trim();
+            if (ph && translations[ph]) {
+              input.placeholder = translations[ph];
             }
           });
 
-          // Translate search input placeholder
+          document.querySelectorAll('option').forEach(el => {
+            const opt = el as HTMLOptionElement;
+            const text = opt.text?.trim();
+            if (text && translations[text]) {
+              opt.text = translations[text];
+            }
+          });
+
           if (searchInput) searchInput.placeholder = "Search tools, articles...";
         } else {
-          // Khôi phục tiếng Việt (reload trang)
           if (localStorage.getItem('lang') === 'en') {
             localStorage.setItem('lang', 'vi');
             window.location.reload();
