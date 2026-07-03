@@ -145,10 +145,11 @@ import Layout from '../../../layouts/Layout.astro';
   function renderSignature() {
     if (!signatureContainer) return;
 
-    const name = sigName.value || 'Họ và tên';
-    const title = sigTitle.value || 'Chức vụ';
-    const company = sigCompany.value || 'Tên công ty';
-    const phone = sigPhone.value || 'Số điện thoại';
+    const isEn = localStorage.getItem('lang') === 'en';
+    const name = sigName.value || (isEn ? 'Full Name' : 'Họ và tên');
+    const title = sigTitle.value || (isEn ? 'Job Title' : 'Chức vụ');
+    const company = sigCompany.value || (isEn ? 'Company Name' : 'Tên công ty');
+    const phone = sigPhone.value || (isEn ? 'Phone Number' : 'Số điện thoại');
     const email = sigEmail.value || 'contact@domain.com';
     const website = sigWebsite.value || 'www.domain.com';
     const template = sigTemplate.value;
@@ -165,9 +166,9 @@ import Layout from '../../../layouts/Layout.astro';
               <div style="font-size: 13px; font-weight: bold; color: #333333; margin-top: 4px;">${company}</div>
             </td>
             <td style="vertical-align: top; padding-left: 15px; padding-bottom: 5px; font-size: 13px; color: #555555;">
-              <div style="margin-bottom: 3px;">📞 Phone: <a href="tel:${phone}" style="color: #49a2dc; text-decoration: none;">${phone}</a></div>
-              <div style="margin-bottom: 3px;">✉️ Email: <a href="mailto:${email}" style="color: #49a2dc; text-decoration: none;">${email}</a></div>
-              <div>🌐 Web: <a href="https://${website}" target="_blank" style="color: #49a2dc; text-decoration: none;">${website}</a></div>
+              <div style="margin-bottom: 3px;">📞 ${isEn ? 'Phone' : 'Phone'}: <a href="tel:${phone}" style="color: #49a2dc; text-decoration: none;">${phone}</a></div>
+              <div style="margin-bottom: 3px;">✉️ ${isEn ? 'Email' : 'Email'}: <a href="mailto:${email}" style="color: #49a2dc; text-decoration: none;">${email}</a></div>
+              <div>🌐 ${isEn ? 'Web' : 'Web'}: <a href="https://${website}" target="_blank" style="color: #49a2dc; text-decoration: none;">${website}</a></div>
             </td>
           </tr>
         </table>
@@ -183,9 +184,9 @@ import Layout from '../../../layouts/Layout.astro';
           </tr>
           <tr style="border-top: 1px solid #dddddd;">
             <td style="padding-top: 8px; font-size: 12px; color: #666666; border-top: 1px solid #eeeeee;">
-              <span style="margin-right: 15px;"><strong>Điện thoại:</strong> ${phone}</span>
-              <span style="margin-right: 15px;"><strong>Email:</strong> <a href="mailto:${email}" style="color: #0063b6; text-decoration: none;">${email}</a></span>
-              <span><strong>Web:</strong> <a href="https://${website}" target="_blank" style="color: #0063b6; text-decoration: none;">${website}</a></span>
+              <span style="margin-right: 15px;"><strong>${isEn ? 'Phone:' : 'Điện thoại:'}</strong> ${phone}</span>
+              <span style="margin-right: 15px;"><strong>${isEn ? 'Email:' : 'Email:'}</strong> <a href="mailto:${email}" style="color: #0063b6; text-decoration: none;">${email}</a></span>
+              <span><strong>${isEn ? 'Web:' : 'Web:'}</strong> <a href="https://${website}" target="_blank" style="color: #0063b6; text-decoration: none;">${website}</a></span>
             </td>
           </tr>
         </table>

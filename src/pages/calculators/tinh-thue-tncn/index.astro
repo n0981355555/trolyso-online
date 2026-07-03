@@ -166,6 +166,10 @@ import Layout from '../../../layouts/Layout.astro';
 
 <script>
   function formatMoney(amount: number) {
+    const isEn = localStorage.getItem('lang') === 'en';
+    if (isEn) {
+      return new Intl.NumberFormat('en-US', { style: 'decimal' }).format(amount) + ' VND';
+    }
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
   }
 
@@ -267,9 +271,18 @@ import Layout from '../../../layouts/Layout.astro';
     if (resTax) resTax.innerText = formatMoney(tax);
 
     // 6. Vẽ bảng phân tích lũy tiến từng bậc
+    const isEn = localStorage.getItem('lang') === 'en';
     if (taxBracketsBody) {
       taxBracketsBody.innerHTML = "";
-      const ranges = [
+      const ranges = isEn ? [
+        "Up to 5 million",
+        "Over 5 million to 10 million",
+        "Over 10 million to 18 million",
+        "Over 18 million to 32 million",
+        "Over 32 million to 52 million",
+        "Over 52 million to 80 million",
+        "Over 80 million"
+      ] : [
         "Đến 5 triệu",
         "Trên 5 triệu đến 10 triệu",
         "Trên 10 triệu đến 18 triệu",
@@ -290,7 +303,7 @@ import Layout from '../../../layouts/Layout.astro';
           <td class="py-4.5 px-4 text-slate-500">${i + 1}</td>
           <td class="py-4.5 px-4 font-semibold text-slate-800 dark:text-slate-200">${ranges[i]}</td>
           <td class="py-4.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-xs font-bold">${brackets[i].rate * 100}%</span></td>
-          <td class="py-4.5 px-4 text-right font-bold ${isCurrent ? 'text-red-500' : 'text-slate-400'}">${pay > 0 ? formatMoney(pay) : '0đ'}</td>
+          <td class="py-4.5 px-4 text-right font-bold ${isCurrent ? 'text-red-500' : 'text-slate-400'}">${pay > 0 ? formatMoney(pay) : (isEn ? '0 VND' : '0đ')}</td>
         `;
         taxBracketsBody.appendChild(tr);
       }

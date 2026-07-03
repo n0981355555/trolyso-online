@@ -122,6 +122,10 @@ import Layout from '../../../layouts/Layout.astro';
 
 <script>
   function formatMoney(amount: number) {
+    const isEn = localStorage.getItem('lang') === 'en';
+    if (isEn) {
+      return new Intl.NumberFormat('en-US', { style: 'decimal' }).format(amount) + ' VND';
+    }
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
   }
 
@@ -150,9 +154,13 @@ import Layout from '../../../layouts/Layout.astro';
     const totalCoeff = coeffBefore + coeffAfter;
     const totalMoney = totalCoeff * avgSalary;
 
-    if (coeffBeforeEl) coeffBeforeEl.innerText = `${yearsBefore} năm x 1.5 = ${coeffBefore.toFixed(1)}`;
-    if (coeffAfterEl) coeffAfterEl.innerText = `${yearsAfter} năm x 2.0 = ${coeffAfter.toFixed(1)}`;
-    if (totalCoeffEl) totalCoeffEl.innerText = `${totalCoeff.toFixed(1)} tháng lương`;
+    const isEn = localStorage.getItem('lang') === 'en';
+    const yearWord = isEn ? 'years' : 'năm';
+    const monthWord = isEn ? 'months of salary' : 'tháng lương';
+
+    if (coeffBeforeEl) coeffBeforeEl.innerText = `${yearsBefore} ${yearWord} x 1.5 = ${coeffBefore.toFixed(1)}`;
+    if (coeffAfterEl) coeffAfterEl.innerText = `${yearsAfter} ${yearWord} x 2.0 = ${coeffAfter.toFixed(1)}`;
+    if (totalCoeffEl) totalCoeffEl.innerText = `${totalCoeff.toFixed(1)} ${monthWord}`;
     if (totalBHXHEl) totalBHXHEl.innerText = formatMoney(totalMoney);
   }
 
