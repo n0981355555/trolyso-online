@@ -145,6 +145,25 @@ import Layout from '../../../layouts/Layout.astro';
           </div>
         </div>
 
+        <!-- Error State -->
+        <div id="viewportError" class="hidden text-center py-8 flex flex-col items-center max-w-[320px] animate-fade-in">
+          <div class="w-16 h-16 rounded-2xl bg-red-50 dark:bg-red-950 text-red-500 flex items-center justify-center text-2xl font-bold mb-4">
+            ⚠️
+          </div>
+          <h3 class="text-base font-bold text-red-650 dark:text-red-400 mb-1" id="errorTitle">Không thể kết nối máy chủ AI</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-6 leading-relaxed" id="errorText">
+            Yêu cầu bị chặn hoặc quá thời gian phản hồi. Hãy thử tắt trình chặn quảng cáo (AdBlock, Brave Shields) hoặc bấm nút dưới đây để thử mở liên kết trực tiếp.
+          </p>
+          <div class="flex flex-col gap-2 w-full">
+            <a id="btnErrorOpenDirect" href="#" target="_blank" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-850 dark:text-slate-200 font-bold text-xs transition flex items-center justify-center">
+              🔗 Mở liên kết ảnh trực tiếp
+            </a>
+            <button id="btnErrorRetry" class="w-full py-2.5 px-4 rounded-xl bg-brand-blue hover:bg-blue-700 text-white font-bold text-xs transition flex items-center justify-center">
+              🔄 Thử lại
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -174,6 +193,12 @@ import Layout from '../../../layouts/Layout.astro';
   const viewportOutput = document.getElementById('viewportOutput');
   const outputImage = document.getElementById('outputImage') as HTMLImageElement;
   const loadingStatus = document.getElementById('loadingStatus');
+
+  const viewportError = document.getElementById('viewportError');
+  const errorTitle = document.getElementById('errorTitle');
+  const errorText = document.getElementById('errorText');
+  const btnErrorOpenDirect = document.getElementById('btnErrorOpenDirect') as HTMLAnchorElement;
+  const btnErrorRetry = document.getElementById('btnErrorRetry');
 
   const btnDownload = document.getElementById('btnDownload');
   const btnCopyLink = document.getElementById('btnCopyLink');
@@ -245,9 +270,14 @@ import Layout from '../../../layouts/Layout.astro';
     }
   }
 
+  let isGenerating = false;
+
   // Gắn sự kiện lắng nghe trực tiếp trên thẻ ảnh kết quả
   if (outputImage) {
     outputImage.onload = () => {
+      if (!isGenerating) return;
+      isGenerating = false;
+
       stopStatusRotation();
       viewportLoading?.classList.add('hidden');
       viewportOutput?.classList.remove('hidden');
@@ -263,14 +293,25 @@ import Layout from '../../../layouts/Layout.astro';
     };
 
     outputImage.onerror = () => {
+      if (!isGenerating) return;
+      isGenerating = false;
+
       stopStatusRotation();
       viewportLoading?.classList.add('hidden');
-      viewportPlaceholder?.classList.remove('hidden');
+      viewportError?.classList.remove('hidden');
       
       const isEn = localStorage.getItem('lang') === 'en';
-      alert(isEn 
-        ? "Failed to generate image. Please check your internet, disable adblocker/Brave Shields and try again!" 
-        : "Tạo ảnh thất bại. Vui lòng kiểm tra kết nối mạng, tắt các trình chặn quảng cáo (AdBlock, Brave Shields) và thử lại!");
+      
+      // Update error container translation dynamically
+      if (errorTitle) errorTitle.innerText = isEn ? "AI Connection Failed" : "Không thể kết nối máy chủ AI";
+      if (errorText) errorText.innerText = isEn
+        ? "The request was blocked or timed out. Please check your internet connection, disable ad-blockers (AdBlock, Brave Shields) or click below to try opening the direct link."
+        : "Yêu cầu bị chặn hoặc quá thời gian phản hồi. Hãy thử tắt trình chặn quảng cáo (AdBlock, Brave Shields) hoặc bấm nút dưới đây để thử mở liên kết trực tiếp.";
+      if (btnErrorOpenDirect) {
+        btnErrorOpenDirect.innerText = isEn ? "🔗 Open Direct Image Link" : "🔗 Mở liên kết ảnh trực tiếp";
+        btnErrorOpenDirect.href = currentImageUrl;
+      }
+      if (btnErrorRetry) btnErrorRetry.innerText = isEn ? "🔄 Retry" : "🔄 Thử lại";
       
       if (btnGenerate) {
         const span = btnGenerate.querySelector('span');
@@ -287,9 +328,12 @@ import Layout from '../../../layouts/Layout.astro';
       return;
     }
 
+    isGenerating = true;
+
     // Show loading state
     viewportPlaceholder?.classList.add('hidden');
     viewportOutput?.classList.add('hidden');
+    viewportError?.classList.add('hidden'); // Hide error container if open
     viewportLoading?.classList.remove('hidden');
     
     if (btnGenerate) {
@@ -310,7 +354,7 @@ import Layout from '../../../layouts/Layout.astro';
 
     // Pollinations GET Image URL
     const encodedPrompt = encodeURIComponent(prompt);
-    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${w}&height=${h}&seed=${seed}&nologo=true&private=true`;
+    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${w}&height=${h}&seed=${seed}`;
 
     currentImageUrl = imageUrl;
 
@@ -436,6 +480,7 @@ import Layout from '../../../layouts/Layout.astro';
   btnGenerate?.addEventListener('click', generateImage);
   btnDownload?.addEventListener('click', downloadImage);
   btnCopyLink?.addEventListener('click', copyLink);
+  btnErrorRetry?.addEventListener('click', generateImage);
 </script>
 
 <style>
