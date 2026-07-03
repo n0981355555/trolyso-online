@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trợ Lý Số - Công Cụ Số Online Miễn Phí Cho Người Việt</title>
+    <meta name="description" content="Trợ Lý Số cung cấp các công cụ tính lương Gross sang Net, bảo hiểm xã hội, thuế thu nhập cá nhân và các tiện ích văn phòng miễn phí, chính xác chuẩn pháp luật Việt Nam.">
+    
+    <!-- Tailwind CSS & Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#2563EB',
+                            mint: '#10B981',
+                            darkBg: '#0F172A',
+                            darkCard: '#1E293B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
+        }
+        .dark .gradient-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-brand-darkBg text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Background Gradient Effect -->
+    <div class="absolute inset-0 gradient-bg pointer-events-none z-0"></div>
+
+    <!-- Navigation Header -->
+    <header class="bg-white/80 dark:bg-brand-darkCard/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50 transition-colors">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="/" class="text-2xl font-heading font-extrabold text-brand-blue dark:text-brand-mint flex items-center gap-2">
+                ⚡ Trợ Lý Số
+            </a>
+            
+            <!-- Dark Mode Toggle & Menu -->
+            <div class="flex items-center gap-4">
+                <a href="/calculators/tinh-bhxh-1-lan/" class="text-sm font-semibold hover:text-brand-blue dark:hover:text-brand-mint hidden sm:inline-block">
+                    Tính BHXH 1 Lần
+                </a>
+                
+                <!-- Toggle Button -->
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:ring-2 hover:ring-slate-300 dark:hover:ring-slate-700 transition" aria-label="Toggle theme">
+                    <!-- Sun Icon (shown in dark mode) -->
+                    <svg id="themeSun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707-.707m12.728 0l-.707.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 115.52 12a9 9 0 0112.728 12.728z"></svg>
+                    <!-- Moon Icon (shown in light mode) -->
+                    <svg id="themeMoon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+        
+        <!-- Hero Section -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h1 class="text-4xl sm:text-5xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+                Hộp Công Cụ Số <span class="text-brand-blue dark:text-brand-mint">Thông Minh</span> Cho Người Việt
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400">
+                Các tiện ích tính toán tài chính, thuế, BHXH trực quan, bảo mật tuyệt đối 100% dữ liệu ngay trên trình duyệt của bạn.
+            </p>
+        </div>
+
+        <!-- 2 Column Tool Section (Gross to Net) -->
+        <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-16 transition-colors">
+            
+            <!-- Left Side: Inputs (7 cols) -->
+            <div class="p-6 sm:p-10 md:col-span-7">
+                <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+                    <span class="p-2 rounded-xl bg-blue-50 dark:bg-blue-950 text-brand-blue font-bold">VND</span>
+                    Tính Lương Gross Sang Net (Chuẩn 2026)
+                </h2>
+                
+                <div class="space-y-6">
+                    <!-- Input Lương Gross -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Mức lương Gross (VND/Tháng)</label>
+                        <div class="relative">
+                            <input type="number" id="grossInput" value="20000000" step="500000" class="w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-bold text-xl transition-all">
+                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">đ</span>
+                        </div>
+                    </div>
+
+                    <!-- Input Người phụ thuộc -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số người phụ thuộc (Giảm trừ gia cảnh)</label>
+                        <div class="flex items-center gap-3">
+                            <button onclick="changeDependents(-1)" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">-</button>
+                            <input type="number" id="dependentsInput" value="0" min="0" class="w-20 text-center py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-bold text-lg">
+                            <button onclick="changeDependents(1)" class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold flex items-center justify-center transition">+</button>
+                        </div>
+                    </div>
+
+                    <button onclick="calculateSalary()" class="w-full bg-brand-blue hover:bg-blue-700 dark:bg-brand-mint dark:hover:bg-emerald-600 text-white font-bold py-4.5 px-6 rounded-xl transition duration-200 shadow-lg shadow-blue-500/10 dark:shadow-emerald-500/10 flex items-center justify-center gap-2">
+                        ⚡ Tính Toán Ngay
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Side: Outputs (5 cols) -->
+            <div class="p-6 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 md:col-span-5 flex flex-col justify-between border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800">
+                <div>
+                    <h3 class="text-lg font-heading font-bold text-slate-900 dark:text-white mb-6">Bảng Phân Tích Lương Net</h3>
+                    
+                    <div class="space-y-4 text-sm">
+                        <div class="flex justify-between items-center py-2.5 border-b border-slate-200 dark:border-slate-800">
+                            <span class="text-slate-500 dark:text-slate-400">Lương Gross:</span>
+                            <span class="font-bold text-slate-900 dark:text-white" id="resGross">0đ</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2.5 border-b border-slate-200 dark:border-slate-800">
+                            <span class="text-slate-500 dark:text-slate-400">Bảo hiểm bắt buộc (10.5%):</span>
+                            <span class="font-semibold text-red-500" id="resInsurance">0đ</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2.5 border-b border-slate-200 dark:border-slate-800">
+                            <span class="text-slate-500 dark:text-slate-400">Giảm trừ bản thân:</span>
+                            <span class="font-semibold text-slate-700 dark:text-slate-300">-11,000,000đ</span>
+                        </div>
+                        <div id="dependentDeductionRow" class="flex justify-between items-center py-2.5 border-b border-slate-200 dark:border-slate-800 hidden">
+                            <span class="text-slate-500 dark:text-slate-400">Giảm trừ phụ thuộc:</span>
+                            <span class="font-semibold text-slate-700 dark:text-slate-300" id="resDependentDeduction">0đ</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2.5 border-b border-slate-200 dark:border-slate-800">
+                            <span class="text-slate-500 dark:text-slate-400">Thuế thu nhập cá nhân:</span>
+                            <span class="font-semibold text-red-500" id="resTax">0đ</span>
+                        </div>
+                        <div class="flex justify-between items-center pt-6 pb-2">
+                            <span class="text-base font-bold text-slate-800 dark:text-slate-200">LƯƠNG THỰC NHẬN:</span>
+                            <span class="text-3xl font-extrabold text-emerald-600 dark:text-brand-mint" id="resNet">0đ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-xs text-slate-400 mt-8 pt-4 border-t border-slate-200 dark:border-slate-800">
+                    * Công thức áp dụng mức bảo hiểm 10.5% (BHXH 8%, BHYT 1.5%, BHTN 1%) và biểu thuế lũy tiến từng phần của Tổng cục Thuế Việt Nam.
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Access Directory -->
+        <div>
+            <h3 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6">Các công cụ tiện ích khác:</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- BHXH Card -->
+                <a href="/calculators/tinh-bhxh-1-lan/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-brand-mint flex items-center justify-center font-bold mb-4">
+                            🛡️
+                        </div>
+                        <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
+                            Tính Bảo Hiểm Xã Hội 1 Lần
+                        </h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">
+                            Ước tính số tiền nhận về khi nhận bảo hiểm xã hội một lần chuẩn quy định mới nhất.
+                        </p>
+                    </div>
+                    <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Mở công cụ <span>→</span>
+                    </div>
+                </a>
+
+                <!-- Coming soon cards -->
+                <div class="p-6 bg-white/50 dark:bg-brand-darkCard/50 border border-dashed border-slate-200 dark:border-slate-800 rounded-2xl flex flex-col justify-center items-center text-center">
+                    <span class="text-3xl mb-2">🆕</span>
+                    <h4 class="font-bold text-slate-400 dark:text-slate-600">Trình Tạo VietQR</h4>
+                    <p class="text-xs text-slate-400 dark:text-slate-600">Sắp ra mắt</p>
+                </div>
+
+                <div class="p-6 bg-white/50 dark:bg-brand-darkCard/50 border border-dashed border-slate-200 dark:border-slate-800 rounded-2xl flex flex-col justify-center items-center text-center">
+                    <span class="text-3xl mb-2">📄</span>
+                    <h4 class="font-bold text-slate-400 dark:text-slate-600">Nén Ảnh WebP Hàng Loạt</h4>
+                    <p class="text-xs text-slate-400 dark:text-slate-600">Sắp ra mắt</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-brand-darkCard border-t border-slate-200 dark:border-slate-800 py-8 text-center text-sm text-slate-500 dark:text-slate-400 mt-12 transition-colors">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>© 2026 Trợ Lý Số (trolyso.online). Bảo lưu mọi quyền.</p>
+            <div class="flex gap-4">
+                <a href="#" class="hover:underline">Điều khoản</a>
+                <a href="#" class="hover:underline">Chính sách bảo mật</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Logic Calculator -->
+    <script>
+        function formatMoney(amount) {
+            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+        }
+
+        function changeDependents(amount) {
+            const input = document.getElementById('dependentsInput');
+            let val = parseInt(input.value) || 0;
+            val += amount;
+            if (val < 0) val = 0;
+            input.value = val;
+            calculateSalary();
+        }
+
+        function calculateSalary() {
+            const gross = parseFloat(document.getElementById('grossInput').value) || 0;
+            const dependents = parseInt(document.getElementById('dependentsInput').value) || 0;
+
+            // Bảo hiểm bắt buộc: BHXH 8%, BHYT 1.5%, BHTN 1% = 10.5%
+            // Lưu ý: Lương tối đa đóng BHXH bắt buộc bằng 20 lần lương tối thiểu vùng/lương cơ sở (áp dụng ở đây công thức cơ bản)
+            const insurance = gross * 0.105;
+
+            // Khấu trừ gia cảnh
+            const selfDeduction = 11000000;
+            const dependentDeduction = dependents * 4400000;
+            const totalDeduction = selfDeduction + dependentDeduction;
+
+            // Show/Hide Dependent Deduction Row
+            const depRow = document.getElementById('dependentDeductionRow');
+            if (dependents > 0) {
+                depRow.classList.remove('hidden');
+                document.getElementById('resDependentDeduction').innerText = "-" + formatMoney(dependentDeduction);
+            } else {
+                depRow.classList.add('hidden');
+            }
+
+            // Thu nhập tính thuế
+            const taxableIncome = gross - insurance - totalDeduction;
+            let tax = 0;
+
+            // Tính thuế TNCN lũy tiến
+            if (taxableIncome > 0) {
+                if (taxableIncome <= 5000000) {
+                    tax = taxableIncome * 0.05;
+                } else if (taxableIncome <= 10000000) {
+                    tax = taxableIncome * 0.1 - 250000;
+                } else if (taxableIncome <= 18000000) {
+                    tax = taxableIncome * 0.15 - 750000;
+                } else if (taxableIncome <= 32000000) {
+                    tax = taxableIncome * 0.2 - 1650000;
+                } else if (taxableIncome <= 52000000) {
+                    tax = taxableIncome * 0.25 - 3250000;
+                } else if (taxableIncome <= 80000000) {
+                    tax = taxableIncome * 0.3 - 5850000;
+                } else {
+                    tax = taxableIncome * 0.35 - 9850000;
+                }
+            }
+
+            const net = gross - insurance - tax;
+
+            // Hiển thị kết quả
+            document.getElementById('resGross').innerText = formatMoney(gross);
+            document.getElementById('resInsurance').innerText = "-" + formatMoney(insurance);
+            document.getElementById('resTax').innerText = "-" + formatMoney(tax);
+            document.getElementById('resNet').innerText = formatMoney(net);
+        }
+
+        // Dark Mode Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const themeSun = document.getElementById('themeSun');
+        const themeMoon = document.getElementById('themeMoon');
+
+        // Check system preference or localStorage
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeSun.classList.remove('hidden');
+            themeMoon.classList.add('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeSun.classList.add('hidden');
+            themeMoon.classList.remove('hidden');
+        }
+
+        themeToggle.addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+                themeSun.classList.add('hidden');
+                themeMoon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+                themeSun.classList.remove('hidden');
+                themeMoon.classList.add('hidden');
+            }
+        });
+
+        // Tính toán khi khởi chạy
+        calculateSalary();
+        document.getElementById('grossInput').addEventListener('input', calculateSalary);
+    </script>
+</body>
+</html>
