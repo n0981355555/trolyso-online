@@ -93,13 +93,52 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
     <slot />
 
     <!-- Footer -->
-    <footer class="bg-white dark:bg-brand-darkCard border-t border-slate-200 dark:border-slate-800 py-8 text-center text-sm text-slate-500 dark:text-slate-400 mt-auto transition-colors">
-      <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <p>© 2026 Trợ Lý Số (trolyso.online). Bảo lưu mọi quyền.</p>
-        <div class="flex gap-4">
-          <a href="/dieu-khoan/" class="hover:underline">Điều khoản</a>
-          <a href="/chinh-sach-bao-mat/" class="hover:underline">Chính sách bảo mật</a>
+    <footer class="bg-white dark:bg-brand-darkCard border-t border-slate-200 dark:border-slate-800 py-10 text-sm text-slate-500 dark:text-slate-400 mt-auto transition-colors">
+      <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+        
+        <!-- Copyright & Social Links -->
+        <div class="flex flex-col items-center md:items-start gap-3">
+          <p>© 2026 Trợ Lý Số (trolyso.online). Bảo lưu mọi quyền.</p>
+          <!-- Social Icons (Placeholder links) -->
+          <div class="flex items-center gap-4">
+            <!-- Zalo -->
+            <a href="#" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint transition-colors" title="Liên hệ Zalo">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 1.93.55 3.73 1.5 5.25L2 22l4.75-1.5c1.52.95 3.32 1.5 5.25 1.5 5.52 0 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/>
+              </svg>
+            </a>
+            <!-- Facebook -->
+            <a href="#" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint transition-colors" title="Facebook">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1V12h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/>
+              </svg>
+            </a>
+            <!-- Gmail -->
+            <a href="mailto:" class="text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint transition-colors" title="Email liên hệ">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </a>
+          </div>
         </div>
+
+        <!-- Footer Links & Language Switcher -->
+        <div class="flex flex-col items-center md:items-end gap-3">
+          <div class="flex gap-4">
+            <a href="/dieu-khoan/" class="hover:underline">Điều khoản</a>
+            <a href="/chinh-sach-bao-mat/" class="hover:underline">Chính sách bảo mật</a>
+          </div>
+          
+          <!-- Language Selector -->
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-slate-400">Ngôn ngữ:</span>
+            <select id="langSelector" class="px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-mint cursor-pointer">
+              <option value="vi" selected>Tiếng Việt (VI)</option>
+              <option value="en">English (EN)</option>
+            </select>
+          </div>
+        </div>
+
       </div>
     </footer>
 
@@ -204,6 +243,82 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
           searchDropdown?.classList.add('hidden');
         }
       });
+
+      // Language Switcher Logic
+      const langSelector = document.getElementById('langSelector') as HTMLSelectElement;
+
+      function applyLanguage(lang: string) {
+        if (lang === 'en') {
+          document.title = document.title.replace("Trợ Lý Số", "Trolyso");
+          
+          const translations: Record<string, string> = {
+            "Cẩm Nang": "Handbook",
+            "Điều khoản": "Terms",
+            "Chính sách bảo mật": "Privacy Policy",
+            "Ngôn ngữ:": "Language:",
+            "Tính Lương Gross Sang Net (Chuẩn 2026)": "Gross to Net Salary Calculator (2026)",
+            "Bảng Phân Tích Lương Net": "Net Salary Breakdown",
+            "Lương Gross:": "Gross Salary:",
+            "Bảo hiểm bắt buộc (10.5%):": "Compulsory Insurance (10.5%):",
+            "Giảm trừ bản thân:": "Personal Deduction:",
+            "Giảm trừ phụ thuộc:": "Dependent Deduction:",
+            "Thuế thu nhập cá nhân:": "Personal Income Tax:",
+            "LƯƠNG THỰC NHẬN:": "NET SALARY:",
+            "Mức lương Gross (VND/Tháng)": "Gross Salary (VND/Month)",
+            "Số người phụ thuộc (Giảm trừ gia cảnh)": "Number of Dependents",
+            "⚡ Tính Toán Ngay": "⚡ Calculate Now",
+            "Các công cụ tiện ích khác:": "Other Digital Utilities:",
+            "Xem thêm công cụ": "View more tools",
+            "Thu gọn bớt": "Collapse list",
+            "Tính Bảo Hiểm Xã Hội 1 Lần": "One-time Social Insurance",
+            "Trình Tạo Mã VietQR Thanh Toán": "VietQR Payment Generator",
+            "Đọc Số Thành Chữ Tiếng Việt": "Number to Words Converter",
+            "Tính Thuế Thu Nhập Cá Nhân": "Personal Income Tax",
+            "Nén Ảnh WebP Tối Ưu": "Optimized WebP Compressor",
+            "Tạo Chữ Ký Email HTML": "HTML Email Signature Creator",
+            "Tạo Văn Bản Hành Chính NĐ 30": "Gov Doc Generator (ND 30)"
+          };
+
+          // Dịch toàn bộ các text node tương ứng
+          document.querySelectorAll('a, label, h1, h2, h3, h4, span, button, p').forEach(el => {
+            const text = el.textContent?.trim();
+            if (text && translations[text]) {
+              el.textContent = translations[text];
+            }
+          });
+
+          // Translate search input placeholder
+          if (searchInput) searchInput.placeholder = "Search tools, articles...";
+        } else {
+          // Khôi phục tiếng Việt (reload trang)
+          if (localStorage.getItem('lang') === 'en') {
+            localStorage.setItem('lang', 'vi');
+            window.location.reload();
+          }
+        }
+      }
+
+      langSelector?.addEventListener('change', () => {
+        const lang = langSelector.value;
+        localStorage.setItem('lang', lang);
+        if (lang === 'en') {
+          applyLanguage('en');
+        } else {
+          applyLanguage('vi');
+        }
+      });
+
+      // Load ngôn ngữ đã lưu khi tải trang
+      const savedLang = localStorage.getItem('lang') || 'vi';
+      if (langSelector) langSelector.value = savedLang;
+      if (savedLang === 'en') {
+        // Chờ DOM load để áp dụng dịch
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => applyLanguage('en'));
+        } else {
+          applyLanguage('en');
+        }
+      }
     </script>
   </body>
 </html>
