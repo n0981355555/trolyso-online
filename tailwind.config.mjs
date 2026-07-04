@@ -5,8 +5,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Google Sans Flex"', 'sans-serif'],
-        heading: ['"Google Sans Flex"', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       colors: {
         brand: {

@@ -22,10 +22,11 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
     <title>{title}</title>
     <meta name="description" content={description} />
     
-    <!-- Google Fonts Preconnect & Load -->
+    <!-- Google Fonts Preconnect & Async Load -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wdth,wght@8..144,25..151,100..900&display=swap" rel="stylesheet" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" /></noscript>
     
     <!-- Deferred Google Analytics (GA4) for Performance Optimization -->
     <script is:inline>
