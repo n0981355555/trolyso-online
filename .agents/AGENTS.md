@@ -20,3 +20,12 @@ Mỗi khi người dùng yêu cầu viết bài viết mới (Blog Post) chuẩn
 
 ## 4. Quy tắc nhắc nhở Đẩy mã nguồn (Push Git)
 * Sau mỗi lần cập nhật mã nguồn thành công, Agent bắt buộc phải nhắc nhở người dùng thực hiện push code lên GitHub và hướng dẫn cách làm chi tiết bằng GitHub Desktop.
+
+## 5. Quy tắc Thiết kế Công cụ & Tối ưu Trải nghiệm (E-E-A-T & Lighthouse)
+* **Tích hợp Đa ngôn ngữ (Việt - Anh):** Tất cả các công cụ mới phải hỗ trợ chuyển đổi ngôn ngữ Việt - Anh đồng bộ thông qua đối tượng `translations` trong `src/layouts/Layout.astro` và kiểm tra trạng thái `localStorage.getItem("lang") === "en"` trong script tính toán.
+* **Đảm bảo chuẩn E-E-A-T:** Mỗi bài viết blog mới bắt buộc phải chứa Hộp tác giả & Kiểm duyệt chuyên môn dạng Card (E-E-A-T Author Box) ở đầu trang với thông tin chuyên môn rõ ràng (như CPA, Thạc sĩ Luật, Chuyên gia Nhân sự...).
+* **Tối ưu hóa Lighthouse (Accessibility & Performance):**
+  - Tất cả các nút, ô nhập liệu, bộ chọn và liên kết (đặc biệt là liên kết chỉ chứa SVG ở footer) phải có thẻ `aria-label` mô tả rõ ràng hành động.
+  - Các tài nguyên như font chữ phải khai báo `preconnect`.
+  - Các script bên thứ ba nặng hoặc theo dõi (như Google Analytics/GTM) bắt buộc phải trì hoãn tải (defer/setTimeout) sau sự kiện window `load` để tối đa hóa điểm hiệu năng.
+  - Đảm bảo độ tương phản màu sắc đạt chuẩn WCAG AA trong light mode (không dùng `text-slate-400` trực tiếp trên nền trắng mà không ghi đè độ tương phản).

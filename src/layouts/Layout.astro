@@ -22,17 +22,26 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
     <title>{title}</title>
     <meta name="description" content={description} />
     
-    <!-- Google Fonts - Google Sans Flex -->
+    <!-- Google Fonts Preconnect & Load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wdth,wght@8..144,25..151,100..900&display=swap" rel="stylesheet" />
     
-    <!-- Google Analytics (GA4) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V28V469Y4"></script>
+    <!-- Deferred Google Analytics (GA4) for Performance Optimization -->
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const script = document.createElement('script');
+          script.src = "https://www.googletagmanager.com/gtag/js?id=G-0V28V469Y4";
+          script.async = true;
+          document.head.appendChild(script);
 
-      gtag('config', 'G-0V28V469Y4');
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0V28V469Y4');
+        }, 1500); // 1.5s delay after page load to free main thread
+      });
     </script>
     
     <!-- Inline script to prevent theme flash -->
