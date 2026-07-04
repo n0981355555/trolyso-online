@@ -17,3 +17,6 @@ Mỗi khi người dùng yêu cầu viết bài viết mới (Blog Post) chuẩn
 * Nạp thông tin bài viết (Tiêu đề, slug, ngày đăng, mô tả) vào danh mục bài viết ở đầu mảng `posts` trong `src/pages/blog/index.astro`.
 * Đăng ký URL bài viết vào cơ sở dữ liệu tìm kiếm nhanh `searchIndex` trong `src/layouts/Layout.astro`.
 * Đăng ký URL bài viết vào sơ đồ trang web `public/sitemap.xml`.
+
+## 4. Quy tắc nhắc nhở Đẩy mã nguồn (Push Git)
+* Sau mỗi lần cập nhật mã nguồn thành công, Agent bắt buộc phải nhắc nhở người dùng thực hiện push code lên GitHub và hướng dẫn cách làm chi tiết bằng GitHub Desktop.
