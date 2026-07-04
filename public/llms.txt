@@ -18,3 +18,4 @@ Trợ Lý Số (trolyso.online) cung cấp các công cụ tính toán tài chí
 ## Cẩm nang hướng dẫn (Blog)
 
 - [Cẩm nang Trợ Lý Số](https://trolyso.online/blog/): Danh sách các bài viết hướng dẫn chuyên sâu về Thuế, BHXH, Hành chính và Công nghệ văn phòng.
+- [Bài viết: Tôi được giảm bao nhiêu thuế năm 2026](https://trolyso.online/blog/toi-duoc-giam-bao-nhieu-thue-nam-2026/): Hướng dẫn chi tiết mức giảm trừ gia cảnh, bảo hiểm bắt buộc và công thức tính thuế thu nhập cá nhân 2026.
