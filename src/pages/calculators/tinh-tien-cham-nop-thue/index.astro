@@ -1,0 +1,286 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Công Cụ Tính Tiền Phạt Chậm Nộp Thuế Mới Nhất 2026 - Trợ Lý Số"
+  description="Công cụ tính tiền chậm nộp thuế 0.03%/ngày và mức phạt chậm nộp tờ khai thuế tự động theo Nghị định 125/2020/NĐ-CP. Hỗ trợ dịch đa ngôn ngữ."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</span>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tính tiền chậm nộp thuế</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Công Cụ Tính Tiền Phạt Chậm Nộp Thuế
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Tính nhanh số tiền phạt chậm nộp thuế 0.03%/ngày và khung phạt hành chính nộp chậm tờ khai theo Nghị định 125.
+      </p>
+    </div>
+
+    <!-- Tool Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors">
+        
+      <!-- Left inputs (7 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-7">
+        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+          📝 Nhập thông tin nghĩa vụ thuế
+        </h2>
+
+        <div class="space-y-5">
+          <!-- Loại thuế -->
+          <div>
+            <label for="taxType" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Loại thuế</label>
+            <select id="taxType" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-medium">
+              <option value="monbai">Lệ phí môn bài</option>
+              <option value="tncn">Thuế thu nhập cá nhân (TNCN)</option>
+              <option value="gtgt">Thuế giá trị gia tăng (GTGT)</option>
+              <option value="tndn">Thuế thu nhập doanh nghiệp (TNDN)</option>
+              <option value="other">Khác</option>
+            </select>
+          </div>
+
+          <!-- Số tiền thuế nộp chậm -->
+          <div>
+            <label for="taxAmount" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số tiền thuế nộp chậm (VND)</label>
+            <input type="number" id="taxAmount" value="10000000" step="100000" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
+          </div>
+
+          <!-- Hạn nộp thuế -->
+          <div>
+            <label for="dueDate" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Hạn nộp thuế theo quy định</label>
+            <input type="date" id="dueDate" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-medium" />
+          </div>
+
+          <!-- Ngày thực tế nộp thuế -->
+          <div>
+            <label for="paymentDate" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Ngày thực tế nộp thuế</label>
+            <input type="date" id="paymentDate" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-medium" />
+          </div>
+
+          <!-- Checkbox tính thêm phạt tờ khai -->
+          <div class="flex items-center gap-3 py-2">
+            <input type="checkbox" id="calcFiling" class="w-5 h-5 rounded border-slate-300 text-brand-blue focus:ring-brand-blue cursor-pointer" />
+            <label for="calcFiling" class="text-sm font-semibold text-slate-700 dark:text-slate-300 cursor-pointer">Tính thêm phạt chậm nộp tờ khai</label>
+          </div>
+
+          <!-- Khung chọn hạn nộp tờ khai (Ẩn mặc định) -->
+          <div id="filingWrapper" class="hidden space-y-5 border-t border-dashed border-slate-200 dark:border-slate-800 pt-4">
+            <div>
+              <label for="fileDueDate" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Hạn nộp hồ sơ khai thuế</label>
+              <input type="date" id="fileDueDate" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-medium" />
+            </div>
+
+            <div>
+              <label for="fileSubmitDate" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Ngày thực tế nộp tờ khai</label>
+              <input type="date" id="fileSubmitDate" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-medium" />
+            </div>
+          </div>
+
+          <button id="btnCalculate" class="w-full bg-brand-blue hover:bg-blue-700 dark:bg-brand-mint dark:hover:bg-emerald-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg">
+            ⚡ Tính Lãi Phạt & Mức Phạt
+          </button>
+        </div>
+      </div>
+
+      <!-- Right outputs (5 cols) -->
+      <div class="p-6 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 md:col-span-5 flex flex-col justify-between border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800">
+        <div>
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+            📊 Kết quả tính toán
+          </h2>
+
+          <div class="space-y-6">
+            <!-- Số ngày chậm nộp thuế -->
+            <div>
+              <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Số ngày chậm nộp thuế:</span>
+              <span id="taxLateDays" class="text-2xl font-extrabold text-slate-900 dark:text-white">0 ngày</span>
+            </div>
+
+            <!-- Tiền chậm nộp thuế -->
+            <div>
+              <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Tiền chậm nộp phát sinh (0.03%/ngày):</span>
+              <span id="taxLatePenalty" class="text-2xl font-extrabold text-red-600 dark:text-red-400">0 VND</span>
+            </div>
+
+            <!-- Số ngày chậm nộp tờ khai (Nếu chọn) -->
+            <div id="resultFilingDaysWrapper" class="hidden">
+              <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Số ngày chậm nộp tờ khai:</span>
+              <span id="filingLateDays" class="text-xl font-extrabold text-slate-900 dark:text-white">0 ngày</span>
+            </div>
+
+            <!-- Mức phạt tờ khai (Nếu chọn) -->
+            <div id="resultFilingPenaltyWrapper" class="hidden">
+              <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Mức phạt hành chính tờ khai (Ước tính):</span>
+              <span id="filingPenaltyDesc" class="text-sm font-bold text-slate-700 dark:text-slate-300 block mb-1">Không trễ hạn</span>
+            </div>
+
+            <!-- Tổng số tiền cần nộp thêm -->
+            <div class="border-t border-slate-200 dark:border-slate-800 pt-6">
+              <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Tổng số tiền cần nộp thêm:</span>
+              <span id="totalPenalty" class="text-3xl font-black text-brand-blue dark:text-brand-mint">0 VND</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-xs text-slate-400">
+          Lưu ý: Tiền chậm nộp thuế được tính bằng 0.03% mỗi ngày trên số tiền nộp chậm. Khung phạt tờ khai áp dụng theo Nghị định 125/2020/NĐ-CP.
+        </div>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Set default dates
+  const todayStr = new Date().toISOString().split('T')[0];
+  
+  const dueDateInput = document.getElementById('dueDate') as HTMLInputElement;
+  const paymentDateInput = document.getElementById('paymentDate') as HTMLInputElement;
+  const fileDueDateInput = document.getElementById('fileDueDate') as HTMLInputElement;
+  const fileSubmitDateInput = document.getElementById('fileSubmitDate') as HTMLInputElement;
+  
+  if (dueDateInput) dueDateInput.value = todayStr;
+  if (paymentDateInput) paymentDateInput.value = todayStr;
+  if (fileDueDateInput) fileDueDateInput.value = todayStr;
+  if (fileSubmitDateInput) fileSubmitDateInput.value = todayStr;
+
+  // Toggle filing fields
+  const calcFilingCheckbox = document.getElementById('calcFiling') as HTMLInputElement;
+  const filingWrapper = document.getElementById('filingWrapper');
+  const resultFilingDaysWrapper = document.getElementById('resultFilingDaysWrapper');
+  const resultFilingPenaltyWrapper = document.getElementById('resultFilingPenaltyWrapper');
+
+  calcFilingCheckbox?.addEventListener('change', () => {
+    const isChecked = calcFilingCheckbox.checked;
+    if (isChecked) {
+      filingWrapper?.classList.remove('hidden');
+      resultFilingDaysWrapper?.classList.remove('hidden');
+      resultFilingPenaltyWrapper?.classList.remove('hidden');
+    } else {
+      filingWrapper?.classList.add('hidden');
+      resultFilingDaysWrapper?.classList.add('hidden');
+      resultFilingPenaltyWrapper?.classList.add('hidden');
+    }
+  });
+
+  // Calculate logic
+  const btnCalculate = document.getElementById('btnCalculate');
+
+  function calculate() {
+    const isEn = localStorage.getItem('lang') === 'en';
+    
+    // Get tax amount
+    const taxAmountInput = document.getElementById('taxAmount') as HTMLInputElement;
+    const taxAmount = parseFloat(taxAmountInput.value) || 0;
+
+    // Calculate tax late payment
+    const dueDateVal = new Date(dueDateInput.value);
+    const paymentDateVal = new Date(paymentDateInput.value);
+    
+    let taxLateDays = 0;
+    if (paymentDateVal > dueDateVal) {
+      taxLateDays = Math.floor((paymentDateVal.getTime() - dueDateVal.getTime()) / (1000 * 60 * 60 * 24));
+    }
+
+    const taxPenalty = taxLateDays * 0.0003 * taxAmount;
+
+    // Display tax penalty
+    const taxLateDaysLabel = document.getElementById('taxLateDays');
+    const taxLatePenaltyLabel = document.getElementById('taxLatePenalty');
+    
+    if (taxLateDaysLabel) {
+      taxLateDaysLabel.innerText = isEn ? `${taxLateDays} days` : `${taxLateDays} ngày`;
+    }
+    if (taxLatePenaltyLabel) {
+      taxLatePenaltyLabel.innerText = new Intl.NumberFormat(isEn ? 'en-US' : 'vi-VN', {
+        style: isEn ? 'decimal' : 'currency',
+        currency: 'VND'
+      }).format(taxPenalty) + (isEn ? ' VND' : '');
+    }
+
+    // Calculate filing late penalty
+    let filingLateDays = 0;
+    let filingPenaltyDesc = isEn ? 'Not late' : 'Không trễ hạn';
+    let filingPenaltyEst = 0;
+
+    if (calcFilingCheckbox?.checked) {
+      const fileDueDateVal = new Date(fileDueDateInput.value);
+      const fileSubmitDateVal = new Date(fileSubmitDateInput.value);
+
+      if (fileSubmitDateVal > fileDueDateVal) {
+        filingLateDays = Math.floor((fileSubmitDateVal.getTime() - fileDueDateVal.getTime()) / (1000 * 60 * 60 * 24));
+        
+        // Decree 125 brackets
+        if (filingLateDays >= 1 && filingLateDays <= 5) {
+          filingPenaltyDesc = isEn ? 'Warning (or 2-5 million VND fine)' : 'Phạt cảnh cáo (hoặc phạt tiền từ 2 - 5 triệu đồng)';
+          filingPenaltyEst = 2000000; // conservative minimum estimation
+        } else if (filingLateDays >= 6 && filingLateDays <= 30) {
+          filingPenaltyDesc = isEn ? 'Fine from 2 - 5 million VND' : 'Phạt tiền từ 2 - 5 triệu đồng';
+          filingPenaltyEst = 3500000;
+        } else if (filingLateDays >= 31 && filingLateDays <= 60) {
+          filingPenaltyDesc = isEn ? 'Fine from 5 - 8 million VND' : 'Phạt tiền từ 5 - 8 triệu đồng';
+          filingPenaltyEst = 6500000;
+        } else if (filingLateDays >= 61 && filingLateDays <= 90) {
+          filingPenaltyDesc = isEn ? 'Fine from 8 - 15 million VND' : 'Phạt tiền từ 8 - 15 triệu đồng';
+          filingPenaltyEst = 11500000;
+        } else {
+          filingPenaltyDesc = isEn ? 'Fine from 15 - 25 million VND' : 'Phạt tiền từ 15 - 25 triệu đồng';
+          filingPenaltyEst = 20000000;
+        }
+      }
+    }
+
+    const filingLateDaysLabel = document.getElementById('filingLateDays');
+    const filingPenaltyDescLabel = document.getElementById('filingPenaltyDesc');
+
+    if (filingLateDaysLabel) {
+      filingLateDaysLabel.innerText = isEn ? `${filingLateDays} days` : `${filingLateDays} ngày`;
+    }
+    if (filingPenaltyDescLabel) {
+      filingPenaltyDescLabel.innerText = filingPenaltyDesc;
+    }
+
+    // Display total
+    const totalPenalty = taxPenalty + filingPenaltyEst;
+    const totalPenaltyLabel = document.getElementById('totalPenalty');
+    if (totalPenaltyLabel) {
+      totalPenaltyLabel.innerText = new Intl.NumberFormat(isEn ? 'en-US' : 'vi-VN', {
+        style: isEn ? 'decimal' : 'currency',
+        currency: 'VND'
+      }).format(totalPenalty) + (isEn ? ' VND' : '');
+    }
+  }
+
+  btnCalculate?.addEventListener('click', calculate);
+  
+  // Listen for language selector change to re-trigger calculations
+  document.getElementById('langSelector')?.addEventListener('change', () => {
+    setTimeout(calculate, 50);
+  });
+</script>

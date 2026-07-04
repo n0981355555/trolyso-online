@@ -146,6 +146,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://trolyso.online/calculators/tinh-tien-cham-nop-thue/</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolyso.online/blog/huong-dan-tinh-tien-cham-nop-thue/</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://trolyso.online/dieu-khoan/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
