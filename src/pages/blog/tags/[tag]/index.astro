@@ -1,0 +1,201 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const tagData = [
+    {
+      slug: 'thue-thu-nhap-ca-nhan',
+      name: 'Thuế thu nhập cá nhân',
+      title: 'Cẩm Nang Thuế Thu Nhập Cá Nhân Mới Nhất - Trợ Lý Số',
+      description: 'Tổng hợp các bài viết hướng dẫn, quy định pháp luật và công cụ tính thuế thu nhập cá nhân mới nhất dành cho người lao động.',
+      intro: 'Thuế thu nhập cá nhân (TNCN) là một sắc thuế trực thu đánh trực tiếp vào thu nhập của mỗi cá nhân sau khi đã trừ đi các khoản chi phí hợp lý và giảm trừ gia cảnh. Đối với người lao động làm công ăn lương, thuế TNCN quyết định trực tiếp đến số tiền thực nhận (Net) mỗi tháng. Do đó, việc hiểu rõ các quy định pháp luật thuế là vô cùng quan trọng để tự bảo vệ quyền lợi tài chính chính đáng của mình. Chuyên mục Thuế Thu Nhập Cá Nhân tại Trợ Lý Số được xây dựng nhằm cung cấp một hệ thống tài liệu cẩm nang toàn diện, cập nhật liên tục các quy định mới nhất từ Bộ Tài chính và Tổng cục Thuế. Tại đây, bạn sẽ tìm thấy các bài viết phân tích chi tiết về biểu thuế lũy tiến từng phần gồm 7 bậc thuế suất, cách phân loại thu nhập chịu thuế và thu nhập được miễn thuế, cũng như các điều kiện để được áp dụng giảm thuế trong các trường hợp đặc biệt. Bên cạnh lý thuyết pháp lý, chúng tôi cung cấp các hướng dẫn từng bước trực quan giúp cá nhân tự thực hiện quyết toán thuế cuối năm hoặc nộp hồ sơ xin hoàn thuế TNCN online thông qua cổng thông tin thuế điện tử mà không cần qua trung gian. Hãy cùng khám phá các bài viết dưới đây để trang bị kiến thức và sử dụng công cụ tính toán tự động tối ưu nhất cho bản thân.'
+    },
+    {
+      slug: 'luong-gross-net',
+      name: 'Lương Gross Net',
+      title: 'Cẩm Nang Lương Gross Net & Cách Quy Đổi - Trợ Lý Số',
+      description: 'Tổng hợp các hướng dẫn phân biệt lương Gross và lương Net, công thức quy đổi tiền lương thực tế và cẩm nang đàm phán lương khi xin việc.',
+      intro: 'Khi ký kết hợp đồng lao động, khái niệm lương Gross và lương Net luôn là điểm cốt lõi cần làm rõ giữa người lao động và người sử dụng lao động. Hiểu một cách đơn giản, lương Gross là tổng thu nhập bạn nhận được bao gồm cả tiền bảo hiểm và thuế TNCN, trong khi lương Net là số tiền thực tế đổ về tài khoản của bạn sau khi đã khấu trừ hết các khoản trên. Việc không phân biệt rõ hai loại lương này dễ dẫn đến những hiểu lầm về quyền lợi khi doanh nghiệp đóng bảo hiểm ở mức thấp hoặc trốn tránh nghĩa vụ đóng thuế. Chuyên mục Lương Gross Net tại Trợ Lý Số cung cấp các bài viết chuyên sâu hướng dẫn bạn cách chuyển đổi chính xác hai chiều từ Gross sang Net và ngược lại theo đúng quy định trích đóng bảo hiểm 10.5% mới nhất. Bạn sẽ nắm được cách thức doanh nghiệp xây dựng thang bảng lương, cách tính tiền lương làm thêm giờ dựa trên mức lương Gross, và những lưu ý đặc biệt khi đàm phán lương trong các buổi phỏng vấn tuyển dụng để đạt được mức thu nhập tối ưu và an toàn nhất.'
+    },
+    {
+      slug: 'quyet-toan-thue',
+      name: 'Quyết toán thuế',
+      title: 'Hướng Dẫn Hồ Sơ Quyết Toán Thuế TNCN Online - Trợ Lý Số',
+      description: 'Hướng dẫn chi tiết quy trình, thủ tục làm hồ sơ tự quyết toán thuế thu nhập cá nhân online và cách nhận tiền hoàn thuế nhanh chóng.',
+      intro: 'Quyết toán thuế thu nhập cá nhân là công việc bắt buộc hàng năm đối với cá nhân cư trú có thu nhập từ nhiều nguồn hoặc có số thuế nộp thừa muốn xin hoàn trả. Tuy nhiên, quy trình chuẩn bị chứng từ khấu trừ thuế, điền tờ khai quyết toán 02/QTT-TNCN và lựa chọn cơ quan thuế quyết toán thường gây ra nhiều lúng túng cho người lao động tự do hoặc nhân viên đã nhảy việc trong năm. Chuyên mục Quyết toán thuế tại Trợ Lý Số sẽ đồng hành cùng bạn giải quyết mọi khó khăn pháp lý đó. Chúng tôi tổng hợp các bài viết hướng dẫn chi tiết cách thức đăng ký tài khoản thuế điện tử cá nhân, cách nhập dữ liệu tờ khai online trên hệ thống của Tổng cục Thuế, cách quét mã XML tờ khai và tải tài liệu minh chứng đi kèm. Ngoài ra, bạn cũng sẽ tìm hiểu được thời hạn nộp hồ sơ quyết toán để tránh bị xử phạt hành chính theo Nghị định 125, cũng như các mẹo kiểm tra trạng thái xử lý hồ sơ để sớm nhận được tiền hoàn thuế vào tài khoản ngân hàng.'
+    },
+    {
+      slug: 'nguoi-phu-thuoc',
+      name: 'Người phụ thuộc',
+      title: 'Quy Định Đăng Ký Người Phụ Thuộc Thuế TNCN - Trợ Lý Số',
+      description: 'Tìm hiểu điều kiện xác định người phụ thuộc, hồ sơ chứng minh và thủ tục đăng ký giảm trừ người phụ thuộc để giảm thuế TNCN.',
+      intro: 'Người phụ thuộc là một trong những đối tượng giúp người nộp thuế TNCN giảm trừ gia cảnh mạnh mẽ nhất, với mức giảm trừ 4.4 triệu đồng/người/tháng. Đăng ký người phụ thuộc đúng luật là giải pháp tối ưu thuế hoàn toàn hợp pháp và nhân văn, giúp san sẻ gánh nặng tài chính cho những người lao động phải nuôi dưỡng con nhỏ, cha mẹ già yếu hoặc người thân bị khuyết tật không có khả năng lao động. Chuyên mục Người phụ thuộc cung cấp đầy đủ thông tin pháp lý giúp bạn xác định chính xác đối tượng nào được tính là người phụ thuộc theo quy định của Luật Thuế TNCN. Bạn sẽ được hướng dẫn chi tiết về bộ hồ sơ chứng minh mối quan hệ (như giấy khai sinh, sổ hộ khẩu, xác nhận của UBND cấp xã...), mẫu tờ khai đăng ký 20-DK-TCT, và cách xử lý khi đăng ký trùng người phụ thuộc giữa các thành viên trong gia đình. Mọi hướng dẫn đều được trình bày trực quan và dễ hiểu cho cả người nộp thuế và kế toán doanh nghiệp.'
+    },
+    {
+      slug: 'giam-tru-gia-canh',
+      name: 'Giảm trừ gia cảnh',
+      title: 'Mức Giảm Trừ Gia Cảnh Thuế TNCN Mới Nhất - Trợ Lý Số',
+      description: 'Tổng hợp các quy định về mức giảm trừ gia cảnh bản thân và người phụ thuộc, điều kiện áp dụng và tác động đến lương thực nhận.',
+      intro: 'Giảm trừ gia cảnh là số tiền được trừ vào thu nhập chịu thuế trước khi tính thuế đối với thu nhập từ tiền lương, tiền công của người nộp thuế cư trú. Mức giảm trừ gia cảnh hiện tại bao gồm mức giảm trừ cho bản thân người nộp thuế là 11 triệu đồng/tháng và mức giảm trừ cho mỗi người phụ thuộc là 4.4 triệu đồng/tháng. Việc áp dụng đúng và đủ các khoản giảm trừ gia cảnh sẽ giúp hạ thấp đáng kể thu nhập tính thuế, từ đó giảm số thuế TNCN phải nộp hàng tháng. Chuyên mục Giảm trừ gia cảnh tại Trợ Lý Số tập trung làm sáng tỏ các nguyên tắc áp dụng giảm trừ gia cảnh trong kỳ tính thuế, cách tính giảm trừ gia cảnh khi làm việc không đủ tháng hoặc khi thay đổi công việc giữa chừng. Bạn cũng sẽ nắm rõ thời điểm được tính giảm trừ cho người phụ thuộc và cách thức khai báo giảm trừ gia cảnh khi làm quyết toán thuế TNCN cuối năm để bảo đảm quyền lợi tài chính tối đa của mình.'
+    },
+    {
+      slug: 'thue-tncn-2026',
+      name: 'Thuế TNCN 2026',
+      title: 'Cập Nhật Cải Cách Thuế TNCN Năm 2026 Mới Nhất - Trợ Lý Số',
+      description: 'Thông tin mới nhất về các ngưỡng chịu thuế TNCN, chính sách miễn giảm thuế và lộ trình cải cách thuế năm 2026 tại Việt Nam.',
+      intro: 'Bước sang năm 2026, chính sách thuế TNCN tại Việt Nam ghi nhận những cải cách quan trọng nhằm đồng bộ hóa với lộ trình tăng lương cơ sở lên 2.530.000 đồng/tháng của công chức viên chức. Các điều chỉnh mới tập trung vào việc nới rộng các bậc thuế suất, nâng ngưỡng thu nhập không chịu thuế cho người lao động độc thân lên mức 15.5 triệu đồng/tháng và đưa ra các chính sách miễn thuế nhân văn đối với tiền lương làm ca đêm, làm thêm giờ để khuyến khích hoạt động sản xuất kinh doanh. Chuyên mục Thuế TNCN 2026 tại Trợ Lý Số là nơi tổng hợp toàn bộ các văn bản pháp luật, nghị định của Chính phủ và thông tư của Bộ Tài chính hướng dẫn thực thi cải cách thuế mới. Các bài viết phân tích chuyên sâu tại đây sẽ giúp bạn hiểu rõ tác động của luật thuế mới đến tiền lương thực nhận hàng tháng của mình, cách doanh nghiệp khấu trừ thuế và chuẩn bị tâm lý cho kỳ quyết toán thuế TNCN đầu tiên áp dụng luật mới.'
+    }
+  ];
+
+  return tagData.map(tag => ({
+    params: { tag: tag.slug },
+    props: { tag }
+  }));
+}
+
+const { tag } = Astro.props;
+
+const allPosts = [
+  {
+    title: "Lương Bao Nhiêu Phải Đóng Thuế Thu Nhập Cá Nhân 2026? Xem 15 Ví Dụ",
+    description: "Cẩm nang hướng dẫn chi tiết mức lương chịu thuế TNCN năm 2026, các khoản giảm trừ và 15 ví dụ tính thuế thực tế chi tiết từ lương thấp đến lương cao.",
+    slug: "luong-bao-nhieu-phai-dong-thue-thu-nhap-ca-nhan-2026",
+    category: "Thuế",
+    date: "05/07/2026",
+    readTime: "12 phút",
+    tags: ["thue-thu-nhap-ca-nhan", "nguoi-phu-thuoc", "giam-tru-gia-canh", "thue-tncn-2026"]
+  },
+  {
+    title: "Máy Tính Tăng Lương Sau Cải Cách Thuế 2026: Cách Tính Lương Thực Nhận",
+    description: "Hướng dẫn chi tiết cách tính lương thực nhận sau cải cách lương cơ sở lên 2.530.000đ và cải cách thuế TNCN 2026 mới nhất giúp tối ưu thu nhập.",
+    slug: "may-tinh-tang-luong-sau-cai-cach-thue",
+    category: "Lao động",
+    date: "05/07/2026",
+    readTime: "6 phút",
+    tags: ["thue-thu-nhap-ca-nhan", "thue-tncn-2026"]
+  },
+  {
+    title: "Tôi Được Giảm Bao Nhiêu Thuế Năm 2026? Hướng Dẫn Chi Tiết A-Z",
+    description: "Tìm hiểu chi tiết các khoản giảm trừ gia cảnh, bảo hiểm bắt buộc và các khoản giảm trừ thuế TNCN mới nhất năm 2026 giúp bạn tối ưu số thuế phải nộp.",
+    slug: "toi-duoc-giam-bao-nhieu-thue-nam-2026",
+    category: "Thuế",
+    date: "05/07/2026",
+    readTime: "7 phút",
+    tags: ["thue-thu-nhap-ca-nhan", "nguoi-phu-thuoc", "giam-tru-gia-canh", "thue-tncn-2026"]
+  },
+  {
+    title: "Cách Tính Tiền Chậm Nộp Thuế Mới Nhất Năm 2026 Chuẩn Xác",
+    description: "Hướng dẫn chi tiết cách tính tiền phạt chậm nộp thuế 0.03%/ngày và khung phạt chậm nộp tờ khai thuế mới nhất. Xem ví dụ và công cụ tính tự động.",
+    slug: "huong-dan-tinh-tien-cham-nop-thue",
+    category: "Thuế",
+    date: "04/07/2026",
+    readTime: "6 phút",
+    tags: ["thue-thu-nhap-ca-nhan", "quyet-toan-thue"]
+  },
+  {
+    title: "Lương Gross là gì? Phân biệt lương Gross - Net và cách tính từ A-Z",
+    description: "Cẩm nang giải thích từ A-Z khái niệm lương Gross, cách trích đóng bảo hiểm bắt buộc 10.5% và thuế TNCN chuẩn lũy tiến chi tiết.",
+    slug: "luong-gross-la-gi",
+    category: "Lao động",
+    date: "04/07/2026",
+    readTime: "6 phút",
+    tags: ["luong-gross-net", "thue-thu-nhap-ca-nhan"]
+  },
+  {
+    title: "Phân biệt Lương Gross và Net chi tiết nhất",
+    description: "Nên đàm phán lương Gross hay lương Net khi phỏng vấn xin việc? So sánh chi tiết quyền lợi và trách nhiệm của doanh nghiệp.",
+    slug: "phan-biet-luong-gross-va-net",
+    category: "Lao động",
+    date: "04/07/2026",
+    readTime: "6 phút",
+    tags: ["luong-gross-net", "thue-thu-nhap-ca-nhan"]
+  },
+  {
+    title: "Hướng Dẫn Tự Tính Thuế Thu Nhập Cá Nhân Chuẩn Xác",
+    description: "Cẩm nang hướng dẫn cách tự tính thuế thu nhập cá nhân chi tiết theo biểu thuế lũy tiến từng phần mới nhất.",
+    slug: "huong-dan-tinh-thue-tncn",
+    category: "Thuế",
+    date: "03/07/2026",
+    readTime: "8 phút",
+    tags: ["thue-thu-nhap-ca-nhan", "giam-tru-gia-canh", "thue-tncn-2026", "quyet-toan-thue"]
+  }
+];
+
+const relatedPosts = allPosts.filter(post => post.tags && post.tags.includes(tag.slug));
+---
+
+<Layout title={tag.title} description={tag.description}>
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/blog/" class="hover:text-brand-blue dark:hover:text-brand-mint">Blog</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500 text-xs truncate max-w-[200px]">Thẻ: {tag.name}</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="border-b border-slate-200 dark:border-slate-800 pb-6 mb-8">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="text-xs font-bold text-[#0063b6] dark:text-[#49a2dc] bg-blue-50 dark:bg-blue-950/40 px-2.5 py-1 rounded-md">
+          Chủ đề bài viết
+        </span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white leading-tight">
+        Từ khóa: {tag.name}
+      </h1>
+    </div>
+
+    <!-- Introduction Text (200-500 words) -->
+    <div class="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed mb-12 p-6 rounded-2xl bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 shadow-sm">
+      <p class="mb-0 text-sm md:text-base">{tag.intro}</p>
+    </div>
+
+    <!-- Related Articles List -->
+    <div>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Danh sách bài viết liên quan</h2>
+      
+      {relatedPosts.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {relatedPosts.map(post => (
+            <article class="flex flex-col bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-lg transition duration-200">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-xs font-bold text-brand-blue dark:text-brand-mint bg-blue-50 dark:bg-blue-950 px-2.5 py-1 rounded-md">
+                  {post.category}
+                </span>
+                <span class="text-xs text-slate-400">{post.date}</span>
+              </div>
+              <h3 class="text-md font-bold text-slate-900 dark:text-white mb-2 line-clamp-2 hover:text-brand-blue dark:hover:text-brand-mint">
+                <a href={`/blog/${post.slug}/`}>{post.title}</a>
+              </h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-3">
+                {post.description}
+              </p>
+              <div class="mt-auto flex items-center justify-between">
+                <span class="text-xs text-slate-400">⏱️ {post.readTime} đọc</span>
+                <a href={`/blog/${post.slug}/`} class="text-xs font-bold text-brand-blue dark:text-brand-mint hover:underline">
+                  Đọc tiếp →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p class="text-sm text-slate-500 italic">Chưa có bài viết nào thuộc chủ đề này.</p>
+      )}
+    </div>
+  </main>
+</Layout>
