@@ -107,12 +107,99 @@ import Layout from '../../../layouts/Layout.astro';
           </div>
         </div>
 
-        <div class="text-xs text-slate-400 mt-8 pt-4 border-t border-slate-200 dark:border-slate-800">
-          * Định dạng đọc số tuân thủ văn phong Việt Nam hiện đại, xử lý chính xác các trường hợp hàng nghìn, hàng triệu, tỷ và các từ đệm "linh/lẻ", "mốt", "lăm".
         </div>
       </div>
 
     </div>
+
+    <!-- SEO Content Section (E-E-A-T & Googlebot indexing helper) -->
+    <div class="mt-12 bg-white dark:bg-brand-darkCard rounded-2xl p-6 sm:p-10 shadow-xl border border-slate-200 dark:border-slate-800 prose prose-slate dark:prose-invert max-w-none transition-colors animate-fade-in">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Hướng Dẫn Quy Tắc Đọc Số Thành Chữ Kế Toán Chuẩn
+      </h2>
+      <p>
+        Trong lĩnh vực tài chính, kế toán và hành chính, việc viết số tiền bằng chữ trên hóa đơn, chứng từ hoặc hợp đồng kinh tế là bắt buộc để đảm bảo tính pháp lý. Công cụ của <strong>Trợ Lý Số</strong> giúp bạn tự động hóa quy trình dịch số thành chữ tiếng Việt cực kỳ nhanh chóng và chính xác.
+      </p>
+
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6 mb-3">1. Quy tắc đọc số tiền bằng chữ trong kế toán</h3>
+      <p>Việc viết chữ số cần tuân thủ các quy chuẩn chính tả tiếng Việt hiện đại:</p>
+      <ul>
+        <li><strong>Từ đệm linh/lẻ:</strong> Đối với hàng chục có chữ số 0 (Ví dụ: 105 đọc là "một trăm lẻ năm" hoặc "một trăm linh năm").</li>
+        <li><strong>Chữ số 1 ở hàng đơn vị (mốt):</strong> Khi hàng chục lớn hơn hoặc bằng 2 (Ví dụ: 21 đọc là "hai mươi mốt", còn 11 đọc là "mười một").</li>
+        <li><strong>Chữ số 5 ở hàng đơn vị (lăm):</strong> Khi hàng chục lớn hơn 0 (Ví dụ: 15 đọc là "mười lăm", 25 đọc là "hai mươi lăm", 105 đọc là "một trăm lẻ năm").</li>
+        <li><strong>Đọc đuôi đơn vị tiền tệ:</strong> Cuối câu viết bằng chữ thường kèm theo cụm từ "đồng", "đô la Mỹ" hoặc hậu tố "chẵn" (Ví dụ: "... đồng chẵn").</li>
+      </ul>
+
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-3">❓ Câu hỏi thường gặp (FAQ)</h3>
+      <div class="space-y-4">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+          <p class="font-bold text-slate-900 dark:text-white text-sm mb-1">Tại sao hóa đơn bắt buộc phải có dòng viết số tiền bằng chữ?</p>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Viết số tiền bằng chữ giúp hạn chế tối đa các hành vi gian lận, sửa đổi thêm bớt chữ số trên chứng từ giấy, đồng thời đối chiếu tính trùng khớp với số tiền bằng số.</p>
+        </div>
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+          <p class="font-bold text-slate-900 dark:text-white text-sm mb-1">Nên dùng từ "linh" hay "lẻ" khi đọc số?</p>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Cả hai từ "linh" và "lẻ" đều được chấp nhận hợp pháp trên hóa đơn kế toán, tùy thuộc vào văn phong vùng miền (miền Bắc thường dùng "linh", miền Nam thường dùng "lẻ").</p>
+        </div>
+        <div class="pb-3">
+          <p class="font-bold text-slate-900 dark:text-white text-sm mb-1">Cách đọc số tiền lẻ có chữ số thập phân thế nào?</p>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Số thập phân thường được đọc kèm từ "phẩy" hoặc chuyển đổi sang đơn vị nhỏ hơn (Ví dụ: 10.5 USD đọc là "mười đô la Mỹ và năm mươi xu").</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Structured Data Schemas (JSON-LD) for SEO -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://trolyso.online/calculators/doc-so-thanh-chu/#webapp",
+            "name": "Công Cụ Đọc Số Thành Chữ Tiếng Việt Tự Động Online",
+            "url": "https://trolyso.online/calculators/doc-so-thanh-chu/",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires JavaScript. Requires HTML5.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "VND"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://trolyso.online/calculators/doc-so-thanh-chu/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Tại sao hóa đơn bắt buộc phải có dòng viết số tiền bằng chữ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Viết số tiền bằng chữ giúp hạn chế tối đa các hành vi gian lận, sửa đổi thêm bớt chữ số trên chứng từ giấy, đồng thời đối chiếu tính trùng khớp với số tiền bằng số."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Nên dùng từ 'linh' hay 'lẻ' khi đọc số?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Cả hai từ 'linh' và 'lẻ' đều được chấp nhận hợp pháp trên hóa đơn kế toán, tùy thuộc vào văn phong vùng miền (miền Bắc thường dùng 'linh', miền Nam thường dùng 'lẻ')."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Cách đọc số tiền lẻ có chữ số thập phân thế nào?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Số thập phân thường được đọc kèm từ 'phẩy' hoặc chuyển đổi sang đơn vị nhỏ hơn (Ví dụ: 10.5 USD đọc là 'mười đô la Mỹ và năm mươi xu')."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
   </main>
 </Layout>
 

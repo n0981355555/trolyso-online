@@ -157,9 +157,169 @@ import Layout from '../../../layouts/Layout.astro';
           <tbody id="taxBracketsBody" class="divide-y divide-slate-100 dark:divide-slate-800 font-medium text-slate-700 dark:text-slate-300">
             <!-- Sẽ được điền bằng Javascript -->
           </tbody>
-        </table>
+         </table>
       </div>
     </div>
+
+    <!-- SEO Content Section (E-E-A-T & Googlebot indexing helper) -->
+    <div class="mt-12 bg-white dark:bg-brand-darkCard rounded-2xl p-6 sm:p-10 shadow-xl border border-slate-200 dark:border-slate-800 prose prose-slate dark:prose-invert max-w-none transition-colors animate-fade-in">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Hướng Dẫn Cách Tính Thuế Thu Nhập Cá Nhân 2026 Tự Động & Chuẩn Xác
+      </h2>
+      <p>
+        Thuế thu nhập cá nhân (TNCN) là nghĩa vụ tài chính bắt buộc của người lao động có thu nhập chịu thuế vượt quá mức giảm trừ gia cảnh theo quy định pháp luật hiện hành. Để giúp bạn dễ dàng tự tính toán số thuế phải nộp hằng tháng, công cụ của <strong>Trợ Lý Số</strong> đã được cập nhật chính xác các thông số theo Luật Thuế thu nhập cá nhân mới nhất năm 2026.
+      </p>
+
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6 mb-3">1. Công thức tính thuế TNCN cơ bản</h3>
+      <p>Số tiền thuế TNCN phải nộp hằng tháng được xác định theo công thức pháp luật quy định như sau:</p>
+      <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-800 font-semibold mb-4 text-sm text-slate-800 dark:text-slate-200">
+        1. Thu nhập tính thuế = Thu nhập chịu thuế - Các khoản giảm trừ
+        <br/>
+        2. Thuế TNCN phải nộp = Thu nhập tính thuế × Thuế suất tương ứng theo bậc lũy tiến
+      </div>
+      <p>Trong đó, các khoản giảm trừ bao gồm:</p>
+      <ul>
+        <li><strong>Giảm trừ gia cảnh bản thân:</strong> 11.000.000 đồng/tháng (132.000.000 đồng/năm).</li>
+        <li><strong>Giảm trừ gia cảnh người phụ thuộc:</strong> 4.400.000 đồng/tháng cho mỗi người phụ thuộc.</li>
+        <li><strong>Các khoản đóng bảo hiểm bắt buộc:</strong> BHXH (8%), BHYT (1.5%), BHTN (1%). Tổng cộng là 10.5% mức lương đóng bảo hiểm (tối đa bằng 20 lần mức lương cơ sở).</li>
+        <li>Các khoản đóng góp từ thiện, nhân đạo, khuyến học được nhà nước công nhận.</li>
+      </ul>
+
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6 mb-3">2. Biểu thuế suất lũy tiến từng phần (7 Bậc)</h3>
+      <div class="overflow-x-auto my-4">
+        <table class="w-full text-sm text-left border border-slate-200 dark:border-slate-800">
+          <thead class="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300">
+            <tr>
+              <th class="p-3 border">Bậc thuế</th>
+              <th class="p-3 border">Thu nhập tính thuế/tháng</th>
+              <th class="p-3 border">Thuế suất</th>
+              <th class="p-3 border">Công thức tính nhanh</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-3 border font-semibold">Bậc 1</td>
+              <td class="p-3 border">Đến 5 triệu VND</td>
+              <td class="p-3 border font-bold">5%</td>
+              <td class="p-3 border">TNTT × 5%</td>
+            </tr>
+            <tr class="bg-slate-50/50 dark:bg-slate-950/20">
+              <td class="p-3 border font-semibold">Bậc 2</td>
+              <td class="p-3 border">Trên 5 triệu đến 10 triệu VND</td>
+              <td class="p-3 border font-bold">10%</td>
+              <td class="p-3 border">(TNTT × 10%) - 250.000 VND</td>
+            </tr>
+            <tr>
+              <td class="p-3 border font-semibold">Bậc 3</td>
+              <td class="p-3 border">Trên 10 triệu đến 18 triệu VND</td>
+              <td class="p-3 border font-bold">15%</td>
+              <td class="p-3 border">(TNTT × 15%) - 750.000 VND</td>
+            </tr>
+            <tr class="bg-slate-50/50 dark:bg-slate-950/20">
+              <td class="p-3 border font-semibold">Bậc 4</td>
+              <td class="p-3 border">Trên 18 triệu đến 32 triệu VND</td>
+              <td class="p-3 border font-bold">20%</td>
+              <td class="p-3 border">(TNTT × 20%) - 1.650.000 VND</td>
+            </tr>
+            <tr>
+              <td class="p-3 border font-semibold">Bậc 5</td>
+              <td class="p-3 border">Trên 32 triệu đến 52 triệu VND</td>
+              <td class="p-3 border font-bold">25%</td>
+              <td class="p-3 border">(TNTT × 25%) - 3.250.000 VND</td>
+            </tr>
+            <tr class="bg-slate-50/50 dark:bg-slate-950/20">
+              <td class="p-3 border font-semibold">Bậc 6</td>
+              <td class="p-3 border">Trên 52 triệu đến 80 triệu VND</td>
+              <td class="p-3 border font-bold">30%</td>
+              <td class="p-3 border">(TNTT × 30%) - 5.850.000 VND</td>
+            </tr>
+            <tr>
+              <td class="p-3 border font-semibold">Bậc 7</td>
+              <td class="p-3 border">Trên 80 triệu VND</td>
+              <td class="p-3 border font-bold text-red-600 dark:text-red-400">35%</td>
+              <td class="p-3 border">(TNTT × 35%) - 9.850.000 VND</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6 mb-3">3. Ví dụ tính thuế TNCN thực tế</h3>
+      <p>
+        Bà Cúc có tổng thu nhập hằng tháng là 30.000.000 đồng, đóng bảo hiểm bắt buộc ở mức 10.5% lương (3.150.000 đồng) và nuôi 1 người phụ thuộc. 
+        <br/>- Các khoản giảm trừ của bà Cúc: Bảo hiểm (3.150.000) + Bản thân (11.000.000) + 1 người phụ thuộc (4.400.000) = 18.550.000 đồng.
+        <br/>- Thu nhập tính thuế = 30.000.000 - 18.550.000 = 11.450.000 đồng (Thuộc bậc 3).
+        <br/>- Áp dụng công thức tính nhanh bậc 3: (11.450.000 × 15%) - 750.000 = 967.500 đồng.
+      </p>
+
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-3">❓ Câu hỏi thường gặp (FAQ)</h3>
+      <div class="space-y-4">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+          <p class="font-bold text-slate-900 dark:text-white text-sm mb-1">Mức giảm trừ gia cảnh bản thân năm 2026 là bao nhiêu?</p>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Hiện tại mức giảm trừ gia cảnh cho bản thân người nộp thuế áp dụng là 11.000.000 đồng/tháng (132.000.000 đồng/năm) theo đúng Nghị quyết 954/2020/UBTVQH14.</p>
+        </div>
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+          <p class="font-bold text-slate-900 dark:text-white text-sm mb-1">Những ai được tính là người phụ thuộc giảm trừ gia cảnh?</p>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Người phụ thuộc bao gồm con dưới 18 tuổi hoặc con trên 18 tuổi bị khuyết tật/không có khả năng lao động; cha mẹ đẻ/cha mẹ vợ/chồng ngoài độ tuổi lao động hoặc trong độ tuổi lao động nhưng bị khuyết tật, không có thu nhập hoặc thu nhập bình quân tháng dưới 1.000.000 đồng.</p>
+        </div>
+        <div class="pb-3">
+          <p class="font-bold text-slate-900 dark:text-white text-sm mb-1">Thời gian nộp hồ sơ quyết toán thuế TNCN hằng năm là khi nào?</p>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Đối với cá nhân tự quyết toán trực tiếp với cơ quan thuế, hạn chót nộp hồ sơ quyết toán là ngày cuối cùng của tháng thứ 4 kể từ ngày kết thúc năm dương lịch (thường là ngày 30/04 hằng năm).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Structured Data Schemas (JSON-LD) for SEO -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://trolyso.online/calculators/tinh-thue-tncn/#webapp",
+            "name": "Công Cụ Tính Thuế Thu Nhập Cá Nhân Online Tự Động",
+            "url": "https://trolyso.online/calculators/tinh-thue-tncn/",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires JavaScript. Requires HTML5.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "VND"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://trolyso.online/calculators/tinh-thue-tncn/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Mức giảm trừ gia cảnh bản thân năm 2026 là bao nhiêu?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Hiện tại mức giảm trừ gia cảnh cho bản thân người nộp thuế áp dụng là 11.000.000 đồng/tháng (132.000.000 đồng/năm) theo đúng Nghị quyết 954/2020/UBTVQH14."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Những ai được tính là người phụ thuộc giảm trừ gia cảnh?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Người phụ thuộc bao gồm con dưới 18 tuổi hoặc con trên 18 tuổi bị khuyết tật/không có khả năng lao động; cha mẹ đẻ/cha mẹ vợ/chồng ngoài độ tuổi lao động hoặc trong độ tuổi lao động nhưng bị khuyết tật, không có thu nhập hoặc thu nhập bình quân tháng dưới 1.000.000 đồng."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Thời gian nộp hồ sơ quyết toán thuế TNCN hằng năm là khi nào?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Đối với cá nhân tự quyết toán trực tiếp với cơ quan thuế, hạn chót nộp hồ sơ quyết toán là ngày cuối cùng của tháng thứ 4 kể từ ngày kết thúc năm dương lịch (thường là ngày 30/04 hằng năm)."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
 
   </main>
 </Layout>

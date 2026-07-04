@@ -112,6 +112,94 @@ import Layout from '../../../layouts/Layout.astro';
       </div>
 
     </div>
+
+    <!-- SEO Content Section (E-E-A-T & Googlebot indexing helper) -->
+    <div class="mt-12 bg-white dark:bg-brand-darkCard rounded-2xl p-6 sm:p-10 shadow-xl border border-slate-200 dark:border-slate-800 prose prose-slate dark:prose-invert max-w-none transition-colors animate-fade-in">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Hướng Dẫn Nén Ảnh WebP Tối Ưu Dung Lượng Cho Website
+      </h2>
+      <p>
+        Trong thiết kế web và SEO, tốc độ tải trang là yếu tố quan trọng hàng đầu ảnh hưởng trực tiếp đến thứ hạng Google và tỷ lệ chuyển đổi của khách hàng. Công cụ nén ảnh của <strong>Trợ Lý Số</strong> giúp bạn nhanh chóng tối giản dung lượng hình ảnh dưới 100KB bằng định dạng thế hệ mới WebP mà vẫn giữ nguyên chất lượng hiển thị rõ nét.
+      </p>
+
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6 mb-3">1. Tại sao nên sử dụng định dạng ảnh WebP?</h3>
+      <p>WebP là định dạng hình ảnh hiện đại do Google phát triển, mang lại nhiều ưu điểm vượt trội so với PNG hay JPG truyền thống:</p>
+      <ul>
+        <li><strong>Nén dữ liệu tốt hơn:</strong> WebP nén ảnh dung lượng nhỏ hơn **25% - 34%** so với JPG và **26%** so với PNG có cùng chất lượng hình ảnh hiển thị.</li>
+        <li><strong>Hỗ trợ độ trong suốt (Alpha Channel):</strong> Giống như PNG, WebP có thể hiển thị nền trong suốt nhưng với dung lượng nhẹ hơn nhiều lần.</li>
+        <li><strong>Đạt điểm tối đa PageSpeed:</strong> Google Lighthouse luôn khuyến khích sử dụng các định dạng ảnh thế hệ mới như WebP để giảm thời gian phản hồi của trang web.</li>
+      </ul>
+
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-3">❓ Câu hỏi thường gặp (FAQ)</h3>
+      <div class="space-y-4">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+          <p class="font-bold text-slate-900 dark:text-white text-sm mb-1">Nén ảnh tại website có làm mất ảnh gốc hoặc bị rò rỉ dữ liệu không?</p>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Không. Quá trình nén ảnh được thực hiện hoàn toàn bằng Javascript trực tiếp trên trình duyệt của bạn (Client-Side). Ảnh không hề được tải lên máy chủ của chúng tôi, đảm bảo an toàn bảo mật tuyệt đối cho dữ liệu cá nhân của bạn.</p>
+        </div>
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+          <p class="font-bold text-slate-900 dark:text-white text-sm mb-1">Mức nén chất lượng (Quality) bao nhiêu là tối ưu nhất?</p>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Mức nén chất lượng khuyên dùng cho các website thường dao động từ **75% đến 85%**. Ở mức này, dung lượng ảnh giảm đáng kể từ 70%–90% nhưng mắt thường hầu như không phát hiện ra sự suy giảm chất lượng hình ảnh.</p>
+        </div>
+        <div class="pb-3">
+          <p class="font-bold text-slate-900 dark:text-white text-sm mb-1">Những định dạng ảnh đầu vào nào được hệ thống hỗ trợ?</p>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Hệ thống hỗ trợ nén và chuyển đổi tất cả các định dạng ảnh phổ biến hiện nay bao gồm JPG, JPEG, PNG, GIF sang định dạng ảnh tối ưu WebP.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Structured Data Schemas (JSON-LD) for SEO -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://trolyso.online/calculators/nen-anh/#webapp",
+            "name": "Công Cụ Nén Ảnh WebP Online Tối Ưu Dung Lượng Miễn Phí",
+            "url": "https://trolyso.online/calculators/nen-anh/",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires JavaScript. Requires HTML5.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "VND"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://trolyso.online/calculators/nen-anh/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Nén ảnh tại website có làm mất ảnh gốc hoặc bị rò rỉ dữ liệu không?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Không. Quá trình nén ảnh được thực hiện hoàn toàn bằng Javascript trực tiếp trên trình duyệt của bạn (Client-Side). Ảnh không hề được tải lên máy chủ của chúng tôi, đảm bảo an toàn bảo mật tuyệt đối cho dữ liệu cá nhân của bạn."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Mức nén chất lượng (Quality) bao nhiêu là tối ưu nhất?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Mức nén chất lượng khuyên dùng cho các website thường dao động từ 75% đến 85%. Ở mức này, dung lượng ảnh giảm đáng kể từ 70%–90% nhưng mắt thường hầu như không phát hiện ra sự suy giảm chất lượng hình ảnh."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Những định dạng ảnh đầu vào nào được hệ thống hỗ trợ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Hệ thống hỗ trợ nén và chuyển đổi tất cả các định dạng ảnh phổ biến hiện nay bao gồm JPG, JPEG, PNG, GIF sang định dạng ảnh tối ưu WebP."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
   </main>
 </Layout>
 

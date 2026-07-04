@@ -3,8 +3,8 @@ import Layout from '../../../layouts/Layout.astro';
 ---
 
 <Layout 
-  title="Trình Tạo Mã VietQR Thanh Toán Ngân Hàng Miễn Phí - Trợ Lý Số"
-  description="Công cụ tạo mã QR chuyển khoản nhanh (VietQR) cho hơn 40 ngân hàng Việt Nam. Nhập số tiền và nội dung để tự động tạo mã QR quét thanh toán."
+  title="Tạo Mã VietQR Thanh Toán Chuyển Khoản Nhanh Tự Động Online - Trợ Lý Số"
+  description="Công cụ tạo mã QR chuyển khoản nhanh (VietQR) tự động cho hơn 50 ngân hàng Việt Nam. Nhập số tiền, nội dung để tạo ảnh QR quét thanh toán trực tuyến."
 >
   <!-- Background Decor -->
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
@@ -139,9 +139,100 @@ import Layout from '../../../layouts/Layout.astro';
             🔗 Sao Chép Đường Link QR
           </button>
         </div>
+        </div>
       </div>
 
     </div>
+
+    <!-- SEO Content Section (E-E-A-T & Googlebot indexing helper) -->
+    <div class="mt-12 bg-white dark:bg-brand-darkCard rounded-2xl p-6 sm:p-10 shadow-xl border border-slate-200 dark:border-slate-800 prose prose-slate dark:prose-invert max-w-none transition-colors animate-fade-in">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Hướng Dẫn Cách Tạo Mã VietQR Thanh Toán Chuyển Khoản Nhanh
+      </h2>
+      <p>
+        VietQR là tiêu chuẩn định dạng mã QR thanh toán chung tại Việt Nam do Công ty Cổ phần Thanh toán Quốc gia Việt Nam (Napas) phối hợp cùng các ngân hàng thành viên xây dựng. Công cụ tạo mã của <strong>Trợ Lý Số</strong> giúp bạn nhanh chóng chuyển hóa thông tin số tài khoản thành mã QR đẹp mắt, cho phép người mua quét mã chuyển tiền điền sẵn số tiền và nội dung trong 1 giây.
+      </p>
+
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6 mb-3">1. Cơ chế hoạt động của mã VietQR tương tác</h3>
+      <p>Khi bạn tạo mã VietQR, hệ thống sẽ mã hóa thông tin tài khoản của bạn bao gồm:</p>
+      <ul>
+        <li><strong>Mã định danh ngân hàng (BIN):</strong> Ví dụ: 970415 (VietinBank), 970436 (Vietcombank)...</li>
+        <li><strong>Số tài khoản thụ hưởng:</strong> Số tài khoản đích để nhận tiền.</li>
+        <li><strong>Số tiền giao dịch:</strong> Giá trị số tiền cần thanh toán (Tùy chọn).</li>
+        <li><strong>Nội dung chuyển khoản:</strong> Thông điệp giao dịch (Tùy chọn).</li>
+      </ul>
+      <p>Khi người mua sử dụng ứng dụng Mobile Banking của bất kỳ ngân hàng nào quét mã này, ứng dụng sẽ tự động phân tích cấu trúc mã QR để hiển thị đúng thông tin của bạn mà không cần người mua nhập thủ công, tránh hoàn toàn sai sót nhầm lẫn số tài khoản.</p>
+
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-3">❓ Câu hỏi thường gặp (FAQ)</h3>
+      <div class="space-y-4">
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+          <p class="font-bold text-slate-900 dark:text-white text-sm mb-1">Mã VietQR được tạo ra tại website có an toàn bảo mật không?</p>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Có. Mã QR được tạo ra hoàn toàn dựa trên cơ chế API mở theo tiêu chuẩn EMVCo và Napas, không lưu trữ thông tin mật khẩu hay số dư của bạn. Khách hàng chỉ quét mã để chuyển khoản như thông thường, hoàn toàn bảo mật.</p>
+        </div>
+        <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+          <p class="font-bold text-slate-900 dark:text-white text-sm mb-1">Mã VietQR này có áp dụng được cho mọi ngân hàng Việt Nam không?</p>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Có. Hệ thống VietQR hỗ trợ hơn 50 ngân hàng thương mại hoạt động tại Việt Nam thuộc liên minh Napas (như Vietcombank, Techcombank, MB Bank, BIDV, Agribank...).</p>
+        </div>
+        <div class="pb-3">
+          <p class="font-bold text-slate-900 dark:text-white text-sm mb-1">Tôi có thể in mã QR này ra giấy để dán ở quầy thanh toán không?</p>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Có. Sau khi tạo mã QR thành công, bạn chọn giao diện "Bản in chuyển khoản" hoặc "Rút gọn", sau đó bấm "Tải mã QR về máy" dưới dạng file ảnh PNG chất lượng cao để mang đi in ấn dán tại cửa hàng.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Structured Data Schemas (JSON-LD) for SEO -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://trolyso.online/calculators/tao-ma-qr/#webapp",
+            "name": "Công Cụ Tạo Mã VietQR Thanh Toán Chuyển Khoản Tự Động",
+            "url": "https://trolyso.online/calculators/tao-ma-qr/",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires JavaScript. Requires HTML5.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "VND"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://trolyso.online/calculators/tao-ma-qr/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Mã VietQR được tạo ra tại website có an toàn bảo mật không?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Có. Mã QR được tạo ra hoàn toàn dựa trên cơ chế API mở theo tiêu chuẩn EMVCo và Napas, không lưu trữ thông tin mật khẩu hay số dư của bạn. Khách hàng chỉ quét mã để chuyển khoản như thông thường, hoàn toàn bảo mật."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Mã VietQR này có áp dụng được cho mọi ngân hàng Việt Nam không?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Có. Hệ thống VietQR hỗ trợ hơn 50 ngân hàng thương mại hoạt động tại Việt Nam thuộc liên minh Napas (như Vietcombank, Techcombank, MB Bank, BIDV, Agribank...)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Tôi có thể in mã QR này ra giấy để dán ở quầy thanh toán không?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Có. Sau khi tạo mã QR thành công, bạn chọn giao diện 'Bản in chuyển khoản' hoặc 'Rút gọn', sau đó bấm 'Tải mã QR về máy' dưới dạng file ảnh PNG chất lượng cao để mang đi in ấn dán tại cửa hàng."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
   </main>
 </Layout>
 
