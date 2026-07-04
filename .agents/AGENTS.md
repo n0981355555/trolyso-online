@@ -29,3 +29,13 @@ Mỗi khi người dùng yêu cầu viết bài viết mới (Blog Post) chuẩn
   - Các tài nguyên như font chữ phải khai báo `preconnect`.
   - Các script bên thứ ba nặng hoặc theo dõi (như Google Analytics/GTM) bắt buộc phải trì hoãn tải (defer/setTimeout) sau sự kiện window `load` để tối đa hóa điểm hiệu năng.
   - Đảm bảo độ tương phản màu sắc đạt chuẩn WCAG AA trong light mode (không dùng `text-slate-400` trực tiếp trên nền trắng mà không ghi đè độ tương phản).
+
+## 6. Quy tắc Tạo Công cụ mới Chuẩn SEO & Schema
+Mỗi khi tạo hoặc cập nhật một công cụ tính toán tiện ích mới (Calculator/Tool), Agent bắt buộc phải thực hiện các quy trình sau:
+* **Tối ưu hóa Tiêu đề (Title) & Từ khóa hành động:** Đặt tiêu đề `<Layout title="...">` chứa các từ khóa kích thích hành động (như "Online", "Tự động", "Miễn phí", "Chuẩn 2026").
+* **Bổ sung Cẩm nang Hướng dẫn E-E-A-T ở cuối trang:** 
+  - Đặt phần nội dung dưới chân trang công cụ, nằm ngoài Tool Grid (sau khi thẻ Tool Grid đóng hoàn toàn để tránh vỡ layout).
+  - Nội dung phải chi tiết bao gồm: Công thức tính toán rõ ràng, Ví dụ giả định bằng số cụ thể, và Căn cứ pháp lý (Luật/Nghị định) hoặc tiêu chuẩn kỹ thuật liên quan.
+* **Tích hợp Dữ liệu Cấu trúc (JSON-LD Schemas):**
+  - **WebApplication Schema:** Xác định ứng dụng web cho robot Google biết đây là một công cụ tương tác. Dùng `FinanceApplication` cho công cụ tài chính/thuế, hoặc `BusinessApplication` cho các công cụ tiện ích kinh doanh/văn phòng.
+  - **FAQPage Schema:** Định dạng các câu hỏi thường gặp (FAQ) dưới dạng Rich Snippets để hiển thị trực tiếp các câu hỏi thả xuống trên kết quả tìm kiếm Google nhằm tăng tỷ lệ click (CTR).
