@@ -1,0 +1,20 @@
+# Trợ Lý Số
+
+Trợ Lý Số (trolyso.online) cung cấp các công cụ tính toán tài chính, thuế, BHXH trực quan và cẩm nang hướng dẫn chuẩn Việt Nam.
+
+## Công cụ tính toán (Calculators)
+
+- [Tính Thuế Thu Nhập Cá Nhân](https://trolyso.online/calculators/tinh-thue-tncn/): Công cụ tính thuế TNCN hàng tháng chuẩn năm 2026 với bảng phân tích lũy tiến.
+- [Tính Bảo Hiểm Xã Hội 1 Lần](https://trolyso.online/calculators/tinh-bhxh-1-lan/): Ước tính số tiền nhận về khi thanh toán BHXH một lần.
+- [Tính Lương Hưu Dự Kiến](https://trolyso.online/calculators/tinh-luong-huu/): Tính tuổi nghỉ hưu theo lộ trình và mức hưởng lương hưu hàng tháng.
+- [Tính Tiền Chậm Nộp Thuế](https://trolyso.online/calculators/tinh-tien-cham-nop-thue/): Tính phạt nộp chậm thuế 0.03%/ngày và phạt tờ khai Nghị định 125.
+- [Tạo Mã VietQR Thanh Toán](https://trolyso.online/calculators/tao-ma-qr/): Tạo mã QR chuyển khoản nhanh ngân hàng Napas tự điền số tiền và nội dung.
+- [Đọc Số Thành Chữ](https://trolyso.online/calculators/doc-so-thanh-chu/): Chuyển đổi số tiền thành chữ viết tiếng Việt chuẩn chính tả kế toán.
+- [Tạo Chữ Ký Email HTML](https://trolyso.online/calculators/chu-ky-email/): Thiết kế chữ ký email chuyên nghiệp, dán trực tiếp vào Gmail/Outlook.
+- [Nén Ảnh WebP Tối Ưu](https://trolyso.online/calculators/nen-anh/): Nén dung lượng hình ảnh trực tuyến và chuyển sang định dạng WebP siêu nhẹ.
+- [Tạo Văn Bản Hành Chính](https://trolyso.online/calculators/tao-van-ban/): Soạn thảo văn bản hành chính đúng chuẩn lề và bố cục Nghị định 30.
+- [Tạo Ảnh AI Miễn Phí](https://trolyso.online/calculators/tao-anh-ai/): Trình tạo ảnh nghệ thuật, ảnh anime bằng văn bản qua công nghệ AI.
+
+## Cẩm nang hướng dẫn (Blog)
+
+- [Cẩm nang Trợ Lý Số](https://trolyso.online/blog/): Danh sách các bài viết hướng dẫn chuyên sâu về Thuế, BHXH, Hành chính và Công nghệ văn phòng.
