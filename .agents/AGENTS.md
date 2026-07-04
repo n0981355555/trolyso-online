@@ -9,9 +9,12 @@ Mỗi khi người dùng yêu cầu viết bài viết mới (Blog Post) chuẩn
 * Cuối bài viết phải chứa lời kêu gọi hành động (Call To Action - CTA) dẫn link về công cụ tính toán tương ứng của website để tăng tỷ lệ chuyển đổi.
 
 ## 2. Quy tắc Tối ưu Hình ảnh chuẩn SEO
+* **Mật độ hình ảnh:** Cấu trúc bài viết cần phân bổ mật độ ảnh trung bình từ **350 - 400 từ / 1 ảnh** (bao gồm ảnh Hero đại diện và các ảnh minh họa thân bài).
 * **Định dạng & Dung lượng:** Luôn sử dụng định dạng thế hệ mới `.webp` cho tất cả các ảnh mẫu chèn trong bài để đảm bảo tối ưu hóa PageSpeed dưới 100KB.
 * **Tên file ảnh (độc nhất và chuẩn SEO):** Đặt tên bằng tiếng Việt không dấu, nối với nhau bằng dấu gạch ngang (Ví dụ: `luong-gross-la-gi-hero.webp`, `luong-gross-la-gi-flow.webp`).
 * **Thẻ Alt:** Luôn điền thẻ `alt` mô tả ảnh bằng tiếng Việt không dấu, viết thường, nối bằng dấu gạch ngang (Ví dụ: `alt="cach-tinh-luong-gross-sang-net"`, `alt="cac-khoan-khau-tru-tu-luong-gross"`). Tuyệt đối không để trống alt.
+* **Quy chuẩn prompt tạo ảnh AI (Style Guide):** Bắt buộc sử dụng cấu trúc prompt mô tả phong cách thiết kế đồng bộ sau:
+  - *Prompt:* `Flat Vector Illustration, cute cartoon characters in modern SaaS style with slightly large heads, dark blue outlines, light pastel colors, bright white background, clean layout, vector website UI mockups, simple illustrative icons, financial infographics, minimal shadows, soft lines, style similar to Storyset, DrawKit, ManyPixels, unDraw, professional, friendly, modern, highly detailed, no photorealistic, no 3D, no anime, no watermark, no text.`
 
 ## 3. Quy tắc Đồng bộ hóa Hệ thống
 * Nạp thông tin bài viết (Tiêu đề, slug, ngày đăng, mô tả) vào danh mục bài viết ở đầu mảng `posts` trong `src/pages/blog/index.astro`.
