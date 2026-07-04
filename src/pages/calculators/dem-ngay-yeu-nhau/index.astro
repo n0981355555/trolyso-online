@@ -77,11 +77,17 @@ import Layout from '../../../layouts/Layout.astro';
           <div class="grid grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Ảnh của bạn</label>
-              <input type="file" id="avatar1" accept="image/*" class="text-xs file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200 dark:file:bg-slate-800 dark:file:text-slate-300" />
+              <label for="avatar1" class="flex items-center justify-center gap-2 px-3 py-3 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer hover:border-red-500 dark:hover:border-red-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition text-slate-600 dark:text-slate-400 text-xs font-semibold select-none">
+                <span id="label1Text">📸 Chọn ảnh</span>
+              </label>
+              <input type="file" id="avatar1" accept="image/*" class="hidden" />
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Ảnh người ấy</label>
-              <input type="file" id="avatar2" accept="image/*" class="text-xs file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200 dark:file:bg-slate-800 dark:file:text-slate-300" />
+              <label for="avatar2" class="flex items-center justify-center gap-2 px-3 py-3 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer hover:border-red-500 dark:hover:border-red-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition text-slate-600 dark:text-slate-400 text-xs font-semibold select-none">
+                <span id="label2Text">📸 Chọn ảnh</span>
+              </label>
+              <input type="file" id="avatar2" accept="image/*" class="hidden" />
             </div>
           </div>
 
@@ -254,6 +260,8 @@ import Layout from '../../../layouts/Layout.astro';
         const savedAvatar1 = localStorage.getItem('love_avatar1');
         const savedAvatar2 = localStorage.getItem('love_avatar2');
 
+        const isEn = localStorage.getItem('lang') === 'en';
+
         if (savedDate) loveStartDateInput.value = savedDate;
         if (savedName1) {
           name1Input.value = savedName1;
@@ -263,12 +271,20 @@ import Layout from '../../../layouts/Layout.astro';
           name2Input.value = savedName2;
           displayName2.textContent = savedName2;
         }
-        if (savedAvatar1) displayAvatar1.src = savedAvatar1;
-        if (savedAvatar2) displayAvatar2.src = savedAvatar2;
+        if (savedAvatar1) {
+          displayAvatar1.src = savedAvatar1;
+          const lbl1 = document.getElementById('label1Text');
+          if (lbl1) lbl1.textContent = '✓ ' + (isEn ? 'Selected' : 'Đã chọn ảnh');
+        }
+        if (savedAvatar2) {
+          displayAvatar2.src = savedAvatar2;
+          const lbl2 = document.getElementById('label2Text');
+          if (lbl2) lbl2.textContent = '✓ ' + (isEn ? 'Selected' : 'Đã chọn ảnh');
+        }
       }
 
       // Convert file to Base64
-      function handleAvatarChange(input, displayImg, storageKey) {
+      function handleAvatarChange(input, displayImg, storageKey, labelId) {
         const file = input.files[0];
         if (file) {
           const reader = new FileReader();
@@ -276,13 +292,19 @@ import Layout from '../../../layouts/Layout.astro';
             const dataUrl = e.target.result;
             displayImg.src = dataUrl;
             localStorage.setItem(storageKey, dataUrl);
+            
+            const isEn = localStorage.getItem('lang') === 'en';
+            const labelSpan = document.getElementById(labelId);
+            if (labelSpan) {
+              labelSpan.textContent = '✓ ' + (isEn ? 'Selected' : 'Đã chọn ảnh');
+            }
           };
           reader.readAsDataURL(file);
         }
       }
 
-      avatar1Input.addEventListener('change', () => handleAvatarChange(avatar1Input, displayAvatar1, 'love_avatar1'));
-      avatar2Input.addEventListener('change', () => handleAvatarChange(avatar2Input, displayAvatar2, 'love_avatar2'));
+      avatar1Input.addEventListener('change', () => handleAvatarChange(avatar1Input, displayAvatar1, 'love_avatar1', 'label1Text'));
+      avatar2Input.addEventListener('change', () => handleAvatarChange(avatar2Input, displayAvatar2, 'love_avatar2', 'label2Text'));
 
       btnSave.addEventListener('click', () => {
         localStorage.setItem('love_start_date', loveStartDateInput.value);
