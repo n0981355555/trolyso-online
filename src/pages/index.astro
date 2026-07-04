@@ -97,7 +97,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <!-- Quick Access Directory -->
-    <div>
+    <div id="calculators">
       <h3 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6">Các công cụ tiện ích khác:</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- 1. BHXH Card -->
@@ -118,43 +118,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </a>
 
-        <!-- 2. VietQR Card -->
-        <a href="/calculators/tao-ma-qr/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 text-brand-blue flex items-center justify-center font-bold mb-4">
-              💳
-            </div>
-            <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
-              Trình Tạo Mã VietQR Thanh Toán
-            </h4>
-            <p class="text-sm text-slate-500 dark:text-slate-400">
-              Tạo mã QR chuyển tiền ngân hàng tự động điền sẵn số tài khoản, số tiền và nội dung.
-            </p>
-          </div>
-          <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
-            Mở công cụ <span>→</span>
-          </div>
-        </a>
-
-        <!-- 3. Đọc Số Thành Chữ Card -->
-        <a href="/calculators/doc-so-thanh-chu/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-500 flex items-center justify-center font-bold mb-4">
-              🔢
-            </div>
-            <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
-              Đọc Số Thành Chữ Tiếng Việt
-            </h4>
-            <p class="text-sm text-slate-500 dark:text-slate-400">
-              Đổi số tiền thành chữ viết tiếng Việt chuẩn xác phục vụ viết hóa đơn đỏ và soạn hợp đồng.
-            </p>
-          </div>
-          <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
-            Mở công cụ <span>→</span>
-          </div>
-        </a>
-
-        <!-- 4. Thuế TNCN Card -->
+        <!-- 2. Thuế TNCN Card -->
         <a href="/calculators/tinh-thue-tncn/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
           <div>
             <div class="w-12 h-12 rounded-xl bg-red-50 dark:bg-red-950 text-red-500 flex items-center justify-center font-bold mb-4">
@@ -172,7 +136,25 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </a>
 
-        <!-- 4.2. Tính Tiền Chậm Nộp Thuế Card -->
+        <!-- 3. Tính Lương Hưu Dự Kiến -->
+        <a href="/calculators/tinh-luong-huu/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-brand-mint flex items-center justify-center font-bold mb-4">
+              💼
+            </div>
+            <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
+              Tính Lương Hưu Dự Kiến
+            </h4>
+            <p class="text-sm text-slate-500 dark:text-slate-400">
+              Tính tuổi nghỉ hưu lộ trình Nghị định 135 và mức hưởng lương hưu dự kiến hàng tháng.
+            </p>
+          </div>
+          <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
+            Mở công cụ <span>→</span>
+          </div>
+        </a>
+
+        <!-- 4. Tính Tiền Chậm Nộp Thuế Card -->
         <a href="/calculators/tinh-tien-cham-nop-thue/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
           <div>
             <div class="w-12 h-12 rounded-xl bg-orange-50 dark:bg-orange-950 text-orange-500 flex items-center justify-center font-bold mb-4">
@@ -190,17 +172,17 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </a>
 
-        <!-- 5. Nén Ảnh WebP Card -->
-        <a href="/calculators/nen-anh/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <!-- 5. VietQR Card -->
+        <a href="/calculators/tao-ma-qr/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-cyan-50 dark:bg-cyan-950 text-cyan-500 flex items-center justify-center font-bold mb-4">
-              📷
+            <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 text-brand-blue flex items-center justify-center font-bold mb-4">
+              💳
             </div>
             <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
-              Nén Ảnh WebP Tối Ưu
+              Trình Tạo Mã VietQR Thanh Toán
             </h4>
             <p class="text-sm text-slate-500 dark:text-slate-400">
-              Nén tối ưu dung lượng hình ảnh và chuyển đổi sang định dạng WebP trực tuyến siêu nhẹ.
+              Tạo mã QR chuyển tiền ngân hàng tự động điền sẵn số tài khoản, số tiền và nội dung.
             </p>
           </div>
           <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
@@ -208,17 +190,17 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </a>
 
-        <!-- 6. Chữ Ký Email Card -->
-        <a href="/calculators/chu-ky-email/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <!-- 6. Đọc Số Thành Chữ Card -->
+        <a href="/calculators/doc-so-thanh-chu/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-950 text-amber-500 flex items-center justify-center font-bold mb-4">
-              ✍️
+            <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-500 flex items-center justify-center font-bold mb-4">
+              🔢
             </div>
             <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
-              Tạo Chữ Ký Email HTML
+              Đọc Số Thành Chữ Tiếng Việt
             </h4>
             <p class="text-sm text-slate-500 dark:text-slate-400">
-              Thiết kế chữ ký email HTML chuyên nghiệp, copy và dán trực tiếp vào Outlook, Gmail.
+              Đổi số tiền thành chữ viết tiếng Việt chuẩn xác phục vụ viết hóa đơn đỏ và soạn hợp đồng.
             </p>
           </div>
           <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
@@ -227,44 +209,46 @@ import Layout from '../layouts/Layout.astro';
         </a>
       </div>
 
-      <!-- Expandable section -->
+      <!-- Expandable section (Xem thêm) -->
       <div id="expandedTools" class="hidden mt-6 animate-fade-in">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Active Tool 8: Tính Lương Hưu Dự Kiến -->
-          <a href="/calculators/tinh-luong-huu/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <!-- 7. Chữ Ký Email Card -->
+          <a href="/calculators/chu-ky-email/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-brand-mint flex items-center justify-center font-bold mb-4">
-                💼
+              <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-950 text-amber-500 flex items-center justify-center font-bold mb-4">
+                ✍️
               </div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
-                Tính Lương Hưu Dự Kiến
+                Tạo Chữ Ký Email HTML
               </h4>
               <p class="text-sm text-slate-500 dark:text-slate-400">
-                Tính tuổi nghỉ hưu lộ trình Nghị định 135 và mức hưởng lương hưu dự kiến hàng tháng.
+                Thiết kế chữ ký email HTML chuyên nghiệp, copy và dán trực tiếp vào Outlook, Gmail.
               </p>
             </div>
             <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
               Mở công cụ <span>→</span>
             </div>
           </a>
-          <!-- Active Tool 9: Tạo Ảnh AI Miễn Phí -->
-          <a href="/calculators/tao-anh-ai/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+
+          <!-- 8. Nén Ảnh WebP Card -->
+          <a href="/calculators/nen-anh/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-500 flex items-center justify-center font-bold mb-4">
-                🎨
+              <div class="w-12 h-12 rounded-xl bg-cyan-50 dark:bg-cyan-950 text-cyan-500 flex items-center justify-center font-bold mb-4">
+                📷
               </div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
-                Trình Tạo Ảnh AI Miễn Phí
+                Nén Ảnh WebP Tối Ưu
               </h4>
               <p class="text-sm text-slate-500 dark:text-slate-400">
-                Tạo ảnh nghệ thuật, ảnh anime bằng văn bản qua công nghệ AI.
+                Nén tối ưu dung lượng hình ảnh và chuyển đổi sang định dạng WebP trực tuyến siêu nhẹ.
               </p>
             </div>
             <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
               Mở công cụ <span>→</span>
             </div>
           </a>
-          <!-- Active Tool 7: Tạo Văn Bản Hành Chính -->
+
+          <!-- 9. Tạo Văn Bản Hành Chính -->
           <a href="/calculators/tao-van-ban/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-500 flex items-center justify-center font-bold mb-4">
@@ -275,6 +259,24 @@ import Layout from '../layouts/Layout.astro';
               </h4>
               <p class="text-sm text-slate-500 dark:text-slate-400">
                 Soạn thảo 15 loại văn bản quy phạm pháp luật và 29 loại văn bản hành chính đúng chuẩn lề và bố cục Chính phủ.
+              </p>
+            </div>
+            <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
+              Mở công cụ <span>→</span>
+            </div>
+          </a>
+
+          <!-- 10. Tạo Ảnh AI Miễn Phí -->
+          <a href="/calculators/tao-anh-ai/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-500 flex items-center justify-center font-bold mb-4">
+                🎨
+              </div>
+              <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
+                Trình Tạo Ảnh AI Miễn Phí
+              </h4>
+              <p class="text-sm text-slate-500 dark:text-slate-400">
+                Tạo ảnh nghệ thuật, ảnh anime bằng văn bản qua công nghệ AI.
               </p>
             </div>
             <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
@@ -390,9 +392,9 @@ import Layout from '../layouts/Layout.astro';
   const btnToggleText = document.getElementById('btnToggleText');
   const btnToggleIcon = document.getElementById('btnToggleIcon');
 
-  btnToggleTools?.addEventListener('click', () => {
-    if (expandedTools?.classList.contains('hidden')) {
-      expandedTools.classList.remove('hidden');
+  function toggleTools(show: boolean) {
+    if (show) {
+      expandedTools?.classList.remove('hidden');
       if (btnToggleText) btnToggleText.innerText = "Thu gọn bớt";
       if (btnToggleIcon) btnToggleIcon.innerText = "↑";
     } else {
@@ -400,5 +402,27 @@ import Layout from '../layouts/Layout.astro';
       if (btnToggleText) btnToggleText.innerText = "Xem thêm công cụ";
       if (btnToggleIcon) btnToggleIcon.innerText = "↓";
     }
+  }
+
+  btnToggleTools?.addEventListener('click', () => {
+    const isHidden = expandedTools?.classList.contains('hidden');
+    toggleTools(!!isHidden);
   });
+
+  // Handle hash routing to expand tools list and scroll
+  function checkHash() {
+    if (window.location.hash === '#calculators') {
+      toggleTools(true);
+      setTimeout(() => {
+        const target = document.getElementById('calculators');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }
+
+  // Check on load and hash change
+  window.addEventListener('load', checkHash);
+  window.addEventListener('hashchange', checkHash);
 </script>
