@@ -364,10 +364,10 @@ import Layout from '../../../layouts/Layout.astro';
     const { w, h } = getDimension(aspectRatioSelect.value);
     const seed = seedInput.value ? parseInt(seedInput.value) : Math.floor(Math.random() * 9999999);
 
-    // Pollinations GET Image URL (Sử dụng cổng API hợp nhất mới gen.pollinations.ai)
+    // Pollinations GET Image URL (Sử dụng tên miền công cộng miễn phí không yêu cầu API Key)
     const encodedPrompt = encodeURIComponent(prompt);
     const model = aiModelSelect ? aiModelSelect.value : 'flux';
-    const imageUrl = `https://gen.pollinations.ai/image/${encodedPrompt}?width=${w}&height=${h}&seed=${seed}&model=${model}`;
+    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${w}&height=${h}&seed=${seed}&model=${model}`;
 
     currentImageUrl = imageUrl;
 
