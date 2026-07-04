@@ -25,7 +25,10 @@ const mapping = {
   'may_tinh_luong_dong_thue_vi_du_1': 'may-tinh-luong-dong-thue-vi-du-1.webp',
   'may_tinh_luong_dong_thue_vi_du_2': 'may-tinh-luong-dong-thue-vi-du-2.webp',
   'may_tinh_luong_dong_thue_vi_du_3': 'may-tinh-luong-dong-thue-vi-du-3.webp',
-  'may_tinh_luong_dong_thue_tu_van': 'may-tinh-luong-dong-thue-tu-van.webp'
+  'may_tinh_luong_dong_thue_tu_van': 'may-tinh-luong-dong-thue-tu-van.webp',
+  // New heroes
+  'tinh_chi_so_bmi_hero': 'tinh-chi-so-bmi-co-the-hero.webp',
+  'giai_phuong_trinh_hero': 'giai-phuong-trinh-bac-2-bac-3-hero.webp'
 };
 
 async function convert() {
@@ -39,9 +42,9 @@ async function convert() {
       const inputPath = path.join(brainDir, fileMatch);
       const outputPath = path.join(publicDir, outputName);
       
-      const isThirdPost = prefix.startsWith('may_tinh_luong_dong_thue');
+      const isCompressedPost = prefix.startsWith('may_tinh_luong_dong_thue') || prefix === 'tinh_chi_so_bmi_hero' || prefix === 'giai_phuong_trinh_hero';
       
-      if (isThirdPost) {
+      if (isCompressedPost) {
         // Tweak quality slightly lower to 45 to guarantee all are strictly <50KB
         await sharp(inputPath)
           .resize(1200, 630, {

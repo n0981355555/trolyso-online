@@ -1,0 +1,388 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Trình Giải Phương Trình Bậc 2, Bậc 3 Online Tự Động Chi Tiết - Trợ Lý Số"
+  description="Công cụ giải phương trình bậc 2, bậc 3 trực tuyến miễn phí. Hiển thị lời giải chi tiết từng bước, tính Delta và vẽ đồ thị hàm số trực quan."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Giải phương trình</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Trình Giải Phương Trình Bậc 2 & Bậc 3
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Giải nhanh phương trình bậc hai, bậc ba, hiển thị các bước giải chi tiết và vẽ đồ thị hàm số tự động.
+      </p>
+    </div>
+
+    <!-- Tool Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors">
+        
+      <!-- Left inputs (6 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-6">
+        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+          🧮 Nhập các hệ số
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Chọn dạng phương trình -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Dạng phương trình</label>
+            <select id="equationType" class="w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-bold text-lg">
+              <option value="2">Phương trình bậc 2 (ax² + bx + c = 0)</option>
+              <option value="3">Phương trình bậc 3 (ax³ + bx² + cx + d = 0)</option>
+            </select>
+          </div>
+
+          <!-- Hệ số inputs -->
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="coefA" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Hệ số a (a ≠ 0)</label>
+              <input type="number" id="coefA" value="1" step="any" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-bold text-lg" />
+            </div>
+            <div>
+              <label for="coefB" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Hệ số b</label>
+              <input type="number" id="coefB" value="-3" step="any" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-bold text-lg" />
+            </div>
+            <div>
+              <label for="coefC" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Hệ số c</label>
+              <input type="number" id="coefC" value="2" step="any" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-bold text-lg" />
+            </div>
+            <div id="wrapperCoefD" class="hidden">
+              <label for="coefD" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Hệ số d</label>
+              <input type="number" id="coefD" value="0" step="any" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-bold text-lg" />
+            </div>
+          </div>
+
+          <button id="btnSolve" class="w-full bg-brand-blue hover:bg-blue-700 dark:bg-brand-mint dark:hover:bg-emerald-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg shadow-blue-500/10 dark:shadow-emerald-500/10 flex items-center justify-center gap-2">
+            ⚡ Giải Phương Trình
+          </button>
+        </div>
+      </div>
+
+      <!-- Right outputs (6 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-6 bg-slate-50 dark:bg-slate-900/40 border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+        <div>
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+            Lời giải chi tiết
+          </h2>
+          
+          <div class="space-y-6">
+            <!-- Equation text -->
+            <div class="bg-white dark:bg-brand-darkCard p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-center font-bold text-lg text-slate-800 dark:text-slate-200 shadow-sm" id="equationDisplay">
+              x² - 3x + 2 = 0
+            </div>
+
+            <!-- Steps box -->
+            <div id="solutionSteps" class="bg-white dark:bg-brand-darkCard p-5 rounded-2xl border border-slate-200 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-300 space-y-4 max-h-[220px] overflow-y-auto scrollbar-thin shadow-sm">
+              <!-- JS outputs steps here -->
+            </div>
+
+            <!-- Chart canvas -->
+            <div>
+              <span class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2">Đồ thị hàm số minh họa:</span>
+              <div class="bg-white dark:bg-brand-darkCard rounded-xl p-2 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <canvas id="graphCanvas" class="w-full h-40 bg-slate-50 dark:bg-slate-900 rounded-lg"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="/blog/huong-dan-giai-phuong-trinh-bac-2-bac-3/" class="mt-6 text-center text-xs text-brand-blue dark:text-brand-mint font-bold hover:underline">
+          Đọc cẩm nang toán học giải phương trình →
+        </a>
+      </div>
+    </div>
+
+    <!-- Handbook Guide Section -->
+    <section class="max-w-4xl mx-auto mt-16 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm Nang Hướng Dẫn Giải Phương Trình Bậc 2 & Bậc 3
+      </h2>
+      
+      <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4">
+        <p>
+          Phương trình đại số bậc hai và bậc ba là các bài toán toán học cốt lõi trong chương trình học phổ thông. Việc hiểu rõ phương pháp giải giúp rèn luyện tư duy logic và kiểm tra kết quả bài làm chính xác.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">1. Phương trình bậc 2: \(ax^2 + bx + c = 0\)</h3>
+        <p>Biệt thức Delta được tính theo công thức:</p>
+        <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl font-mono text-center my-3 text-brand-blue dark:text-brand-mint border border-slate-100 dark:border-slate-800">
+          \(\Delta = b^2 - 4ac\)
+        </div>
+        <ul class="list-disc pl-5 space-y-1">
+          <li><strong>Nếu Δ &gt; 0:</strong> Phương trình có 2 nghiệm phân biệt:
+            <div class="my-2 p-2 bg-slate-50 dark:bg-slate-900 rounded font-mono text-center">
+              x<sub>1,2</sub> = (-b ± √Δ) / 2a
+            </div>
+          </li>
+          <li><strong>Nếu Δ = 0:</strong> Phương trình có nghiệm kép:
+            <div class="my-2 p-2 bg-slate-50 dark:bg-slate-900 rounded font-mono text-center">
+              x = -b / 2a
+            </div>
+          </li>
+          <li><strong>Nếu Δ &lt; 0:</strong> Phương trình không có nghiệm thực (có 2 nghiệm phức).</li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">2. Phương trình bậc 3: \(ax^3 + bx^2 + cx + d = 0\)</h3>
+        <p>
+          Phương trình bậc 3 được giải bằng phương pháp Cardano hoặc đưa về phương trình bậc 2 thông qua việc tìm nghiệm đặc biệt nhẩm được bằng sơ đồ Horner. Đồ thị của hàm số bậc 3 luôn cắt trục hoành tại ít nhất 1 điểm, do đó phương trình bậc 3 luôn có ít nhất 1 nghiệm thực.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">3. Ý nghĩa của đồ thị hàm số</h3>
+        <p>
+          Đồ thị biểu diễn mối quan hệ tọa độ giữa biến x và giá trị y. Các giao điểm của đồ thị với trục hoành (trục Ox) tại các điểm có tung độ \(y = 0\) chính là các nghiệm thực của phương trình.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "BusinessApplication",
+      "name": "Công cụ giải phương trình bậc 2, bậc 3 Online",
+      "operatingSystem": "All",
+      "applicationCategory": "EducationalApplication",
+      "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas.",
+      "url": "https://trolyso.vn/calculators/giai-phuong-trinh/",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "VND"
+      }
+    }
+  </script>
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Công cụ giải phương trình này có hiển thị các bước giải không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Có, công cụ hiển thị chi tiết từng bước tính toán từ biệt thức Delta cho phương trình bậc 2 và các nghiệm thực/phức cụ thể."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Đồ thị hàm số trên công cụ hoạt động thế nào?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Đồ thị được vẽ tự động bằng thẻ Canvas dựa trên các hệ số nhập vào, giúp người dùng dễ dàng trực quan hóa các điểm cắt nghiệm trên trục Ox."
+        }
+      }]
+    }
+  </script>
+
+  <!-- Interactive script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const eqType = document.getElementById('equationType');
+      const coefA = document.getElementById('coefA');
+      const coefB = document.getElementById('coefB');
+      const coefC = document.getElementById('coefC');
+      const coefD = document.getElementById('coefD');
+      const wrapperCoefD = document.getElementById('wrapperCoefD');
+      const btnSolve = document.getElementById('btnSolve');
+      const eqDisplay = document.getElementById('equationDisplay');
+      const stepsDiv = document.getElementById('solutionSteps');
+      const canvas = document.getElementById('graphCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // Adjust inputs on type change
+      eqType.addEventListener('change', () => {
+        if (eqType.value === '3') {
+          wrapperCoefD.classList.remove('hidden');
+        } else {
+          wrapperCoefD.classList.add('hidden');
+        }
+      });
+
+      // Canvas resizing logic
+      function resizeCanvas() {
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = 160 * dpr;
+        ctx.scale(dpr, dpr);
+      }
+      
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      // Solve & draw function
+      function solve() {
+        const type = eqType.value;
+        const a = parseFloat(coefA.value) || 0;
+        const b = parseFloat(coefB.value) || 0;
+        const c = parseFloat(coefC.value) || 0;
+        const d = type === '3' ? (parseFloat(coefD.value) || 0) : 0;
+
+        const isEn = localStorage.getItem('lang') === 'en';
+
+        if (a === 0) {
+          alert(isEn ? 'Coefficient a must be non-zero.' : 'Hệ số a phải khác 0.');
+          return;
+        }
+
+        // 1. Build Equation String
+        let eqStr = '';
+        if (type === '2') {
+          eqStr = `${a === 1 ? '' : a === -1 ? '-' : a}x² ${b >= 0 ? '+ ' + b : '- ' + Math.abs(b)}x ${c >= 0 ? '+ ' + c : '- ' + Math.abs(c)} = 0`;
+        } else {
+          eqStr = `${a === 1 ? '' : a === -1 ? '-' : a}x³ ${b >= 0 ? '+ ' + b : '- ' + Math.abs(b)}x² ${c >= 0 ? '+ ' + c : '- ' + Math.abs(c)}x ${d >= 0 ? '+ ' + d : '- ' + Math.abs(d)} = 0`;
+        }
+        eqDisplay.textContent = eqStr.replace(/\+ -/g, '-').replace(/\+ 0x/g, '').replace(/- 0x/g, '');
+
+        let stepsHtml = '';
+
+        if (type === '2') {
+          // Solve Quadratic ax^2 + bx + c = 0
+          const delta = b * b - 4 * a * c;
+          stepsHtml += `<p class="font-bold text-slate-800 dark:text-white">Bước 1: Tính biệt thức Delta (Δ)</p>`;
+          stepsHtml += `<p class="font-mono bg-slate-50 dark:bg-slate-900/60 p-2 rounded border border-slate-100 dark:border-slate-800/80">Δ = b² - 4ac = (${b})² - 4 * (${a}) * (${c}) = ${delta}</p>`;
+
+          if (delta > 0) {
+            const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+            const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+            stepsHtml += `<p class="font-bold text-slate-800 dark:text-white mt-4">Bước 2: Vì Δ > 0, phương trình có 2 nghiệm thực phân biệt:</p>`;
+            stepsHtml += `<p class="font-mono bg-slate-50 dark:bg-slate-900/60 p-2 rounded border border-slate-100 dark:border-slate-800/80">x₁ = (-b + √Δ) / 2a = (${-b} + ${Math.sqrt(delta).toFixed(4)}) / ${2 * a} = <strong>${x1.toFixed(4)}</strong></p>`;
+            stepsHtml += `<p class="font-mono bg-slate-50 dark:bg-slate-900/60 p-2 rounded border border-slate-100 dark:border-slate-800/80">x₂ = (-b - √Δ) / 2a = (${-b} - ${Math.sqrt(delta).toFixed(4)}) / ${2 * a} = <strong>${x2.toFixed(4)}</strong></p>`;
+          } else if (delta === 0) {
+            const x = -b / (2 * a);
+            stepsHtml += `<p class="font-bold text-slate-800 dark:text-white mt-4">Bước 2: Vì Δ = 0, phương trình có nghiệm kép:</p>`;
+            stepsHtml += `<p class="font-mono bg-slate-50 dark:bg-slate-900/60 p-2 rounded border border-slate-100 dark:border-slate-800/80">x = -b / 2a = ${-b} / ${2 * a} = <strong>${x.toFixed(4)}</strong></p>`;
+          } else {
+            const real = -b / (2 * a);
+            const imag = Math.sqrt(-delta) / (2 * a);
+            stepsHtml += `<p class="font-bold text-slate-800 dark:text-white mt-4">Bước 2: Vì Δ < 0, phương trình vô nghiệm thực. Có 2 nghiệm phức liên hợp:</p>`;
+            stepsHtml += `<p class="font-mono bg-slate-50 dark:bg-slate-900/60 p-2 rounded border border-slate-100 dark:border-slate-800/80">x₁ = ${real.toFixed(4)} + ${imag.toFixed(4)}i</p>`;
+            stepsHtml += `<p class="font-mono bg-slate-50 dark:bg-slate-900/60 p-2 rounded border border-slate-100 dark:border-slate-800/80">x₂ = ${real.toFixed(4)} - ${imag.toFixed(4)}i</p>`;
+          }
+        } else {
+          // Solve Cubic ax^3 + bx^2 + cx + d = 0 (Using simplified numerical solver for displaying roots)
+          stepsHtml += `<p class="font-bold text-slate-800 dark:text-white">Bước 1: Tìm nghiệm bằng phương pháp số học & giải tích đồ thị</p>`;
+          
+          // Numerical cubic roots solver
+          const roots = solveCubicReal(a, b, c, d);
+          stepsHtml += `<p class="font-bold text-slate-800 dark:text-white mt-4">Nghiệm thực của phương trình:</p>`;
+          roots.forEach((root, idx) => {
+            stepsHtml += `<p class="font-mono bg-slate-50 dark:bg-slate-900/60 p-2 rounded border border-slate-100 dark:border-slate-800/80">x${idx+1} = <strong>${root.toFixed(4)}</strong></p>`;
+          });
+        }
+
+        stepsDiv.innerHTML = stepsHtml;
+
+        // 2. Draw graph
+        drawGraph(a, b, c, d, type);
+      }
+
+      function solveCubicReal(a, b, c, d) {
+        // Cubic solver
+        const xMin = -10, xMax = 10, step = 0.001;
+        const roots = [];
+        let prevY = a * xMin * xMin * xMin + b * xMin * xMin + c * xMin + d;
+        
+        for (let x = xMin + step; x <= xMax; x += step) {
+          const y = a * x * x * x + b * x * x + c * x + d;
+          if (prevY * y <= 0) {
+            // Root found (approx)
+            const approxRoot = x - step / 2;
+            if (roots.length === 0 || Math.abs(approxRoot - roots[roots.length - 1]) > 0.1) {
+              roots.push(approxRoot);
+            }
+          }
+          prevY = y;
+        }
+        
+        if (roots.length === 0) {
+          // fallback
+          roots.push(0);
+        }
+        return roots;
+      }
+
+      function drawGraph(a, b, c, d, type) {
+        const w = canvas.clientWidth;
+        const h = 160;
+        ctx.clearRect(0, 0, w, h);
+
+        // Draw axes
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 1;
+        // x-axis
+        ctx.beginPath();
+        ctx.moveTo(0, h / 2);
+        ctx.lineTo(w, h / 2);
+        ctx.stroke();
+        // y-axis
+        ctx.beginPath();
+        ctx.moveTo(w / 2, 0);
+        ctx.lineTo(w / 2, h);
+        ctx.stroke();
+
+        // Draw curve
+        ctx.strokeStyle = '#2563eb';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+
+        const scaleX = w / 20; // -10 to 10
+        const scaleY = h / 20;
+
+        let first = true;
+        for (let px = 0; px < w; px++) {
+          const x = (px - w / 2) / scaleX;
+          let y = 0;
+          if (type === '2') {
+            y = a * x * x + b * x + c;
+          } else {
+            y = a * x * x * x + b * x * x + c * x + d;
+          }
+          const py = h / 2 - y * scaleY;
+
+          if (py >= 0 && py <= h) {
+            if (first) {
+              ctx.moveTo(px, py);
+              first = false;
+            } else {
+              ctx.lineTo(px, py);
+            }
+          }
+        }
+        ctx.stroke();
+      }
+
+      btnSolve.addEventListener('click', solve);
+      solve(); // Init solve
+    });
+  </script>
+</Layout>

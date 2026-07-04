@@ -1,0 +1,304 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Cách Tính Chỉ Số BMI Cơ Thể Online Tự Động Chuẩn 2026 - Trợ Lý Số"
+  description="Công cụ tính chỉ số khối cơ thể (BMI) trực tuyến miễn phí, chính xác chuẩn Tổ chức Y tế Thế giới (WHO). Giúp kiểm tra thể trạng và ước lượng cân nặng lý tưởng."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tính chỉ số BMI</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Tính Chỉ Số Khối Cơ Thể (BMI)
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Tính nhanh chỉ số BMI và đánh giá tình trạng sức khỏe, khoảng cân nặng lý tưởng của bạn.
+      </p>
+    </div>
+
+    <!-- Tool Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors">
+        
+      <!-- Left inputs (7 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-7">
+        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+          ⚖️ Nhập chỉ số cơ thể
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Chiều cao -->
+          <div>
+            <label for="height" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Chiều cao của bạn (cm)</label>
+            <input type="number" id="height" value="170" min="50" max="250" class="w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-bold text-lg" />
+          </div>
+
+          <!-- Cân nặng -->
+          <div>
+            <label for="weight" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Cân nặng của bạn (kg)</label>
+            <input type="number" id="weight" value="65" min="10" max="300" class="w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-bold text-lg" />
+          </div>
+
+          <!-- Giới tính -->
+          <div>
+            <span class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Giới tính</span>
+            <div class="grid grid-cols-2 gap-4">
+              <label class="flex items-center justify-center gap-2 p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <input type="radio" name="gender" value="male" checked class="text-brand-blue focus:ring-brand-blue dark:focus:ring-brand-mint" />
+                <span class="font-semibold text-slate-700 dark:text-slate-300">Nam</span>
+              </label>
+              <label class="flex items-center justify-center gap-2 p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                <input type="radio" name="gender" value="female" class="text-brand-blue focus:ring-brand-blue dark:focus:ring-brand-mint" />
+                <span class="font-semibold text-slate-700 dark:text-slate-300">Nữ</span>
+              </label>
+            </div>
+          </div>
+
+          <button id="btnCalculate" class="w-full bg-brand-blue hover:bg-blue-700 dark:bg-brand-mint dark:hover:bg-emerald-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg shadow-blue-500/10 dark:shadow-emerald-500/10 flex items-center justify-center gap-2">
+            ⚡ Tính Chỉ Số BMI
+          </button>
+        </div>
+      </div>
+
+      <!-- Right outputs (5 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-5 bg-slate-50 dark:bg-slate-900/40 border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+        <div>
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+            Kết quả phân tích
+          </h2>
+          
+          <div class="space-y-6">
+            <!-- BMI Display -->
+            <div class="text-center py-6 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+              <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Chỉ số BMI của bạn</span>
+              <span id="bmiValue" class="text-5xl font-extrabold text-brand-blue dark:text-brand-mint">22.5</span>
+              <span id="bmiStatus" class="block text-lg font-bold text-emerald-500 mt-2">Bình thường</span>
+            </div>
+
+            <!-- Ideal Weight Range -->
+            <div>
+              <span class="block text-sm font-semibold text-slate-500 dark:text-slate-400 mb-1">Cân nặng lý tưởng khuyên dùng:</span>
+              <span id="idealWeight" class="text-lg font-bold text-slate-900 dark:text-white">53.5 kg - 72.0 kg</span>
+            </div>
+
+            <!-- BMI Gauge Bar -->
+            <div>
+              <span class="block text-sm font-semibold text-slate-500 dark:text-slate-400 mb-2">Thước đo chỉ số thể trạng:</span>
+              <div class="relative w-full h-4 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden flex">
+                <div class="h-full bg-blue-400" style="width: 25%" title="Gầy"></div>
+                <div class="h-full bg-emerald-400" style="width: 30%" title="Bình thường"></div>
+                <div class="h-full bg-orange-400" style="width: 20%" title="Thừa cân"></div>
+                <div class="h-full bg-red-400" style="width: 25%" title="Béo phì"></div>
+              </div>
+              <div class="flex justify-between text-[10px] text-slate-400 mt-1 font-semibold">
+                <span>18.5</span>
+                <span>25.0</span>
+                <span>30.0</span>
+              </div>
+            </div>
+
+            <div class="p-4 bg-blue-50 dark:bg-blue-950/40 rounded-xl text-xs text-brand-blue dark:text-blue-300 leading-relaxed border border-blue-100 dark:border-blue-900">
+              💡 Chỉ số BMI chỉ dùng cho người trưởng thành (trên 18 tuổi), không áp dụng cho phụ nữ mang thai, vận động viên thể hình.
+            </div>
+          </div>
+        </div>
+
+        <a href="/blog/tinh-chi-so-bmi-va-can-nang-ly-tuong/" class="mt-8 text-center text-xs text-brand-blue dark:text-brand-mint font-bold hover:underline">
+          Đọc cẩm nang tìm hiểu sâu về BMI →
+        </a>
+      </div>
+    </div>
+
+    <!-- EEAT Handbook Guide Section -->
+    <section class="max-w-4xl mx-auto mt-16 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm Nang Hướng Dẫn Tính BMI & Cân Nặng Lý Tưởng
+      </h2>
+      
+      <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4">
+        <p>
+          Chỉ số khối cơ thể, thường được viết tắt là <strong>BMI (Body Mass Index)</strong>, là một thước đo được sử dụng rộng rãi nhằm ước lượng xem một người có đang ở mức cân nặng bình thường, thiếu cân, thừa cân hay béo phì dựa trên mối tương quan giữa chiều cao và cân nặng.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">1. Công thức tính BMI tiêu chuẩn</h3>
+        <p>Công thức tính BMI được tính bằng cân nặng (tính bằng kg) chia cho bình phương chiều cao (tính bằng mét):</p>
+        <div class="bg-slate-50 dark:bg-slate-900 p-4 rounded-xl font-mono text-center text-lg my-4 text-brand-blue dark:text-brand-mint border border-slate-100 dark:border-slate-800">
+          BMI = Cân nặng (kg) / [Chiều cao (m) * Chiều cao (m)]
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">2. Phân loại chỉ số BMI theo WHO</h3>
+        <p>Bảng phân loại dưới đây giúp bạn đánh giá chỉ số khối cơ thể của mình:</p>
+        <div class="overflow-x-auto my-4">
+          <table class="w-full text-sm text-left border border-slate-200 dark:border-slate-800">
+            <thead>
+              <tr class="bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300">
+                <th class="p-3 border border-slate-200 dark:border-slate-800">Phân loại thể trạng</th>
+                <th class="p-3 border border-slate-200 dark:border-slate-800">Chỉ số BMI (WHO)</th>
+                <th class="p-3 border border-slate-200 dark:border-slate-800">Chỉ số BMI (IDIDI - Dành cho người Châu Á)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-slate-100 dark:border-slate-900">
+                <td class="p-3">Gầy / Thiếu cân</td>
+                <td class="p-3">&lt; 18.5</td>
+                <td class="p-3">&lt; 18.5</td>
+              </tr>
+              <tr class="border-b border-slate-100 dark:border-slate-900 bg-emerald-500/5">
+                <td class="p-3 font-semibold text-emerald-500">Bình thường</td>
+                <td class="p-3">18.5 - 24.9</td>
+                <td class="p-3 font-semibold text-emerald-500">18.5 - 22.9</td>
+              </tr>
+              <tr class="border-b border-slate-100 dark:border-slate-900">
+                <td class="p-3">Thừa cân</td>
+                <td class="p-3">25.0 - 29.9</td>
+                <td class="p-3">23.0 - 24.9</td>
+              </tr>
+              <tr class="border-b border-slate-100 dark:border-slate-900 text-red-500">
+                <td class="p-3">Béo phì</td>
+                <td class="p-3">&gt;= 30.0</td>
+                <td class="p-3">&gt;= 25.0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">3. Ví dụ thực tế cách tính</h3>
+        <p><strong>Ví dụ:</strong> Bạn Nam cao 170cm (1.70m), nặng 65kg.</p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Áp dụng công thức: \(BMI = 65 / (1.70 \times 1.70) \approx 22.49\)</li>
+          <li>Đánh giá: Chỉ số BMI của Nam nằm trong khoảng 18.5 đến 22.9, thuộc thể trạng <strong>Bình thường</strong> (đối với người châu Á).</li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">4. Căn cứ khoa học</h3>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Tổ chức Y tế Thế giới (WHO) - Hướng dẫn chỉ số thể trạng cơ thể.</li>
+          <li>Viện Dinh dưỡng Quốc gia Việt Nam - Khuyến nghị dinh dưỡng cho người Việt.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- WebApplication and FAQPage Schemas -->
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "BusinessApplication",
+      "name": "Công cụ tính chỉ số BMI Online",
+      "operatingSystem": "All",
+      "applicationCategory": "HealthApplication",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "url": "https://trolyso.vn/calculators/tinh-bmi/",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "VND"
+      }
+    }
+  </script>
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Chỉ số BMI bao nhiêu là bình thường đối với người Việt Nam?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Theo tiêu chuẩn châu Á, chỉ số BMI từ 18.5 đến 22.9 là thể trạng bình thường và lý tưởng nhất."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Chỉ số BMI có chính xác hoàn toàn không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "BMI chỉ mang tính chất tham khảo chung. Chỉ số này không phân biệt được khối lượng cơ bắp và mỡ, nên không chính xác đối với vận động viên thể hình hoặc phụ nữ mang thai."
+        }
+      }]
+    }
+  </script>
+
+  <!-- Interactive script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const heightInput = document.getElementById('height');
+      const weightInput = document.getElementById('weight');
+      const btnCalculate = document.getElementById('btnCalculate');
+      const bmiValueSpan = document.getElementById('bmiValue');
+      const bmiStatusSpan = document.getElementById('bmiStatus');
+      const idealWeightSpan = document.getElementById('idealWeight');
+
+      function calculateBMI() {
+        const heightCm = parseFloat(heightInput.value);
+        const weightKg = parseFloat(weightInput.value);
+
+        if (!heightCm || !weightKg || heightCm <= 0 || weightKg <= 0) {
+          alert('Vui lòng nhập chiều cao và cân nặng hợp lệ.');
+          return;
+        }
+
+        const heightM = heightCm / 100;
+        const bmi = weightKg / (heightM * heightM);
+        const bmiFormatted = bmi.toFixed(1);
+
+        bmiValueSpan.textContent = bmiFormatted;
+
+        // Classification & Translation checking
+        const isEn = localStorage.getItem('lang') === 'en';
+        let status = '';
+        let colorClass = '';
+
+        // Standard Asian classifications
+        if (bmi < 18.5) {
+          status = isEn ? 'Underweight' : 'Gầy / Thiếu cân';
+          colorClass = 'text-blue-500';
+        } else if (bmi >= 18.5 && bmi < 23) {
+          status = isEn ? 'Normal' : 'Bình thường';
+          colorClass = 'text-emerald-500';
+        } else if (bmi >= 23 && bmi < 25) {
+          status = isEn ? 'Overweight' : 'Thừa cân';
+          colorClass = 'text-orange-500';
+        } else {
+          status = isEn ? 'Obese' : 'Béo phì';
+          colorClass = 'text-red-500';
+        }
+
+        bmiStatusSpan.textContent = status;
+        bmiStatusSpan.className = `block text-lg font-bold mt-2 ${colorClass}`;
+
+        // Ideal weight range: BMI 18.5 to 22.9
+        const minIdeal = (18.5 * heightM * heightM).toFixed(1);
+        const maxIdeal = (22.9 * heightM * heightM).toFixed(1);
+        idealWeightSpan.textContent = `${minIdeal} kg - ${maxIdeal} kg`;
+      }
+
+      btnCalculate.addEventListener('click', calculateBMI);
+      calculateBMI(); // Init
+    });
+  </script>
+</Layout>

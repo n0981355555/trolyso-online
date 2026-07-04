@@ -1,0 +1,370 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Trình Đếm Ngày Yêu Nhau Online Miễn Phí Đẹp Nhất - Trợ Lý Số"
+  description="Công cụ đếm ngày yêu nhau (Love Counter) online trực quan. Tính chính xác số ngày, giờ, phút, giây bên nhau và hiển thị đồng hồ chạy thời gian thực."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(239,68,68,0.03),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Đếm ngày yêu nhau</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Đếm Ngày Yêu Nhau (Love Counter)
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Đo đếm chính xác thời gian bên nhau của hai bạn đến từng giây và lưu giữ những cột mốc kỷ niệm đẹp.
+      </p>
+    </div>
+
+    <!-- Tool Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors relative">
+      
+      <!-- Floating Hearts Container -->
+      <div id="heartsContainer" class="absolute inset-0 pointer-events-none overflow-hidden z-0"></div>
+
+      <!-- Left inputs (5 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-5 z-10 relative">
+        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+          ❤️ Thông tin của hai bạn
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Ngày bắt đầu yêu -->
+          <div>
+            <label for="loveStartDate" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Ngày bắt đầu yêu nhau</label>
+            <input type="date" id="loveStartDate" class="w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-red-500 dark:focus:ring-brand-mint font-bold text-lg" />
+          </div>
+
+          <!-- Tên của Bạn -->
+          <div>
+            <label for="name1" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Tên của bạn</label>
+            <input type="text" id="name1" value="Anh" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-red-500 dark:focus:ring-brand-mint font-bold text-lg" />
+          </div>
+
+          <!-- Tên của Người Ấy -->
+          <div>
+            <label for="name2" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Tên của người ấy</label>
+            <input type="text" id="name2" value="Em" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-red-500 dark:focus:ring-brand-mint font-bold text-lg" />
+          </div>
+
+          <!-- Upload ảnh đại diện -->
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Ảnh của bạn</label>
+              <input type="file" id="avatar1" accept="image/*" class="text-xs file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200 dark:file:bg-slate-800 dark:file:text-slate-300" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Ảnh người ấy</label>
+              <input type="file" id="avatar2" accept="image/*" class="text-xs file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200 dark:file:bg-slate-800 dark:file:text-slate-300" />
+            </div>
+          </div>
+
+          <button id="btnSave" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg shadow-red-500/10 flex items-center justify-center gap-2">
+            💖 Lưu & Tạo Kỷ Niệm
+          </button>
+        </div>
+      </div>
+
+      <!-- Right outputs (7 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-7 bg-red-50/20 dark:bg-red-950/10 border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800 flex flex-col justify-between z-10 relative">
+        <div class="text-center">
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-8">
+            Thời Gian Bên Nhau
+          </h2>
+          
+          <div class="space-y-8">
+            <!-- Avatars & Heart -->
+            <div class="flex items-center justify-center gap-6 sm:gap-10">
+              <div class="text-center">
+                <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white dark:border-slate-800 shadow-md overflow-hidden bg-slate-100 flex items-center justify-center">
+                  <img id="displayAvatar1" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23cbd5e1' d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Avatar Bạn" class="w-full h-full object-cover" />
+                </div>
+                <span id="displayName1" class="block font-bold text-slate-700 dark:text-slate-300 mt-2 text-base">Anh</span>
+              </div>
+
+              <!-- Animated Pulse Heart -->
+              <div class="relative flex items-center justify-center">
+                <span class="text-5xl animate-pulse cursor-pointer" id="pulseHeart">❤️</span>
+              </div>
+
+              <div class="text-center">
+                <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white dark:border-slate-800 shadow-md overflow-hidden bg-slate-100 flex items-center justify-center">
+                  <img id="displayAvatar2" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23cbd5e1' d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Avatar Người Ấy" class="w-full h-full object-cover" />
+                </div>
+                <span id="displayName2" class="block font-bold text-slate-700 dark:text-slate-300 mt-2 text-base">Em</span>
+              </div>
+            </div>
+
+            <!-- Big Days Counter -->
+            <div class="py-4 bg-white dark:bg-brand-darkCard rounded-2xl border border-red-100 dark:border-red-950/40 shadow-sm inline-block px-10">
+              <span id="totalDaysVal" class="text-5xl font-extrabold text-red-500 font-heading">0</span>
+              <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mt-1">Số ngày yêu nhau</span>
+            </div>
+
+            <!-- Detailed breakdown running in real time -->
+            <div class="grid grid-cols-4 gap-2 text-center max-w-sm mx-auto">
+              <div class="p-2 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-100 dark:border-slate-800/80 shadow-sm">
+                <span id="yearsVal" class="block text-lg font-bold text-slate-800 dark:text-white font-mono">0</span>
+                <span class="text-[10px] text-slate-400">Năm</span>
+              </div>
+              <div class="p-2 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-100 dark:border-slate-800/80 shadow-sm">
+                <span id="monthsVal" class="block text-lg font-bold text-slate-800 dark:text-white font-mono">0</span>
+                <span class="text-[10px] text-slate-400">Tháng</span>
+              </div>
+              <div class="p-2 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-100 dark:border-slate-800/80 shadow-sm">
+                <span id="daysRemainderVal" class="block text-lg font-bold text-slate-800 dark:text-white font-mono">0</span>
+                <span class="text-[10px] text-slate-400">Ngày</span>
+              </div>
+              <div class="p-2 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-100 dark:border-slate-800/80 shadow-sm">
+                <span id="secondsVal" class="block text-lg font-bold text-red-500 font-mono">0</span>
+                <span class="text-[10px] text-slate-400">Giây</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="/blog/cach-su-dung-trinh-dem-ngay-yeu-nhau/" class="mt-8 text-center text-xs text-red-500 font-bold hover:underline">
+          Đọc cẩm nang đếm ngày kỷ niệm yêu nhau →
+        </a>
+      </div>
+    </div>
+
+    <!-- Handbook Guide Section -->
+    <section class="max-w-4xl mx-auto mt-16 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm Nang Sử Dụng Công Cụ Đếm Ngày Yêu Nhau
+      </h2>
+      
+      <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4">
+        <p>
+          Trong tình yêu, mỗi ngày bên nhau đều là một món quà. Công cụ <strong>Đếm Ngày Yêu Nhau (Love Counter)</strong> được phát triển nhằm giúp các cặp đôi dễ dàng lưu giữ và nhìn lại chặng đường gắn bó tuyệt vời của mình.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">1. Nguyên tắc bảo mật tuyệt đối thông tin</h3>
+        <p>
+          Tất cả dữ liệu của hai bạn bao gồm **tên gọi, ngày bắt đầu yêu, hình ảnh đại diện** được xử lý hoàn toàn trực tiếp ngay trên trình duyệt của bạn (Client-Side). Chúng tôi lưu thông tin vào LocalStorage của thiết bị để tự động hiển thị trong những lần truy cập sau mà **hoàn toàn không tải bất kỳ thông tin nào lên máy chủ**. Quyền riêng tư của bạn được bảo mật 100%.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">2. Cách đếm ngày yêu nhau chính xác</h3>
+        <p>
+          Công cụ tính toán số ngày bằng cách tính khoảng chênh lệch mili-giây giữa thời điểm hiện tại và ngày bắt đầu yêu được chọn, sau đó quy đổi thành số ngày chẵn. Đồng hồ đếm chi tiết cũng quy đổi chính xác số năm (365 ngày), số tháng (trung bình 30.44 ngày) để đưa ra chỉ số trực quan nhất.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "BusinessApplication",
+      "name": "Công cụ đếm ngày yêu nhau online",
+      "operatingSystem": "All",
+      "applicationCategory": "LifestyleApplication",
+      "browserRequirements": "Requires JavaScript. Requires HTML5 LocalStorage.",
+      "url": "https://trolyso.vn/calculators/dem-ngay-yeu-nhau/",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "VND"
+      }
+    }
+  </script>
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Dữ liệu ảnh đại diện của tôi có bị tải lên mạng không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Không, tất cả ảnh đại diện tải lên được mã hóa dưới dạng chuỗi base64 và lưu trữ cục bộ trong bộ nhớ trình duyệt (LocalStorage) của bạn, không gửi về bất kỳ máy chủ nào."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Tôi có thể đổi ngày bắt đầu yêu sau khi lưu không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Có, bạn chỉ cần chọn lại ngày mới hoặc chỉnh sửa tên và nhấn lại nút Lưu & Tạo Kỷ Niệm."
+        }
+      }]
+    }
+  </script>
+
+  <!-- Interactive script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loveStartDateInput = document.getElementById('loveStartDate');
+      const name1Input = document.getElementById('name1');
+      const name2Input = document.getElementById('name2');
+      const avatar1Input = document.getElementById('avatar1');
+      const avatar2Input = document.getElementById('avatar2');
+      const btnSave = document.getElementById('btnSave');
+
+      const displayAvatar1 = document.getElementById('displayAvatar1');
+      const displayAvatar2 = document.getElementById('displayAvatar2');
+      const displayName1 = document.getElementById('displayName1');
+      const displayName2 = document.getElementById('displayName2');
+
+      const totalDaysVal = document.getElementById('totalDaysVal');
+      const yearsVal = document.getElementById('yearsVal');
+      const monthsVal = document.getElementById('monthsVal');
+      const daysRemainderVal = document.getElementById('daysRemainderVal');
+      const secondsVal = document.getElementById('secondsVal');
+      const heartsContainer = document.getElementById('heartsContainer');
+      const pulseHeart = document.getElementById('pulseHeart');
+
+      // Set default date to exactly 1 year ago if no date saved
+      const oneYearAgo = new Date();
+      oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+      loveStartDateInput.value = oneYearAgo.toISOString().split('T')[0];
+
+      // Load saved state
+      function loadSavedData() {
+        const savedDate = localStorage.getItem('love_start_date');
+        const savedName1 = localStorage.getItem('love_name1');
+        const savedName2 = localStorage.getItem('love_name2');
+        const savedAvatar1 = localStorage.getItem('love_avatar1');
+        const savedAvatar2 = localStorage.getItem('love_avatar2');
+
+        if (savedDate) loveStartDateInput.value = savedDate;
+        if (savedName1) {
+          name1Input.value = savedName1;
+          displayName1.textContent = savedName1;
+        }
+        if (savedName2) {
+          name2Input.value = savedName2;
+          displayName2.textContent = savedName2;
+        }
+        if (savedAvatar1) displayAvatar1.src = savedAvatar1;
+        if (savedAvatar2) displayAvatar2.src = savedAvatar2;
+      }
+
+      // Convert file to Base64
+      function handleAvatarChange(input, displayImg, storageKey) {
+        const file = input.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const dataUrl = e.target.result;
+            displayImg.src = dataUrl;
+            localStorage.setItem(storageKey, dataUrl);
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+
+      avatar1Input.addEventListener('change', () => handleAvatarChange(avatar1Input, displayAvatar1, 'love_avatar1'));
+      avatar2Input.addEventListener('change', () => handleAvatarChange(avatar2Input, displayAvatar2, 'love_avatar2'));
+
+      btnSave.addEventListener('click', () => {
+        localStorage.setItem('love_start_date', loveStartDateInput.value);
+        localStorage.setItem('love_name1', name1Input.value);
+        localStorage.setItem('love_name2', name2Input.value);
+
+        displayName1.textContent = name1Input.value;
+        displayName2.textContent = name2Input.value;
+
+        // trigger floating heart animation
+        createFloatingHeart();
+      });
+
+      // Update counters in real time
+      function updateCounters() {
+        const startDateStr = loveStartDateInput.value;
+        if (!startDateStr) return;
+
+        const start = new Date(startDateStr);
+        const now = new Date();
+        const diffMs = now - start;
+
+        if (diffMs < 0) {
+          totalDaysVal.textContent = '0';
+          yearsVal.textContent = '0';
+          monthsVal.textContent = '0';
+          daysRemainderVal.textContent = '0';
+          secondsVal.textContent = '0';
+          return;
+        }
+
+        const diffSeconds = Math.floor(diffMs / 1000);
+        const diffMinutes = Math.floor(diffSeconds / 60);
+        const diffHours = Math.floor(diffMinutes / 60);
+        const diffDays = Math.floor(diffHours / 24);
+
+        totalDaysVal.textContent = diffDays.toLocaleString();
+
+        // Calculate breakdown
+        const years = Math.floor(diffDays / 365);
+        const months = Math.floor((diffDays % 365) / 30.44);
+        const days = Math.floor((diffDays % 365) % 30.44);
+        const secs = now.getSeconds();
+
+        yearsVal.textContent = years;
+        monthsVal.textContent = months;
+        daysRemainderVal.textContent = days;
+        secondsVal.textContent = secs < 10 ? '0' + secs : secs;
+      }
+
+      // Create floating heart effect
+      function createFloatingHeart() {
+        const heart = document.createElement('div');
+        heart.innerHTML = '❤️';
+        heart.className = 'absolute text-red-400/70 text-lg transition-all duration-3000 pointer-events-none select-none z-0';
+        
+        // Random horizontal positions
+        const startX = Math.random() * heartsContainer.clientWidth;
+        heart.style.left = startX + 'px';
+        heart.style.bottom = '0px';
+        heart.style.transform = `scale(${0.5 + Math.random()})`;
+        
+        heartsContainer.appendChild(heart);
+
+        // Animate up
+        setTimeout(() => {
+          heart.style.bottom = '100%';
+          heart.style.left = (startX + (Math.random() - 0.5) * 200) + 'px';
+          heart.style.opacity = '0';
+        }, 50);
+
+        // Remove element after animation
+        setTimeout(() => {
+          heart.remove();
+        }, 3000);
+      }
+
+      pulseHeart.addEventListener('click', createFloatingHeart);
+
+      loadSavedData();
+      setInterval(updateCounters, 1000);
+      updateCounters(); // Run initially
+    });
+  </script>
+</Layout>

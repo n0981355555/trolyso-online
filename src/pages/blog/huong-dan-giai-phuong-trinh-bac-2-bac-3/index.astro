@@ -1,0 +1,182 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Hướng Dẫn Cách Giải Phương Trình Bậc 2 Và Bậc 3 Chi Tiết - Trợ Lý Số"
+  description="Học toán online: Công thức tính Delta phương trình bậc 2, cách giải phương trình bậc 3 nhẩm nghiệm sơ đồ Horner và mẹo bấm máy tính Casio."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-4xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/blog/" class="hover:text-brand-blue dark:hover:text-brand-mint">Blog</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Hướng dẫn giải phương trình</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Post Title -->
+    <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">
+      Hướng Dẫn Cách Giải Phương Trình Bậc 2 Và Bậc 3 Chi Tiết Nhất
+    </h1>
+
+    <!-- E-E-A-T Author Box -->
+    <div class="bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 mb-8 flex flex-col sm:flex-row items-center sm:items-start gap-4 transition-colors">
+      <div class="w-16 h-16 rounded-full bg-blue-100 text-brand-blue flex items-center justify-center font-bold text-2xl flex-shrink-0">
+        📐
+      </div>
+      <div>
+        <div class="flex flex-wrap items-center gap-2 mb-1">
+          <span class="font-bold text-slate-900 dark:text-white">Thạc sĩ Sư phạm Toán Trần Đức Toàn</span>
+          <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold uppercase">Giảng viên Toán học</span>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+          Nội dung được biên soạn chuẩn kiến thức chương trình giáo dục phổ thông. Hướng dẫn giải toán giúp học sinh làm quen với biệt thức delta và các phương pháp khảo sát đồ thị hàm số đa thức.
+        </p>
+        
+        <!-- Post Date & Read time -->
+        <div class="flex items-center gap-4 text-xs text-slate-400 dark:text-slate-500 mt-3 font-medium">
+          <span>📅 Ngày đăng: 05/07/2026</span>
+          <span>⏱️ Thời gian đọc: 5 phút</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Image -->
+    <div class="mb-8">
+      <img 
+        src="/images/blog/giai-phuong-trinh-bac-2-bac-3-hero.webp" 
+        alt="giai-phuong-trinh-bac-2-bac-3-hero"
+        class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm"
+      />
+      <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình: Công cụ giải phương trình bậc 2, bậc 3 hiển thị lời giải và đồ thị tự động</p>
+    </div>
+
+    <!-- Introduction -->
+    <div class="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed mb-10">
+      <p>
+        Giải phương trình đa thức là một trong những dạng toán học nền tảng xuyên suốt toàn bộ chương trình giáo khoa đại số trung học. Đối với học sinh, việc làm chủ các bước giải phương trình bậc 2 và bậc 3 không chỉ giúp hoàn thành tốt các bài kiểm tra mà còn là tiền đề để nghiên cứu các ngành khoa học kỹ thuật cao. Bài viết này sẽ hệ thống lại toàn bộ công thức tính Delta và phương pháp giải phương trình bậc 2, bậc 3 một cách khoa học và dễ hiểu nhất.
+      </p>
+
+      <!-- Table of Contents (TOC) -->
+      <div class="bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200 dark:border-slate-800 p-6 my-8">
+        <span class="block font-bold text-slate-900 dark:text-white mb-3 text-lg">Mục lục bài viết</span>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#quadratic" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">1. Cách giải phương trình bậc 2: \(ax^2 + bx + c = 0\)</a></li>
+          <li><a href="#horner" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">2. Cách giải phương trình bậc 3: \(ax^3 + bx^2 + cx + d = 0\)</a></li>
+          <li><a href="#casio" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">3. Mẹo kiểm tra nghiệm nhanh bằng máy tính Casio</a></li>
+          <li><a href="#examples" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">4. Các ví dụ minh họa giải chi tiết</a></li>
+        </ul>
+      </div>
+
+      <h2 id="quadratic" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">1. Cách giải phương trình bậc 2: \(ax^2 + bx + c = 0\)</h2>
+      <p>
+        Để giải phương trình bậc 2 một cách tổng quát, chúng ta tính biệt thức Delta (\(\Delta\)) theo công thức:
+      </p>
+      <div class="bg-slate-100 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-center font-mono my-4 text-brand-blue dark:text-brand-mint font-bold text-lg">
+        \(\Delta = b^2 - 4ac\)
+      </div>
+      <p>Dựa trên giá trị của Delta, ta chia thành 3 trường hợp:</p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>Trường hợp 1: Δ &lt; 0:</strong> Phương trình vô nghiệm thực (có nghiệm phức).</li>
+        <li><strong>Trường hợp 2: Δ = 0:</strong> Phương trình có nghiệm kép: <code>x = -b / 2a</code>.</li>
+        <li><strong>Trường hợp 3: Δ &gt; 0:</strong> Phương trình có 2 nghiệm phân biệt:
+          <div class="my-2 p-2 bg-slate-50 dark:bg-slate-900 rounded font-mono text-center">
+            x<sub>1</sub> = (-b + √Δ) / 2a &nbsp;&nbsp;&nbsp;&nbsp; x<sub>2</sub> = (-b - √Δ) / 2a
+          </div>
+        </li>
+      </ul>
+
+      <h2 id="horner" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">2. Cách giải phương trình bậc 3: \(ax^3 + bx^2 + cx + d = 0\)</h2>
+      <p>
+        Phương pháp phổ biến nhất để giải phương trình bậc 3 trong trường THPT là <strong>nhẩm nghiệm đặc biệt</strong>.
+      </p>
+      <ol class="list-decimal pl-5 space-y-2">
+        <li>Tìm một nghiệm nguyên \(x_0\) bằng cách thử ước số của hệ số tự do d.</li>
+        <li>Sử dụng <strong>sơ đồ Horner</strong> để chia đa thức bậc 3 cho \((x - x_0)\), đưa về phương trình dạng tích:
+          \[(x - x_0)(ax^2 + Bx + C) = 0\]
+        </li>
+        <li>Giải tiếp phương trình bậc 2 thu được ở ngoặc sau để tìm nốt các nghiệm còn lại.</li>
+      </ol>
+
+      <h2 id="casio" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">3. Mẹo kiểm tra nghiệm nhanh bằng máy tính Casio</h2>
+      <blockquote class="border-l-4 border-yellow-500 bg-yellow-50 dark:bg-yellow-950/40 p-4 my-4 rounded-r-xl bg-yellow-500/5">
+        <strong>Phím bấm Casio fx-580VN X:</strong> Nhấn nút <code>Menu</code> ➔ chọn <code>9</code> (Equation/Func) ➔ chọn <code>2</code> (Polynomial) ➔ Chọn bậc <code>2</code> hoặc <code>3</code> để tiến hành nhập hệ số.
+      </blockquote>
+
+      <h2 id="examples" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">4. Các ví dụ minh họa giải chi tiết</h2>
+      <p><strong>Ví dụ 1: Giải phương trình bậc hai \(x^2 - 3x + 2 = 0\)</strong></p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li>Hệ số: \(a = 1, b = -3, c = 2\).</li>
+        <li>Tính Delta: \(\Delta = (-3)^2 - 4 \times 1 \times 2 = 9 - 8 = 1 > 0\).</li>
+        <li>Vì Delta > 0, phương trình có 2 nghiệm:
+          <br />
+          \(x_1 = (3 + \sqrt{1}) / 2 = 2\)
+          <br />
+          \(x_2 = (3 - \sqrt{1}) / 2 = 1\).
+        </li>
+      </ul>
+    </div>
+
+    <!-- Call To Action (CTA) -->
+    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 dark:from-emerald-600 dark:to-teal-700 text-white rounded-2xl p-6 sm:p-8 my-10 shadow-lg text-center">
+      <h3 class="text-xl sm:text-2xl font-heading font-bold mb-3">Tự Giải Phương Trình Của Bạn Trực Tuyến!</h3>
+      <p class="text-sm opacity-90 mb-6 max-w-md mx-auto">Sử dụng công cụ giải toán tự động của Trợ Lý Số để xem lời giải Delta từng bước và vẽ đồ thị hàm số trực quan.</p>
+      <a href="/calculators/giai-phuong-trinh/" class="inline-block bg-white text-indigo-600 dark:text-teal-700 font-bold px-6 py-3 rounded-xl hover:scale-105 transition shadow-md">
+        🧮 Mở máy tính giải phương trình
+      </a>
+    </div>
+
+    <!-- References Section -->
+    <div class="border-t border-slate-200 dark:border-slate-800 pt-8 mt-12 space-y-6">
+      <div>
+        <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-3 uppercase tracking-wider">Tài liệu tham khảo & Nguồn uy tín:</h4>
+        <ul class="space-y-2 text-xs text-slate-500 dark:text-slate-400">
+          <li>
+            📚 Sách giáo khoa Đại số 10 - Bộ Giáo dục và Đào tạo Việt Nam.
+          </li>
+          <li>
+            🌐 <a href="https://moet.gov.vn" target="_blank" rel="noopener noreferrer" class="hover:underline text-brand-blue dark:text-brand-mint font-semibold">Bộ Giáo dục và Đào tạo Việt Nam</a> - Cổng thông tin chương trình toán học phổ thông.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Related Posts Section -->
+      <div>
+        <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-3 uppercase tracking-wider">Bài viết liên quan hữu ích:</h4>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <li>
+            <a href="/blog/quy-tac-doc-so-thanh-chu-ke-toan/" class="block p-4 bg-slate-50 dark:bg-slate-900 rounded-xl hover:shadow-sm border border-slate-200 dark:border-slate-800 transition">
+              <span class="block font-semibold text-slate-900 dark:text-white text-sm">Quy Tắc Đọc Số Thành Chữ Kế Toán & Thuế</span>
+              <span class="text-xs text-slate-400 dark:text-slate-500 mt-1 block">Quy đổi số tiền thành chữ viết hóa đơn</span>
+            </a>
+          </li>
+          <li>
+            <a href="/blog/tinh-chi-so-bmi-va-can-nang-ly-tuong/" class="block p-4 bg-slate-50 dark:bg-slate-900 rounded-xl hover:shadow-sm border border-slate-200 dark:border-slate-800 transition">
+              <span class="block font-semibold text-slate-900 dark:text-white text-sm">Hướng Dẫn Tính Chỉ Số BMI Cơ Thể Và Cân Nặng Lý Tưởng</span>
+              <span class="text-xs text-slate-400 dark:text-slate-500 mt-1 block">Kiểm tra chỉ số khối cơ thể WHO</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+</Layout>

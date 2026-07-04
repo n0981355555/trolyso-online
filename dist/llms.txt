@@ -14,6 +14,9 @@ Trợ Lý Số (trolyso.online) cung cấp các công cụ tính toán tài chí
 - [Nén Ảnh WebP Tối Ưu](https://trolyso.online/calculators/nen-anh/): Nén dung lượng hình ảnh trực tuyến và chuyển sang định dạng WebP siêu nhẹ.
 - [Tạo Văn Bản Hành Chính](https://trolyso.online/calculators/tao-van-ban/): Soạn thảo văn bản hành chính đúng chuẩn lề và bố cục Nghị định 30.
 - [Tạo Ảnh AI Miễn Phí](https://trolyso.online/calculators/tao-anh-ai/): Trình tạo ảnh nghệ thuật, ảnh anime bằng văn bản qua công nghệ AI.
+- [Tính Chỉ Số BMI Cơ Thể](https://trolyso.online/calculators/tinh-bmi/): Tính chỉ số khối cơ thể (BMI), đánh giá thể trạng và khoảng cân nặng lý tưởng WHO.
+- [Giải Phương Trình Bậc 2, 3](https://trolyso.online/calculators/giai-phuong-trinh/): Giải phương trình bậc 2, bậc 3 online hiển thị các bước giải Delta và vẽ đồ thị.
+- [Đếm Ngày Yêu Nhau](https://trolyso.online/calculators/dem-ngay-yeu-nhau/): Công cụ đếm ngày yêu nhau (Love Counter) chạy giây thực tế và lưu trữ local.
 
 ## Cẩm nang hướng dẫn (Blog)
 
@@ -21,6 +24,9 @@ Trợ Lý Số (trolyso.online) cung cấp các công cụ tính toán tài chí
 - [Bài viết: Tôi được giảm bao nhiêu thuế năm 2026](https://trolyso.online/blog/toi-duoc-giam-bao-nhieu-thue-nam-2026/): Hướng dẫn chi tiết mức giảm trừ gia cảnh, bảo hiểm bắt buộc và công thức tính thuế thu nhập cá nhân 2026.
 - [Bài viết: Máy tính tăng lương sau cải cách thuế 2026](https://trolyso.online/blog/may-tinh-tang-luong-sau-cai-cach-thue/): Hướng dẫn tự tính tiền lương Net nhận về sau điều chỉnh lương cơ sở và cải cách thuế TNCN 2026.
 - [Bài viết: Lương bao nhiêu phải đóng thuế TNCN 2026](https://trolyso.online/blog/luong-bao-nhieu-phai-dong-thue-thu-nhap-ca-nhan-2026/): Cẩm nang hướng dẫn chi tiết ngưỡng chịu thuế TNCN năm 2026, các khoản giảm trừ và 15 ví dụ tính thuế thực tế.
+- [Bài viết: Hướng dẫn tính chỉ số BMI](https://trolyso.online/blog/tinh-chi-so-bmi-va-can-nang-ly-tuong/): Cách tính chỉ số khối cơ thể BMI chuẩn WHO và người Châu Á.
+- [Bài viết: Hướng dẫn giải phương trình bậc 2, 3](https://trolyso.online/blog/huong-dan-giai-phuong-trinh-bac-2-bac-3/): Công thức tính Delta và phương pháp giải phương trình bậc 3 chi tiết.
+- [Bài viết: Hướng dẫn sử dụng đếm ngày yêu nhau](https://trolyso.online/blog/cach-su-dung-trinh-dem-ngay-yeu-nhau/): Cách thiết lập đồng hồ đếm ngày yêu nhau online bảo mật cục bộ.
 
 ## Chủ đề từ khóa (Tags)
 

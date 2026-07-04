@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="vi" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png"><link rel="icon" type="image/png" sizes="144x144" href="/favicon-144.png"><link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="shortcut icon" href="/favicon.ico"><title>Trình Đếm Ngày Yêu Nhau Online Miễn Phí Đẹp Nhất - Trợ Lý Số</title><meta name="description" content="Công cụ đếm ngày yêu nhau (Love Counter) online trực quan. Tính chính xác số ngày, giờ, phút, giây bên nhau và hiển thị đồng hồ chạy thời gian thực."><!-- Google Fonts Preconnect & Async Load --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap"></noscript><!-- Deferred Google Analytics (GA4) for Performance Optimization --><script>
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const script = document.createElement('script');
+          script.src = "https://www.googletagmanager.com/gtag/js?id=G-0V28V469Y4";
+          script.async = true;
+          document.head.appendChild(script);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0V28V469Y4');
+        }, 1500); // 1.5s delay after page load to free main thread
+      });
+    </script><!-- Inline script to prevent theme flash --><script>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('color-theme')) {
+          return localStorage.getItem('color-theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+    
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script><link rel="stylesheet" href="/_astro/index.DKExTign.css"><script type="module" src="/_astro/hoisted.CYdWZatQ.js"></script></head> <body class="bg-slate-50 dark:bg-brand-darkBg text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300"> <!-- Header --> <header class="bg-white/80 dark:bg-brand-darkCard/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50 transition-colors"> <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center"> <!-- Logo --> <a href="/" class="text-2xl sm:text-3xl font-heading font-extrabold flex items-center select-none tracking-tight"> <span class="text-[#0063b6] dark:text-white transition-colors">trolyso</span><span class="text-[#49a2dc] transition-colors">.online</span> </a> <!-- Dark Mode Toggle & Menu --> <div class="flex items-center gap-3 sm:gap-4"> <!-- Search Bar --> <div class="relative hidden sm:block"> <input type="text" id="globalSearchInput" placeholder="Tìm công cụ, bài viết..." aria-label="Tìm kiếm công cụ và bài viết" class="w-48 lg:w-56 pl-9 pr-4 py-2 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint text-xs font-medium transition-all"> <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path> </svg> <div id="searchDropdown" class="absolute right-0 top-full mt-2 w-72 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-xl shadow-xl z-50 p-2 hidden max-h-80 overflow-y-auto"> <!-- Results --> </div> </div> <a href="/blog/" class="text-sm font-semibold hover:text-brand-blue dark:hover:text-brand-mint">
+Cẩm Nang
+</a> <!-- Theme Toggle Button --> <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:ring-2 hover:ring-slate-300 dark:hover:ring-slate-700 transition" aria-label="Toggle theme"> <!-- Sun Icon (shown in dark mode) --> <svg id="themeSun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707-.707m12.728 0l-.707.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 115.52 12a9 9 0 0112.728 12.728z"></path> </svg> <!-- Moon Icon (shown in light mode) --> <svg id="themeMoon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path> </svg> </button> </div> </div> </header> <!-- Page Content Slot -->   <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(239,68,68,0.03),transparent_50%)] pointer-events-none z-0"></div> <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative"> <!-- Breadcrumb --> <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb"> <ol class="inline-flex items-center space-x-1 md:space-x-3"> <li class="inline-flex items-center"> <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a> </li> <li> <div class="flex items-center"> <span class="mx-2 text-slate-400">/</span> <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a> </div> </li> <li aria-current="page"> <div class="flex items-center"> <span class="mx-2 text-slate-400">/</span> <span class="text-slate-400 dark:text-slate-500">Đếm ngày yêu nhau</span> </div> </li> </ol> </nav> <!-- Hero Section --> <div class="max-w-3xl mx-auto text-center mb-12"> <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+Đếm Ngày Yêu Nhau (Love Counter)
+</h1> <p class="text-slate-600 dark:text-slate-400">
+Đo đếm chính xác thời gian bên nhau của hai bạn đến từng giây và lưu giữ những cột mốc kỷ niệm đẹp.
+</p> </div> <!-- Tool Grid --> <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors relative"> <!-- Floating Hearts Container --> <div id="heartsContainer" class="absolute inset-0 pointer-events-none overflow-hidden z-0"></div> <!-- Left inputs (5 cols) --> <div class="p-6 sm:p-10 md:col-span-5 z-10 relative"> <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+❤️ Thông tin của hai bạn
+</h2> <div class="space-y-6"> <!-- Ngày bắt đầu yêu --> <div> <label for="loveStartDate" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Ngày bắt đầu yêu nhau</label> <input type="date" id="loveStartDate" class="w-full px-4 py-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-red-500 dark:focus:ring-brand-mint font-bold text-lg"> </div> <!-- Tên của Bạn --> <div> <label for="name1" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Tên của bạn</label> <input type="text" id="name1" value="Anh" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-red-500 dark:focus:ring-brand-mint font-bold text-lg"> </div> <!-- Tên của Người Ấy --> <div> <label for="name2" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Tên của người ấy</label> <input type="text" id="name2" value="Em" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-red-500 dark:focus:ring-brand-mint font-bold text-lg"> </div> <!-- Upload ảnh đại diện --> <div class="grid grid-cols-2 gap-4"> <div> <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Ảnh của bạn</label> <input type="file" id="avatar1" accept="image/*" class="text-xs file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200 dark:file:bg-slate-800 dark:file:text-slate-300"> </div> <div> <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Ảnh người ấy</label> <input type="file" id="avatar2" accept="image/*" class="text-xs file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200 dark:file:bg-slate-800 dark:file:text-slate-300"> </div> </div> <button id="btnSave" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg shadow-red-500/10 flex items-center justify-center gap-2">
+💖 Lưu & Tạo Kỷ Niệm
+</button> </div> </div> <!-- Right outputs (7 cols) --> <div class="p-6 sm:p-10 md:col-span-7 bg-red-50/20 dark:bg-red-950/10 border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800 flex flex-col justify-between z-10 relative"> <div class="text-center"> <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-8">
+Thời Gian Bên Nhau
+</h2> <div class="space-y-8"> <!-- Avatars & Heart --> <div class="flex items-center justify-center gap-6 sm:gap-10"> <div class="text-center"> <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white dark:border-slate-800 shadow-md overflow-hidden bg-slate-100 flex items-center justify-center"> <img id="displayAvatar1" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23cbd5e1' d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Avatar Bạn" class="w-full h-full object-cover"> </div> <span id="displayName1" class="block font-bold text-slate-700 dark:text-slate-300 mt-2 text-base">Anh</span> </div> <!-- Animated Pulse Heart --> <div class="relative flex items-center justify-center"> <span class="text-5xl animate-pulse cursor-pointer" id="pulseHeart">❤️</span> </div> <div class="text-center"> <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white dark:border-slate-800 shadow-md overflow-hidden bg-slate-100 flex items-center justify-center"> <img id="displayAvatar2" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23cbd5e1' d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Avatar Người Ấy" class="w-full h-full object-cover"> </div> <span id="displayName2" class="block font-bold text-slate-700 dark:text-slate-300 mt-2 text-base">Em</span> </div> </div> <!-- Big Days Counter --> <div class="py-4 bg-white dark:bg-brand-darkCard rounded-2xl border border-red-100 dark:border-red-950/40 shadow-sm inline-block px-10"> <span id="totalDaysVal" class="text-5xl font-extrabold text-red-500 font-heading">0</span> <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mt-1">Số ngày yêu nhau</span> </div> <!-- Detailed breakdown running in real time --> <div class="grid grid-cols-4 gap-2 text-center max-w-sm mx-auto"> <div class="p-2 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-100 dark:border-slate-800/80 shadow-sm"> <span id="yearsVal" class="block text-lg font-bold text-slate-800 dark:text-white font-mono">0</span> <span class="text-[10px] text-slate-400">Năm</span> </div> <div class="p-2 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-100 dark:border-slate-800/80 shadow-sm"> <span id="monthsVal" class="block text-lg font-bold text-slate-800 dark:text-white font-mono">0</span> <span class="text-[10px] text-slate-400">Tháng</span> </div> <div class="p-2 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-100 dark:border-slate-800/80 shadow-sm"> <span id="daysRemainderVal" class="block text-lg font-bold text-slate-800 dark:text-white font-mono">0</span> <span class="text-[10px] text-slate-400">Ngày</span> </div> <div class="p-2 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-100 dark:border-slate-800/80 shadow-sm"> <span id="secondsVal" class="block text-lg font-bold text-red-500 font-mono">0</span> <span class="text-[10px] text-slate-400">Giây</span> </div> </div> </div> </div> <a href="/blog/cach-su-dung-trinh-dem-ngay-yeu-nhau/" class="mt-8 text-center text-xs text-red-500 font-bold hover:underline">
+Đọc cẩm nang đếm ngày kỷ niệm yêu nhau →
+</a> </div> </div> <!-- Handbook Guide Section --> <section class="max-w-4xl mx-auto mt-16 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm"> <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+Cẩm Nang Sử Dụng Công Cụ Đếm Ngày Yêu Nhau
+</h2> <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4"> <p>
+Trong tình yêu, mỗi ngày bên nhau đều là một món quà. Công cụ <strong>Đếm Ngày Yêu Nhau (Love Counter)</strong> được phát triển nhằm giúp các cặp đôi dễ dàng lưu giữ và nhìn lại chặng đường gắn bó tuyệt vời của mình.
+</p> <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">1. Nguyên tắc bảo mật tuyệt đối thông tin</h3> <p>
+Tất cả dữ liệu của hai bạn bao gồm **tên gọi, ngày bắt đầu yêu, hình ảnh đại diện** được xử lý hoàn toàn trực tiếp ngay trên trình duyệt của bạn (Client-Side). Chúng tôi lưu thông tin vào LocalStorage của thiết bị để tự động hiển thị trong những lần truy cập sau mà **hoàn toàn không tải bất kỳ thông tin nào lên máy chủ**. Quyền riêng tư của bạn được bảo mật 100%.
+</p> <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">2. Cách đếm ngày yêu nhau chính xác</h3> <p>
+Công cụ tính toán số ngày bằng cách tính khoảng chênh lệch mili-giây giữa thời điểm hiện tại và ngày bắt đầu yêu được chọn, sau đó quy đổi thành số ngày chẵn. Đồng hồ đếm chi tiết cũng quy đổi chính xác số năm (365 ngày), số tháng (trung bình 30.44 ngày) để đưa ra chỉ số trực quan nhất.
+</p> </div> </section> </main> <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BusinessApplication",
+      "name": "Công cụ đếm ngày yêu nhau online",
+      "operatingSystem": "All",
+      "applicationCategory": "LifestyleApplication",
+      "browserRequirements": "Requires JavaScript. Requires HTML5 LocalStorage.",
+      "url": "https://trolyso.vn/calculators/dem-ngay-yeu-nhau/",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "VND"
+      }
+    }
+  </script> <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Dữ liệu ảnh đại diện của tôi có bị tải lên mạng không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Không, tất cả ảnh đại diện tải lên được mã hóa dưới dạng chuỗi base64 và lưu trữ cục bộ trong bộ nhớ trình duyệt (LocalStorage) của bạn, không gửi về bất kỳ máy chủ nào."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Tôi có thể đổi ngày bắt đầu yêu sau khi lưu không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Có, bạn chỉ cần chọn lại ngày mới hoặc chỉnh sửa tên và nhấn lại nút Lưu & Tạo Kỷ Niệm."
+        }
+      }]
+    }
+  </script>  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loveStartDateInput = document.getElementById('loveStartDate');
+      const name1Input = document.getElementById('name1');
+      const name2Input = document.getElementById('name2');
+      const avatar1Input = document.getElementById('avatar1');
+      const avatar2Input = document.getElementById('avatar2');
+      const btnSave = document.getElementById('btnSave');
+
+      const displayAvatar1 = document.getElementById('displayAvatar1');
+      const displayAvatar2 = document.getElementById('displayAvatar2');
+      const displayName1 = document.getElementById('displayName1');
+      const displayName2 = document.getElementById('displayName2');
+
+      const totalDaysVal = document.getElementById('totalDaysVal');
+      const yearsVal = document.getElementById('yearsVal');
+      const monthsVal = document.getElementById('monthsVal');
+      const daysRemainderVal = document.getElementById('daysRemainderVal');
+      const secondsVal = document.getElementById('secondsVal');
+      const heartsContainer = document.getElementById('heartsContainer');
+      const pulseHeart = document.getElementById('pulseHeart');
+
+      // Set default date to exactly 1 year ago if no date saved
+      const oneYearAgo = new Date();
+      oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+      loveStartDateInput.value = oneYearAgo.toISOString().split('T')[0];
+
+      // Load saved state
+      function loadSavedData() {
+        const savedDate = localStorage.getItem('love_start_date');
+        const savedName1 = localStorage.getItem('love_name1');
+        const savedName2 = localStorage.getItem('love_name2');
+        const savedAvatar1 = localStorage.getItem('love_avatar1');
+        const savedAvatar2 = localStorage.getItem('love_avatar2');
+
+        if (savedDate) loveStartDateInput.value = savedDate;
+        if (savedName1) {
+          name1Input.value = savedName1;
+          displayName1.textContent = savedName1;
+        }
+        if (savedName2) {
+          name2Input.value = savedName2;
+          displayName2.textContent = savedName2;
+        }
+        if (savedAvatar1) displayAvatar1.src = savedAvatar1;
+        if (savedAvatar2) displayAvatar2.src = savedAvatar2;
+      }
+
+      // Convert file to Base64
+      function handleAvatarChange(input, displayImg, storageKey) {
+        const file = input.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const dataUrl = e.target.result;
+            displayImg.src = dataUrl;
+            localStorage.setItem(storageKey, dataUrl);
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+
+      avatar1Input.addEventListener('change', () => handleAvatarChange(avatar1Input, displayAvatar1, 'love_avatar1'));
+      avatar2Input.addEventListener('change', () => handleAvatarChange(avatar2Input, displayAvatar2, 'love_avatar2'));
+
+      btnSave.addEventListener('click', () => {
+        localStorage.setItem('love_start_date', loveStartDateInput.value);
+        localStorage.setItem('love_name1', name1Input.value);
+        localStorage.setItem('love_name2', name2Input.value);
+
+        displayName1.textContent = name1Input.value;
+        displayName2.textContent = name2Input.value;
+
+        // trigger floating heart animation
+        createFloatingHeart();
+      });
+
+      // Update counters in real time
+      function updateCounters() {
+        const startDateStr = loveStartDateInput.value;
+        if (!startDateStr) return;
+
+        const start = new Date(startDateStr);
+        const now = new Date();
+        const diffMs = now - start;
+
+        if (diffMs < 0) {
+          totalDaysVal.textContent = '0';
+          yearsVal.textContent = '0';
+          monthsVal.textContent = '0';
+          daysRemainderVal.textContent = '0';
+          secondsVal.textContent = '0';
+          return;
+        }
+
+        const diffSeconds = Math.floor(diffMs / 1000);
+        const diffMinutes = Math.floor(diffSeconds / 60);
+        const diffHours = Math.floor(diffMinutes / 60);
+        const diffDays = Math.floor(diffHours / 24);
+
+        totalDaysVal.textContent = diffDays.toLocaleString();
+
+        // Calculate breakdown
+        const years = Math.floor(diffDays / 365);
+        const months = Math.floor((diffDays % 365) / 30.44);
+        const days = Math.floor((diffDays % 365) % 30.44);
+        const secs = now.getSeconds();
+
+        yearsVal.textContent = years;
+        monthsVal.textContent = months;
+        daysRemainderVal.textContent = days;
+        secondsVal.textContent = secs < 10 ? '0' + secs : secs;
+      }
+
+      // Create floating heart effect
+      function createFloatingHeart() {
+        const heart = document.createElement('div');
+        heart.innerHTML = '❤️';
+        heart.className = 'absolute text-red-400/70 text-lg transition-all duration-3000 pointer-events-none select-none z-0';
+        
+        // Random horizontal positions
+        const startX = Math.random() * heartsContainer.clientWidth;
+        heart.style.left = startX + 'px';
+        heart.style.bottom = '0px';
+        heart.style.transform = `scale(${0.5 + Math.random()})`;
+        
+        heartsContainer.appendChild(heart);
+
+        // Animate up
+        setTimeout(() => {
+          heart.style.bottom = '100%';
+          heart.style.left = (startX + (Math.random() - 0.5) * 200) + 'px';
+          heart.style.opacity = '0';
+        }, 50);
+
+        // Remove element after animation
+        setTimeout(() => {
+          heart.remove();
+        }, 3000);
+      }
+
+      pulseHeart.addEventListener('click', createFloatingHeart);
+
+      loadSavedData();
+      setInterval(updateCounters, 1000);
+      updateCounters(); // Run initially
+    });
+  </script>  <!-- Footer --> <footer class="bg-white dark:bg-brand-darkCard border-t border-slate-200 dark:border-slate-800 py-10 text-sm text-slate-500 dark:text-slate-400 mt-auto transition-colors"> <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6"> <!-- Copyright & Social Links --> <div class="flex flex-col items-center md:items-start gap-3"> <p>© 2026 Trợ Lý Số (trolyso.online). Bảo lưu mọi quyền.</p> <!-- Social Icons (Placeholder links) --> <div class="flex items-center gap-4"> <!-- Zalo --> <a href="#" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-brand-blue dark:hover:text-brand-mint transition-colors" title="Liên hệ Zalo" aria-label="Liên hệ Zalo"> <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"> <path d="M12 2C6.48 2 2 6.48 2 12c0 1.93.55 3.73 1.5 5.25L2 22l4.75-1.5c1.52.95 3.32 1.5 5.25 1.5 5.52 0 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"></path> </svg> </a> <!-- Facebook --> <a href="#" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-brand-blue dark:hover:text-brand-mint transition-colors" title="Facebook" aria-label="Facebook"> <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"> <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1V12h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"></path> </svg> </a> <!-- Gmail --> <a href="mailto:" class="text-slate-500 hover:text-brand-blue dark:hover:text-brand-mint transition-colors" title="Email liên hệ" aria-label="Email liên hệ"> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path> </svg> </a> </div> </div> <!-- Footer Links & Language Switcher --> <div class="flex flex-col items-center md:items-end gap-3"> <div class="flex gap-4"> <a href="/dieu-khoan/" class="hover:underline">Điều khoản</a> <a href="/chinh-sach-bao-mat/" class="hover:underline">Chính sách bảo mật</a> </div> <!-- Language Selector --> <div class="flex items-center gap-2"> <span class="text-xs text-slate-500 dark:text-slate-400">Ngôn ngữ:</span> <select id="langSelector" aria-label="Chọn ngôn ngữ hiển thị" class="px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-brand-blue dark:focus:ring-brand-mint cursor-pointer"> <option value="vi" selected>Tiếng Việt (VI)</option> <option value="en">English (EN)</option> </select> </div> </div> </div> </footer> <!-- Theme toggle & Global search client logic -->  </body> </html>
