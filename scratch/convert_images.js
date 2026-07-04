@@ -8,13 +8,17 @@ const publicDir = './public/images/blog';
 const files = fs.readdirSync(brainDir);
 
 const mapping = {
+  // First post
   'toi_duoc_giam_bao_nhieu_thue_nam_2026_hero': 'toi-duoc-giam-bao-nhieu-thue-nam-2026-hero.webp',
   'toi_duoc_giam_bao_nhieu_thue_nam_2026_giam_tru': 'toi-duoc-giam-bao-nhieu-thue-nam-2026-giam-tru.webp',
-  'toi_duoc_giam_bao_nhieu_thue_nam_2026_nhan_luc': 'toi-duoc-giam-bao-nhieu-thue-nam-2026-nhan-luc.webp'
+  'toi_duoc_giam_bao_nhieu_thue_nam_2026_nhan_luc': 'toi-duoc-giam-bao-nhieu-thue-nam-2026-nhan-luc.webp',
+  // Second post (new)
+  'may_tinh_tang_luong_sau_cai_cach_thue_hero': 'may-tinh-tang-luong-sau-cai-cach-thue-hero.webp',
+  'may_tinh_tang_luong_sau_cai_cach_thue_bang_luong': 'may-tinh-tang-luong-sau-cai-cach-thue-bang-luong.webp',
+  'may_tinh_tang_luong_sau_cai_cach_thue_tu_van': 'may-tinh-tang-luong-sau-cai-cach-thue-tu-van.webp'
 };
 
 async function convert() {
-  // Ensure destination directory exists
   if (!fs.existsSync(publicDir)) {
     fs.mkdirSync(publicDir, { recursive: true });
   }
@@ -25,6 +29,7 @@ async function convert() {
       const inputPath = path.join(brainDir, fileMatch);
       const outputPath = path.join(publicDir, outputName);
       
+      // Check if output already exists (to avoid duplicate processing unless we want to overwrite)
       console.log(`Converting ${fileMatch} to ${outputName}...`);
       
       await sharp(inputPath)
@@ -35,7 +40,7 @@ async function convert() {
       const stats = fs.statSync(outputPath);
       console.log(`Success! File size: ${(stats.size / 1024).toFixed(2)} KB`);
     } else {
-      console.log(`Error: No file found matching ${prefix}`);
+      console.log(`Note: No file found matching prefix: ${prefix}`);
     }
   }
 }
