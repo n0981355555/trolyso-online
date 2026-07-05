@@ -188,6 +188,12 @@ import Layout from '../../../layouts/Layout.astro';
     // Maximum SVG Dasharray for gauge (represents 100% dial)
     const MAX_DASH = 400; // Match SVG circle stroke-dasharray
 
+    // State Variables for smooth animation
+    let currentSpeed = 0;
+    let targetSpeed = 0;
+    let animationFrameId = null;
+    let isTesting = false;
+
     // Fetch client IP on load
     async function fetchIpAddress() {
       try {
@@ -205,6 +211,20 @@ import Layout from '../../../layouts/Layout.astro';
       const capped = Math.min(mbps, 100);
       const dashoffset = (capped / 100) * MAX_DASH;
       gaugeProgress.setAttribute('stroke-dasharray', `${dashoffset} 535`);
+    }
+
+    // Smooth needle animation loop (glides smoothly using Lerp)
+    function updateGaugeAnimation() {
+      if (!isTesting) return;
+      
+      // Lerp current speed towards target speed
+      currentSpeed += (targetSpeed - currentSpeed) * 0.12;
+      
+      // Update display numbers and SVG dial progress
+      speedVal.textContent = currentSpeed.toFixed(2);
+      setGauge(currentSpeed);
+      
+      animationFrameId = requestAnimationFrame(updateGaugeAnimation);
     }
 
     // Measure Ping & Jitter
@@ -240,7 +260,7 @@ import Layout from '../../../layouts/Layout.astro';
       const reader = response.body.getReader();
       let receivedBytes = 0;
       
-      // Read chunks dynamically to simulate needles moving
+      // Read chunks dynamically
       while(true) {
         const { done, value } = await reader.read();
         if (done) break;
@@ -250,52 +270,53 @@ import Layout from '../../../layouts/Layout.astro';
         const elapsedSecs = (performance.now() - start) / 1000;
         if (elapsedSecs > 0) {
           const mbps = (receivedBytes * 8) / (1024 * 1024) / elapsedSecs;
-          speedVal.textContent = mbps.toFixed(2);
-          setGauge(mbps);
+          // Add a tiny random oscillation to feel natural
+          targetSpeed = mbps * (0.96 + Math.random() * 0.08);
         }
       }
 
       const totalElapsed = (performance.now() - start) / 1000;
       const finalDownloadSpeed = (receivedBytes * 8) / (1024 * 1024) / totalElapsed;
-      
-      speedVal.textContent = finalDownloadSpeed.toFixed(2);
-      finalDownload.textContent = finalDownloadSpeed.toFixed(2);
-      setGauge(finalDownloadSpeed);
       return finalDownloadSpeed;
     }
 
-    // Measure Upload Speed
+    // Measure Upload Speed using XMLHttpRequest for native progress tracking
     async function testUpload() {
       gaugeLabel.textContent = 'UPLOAD';
-      const start = performance.now();
       
-      // Generate 2MB dummy payload
-      const payloadSize = 2 * 1024 * 1024;
+      // Generate 1.5MB dummy payload (perfect size for consistent measurement)
+      const payloadSize = 1.5 * 1024 * 1024;
       const dummyData = new Uint8Array(payloadSize);
       
-      // Simulated uploading updates
-      let simulatedSpeed = 0;
-      const interval = setInterval(() => {
-        // Mock increment speed needles
-        simulatedSpeed += (Math.random() * 8 + 2);
-        speedVal.textContent = Math.min(simulatedSpeed, 35).toFixed(2);
-        setGauge(simulatedSpeed);
-      }, 200);
-
-      await fetch(UPLOAD_URL, {
-        method: 'POST',
-        body: dummyData,
-        cache: 'no-store'
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        const start = performance.now();
+        
+        xhr.upload.onprogress = (event) => {
+          if (event.lengthComputable) {
+            const elapsedSecs = (performance.now() - start) / 1000;
+            if (elapsedSecs > 0) {
+              const uploadedBytes = event.loaded;
+              const mbps = (uploadedBytes * 8) / (1024 * 1024) / elapsedSecs;
+              // Smooth needle animation with a slight fluctuation to feel alive
+              targetSpeed = mbps * (0.96 + Math.random() * 0.08);
+            }
+          }
+        };
+        
+        xhr.onload = () => {
+          const totalElapsed = (performance.now() - start) / 1000;
+          const finalUploadSpeed = (payloadSize * 8) / (1024 * 1024) / totalElapsed;
+          resolve(finalUploadSpeed);
+        };
+        
+        xhr.onerror = () => {
+          reject(new Error('Upload failed'));
+        };
+        
+        xhr.open('POST', UPLOAD_URL, true);
+        xhr.send(dummyData);
       });
-
-      clearInterval(interval);
-      const totalElapsed = (performance.now() - start) / 1000;
-      const finalUploadSpeed = (payloadSize * 8) / (1024 * 1024) / totalElapsed;
-
-      speedVal.textContent = finalUploadSpeed.toFixed(2);
-      finalUpload.textContent = finalUploadSpeed.toFixed(2);
-      setGauge(finalUploadSpeed);
-      return finalUploadSpeed;
     }
 
     // Main Control Trigger
@@ -313,21 +334,44 @@ import Layout from '../../../layouts/Layout.astro';
       speedVal.textContent = '0.00';
       setGauge(0);
 
+      // Start animation loop
+      currentSpeed = 0;
+      targetSpeed = 0;
+      isTesting = true;
+      updateGaugeAnimation();
+
       try {
         // Phase 1: Latency
         gaugeLabel.textContent = 'LATENCY';
         await testLatency();
 
         // Phase 2: Download
-        await testDownload();
+        const downloadSpeedResult = await testDownload();
 
-        // Wait 1s transition
-        await new Promise(r => setTimeout(r, 1000));
+        // Transition: Drop needle smoothly to 0 before starting Upload
+        await new Promise(r => setTimeout(r, 800));
+        targetSpeed = 0;
+        await new Promise(r => setTimeout(r, 600));
 
         // Phase 3: Upload
-        await testUpload();
+        const uploadSpeedResult = await testUpload();
+        
+        // Stop animation loop and set final exact speeds
+        isTesting = false;
+        if (animationFrameId) cancelAnimationFrame(animationFrameId);
+
+        // Report both results at the bottom together
+        finalDownload.textContent = downloadSpeedResult.toFixed(2);
+        finalUpload.textContent = uploadSpeedResult.toFixed(2);
+
+        // Display final upload speed on center gauge
+        speedVal.textContent = uploadSpeedResult.toFixed(2);
+        setGauge(uploadSpeedResult);
+
       } catch (err) {
         console.error(err);
+        isTesting = false;
+        if (animationFrameId) cancelAnimationFrame(animationFrameId);
         speedVal.textContent = 'ERROR';
       } finally {
         // Reset states
