@@ -19,6 +19,9 @@ Trợ Lý Số (trolyso.online) cung cấp các công cụ tính toán tài chí
 - [Đếm Ngày Yêu Nhau](https://trolyso.online/calculators/dem-ngay-yeu-nhau/): Công cụ đếm ngày yêu nhau (Love Counter) chạy giây thực tế và lưu trữ local.
 - [Lịch Vạn Niên & Lịch Âm](https://trolyso.online/calculators/lich-van-nien/): Xem lịch âm dương, đổi ngày âm dương và xem giờ hoàng đạo tốt lành.
 - [Đo Tốc Độ Mạng Speedtest](https://trolyso.online/calculators/speedtest/): Kiểm tra tốc độ download, upload và ping mạng internet tức thì.
+- [Gộp Nhiều File PDF](https://trolyso.online/calculators/gop-pdf/): Ghép nối nhiều file PDF rời thành một tài liệu duy nhất client-side.
+- [Chuyển PDF Sang Word](https://trolyso.online/calculators/pdf-sang-word/): Trích xuất ký tự và convert PDF sang Word .docx không lỗi font.
+- [Chuyển Word Sang PDF](https://trolyso.online/calculators/word-sang-pdf/): Đổi đuôi tệp Word .docx sang PDF trực tuyến giữ nguyên lề.
 
 ## Cẩm nang hướng dẫn (Blog)
 
@@ -31,6 +34,9 @@ Trợ Lý Số (trolyso.online) cung cấp các công cụ tính toán tài chí
 - [Bài viết: Hướng dẫn sử dụng đếm ngày yêu nhau](https://trolyso.online/blog/cach-su-dung-trinh-dem-ngay-yeu-nhau/): Cách thiết lập đồng hồ đếm ngày yêu nhau online bảo mật cục bộ.
 - [Bài viết: Hướng dẫn tra cứu lịch vạn niên](https://trolyso.online/blog/huong-dan-tra-cuu-lich-van-nien-lich-am-hom-nay/): Cách xem lịch âm dương, tính Can Chi ngày tháng và chọn giờ hoàng đạo xuất hành.
 - [Bài viết: Hướng dẫn đo tốc độ mạng Speedtest](https://trolyso.online/blog/huong-dan-kiem-tra-toc-do-mang-speedtest-online/): Cách kiểm tra tốc độ internet và tối ưu băng thông Wifi 4G 5G.
+- [Bài viết: Hướng dẫn gộp nhiều file PDF](https://trolyso.online/blog/huong-dan-gop-nhieu-file-pdf-lam-mot-truc-tuyen/): Ghép nối nhiều file PDF rời thành một tài liệu duy nhất trực tuyến.
+- [Bài viết: Cách chuyển PDF sang Word](https://trolyso.online/blog/cach-chuyen-pdf-sang-word-online-khong-loi-font/): Convert PDF sang Word .docx online miễn phí không lỗi font chữ.
+- [Bài viết: Cách chuyển Word sang PDF](https://trolyso.online/blog/cach-chuyen-word-sang-pdf-online-mien-phi/): Đổi đuôi tệp Word .docx sang PDF trực tuyến giữ nguyên lề và định dạng.
 
 ## Chủ đề từ khóa (Tags)
 

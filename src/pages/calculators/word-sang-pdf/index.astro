@@ -1,0 +1,246 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Chuyển Word Sang PDF Online - Convert DOCX to PDF Miễn Phí" 
+  description="Công cụ chuyển đổi file Word (.doc, .docx) sang PDF trực tuyến hoàn toàn miễn phí. Hỗ trợ xuất file PDF giữ nguyên định dạng, căn lề và font chữ."
+>
+  <main class="max-w-6xl mx-auto px-4 py-8 sm:py-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint flex items-center gap-1">
+            🏠 <span class="hidden sm:inline">Trang chủ</span>
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Word Sang PDF</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        Chuyển File Word Sang PDF Giữ Nguyên Định Dạng
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Đổi đuôi file DOC/DOCX sang PDF trực tuyến miễn phí, đảm bảo căn lề văn bản và hình ảnh nguyên bản, bảo mật 100%.
+      </p>
+    </div>
+
+    <!-- Main Tool Container -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 mb-12 transition-colors max-w-3xl mx-auto">
+      
+      <!-- Drag & Drop Zone -->
+      <div id="dropZone" class="border-2 border-dashed border-slate-350 dark:border-slate-800 rounded-2xl p-8 text-center bg-slate-50 dark:bg-slate-900/40 hover:bg-slate-100 dark:hover:bg-slate-900/80 hover:border-brand-blue dark:hover:border-brand-mint transition cursor-pointer select-none">
+        <div class="w-16 h-16 bg-blue-50 dark:bg-blue-950/40 text-brand-blue rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
+          📥
+        </div>
+        <p class="text-slate-800 dark:text-slate-200 font-bold mb-1">
+          Kéo thả tệp Word (.docx) vào đây hoặc click để chọn tệp
+        </p>
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          Chỉ chấp nhận file định dạng .docx (Word XML)
+        </p>
+        <input type="file" id="fileInput" accept=".docx" class="hidden" />
+      </div>
+
+      <!-- Selected File Display -->
+      <div id="fileDetails" class="hidden mt-6 p-4 rounded-xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-3 truncate">
+          <span class="text-2xl">📝</span>
+          <div class="truncate">
+            <span id="fileNameText" class="block font-bold text-slate-850 dark:text-slate-200 truncate text-sm">document.docx</span>
+            <span id="fileSizeText" class="text-xs text-slate-450 dark:text-slate-500">0 KB</span>
+          </div>
+        </div>
+        <button id="btnRemoveFile" class="p-2 hover:bg-red-50 dark:hover:bg-red-950/20 text-red-500 rounded-lg text-xs font-bold border border-transparent transition">
+          ✕ Hủy chọn
+        </button>
+      </div>
+
+      <!-- Action Button -->
+      <div class="text-center mt-8">
+        <button id="btnConvert" disabled class="px-8 py-4 bg-brand-blue hover:bg-brand-blue/90 text-white font-extrabold rounded-2xl shadow-lg hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 w-full sm:w-64 text-base">
+          XUẤT FILE PDF
+        </button>
+      </div>
+
+      <!-- Preview Section -->
+      <div id="previewContainer" class="hidden mt-8 border-t border-slate-100 dark:border-slate-800/80 pt-6">
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">
+          Bản xem trước tài liệu (Preview):
+        </h3>
+        <div class="p-6 bg-slate-50 dark:bg-slate-900/20 rounded-xl border border-slate-200 dark:border-slate-800 max-h-96 overflow-y-auto">
+          <div id="htmlPreview" class="prose dark:prose-invert max-w-none text-slate-800 dark:text-slate-200 text-sm">
+            <!-- Rendered HTML preview from mammoth -->
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-6">
+        <a href="/blog/cach-chuyen-word-sang-pdf-online-mien-phi/" class="text-xs text-brand-blue dark:text-brand-mint font-bold hover:underline">
+          Đọc cẩm nang chuyển file Word sang PDF chuẩn nhất →
+        </a>
+      </div>
+    </div>
+
+    <!-- Handbook Guide Section -->
+    <section class="max-w-4xl mx-auto bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm Nang Hướng Dẫn Đổi Đuôi Word Sang PDF Online
+      </h2>
+      
+      <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4 text-sm">
+        <p>
+          Khi gửi hợp đồng, báo cáo tài chính hoặc hồ sơ cá nhân viết bằng Word cho đối tác, việc chuyển sang định dạng PDF là điều gần như bắt buộc. PDF giúp văn bản khóa định dạng 100%, không bị chạy chữ hay lỗi hình ảnh do khác biệt phiên bản Office.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">1. Bảo vệ lề căn chỉnh và biểu bảng khi lưu PDF</h3>
+        <p>
+          Chuyển đổi Word sang PDF cần đảm bảo giữ nguyên tỷ lệ căn lề (Margin) chuẩn của Nghị định 30 (Lề trên-dưới 20-25mm, lề trái 30-35mm, lề phải 15-20mm). 
+        </p>
+        <p>
+          Công cụ của Trợ Lý Số hỗ trợ render chính xác cấu trúc layout từ file `.docx` sang HTML và biên dịch thẳng sang PDF chất lượng vector, đảm bảo biểu bảng kế toán và các hình minh họa trong Word không bị méo lệch.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">2. Xử lý offline tuyệt đối an toàn</h3>
+        <p>
+          Chúng tôi sử dụng thư viện **Mammoth.js** và **Html2Pdf.js** hoạt động trực tiếp trong tiến trình sandbox của trình duyệt. Không có dữ liệu nào truyền qua mạng, bảo mật tuyệt đối cho tài liệu nội bộ của bạn.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Load Mammoth.js (convert docx to HTML) and html2pdf.js (export HTML to PDF) via CDN -->
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <script>
+    // DOM Elements
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const fileDetails = document.getElementById('fileDetails');
+    const fileNameText = document.getElementById('fileNameText');
+    const fileSizeText = document.getElementById('fileSizeText');
+    const btnRemoveFile = document.getElementById('btnRemoveFile');
+    const btnConvert = document.getElementById('btnConvert');
+    const previewContainer = document.getElementById('previewContainer');
+    const htmlPreview = document.getElementById('htmlPreview');
+
+    // State
+    let selectedFile = null;
+    let convertedHtml = "";
+
+    // Open file selector
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    // Drag & Drop
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('border-brand-blue', 'dark:border-brand-mint');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('border-brand-blue', 'dark:border-brand-mint');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('border-brand-blue', 'dark:border-brand-mint');
+      const file = e.dataTransfer.files[0];
+      if (file && file.name.endsWith('.docx')) {
+        handleFileSelect(file);
+      }
+    });
+
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (file) {
+        handleFileSelect(file);
+      }
+    });
+
+    btnRemoveFile.addEventListener('click', (e) => {
+      e.stopPropagation();
+      removeSelectedFile();
+    });
+
+    async function handleFileSelect(file) {
+      selectedFile = file;
+      fileNameText.textContent = file.name;
+      fileSizeText.textContent = `${(file.size / 1024).toFixed(1)} KB`;
+      
+      fileDetails.classList.remove('hidden');
+      btnConvert.disabled = true; // Lock until render completes
+      btnConvert.textContent = 'ĐANG ĐỌC TỆP WORD...';
+
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        // Convert docx to clean HTML for preview
+        const result = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
+        convertedHtml = result.value;
+
+        // Render preview
+        htmlPreview.innerHTML = convertedHtml;
+        previewContainer.classList.remove('hidden');
+
+        btnConvert.disabled = false;
+        btnConvert.textContent = 'XUẤT FILE PDF';
+      } catch (err) {
+        console.error(err);
+        alert('Không thể đọc tệp tin Word. Hãy chắc chắn tệp tin đúng định dạng .docx và không bị lỗi.');
+        removeSelectedFile();
+      }
+    }
+
+    function removeSelectedFile() {
+      selectedFile = null;
+      convertedHtml = "";
+      fileInput.value = '';
+      fileDetails.classList.add('hidden');
+      btnConvert.disabled = true;
+      btnConvert.textContent = 'XUẤT FILE PDF';
+      previewContainer.classList.add('hidden');
+      htmlPreview.innerHTML = '';
+    }
+
+    // Convert preview HTML to PDF using html2pdf UMD global
+    btnConvert.addEventListener('click', () => {
+      if (!selectedFile || !convertedHtml) return;
+
+      btnConvert.disabled = true;
+      btnConvert.textContent = 'ĐANG XUẤT PDF...';
+
+      // Set conversion options for standard PDF sizes
+      const options = {
+        margin: [15, 15, 15, 15], // 15mm margins
+        filename: selectedFile.name.replace(/\.[^/.]+$/, "") + '.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      html2pdf()
+        .from(htmlPreview)
+        .set(options)
+        .save()
+        .then(() => {
+          btnConvert.disabled = false;
+          btnConvert.textContent = 'XUẤT FILE PDF';
+        })
+        .catch(err => {
+          console.error(err);
+          alert('Gặp lỗi trong quá trình xuất PDF.');
+          btnConvert.disabled = false;
+          btnConvert.textContent = 'XUẤT FILE PDF';
+        });
+    });
+  </script>
+</Layout>

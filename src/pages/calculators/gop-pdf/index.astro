@@ -1,0 +1,272 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Gộp File PDF Online - Ghép Nhiều File PDF Miễn Phí" 
+  description="Công cụ ghép, nối nhiều tệp tin PDF thành một file duy nhất trực tuyến miễn phí. An toàn, bảo mật dữ liệu tuyệt đối, không bị lỗi định dạng."
+>
+  <main class="max-w-6xl mx-auto px-4 py-8 sm:py-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint flex items-center gap-1">
+            🏠 <span class="hidden sm:inline">Trang chủ</span>
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Gộp PDF</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        Gộp File PDF Trực Tuyến
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Ghép nhiều tài liệu PDF riêng lẻ thành một file duy nhất hoàn toàn miễn phí, an toàn và nhanh chóng.
+      </p>
+    </div>
+
+    <!-- Main Tool Box -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 mb-12 transition-colors max-w-3xl mx-auto">
+      
+      <!-- Drag & Drop Zone -->
+      <div id="dropZone" class="border-2 border-dashed border-slate-350 dark:border-slate-800 rounded-2xl p-8 text-center bg-slate-50 dark:bg-slate-900/40 hover:bg-slate-100 dark:hover:bg-slate-900/80 hover:border-brand-blue dark:hover:border-brand-mint transition cursor-pointer select-none">
+        <div class="w-16 h-16 bg-red-50 dark:bg-red-950/40 text-red-500 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
+          📥
+        </div>
+        <p class="text-slate-800 dark:text-slate-200 font-bold mb-1">
+          Kéo thả các file PDF vào đây hoặc click để chọn tệp
+        </p>
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          Chỉ chấp nhận file định dạng .pdf (Bạn có thể chọn nhiều file cùng lúc)
+        </p>
+        <input type="file" id="fileInput" accept="application/pdf" multiple class="hidden" />
+      </div>
+
+      <!-- Selected Files List -->
+      <div id="filesListContainer" class="hidden mt-8">
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">
+          Danh sách tệp tin đã chọn (Kéo/chọn thứ tự ghép):
+        </h3>
+        <div id="filesList" class="space-y-3">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <div class="text-center mt-8">
+        <button id="btnMerge" disabled class="px-8 py-4 bg-red-500 hover:bg-red-600 text-white font-extrabold rounded-2xl shadow-lg shadow-red-500/10 hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 w-full sm:w-64 text-base">
+          GỘP FILE PDF
+        </button>
+      </div>
+
+      <div class="text-center mt-6">
+        <a href="/blog/huong-dan-gop-nhieu-file-pdf-lam-mot-truc-tuyen/" class="text-xs text-brand-blue dark:text-brand-mint font-bold hover:underline">
+          Đọc cẩm nang ghép file PDF trực tuyến →
+        </a>
+      </div>
+    </div>
+
+    <!-- Handbook Guide Section -->
+    <section class="max-w-4xl mx-auto bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm Nang Hướng Dẫn Ghép File PDF
+      </h2>
+      
+      <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4 text-sm">
+        <p>
+          Ghép nhiều tệp tin PDF rời rạc (báo cáo, hóa đơn, tài liệu học tập...) thành một file duy nhất giúp quá trình lưu trữ, in ấn và chia sẻ cho người khác trở nên dễ dàng và gọn gàng hơn.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">1. Đảm bảo an toàn bảo mật tuyệt đối khi gộp PDF</h3>
+        <p>
+          Rất nhiều trang web gộp PDF trực tuyến hiện nay yêu cầu bạn tải file lên máy chủ (Server) của họ để xử lý. Điều này tiềm ẩn nguy cơ rò rỉ dữ liệu hoặc mất thông tin đối với các tài liệu tài chính, hợp đồng nhạy cảm. 
+        </p>
+        <blockquote class="border-l-4 border-red-500 bg-red-50 dark:bg-red-950/40 p-4 my-4 rounded-r-xl bg-red-500/5 text-slate-700 dark:text-slate-350">
+          Công cụ gộp PDF của Trợ Lý Số hoạt động **100% tại Client-side (trình duyệt của bạn)** thông qua thư viện Web Assembly. Các tệp tin PDF của bạn hoàn toàn nằm trên máy tính cá nhân, không tải lên internet, đảm bảo bảo mật tuyệt đối.
+        </blockquote>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">2. Hướng dẫn sắp xếp thứ tự trang trước khi gộp</h3>
+        <p>
+          Sau khi tải các tệp tin lên công cụ, bạn hãy kiểm tra kỹ danh sách. Bạn có thể sử dụng các nút mũi tên (Lên/Xuống) ở bên cạnh mỗi tệp tin để di chuyển vị trí, đảm bảo các tài liệu được gộp nối tiếp nhau đúng theo đúng trình tự nội dung mong muốn trước khi nhấn nút gộp.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Load PDF-Lib via CDN (UMD format, sets global PDFLib) -->
+  <script is:inline src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+
+  <script>
+    // DOM Elements
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const filesListContainer = document.getElementById('filesListContainer');
+    const filesList = document.getElementById('filesList');
+    const btnMerge = document.getElementById('btnMerge');
+
+    // State list
+    let loadedFiles = [];
+
+    // Drag and drop events
+    dropZone.addEventListener('click', () => fileInput.click());
+    
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('border-brand-blue', 'dark:border-brand-mint');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('border-brand-blue', 'dark:border-brand-mint');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('border-brand-blue', 'dark:border-brand-mint');
+      const files = Array.from(e.dataTransfer.files).filter(f => f.type === 'application/pdf');
+      handleFiles(files);
+    });
+
+    fileInput.addEventListener('change', () => {
+      const files = Array.from(fileInput.files);
+      handleFiles(files);
+      fileInput.value = ''; // Reset
+    });
+
+    // Handle files upload
+    function handleFiles(files) {
+      if (files.length === 0) return;
+
+      files.forEach(file => {
+        // Prevent duplicate loads
+        if (loadedFiles.some(f => f.name === file.name && f.size === file.size)) return;
+        
+        loadedFiles.push({
+          file: file,
+          name: file.name,
+          size: file.size
+        });
+      });
+
+      renderFilesList();
+    }
+
+    // Render list
+    function renderFilesList() {
+      filesList.innerHTML = '';
+      if (loadedFiles.length === 0) {
+        filesListContainer.classList.add('hidden');
+        btnMerge.disabled = true;
+        return;
+      }
+
+      filesListContainer.classList.remove('hidden');
+      btnMerge.disabled = loadedFiles.length < 2; // Need at least 2 files to merge
+
+      loadedFiles.forEach((fileObj, index) => {
+        const item = document.createElement('div');
+        item.className = "flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-100 dark:border-slate-800/80 transition-all";
+
+        const sizeKb = (fileObj.size / 1024).toFixed(1);
+
+        item.innerHTML = `
+          <div class="flex items-center gap-3 truncate pr-4">
+            <span class="text-lg">📄</span>
+            <div class="truncate">
+              <span class="block font-bold text-slate-800 dark:text-slate-200 truncate text-sm">${fileObj.name}</span>
+              <span class="text-xs text-slate-450 dark:text-slate-500">${sizeKb} KB</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <!-- Move Up -->
+            <button class="btn-up p-2 bg-white dark:bg-brand-darkCard hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-xs font-bold border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 transition" ${index === 0 ? 'disabled class="opacity-30 cursor-not-allowed"' : ''}>
+              ↑
+            </button>
+            <!-- Move Down -->
+            <button class="btn-down p-2 bg-white dark:bg-brand-darkCard hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-xs font-bold border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 transition" ${index === loadedFiles.length - 1 ? 'disabled class="opacity-30 cursor-not-allowed"' : ''}>
+              ↓
+            </button>
+            <!-- Delete -->
+            <button class="btn-del p-2 hover:bg-red-50 dark:hover:bg-red-950/20 text-red-500 rounded-lg text-xs font-bold border border-transparent transition">
+              ✕
+            </button>
+          </div>
+        `;
+
+        // Event listeners
+        item.querySelector('.btn-up').addEventListener('click', () => {
+          if (index > 0) {
+            const temp = loadedFiles[index];
+            loadedFiles[index] = loadedFiles[index - 1];
+            loadedFiles[index - 1] = temp;
+            renderFilesList();
+          }
+        });
+
+        item.querySelector('.btn-down').addEventListener('click', () => {
+          if (index < loadedFiles.length - 1) {
+            const temp = loadedFiles[index];
+            loadedFiles[index] = loadedFiles[index + 1];
+            loadedFiles[index + 1] = temp;
+            renderFilesList();
+          }
+        });
+
+        item.querySelector('.btn-del').addEventListener('click', () => {
+          loadedFiles.splice(index, 1);
+          renderFilesList();
+        });
+
+        filesList.appendChild(item);
+      });
+    }
+
+    // Merge logic using PDF-Lib UMD global PDFLib
+    btnMerge.addEventListener('click', async () => {
+      if (loadedFiles.length < 2) return;
+
+      btnMerge.disabled = true;
+      btnMerge.textContent = 'ĐANG GỘP FILE...';
+
+      try {
+        const mergedPdf = await PDFLib.PDFDocument.create();
+
+        for (const fileObj of loadedFiles) {
+          const fileBytes = await fileObj.file.arrayBuffer();
+          const pdfDoc = await PDFLib.PDFDocument.load(fileBytes);
+          const copiedPages = await mergedPdf.copyPages(pdfDoc, pdfDoc.getPageIndices());
+          copiedPages.forEach((page) => mergedPdf.addPage(page));
+        }
+
+        const mergedPdfBytes = await mergedPdf.save();
+        const blob = new Blob([mergedPdfBytes], { type: 'application/pdf' });
+        
+        // Trigger download
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'gop-file-viettoolbox.pdf';
+        document.body.appendChild(link);
+        link.click();
+        
+        // Clean up
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      } catch (err) {
+        console.error(err);
+        alert('Gặp lỗi trong quá trình gộp file PDF. Vui lòng kiểm tra lại tính hợp lệ của file.');
+      } finally {
+        btnMerge.disabled = false;
+        btnMerge.textContent = 'GỘP FILE PDF';
+      }
+    });
+  </script>
+</Layout>

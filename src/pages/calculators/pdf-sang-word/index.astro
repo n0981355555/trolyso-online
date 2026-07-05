@@ -1,0 +1,308 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Chuyển PDF Sang Word Online - Convert PDF to Word Miễn Phí" 
+  description="Công cụ chuyển đổi file PDF sang Word (.docx) trực tuyến hoàn toàn miễn phí. Hỗ trợ chuyển đổi nhanh, bảo mật dữ liệu tuyệt đối và không bị lỗi font chữ tiếng Việt."
+>
+  <main class="max-w-6xl mx-auto px-4 py-8 sm:py-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint flex items-center gap-1">
+            🏠 <span class="hidden sm:inline">Trang chủ</span>
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">PDF Sang Word</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        Chuyển PDF Sang Word Không Lỗi Font
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Tự động trích xuất nội dung từ tệp PDF và xuất bản thành file Word (.docx) chỉnh sửa dễ dàng, an toàn và bảo mật.
+      </p>
+    </div>
+
+    <!-- Main Tool Container -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 mb-12 transition-colors max-w-3xl mx-auto">
+      
+      <!-- Drag & Drop Zone -->
+      <div id="dropZone" class="border-2 border-dashed border-slate-350 dark:border-slate-800 rounded-2xl p-8 text-center bg-slate-50 dark:bg-slate-900/40 hover:bg-slate-100 dark:hover:bg-slate-900/80 hover:border-brand-blue dark:hover:border-brand-mint transition cursor-pointer select-none">
+        <div class="w-16 h-16 bg-blue-50 dark:bg-blue-950/40 text-brand-blue rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
+          📥
+        </div>
+        <p class="text-slate-800 dark:text-slate-200 font-bold mb-1">
+          Kéo thả tệp PDF cần chuyển đổi hoặc click chọn tệp
+        </p>
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          Chỉ chấp nhận file định dạng .pdf
+        </p>
+        <input type="file" id="fileInput" accept="application/pdf" class="hidden" />
+      </div>
+
+      <!-- Loaded file state details -->
+      <div id="fileDetails" class="hidden mt-6 p-4 rounded-xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-3 truncate">
+          <span class="text-2xl">📄</span>
+          <div class="truncate">
+            <span id="fileNameText" class="block font-bold text-slate-850 dark:text-slate-200 truncate text-sm">document.pdf</span>
+            <span id="fileSizeText" class="text-xs text-slate-450 dark:text-slate-500">0 KB</span>
+          </div>
+        </div>
+        <button id="btnRemoveFile" class="p-2 hover:bg-red-50 dark:hover:bg-red-950/20 text-red-500 rounded-lg text-xs font-bold border border-transparent transition">
+          ✕ Hủy chọn
+        </button>
+      </div>
+
+      <!-- Action Button -->
+      <div class="text-center mt-8">
+        <button id="btnConvert" disabled class="px-8 py-4 bg-brand-blue hover:bg-brand-blue/90 text-white font-extrabold rounded-2xl shadow-lg hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 w-full sm:w-64 text-base">
+          CHUYỂN SANG WORD
+        </button>
+      </div>
+
+      <!-- Progress Loader -->
+      <div id="progressContainer" class="hidden mt-6">
+        <div class="flex justify-between items-center text-xs font-semibold text-slate-500 dark:text-slate-450 mb-2">
+          <span id="progressText">Đang chuyển đổi tệp...</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="w-full bg-slate-100 dark:bg-slate-900 rounded-full h-2">
+          <div id="progressBar" class="bg-brand-blue dark:bg-brand-mint h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div class="text-center mt-6">
+        <a href="/blog/cach-chuyen-pdf-sang-word-online-khong-loi-font/" class="text-xs text-brand-blue dark:text-brand-mint font-bold hover:underline">
+          Đọc cẩm nang chuyển đổi PDF sang Word không lỗi font →
+        </a>
+      </div>
+    </div>
+
+    <!-- Handbook Guide Section -->
+    <section class="max-w-4xl mx-auto bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm Nang Hướng Dẫn Convert PDF Sang Word (.docx)
+      </h2>
+      
+      <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4 text-sm">
+        <p>
+          Định dạng PDF (Portable Document Format) giúp khóa bố cục tài liệu hoàn hảo để lưu trữ và phân phối, nhưng việc biên tập chỉnh sửa nội dung trực tiếp trên file PDF là cực kỳ phức tạp. Chuyển đổi PDF sang định dạng tài liệu Word (.docx) là cách dễ nhất để bạn chỉnh sửa và biên soạn lại nội dung.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">1. Tại sao chuyển đổi PDF sang Word hay bị lỗi font tiếng Việt?</h3>
+        <p>
+          Lỗi vỡ font chữ xảy ra khi các công cụ chuyển đổi sử dụng bộ mã hóa ký tự (encoding) cũ hoặc không nhận diện được các font tiếng Việt đặc thù (như các font .VNTime, VNI-Times). 
+        </p>
+        <p>
+          Công cụ của Trợ Lý Số sử dụng công nghệ trích xuất văn bản thông minh, hỗ trợ nhận dạng tốt các khối mã hóa Unicode UTF-8 tiêu chuẩn, đảm bảo văn bản tiếng Việt xuất ra luôn rõ nét, giữ nguyên chính tả, giúp bạn không mất thời gian gõ lại.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">2. An toàn dữ liệu tuyệt đối</h3>
+        <p>
+          Toàn bộ quy trình trích xuất văn bản PDF và tạo cấu trúc file `.docx` được thực hiện **ngay trong máy tính của bạn**. Không có bất kỳ trang tài liệu nào bị gửi đi trên internet, giúp bảo vệ 100% hồ sơ mật và thông tin mật của bạn.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Load PDFJS & Docx libraries from CDN (is:inline prevents bundling) -->
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+  <script is:inline src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
+
+  <script>
+    // Set PDFJS worker CDN URL
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+
+    // DOM Elements
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const fileDetails = document.getElementById('fileDetails');
+    const fileNameText = document.getElementById('fileNameText');
+    const fileSizeText = document.getElementById('fileSizeText');
+    const btnRemoveFile = document.getElementById('btnRemoveFile');
+    const btnConvert = document.getElementById('btnConvert');
+    const progressContainer = document.getElementById('progressContainer');
+    const progressText = document.getElementById('progressText');
+    const progressPercent = document.getElementById('progressPercent');
+    const progressBar = document.getElementById('progressBar');
+
+    // State
+    let selectedFile = null;
+
+    // Click dropZone to open selector
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    // Drag & Drop
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('border-brand-blue', 'dark:border-brand-mint');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('border-brand-blue', 'dark:border-brand-mint');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('border-brand-blue', 'dark:border-brand-mint');
+      const file = e.dataTransfer.files[0];
+      if (file && file.type === 'application/pdf') {
+        handleFileSelect(file);
+      }
+    });
+
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (file) {
+        handleFileSelect(file);
+      }
+    });
+
+    btnRemoveFile.addEventListener('click', (e) => {
+      e.stopPropagation(); // Stop opening file dialog
+      removeSelectedFile();
+    });
+
+    function handleFileSelect(file) {
+      selectedFile = file;
+      fileNameText.textContent = file.name;
+      fileSizeText.textContent = `${(file.size / 1024).toFixed(1)} KB`;
+      
+      fileDetails.classList.remove('hidden');
+      btnConvert.disabled = false;
+      progressContainer.classList.add('hidden');
+    }
+
+    function removeSelectedFile() {
+      selectedFile = null;
+      fileInput.value = '';
+      fileDetails.classList.add('hidden');
+      btnConvert.disabled = true;
+      progressContainer.classList.add('hidden');
+    }
+
+    // Convert PDF to Word using pdfjsLib & docx UMD
+    btnConvert.addEventListener('click', async () => {
+      if (!selectedFile) return;
+
+      // Lock buttons & show progress
+      btnConvert.disabled = true;
+      btnRemoveFile.disabled = true;
+      progressContainer.classList.remove('hidden');
+      
+      progressBar.style.width = '5%';
+      progressPercent.textContent = '5%';
+      progressText.textContent = 'Đang phân tích tệp PDF...';
+
+      try {
+        const fileBytes = await selectedFile.arrayBuffer();
+        const pdfDoc = await pdfjsLib.getDocument({ data: fileBytes }).promise;
+        const totalPages = pdfDoc.numPages;
+
+        const docParagraphs = [];
+
+        for (let pNum = 1; pNum <= totalPages; pNum++) {
+          progressText.textContent = `Đang trích xuất nội dung trang ${pNum}/${totalPages}...`;
+          const percentage = Math.round((pNum / totalPages) * 75) + 5;
+          progressBar.style.width = `${percentage}%`;
+          progressPercent.textContent = `${percentage}%`;
+
+          const page = await pdfDoc.getPage(pNum);
+          const textContent = await page.getTextContent();
+          
+          let pageText = '';
+          let lastY = -1;
+          
+          textContent.items.forEach((item) => {
+            // Group text by line breaks
+            if (lastY !== -1 && Math.abs(item.transform[5] - lastY) > 5) {
+              pageText += '\n';
+            }
+            pageText += item.str;
+            lastY = item.transform[5];
+          });
+
+          // Split page text into lines/paragraphs
+          const lines = pageText.split('\n');
+          lines.forEach(line => {
+            const trimmed = line.trim();
+            if (trimmed.length > 0) {
+              // Using UMD docx globals
+              docParagraphs.push(
+                new docx.Paragraph({
+                  children: [
+                    new docx.TextRun({
+                      text: trimmed,
+                      size: 24, // 12pt font size
+                      font: "Times New Roman"
+                    })
+                  ],
+                  spacing: { after: 120 } // Space after paragraph
+                })
+              );
+            }
+          });
+
+          // Page break indicator
+          if (pNum < totalPages) {
+            docParagraphs.push(
+              new docx.Paragraph({
+                children: [new docx.PageBreak()]
+              })
+            );
+          }
+        }
+
+        progressText.textContent = 'Đang đóng gói file Word...';
+        progressBar.style.width = '85%';
+        progressPercent.textContent = '85%';
+
+        // Create docx document using UMD docx
+        const doc = new docx.Document({
+          sections: [{
+            properties: {},
+            children: docParagraphs
+          }]
+        });
+
+        const wordBlob = await docx.Packer.toBlob(doc);
+
+        progressText.textContent = 'Hoàn tất! Đang tải file xuống...';
+        progressBar.style.width = '100%';
+        progressPercent.textContent = '100%';
+
+        // Trigger Download
+        const url = URL.createObjectURL(wordBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        // Rename file extension from .pdf to .docx
+        const nameWithoutExt = selectedFile.name.replace(/\.[^/.]+$/, "");
+        link.download = `${nameWithoutExt}-chuyen-doi.docx`;
+        document.body.appendChild(link);
+        link.click();
+
+        // Clean up
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      } catch (err) {
+        console.error(err);
+        alert('Gặp lỗi trong quá trình phân tích file PDF. Vui lòng kiểm tra lại tính hợp lệ của file.');
+      } finally {
+        btnConvert.disabled = false;
+        btnRemoveFile.disabled = false;
+      }
+    });
+  </script>
+</Layout>
