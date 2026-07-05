@@ -24,6 +24,7 @@ Trợ Lý Số (trolyso.online) cung cấp các công cụ tính toán tài chí
 - [Chuyển Word Sang PDF](https://trolyso.online/calculators/word-sang-pdf/): Đổi đuôi tệp Word .docx sang PDF trực tuyến giữ nguyên lề.
 - [Tra Cứu Mã Số Thuế](https://trolyso.online/calculators/tra-cuu-mst/): Tra cứu mã số thuế doanh nghiệp tự động và hướng dẫn tra cứu MST cá nhân bằng CCCD.
 - [Tạo CV Xin Việc Online](https://trolyso.online/calculators/tao-cv/): Viết và thiết kế mẫu CV xin việc online A4 đơn giản, xuất file PDF miễn phí.
+- [Xem Bói Bài Tarot Online](https://trolyso.online/calculators/xem-tarot/): Trải bài Tarot 1 lá hoặc 3 lá hằng ngày nhận thông điệp quá khứ, hiện tại, tương lai.
 
 ## Cẩm nang hướng dẫn (Blog)
 
@@ -41,6 +42,7 @@ Trợ Lý Số (trolyso.online) cung cấp các công cụ tính toán tài chí
 - [Bài viết: Cách chuyển Word sang PDF](https://trolyso.online/blog/cach-chuyen-word-sang-pdf-online-mien-phi/): Đổi đuôi tệp Word .docx sang PDF trực tuyến giữ nguyên lề và định dạng.
 - [Bài viết: Hướng dẫn tra cứu mã số thuế](https://trolyso.online/blog/huong-dan-tra-cuu-ma-so-thue-ca-nhan-va-doanh-nghiep/): Hướng dẫn kiểm tra MST cá nhân từ CCCD/CMND và tìm kiếm thông tin doanh nghiệp.
 - [Bài viết: Hướng dẫn viết mẫu CV đơn giản](https://trolyso.online/blog/huong-dan-tao-mau-cv-xin-viec-pdf-don-gian/): Mẹo viết CV xin việc thu hút nhà tuyển dụng và cách xuất file PDF A4 chuẩn lề.
+- [Bài viết: Hướng dẫn xem Tarot Online chính xác](https://trolyso.online/blog/huong-dan-xem-bai-tarot-online-chinh-xac/): Cách đọc ý nghĩa 22 lá bài ẩn chính Tarot trong tình yêu, sự nghiệp và sức khỏe.
 
 ## Chủ đề từ khóa (Tags)
 
