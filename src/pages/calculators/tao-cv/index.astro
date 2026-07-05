@@ -36,7 +36,7 @@ import Layout from '../../../layouts/Layout.astro';
         Tạo Mẫu CV Xin Việc PDF Đơn Giản
       </h1>
       <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-        Tự viết CV xin việc chuyên nghiệp online chỉ trong 5 phút. Nhập thông tin, xem thử trực tiếp và xuất file PDF chất lượng cao.
+        Tự viết CV xin việc chuyên nghiệp online chỉ trong 5 phút. Điền thông tin vào form, kiểm tra bản xem trước và tải file PDF chất lượng cao.
       </p>
     </div>
 
@@ -45,11 +45,8 @@ import Layout from '../../../layouts/Layout.astro';
       
       <!-- Left: Form inputs (5 cols) -->
       <div class="lg:col-span-5 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-xl space-y-6 max-h-[85vh] overflow-y-auto">
-        <h2 class="text-base font-heading font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3 flex justify-between items-center">
+        <h2 class="text-base font-heading font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">
           ✍️ Nhập Thông Tin CV
-          <button id="btnExportPDF" class="px-4 py-2 bg-brand-blue hover:bg-brand-blue/90 text-white font-extrabold rounded-xl text-xs shadow-sm transition">
-            XUẤT PDF
-          </button>
         </h2>
 
         <!-- Personal Info -->
@@ -113,78 +110,93 @@ import Layout from '../../../layouts/Layout.astro';
           <label for="cvSkills" class="block text-[11px] text-slate-450 dark:text-slate-500 mb-1">Các kỹ năng (cách nhau bởi dấu phẩy)</label>
           <input type="text" id="cvSkills" value="Tin học văn phòng MS Office, Soạn thảo văn bản, Kỹ năng giao tiếp, Sắp xếp quản lý hồ sơ" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-brand-blue" />
         </div>
+
+        <!-- Update Preview Action Button -->
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+          <button id="btnUpdatePreview" class="w-full py-3.5 bg-brand-blue hover:bg-brand-blue/90 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2">
+            👉 ĐIỀN THÔNG TIN & XEM TRƯỚC
+          </button>
+        </div>
       </div>
 
-      <!-- Right: Real-time visual A4 CV Preview (7 cols) -->
-      <div class="lg:col-span-7 flex flex-col items-center">
-        <h3 class="text-xs font-bold text-slate-450 dark:text-slate-500 uppercase tracking-wider mb-4">
-          Bản xem trước A4 (Preview):
-        </h3>
+      <!-- Right: Scrollable A4 CV Preview (7 cols) -->
+      <div class="lg:col-span-7 flex flex-col items-center w-full overflow-hidden">
+        <div class="flex flex-col sm:flex-row sm:justify-between items-center w-full max-w-[210mm] mb-4 gap-3 px-2">
+          <h3 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+            Bản xem trước A4 (Preview)
+          </h3>
+          <button id="btnExportPDF" class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold rounded-xl text-xs shadow-md transition flex items-center gap-1.5 disabled:opacity-50">
+            📥 TẢI FILE CV VỀ MÁY (PDF)
+          </button>
+        </div>
         
-        <!-- CV Document Paper Container -->
-        <div id="cvPaper" class="w-[210mm] min-h-[297mm] bg-white text-slate-800 shadow-2xl p-10 border border-slate-100 rounded-sm overflow-hidden text-left relative flex flex-col justify-between leading-normal text-xs font-sans">
-          
-          <!-- Outer flex content -->
-          <div>
-            <!-- Header Section (Company name, title, contact details) -->
-            <div class="border-b-2 border-slate-800 pb-5 mb-6 flex justify-between items-end">
-              <div>
-                <h1 id="pvName" class="text-3xl font-bold tracking-tight text-slate-900 mb-1">Nguyễn Văn A</h1>
-                <span id="pvTitle" class="text-base font-semibold text-slate-600 uppercase tracking-wider block">Nhân viên Hành chính</span>
-              </div>
-              <div class="text-right text-[11px] text-slate-500 space-y-0.5">
-                <div id="pvPhone">📞 0987.654.321</div>
-                <div id="pvEmail">✉ nguyenvana@gmail.com</div>
-                <div id="pvAddress">📍 Quận Cầu Giấy, Hà Nội</div>
-              </div>
-            </div>
-
-            <!-- Main grid inside CV paper -->
-            <div class="grid grid-cols-3 gap-8">
-              <!-- Left Sidebar: Summary and Skills (1 col) -->
-              <div class="col-span-1 border-r border-slate-200 pr-6 space-y-6">
-                <!-- Summary -->
+        <!-- Scroll Wrapper for A4 paper to prevent overlapping with inputs column -->
+        <div class="w-full overflow-x-auto pb-4 flex justify-start lg:justify-center">
+          <!-- CV Document Paper Container -->
+          <div id="cvPaper" class="w-[210mm] min-h-[297mm] bg-white text-slate-800 shadow-2xl p-10 border border-slate-100 rounded-sm overflow-hidden text-left relative flex flex-col justify-between leading-normal text-xs font-sans flex-shrink-0">
+            
+            <!-- Outer flex content -->
+            <div>
+              <!-- Header Section (Candidate name, title, contact details) -->
+              <div class="border-b-2 border-slate-800 pb-5 mb-6 flex justify-between items-end">
                 <div>
-                  <h3 class="font-bold text-slate-900 uppercase tracking-wider border-b border-slate-350 pb-1 mb-2.5">Giới Thiệu</h3>
-                  <p id="pvSummary" class="text-slate-600 leading-relaxed text-[11px]">Tốt nghiệp chuyên ngành Quản trị Văn phòng, có 2 năm kinh nghiệm...</p>
+                  <h1 id="pvName" class="text-3xl font-bold tracking-tight text-slate-900 mb-1">Nguyễn Văn A</h1>
+                  <span id="pvTitle" class="text-base font-semibold text-slate-600 uppercase tracking-wider block">Nhân viên Hành chính</span>
                 </div>
-
-                <!-- Skills -->
-                <div>
-                  <h3 class="font-bold text-slate-900 uppercase tracking-wider border-b border-slate-350 pb-1 mb-2.5">Kỹ Năng</h3>
-                  <ul id="pvSkills" class="space-y-1.5 list-disc pl-4 text-slate-600 text-[11px]">
-                    <!-- Rendered tags -->
-                  </ul>
+                <div class="text-right text-[11px] text-slate-500 space-y-0.5">
+                  <div id="pvPhone">📞 0987.654.321</div>
+                  <div id="pvEmail">✉ nguyenvana@gmail.com</div>
+                  <div id="pvAddress">📍 Quận Cầu Giấy, Hà Nội</div>
                 </div>
               </div>
 
-              <!-- Right: Experience and Education (2 cols) -->
-              <div class="col-span-2 space-y-6">
-                <!-- Experience -->
-                <div>
-                  <h3 class="font-bold text-slate-900 uppercase tracking-wider border-b border-slate-350 pb-1 mb-3">Kinh Nghiệm Làm Việc</h3>
-                  <div id="pvExpList" class="space-y-4">
-                    <!-- Populated dynamically -->
+              <!-- Main grid inside CV paper -->
+              <div class="grid grid-cols-3 gap-8">
+                <!-- Left Sidebar: Summary and Skills (1 col) -->
+                <div class="col-span-1 border-r border-slate-200 pr-6 space-y-6">
+                  <!-- Summary -->
+                  <div>
+                    <h3 class="font-bold text-slate-900 uppercase tracking-wider border-b border-slate-350 pb-1 mb-2.5">Giới Thiệu</h3>
+                    <p id="pvSummary" class="text-slate-600 leading-relaxed text-[11px]">Tốt nghiệp chuyên ngành Quản trị Văn phòng, có 2 năm kinh nghiệm...</p>
+                  </div>
+
+                  <!-- Skills -->
+                  <div>
+                    <h3 class="font-bold text-slate-900 uppercase tracking-wider border-b border-slate-350 pb-1 mb-2.5">Kỹ Năng</h3>
+                    <ul id="pvSkills" class="space-y-1.5 list-disc pl-4 text-slate-600 text-[11px]">
+                      <!-- Rendered tags -->
+                    </ul>
                   </div>
                 </div>
 
-                <!-- Education -->
-                <div>
-                  <h3 class="font-bold text-slate-900 uppercase tracking-wider border-b border-slate-350 pb-1 mb-3">Học Vấn</h3>
-                  <div id="pvEduList" class="space-y-4">
-                    <!-- Populated dynamically -->
+                <!-- Right: Experience and Education (2 cols) -->
+                <div class="col-span-2 space-y-6">
+                  <!-- Experience -->
+                  <div>
+                    <h3 class="font-bold text-slate-900 uppercase tracking-wider border-b border-slate-350 pb-1 mb-3">Kinh Nghiệm Làm Việc</h3>
+                    <div id="pvExpList" class="space-y-4">
+                      <!-- Populated dynamically -->
+                    </div>
+                  </div>
+
+                  <!-- Education -->
+                  <div>
+                    <h3 class="font-bold text-slate-900 uppercase tracking-wider border-b border-slate-350 pb-1 mb-3">Học Vấn</h3>
+                    <div id="pvEduList" class="space-y-4">
+                      <!-- Populated dynamically -->
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Footer brand sign-off -->
-          <div class="border-t border-slate-100 pt-3 text-[10px] text-slate-400 text-center flex justify-between items-center">
-            <span>CV được thiết kế miễn phí qua trolyso.online</span>
-            <span>Trang 1 / 1</span>
-          </div>
+            <!-- Footer brand sign-off -->
+            <div class="border-t border-slate-100 pt-3 text-[10px] text-slate-400 text-center flex justify-between items-center">
+              <span>CV được thiết kế miễn phí qua trolyso.online</span>
+              <span>Trang 1 / 1</span>
+            </div>
 
+          </div>
         </div>
       </div>
       
@@ -281,10 +293,11 @@ import Layout from '../../../layouts/Layout.astro';
     const pvEduList = document.getElementById('pvEduList');
     const btnAddEdu = document.getElementById('btnAddEdu');
 
+    const btnUpdatePreview = document.getElementById('btnUpdatePreview');
     const btnExportPDF = document.getElementById('btnExportPDF');
     const cvPaper = document.getElementById('cvPaper');
 
-    // Live update functions
+    // Updates displays by copying inputs
     function updateBasicFields() {
       pvName.textContent = cvName.value || 'Tên Của Bạn';
       pvTitle.textContent = cvTitle.value || 'Vị trí ứng tuyển';
@@ -303,52 +316,42 @@ import Layout from '../../../layouts/Layout.astro';
       });
     }
 
-    // Bind basic events
-    [cvName, cvTitle, cvEmail, cvPhone, cvAddress, cvSummary, cvSkills].forEach(el => {
-      el.addEventListener('input', updateBasicFields);
-    });
-
-    // Populate Experience Forms and Preview
+    // Populate Experience Forms inputs
     function renderExperiences() {
       expInputsList.innerHTML = '';
-      pvExpList.innerHTML = '';
-
       expList.forEach((exp, index) => {
-        // Render inputs form
         const div = document.createElement('div');
-        div.className = "p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 relative space-y-2";
+        div.className = "p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 relative space-y-2";
         div.innerHTML = `
           <button class="absolute top-2 right-2 text-red-500 text-xs font-bold hover:underline" onclick="this.dispatchEvent(new CustomEvent('remove-exp', {bubbles: true, detail: ${exp.id}}))">✕ Xóa</button>
           <div>
             <label class="block text-[10px] text-slate-450 dark:text-slate-500 mb-0.5">Tên công ty / Cơ quan</label>
-            <input type="text" value="${exp.company}" class="inp-company w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkCard text-xs font-bold" />
+            <input type="text" value="${exp.company}" class="inp-company w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-850 bg-white dark:bg-brand-darkCard text-xs font-bold" />
           </div>
           <div class="grid grid-cols-2 gap-2">
             <div>
               <label class="block text-[10px] text-slate-450 dark:text-slate-500 mb-0.5">Chức danh</label>
-              <input type="text" value="${exp.title}" class="inp-title w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkCard text-xs font-semibold" />
+              <input type="text" value="${exp.title}" class="inp-title w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-850 bg-white dark:bg-brand-darkCard text-xs font-semibold" />
             </div>
             <div>
               <label class="block text-[10px] text-slate-450 dark:text-slate-500 mb-0.5">Thời gian</label>
-              <input type="text" value="${exp.date}" class="inp-date w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkCard text-xs font-semibold" />
+              <input type="text" value="${exp.date}" class="inp-date w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-850 bg-white dark:bg-brand-darkCard text-xs font-semibold" />
             </div>
           </div>
           <div>
             <label class="block text-[10px] text-slate-450 dark:text-slate-500 mb-0.5">Mô tả công việc</label>
-            <textarea rows="2" class="inp-desc w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkCard text-xs font-semibold">${exp.desc}</textarea>
+            <textarea rows="2" class="inp-desc w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-850 bg-white dark:bg-brand-darkCard text-xs font-semibold">${exp.desc}</textarea>
           </div>
         `;
 
-        // Bind events on the inputs to update state
-        div.querySelector('.inp-company').addEventListener('input', (e) => { expList[index].company = e.target.value; renderExperiencesPreview(); });
-        div.querySelector('.inp-title').addEventListener('input', (e) => { expList[index].title = e.target.value; renderExperiencesPreview(); });
-        div.querySelector('.inp-date').addEventListener('input', (e) => { expList[index].date = e.target.value; renderExperiencesPreview(); });
-        div.querySelector('.inp-desc').addEventListener('input', (e) => { expList[index].desc = e.target.value; renderExperiencesPreview(); });
+        // Update states on input
+        div.querySelector('.inp-company').addEventListener('input', (e) => { expList[index].company = e.target.value; });
+        div.querySelector('.inp-title').addEventListener('input', (e) => { expList[index].title = e.target.value; });
+        div.querySelector('.inp-date').addEventListener('input', (e) => { expList[index].date = e.target.value; });
+        div.querySelector('.inp-desc').addEventListener('input', (e) => { expList[index].desc = e.target.value; });
 
         expInputsList.appendChild(div);
       });
-
-      renderExperiencesPreview();
     }
 
     function renderExperiencesPreview() {
@@ -359,7 +362,7 @@ import Layout from '../../../layouts/Layout.astro';
         item.innerHTML = `
           <div class="flex justify-between items-baseline font-semibold text-[11px] text-slate-900">
             <span class="font-bold">${exp.company}</span>
-            <span class="text-slate-500 font-normal">${exp.date}</span>
+            <span class="text-slate-500 font-normal font-mono">${exp.date}</span>
           </div>
           <div class="text-[10.5px] italic text-slate-700 font-semibold mb-1">${exp.title}</div>
           <p class="text-slate-600 leading-relaxed text-[11px] whitespace-pre-line">${exp.desc}</p>
@@ -368,47 +371,42 @@ import Layout from '../../../layouts/Layout.astro';
       });
     }
 
-    // Populate Education Forms and Preview
+    // Populate Education Forms inputs
     function renderEducations() {
       eduInputsList.innerHTML = '';
-      pvEduList.innerHTML = '';
-
       eduList.forEach((edu, index) => {
-        // Render inputs form
         const div = document.createElement('div');
-        div.className = "p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 relative space-y-2";
+        div.className = "p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 relative space-y-2";
         div.innerHTML = `
           <button class="absolute top-2 right-2 text-red-500 text-xs font-bold hover:underline" onclick="this.dispatchEvent(new CustomEvent('remove-edu', {bubbles: true, detail: ${edu.id}}))">✕ Xóa</button>
           <div>
             <label class="block text-[10px] text-slate-450 dark:text-slate-500 mb-0.5">Tên trường học / Cơ sở đào tạo</label>
-            <input type="text" value="${edu.school}" class="inp-school w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkCard text-xs font-bold" />
+            <input type="text" value="${edu.school}" class="inp-school w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-850 bg-white dark:bg-brand-darkCard text-xs font-bold" />
           </div>
           <div class="grid grid-cols-2 gap-2">
             <div>
               <label class="block text-[10px] text-slate-450 dark:text-slate-500 mb-0.5">Bằng cấp / Ngành học</label>
-              <input type="text" value="${edu.degree}" class="inp-degree w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkCard text-xs font-semibold" />
+              <input type="text" value="${edu.degree}" class="inp-degree w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-850 bg-white dark:bg-brand-darkCard text-xs font-semibold" />
             </div>
             <div>
               <label class="block text-[10px] text-slate-450 dark:text-slate-500 mb-0.5">Thời gian học</label>
-              <input type="text" value="${edu.date}" class="inp-date w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkCard text-xs font-semibold" />
+              <input type="text" value="${edu.date}" class="inp-date w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-850 bg-white dark:bg-brand-darkCard text-xs font-semibold" />
             </div>
           </div>
           <div>
             <label class="block text-[10px] text-slate-450 dark:text-slate-500 mb-0.5">Thành tích / Mô tả</label>
-            <textarea rows="2" class="inp-desc w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkCard text-xs font-semibold">${edu.desc}</textarea>
+            <textarea rows="2" class="inp-desc w-full px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-850 bg-white dark:bg-brand-darkCard text-xs font-semibold">${edu.desc}</textarea>
           </div>
         `;
 
-        // Bind events on the inputs to update state
-        div.querySelector('.inp-school').addEventListener('input', (e) => { eduList[index].school = e.target.value; renderEducationsPreview(); });
-        div.querySelector('.inp-degree').addEventListener('input', (e) => { eduList[index].degree = e.target.value; renderEducationsPreview(); });
-        div.querySelector('.inp-date').addEventListener('input', (e) => { eduList[index].date = e.target.value; renderEducationsPreview(); });
-        div.querySelector('.inp-desc').addEventListener('input', (e) => { eduList[index].desc = e.target.value; renderEducationsPreview(); });
+        // Update states on input
+        div.querySelector('.inp-school').addEventListener('input', (e) => { eduList[index].school = e.target.value; });
+        div.querySelector('.inp-degree').addEventListener('input', (e) => { eduList[index].degree = e.target.value; });
+        div.querySelector('.inp-date').addEventListener('input', (e) => { eduList[index].date = e.target.value; });
+        div.querySelector('.inp-desc').addEventListener('input', (e) => { eduList[index].desc = e.target.value; });
 
         eduInputsList.appendChild(div);
       });
-
-      renderEducationsPreview();
     }
 
     function renderEducationsPreview() {
@@ -419,7 +417,7 @@ import Layout from '../../../layouts/Layout.astro';
         item.innerHTML = `
           <div class="flex justify-between items-baseline font-semibold text-[11px] text-slate-900">
             <span class="font-bold">${edu.school}</span>
-            <span class="text-slate-500 font-normal">${edu.date}</span>
+            <span class="text-slate-500 font-normal font-mono">${edu.date}</span>
           </div>
           <div class="text-[10.5px] italic text-slate-700 font-semibold mb-1">${edu.degree}</div>
           <p class="text-slate-600 leading-relaxed text-[11px] whitespace-pre-line">${edu.desc}</p>
@@ -428,7 +426,7 @@ import Layout from '../../../layouts/Layout.astro';
       });
     }
 
-    // Add Exp / Add Edu triggers
+    // Add triggers
     btnAddExp.addEventListener('click', () => {
       const newId = expList.length > 0 ? Math.max(...expList.map(e => e.id)) + 1 : 1;
       expList.push({
@@ -464,16 +462,36 @@ import Layout from '../../../layouts/Layout.astro';
       renderEducations();
     });
 
-    // Export PDF using html2pdf UMD global
+    // Consolidated Preview Refresher
+    function updateAllPreview() {
+      updateBasicFields();
+      renderExperiencesPreview();
+      renderEducationsPreview();
+
+      // Visual indicator on button
+      if (btnUpdatePreview) {
+        const originalHTML = btnUpdatePreview.innerHTML;
+        btnUpdatePreview.innerHTML = '✓ ĐÃ CẬP NHẬT BẢN XEM TRƯỚC';
+        btnUpdatePreview.classList.replace('bg-brand-blue', 'bg-emerald-500');
+        setTimeout(() => {
+          btnUpdatePreview.innerHTML = originalHTML;
+          btnUpdatePreview.classList.replace('bg-emerald-500', 'bg-brand-blue');
+        }, 1500);
+      }
+    }
+
+    btnUpdatePreview.addEventListener('click', updateAllPreview);
+
+    // Export PDF
     btnExportPDF.addEventListener('click', () => {
       btnExportPDF.disabled = true;
-      btnExportPDF.textContent = 'ĐANG XUẤT...';
+      btnExportPDF.textContent = 'ĐANG TẢI...';
 
       const options = {
-        margin: 0, // No margins, let cvPaper control margins
+        margin: 0,
         filename: `${cvName.value.replace(/\s+/g, '-').toLowerCase()}-cv.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2.5, useCORS: true }, // Scale up for printing crispness
+        html2canvas: { scale: 2.5, useCORS: true },
         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
       };
 
@@ -483,18 +501,18 @@ import Layout from '../../../layouts/Layout.astro';
         .save()
         .then(() => {
           btnExportPDF.disabled = false;
-          btnExportPDF.textContent = 'XUẤT PDF';
+          btnExportPDF.textContent = '📥 TẢI FILE CV VỀ MÁY (PDF)';
         })
         .catch(err => {
           console.error(err);
           alert('Lỗi xuất file PDF.');
           btnExportPDF.disabled = false;
-          btnExportPDF.textContent = 'XUẤT PDF';
+          btnExportPDF.textContent = '📥 TẢI FILE CV VỀ MÁY (PDF)';
         });
     });
 
     // Init values
-    updateBasicFields();
+    updateAllPreview();
     renderExperiences();
     renderEducations();
   </script>
