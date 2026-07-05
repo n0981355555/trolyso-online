@@ -1,0 +1,160 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Cách Tra Cứu Mã Số Thuế Cá Nhân & Doanh Nghiệp Mới Nhất" 
+  description="Cẩm nang hướng dẫn cách tra cứu mã số thuế cá nhân qua CCCD/CMND và tìm mã số thuế doanh nghiệp chính xác trực tiếp từ cơ sở dữ liệu thuế."
+>
+  <main class="max-w-4xl mx-auto px-4 py-8 sm:py-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint flex items-center gap-1">
+            🏠 <span>Trang chủ</span>
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/blog/" class="hover:text-brand-blue dark:hover:text-brand-mint">Blog</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tra cứu mã số thuế</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Post Title -->
+    <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">
+      Cách Tra Cứu Mã Số Thuế Cá Nhân & Doanh Nghiệp Mới Nhất
+    </h1>
+
+    <!-- E-E-A-T Author Box -->
+    <div class="bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 mb-8 flex flex-col sm:flex-row items-center sm:items-start gap-4 transition-colors">
+      <div class="w-16 h-16 rounded-full bg-blue-100 text-brand-blue flex items-center justify-center font-bold text-2xl flex-shrink-0">
+        💸
+      </div>
+      <div>
+        <div class="flex flex-wrap items-center gap-2 mb-1">
+          <span class="font-bold text-slate-900 dark:text-white">Nguyễn Thị Hải Yến (CPA - Kế toán trưởng)</span>
+          <span class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-brand-blue dark:text-brand-mint text-[10px] font-bold uppercase">Chuyên gia Thuế & Kiểm toán</span>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+          Nội dung được kiểm duyệt chuyên môn bởi Kế toán trưởng có hơn 12 năm kinh nghiệm quyết toán thuế thu nhập doanh nghiệp và thuế cá nhân. Hướng dẫn giúp người nộp thuế thực hiện các thao tác pháp lý chuẩn xác.
+        </p>
+        
+        <!-- Post Date & Read time -->
+        <div class="flex items-center gap-4 text-xs text-slate-400 dark:text-slate-500 mt-3 font-medium">
+          <span>📅 Ngày đăng: 05/07/2026</span>
+          <span>⏱️ Thời gian đọc: 5 phút</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post Hero Image -->
+    <div class="mb-8">
+      <img 
+        src="/images/blog/tra-cuu-ma-so-thue-ca-nhan-va-doanh-nghiep-hero.webp" 
+        alt="tra-cuu-ma-so-thue-ca-nhan-va-doanh-nghiep-hero" 
+        class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm"
+      />
+      <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">
+        Hình: Tra cứu mã số thuế tự động từ số thẻ CCCD
+      </p>
+    </div>
+
+    <!-- Article Content -->
+    <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-6 text-sm">
+      <p>
+        Mã số thuế (MST) là công cụ pháp lý cốt lõi được Nhà nước cấp cho doanh nghiệp và cá nhân nhằm thực hiện nghĩa vụ đóng góp ngân sách quốc gia. Tra cứu mã số thuế giúp bạn kiểm tra trạng thái hoạt động của doanh nghiệp đối tác hoặc lấy thông tin số thuế phục vụ việc hoàn thuế cá nhân cuối năm.
+      </p>
+
+      <!-- Table of Contents -->
+      <div class="bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 my-8">
+        <span class="block font-bold text-slate-900 dark:text-white mb-3 text-lg">Mục lục bài viết</span>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#company" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">1. Cách tra cứu mã số thuế doanh nghiệp trực tuyến</a></li>
+          <li><a href="#individual" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">2. Cách tra cứu mã số thuế cá nhân bằng CCCD</a></li>
+          <li><a href="#whyimportant" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">3. Tầm quan trọng của việc kiểm tra trạng thái mã số thuế</a></li>
+          <li><a href="#trouble" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">4. Phải làm gì khi số CCCD chưa được cập nhật MST?</a></li>
+        </ul>
+      </div>
+
+      <h2 id="company" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">1. Cách tra cứu mã số thuế doanh nghiệp trực tuyến</h2>
+      <p>
+        Kiểm tra thông tin pháp lý của doanh nghiệp (như Tên đăng ký chính thức, Địa chỉ trụ sở chính, Mã số thuế) trước khi ký kết hợp đồng thương mại là thói quen của mọi doanh nghiệp chuyên nghiệp. Quy trình thực hiện qua Trợ Lý Số cực kỳ đơn giản:
+      </p>
+      <ol class="list-decimal pl-5 space-y-2">
+        <li>Truy cập công cụ **Tra Cứu Mã Số Thuế** của Trợ Lý Số.</li>
+        <li>Chọn tab **Doanh Nghiệp / Công Ty**.</li>
+        <li>Nhập 10 chữ số mã số thuế của công ty đối tác vào ô tìm kiếm và nhấn **Tra cứu ngay**.</li>
+        <li>Hệ thống sẽ kết nối trực tiếp cơ sở dữ liệu mở và hiển thị tức thì Tên doanh nghiệp chính thức và Địa chỉ đăng ký mà không yêu cầu nhập captcha.</li>
+      </ol>
+
+      <h2 id="individual" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">2. Cách tra cứu mã số thuế cá nhân bằng CCCD</h2>
+      <p>
+        Đối với mã số thuế cá nhân, Tổng cục Thuế bắt buộc người dân phải thực hiện thao tác thủ công kèm nhập mã xác minh (Captcha) để tránh việc dữ liệu cá nhân bị dò quét tự động. Quy trình thực hiện chính xác gồm:
+      </p>
+      <ol class="list-decimal pl-5 space-y-2">
+        <li>Truy cập Cổng thông tin thuế cá nhân của Tổng cục Thuế tại địa chỉ: `canhan.gdt.gov.vn`.</li>
+        <li>Click vào mục **Tra cứu thông tin NNT** ở menu bên phải.</li>
+        <li>Nhập số Căn cước công dân (12 số) hoặc CMND cũ của bạn vào ô tìm kiếm.</li>
+        <li>Điền mã Captcha bảo mật và nhấn nút **Tra cứu**. Cổng dịch vụ sẽ hiển thị Họ tên của bạn, Mã số thuế cá nhân đã cấp, Cơ quan thuế quản lý và trạng thái hoạt động hiện tại.</li>
+      </ol>
+
+      <h2 id="whyimportant" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">3. Tầm quan trọng của việc kiểm tra trạng thái mã số thuế</h2>
+      <p>
+        Thực hiện kiểm tra mã số thuế giúp người nộp thuế và kế toán tránh được nhiều rủi ro pháp lý đáng tiếc:
+      </p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>Xác minh đối tác:</strong> Tránh ký hợp đồng hoặc nhận hóa đơn từ các "doanh nghiệp ma" hoặc công ty đã tạm ngừng hoạt động kinh doanh (MST bị khóa).</li>
+        <li><strong>Phục vụ Quyết toán thuế TNCN:</strong> Bạn cần biết chính xác MST cá nhân của mình để hoàn thành hồ sơ tự quyết toán hoàn thuế hoặc đăng ký người phụ thuộc giảm trừ gia cảnh.</li>
+      </ul>
+
+      <h2 id="trouble" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">4. Phải làm gì khi số CCCD chưa được cập nhật MST?</h2>
+      <p>
+        Nhiều cá nhân trước đây sử dụng CMND 9 số để đăng ký thuế, sau khi đổi sang CCCD 12 số thì tra cứu không ra mã số thuế. Trong trường hợp này:
+      </p>
+      <p>
+        Bạn cần làm thủ tục thay đổi thông tin đăng ký thuế thông qua Cổng dịch vụ công Quốc gia hoặc ủy quyền cho cơ quan chi trả thu nhập (công ty bạn đang làm việc) cập nhật số thẻ CCCD mới lên hệ thống của Tổng cục Thuế để đồng bộ hóa dữ liệu.
+      </p>
+    </div>
+
+    <!-- Call To Action (CTA) -->
+    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 dark:from-emerald-600 dark:to-teal-700 text-white rounded-2xl p-6 sm:p-8 my-10 shadow-lg text-center">
+      <h3 class="text-xl sm:text-2xl font-heading font-bold mb-3">Tra Cứu Mã Số Thuế Doanh Nghiệp Tự Động Ngay!</h3>
+      <p class="text-sm opacity-90 mb-6 max-w-md mx-auto">Sử dụng công cụ của Trợ Lý Số để kiểm tra nhanh thông tin công ty và MST đối tác hoàn toàn miễn phí, không cần nhập captcha.</p>
+      <a href="/calculators/tra-cuu-mst/" class="inline-block bg-white text-indigo-600 dark:text-teal-700 font-bold px-6 py-3 rounded-xl hover:scale-105 transition shadow-md">
+        Mở công cụ Tra cứu MST →
+      </a>
+    </div>
+
+    <!-- Related & References -->
+    <footer class="mt-12 border-t border-slate-200 dark:border-slate-800 pt-8 space-y-6">
+      <!-- Authoritative Sources -->
+      <div>
+        <h4 class="font-bold text-slate-900 dark:text-white mb-3">Tài liệu tham khảo & Nguồn uy tín</h4>
+        <ul class="list-disc pl-5 text-xs text-slate-500 dark:text-slate-400 space-y-1">
+          <li>Luật Quản lý thuế số 38/2019/QH14 ban hành bởi Quốc hội Việt Nam.</li>
+          <li>Thông tư 105/2020/TT-BTC hướng dẫn về đăng ký thuế của Bộ Tài chính.</li>
+          <li>Cổng thông tin Thuế điện tử cá nhân - Tổng cục Thuế Việt Nam (canhan.gdt.gov.vn).</li>
+        </ul>
+      </div>
+
+      <!-- Related Posts -->
+      <div>
+        <h4 class="font-bold text-slate-900 dark:text-white mb-3">Bài viết liên quan hữu ích</h4>
+        <ul class="list-disc pl-5 text-xs text-brand-blue dark:text-brand-mint space-y-1 font-medium">
+          <li><a href="/blog/huong-dan-tinh-thue-tncn/" class="hover:underline">Cách tính thuế thu nhập cá nhân mới nhất năm 2026</a></li>
+          <li><a href="/blog/luong-bao-nhieu-phai-dong-thue-thu-nhap-ca-nhan-2026/" class="hover:underline">Biểu thuế lũy tiến từng phần và ngưỡng đóng thuế TNCN</a></li>
+        </ul>
+      </div>
+    </footer>
+  </main>
+</Layout>

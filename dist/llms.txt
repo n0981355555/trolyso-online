@@ -22,6 +22,8 @@ Trợ Lý Số (trolyso.online) cung cấp các công cụ tính toán tài chí
 - [Gộp Nhiều File PDF](https://trolyso.online/calculators/gop-pdf/): Ghép nối nhiều file PDF rời thành một tài liệu duy nhất client-side.
 - [Chuyển PDF Sang Word](https://trolyso.online/calculators/pdf-sang-word/): Trích xuất ký tự và convert PDF sang Word .docx không lỗi font.
 - [Chuyển Word Sang PDF](https://trolyso.online/calculators/word-sang-pdf/): Đổi đuôi tệp Word .docx sang PDF trực tuyến giữ nguyên lề.
+- [Tra Cứu Mã Số Thuế](https://trolyso.online/calculators/tra-cuu-mst/): Tra cứu mã số thuế doanh nghiệp tự động và hướng dẫn tra cứu MST cá nhân bằng CCCD.
+- [Tạo CV Xin Việc Online](https://trolyso.online/calculators/tao-cv/): Viết và thiết kế mẫu CV xin việc online A4 đơn giản, xuất file PDF miễn phí.
 
 ## Cẩm nang hướng dẫn (Blog)
 
@@ -37,6 +39,8 @@ Trợ Lý Số (trolyso.online) cung cấp các công cụ tính toán tài chí
 - [Bài viết: Hướng dẫn gộp nhiều file PDF](https://trolyso.online/blog/huong-dan-gop-nhieu-file-pdf-lam-mot-truc-tuyen/): Ghép nối nhiều file PDF rời thành một tài liệu duy nhất trực tuyến.
 - [Bài viết: Cách chuyển PDF sang Word](https://trolyso.online/blog/cach-chuyen-pdf-sang-word-online-khong-loi-font/): Convert PDF sang Word .docx online miễn phí không lỗi font chữ.
 - [Bài viết: Cách chuyển Word sang PDF](https://trolyso.online/blog/cach-chuyen-word-sang-pdf-online-mien-phi/): Đổi đuôi tệp Word .docx sang PDF trực tuyến giữ nguyên lề và định dạng.
+- [Bài viết: Hướng dẫn tra cứu mã số thuế](https://trolyso.online/blog/huong-dan-tra-cuu-ma-so-thue-ca-nhan-va-doanh-nghiep/): Hướng dẫn kiểm tra MST cá nhân từ CCCD/CMND và tìm kiếm thông tin doanh nghiệp.
+- [Bài viết: Hướng dẫn viết mẫu CV đơn giản](https://trolyso.online/blog/huong-dan-tao-mau-cv-xin-viec-pdf-don-gian/): Mẹo viết CV xin việc thu hút nhà tuyển dụng và cách xuất file PDF A4 chuẩn lề.
 
 ## Chủ đề từ khóa (Tags)
 

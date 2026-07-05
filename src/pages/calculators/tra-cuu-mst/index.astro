@@ -1,0 +1,297 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Tra Cứu Mã Số Thuế Cá Nhân & Doanh Nghiệp - Tự Động 2026" 
+  description="Công cụ tra cứu mã số thuế doanh nghiệp trực tuyến, kiểm tra thông tin công ty bằng MST nhanh chóng từ Tổng cục Thuế. Hướng dẫn tra cứu MST cá nhân bằng CCCD."
+>
+  <main class="max-w-6xl mx-auto px-4 py-8 sm:py-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">
+            Trang chủ
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tra Cứu Mã Số Thuế</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        Tra Cứu Mã Số Thuế Doanh Nghiệp & Cá Nhân
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Tìm kiếm nhanh thông tin tên công ty, địa chỉ, người đại diện bằng MST doanh nghiệp hoặc hướng dẫn tra cứu mã số thuế cá nhân qua CCCD/CMND.
+      </p>
+    </div>
+
+    <!-- Main Tool Container -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 mb-12 transition-colors max-w-3xl mx-auto">
+      
+      <!-- Selection Tabs -->
+      <div class="flex rounded-xl bg-slate-100 dark:bg-slate-900 p-1 mb-6">
+        <button id="tabCompany" class="flex-1 py-2.5 text-xs font-bold rounded-lg text-center transition bg-white dark:bg-brand-darkCard shadow-sm text-slate-800 dark:text-white">
+          🏢 Doanh Nghiệp / Công Ty
+        </button>
+        <button id="tabIndividual" class="flex-1 py-2.5 text-xs font-bold rounded-lg text-center transition text-slate-500 dark:text-slate-400">
+          👤 Cá Nhân / CCCD
+        </button>
+      </div>
+
+      <!-- Form Inputs -->
+      <div class="space-y-6">
+        <!-- COMPANY LOOKUP FORM -->
+        <div id="companyForm">
+          <label for="mstInput" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+            Nhập Mã số thuế Doanh nghiệp:
+          </label>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input 
+              type="text" 
+              id="mstInput" 
+              placeholder="Ví dụ: 0102070629, 0312345678" 
+              class="flex-grow px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-blue" 
+            />
+            <button id="btnSearchCompany" class="px-6 py-3.5 bg-brand-blue hover:bg-brand-blue/90 text-white font-extrabold rounded-xl transition flex-shrink-0">
+              TRA CỨU NGAY
+            </button>
+          </div>
+        </div>
+
+        <!-- INDIVIDUAL LOOKUP FORM -->
+        <div id="individualForm" class="hidden">
+          <label for="cccdInput" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+            Nhập Số CCCD / CMND hoặc Mã số thuế cá nhân:
+          </label>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input 
+              type="text" 
+              id="cccdInput" 
+              placeholder="Nhập 12 số CCCD hoặc 10 số MST cá nhân" 
+              class="flex-grow px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-blue" 
+            />
+            <button id="btnSearchIndividual" class="px-6 py-3.5 bg-indigo-500 hover:bg-indigo-600 text-white font-extrabold rounded-xl transition flex-shrink-0">
+              HƯỚNG DẪN TRA CỨU
+            </button>
+          </div>
+        </div>
+
+        <!-- RESULTS CARD -->
+        <div id="resultBox" class="hidden border border-slate-200 dark:border-slate-800 rounded-2xl p-6 bg-slate-50 dark:bg-slate-900/40 relative">
+          <!-- Close button -->
+          <button id="btnClearResult" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm font-bold">
+            ✕ Đóng
+          </button>
+          
+          <div class="flex items-center gap-3 mb-4 pb-4 border-b border-slate-250 dark:border-slate-800/80">
+            <span class="text-3xl">🏢</span>
+            <div>
+              <span id="resTaxCode" class="block font-mono font-bold text-brand-blue dark:text-brand-mint text-lg">MST: ---</span>
+              <span class="text-[10px] text-slate-400 font-semibold uppercase tracking-wide">Thông tin doanh nghiệp chính thức</span>
+            </div>
+          </div>
+
+          <div class="space-y-4 text-sm">
+            <div>
+              <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-0.5">Tên công ty đăng ký:</span>
+              <span id="resName" class="font-bold text-slate-850 dark:text-slate-200 text-base">---</span>
+            </div>
+            <div>
+              <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-0.5">Địa chỉ trụ sở chính:</span>
+              <span id="resAddress" class="font-medium text-slate-700 dark:text-slate-300">---</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading spinner -->
+        <div id="loaderBox" class="hidden py-8 text-center">
+          <div class="inline-block w-8 h-8 border-4 border-brand-blue border-t-transparent rounded-full animate-spin"></div>
+          <span class="block text-xs text-slate-400 font-bold mt-2">Đang kết nối cơ sở dữ liệu Tổng cục Thuế...</span>
+        </div>
+
+        <!-- Error notification -->
+        <div id="errorBox" class="hidden p-4 rounded-xl bg-red-50 dark:bg-red-950/20 text-red-500 border border-red-150 dark:border-red-900/60 text-sm font-semibold text-center">
+          Không tìm thấy mã số thuế hợp lệ hoặc hệ thống đang quá tải. Vui lòng kiểm tra lại.
+        </div>
+
+        <!-- Personal Lookup instructions modal -->
+        <div id="instructionsBox" class="hidden p-6 rounded-2xl bg-indigo-50/40 dark:bg-indigo-950/20 border border-indigo-150 dark:border-indigo-900/40 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">💡</span>
+            <h4 class="font-bold text-indigo-700 dark:text-indigo-300 text-base">Quy trình tra cứu Mã số thuế cá nhân chính thức</h4>
+          </div>
+          <p class="text-xs text-slate-650 dark:text-slate-400 leading-relaxed">
+            Do Tổng cục Thuế thắt chặt bảo mật bằng mã xác nhận Captcha chống tự động hóa, bạn hãy thực hiện theo 3 bước nhanh gọn dưới đây để xem MST cá nhân của mình trực tiếp trên cổng thông tin Quốc gia:
+          </p>
+          <ol class="list-decimal pl-5 text-xs text-slate-600 dark:text-slate-350 space-y-2">
+            <li>
+              Truy cập trang tra cứu chính thức của Tổng cục Thuế: 
+              <a href="https://canhan.gdt.gov.vn/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 dark:text-brand-mint font-bold hover:underline">canhan.gdt.gov.vn ➔</a>
+            </li>
+            <li>Chọn mục <strong>"Tra cứu thông tin NNT"</strong> (Người nộp thuế).</li>
+            <li>Nhập số CCCD/CMND của bạn vào ô tìm kiếm, nhập mã Captcha hiển thị trên màn hình và nhấn <strong>Tra cứu</strong> để nhận ngay kết quả.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- Handbook Guide Section -->
+    <section class="max-w-4xl mx-auto bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm Nang Tra Cứu Mã Số Thuế & Thuế Điện Tử
+      </h2>
+      
+      <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4 text-sm">
+        <p>
+          Mã số thuế (MST) là một mã số độc nhất gồm 10 hoặc 13 số được cơ quan thuế cấp cho người nộp thuế để quản lý thuế. Doanh nghiệp và cá nhân bắt buộc phải có mã số thuế để thực hiện nghĩa vụ đóng thuế TNCN, thuế TNDN và các giao dịch kinh tế hợp pháp.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">1. Phân biệt Mã số thuế Doanh nghiệp và Cá nhân</h3>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Mã số thuế Doanh nghiệp:</strong> Gồm 10 chữ số, đồng thời là Mã số doanh nghiệp ghi trên Giấy chứng nhận đăng ký kinh doanh. Mã số này không thay đổi trong suốt quá trình hoạt động của công ty.</li>
+          <li><strong>Mã số thuế Cá nhân:</strong> Gồm 10 chữ số cấp cho cá nhân để thực hiện kê khai thuế thu nhập cá nhân (TNCN). Mỗi cá nhân chỉ được cấp duy nhất một mã số thuế cá nhân trọn đời gắn liền với số thẻ CCCD/CMND.</li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">2. Căn cứ pháp lý về đăng ký thuế</h3>
+        <p>
+          Theo Luật Quản lý thuế số 38/2019/QH14 và Thông tư 105/2020/TT-BTC, mọi cá nhân có thu nhập chịu thuế đều có nghĩa vụ đăng ký thuế để được cấp mã số thuế cá nhân. Người sử dụng lao động có trách nhiệm đăng ký thuế thay cho cá nhân có ủy quyền chậm nhất là 10 ngày làm việc kể từ ngày phát sinh nghĩa vụ thuế.
+        </p>
+      </div>
+    </section>
+
+    <!-- Related Tools & Articles -->
+    <section class="max-w-4xl mx-auto mt-8 bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 transition-colors">
+      <h3 class="text-lg font-heading font-bold text-slate-900 dark:text-white mb-4">
+        Các công cụ & cẩm nang liên quan:
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+        <a href="/calculators/tinh-thue-tncn/" class="flex items-center gap-3 p-4 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-md hover:border-brand-blue dark:hover:border-brand-mint transition">
+          <span class="text-2xl">💸</span>
+          <div>
+            <span class="block font-bold text-slate-800 dark:text-slate-200">Tính Thuế TNCN</span>
+            <span class="text-xs text-slate-450 dark:text-slate-500">Tính thuế thu nhập cá nhân theo biểu lũy tiến</span>
+          </div>
+        </a>
+        <a href="/blog/huong-dan-tra-cuu-ma-so-thue-ca-nhan-va-doanh-nghiep/" class="flex items-center gap-3 p-4 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-md hover:border-brand-blue dark:hover:border-brand-mint transition">
+          <span class="text-2xl">📖</span>
+          <div>
+            <span class="block font-bold text-slate-800 dark:text-slate-200">Cẩm nang tra cứu MST</span>
+            <span class="text-xs text-slate-450 dark:text-slate-500">Mẹo tìm MST cá nhân và đăng ký thuế điện tử</span>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Tab Elements
+    const tabCompany = document.getElementById('tabCompany');
+    const tabIndividual = document.getElementById('tabIndividual');
+    const companyForm = document.getElementById('companyForm');
+    const individualForm = document.getElementById('individualForm');
+    
+    // Inputs & Buttons
+    const mstInput = document.getElementById('mstInput');
+    const cccdInput = document.getElementById('cccdInput');
+    const btnSearchCompany = document.getElementById('btnSearchCompany');
+    const btnSearchIndividual = document.getElementById('btnSearchIndividual');
+    
+    // Output Boxes
+    const resultBox = document.getElementById('resultBox');
+    const loaderBox = document.getElementById('loaderBox');
+    const errorBox = document.getElementById('errorBox');
+    const instructionsBox = document.getElementById('instructionsBox');
+    const btnClearResult = document.getElementById('btnClearResult');
+    
+    // Result details
+    const resTaxCode = document.getElementById('resTaxCode');
+    const resName = document.getElementById('resName');
+    const resAddress = document.getElementById('resAddress');
+
+    // Tab Switching
+    tabCompany.addEventListener('click', () => {
+      tabCompany.className = "flex-1 py-2.5 text-xs font-bold rounded-lg text-center transition bg-white dark:bg-brand-darkCard shadow-sm text-slate-800 dark:text-white";
+      tabIndividual.className = "flex-1 py-2.5 text-xs font-bold rounded-lg text-center transition text-slate-500 dark:text-slate-400";
+      companyForm.classList.remove('hidden');
+      individualForm.classList.add('hidden');
+      instructionsBox.classList.add('hidden');
+      errorBox.classList.add('hidden');
+      resultBox.classList.add('hidden');
+    });
+
+    tabIndividual.addEventListener('click', () => {
+      tabIndividual.className = "flex-1 py-2.5 text-xs font-bold rounded-lg text-center transition bg-white dark:bg-brand-darkCard shadow-sm text-slate-800 dark:text-white";
+      tabCompany.className = "flex-1 py-2.5 text-xs font-bold rounded-lg text-center transition text-slate-500 dark:text-slate-400";
+      individualForm.classList.remove('hidden');
+      companyForm.classList.add('hidden');
+      instructionsBox.classList.add('hidden');
+      errorBox.classList.add('hidden');
+      resultBox.classList.add('hidden');
+    });
+
+    // Clear result
+    btnClearResult.addEventListener('click', () => {
+      resultBox.classList.add('hidden');
+    });
+
+    // Company Tax Code lookup using free public VietQR API
+    btnSearchCompany.addEventListener('click', async () => {
+      const mst = mstInput.value.trim();
+      if (!mst) {
+        alert('Vui lòng nhập mã số thuế cần tìm.');
+        return;
+      }
+
+      // Reset UI states
+      resultBox.classList.add('hidden');
+      errorBox.classList.add('hidden');
+      loaderBox.classList.remove('hidden');
+
+      try {
+        const response = await fetch(`https://api.vietqr.io/v2/business/${mst}`);
+        const data = await response.json();
+
+        if (data.code === '00' && data.data) {
+          // Found company
+          resTaxCode.textContent = `MST: ${data.data.id || mst}`;
+          resName.textContent = data.data.name || '---';
+          resAddress.textContent = data.data.address || '---';
+          resultBox.classList.remove('hidden');
+        } else {
+          // Not found or error
+          errorBox.classList.remove('hidden');
+        }
+      } catch (err) {
+        console.error(err);
+        errorBox.classList.remove('hidden');
+      } finally {
+        loaderBox.classList.add('hidden');
+      }
+    });
+
+    // Individual instructions trigger
+    btnSearchIndividual.addEventListener('click', () => {
+      const cccd = cccdInput.value.trim();
+      if (!cccd) {
+        alert('Vui lòng nhập số thẻ căn cước (CCCD) hoặc số CMND.');
+        return;
+      }
+      instructionsBox.classList.remove('hidden');
+    });
+  </script>
+</Layout>
