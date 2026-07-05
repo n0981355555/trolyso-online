@@ -640,10 +640,10 @@ import Layout from '../../../layouts/Layout.astro';
 
                 <div class="z-10 flex flex-col items-center justify-between h-full py-4 w-full">
                   <div class="flex-grow flex items-center justify-center">
-                    \${getCardSvg(card.cardData.id)}
+                    ${getCardSvg(card.cardData.id)}
                   </div>
                   <div class="mt-2">
-                    <span class="text-[9px] sm:text-[10px] font-black text-amber-300 uppercase tracking-wide leading-tight block text-center max-w-[100px] mx-auto">\${card.cardData.name}</span>
+                    <span class="text-[9px] sm:text-[10px] font-black text-amber-300 uppercase tracking-wide leading-tight block text-center max-w-[100px] mx-auto">${card.cardData.name}</span>
                     <span class="text-[8px] font-bold text-indigo-300/40 uppercase tracking-widest block mt-0.5">Major Arcana</span>
                   </div>
                 </div>
@@ -684,29 +684,29 @@ import Layout from '../../../layouts/Layout.astro';
         item.className = "p-5 sm:p-6 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800/80 space-y-4 animate-fade-in";
         item.innerHTML = `
           <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
-            <div class="flex items-center justify-center w-12 h-12 bg-[#0b0c1f] border border-amber-500/25 rounded-xl">\${getCardSvg(card.cardData.id)}</div>
+            <div class="flex items-center justify-center w-12 h-12 bg-[#0b0c1f] border border-amber-500/25 rounded-xl">${getCardSvg(card.cardData.id)}</div>
             <div>
-              <span class="text-[10px] font-extrabold text-brand-blue dark:text-brand-mint uppercase tracking-wider block">\${card.positionLabel}</span>
-              <h4 class="text-lg font-bold text-slate-900 dark:text-white">\${card.cardData.name}</h4>
+              <span class="text-[10px] font-extrabold text-brand-blue dark:text-brand-mint uppercase tracking-wider block">${card.positionLabel}</span>
+              <h4 class="text-lg font-bold text-slate-900 dark:text-white">${card.cardData.name}</h4>
             </div>
           </div>
           
           <p class="text-sm text-slate-600 dark:text-slate-350 leading-relaxed font-semibold italic">
-            "\${card.cardData.desc}"
+            "${card.cardData.desc}"
           </p>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
             <div class="p-3 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-200 dark:border-slate-800/60 animate-fade-in">
               <span class="block text-xs font-bold text-slate-400 mb-1">❤️ Tình duyên / Mối quan hệ</span>
-              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">\${card.cardData.love}</p>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${card.cardData.love}</p>
             </div>
             <div class="p-3 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-200 dark:border-slate-800/60 animate-fade-in">
               <span class="block text-xs font-bold text-slate-400 mb-1">💼 Sự nghiệp / Tài chính</span>
-              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">\${card.cardData.career}</p>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${card.cardData.career}</p>
             </div>
             <div class="p-3 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-200 dark:border-slate-800/60 animate-fade-in">
               <span class="block text-xs font-bold text-slate-400 mb-1">💪 Sức khỏe / Tinh thần</span>
-              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">\${card.cardData.health}</p>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${card.cardData.health}</p>
             </div>
           </div>
         `;
