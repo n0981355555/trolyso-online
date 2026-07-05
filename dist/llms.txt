@@ -17,6 +17,8 @@ Trợ Lý Số (trolyso.online) cung cấp các công cụ tính toán tài chí
 - [Tính Chỉ Số BMI Cơ Thể](https://trolyso.online/calculators/tinh-bmi/): Tính chỉ số khối cơ thể (BMI), đánh giá thể trạng và khoảng cân nặng lý tưởng WHO.
 - [Giải Phương Trình Bậc 2, 3](https://trolyso.online/calculators/giai-phuong-trinh/): Giải phương trình bậc 2, bậc 3 online hiển thị các bước giải Delta và vẽ đồ thị.
 - [Đếm Ngày Yêu Nhau](https://trolyso.online/calculators/dem-ngay-yeu-nhau/): Công cụ đếm ngày yêu nhau (Love Counter) chạy giây thực tế và lưu trữ local.
+- [Lịch Vạn Niên & Lịch Âm](https://trolyso.online/calculators/lich-van-nien/): Xem lịch âm dương, đổi ngày âm dương và xem giờ hoàng đạo tốt lành.
+- [Đo Tốc Độ Mạng Speedtest](https://trolyso.online/calculators/speedtest/): Kiểm tra tốc độ download, upload và ping mạng internet tức thì.
 
 ## Cẩm nang hướng dẫn (Blog)
 
@@ -27,6 +29,8 @@ Trợ Lý Số (trolyso.online) cung cấp các công cụ tính toán tài chí
 - [Bài viết: Hướng dẫn tính chỉ số BMI](https://trolyso.online/blog/tinh-chi-so-bmi-va-can-nang-ly-tuong/): Cách tính chỉ số khối cơ thể BMI chuẩn WHO và người Châu Á.
 - [Bài viết: Hướng dẫn giải phương trình bậc 2, 3](https://trolyso.online/blog/huong-dan-giai-phuong-trinh-bac-2-bac-3/): Công thức tính Delta và phương pháp giải phương trình bậc 3 chi tiết.
 - [Bài viết: Hướng dẫn sử dụng đếm ngày yêu nhau](https://trolyso.online/blog/cach-su-dung-trinh-dem-ngay-yeu-nhau/): Cách thiết lập đồng hồ đếm ngày yêu nhau online bảo mật cục bộ.
+- [Bài viết: Hướng dẫn tra cứu lịch vạn niên](https://trolyso.online/blog/huong-dan-tra-cuu-lich-van-nien-lich-am-hom-nay/): Cách xem lịch âm dương, tính Can Chi ngày tháng và chọn giờ hoàng đạo xuất hành.
+- [Bài viết: Hướng dẫn đo tốc độ mạng Speedtest](https://trolyso.online/blog/huong-dan-kiem-tra-toc-do-mang-speedtest-online/): Cách kiểm tra tốc độ internet và tối ưu băng thông Wifi 4G 5G.
 
 ## Chủ đề từ khóa (Tags)
 

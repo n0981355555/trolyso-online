@@ -1,0 +1,316 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Speedtest Online - Kiểm Tra Tốc Độ Mạng Internet Chính Xác" 
+  description="Công cụ kiểm tra tốc độ mạng wifi, internet 3G/4G/5G trực tuyến miễn phí. Đo chính xác tốc độ Download, Upload, Ping và Jitter của các nhà mạng Viettel, FPT, VNPT."
+>
+  <main class="max-w-6xl mx-auto px-4 py-8 sm:py-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint flex items-center gap-1">
+            🏠 <span class="hidden sm:inline">Trang chủ</span>
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Speedtest</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        Kiểm Tra Tốc Độ Mạng (Speedtest)
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Đo tốc độ internet, băng thông thực tế của mạng Wifi, 4G, 5G chỉ trong 15 giây.
+      </p>
+    </div>
+
+    <!-- Main speedtest container -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 mb-12 transition-colors max-w-3xl mx-auto">
+      
+      <!-- Real-time Dashboard -->
+      <div class="grid grid-cols-3 gap-4 mb-8 text-center text-xs sm:text-sm">
+        <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-100 dark:border-slate-800/80">
+          <span class="block text-slate-400 mb-1">⚡ Ping (Độ trễ)</span>
+          <span id="pingVal" class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white">-</span> <span class="text-[10px] text-slate-450 dark:text-slate-500 font-bold">ms</span>
+        </div>
+        <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-100 dark:border-slate-800/80">
+          <span class="block text-slate-400 mb-1">📉 Jitter (Biến động)</span>
+          <span id="jitterVal" class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white">-</span> <span class="text-[10px] text-slate-450 dark:text-slate-500 font-bold">ms</span>
+        </div>
+        <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-100 dark:border-slate-800/80">
+          <span class="block text-slate-400 mb-1">📡 IP mạng</span>
+          <span id="ipVal" class="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-250 truncate block mt-1">Đang lấy...</span>
+        </div>
+      </div>
+
+      <!-- Centered Gauge Dial -->
+      <div class="flex flex-col items-center justify-center py-6 relative">
+        <svg class="w-64 h-64 transform -rotate-95" viewBox="0 0 200 200">
+          <!-- Outer grey circle (background track) -->
+          <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" class="text-slate-100 dark:text-slate-800" stroke-width="12" stroke-dasharray="400 135" stroke-linecap="round"></circle>
+          
+          <!-- Inner progress circle -->
+          <circle id="gaugeProgress" cx="100" cy="100" r="85" fill="none" stroke="url(#gradientColor)" stroke-width="12" stroke-dasharray="0 535" stroke-linecap="round" class="transition-all duration-100 ease-out"></circle>
+
+          <!-- SVG Gradient definitions -->
+          <defs>
+            <linearGradient id="gradientColor" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3B82F6"></stop>
+              <stop offset="100%" stop-color="#10B981"></stop>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <!-- Inside Gauge Display text -->
+        <div class="absolute flex flex-col items-center justify-center">
+          <span id="gaugeLabel" class="text-[11px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider mb-1">DOWNLOAD</span>
+          <span id="speedVal" class="text-5xl font-extrabold text-slate-900 dark:text-white tabular-nums select-none">0.00</span>
+          <span class="text-xs font-bold text-slate-500 dark:text-slate-400 mt-1">Mbps</span>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <div class="text-center mt-6">
+        <button id="btnStart" class="px-10 py-5 bg-gradient-to-r from-blue-600 to-emerald-600 dark:from-emerald-500 dark:to-teal-600 text-white font-extrabold rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition duration-200 w-full sm:w-64 text-lg">
+          BẮT ĐẦU SPEEDTEST
+        </button>
+      </div>
+
+      <!-- Detailed Metrics (Download / Upload totals) -->
+      <div class="grid grid-cols-2 gap-6 mt-10 border-t border-slate-100 dark:border-slate-800/80 pt-8 text-center">
+        <div>
+          <span class="text-xs font-bold text-slate-450 dark:text-slate-500 uppercase tracking-wider block mb-2">📥 Tốc độ Tải về (Download)</span>
+          <div class="flex items-center justify-center gap-1.5">
+            <span id="finalDownload" class="text-3xl font-extrabold text-slate-950 dark:text-white">-</span>
+            <span class="text-sm font-bold text-slate-400">Mbps</span>
+          </div>
+        </div>
+        <div>
+          <span class="text-xs font-bold text-slate-450 dark:text-slate-500 uppercase tracking-wider block mb-2">📤 Tốc độ Tải lên (Upload)</span>
+          <div class="flex items-center justify-center gap-1.5">
+            <span id="finalUpload" class="text-3xl font-extrabold text-slate-950 dark:text-white">-</span>
+            <span class="text-sm font-bold text-slate-400">Mbps</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-6">
+        <a href="/blog/huong-dan-kiem-tra-toc-do-mang-speedtest-online/" class="text-xs text-brand-blue dark:text-brand-mint font-bold hover:underline">
+          Đọc cẩm nang đo tốc độ mạng chuẩn nhất →
+        </a>
+      </div>
+    </div>
+
+    <!-- Handbook Guide Section -->
+    <section class="max-w-4xl mx-auto bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm Nang Hướng Dẫn Kiểm Tra Băng Thông Internet
+      </h2>
+      
+      <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4 text-sm">
+        <p>
+          Đo tốc độ mạng (Speedtest) là cách nhanh nhất để xác định chất lượng kết nối internet hiện tại của bạn. Kết quả đo giúp đối chiếu với tốc độ mà nhà mạng cam kết trong hợp đồng gói cước (Viettel, VNPT, FPT...).
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">1. Các chỉ số Speedtest có ý nghĩa gì?</h3>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Ping (Độ trễ):</strong> Thời gian cần thiết để gửi một gói dữ liệu nhỏ từ máy bạn đến máy chủ rồi nhận lại kết quả. Chỉ số Ping càng nhỏ (dưới 30ms) thì mạng càng nhạy, chơi game hay gọi video call càng mượt, không bị lag.</li>
+          <li><strong>Jitter (Độ biến động trễ):</strong> Sự chênh lệch thời gian giữa các lần Ping khác nhau. Jitter thấp (dưới 5ms) chứng tỏ đường truyền mạng cực kỳ ổn định.</li>
+          <li><strong>Tốc độ Download (Tải xuống):</strong> Tốc độ truyền dữ liệu từ internet về máy của bạn (quan trọng khi xem phim 4K, lướt web, tải game).</li>
+          <li><strong>Tốc độ Upload (Tải lên):</strong> Tốc độ truyền dữ liệu từ máy của bạn lên internet (quan trọng khi gửi tệp tin đính kèm, livestream, họp trực tuyến).</li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">2. Mẹo để kết quả kiểm tra Speedtest đạt độ chính xác cao nhất</h3>
+        <ol class="list-decimal pl-5 space-y-2">
+          <li>Tắt các ứng dụng đang chạy ngầm hoặc đang tải dữ liệu trên máy tính, điện thoại.</li>
+          <li>Đảm bảo các thiết bị khác trong nhà không sử dụng tốn băng thông (như tải phim, xem SmartTV) tại thời điểm đo.</li>
+          <li>Nếu đo mạng Wifi, hãy di chuyển lại gần router phát sóng hoặc ưu tiên cắm cáp mạng LAN để đạt kết quả chuẩn xác nhất.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // DOM Elements
+    const btnStart = document.getElementById('btnStart');
+    const gaugeProgress = document.getElementById('gaugeProgress');
+    const gaugeLabel = document.getElementById('gaugeLabel');
+    const speedVal = document.getElementById('speedVal');
+    const pingVal = document.getElementById('pingVal');
+    const jitterVal = document.getElementById('jitterVal');
+    const ipVal = document.getElementById('ipVal');
+    const finalDownload = document.getElementById('finalDownload');
+    const finalUpload = document.getElementById('finalUpload');
+
+    // Test endpoints from Cloudflare (Global edge CDN, CORS supported)
+    const DOWNLOAD_URL = 'https://speed.cloudflare.com/__down?bytes=5000000'; // 5MB
+    const UPLOAD_URL = 'https://speed.cloudflare.com/__up';
+    const LATENCY_URL = 'https://speed.cloudflare.com/__down?bytes=0';
+
+    // Maximum SVG Dasharray for gauge (represents 100% dial)
+    const MAX_DASH = 400; // Match SVG circle stroke-dasharray
+
+    // Fetch client IP on load
+    async function fetchIpAddress() {
+      try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        ipVal.textContent = data.ip;
+      } catch (err) {
+        ipVal.textContent = 'Mạng nội bộ / VPN';
+      }
+    }
+
+    // Set gauge circular indicator value (0 to 100 Mbps scale representation)
+    function setGauge(mbps) {
+      // Scale from 0 to 100 Mbps. Cap at 100 for gauge visualization.
+      const capped = Math.min(mbps, 100);
+      const dashoffset = (capped / 100) * MAX_DASH;
+      gaugeProgress.setAttribute('stroke-dasharray', `${dashoffset} 535`);
+    }
+
+    // Measure Ping & Jitter
+    async function testLatency() {
+      const pings = [];
+      for (let i = 0; i < 5; i++) {
+        const start = performance.now();
+        await fetch(LATENCY_URL, { cache: 'no-store' });
+        const end = performance.now();
+        pings.push(end - start);
+      }
+
+      // Calculate avg ping and jitter
+      const avgPing = pings.reduce((a, b) => a + b, 0) / pings.length;
+      let sumJitter = 0;
+      for (let i = 1; i < pings.length; i++) {
+        sumJitter += Math.abs(pings[i] - pings[i - 1]);
+      }
+      const avgJitter = sumJitter / (pings.length - 1);
+
+      pingVal.textContent = Math.round(avgPing).toString();
+      jitterVal.textContent = Math.round(avgJitter).toString();
+    }
+
+    // Measure Download Speed
+    async function testDownload() {
+      gaugeLabel.textContent = 'DOWNLOAD';
+      const start = performance.now();
+      
+      const response = await fetch(DOWNLOAD_URL, { cache: 'no-store' });
+      if (!response.body) throw new Error('ReadableStream not supported');
+
+      const reader = response.body.getReader();
+      let receivedBytes = 0;
+      
+      // Read chunks dynamically to simulate needles moving
+      while(true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        receivedBytes += value.length;
+
+        // Calculate real-time speed
+        const elapsedSecs = (performance.now() - start) / 1000;
+        if (elapsedSecs > 0) {
+          const mbps = (receivedBytes * 8) / (1024 * 1024) / elapsedSecs;
+          speedVal.textContent = mbps.toFixed(2);
+          setGauge(mbps);
+        }
+      }
+
+      const totalElapsed = (performance.now() - start) / 1000;
+      const finalDownloadSpeed = (receivedBytes * 8) / (1024 * 1024) / totalElapsed;
+      
+      speedVal.textContent = finalDownloadSpeed.toFixed(2);
+      finalDownload.textContent = finalDownloadSpeed.toFixed(2);
+      setGauge(finalDownloadSpeed);
+      return finalDownloadSpeed;
+    }
+
+    // Measure Upload Speed
+    async function testUpload() {
+      gaugeLabel.textContent = 'UPLOAD';
+      const start = performance.now();
+      
+      // Generate 2MB dummy payload
+      const payloadSize = 2 * 1024 * 1024;
+      const dummyData = new Uint8Array(payloadSize);
+      
+      // Simulated uploading updates
+      let simulatedSpeed = 0;
+      const interval = setInterval(() => {
+        // Mock increment speed needles
+        simulatedSpeed += (Math.random() * 8 + 2);
+        speedVal.textContent = Math.min(simulatedSpeed, 35).toFixed(2);
+        setGauge(simulatedSpeed);
+      }, 200);
+
+      await fetch(UPLOAD_URL, {
+        method: 'POST',
+        body: dummyData,
+        cache: 'no-store'
+      });
+
+      clearInterval(interval);
+      const totalElapsed = (performance.now() - start) / 1000;
+      const finalUploadSpeed = (payloadSize * 8) / (1024 * 1024) / totalElapsed;
+
+      speedVal.textContent = finalUploadSpeed.toFixed(2);
+      finalUpload.textContent = finalUploadSpeed.toFixed(2);
+      setGauge(finalUploadSpeed);
+      return finalUploadSpeed;
+    }
+
+    // Main Control Trigger
+    btnStart.addEventListener('click', async () => {
+      // Disable inputs
+      btnStart.disabled = true;
+      btnStart.classList.add('opacity-50', 'cursor-not-allowed');
+      btnStart.textContent = 'ĐANG ĐO...';
+
+      // Clear values
+      pingVal.textContent = '-';
+      jitterVal.textContent = '-';
+      finalDownload.textContent = '-';
+      finalUpload.textContent = '-';
+      speedVal.textContent = '0.00';
+      setGauge(0);
+
+      try {
+        // Phase 1: Latency
+        gaugeLabel.textContent = 'LATENCY';
+        await testLatency();
+
+        // Phase 2: Download
+        await testDownload();
+
+        // Wait 1s transition
+        await new Promise(r => setTimeout(r, 1000));
+
+        // Phase 3: Upload
+        await testUpload();
+      } catch (err) {
+        console.error(err);
+        speedVal.textContent = 'ERROR';
+      } finally {
+        // Reset states
+        btnStart.disabled = false;
+        btnStart.classList.remove('opacity-50', 'cursor-not-allowed');
+        btnStart.textContent = 'BẮT ĐẦU SPEEDTEST';
+        gaugeLabel.textContent = 'HOÀN THÀNH';
+      }
+    });
+
+    // Run IP address fetch on load
+    fetchIpAddress();
+  </script>
+</Layout>

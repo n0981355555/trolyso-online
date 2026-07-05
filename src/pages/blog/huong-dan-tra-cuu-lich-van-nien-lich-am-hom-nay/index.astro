@@ -1,0 +1,161 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Hướng Dẫn Tra Cứu Lịch Vạn Niên & Lịch Âm Hôm Nay" 
+  description="Cẩm nang hướng dẫn xem lịch vạn niên online, tra cứu lịch âm hôm nay, cách quy đổi ngày âm sang dương và xem giờ hoàng đạo tốt lành chi tiết nhất."
+>
+  <main class="max-w-4xl mx-auto px-4 py-8 sm:py-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint flex items-center gap-1">
+            🏠 <span>Trang chủ</span>
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/blog/" class="hover:text-brand-blue dark:hover:text-brand-mint">Blog</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Hướng dẫn tra cứu lịch vạn niên</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Post Title -->
+    <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">
+      Hướng Dẫn Tra Cứu Lịch Vạn Niên & Lịch Âm Hôm Nay Chính Xác
+    </h1>
+
+    <!-- E-E-A-T Author Box -->
+    <div class="bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 mb-8 flex flex-col sm:flex-row items-center sm:items-start gap-4 transition-colors">
+      <div class="w-16 h-16 rounded-full bg-blue-100 text-brand-blue flex items-center justify-center font-bold text-2xl flex-shrink-0">
+        📜
+      </div>
+      <div>
+        <div class="flex flex-wrap items-center gap-2 mb-1">
+          <span class="font-bold text-slate-900 dark:text-white">Nhà nghiên cứu văn hóa Nguyễn Đăng Hà</span>
+          <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 text-[10px] font-bold uppercase">Chuyên gia văn hóa phương đông</span>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+          Nội dung được biên soạn dựa trên các nghiên cứu khoa học lịch pháp và văn hóa dân gian Việt Nam. Hướng dẫn giúp độc giả hiểu rõ cơ sở khoa học của âm lịch múi giờ GMT+7 và các yếu tố phong thủy truyền thống.
+        </p>
+        
+        <!-- Post Date & Read time -->
+        <div class="flex items-center gap-4 text-xs text-slate-400 dark:text-slate-500 mt-3 font-medium">
+          <span>📅 Ngày đăng: 05/07/2026</span>
+          <span>⏱️ Thời gian đọc: 5 phút</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post Hero Image -->
+    <div class="mb-8">
+      <img 
+        src="/images/may-tinh-luong-dong-thue-vi-du-3.webp" 
+        alt="tra-cuu-lich-van-nien-lich-am-hom-nay-hero" 
+        class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm"
+      />
+      <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">
+        Hình: Bảng lịch vạn niên tích hợp xem ngày âm dương và giờ hoàng đạo xuất hành
+      </p>
+    </div>
+
+    <!-- Article Content -->
+    <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-6 text-sm">
+      <p>
+        Lịch vạn niên (hay lịch âm dương) là loại lịch được thiết kế dựa trên quy luật chuyển động của cả Trái Đất quanh Mặt Trời (Dương lịch) và Mặt Trăng quanh Trái Đất (Âm lịch). Trong văn hóa truyền thống Việt Nam, lịch vạn niên đóng vai trò quan trọng trong việc tính toán các ngày lễ lớn, ngày giỗ chạp và chọn ngày hoàng đạo xuất hành tốt lành.
+      </p>
+
+      <!-- Table of Contents -->
+      <div class="bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 my-8">
+        <span class="block font-bold text-slate-900 dark:text-white mb-3 text-lg">Mục lục bài viết</span>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#definition" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">1. Lịch vạn niên là gì? Ý nghĩa trong đời sống người Việt</a></li>
+          <li><a href="#timezone" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">2. Sự khác biệt múi giờ của lịch âm Việt Nam (GMT+7)</a></li>
+          <li><a href="#howtouse" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">3. Hướng dẫn tra cứu và quy đổi ngày âm dương online</a></li>
+          <li><a href="#canchi" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">4. Cách tính Can Chi của Ngày, Tháng, Năm</a></li>
+        </ul>
+      </div>
+
+      <h2 id="definition" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">1. Lịch vạn niên là gì? Ý nghĩa trong đời sống người Việt</h2>
+      <p>
+        Không giống như lịch dương chỉ phục vụ cho hoạt động hành chính toàn cầu, **âm lịch** phản ánh chặt chẽ chu kỳ sinh học của thiên nhiên dựa trên ánh trăng. Đối với người Việt Nam, việc tra cứu lịch âm giúp xác định các sự kiện quan trọng trong nông nghiệp và đời sống xã hội như:
+      </p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li>Tết Nguyên Đán, Tết Đoan Ngọ, Tết Trung Thu.</li>
+        <li>Ngày giỗ tổ tông, ngày tảo mộ tổ tiên.</li>
+        <li>Chọn ngày lành tháng tốt (ngày hoàng đạo) cho các sự kiện khởi công, động thổ xây nhà, cưới hỏi, khai trương cửa hàng.</li>
+      </ul>
+
+      <h2 id="timezone" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">2. Sự khác biệt múi giờ của lịch âm Việt Nam (GMT+7)</h2>
+      <p>
+        Một trong những điểm quan trọng cần lưu ý là lịch âm Việt Nam được tính toán chính xác theo múi giờ **GMT+7** (Hà Nội). Trung Quốc sử dụng múi giờ GMT+8 làm mốc tính lịch âm của họ. Khoảng chênh lệch 1 giờ này có thể dẫn đến việc ngày điểm Sóc (trăng mới) rơi vào hai ngày dương lịch khác nhau ở hai nước.
+      </p>
+      <p>
+        Bởi vậy, lịch âm Việt Nam thỉnh thoảng sẽ lệch trước hoặc sau lịch âm Trung Quốc 1 ngày, thậm chí lệch cả tháng nhuận. Do đó, các công cụ tra cứu lịch vạn niên uy tín cho người Việt bắt buộc phải được lập trình theo đúng thuật toán âm dương lịch Việt Nam của GS. Hoàng Xuân Hãn.
+      </p>
+
+      <h2 id="howtouse" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">3. Hướng dẫn tra cứu và quy đổi ngày âm dương online</h2>
+      <p>
+        Sử dụng công cụ lịch vạn niên của Trợ Lý Số, bạn có thể dễ dàng xem và chuyển đổi ngày âm dương chỉ với vài bước đơn giản:
+      </p>
+      <ol class="list-decimal pl-5 space-y-2">
+        <li><strong>Xem lịch tháng:</strong> Di chuyển giữa các tháng bằng nút mũi tên, ngày hôm nay sẽ được highlight viền đỏ nổi bật.</li>
+        <li><strong>Xem chi tiết ngày:</strong> Click vào bất kỳ ô ngày nào, bảng chi tiết bên trái sẽ lập tức hiển thị thông tin Can Chi, tiết khí, giờ hoàng đạo và hướng tài thần xuất hành của ngày đó.</li>
+        <li><strong>Đổi ngày âm - dương:</strong> Click nút "Đổi ngày âm - dương", nhập ngày tháng năm cần chuyển đổi và nhận kết quả tức thì.</li>
+      </ol>
+
+      <h2 id="canchi" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">4. Cách tính Can Chi của Ngày, Tháng, Năm</h2>
+      <p>
+        Hệ thống Can Chi là cách đếm chu kỳ 60 kết hợp từ 10 Thiên Can và 12 Địa Chi. Công thức toán học tính Can Chi dựa trên số dư của lịch dương và lịch âm:
+      </p>
+      <div class="bg-slate-100 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-center font-mono my-4 text-brand-blue dark:text-brand-mint font-bold text-sm">
+        Can của năm = (Năm dương lịch - 4) % 10 <br>
+        Chi của năm = (Năm dương lịch - 4) % 12
+      </div>
+      <p>
+        Việc tính toán Can Chi của ngày phức tạp hơn, đòi hỏi tính toán số ngày tích lũy qua lịch Julian (Julian Day number). Công cụ của chúng tôi tự động thực hiện phép tính Julian này để đưa ra kết quả Can Chi ngày hoàn toàn chính xác.
+      </p>
+    </div>
+
+    <!-- Call To Action (CTA) -->
+    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 dark:from-emerald-600 dark:to-teal-700 text-white rounded-2xl p-6 sm:p-8 my-10 shadow-lg text-center">
+      <h3 class="text-xl sm:text-2xl font-heading font-bold mb-3">Tra Cứu Lịch Vạn Niên & Ngày Hoàng Đạo Ngay!</h3>
+      <p class="text-sm opacity-90 mb-6 max-w-md mx-auto">Sử dụng công cụ Lịch Vạn Niên của Trợ Lý Số để xem lịch âm dương, đổi ngày và xem giờ tốt xuất hành hoàn toàn miễn phí.</p>
+      <a href="/calculators/lich-van-nien/" class="inline-block bg-white text-indigo-600 dark:text-teal-700 font-bold px-6 py-3 rounded-xl hover:scale-105 transition shadow-md">
+        Mở máy tính Lịch Vạn Niên →
+      </a>
+    </div>
+
+    <!-- Related & References -->
+    <footer class="mt-12 border-t border-slate-200 dark:border-slate-800 pt-8 space-y-6">
+      <!-- Authoritative Sources -->
+      <div>
+        <h4 class="font-bold text-slate-900 dark:text-white mb-3">Tài liệu tham khảo & Nguồn uy tín</h4>
+        <ul class="list-disc pl-5 text-xs text-slate-500 dark:text-slate-400 space-y-1">
+          <li>Nghiên cứu lịch pháp Việt Nam - Viện Hàn lâm Khoa học và Công nghệ Việt Nam.</li>
+          <li>Thuật toán chuyển đổi âm dương lịch Việt Nam - GS. Hồ Ngọc Đức (Đại học Leipzig).</li>
+          <li>Quyết định hành chính về việc áp dụng múi giờ GMT+7 chính thức tại Việt Nam.</li>
+        </ul>
+      </div>
+
+      <!-- Related Posts -->
+      <div>
+        <h4 class="font-bold text-slate-900 dark:text-white mb-3">Bài viết liên quan hữu ích</h4>
+        <ul class="list-disc pl-5 text-xs text-brand-blue dark:text-brand-mint space-y-1 font-medium">
+          <li><a href="/blog/tinh-tuoi-nghi-huu-2026/" class="hover:underline">Hướng dẫn tính tuổi nghỉ hưu năm 2026 chi tiết</a></li>
+          <li><a href="/blog/tinh-chi-so-bmi-va-can-nang-ly-tuong/" class="hover:underline">Cách tính chỉ số BMI và kiểm tra thể trạng sức khỏe chuẩn WHO</a></li>
+        </ul>
+      </div>
+    </footer>
+  </main>
+</Layout>

@@ -1,0 +1,640 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+// We will import SolarLunar in the client-side script for dynamic rendering
+---
+
+<Layout 
+  title="Lịch Vạn Niên 2026 - Tra Cứu Lịch Âm Dương & Giờ Hoàng Đạo" 
+  description="Công cụ xem lịch vạn niên online miễn phí, đổi ngày âm sang dương chính xác, tra cứu giờ hoàng đạo, tiết khí và hướng xuất hành tốt lành mỗi ngày."
+>
+  <main class="max-w-6xl mx-auto px-4 py-8 sm:py-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint flex items-center gap-1">
+            🏠 <span class="hidden sm:inline">Trang chủ</span>
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Lịch Vạn Niên</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        Lịch Vạn Niên & Tra Cứu Lịch Âm Dương
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Xem lịch âm hôm nay, tra cứu giờ hoàng đạo, tiết khí, hướng xuất hành tốt lành và đổi ngày âm dương tự động chuẩn xác nhất.
+      </p>
+    </div>
+
+    <!-- Main Tool Container -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 mb-12 transition-colors">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Left: Selected Day Details (5 cols) -->
+        <div class="lg:col-span-5 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between">
+          <div class="text-center pb-6 border-b border-slate-200 dark:border-slate-800">
+            <div id="detailDayOfWeek" class="text-lg font-bold text-red-500 dark:text-red-400 mb-1">Chủ Nhật</div>
+            <div id="detailSolarDay" class="text-7xl font-extrabold text-slate-900 dark:text-white my-3 select-none">05</div>
+            <div id="detailSolarMonthYear" class="text-sm font-medium text-slate-500 dark:text-slate-400">Tháng 7 năm 2026</div>
+          </div>
+
+          <div class="py-6 space-y-4 text-sm">
+            <!-- Lunar Date -->
+            <div class="flex justify-between items-center bg-white dark:bg-brand-darkCard p-3 rounded-xl border border-slate-100 dark:border-slate-800/50 shadow-sm">
+              <span class="font-semibold text-slate-500 dark:text-slate-400">📅 Lịch Âm:</span>
+              <span id="detailLunarDate" class="font-bold text-brand-blue dark:text-brand-mint text-base">21/05 âm lịch</span>
+            </div>
+
+            <!-- Can Chi Details -->
+            <div class="grid grid-cols-3 gap-2 text-center text-xs">
+              <div class="bg-white dark:bg-brand-darkCard p-3 rounded-xl border border-slate-100 dark:border-slate-800/50 shadow-sm">
+                <span class="block text-slate-400 mb-1">Năm</span>
+                <span id="detailCanChiYear" class="font-bold text-slate-700 dark:text-slate-200 text-sm">Bính Ngọ</span>
+              </div>
+              <div class="bg-white dark:bg-brand-darkCard p-3 rounded-xl border border-slate-100 dark:border-slate-800/50 shadow-sm">
+                <span class="block text-slate-400 mb-1">Tháng</span>
+                <span id="detailCanChiMonth" class="font-bold text-slate-700 dark:text-slate-200 text-sm">Giáp Ngọ</span>
+              </div>
+              <div class="bg-white dark:bg-brand-darkCard p-3 rounded-xl border border-slate-100 dark:border-slate-800/50 shadow-sm">
+                <span class="block text-slate-400 mb-1">Ngày</span>
+                <span id="detailCanChiDay" class="font-bold text-slate-700 dark:text-slate-200 text-sm">Canh Thân</span>
+              </div>
+            </div>
+
+            <!-- Additional details -->
+            <div class="space-y-3">
+              <div class="flex justify-between border-b border-slate-200 dark:border-slate-800/60 pb-2">
+                <span class="text-slate-500 dark:text-slate-400">🌟 Tiết khí:</span>
+                <span id="detailSolarTerm" class="font-bold text-slate-700 dark:text-slate-200">Hạ Chí</span>
+              </div>
+              <div class="flex justify-between border-b border-slate-200 dark:border-slate-800/60 pb-2">
+                <span class="text-slate-500 dark:text-slate-400">🚶 Hướng Hỷ Thần:</span>
+                <span id="detailDirectionHy" class="font-bold text-slate-700 dark:text-slate-200">Tây Bắc</span>
+              </div>
+              <div class="flex justify-between border-b border-slate-200 dark:border-slate-800/60 pb-2">
+                <span class="text-slate-500 dark:text-slate-400">💰 Hướng Tài Thần:</span>
+                <span id="detailDirectionTai" class="font-bold text-slate-700 dark:text-slate-200">Đông Nam</span>
+              </div>
+            </div>
+
+            <!-- Hoang Dao Hours -->
+            <div>
+              <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">⏰ Giờ hoàng đạo:</span>
+              <div id="detailHoangDaoHours" class="flex flex-wrap gap-1.5">
+                <!-- Spanned dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Converter trigger -->
+          <button id="btnOpenConverter" class="w-full bg-slate-200 dark:bg-slate-800 hover:bg-brand-blue hover:text-white dark:hover:bg-brand-mint dark:hover:text-brand-darkBg text-slate-700 dark:text-slate-300 font-bold py-3 px-4 rounded-xl transition flex items-center justify-center gap-2">
+            🔄 Đổi Ngày Âm - Dương
+          </button>
+        </div>
+
+        <!-- Right: Interactive Calendar Grid (7 cols) -->
+        <div class="lg:col-span-7 flex flex-col justify-between">
+          
+          <!-- Month/Year selectors -->
+          <div class="flex items-center justify-between mb-6">
+            <button id="btnPrevMonth" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition" aria-label="Tháng trước">
+              ←
+            </button>
+            <div class="flex items-center gap-2">
+              <select id="selectMonth" class="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkCard text-slate-900 dark:text-white font-bold focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint">
+                <!-- Months -->
+              </select>
+              <select id="selectYear" class="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-brand-darkCard text-slate-900 dark:text-white font-bold focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint">
+                <!-- Years -->
+              </select>
+            </div>
+            <button id="btnNextMonth" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition" aria-label="Tháng sau">
+              →
+            </button>
+          </div>
+
+          <!-- Calendar Grid -->
+          <div class="flex-grow">
+            <!-- Weekday Headers -->
+            <div class="grid grid-cols-7 text-center font-bold text-xs text-slate-400 uppercase tracking-wider mb-2">
+              <div>T2</div>
+              <div>T3</div>
+              <div>T4</div>
+              <div>T5</div>
+              <div>T6</div>
+              <div>T7</div>
+              <div class="text-red-500 dark:text-red-400">CN</div>
+            </div>
+
+            <!-- Days Grid -->
+            <div id="calendarGrid" class="grid grid-cols-7 gap-2">
+              <!-- Calendar cells rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Bottom Legend -->
+          <div class="mt-6 flex flex-wrap gap-4 items-center justify-center text-xs text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-850 pt-4">
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-brand-blue dark:bg-brand-mint"></span>
+              <span>Ngày được chọn</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded-full border border-red-500 dark:border-red-400"></span>
+              <span>Ngày hôm nay</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-red-500">Màu đỏ</span>
+              <span>Chủ nhật</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Converter Modal (Hidden by default) -->
+    <div id="converterModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+      <div class="bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-6 w-full max-w-md shadow-2xl relative animate-fade-in">
+        <button id="btnCloseConverter" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-lg font-bold" aria-label="Đóng">
+          ✕
+        </button>
+        <h3 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+          🔄 Đổi Ngày Âm Dương
+        </h3>
+        
+        <div class="space-y-6">
+          <!-- Convert Mode Switch -->
+          <div class="flex rounded-xl bg-slate-100 dark:bg-slate-900 p-1">
+            <button id="modeSolarToLunar" class="flex-1 py-2 text-xs font-bold rounded-lg text-center transition bg-white dark:bg-brand-darkCard shadow-sm text-slate-800 dark:text-white">
+              Dương → Âm
+            </button>
+            <button id="modeLunarToSolar" class="flex-1 py-2 text-xs font-bold rounded-lg text-center transition text-slate-500 dark:text-slate-400">
+              Âm → Dương
+            </button>
+          </div>
+
+          <!-- Input Fields -->
+          <div class="grid grid-cols-3 gap-3">
+            <div>
+              <label for="convDay" class="block text-xs text-slate-400 mb-1">Ngày</label>
+              <input type="number" id="convDay" min="1" max="31" value="5" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 font-bold text-center focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+            </div>
+            <div>
+              <label for="convMonth" class="block text-xs text-slate-400 mb-1">Tháng</label>
+              <input type="number" id="convMonth" min="1" max="12" value="7" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 font-bold text-center focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+            </div>
+            <div>
+              <label for="convYear" class="block text-xs text-slate-400 mb-1">Năm</label>
+              <input type="number" id="convYear" min="1900" max="2100" value="2026" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 font-bold text-center focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+            </div>
+          </div>
+
+          <!-- Leap month checkbox (Only shown in Lunar -> Solar mode) -->
+          <div id="divLeapMonth" class="hidden flex items-center gap-2">
+            <input type="checkbox" id="convLeap" class="rounded border-slate-200 dark:border-slate-800 text-brand-blue focus:ring-brand-blue" />
+            <label for="convLeap" class="text-xs text-slate-600 dark:text-slate-400 font-medium">Tháng nhuận</label>
+          </div>
+
+          <!-- Convert Button -->
+          <button id="btnConvert" class="w-full bg-brand-blue hover:bg-brand-blue/90 text-white font-bold py-3.5 px-4 rounded-xl transition">
+            Thực Hiện Chuyển Đổi
+          </button>
+
+          <!-- Result Box -->
+          <div id="convResultBox" class="hidden p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 text-center">
+            <span class="block text-xs text-slate-400 mb-1">Kết quả chuyển đổi:</span>
+            <span id="convResultText" class="font-bold text-slate-900 dark:text-white text-lg">---</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Handbook Guide Section -->
+    <section class="max-w-4xl mx-auto mt-16 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm Nang Hướng Dẫn Xem Lịch Vạn Niên & Đổi Ngày Âm Dương
+      </h2>
+      
+      <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4 text-sm">
+        <p>
+          Lịch vạn niên (hay lịch âm dương) là loại lịch được tính toán dựa trên chu kỳ chuyển động của cả Mặt Trăng (Âm lịch) và Mặt Trời (Dương lịch). Đối với đời sống tinh thần của người Việt, lịch âm đóng vai trò cốt lõi trong việc tính toán các ngày lễ tết, giỗ chạp và chọn ngày hoàng đạo cho các việc trọng đại.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">1. Cơ sở tính toán lịch âm dương Việt Nam</h3>
+        <p>
+          Khác với lịch Trung Quốc sử dụng múi giờ GMT+8, lịch âm Việt Nam được tính theo múi giờ **GMT+7** (bắt đầu từ múi giờ Hà Nội). Sự chênh lệch múi giờ này khiến lịch âm Việt Nam đôi khi có thể lệch trước hoặc sau lịch Trung Quốc 1 ngày, thậm chí dẫn đến sự khác biệt về năm nhuận và tháng nhuận. Do đó, việc sử dụng thuật toán chuẩn hóa múi giờ GMT+7 là cực kỳ quan trọng để đảm bảo tính chính xác của lịch.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">2. Cách tính Can Chi của Ngày, Tháng, Năm</h3>
+        <p>
+          Can Chi (hay Thiên Can Địa Chi) là hệ thống chu kỳ 60 năm được sử dụng rộng rãi để định danh thời gian trong văn hóa Đông Á. Hệ thống này được ghép từ:
+        </p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li><strong>10 Thiên Can:</strong> Giáp, Ất, Bính, Đinh, Mậu, Kỷ, Canh, Tân, Nhâm, Quý.</li>
+          <li><strong>12 Địa Chi (12 Con Giáp):</strong> Tý, Sửu, Dần, Mão, Thìn, Tỵ, Ngọ, Mùi, Thân, Dậu, Tuất, Hợi.</li>
+        </ul>
+        <p>
+          Thiên can và Địa chi kết hợp tuần hoàn giúp xác định đặc tính năng lượng của từng ngày, phục vụ việc đánh giá ngày cát/hung (tốt/xấu) và tìm hướng đi xuất hành có phong thủy thuận lợi.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">3. Thế nào là Giờ Hoàng Đạo?</h3>
+        <p>
+          Giờ Hoàng Đạo là các khung giờ tốt lành trong ngày, được thần linh bảo trợ, rất thuận lợi để làm các công việc lớn như ký kết giao dịch, động thổ, cúng bái hoặc xuất hành đi xa. Trong ngày luôn có 6 khung giờ hoàng đạo và 6 khung giờ hắc đạo (xấu). Việc chọn lựa giờ hoàng đạo sẽ giúp công việc diễn ra suôn sẻ, thuận buồm xuôi gió.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    import solarLunar from 'solarlunar';
+
+    // DOM Elements
+    const calendarGrid = document.getElementById('calendarGrid');
+    const selectMonth = document.getElementById('selectMonth');
+    const selectYear = document.getElementById('selectYear');
+    const btnPrevMonth = document.getElementById('btnPrevMonth');
+    const btnNextMonth = document.getElementById('btnNextMonth');
+
+    const detailDayOfWeek = document.getElementById('detailDayOfWeek');
+    const detailSolarDay = document.getElementById('detailSolarDay');
+    const detailSolarMonthYear = document.getElementById('detailSolarMonthYear');
+    const detailLunarDate = document.getElementById('detailLunarDate');
+    const detailCanChiYear = document.getElementById('detailCanChiYear');
+    const detailCanChiMonth = document.getElementById('detailCanChiMonth');
+    const detailCanChiDay = document.getElementById('detailCanChiDay');
+    const detailSolarTerm = document.getElementById('detailSolarTerm');
+    const detailDirectionHy = document.getElementById('detailDirectionHy');
+    const detailDirectionTai = document.getElementById('detailDirectionTai');
+    const detailHoangDaoHours = document.getElementById('detailHoangDaoHours');
+
+    // Converter Modal elements
+    const btnOpenConverter = document.getElementById('btnOpenConverter');
+    const btnCloseConverter = document.getElementById('btnCloseConverter');
+    const converterModal = document.getElementById('converterModal');
+    const modeSolarToLunar = document.getElementById('modeSolarToLunar');
+    const modeLunarToSolar = document.getElementById('modeLunarToSolar');
+    const convDay = document.getElementById('convDay');
+    const convMonth = document.getElementById('convMonth');
+    const convYear = document.getElementById('convYear');
+    const convLeap = document.getElementById('convLeap');
+    const divLeapMonth = document.getElementById('divLeapMonth');
+    const btnConvert = document.getElementById('btnConvert');
+    const convResultBox = document.getElementById('convResultBox');
+    const convResultText = document.getElementById('convResultText');
+
+    // Constants for Can Chi
+    const CAN = ["Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý"];
+    const CHI = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
+    const WEEKDAYS_VI = ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
+
+    const HOANG_DAO = {
+      "Tý": ["Dần", "Thìn", "Tỵ", "Thân", "Dậu", "Hợi"],
+      "Ngọ": ["Dần", "Thìn", "Tỵ", "Thân", "Dậu", "Hợi"],
+      "Sửu": ["Dần", "Mão", "Tỵ", "Thân", "Tuất", "Hợi"],
+      "Mùi": ["Dần", "Mão", "Tỵ", "Thân", "Tuất", "Hợi"],
+      "Dần": ["Tý", "Sửu", "Thìn", "Tỵ", "Mùi", "Tuất"],
+      "Thân": ["Tý", "Sửu", "Thìn", "Tỵ", "Mùi", "Tuất"],
+      "Mão": ["Tý", "Dần", "Mão", "Ngọ", "Mùi", "Dậu"],
+      "Dậu": ["Tý", "Dần", "Mão", "Ngọ", "Mùi", "Dậu"],
+      "Thìn": ["Dần", "Thìn", "Tỵ", "Thân", "Dậu", "Hợi"],
+      "Tuất": ["Dần", "Thìn", "Tỵ", "Thân", "Dậu", "Hợi"],
+      "Tỵ": ["Sửu", "Thìn", "Ngọ", "Mùi", "Tuất", "Hợi"],
+      "Hợi": ["Sửu", "Thìn", "Ngọ", "Mùi", "Tuất", "Hợi"]
+    };
+
+    const DIRECTIONS = {
+      hy: {
+        "Giáp": "Đông Bắc", "Kỷ": "Đông Bắc",
+        "Ất": "Tây Bắc", "Canh": "Tây Bắc",
+        "Bính": "Tây Nam", "Tân": "Tây Nam",
+        "Đinh": "Chính Nam", "Nhâm": "Chính Nam",
+        "Mậu": "Đông Nam", "Quý": "Đông Nam"
+      },
+      tai: {
+        "Giáp": "Đông Nam", "Kỷ": "Đông Nam",
+        "Ất": "Đông Nam", "Canh": "Đông Nam",
+        "Bính": "Chính Đông", "Tân": "Chính Đông",
+        "Đinh": "Chính Tây", "Nhâm": "Chính Tây",
+        "Mậu": "Chính Bắc", "Quý": "Chính Bắc"
+      }
+    };
+
+    // State
+    let currentDate = new Date();
+    let selectedDate = new Date();
+    let convertMode = 'solar'; // 'solar' or 'lunar'
+
+    // Init selects
+    function initDropdowns() {
+      // Month
+      for (let m = 1; m <= 12; m++) {
+        const opt = document.createElement('option');
+        opt.value = m;
+        opt.textContent = `Tháng ${m}`;
+        selectMonth.appendChild(opt);
+      }
+
+      // Year
+      for (let y = 1910; y <= 2050; y++) {
+        const opt = document.createElement('option');
+        opt.value = y;
+        opt.textContent = `Năm ${y}`;
+        selectYear.appendChild(opt);
+      }
+
+      // Sync state
+      selectMonth.value = currentDate.getMonth() + 1;
+      selectYear.value = currentDate.getFullYear();
+    }
+
+    // Helper: calculate Julian Day number
+    function getJulianDay(d, m, y) {
+      let yy = y;
+      let mm = m;
+      if (mm <= 2) {
+        yy -= 1;
+        mm += 12;
+      }
+      const a = Math.floor(yy / 100);
+      const b = 2 - a + Math.floor(a / 4);
+      const jd = Math.floor(365.25 * (yy + 4716)) + Math.floor(30.6001 * (mm + 1)) + d + b - 1524.5;
+      return Math.floor(jd);
+    }
+
+    // Helper: calculate Can Chi
+    function getCanChi(d, m, y, lunarM, lunarY) {
+      // Year Can Chi
+      const yearCan = CAN[(lunarY - 4) % 10];
+      const yearChi = CHI[(lunarY - 4) % 12];
+
+      // Month Can Chi
+      const yearCanIndex = (lunarY - 4) % 10;
+      const monthCan = CAN[(yearCanIndex * 2 + lunarM + 1) % 10];
+      const monthChi = CHI[(lunarM + 1) % 12];
+
+      // Day Can Chi (using Julian Day)
+      const jd = getJulianDay(d, m, y);
+      const dayCan = CAN[(jd + 9) % 10];
+      const dayChi = CHI[(jd + 1) % 12];
+
+      return {
+        year: `${yearCan} ${yearChi}`,
+        month: `${monthCan} ${monthChi}`,
+        day: `${dayCan} ${dayChi}`,
+        dayChiName: dayChi,
+        dayCanName: dayCan
+      };
+    }
+
+    // Helper: Solar terms lookup
+    function getSolarTerm(day, month) {
+      const terms = [
+        { name: "Tiểu Hàn", month: 1, day: 5 },
+        { name: "Đại Hàn", month: 1, day: 20 },
+        { name: "Lập Xuân", month: 2, day: 4 },
+        { name: "Vũ Thủy", month: 2, day: 19 },
+        { name: "Kinh Trập", month: 3, day: 6 },
+        { name: "Xuân Phân", month: 3, day: 21 },
+        { name: "Thanh Minh", month: 4, day: 5 },
+        { name: "Cốc Vũ", month: 4, day: 20 },
+        { name: "Lập Hạ", month: 5, day: 6 },
+        { name: "Tiểu Mãn", month: 5, day: 21 },
+        { name: "Mang Chủng", month: 6, day: 6 },
+        { name: "Hạ Chí", month: 6, day: 21 },
+        { name: "Tiểu Thử", month: 7, day: 8 },
+        { name: "Đại Thử", month: 7, day: 23 },
+        { name: "Lập Thu", month: 8, day: 8 },
+        { name: "Xử Thử", month: 8, day: 23 },
+        { name: "Bạch Lộ", month: 9, day: 8 },
+        { name: "Thu Phân", month: 9, day: 23 },
+        { name: "Hàn Lộ", month: 10, day: 9 },
+        { name: "Sương Giáng", month: 10, day: 23 },
+        { name: "Lập Đông", month: 11, day: 8 },
+        { name: "Tiểu Tuyết", month: 11, day: 23 },
+        { name: "Đại Tuyết", month: 12, day: 8 },
+        { name: "Đông Chí", month: 12, day: 22 }
+      ];
+      
+      let activeTerm = terms[terms.length - 1];
+      for (let i = 0; i < terms.length; i++) {
+        if (month > terms[i].month || (month === terms[i].month && day >= terms[i].day)) {
+          activeTerm = terms[i];
+        }
+      }
+      return activeTerm.name;
+    }
+
+    // Render Side Details for a specific Date
+    function renderDetails(date) {
+      const d = date.getDate();
+      const m = date.getMonth() + 1;
+      const y = date.getFullYear();
+
+      // Convert
+      const lunar = solarLunar.solar2lunar(y, m, d);
+      
+      // Update basic fields
+      detailDayOfWeek.textContent = WEEKDAYS_VI[date.getDay()];
+      detailSolarDay.textContent = d < 10 ? `0${d}` : d;
+      detailSolarMonthYear.textContent = `Tháng ${m} năm ${y}`;
+      detailLunarDate.textContent = `Ngày ${lunar.lDay}/${lunar.lMonth} âm lịch ${lunar.isLeap ? '(Nhuận)' : ''}`;
+
+      // Can Chi
+      const cc = getCanChi(d, m, y, lunar.lMonth, lunar.lYear);
+      detailCanChiYear.textContent = cc.year;
+      detailCanChiMonth.textContent = cc.month;
+      detailCanChiDay.textContent = cc.day;
+
+      // Solar term
+      detailSolarTerm.textContent = lunar.term || getSolarTerm(d, m);
+
+      // Directions
+      detailDirectionHy.textContent = DIRECTIONS.hy[cc.dayCanName] || "Trung Ương";
+      detailDirectionTai.textContent = DIRECTIONS.tai[cc.dayCanName] || "Trung Ương";
+
+      // Hoang Dao Hours
+      detailHoangDaoHours.innerHTML = '';
+      const hours = HOANG_DAO[cc.dayChiName] || [];
+      hours.forEach(hr => {
+        const span = document.createElement('span');
+        span.className = "px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/60";
+        span.textContent = hr;
+        detailHoangDaoHours.appendChild(span);
+      });
+    }
+
+    // Render Month Grid
+    function renderCalendar(month, year) {
+      calendarGrid.innerHTML = '';
+
+      // First day of target month
+      const firstDay = new Date(year, month - 1, 1);
+      // Day of week of first day (0 = Sunday, 1 = Monday...)
+      // Standardize so Monday is 0, Sunday is 6
+      let startDay = firstDay.getDay() - 1;
+      if (startDay < 0) startDay = 6;
+
+      const totalDays = new Date(year, month, 0).getDate();
+
+      // Get today values
+      const today = new Date();
+
+      // Fill in empty slots for prev month offset
+      for (let i = 0; i < startDay; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.className = "aspect-square p-2 bg-slate-50/40 dark:bg-slate-900/10 rounded-xl border border-transparent";
+        calendarGrid.appendChild(emptyCell);
+      }
+
+      // Fill days
+      for (let day = 1; day <= totalDays; day++) {
+        const cellDate = new Date(year, month - 1, day);
+        const lunar = solarLunar.solar2lunar(year, month, day);
+
+        const dayCell = document.createElement('button');
+        dayCell.type = "button";
+        
+        // Base classes
+        let cellClass = "aspect-square p-1.5 sm:p-2.5 rounded-xl border flex flex-col justify-between items-start transition hover:border-brand-blue dark:hover:border-brand-mint text-left ";
+        
+        // Check if selected
+        const isSelected = selectedDate.getDate() === day && selectedDate.getMonth() + 1 === month && selectedDate.getFullYear() === year;
+        const isToday = today.getDate() === day && today.getMonth() === month - 1 && today.getFullYear() === year;
+        const isSunday = cellDate.getDay() === 0;
+
+        if (isSelected) {
+          cellClass += "bg-brand-blue/10 dark:bg-brand-mint/10 border-brand-blue dark:border-brand-mint ";
+        } else if (isToday) {
+          cellClass += "bg-white dark:bg-brand-darkCard border-red-500 dark:border-red-400 ";
+        } else {
+          cellClass += "bg-white dark:bg-brand-darkCard border-slate-200 dark:border-slate-800 ";
+        }
+
+        dayCell.className = cellClass;
+
+        // Solar day number layout
+        const solarSpan = document.createElement('span');
+        solarSpan.className = `text-base sm:text-lg font-bold ${isSunday ? 'text-red-500' : 'text-slate-900 dark:text-white'}`;
+        solarSpan.textContent = day;
+
+        // Lunar day number layout
+        const lunarSpan = document.createElement('span');
+        lunarSpan.className = "text-[10px] text-slate-400 dark:text-slate-500 self-end font-semibold";
+        // Show month indicator on 1st day of lunar month
+        lunarSpan.textContent = lunar.lDay === 1 ? `${lunar.lDay}/${lunar.lMonth}` : lunar.lDay;
+
+        dayCell.appendChild(solarSpan);
+        dayCell.appendChild(lunarSpan);
+
+        dayCell.addEventListener('click', () => {
+          selectedDate = cellDate;
+          renderDetails(selectedDate);
+          renderCalendar(month, year);
+        });
+
+        calendarGrid.appendChild(dayCell);
+      }
+    }
+
+    // Modal Handlers
+    btnOpenConverter.addEventListener('click', () => {
+      converterModal.classList.remove('hidden');
+      // Set initial converter values to matches selected
+      convDay.value = selectedDate.getDate().toString();
+      convMonth.value = (selectedDate.getMonth() + 1).toString();
+      convYear.value = selectedDate.getFullYear().toString();
+      convResultBox.classList.add('hidden');
+    });
+
+    btnCloseConverter.addEventListener('click', () => {
+      converterModal.classList.add('hidden');
+    });
+
+    modeSolarToLunar.addEventListener('click', () => {
+      convertMode = 'solar';
+      modeSolarToLunar.className = "flex-1 py-2 text-xs font-bold rounded-lg text-center transition bg-white dark:bg-brand-darkCard shadow-sm text-slate-800 dark:text-white";
+      modeLunarToSolar.className = "flex-1 py-2 text-xs font-bold rounded-lg text-center transition text-slate-500 dark:text-slate-400";
+      divLeapMonth.classList.add('hidden');
+      convResultBox.classList.add('hidden');
+    });
+
+    modeLunarToSolar.addEventListener('click', () => {
+      convertMode = 'lunar';
+      modeLunarToSolar.className = "flex-1 py-2 text-xs font-bold rounded-lg text-center transition bg-white dark:bg-brand-darkCard shadow-sm text-slate-800 dark:text-white";
+      modeSolarToLunar.className = "flex-1 py-2 text-xs font-bold rounded-lg text-center transition text-slate-500 dark:text-slate-400";
+      divLeapMonth.classList.remove('hidden');
+      convResultBox.classList.add('hidden');
+    });
+
+    btnConvert.addEventListener('click', () => {
+      const d = parseInt(convDay.value);
+      const m = parseInt(convMonth.value);
+      const y = parseInt(convYear.value);
+
+      if (isNaN(d) || isNaN(m) || isNaN(y)) return;
+
+      if (convertMode === 'solar') {
+        // Solar -> Lunar
+        const result = solarLunar.solar2lunar(y, m, d);
+        const cc = getCanChi(d, m, y, result.lMonth, result.lYear);
+        convResultText.innerHTML = `Ngày <span class="text-brand-blue dark:text-brand-mint font-extrabold text-xl">${result.lDay}/${result.lMonth}/${result.lYear}</span> âm lịch ${result.isLeap ? '(Nhuận)' : ''}<br><span class="text-xs text-slate-400 font-medium">Năm ${cc.year} - Tháng ${cc.month} - Ngày ${cc.day}</span>`;
+      } else {
+        // Lunar -> Solar
+        const leap = convLeap.checked ? 1 : 0;
+        const result = solarLunar.lunar2solar(y, m, d, leap);
+        const dayOfWeek = WEEKDAYS_VI[new Date(result.cYear, result.cMonth - 1, result.cDay).getDay()];
+        convResultText.innerHTML = `${dayOfWeek}, ngày <span class="text-brand-blue dark:text-brand-mint font-extrabold text-xl">${result.cDay}/${result.cMonth}/${result.cYear}</span> dương lịch`;
+      }
+      convResultBox.classList.remove('hidden');
+    });
+
+    // Navigation Months Handlers
+    function updateStateFromSelects() {
+      const month = parseInt(selectMonth.value);
+      const year = parseInt(selectYear.value);
+      renderCalendar(month, year);
+    }
+
+    selectMonth.addEventListener('change', updateStateFromSelects);
+    selectYear.addEventListener('change', updateStateFromSelects);
+
+    btnPrevMonth.addEventListener('click', () => {
+      let m = parseInt(selectMonth.value) - 1;
+      let y = parseInt(selectYear.value);
+      if (m < 1) {
+        m = 12;
+        y -= 1;
+      }
+      selectMonth.value = m.toString();
+      selectYear.value = y.toString();
+      renderCalendar(m, y);
+    });
+
+    btnNextMonth.addEventListener('click', () => {
+      let m = parseInt(selectMonth.value) + 1;
+      let y = parseInt(selectYear.value);
+      if (m > 12) {
+        m = 1;
+        y += 1;
+      }
+      selectMonth.value = m.toString();
+      selectYear.value = y.toString();
+      renderCalendar(m, y);
+    });
+
+    // Load initial
+    initDropdowns();
+    renderDetails(selectedDate);
+    renderCalendar(currentDate.getMonth() + 1, currentDate.getFullYear());
+  </script>
+</Layout>

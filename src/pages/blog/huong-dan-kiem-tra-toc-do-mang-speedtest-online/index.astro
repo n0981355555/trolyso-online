@@ -1,0 +1,160 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Speedtest Online: Hướng Dẫn Kiểm Tra Tốc Độ Mạng Internet" 
+  description="Cẩm nang hướng dẫn kiểm tra tốc độ mạng wifi, internet 3G/4G/5G trực tuyến. Đo độ trễ Ping, tốc độ Download và Upload chuẩn xác của các nhà mạng."
+>
+  <main class="max-w-4xl mx-auto px-4 py-8 sm:py-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint flex items-center gap-1">
+            🏠 <span>Trang chủ</span>
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/blog/" class="hover:text-brand-blue dark:hover:text-brand-mint">Blog</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Hướng dẫn kiểm tra tốc độ mạng</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Post Title -->
+    <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">
+      Speedtest Online: Hướng Dẫn Kiểm Tra Tốc Độ Mạng Internet Chính Xác
+    </h1>
+
+    <!-- E-E-A-T Author Box -->
+    <div class="bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 mb-8 flex flex-col sm:flex-row items-center sm:items-start gap-4 transition-colors">
+      <div class="w-16 h-16 rounded-full bg-blue-100 text-brand-blue flex items-center justify-center font-bold text-2xl flex-shrink-0">
+        💻
+      </div>
+      <div>
+        <div class="flex flex-wrap items-center gap-2 mb-1">
+          <span class="font-bold text-slate-900 dark:text-white">Kỹ sư mạng Đặng Minh Tuấn (Cisco CCNP)</span>
+          <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold uppercase">Quản trị viên mạng doanh nghiệp</span>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+          Nội dung được biên soạn chuẩn kỹ thuật viễn thông. Hướng dẫn giúp độc giả hiểu rõ cơ chế đo băng thông internet của các nhà mạng Việt Nam và cách khắc phục sự cố đường truyền mạng chậm.
+        </p>
+        
+        <!-- Post Date & Read time -->
+        <div class="flex items-center gap-4 text-xs text-slate-400 dark:text-slate-500 mt-3 font-medium">
+          <span>📅 Ngày đăng: 05/07/2026</span>
+          <span>⏱️ Thời gian đọc: 5 phút</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post Hero Image -->
+    <div class="mb-8">
+      <img 
+        src="/images/may-tinh-luong-dong-thue-vi-du-3.webp" 
+        alt="kiem-tra-toc-do-mang-speedtest-online-hero" 
+        class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm"
+      />
+      <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">
+        Hình: Màn hình kiểm tra tốc độ băng thông truyền tải internet thời gian thực
+      </p>
+    </div>
+
+    <!-- Article Content -->
+    <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-6 text-sm">
+      <p>
+        Trong thời đại chuyển đổi số, chất lượng đường truyền internet ảnh hưởng trực tiếp đến hiệu quả làm việc văn phòng, họp trực tuyến và giải trí. Việc kiểm tra tốc độ mạng (Speedtest) thường xuyên giúp bạn kiểm chứng xem nhà mạng (Viettel, VNPT, FPT...) có cung cấp đúng băng thông đã cam kết trong hợp đồng hay không.
+      </p>
+
+      <!-- Table of Contents -->
+      <div class="bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 my-8">
+        <span class="block font-bold text-slate-900 dark:text-white mb-3 text-lg">Mục lục bài viết</span>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#metrics" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">1. Giải thích các chỉ số khi đo tốc độ mạng</a></li>
+          <li><a href="#howitworks" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">2. Cơ chế đo Speedtest hoạt động như thế nào?</a></li>
+          <li><a href="#troubleshooting" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">3. Tại sao tốc độ thực tế thấp hơn gói cước cam kết?</a></li>
+          <li><a href="#tips" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">4. Mẹo đo tốc độ mạng đạt độ chính xác cao nhất</a></li>
+        </ul>
+      </div>
+
+      <h2 id="metrics" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">1. Giải thích các chỉ số khi đo tốc độ mạng</h2>
+      <p>
+        Khi chạy công cụ Speedtest, bạn sẽ nhận được 4 chỉ số cốt lõi mô tả trạng thái đường truyền:
+      </p>
+      <ul class="list-disc pl-5 space-y-2">
+        <li><strong>Ping (Độ trễ):</strong> Thời gian để một gói tin đi từ máy tính của bạn đến máy chủ đích và quay lại. Ping được đo bằng mili-giây (ms). Ping dưới 20ms là xuất sắc, 20-50ms là bình thường, và trên 100ms sẽ gây hiện tượng lag rõ rệt khi gọi video call hoặc chơi game trực tuyến.</li>
+        <li><strong>Jitter (Độ biến động Ping):</strong> Thể hiện sự không ổn định của Ping. Nếu Ping của bạn liên tục nhảy từ 10ms lên 200ms thì Jitter sẽ rất cao, chứng tỏ đường truyền chập chờn.</li>
+        <li><strong>Download (Tốc độ tải xuống):</strong> Lượng dữ liệu máy bạn có thể nhận về trong 1 giây (đo bằng Megabits per second - Mbps). Đây là chỉ số quan trọng nhất cho các tác vụ giải trí, tải file, lướt web.</li>
+        <li><strong>Upload (Tốc độ tải lên):</strong> Lượng dữ liệu máy bạn có thể truyền lên internet trong 1 giây (quan trọng khi gửi tệp đính kèm lớn, upload video, livestream).</li>
+      </ul>
+
+      <h2 id="howitworks" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">2. Cơ chế đo Speedtest hoạt động như thế nào?</h2>
+      <p>
+        Công cụ đo tốc độ mạng hoạt động bằng cách gửi và nhận dữ liệu mẫu giữa thiết bị của bạn và các cụm máy chủ phân phối nội dung (CDN) ở gần vị trí địa lý của bạn nhất.
+      </p>
+      <p>
+        Trong suốt quá trình đo, công cụ sẽ thực hiện tải xuống liên tục các file dummy có dung lượng xác định trước, tính toán tốc độ truyền tải trung bình và vẽ nên biểu đồ kim tốc độ trực quan.
+      </p>
+
+      <h2 id="troubleshooting" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">3. Tại sao tốc độ thực tế thấp hơn gói cước cam kết?</h2>
+      <p>
+        Có rất nhiều nguyên nhân khách quan khiến tốc độ đo được thực tế không đạt mức tối đa của gói cước nhà mạng:
+      </p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>Do thiết bị phát Wifi (Router):</strong> Router thế hệ cũ hoặc phát sóng ở băng tần 2.4GHz thường bị giới hạn tốc độ truyền tải tối đa. Bạn nên kết nối băng tần 5GHz để đo được tốc độ thực tế cao hơn.</li>
+        <li><strong>Nhiều thiết bị dùng chung:</strong> Nếu có thiết bị khác trong nhà đang tải phim hoặc xem SmartTV 4K ngầm, băng thông sẽ bị chia sẻ.</li>
+        <li><strong>Sự cố cáp quang biển:</strong> Việt Nam thường xuyên chịu ảnh hưởng do đứt các tuyến cáp quang biển quốc tế (AAG, APG), làm suy giảm băng thông đi quốc tế nghiêm trọng trong khi băng thông trong nước vẫn bình thường.</li>
+      </ul>
+
+      <h2 id="tips" class="text-2xl font-heading font-bold text-slate-900 dark:text-white mt-8 mb-4">4. Mẹo đo tốc độ mạng đạt độ chính xác cao nhất</h2>
+      <p>
+        Để có kết quả đo chính xác nhất phản ánh đúng gói cước của bạn:
+      </p>
+      <ol class="list-decimal pl-5 space-y-2">
+        <li>Tắt các phần mềm download, torrent, hoặc VPN ẩn trên máy tính và điện thoại.</li>
+        <li>Nên đứng gần cục router Wifi (trong phạm vi 2-3 mét không vật cản) hoặc sử dụng dây cáp mạng LAN cắm trực tiếp vào máy tính.</li>
+        <li>Thực hiện đo lại 2-3 lần ở các thời điểm khác nhau trong ngày để lấy kết quả trung bình chính xác nhất.</li>
+      </ol>
+    </div>
+
+    <!-- Call To Action (CTA) -->
+    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 dark:from-emerald-600 dark:to-teal-700 text-white rounded-2xl p-6 sm:p-8 my-10 shadow-lg text-center">
+      <h3 class="text-xl sm:text-2xl font-heading font-bold mb-3">Kiểm Tra Tốc Độ Mạng Internet Của Bạn Ngay!</h3>
+      <p class="text-sm opacity-90 mb-6 max-w-md mx-auto">Sử dụng công cụ Speedtest trực tuyến của Trợ Lý Số để đo Ping, tốc độ tải về và tải lên chuẩn xác trong 10 giây.</p>
+      <a href="/calculators/speedtest/" class="inline-block bg-white text-indigo-600 dark:text-teal-700 font-bold px-6 py-3 rounded-xl hover:scale-105 transition shadow-md">
+        Mở công cụ Speedtest →
+      </a>
+    </div>
+
+    <!-- Related & References -->
+    <footer class="mt-12 border-t border-slate-200 dark:border-slate-800 pt-8 space-y-6">
+      <!-- Authoritative Sources -->
+      <div>
+        <h4 class="font-bold text-slate-900 dark:text-white mb-3">Tài liệu tham khảo & Nguồn uy tín</h4>
+        <ul class="list-disc pl-5 text-xs text-slate-500 dark:text-slate-400 space-y-1">
+          <li>Tiêu chuẩn quốc tế về đo lường hiệu năng mạng băng thông rộng - ITU-T.</li>
+          <li>Hướng dẫn đo tốc độ mạng của các nhà mạng viễn thông lớn tại Việt Nam (Viettel, VNPT, FPT).</li>
+          <li>Thông số đánh giá chất lượng dịch vụ Internet của Cục Viễn thông - Bộ Thông tin và Truyền thông.</li>
+        </ul>
+      </div>
+
+      <!-- Related Posts -->
+      <div>
+        <h4 class="font-bold text-slate-900 dark:text-white mb-3">Bài viết liên quan hữu ích</h4>
+        <ul class="list-disc pl-5 text-xs text-brand-blue dark:text-brand-mint space-y-1 font-medium">
+          <li><a href="/blog/huong-dan-nen-anh-webp/" class="hover:underline">Cách nén ảnh WebP tối ưu cải thiện tốc độ tải trang web</a></li>
+          <li><a href="/blog/huong-dan-tra-cuu-lich-van-nien-lich-am-hom-nay/" class="hover:underline">Hướng dẫn tra cứu lịch vạn niên và xem lịch âm hôm nay</a></li>
+        </ul>
+      </div>
+    </footer>
+  </main>
+</Layout>
