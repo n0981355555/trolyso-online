@@ -75,6 +75,13 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
       html:not(.dark) .text-slate-600 {
         color: #334155 !important;
       }
+
+      /* Subtle premium shadows for cards and blocks in light mode */
+      html:not(.dark) .rounded-2xl.bg-white,
+      html:not(.dark) .rounded-xl.bg-white,
+      html:not(.dark) a.group {
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 16px -6px rgba(15, 23, 42, 0.04) !important;
+      }
     </style>
   </head>
   <body class="bg-slate-50 dark:bg-brand-darkBg text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
