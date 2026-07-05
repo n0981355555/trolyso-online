@@ -64,7 +64,7 @@ import Layout from '../../../layouts/Layout.astro';
       </div>
 
       <!-- Tarot Cards Spread Area -->
-      <div class="min-h-[280px] flex justify-center items-center py-6">
+      <div class="min-h-[300px] flex justify-center items-center py-6">
         <div id="cardsSpread" class="flex flex-wrap justify-center gap-6 sm:gap-8 w-full max-w-xl">
           <!-- Populated via Javascript -->
           <div class="text-center text-slate-400 dark:text-slate-500 text-sm italic py-10">
@@ -150,12 +150,192 @@ import Layout from '../../../layouts/Layout.astro';
   </main>
 
   <script>
+    // Helper function to return beautiful, highly stylized cosmic SVGs
+    function getCardSvg(id) {
+      switch(id) {
+        case 0:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 15 L50 105M15 60 L85 60" stroke="#818cf8" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6"/>
+            <circle cx="50" cy="60" r="22" stroke="#818cf8" stroke-width="1.5"/>
+            <path d="M50 38 L54 54 L70 60 L54 66 L50 82 L46 66 L30 60 L46 54 Z" fill="#f59e0b" />
+            <circle cx="25" cy="35" r="2" fill="#fff"/>
+            <circle cx="75" cy="85" r="1.5" fill="#fff"/>
+            <circle cx="75" cy="35" r="1.5" fill="#f59e0b"/>
+            <circle cx="25" cy="85" r="2" fill="#f59e0b"/>
+          </svg>`;
+        case 1:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 50 C18 50, 18 70, 32 70 C46 70, 54 50, 68 50 C82 50, 82 70, 68 70 C54 70, 46 50, 32 50 Z" stroke="#818cf8" stroke-width="2"/>
+            <path d="M22 95 L78 25" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="78" cy="25" r="4.5" fill="#fff" />
+            <circle cx="78" cy="25" r="6" stroke="#f59e0b" stroke-width="1"/>
+            <path d="M50 25 L52 30 L57 30 L53 33 L55 38 L50 35 L45 38 L47 33 L43 30 L48 30 Z" fill="#fff"/>
+          </svg>`;
+        case 2:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="22" y="25" width="8" height="70" rx="1.5" fill="#334155"/>
+            <rect x="70" y="25" width="8" height="70" rx="1.5" fill="#e2e8f0"/>
+            <path d="M50 35 A 18 18 0 0 0 50 71 A 13 13 0 0 1 50 35" fill="#fcd34d"/>
+            <circle cx="50" cy="53" r="5" stroke="#818cf8" stroke-width="1.5"/>
+            <circle cx="50" cy="53" r="1.5" fill="#fff"/>
+            <path d="M50 15 L52 20 L57 20 L53 23 L55 28 L50 25 L45 28 L47 23 L43 20 L48 20 Z" fill="#fff"/>
+          </svg>`;
+        case 3:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="62" rx="25" ry="32" stroke="#818cf8" stroke-width="1.5"/>
+            <path d="M30 60 L40 40 L50 50 L60 40 L70 60 Z" fill="#f59e0b" stroke="#fff" stroke-width="1"/>
+            <circle cx="40" cy="40" r="2.5" fill="#fff"/>
+            <circle cx="50" cy="50" r="2.5" fill="#fff"/>
+            <circle cx="60" cy="40" r="2.5" fill="#fff"/>
+            <path d="M22 85 Q 35 75 50 85 Q 65 75 78 85" stroke="#818cf8" stroke-width="2" stroke-linecap="round"/>
+          </svg>`;
+        case 4:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 30 L70 30 L65 85 L50 98 L35 85 Z" stroke="#818cf8" stroke-width="2" fill="#0f1026"/>
+            <path d="M30 40 Q 18 28 32 32 M70 40 Q 82 28 68 32" stroke="#f59e0b" stroke-width="2"/>
+            <path d="M50 40 L50 80" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="50" cy="38" r="4.5" fill="#fff"/>
+            <path d="M42 27 L45 20 L50 25 L55 20 L58 27 Z" fill="#f59e0b"/>
+          </svg>`;
+        case 5:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="28" y1="20" x2="28" y2="100" stroke="#818cf8" stroke-width="2"/>
+            <line x1="72" y1="20" x2="72" y2="100" stroke="#818cf8" stroke-width="2"/>
+            <path d="M50 28 L50 95 M35 42 L65 42 M38 54 L62 54 M41 66 L59 66" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M42 85 L58 95 M58 85 L42 95" stroke="#fff" stroke-width="1.5"/>
+          </svg>`;
+        case 6:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 45 C15 25, 45 35, 50 50 C55 35, 85 25, 85 45 C85 70, 50 95, 50 95 C50 95, 15 70, 15 45 Z" fill="#ef4444" opacity="0.3"/>
+            <path d="M40 58 C32 48, 48 38, 50 53 C52 38, 68 48, 60 58 L50 68 Z" fill="#f59e0b" stroke="#fff" stroke-width="1"/>
+            <circle cx="50" cy="20" r="3.5" fill="#fff" />
+            <circle cx="20" cy="75" r="1.5" fill="#fff"/>
+            <circle cx="80" cy="75" r="1.5" fill="#fff"/>
+          </svg>`;
+        case 7:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25 30 L75 30 C75 30, 75 72, 50 92 C25 72, 25 30, 25 30 Z" stroke="#818cf8" stroke-width="1.5" fill="#0f1026"/>
+            <path d="M15 20 Q 50 35 85 20" stroke="#f59e0b" stroke-width="2"/>
+            <circle cx="22" cy="95" r="8" stroke="#f59e0b" stroke-width="2"/>
+            <circle cx="78" cy="95" r="8" stroke="#f59e0b" stroke-width="2"/>
+            <path d="M50 42 L52 47 L57 47 L53 50 L55 55 L50 52 L45 55 L47 50 L43 47 L48 47 Z" fill="#fff"/>
+          </svg>`;
+        case 8:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M38 30 C28 20, 28 40, 38 40 C48 40, 52 20, 62 20 C72 20, 72 40, 62 40 C52 40, 48 30, 38 30 Z" stroke="#fff" stroke-width="2"/>
+            <path d="M35 55 L65 55 L60 80 L50 90 L40 80 Z" stroke="#f59e0b" stroke-width="2"/>
+            <path d="M35 55 L50 68 L65 55" stroke="#f59e0b" stroke-width="1"/>
+            <path d="M45 48 L48 43 L50 46 L52 43 L55 48 Z" fill="#818cf8"/>
+          </svg>`;
+        case 9:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="30" y1="20" x2="30" y2="105" stroke="#818cf8" stroke-width="2"/>
+            <path d="M70 35 L78 43 L70 51 L62 43 Z" fill="#f59e0b" stroke="#fff" stroke-width="1"/>
+            <circle cx="70" cy="43" r="3" fill="#fff"/>
+            <line x1="70" y1="43" x2="85" y2="43" stroke="#fff" stroke-width="1"/>
+            <line x1="70" y1="43" x2="55" y2="43" stroke="#fff" stroke-width="1"/>
+            <path d="M15 100 L40 78 L60 92 L85 68 L95 100 Z" fill="#1e293b"/>
+          </svg>`;
+        case 10:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="60" r="28" stroke="#f59e0b" stroke-width="2.5"/>
+            <circle cx="50" cy="60" r="14" stroke="#818cf8" stroke-width="1.5"/>
+            <line x1="50" y1="32" x2="50" y2="88" stroke="#f59e0b" stroke-width="1.5"/>
+            <line x1="22" y1="60" x2="78" y2="60" stroke="#f59e0b" stroke-width="1.5"/>
+            <path d="M44 26 Q 50 16 56 26 Z" fill="#fff"/>
+          </svg>`;
+        case 11:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="22" y1="45" x2="78" y2="45" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M50 20 L50 95" stroke="#818cf8" stroke-width="2" stroke-linecap="round"/>
+            <path d="M43 32 L57 32" stroke="#818cf8" stroke-width="1.5"/>
+            <line x1="26" y1="45" x2="26" y2="70" stroke="#fff" stroke-width="1"/>
+            <line x1="74" y1="45" x2="74" y2="70" stroke="#fff" stroke-width="1"/>
+            <path d="M16 70 Q 26 78 36 70 Z" fill="#f59e0b"/>
+            <path d="M64 70 Q 74 78 84 70 Z" fill="#f59e0b"/>
+          </svg>`;
+        case 12:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 20 L80 20 M50 20 L50 100" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M50 20 L50 65 L42 52 L58 52 Z" fill="#f59e0b" opacity="0.3"/>
+            <circle cx="50" cy="78" r="8" stroke="#fff" stroke-width="1.5"/>
+            <path d="M50 73 L52 75 L55 75 L53 77 L54 80 L50 78 L46 80 L47 77 L45 75 L48 75 Z" fill="#fcd34d"/>
+          </svg>`;
+        case 13:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 100 L30 25 M30 25 Q 70 12 85 30" stroke="#818cf8" stroke-width="2.5"/>
+            <path d="M46 58 C46 45, 74 45, 74 58 C74 68, 69 73, 66 73 L66 82 L54 82 L54 73 C51 73, 46 68, 46 58 Z" fill="#fff" stroke="#f97316" stroke-width="1.5"/>
+            <circle cx="53" cy="58" r="2.5" fill="#0f1026"/>
+            <circle cx="67" cy="58" r="2.5" fill="#0f1026"/>
+            <circle cx="60" cy="92" r="5" fill="#ef4444"/>
+          </svg>`;
+        case 14:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 35 Q 35 15 50 50 Q 65 15 85 35" stroke="#818cf8" stroke-width="2"/>
+            <path d="M32 40 L42 40 L37 53 Z" fill="#f59e0b"/>
+            <path d="M58 75 L68 75 L63 88 Z" fill="#f59e0b"/>
+            <path d="M37 46 Q 50 58 63 80" stroke="#fff" stroke-width="2" stroke-dasharray="2 2"/>
+          </svg>`;
+        case 15:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 40 Q 20 20 40 30 M70 40 Q 80 20 60 30" stroke="#ef4444" stroke-width="2"/>
+            <path d="M50 45 L53 52 L60 52 L55 56 L57 63 L50 59 L43 63 L45 56 L40 52 L47 52 Z" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+            <path d="M35 85 Q 50 95 65 85" stroke="#fff" stroke-width="1.5" fill="none"/>
+            <circle cx="50" cy="90" r="2.5" fill="#fff"/>
+          </svg>`;
+        case 16:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M36 100 L41 35 L59 35 L64 100 Z" fill="#1e293b" stroke="#818cf8" stroke-width="2"/>
+            <path d="M45 25 L48 20 L50 22 L52 20 M42 27 L58 27" stroke="#f59e0b" stroke-width="1.5"/>
+            <path d="M70 12 L50 38 L60 40 L45 68" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="28" cy="48" r="1.5" fill="#fff"/>
+            <circle cx="72" cy="62" r="1.5" fill="#f59e0b"/>
+          </svg>`;
+        case 17:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 25 L53 41 L68 41 L55 49 L59 65 L50 55 L41 65 L45 49 L32 41 L47 41 Z" fill="#fcd34d"/>
+            <circle cx="22" cy="25" r="2" fill="#fff"/>
+            <circle cx="78" cy="25" r="2" fill="#fff"/>
+            <circle cx="22" cy="85" r="1.5" fill="#fff"/>
+            <circle cx="78" cy="85" r="1.5" fill="#fff"/>
+          </svg>`;
+        case 18:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="60" r="26" stroke="#818cf8" stroke-width="1.5"/>
+            <path d="M50 34 A 26 26 0 0 0 50 86 A 18 18 0 0 1 50 34" fill="#f59e0b"/>
+            <rect x="18" y="65" width="6" height="35" fill="#1e293b"/>
+            <rect x="76" y="65" width="6" height="35" fill="#1e293b"/>
+          </svg>`;
+        case 19:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="55" r="18" fill="#fcd34d" stroke="#f97316" stroke-width="1.5"/>
+            <path d="M50 28 L50 18 M50 82 L50 92 M23 55 H13 M87 55 H77 M30 35 L24 29 M70 75 L76 81 M70 35 L76 29 M30 75 L24 81" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M50 51 C48.5 47, 53 47, 50 57 C47 47, 51.5 47, 50 51 Z" fill="#ef4444" stroke="#fff" stroke-width="0.5"/>
+          </svg>`;
+        case 20:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 20 L50 72 M42 32 L58 32 L55 52 L45 52 Z" fill="#818cf8" stroke="#f59e0b" stroke-width="1.5"/>
+            <circle cx="50" cy="18" r="3.5" fill="#f59e0b"/>
+            <path d="M22 95 C27 90, 37 90, 42 95 C47 90, 57 90, 62 95 C67 90, 77 90, 82 95 Z" fill="#334155" opacity="0.6"/>
+          </svg>`;
+        case 21:
+          return `<svg class="w-18 h-20" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="60" rx="30" ry="38" stroke="#818cf8" stroke-width="2.5" stroke-dasharray="6 3"/>
+            <ellipse cx="50" cy="60" rx="18" ry="26" stroke="#f59e0b" stroke-width="1"/>
+            <line x1="32" y1="60" x2="68" y2="60" stroke="#f59e0b" stroke-width="1.5"/>
+            <line x1="50" y1="22" x2="50" y2="98" stroke="#f59e0b" stroke-width="1.5"/>
+            <path d="M50 55 L52 58 L55 58 L53 60 L54 63 L50 61 L46 63 L47 60 L45 58 L48 58 Z" fill="#fff"/>
+          </svg>`;
+        default:
+          return '';
+      }
+    }
+
     // 22 Major Arcana cards with detailed meanings and premium vector SVGs to prevent broken emoji displays
     const tarotDeck = [
       {
         id: 0,
         name: "0. The Fool (Chàng Khờ)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" /></svg>`,
         desc: "Lá bài đại diện cho những khởi đầu mới mẻ, lòng tin thơ ngây, sự tự do không ràng buộc và những chuyến hành trình phiêu lưu không định trước.",
         love: "Bạn chuẩn bị bước vào một mối quan hệ mới đầy bất ngờ hoặc một chương mới rực rỡ. Đừng ngần ngại bày tỏ cảm xúc thật.",
         career: "Cơ hội thay đổi công việc hoặc hướng đi mới sắp xuất hiện. Hãy đón nhận thử thách mới với sự tự tin và tư duy cởi mở.",
@@ -164,7 +344,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 1,
         name: "1. The Magician (Nhà Ảo Thuật)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>`,
         desc: "Biểu trưng cho ý chí mạnh mẽ, khả năng sáng tạo vượt trội, kỹ năng giao tiếp tốt và khả năng hiện thực hóa các mong ước thành hiện thực.",
         love: "Sức hút cá nhân đang ở mức đỉnh điểm. Bạn dễ dàng thu hút đối phương bằng sự tinh tế, dí dỏm và thông minh của mình.",
         career: "Bạn có đầy đủ tài nguyên và năng lực để giải quyết dự án khó khăn hiện tại. Hãy chủ động hành động và dẫn dắt tập thể.",
@@ -173,7 +352,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 2,
         name: "2. The High Priestess (Nữ Tư Tế)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="9" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 3a9 9 0 009 9 9 9 0 01-9-9z" /></svg>`,
         desc: "Đại diện cho trực giác nhạy bén, các bí mật ẩn giấu, sự thông thái nội tâm, tiềm thức sâu thẳm và sự kiên nhẫn tĩnh lặng.",
         love: "Hãy lắng nghe linh cảm của bản thân trước các lựa chọn tình cảm. Mối quan hệ hiện tại cần thêm thời gian thấu hiểu chiều sâu.",
         career: "Chưa phải lúc đưa ra các quyết định đầu tư mạo hiểm lớn. Hãy tiếp tục quan sát, thu thập thông tin và học hỏi thêm.",
@@ -182,7 +360,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 3,
         name: "3. The Empress (Nữ Hoàng)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z" /><path stroke-linecap="round" stroke-linejoin="round" d="M9 10l3-5 3 5 4-2-2 7H7l-2-7 4 2z" /></svg>`,
         desc: "Tượng trưng cho sự sinh sôi nảy nở, sự sung túc đầy đủ, thiên nhiên trù phú, sự nuôi dưỡng chở che và hạnh phúc gia đình.",
         love: "Một tình yêu ngọt ngào, ấm áp đang đơm hoa kết trái. Cực kỳ thuận lợi cho việc kết hôn, gắn kết gia đình hoặc chào đón thành viên mới.",
         career: "Các dự án kinh doanh bắt đầu gặt hái thành quả ngọt ngào. Khả năng sáng tạo nghệ thuật hoặc ý tưởng mới được công nhận.",
@@ -191,7 +368,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 4,
         name: "4. The Emperor (Hoàng Đế)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>`,
         desc: "Đại diện cho trật tự xã hội, kỷ luật sắt đá, cấu trúc vững chắc, quyền lực lãnh đạo và sự bảo hộ của đấng nam nhi.",
         love: "Bạn hoặc đối phương đang nắm giữ vai trò dẫn dắt lý trí trong mối quan hệ. Đôi lúc cần bớt cứng nhắc để tránh xung đột vụn vặt.",
         career: "Công việc đang đi vào guồng quay ổn định và có tính tổ chức cao. Cơ hội thăng tiến lên vị trí quản lý, giám sát.",
@@ -200,7 +376,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 5,
         name: "5. The Hierophant (Thầy Cả)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h5m-5 4h5m-2.5-12v14" /></svg>`,
         desc: "Tượng trưng cho giáo lý, chuẩn mực đạo đức, sự học hỏi kiến thức chính thống, niềm tin tôn giáo và người thầy tinh thần.",
         love: "Mối quan hệ có xu hướng đi theo truyền thống, cam kết lâu dài và bền vững. Hai bạn nhận được sự ủng hộ lớn từ gia đình.",
         career: "Thích hợp làm việc trong môi trường tập thể lớn, có quy chế rõ ràng. Nên tìm kiếm lời khuyên từ những người đi trước giàu kinh nghiệm.",
@@ -209,7 +384,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 6,
         name: "6. The Lovers (Tình Nhân)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>`,
         desc: "Đại diện cho tình yêu đôi lứa nồng nàn, sự hòa hợp tâm hồn, các mối quan hệ khăng khít và những lựa chọn đạo đức quan trọng.",
         love: "Sự kết nối tuyệt vời về cả tâm hồn lẫn thể xác với người bạn đời. Nếu đang độc thân, một tình yêu sét đánh có thể sắp gõ cửa.",
         career: "Thời điểm thuận lợi cho việc hợp tác, ký kết các dự án chung. Hãy chọn lựa công việc dựa trên giá trị sống cốt lõi của bạn.",
@@ -218,7 +392,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 7,
         name: "7. The Chariot (Chiến Xa)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="3" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v6m0 6v6M3 12h6m6 0h6" /></svg>`,
         desc: "Tượng trưng cho sự quyết tâm sắt đá, chiến thắng nghịch cảnh, kiểm soát cảm xúc để tiến lên phía trước bằng ý chí.",
         love: "Bạn đang chủ động chinh phục và kiểm soát mối quan hệ. Hãy kiên trì vượt qua những bất đồng quan điểm ban đầu.",
         career: "Sự nghiệp thăng tiến mạnh mẽ nhờ vượt qua mọi rào cản đối thủ cạnh tranh. Hãy giữ vững tay chèo và sự tập trung cao độ.",
@@ -227,7 +400,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 8,
         name: "8. Strength (Sức Mạnh)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`,
         desc: "Biểu trưng cho lòng can đảm kiên cường, sức mạnh nội tâm, khả năng kiềm chế thú tính và lòng trắc ẩn chinh phục thử thách.",
         love: "Sử dụng sự dịu dàng và kiên nhẫn để hóa giải các hiểu lầm với đối phương. Tình cảm ngày càng bền chặt, sâu sắc.",
         career: "Thời điểm đòi hỏi sự bền bỉ và bản lĩnh vượt khó. Bạn có khả năng thuyết phục khách hàng khó tính bằng thái độ ôn hòa.",
@@ -236,7 +408,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 9,
         name: "9. The Hermit (Ẩn Sĩ)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 113.536 0l-3.536 3.536L6.5 15.5z" /></svg>`,
         desc: "Đại diện cho sự tự suy ngẫm, tách biệt thế sự để chiêm nghiệm, đi tìm chân lý cuộc sống và sự thông thái nội tâm.",
         love: "Cần một khoảng lặng riêng tư để suy nghĩ thấu đáo về mối quan hệ. Nếu độc thân, bạn đang hài lòng với sự tự do hiện tại.",
         career: "Thời điểm thích hợp để nghiên cứu, hoạch định chiến lược dài hạn thay vì vội vã hành động mở rộng quy mô kinh doanh.",
@@ -245,7 +416,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 10,
         name: "10. Wheel of Fortune (Bánh Xe Số Phận)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="9" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l3 9H9l3-9zm0 18l3-9H9l3 9zM3 12l9 3v-6l-9 3zm18 0l-9 3v-6l9 3z" /></svg>`,
         desc: "Đại diện cho vòng quay định mệnh, sự thay đổi bất ngờ của số phận, vận may gõ cửa và những nhân quả tích lũy.",
         love: "Mối duyên số định mệnh có thể bất ngờ xuất hiện làm thay đổi cuộc sống của bạn. Hãy sẵn sàng đón nhận bước ngoặt tình cảm.",
         career: "Một cơ hội nghề nghiệp lớn xuất hiện ngoài mong đợi. Vận may tài chính đang có chiều hướng tăng tiến rõ rệt.",
@@ -254,7 +424,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 11,
         name: "11. Justice (Công Lý)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 6h18M12 3v18m-6-9l3-4m3 4l-3-4m12 4l3-4m-3 4l-3-4M4 17h4m8 0h4" /></svg>`,
         desc: "Biểu trưng cho sự công bằng, minh bạch, trung thực, các quyết định pháp lý và quy luật nhân quả công minh.",
         love: "Hãy trung thực với đối phương trong mọi vấn đề. Mối quan hệ dựa trên sự tôn trọng và bình đẳng lẫn nhau sẽ bền vững.",
         career: "Mọi hợp đồng, văn bản hành chính cần được kiểm tra kỹ lưỡng trước khi ký. Nỗ lực làm việc của bạn sẽ được đền đáp xứng đáng.",
@@ -263,7 +432,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 12,
         name: "12. The Hanged Man (Kẻ Treo Ngược)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4m-6 9h4" /></svg>`,
         desc: "Đại diện cho sự trì hoãn tạm thời, nhìn nhận vấn đề dưới góc nhìn đảo ngược mới mẻ và sự hy sinh cần thiết để đạt mục tiêu.",
         love: "Mối quan hệ đang rơi vào trạng thái tĩnh lặng, tạm ngừng. Hãy tận dụng thời gian này để xem xét lại tình cảm từ cả hai phía.",
         career: "Không nên vội vã thúc đẩy dự án đi nhanh hơn. Cần kiên nhẫn chờ đợi cơ hội chín muồi hoặc tìm cách tiếp cận mới lạ.",
@@ -272,7 +440,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 13,
         name: "13. Death (Tử Thần)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.79-1.79C9.09 19.64 10.51 20 12 20c4.97 0 9-4.03 9-9 0-4.97-4.03-9-9-9zM9 10h1.5M13.5 10H15m-4.5 4a3 3 0 003 3" /></svg>`,
         desc: "Không phải cái chết vật lý, lá bài đại diện cho sự kết thúc một chu kỳ cũ để tái sinh một khởi đầu mới tốt đẹp hơn, sự buông bỏ cần thiết.",
         love: "Mối quan hệ cũ bế tắc hoặc các thói quen xấu trong tình cảm cần được kết thúc để nhường chỗ cho chương mới hạnh phúc hơn.",
         career: "Rời bỏ một dự án không còn hiệu quả hoặc chuyển hướng công việc mới. Hãy mạnh dạn thay đổi tư duy cũ kỹ.",
@@ -281,7 +448,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 14,
         name: "14. Temperance (Tiết Độ)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8" /></svg>`,
         desc: "Tượng trưng cho sự cân bằng hoàn hảo, hòa giải mâu thuẫn, kiểm soát chừng mực và sự phối hợp ăn ý nhịp nhàng.",
         love: "Sự thấu hiểu và nhường nhịn lẫn nhau giúp mối quan hệ luôn êm đềm, hòa hợp. Rất thuận lợi để kết hôn hoặc ra mắt.",
         career: "Giải quyết êm thấm các tranh chấp nội bộ công sở. Sự kiên trì trung lập mang lại lợi ích lâu dài cho bạn.",
@@ -290,7 +456,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 15,
         name: "15. The Devil (Ác Quỷ)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14c2.21 0 4-1.79 4-4V5c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v5c0 2.21 1.79 4 4 4zm0 0v6m-4 0h8m-9.5-6.5a4 4 0 019 0" /></svg>`,
         desc: "Biểu thị sự cám dỗ vật chất, các mối ràng buộc phụ thuộc, thói quen xấu lặp đi lặp lại hoặc nỗi sợ hãi tự trói buộc.",
         love: "Tránh sự ghen tuông quá mức hoặc kiểm soát đối phương một cách độc hại. Nhận diện rõ các mối quan hệ dựa trên dục vọng đơn thuần.",
         career: "Cảnh giác trước những cơ hội kiếm tiền nhanh không minh bạch. Đề phòng thói quen chi tiêu mua sắm mất kiểm soát.",
@@ -299,7 +464,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 16,
         name: "16. The Tower (Tòa Tháp)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>`,
         desc: "Đại diện cho sự sụp đổ đột ngột của một cấu trúc cũ, cú sốc nhận thức để phá vỡ ảo ảnh và xây dựng lại từ nền tảng vững vàng hơn.",
         love: "Một thử thách lớn bất ngờ ập đến thử thách lòng tin của hai người. Sự thật phơi bày giúp bạn nhận diện chính xác tình cảm.",
         career: "Đối mặt với sự thay đổi nhân sự lớn đột ngột hoặc dự án tạm dừng. Hãy coi đây là cơ hội tái thiết lại định hướng.",
@@ -308,7 +472,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 17,
         name: "17. The Star (Ngôi Sao)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.907a1 1 0 00.95-.69l1.519-4.674z" /></svg>`,
         desc: "Lá bài của hy vọng tràn trề, niềm tin vào ngày mai, sự chữa lành vết thương tâm hồn và sự bảo hộ của vũ trụ.",
         love: "Sự bình yên và hàn gắn ngọt ngào đang đến với mối quan hệ. Niềm tin yêu cuộc sống được thắp sáng trở lại.",
         career: "Sau giai đoạn khó khăn, bạn bắt đầu tìm thấy ánh sáng dẫn đường và định hướng lâu dài cho sự nghiệp sáng lạn.",
@@ -317,7 +480,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 18,
         name: "18. The Moon (Mặt Trăng)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>`,
         desc: "Biểu trưng cho sự lo âu, bất an, những bí ẩn chưa sáng tỏ, ảo ảnh tâm trí và sự trỗi dậy của trực giác nhạy cảm.",
         love: "Mối quan hệ đang thiếu đi sự minh bạch rõ ràng, dễ phát sinh hiểu lầm do suy diễn nhiều. Hãy đối thoại chân thành.",
         career: "Cần cảnh giác trước các cạm bẫy hoặc điều khoản mập mờ trong công việc. Chưa phải lúc đầu tư mạo hiểm.",
@@ -326,7 +488,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 19,
         name: "19. The Sun (Mặt Trời)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="5" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 1v2m0 18v2M1 12h2m18 0h2m-3.778-7.222l-1.414 1.414M6.192 17.808l-1.414 1.414m13.03 0l-1.414-1.414M6.192 6.192L4.778 4.778" /></svg>`,
         desc: "Biểu trưng rực rỡ nhất cho sự thành công vang dội, hào quang chiến thắng, năng lượng tích cực, sự ấm áp và sự rõ ràng minh bạch.",
         love: "Tình yêu ngập tràn ánh nắng ấm áp, sự thấu hiểu sâu sắc và chân thành tuyệt đối. Không khí gia đình vui tươi, hạnh phúc.",
         career: "Đạt được thành tựu xuất sắc, được vinh danh hoặc hoàn thành dự án lớn vượt mong đợi. Tài chính thịnh vượng.",
@@ -335,7 +496,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 20,
         name: "20. Judgement (Phán Xét)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M12 18a6 6 0 100-12 6 6 0 000 12z" /></svg>`,
         desc: "Đại diện cho sự thức tỉnh tâm linh, tiếng gọi thức tỉnh hành động, tự kiểm điểm quá khứ và đưa ra phán quyết quan trọng đời người.",
         love: "Thời điểm đưa ra quyết định rõ ràng cho mối quan hệ hiện tại. Sự tha thứ và buông bỏ oán hận cũ đem lại hạnh phúc.",
         career: "Bạn được trao cơ hội làm lại hoặc nhận lãnh dự án phù hợp với sứ mệnh cuộc đời. Hãy hành động dũng cảm.",
@@ -344,7 +504,6 @@ import Layout from '../../../layouts/Layout.astro';
       {
         id: 21,
         name: "21. The World (Thế Giới)",
-        svg: `<svg class="w-10 h-10 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="9" /><path stroke-linecap="round" stroke-linejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3a15.3 15.3 0 014.5 9 15.3 15.3 0 01-4.5 9 15.3 15.3 0 01-4.5-9A15.3 15.3 0 0112 3z" /></svg>`,
         desc: "Đại diện cho sự hoàn thành viên mãn, sự trọn vẹn toàn diện, đạt được mục tiêu lớn và sự tự do kết nối thế giới.",
         love: "Mối quan hệ đi đến cái kết có hậu viên mãn (như lễ cưới hoặc sự gắn kết bền chặt trọn đời). Sự thấu hiểu tuyệt đối.",
         career: "Hoàn thành xuất sắc mục tiêu sự nghiệp lớn dài hạn. Cơ hội làm việc hoặc mở rộng kinh doanh ra nước ngoài.",
@@ -398,12 +557,12 @@ import Layout from '../../../layouts/Layout.astro';
       btnShuffle.disabled = true;
       btnShuffle.textContent = "🔮 ĐANG XÀO BÀI...";
       
-      // Clear container and show shuffling mock cards
+      // Clear container and show shuffling mock cards with dark cosmic layout
       cardsSpread.innerHTML = `
         <div class="flex justify-center items-center gap-2 relative w-64 h-48">
-          <div class="absolute w-28 h-44 bg-gradient-to-br from-indigo-900 to-slate-900 dark:from-brand-darkCard dark:to-slate-900 rounded-xl border-2 border-slate-200/50 dark:border-slate-700/50 shadow-md flex items-center justify-center animate-pulse transform -rotate-6">✨</div>
-          <div class="absolute w-28 h-44 bg-gradient-to-br from-indigo-900 to-slate-900 dark:from-brand-darkCard dark:to-slate-900 rounded-xl border-2 border-slate-200/50 dark:border-slate-700/50 shadow-md flex items-center justify-center animate-pulse transform translate-x-4 rotate-3">✨</div>
-          <div class="absolute w-28 h-44 bg-gradient-to-br from-indigo-900 to-slate-900 dark:from-brand-darkCard dark:to-slate-900 rounded-xl border-2 border-slate-200/50 dark:border-slate-700/50 shadow-md flex items-center justify-center animate-pulse transform -translate-x-4 rotate-12">✨</div>
+          <div class="absolute w-28 h-44 bg-gradient-to-b from-[#0b0c1f] via-[#11132e] to-[#070815] rounded-xl border border-amber-500/20 shadow-md flex items-center justify-center animate-pulse transform -rotate-6">✨</div>
+          <div class="absolute w-28 h-44 bg-gradient-to-b from-[#0b0c1f] via-[#11132e] to-[#070815] rounded-xl border border-amber-500/20 shadow-md flex items-center justify-center animate-pulse transform translate-x-4 rotate-3">✨</div>
+          <div class="absolute w-28 h-44 bg-gradient-to-b from-[#0b0c1f] via-[#11132e] to-[#070815] rounded-xl border border-amber-500/20 shadow-md flex items-center justify-center animate-pulse transform -translate-x-4 rotate-12">✨</div>
         </div>
       `;
 
@@ -435,7 +594,7 @@ import Layout from '../../../layouts/Layout.astro';
         });
       }
 
-      // Render cards face down
+      // Render cards face down with the new premium cosmic dark deck style
       drawnCards.forEach((card, index) => {
         const cardWrapper = document.createElement('div');
         cardWrapper.className = "flex flex-col items-center gap-3";
@@ -444,23 +603,50 @@ import Layout from '../../../layouts/Layout.astro';
           
           <!-- Flip Card Container -->
           <div class="w-32 h-48 [perspective:1000px] cursor-pointer" onclick="this.dispatchEvent(new CustomEvent('flip-card', {bubbles: true, detail: ${index}}))">
-            <div class="card-inner w-full h-full relative [transform-style:preserve-3d] transition-transform duration-500 rounded-2xl shadow-lg border border-slate-250 dark:border-slate-800">
+            <div class="card-inner w-full h-full relative [transform-style:preserve-3d] transition-transform duration-500 rounded-2xl shadow-xl border border-amber-500/30">
               
-              <!-- Card Back -->
-              <div class="absolute inset-0 w-full h-full rounded-2xl [backface-visibility:hidden] bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 dark:from-brand-darkCard dark:via-indigo-950 dark:to-slate-950 flex flex-col items-center justify-center p-2 text-center text-amber-400/50">
-                <div class="w-24 h-40 border border-amber-400/20 rounded-xl flex flex-col items-center justify-center gap-1.5 relative overflow-hidden">
-                  <div class="absolute -top-6 -left-6 w-12 h-12 border border-amber-400/10 rounded-full"></div>
-                  <div class="absolute -bottom-6 -right-6 w-12 h-12 border border-amber-400/10 rounded-full"></div>
-                  <span class="text-3xl">✨</span>
-                  <span class="text-[9px] uppercase tracking-widest font-serif font-semibold text-amber-500/40">Tarot Online</span>
+              <!-- Card Back (Cosmic Mystical Theme) -->
+              <div class="absolute inset-0 w-full h-full rounded-2xl [backface-visibility:hidden] bg-gradient-to-b from-[#0b0c1f] via-[#11132e] to-[#070815] flex flex-col items-center justify-center p-2 text-center relative overflow-hidden">
+                <!-- Inner dotted frame -->
+                <div class="absolute inset-1.5 border border-dashed border-amber-500/20 rounded-xl pointer-events-none"></div>
+                
+                <!-- Corner Stars -->
+                <span class="absolute top-2.5 left-2.5 text-[8px] text-amber-500/30">✦</span>
+                <span class="absolute top-2.5 right-2.5 text-[8px] text-amber-500/30">✦</span>
+                <span class="absolute bottom-2.5 left-2.5 text-[8px] text-amber-500/30">✦</span>
+                <span class="absolute bottom-2.5 right-2.5 text-[8px] text-amber-500/30">✦</span>
+
+                <div class="w-24 h-40 flex flex-col items-center justify-center gap-1.5 z-10">
+                  <!-- Cosmic Wheel -->
+                  <svg class="w-10 h-10 text-amber-400/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <circle cx="12" cy="12" r="8" stroke-dasharray="2 2"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <path d="M12 2 L12 22 M2 12 L22 12 M5 5 L19 19 M5 19 L19 5"/>
+                  </svg>
+                  <span class="text-[9px] uppercase tracking-widest font-serif font-bold text-amber-400/40 mt-1">Tarot Online</span>
                 </div>
               </div>
 
-              <!-- Card Front -->
-              <div class="absolute inset-0 w-full h-full rounded-2xl [backface-visibility:hidden] [transform:rotateY(180deg)] bg-white dark:bg-brand-darkCard border-2 border-amber-400 dark:border-brand-mint/70 flex flex-col items-center justify-center p-4 text-center">
-                <div class="mb-3 text-amber-500 dark:text-brand-mint flex justify-center items-center">${card.cardData.svg}</div>
-                <span class="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-tight leading-tight mb-1 text-center">${card.cardData.name}</span>
-                <span class="text-[9px] font-bold text-slate-400">Major Arcana</span>
+              <!-- Card Front (Cosmic Mystical Theme) -->
+              <div class="absolute inset-0 w-full h-full rounded-2xl [backface-visibility:hidden] [transform:rotateY(180deg)] bg-gradient-to-b from-[#0b0c1f] via-[#11132e] to-[#070815] flex flex-col items-center justify-center p-3 text-center relative overflow-hidden">
+                <!-- Inner dotted frame -->
+                <div class="absolute inset-1.5 border border-dashed border-amber-500/25 rounded-xl pointer-events-none"></div>
+                
+                <!-- Corner Stars -->
+                <span class="absolute top-2.5 left-2.5 text-[8px] text-amber-400/40">✦</span>
+                <span class="absolute top-2.5 right-2.5 text-[8px] text-amber-400/40">✦</span>
+                <span class="absolute bottom-2.5 left-2.5 text-[8px] text-amber-400/40">✦</span>
+                <span class="absolute bottom-2.5 right-2.5 text-[8px] text-amber-400/40">✦</span>
+
+                <div class="z-10 flex flex-col items-center justify-between h-full py-4 w-full">
+                  <div class="flex-grow flex items-center justify-center">
+                    \${getCardSvg(card.cardData.id)}
+                  </div>
+                  <div class="mt-2">
+                    <span class="text-[9px] sm:text-[10px] font-black text-amber-300 uppercase tracking-wide leading-tight block text-center max-w-[100px] mx-auto">\${card.cardData.name}</span>
+                    <span class="text-[8px] font-bold text-indigo-300/40 uppercase tracking-widest block mt-0.5">Major Arcana</span>
+                  </div>
+                </div>
               </div>
 
             </div>
@@ -498,29 +684,29 @@ import Layout from '../../../layouts/Layout.astro';
         item.className = "p-5 sm:p-6 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800/80 space-y-4 animate-fade-in";
         item.innerHTML = `
           <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
-            <div class="text-amber-500 dark:text-brand-mint flex items-center justify-center w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-xl">${card.cardData.svg}</div>
+            <div class="flex items-center justify-center w-12 h-12 bg-[#0b0c1f] border border-amber-500/25 rounded-xl">\${getCardSvg(card.cardData.id)}</div>
             <div>
-              <span class="text-[10px] font-extrabold text-brand-blue dark:text-brand-mint uppercase tracking-wider block">${card.positionLabel}</span>
-              <h4 class="text-lg font-bold text-slate-900 dark:text-white">${card.cardData.name}</h4>
+              <span class="text-[10px] font-extrabold text-brand-blue dark:text-brand-mint uppercase tracking-wider block">\${card.positionLabel}</span>
+              <h4 class="text-lg font-bold text-slate-900 dark:text-white">\${card.cardData.name}</h4>
             </div>
           </div>
           
           <p class="text-sm text-slate-600 dark:text-slate-350 leading-relaxed font-semibold italic">
-            "${card.cardData.desc}"
+            "\${card.cardData.desc}"
           </p>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-            <div class="p-3 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-200 dark:border-slate-800/60">
+            <div class="p-3 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-200 dark:border-slate-800/60 animate-fade-in">
               <span class="block text-xs font-bold text-slate-400 mb-1">❤️ Tình duyên / Mối quan hệ</span>
-              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${card.cardData.love}</p>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">\${card.cardData.love}</p>
             </div>
-            <div class="p-3 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-200 dark:border-slate-800/60">
+            <div class="p-3 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-200 dark:border-slate-800/60 animate-fade-in">
               <span class="block text-xs font-bold text-slate-400 mb-1">💼 Sự nghiệp / Tài chính</span>
-              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${card.cardData.career}</p>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">\${card.cardData.career}</p>
             </div>
-            <div class="p-3 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-200 dark:border-slate-800/60">
+            <div class="p-3 bg-white dark:bg-brand-darkCard rounded-xl border border-slate-200 dark:border-slate-800/60 animate-fade-in">
               <span class="block text-xs font-bold text-slate-400 mb-1">💪 Sức khỏe / Tinh thần</span>
-              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${card.cardData.health}</p>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">\${card.cardData.health}</p>
             </div>
           </div>
         `;
