@@ -40,11 +40,11 @@ import Layout from '../../../layouts/Layout.astro';
       </p>
     </div>
 
-    <!-- Main Tool Container (Flexbox for full-size A4 preview on desktop and auto-contracting inputs panel) -->
+    <!-- Main Tool Container (Flexbox: Fixed inputs width on desktop, flexible preview with scroll fallback) -->
     <div class="flex flex-col lg:flex-row gap-8 items-start mb-12 w-full justify-center">
       
-      <!-- Left: Form inputs (Contractible / takes remaining space) -->
-      <div class="flex-1 w-full lg:w-0 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-xl space-y-6 lg:max-h-[92vh] lg:overflow-y-auto">
+      <!-- Left: Form inputs (Fixed 400px width on desktop to prevent crushing) -->
+      <div class="w-full lg:w-[400px] lg:flex-shrink-0 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-xl space-y-6 lg:max-h-[92vh] lg:overflow-y-auto">
         <h2 class="text-base font-heading font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">
           ✍️ Nhập Thông Tin CV
         </h2>
@@ -119,9 +119,9 @@ import Layout from '../../../layouts/Layout.astro';
         </div>
       </div>
 
-      <!-- Right: A4 CV Preview (Fixed full-size 210mm on desktop) -->
-      <div class="w-full lg:w-[210mm] flex-shrink-0 flex flex-col items-center">
-        <div class="flex flex-col sm:flex-row sm:justify-between items-center w-full mb-4 gap-3 px-2">
+      <!-- Right: A4 CV Preview (Flexible width, centers paper, handles overflow scrollbar) -->
+      <div class="flex-grow w-full flex flex-col items-center overflow-hidden">
+        <div class="flex flex-col sm:flex-row sm:justify-between items-center w-full max-w-[210mm] mb-4 gap-3 px-2">
           <h3 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
             Bản xem trước A4 (Preview)
           </h3>
@@ -130,7 +130,7 @@ import Layout from '../../../layouts/Layout.astro';
           </button>
         </div>
         
-        <!-- Scroll Wrapper for A4 paper (only scrolls on screens smaller than 210mm) -->
+        <!-- Scroll Wrapper (triggers horizontal scrollbar ONLY when screen is narrower than 210mm) -->
         <div class="w-full overflow-x-auto pb-4 flex justify-start lg:justify-center">
           <!-- CV Document Paper Container -->
           <div id="cvPaper" class="w-[210mm] min-h-[297mm] bg-white text-slate-800 shadow-2xl p-10 border border-slate-100 rounded-sm overflow-hidden text-left relative flex flex-col justify-between leading-normal text-xs font-sans flex-shrink-0">
