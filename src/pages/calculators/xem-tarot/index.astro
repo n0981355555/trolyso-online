@@ -603,10 +603,10 @@ import Layout from '../../../layouts/Layout.astro';
           
           <!-- Flip Card Container -->
           <div class="w-32 h-48 [perspective:1000px] cursor-pointer" onclick="this.dispatchEvent(new CustomEvent('flip-card', {bubbles: true, detail: ${index}}))">
-            <div class="card-inner w-full h-full relative [transform-style:preserve-3d] transition-transform duration-500 rounded-2xl shadow-xl border border-amber-500/30">
+            <div class="card-inner w-full h-full relative [transform-style:preserve-3d] transition-all duration-700 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] rounded-2xl shadow-xl border border-amber-500/30">
               
               <!-- Card Back (Cosmic Mystical Theme) -->
-              <div class="absolute inset-0 w-full h-full rounded-2xl [backface-visibility:hidden] bg-gradient-to-b from-[#0b0c1f] via-[#11132e] to-[#070815] flex flex-col items-center justify-center p-2 text-center relative overflow-hidden">
+              <div class="absolute inset-0 w-full h-full rounded-2xl [backface-visibility:hidden] bg-gradient-to-b from-[#0b0c1f] via-[#11132e] to-[#070815] flex flex-col items-center justify-center p-2 text-center overflow-hidden">
                 <!-- Inner dotted frame -->
                 <div class="absolute inset-1.5 border border-dashed border-amber-500/20 rounded-xl pointer-events-none"></div>
                 
@@ -628,7 +628,7 @@ import Layout from '../../../layouts/Layout.astro';
               </div>
 
               <!-- Card Front (Cosmic Mystical Theme) -->
-              <div class="absolute inset-0 w-full h-full rounded-2xl [backface-visibility:hidden] [transform:rotateY(180deg)] bg-gradient-to-b from-[#0b0c1f] via-[#11132e] to-[#070815] flex flex-col items-center justify-center p-3 text-center relative overflow-hidden">
+              <div class="absolute inset-0 w-full h-full rounded-2xl [backface-visibility:hidden] [transform:rotateY(180deg)] bg-gradient-to-b from-[#0b0c1f] via-[#11132e] to-[#070815] flex flex-col items-center justify-center p-3 text-center overflow-hidden">
                 <!-- Inner dotted frame -->
                 <div class="absolute inset-1.5 border border-dashed border-amber-500/25 rounded-xl pointer-events-none"></div>
                 
@@ -665,13 +665,20 @@ import Layout from '../../../layouts/Layout.astro';
       const cardWrapper = cardsSpread.children[idx];
       const cardInner = cardWrapper.querySelector('.card-inner');
       
-      // Apply CSS 3D rotation
-      cardInner.style.transform = 'rotateY(180deg)';
+      // Apply CSS 3D rotation, scaling lift, and golden shadow glow
+      cardInner.style.transform = 'scale(1.08) rotateY(180deg)';
+      cardInner.style.boxShadow = '0 15px 30px rgba(245, 158, 11, 0.4)';
+      
+      // Settle down back to normal scale after transition peak
+      setTimeout(() => {
+        cardInner.style.transform = 'rotateY(180deg)';
+        cardInner.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
+      }, 400);
 
       // Check if all cards have been flipped to display results panel
       const allFlipped = drawnCards.every(c => c.isFlipped);
       if (allFlipped) {
-        setTimeout(showInterpretations, 800);
+        setTimeout(showInterpretations, 900);
       }
     });
 
