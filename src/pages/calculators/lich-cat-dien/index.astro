@@ -408,28 +408,12 @@ const processedRegions = mappedRegions.map(target => {
     selectWard.className = "w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-blue";
     selectWard.innerHTML = '<option value="">-- Chọn Phường / Xã / Đặc khu --</option>';
 
-    // Gom nhóm Phường/Xã theo Quận/Huyện sử dụng optgroup
-    const groups = {};
+    // Tạo danh sách Phường/Xã phẳng không phân nhóm huyện
     province.wards.forEach(w => {
-      if (!groups[w.districtName]) {
-        groups[w.districtName] = [];
-      }
-      groups[w.districtName].push(w);
-    });
-
-    // Tạo các phần tử optgroup
-    Object.keys(groups).sort().forEach(districtName => {
-      const optGroup = document.createElement('optgroup');
-      optGroup.label = districtName;
-      
-      groups[districtName].forEach(w => {
-        const opt = document.createElement('option');
-        opt.value = w.slug;
-        opt.textContent = w.name;
-        optGroup.appendChild(opt);
-      });
-      
-      selectWard.appendChild(optGroup);
+      const opt = document.createElement('option');
+      opt.value = w.slug;
+      opt.textContent = w.name;
+      selectWard.appendChild(opt);
     });
   });
 
