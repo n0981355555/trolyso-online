@@ -14,3 +14,10 @@ dist/
 # Operating system files
 .DS_Store
 Thumbs.db
+
+# Databases & local configs
+cms/prisma/*.db
+cms/prisma/*.db-journal
+cms/prisma/*.db-shm
+cms/prisma/*.db-wal
+cms/prisma/dev.db
