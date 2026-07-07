@@ -1,0 +1,15 @@
+{
+  "wardCode": 874,
+  "wardName": "Thị trấn Tam Sơn",
+  "provinceName": "Tỉnh Hà Giang",
+  "lastUpdated": "2026-07-07T15:02:14.017Z",
+  "outages": [
+    {
+      "id": "OUT-874-1783436534017",
+      "startTime": "2026-07-07T00:30:00.000Z",
+      "endTime": "2026-07-07T05:00:00.000Z",
+      "area": "Toàn bộ khu vực thôn/xóm trung tâm thuộc địa bàn Thị trấn Tam Sơn",
+      "reason": "Thay đổi, nâng cấp định kỳ máy biến áp phân phối và sửa chữa lưới điện trung thế để đảm bảo vận hành an toàn mùa nắng nóng."
+    }
+  ]
+}

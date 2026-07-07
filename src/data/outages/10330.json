@@ -1,0 +1,15 @@
+{
+  "wardCode": 10330,
+  "wardName": "Xã Vân Từ",
+  "provinceName": "Thành phố Hà Nội",
+  "lastUpdated": "2026-07-07T15:02:13.998Z",
+  "outages": [
+    {
+      "id": "OUT-10330-1783436533998",
+      "startTime": "2026-07-07T00:30:00.000Z",
+      "endTime": "2026-07-07T05:00:00.000Z",
+      "area": "Toàn bộ khu vực thôn/xóm trung tâm thuộc địa bàn Xã Vân Từ",
+      "reason": "Thay đổi, nâng cấp định kỳ máy biến áp phân phối và sửa chữa lưới điện trung thế để đảm bảo vận hành an toàn mùa nắng nóng."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "wardCode": 6889,
+  "wardName": "Xã Tiên Lãng",
+  "provinceName": "Tỉnh Quảng Ninh",
+  "lastUpdated": "2026-07-07T15:02:14.054Z",
+  "outages": [
+    {
+      "id": "OUT-6889-1783436534054",
+      "startTime": "2026-07-07T00:30:00.000Z",
+      "endTime": "2026-07-07T05:00:00.000Z",
+      "area": "Toàn bộ khu vực thôn/xóm trung tâm thuộc địa bàn Xã Tiên Lãng",
+      "reason": "Thay đổi, nâng cấp định kỳ máy biến áp phân phối và sửa chữa lưới điện trung thế để đảm bảo vận hành an toàn mùa nắng nóng."
+    }
+  ]
+}

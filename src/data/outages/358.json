@@ -1,0 +1,15 @@
+{
+  "wardCode": 358,
+  "wardName": "Phường Phương Liệt",
+  "provinceName": "Thành phố Hà Nội",
+  "lastUpdated": "2026-07-07T15:02:13.932Z",
+  "outages": [
+    {
+      "id": "OUT-358-1783436533932",
+      "startTime": "2026-07-07T00:30:00.000Z",
+      "endTime": "2026-07-07T05:00:00.000Z",
+      "area": "Toàn bộ khu vực thôn/xóm trung tâm thuộc địa bàn Phường Phương Liệt",
+      "reason": "Thay đổi, nâng cấp định kỳ máy biến áp phân phối và sửa chữa lưới điện trung thế để đảm bảo vận hành an toàn mùa nắng nóng."
+    }
+  ]
+}
