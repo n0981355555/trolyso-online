@@ -264,6 +264,10 @@ async function loadDashboardData() {
   }
 
   // Build GA4 Views Chart (using ChartJS)
+  if (typeof Chart === 'undefined') {
+    console.warn('⚠️ Chart.js is not loaded. Skipping chart generation.');
+    return;
+  }
   const ctx = document.getElementById('visitorsChart').getContext('2d');
   if (visitorsChart) visitorsChart.destroy();
   
