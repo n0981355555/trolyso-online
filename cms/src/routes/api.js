@@ -6,6 +6,7 @@ import { listPosts, getPost, createPost, updatePost, deletePost, restorePost, du
 import { getCategories, createCategory, updateCategory, deleteCategory, getTags, createTag, deleteTag } from '../controllers/categories.js';
 import { uploadMiddleware, uploadImage, listMedia, deleteMedia } from '../controllers/media.js';
 import { getDashboardStats } from '../controllers/dashboard.js';
+import { getCalculators } from '../controllers/calculators.js';
 
 const router = express.Router();
 
@@ -50,5 +51,8 @@ router.delete('/media/:id', authenticateToken, requireRole(['ADMIN', 'EDITOR']),
 
 // DASHBOARD ROUTES
 router.get('/dashboard/stats', authenticateToken, getDashboardStats);
+
+// CALCULATORS/TOOLS DYNAMIC SCANNING ROUTE
+router.get('/calculators', authenticateToken, getCalculators);
 
 export default router;

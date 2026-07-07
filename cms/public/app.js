@@ -415,6 +415,70 @@ async function handleRestorePost(id) {
 // ==========================================
 // 3. SOẠN THẢO BÀI VIẾT (EDITORJS & SEO MODULE)
 // ==========================================
+// Global related posts link state
+let currentRelatedPosts = [];
+
+function renderRelatedPostsList() {
+  const container = document.getElementById('relatedPostsListContainer');
+  container.innerHTML = '';
+  
+  currentRelatedPosts.forEach((rel, idx) => {
+    container.innerHTML += `
+      <div class="flex items-center justify-between p-3 bg-slate-900 border border-slate-700/60 rounded-2xl shadow-sm">
+        <div class="truncate max-w-[80%] pr-2">
+          <p class="text-xs font-bold text-white truncate">${rel.title}</p>
+          <span class="text-[10px] text-slate-500">/blog/${rel.slug}/ | ${rel.category}</span>
+        </div>
+        <button type="button" onclick="removeRelatedPostLink(${idx})" class="text-xs font-bold text-red-400 hover:text-red-300 transition px-2 py-1 bg-red-500/10 border border-red-500/20 rounded-lg">Xóa</button>
+      </div>
+    `;
+  });
+  
+  document.getElementById('postRelatedPosts').value = JSON.stringify(currentRelatedPosts);
+}
+
+function addRelatedPostLink() {
+  const title = document.getElementById('addRelatedTitle').value.trim();
+  const slug = document.getElementById('addRelatedSlug').value.trim();
+  const category = document.getElementById('addRelatedCategory').value.trim() || 'Cẩm nang';
+  
+  if (!title || !slug) {
+    alert('Vui lòng nhập đầy đủ Tiêu đề và Slug của liên kết');
+    return;
+  }
+  
+  currentRelatedPosts.push({ title, slug, category });
+  renderRelatedPostsList();
+  
+  // Clear inputs
+  document.getElementById('addRelatedTitle').value = '';
+  document.getElementById('addRelatedSlug').value = '';
+  document.getElementById('addRelatedCategory').value = '';
+  
+  runSeoAudit();
+}
+
+function removeRelatedPostLink(idx) {
+  currentRelatedPosts.splice(idx, 1);
+  renderRelatedPostsList();
+  runSeoAudit();
+}
+
+async function loadCalculatorDropdown() {
+  const res = await apiFetch('/api/calculators');
+  if (!res) return;
+  const list = await res.json();
+  const select = document.getElementById('postCtaLink');
+  
+  // Guard values
+  const currentVal = select.value;
+  select.innerHTML = '<option value="">Không có CTA</option>';
+  list.forEach(item => {
+    select.innerHTML += `<option value="${item.url}">${item.name}</option>`;
+  });
+  select.value = currentVal;
+}
+
 async function openEditor(postId = null) {
   currentPostId = postId;
   showSection('editor');
@@ -432,10 +496,15 @@ async function openEditor(postId = null) {
   document.getElementById('postKeywords').value = '';
   document.getElementById('postDescription').value = '';
   document.getElementById('postReferences').value = '';
+  document.getElementById('postRelatedPosts').value = '';
   document.getElementById('ogImagePreview').src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-10 w-10 text-slate-600' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'/%3E%3C/svg%3E";
 
-  // Pre-load categories for select box
+  currentRelatedPosts = [];
+  renderRelatedPostsList();
+
+  // Pre-load dropdown list options dynamically
   await loadCategoryDropdown();
+  await loadCalculatorDropdown();
 
   // Reset EditorJS
   if (editor) {
@@ -468,6 +537,13 @@ async function openEditor(postId = null) {
     
     if (post.references) {
       document.getElementById('postReferences').value = post.references;
+    }
+
+    if (post.relatedPosts) {
+      try {
+        currentRelatedPosts = JSON.parse(post.relatedPosts);
+        renderRelatedPostsList();
+      } catch(e) {}
     }
     
     if (post.ogImage) {
@@ -698,11 +774,12 @@ async function savePost(status = 'DRAFT') {
   const ctaLink = document.getElementById('postCtaLink').value;
   const ctaText = document.getElementById('postCtaText').value;
   const references = document.getElementById('postReferences').value;
+  const relatedPosts = document.getElementById('postRelatedPosts').value;
 
   const payload = {
     title, slug, description, content: JSON.stringify(content), status, keywords,
     canonicalUrl, ogTitle, ogDescription, ogImage, altImage, caption, editorName, editorTitle,
-    categoryId, ctaLink, ctaText, references
+    categoryId, ctaLink, ctaText, references, relatedPosts
   };
 
   const url = currentPostId ? `/api/posts/${currentPostId}` : '/api/posts';

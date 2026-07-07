@@ -462,6 +462,33 @@
                 </div>
               </div>
 
+              <!-- Related Posts / Internal Links -->
+              <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4 mt-6">
+                <h4 class="font-bold text-white text-sm flex items-center gap-2">🔗 Bài viết liên quan hữu ích (Liên kết nội bộ)</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  <div>
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Tiêu đề liên kết</label>
+                    <input type="text" id="addRelatedTitle" placeholder="Ví dụ: Phân biệt lương Gross và Net..." class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white text-xs">
+                  </div>
+                  <div>
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Slug bài viết (không dấu, không /blog/)</label>
+                    <input type="text" id="addRelatedSlug" placeholder="Ví dụ: phan-biet-luong-gross-va-net" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white text-xs">
+                  </div>
+                  <div>
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Chuyên mục hiển thị</label>
+                    <div class="flex gap-2">
+                      <input type="text" id="addRelatedCategory" placeholder="Ví dụ: Cẩm nang" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white text-xs">
+                      <button type="button" onclick="addRelatedPostLink()" class="px-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl text-xs transition duration-200 shadow-md">Thêm</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <div id="relatedPostsListContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
+                  <!-- Dynamic list of links with delete buttons -->
+                </div>
+                <input type="hidden" id="postRelatedPosts">
+              </div>
+
             </div>
             
             <!-- Right Side: SEO Realtime Audit Panel (RankMath-like) -->
