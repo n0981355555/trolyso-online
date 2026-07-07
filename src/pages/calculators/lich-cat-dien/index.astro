@@ -143,16 +143,28 @@ const processedRegions = mappedRegions.map(target => {
           </div>
 
           <div>
-            <label for="selectWard" class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">
-              Bước 2: Chọn Phường / Xã / Đặc Khu:
+            <label for="selectWardInput" class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">
+              Bước 2: Tìm và Chọn Phường / Xã / Đặc Khu:
             </label>
-            <select 
-              id="selectWard" 
-              disabled 
-              class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 font-bold text-slate-400 dark:text-slate-600 focus:outline-none focus:ring-2 focus:ring-brand-blue"
-            >
-              <option value="">-- Vui lòng chọn Tỉnh/Thành trước --</option>
-            </select>
+            <div class="relative w-full" id="wardCombobox">
+              <input 
+                type="text" 
+                id="selectWardInput" 
+                placeholder="-- Vui lòng chọn Tỉnh/Thành trước --" 
+                disabled 
+                autocomplete="off"
+                class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 font-bold text-slate-400 dark:text-slate-600 focus:outline-none focus:ring-2 focus:ring-brand-blue"
+              />
+              <input type="hidden" id="selectWardValue" value="" />
+              
+              <!-- Danh sách dropdown kết quả tìm kiếm -->
+              <div 
+                id="wardDropdownList" 
+                class="hidden absolute z-30 w-full mt-2 max-h-60 overflow-y-auto bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl divide-y divide-slate-100 dark:divide-slate-900 transition-colors"
+              >
+                <!-- Dữ liệu JS sẽ đổ vào đây -->
+              </div>
+            </div>
           </div>
 
           <button id="btnSearchRegion" class="w-full py-4 bg-brand-blue hover:bg-brand-blue/90 text-white font-extrabold rounded-xl transition flex items-center justify-center gap-2 shadow-lg shadow-brand-blue/20">
@@ -355,6 +367,7 @@ const processedRegions = mappedRegions.map(target => {
 <script define:vars={{ processedRegions }}>
   // Nhúng danh sách địa phương vào client script
   const regions = processedRegions;
+  let currentWards = [];
 
   // Lấy các element DOM
   const tabRegion = document.getElementById('tabRegion');
@@ -362,13 +375,28 @@ const processedRegions = mappedRegions.map(target => {
   const regionForm = document.getElementById('regionForm');
   const mkhForm = document.getElementById('mkhForm');
   const selectProvince = document.getElementById('selectProvince');
-  const selectWard = document.getElementById('selectWard');
+  
+  const selectWardInput = document.getElementById('selectWardInput');
+  const selectWardValue = document.getElementById('selectWardValue');
+  const wardDropdownList = document.getElementById('wardDropdownList');
+  
   const btnSearchRegion = document.getElementById('btnSearchRegion');
   const mkhInput = document.getElementById('mkhInput');
   const btnSearchMkh = document.getElementById('btnSearchMkh');
   const resultBox = document.getElementById('resultBox');
   const resultContent = document.getElementById('resultContent');
   const btnClearResult = document.getElementById('btnClearResult');
+
+  // Hàm chuyển ký tự có dấu thành không dấu phục vụ tìm kiếm fuzzy
+  function removeAccents(str) {
+    if (!str) return '';
+    return str
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/đ/g, 'd')
+      .replace(/Đ/g, 'D')
+      .toLowerCase();
+  }
 
   // Chuyển đổi TAB
   tabRegion.addEventListener('click', () => {
@@ -385,45 +413,96 @@ const processedRegions = mappedRegions.map(target => {
     regionForm.classList.add('hidden');
   });
 
-  // Xử lý Thay đổi Tỉnh/Thành -> Load Xã/Phường
+  // Vẽ danh sách kết quả lên Dropdown gợi ý
+  function renderDropdown(wardsList) {
+    wardDropdownList.innerHTML = '';
+    if (!wardsList.length) {
+      const emptyItem = document.createElement('div');
+      emptyItem.className = 'px-4 py-3 text-sm text-slate-400 dark:text-slate-600 font-medium italic';
+      emptyItem.textContent = 'Không tìm thấy Phường/Xã tương ứng';
+      wardDropdownList.appendChild(emptyItem);
+      return;
+    }
+
+    wardsList.forEach(w => {
+      const item = document.createElement('button');
+      item.type = 'button';
+      item.className = 'w-full text-left px-4 py-3 text-sm font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors';
+      item.textContent = w.name;
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectWardInput.value = w.name;
+        selectWardValue.value = w.slug;
+        wardDropdownList.classList.add('hidden');
+      });
+      wardDropdownList.appendChild(item);
+    });
+  }
+
+  // Xử lý Thay đổi Tỉnh/Thành -> Load danh sách Xã/Phường
   selectProvince.addEventListener('change', (e) => {
     const provinceSlug = e.target.value;
-    selectWard.innerHTML = ''; // Clear options
-
+    selectWardInput.value = '';
+    selectWardValue.value = '';
+    wardDropdownList.innerHTML = '';
+    
     if (!provinceSlug) {
-      selectWard.disabled = true;
-      selectWard.className = "w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 font-bold text-slate-400 dark:text-slate-600 focus:outline-none focus:ring-2 focus:ring-brand-blue";
-      selectWard.innerHTML = '<option value="">-- Vui lòng chọn Tỉnh/Thành trước --</option>';
+      selectWardInput.disabled = true;
+      selectWardInput.placeholder = '-- Vui lòng chọn Tỉnh/Thành trước --';
+      selectWardInput.className = "w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 font-bold text-slate-400 dark:text-slate-600 focus:outline-none";
+      currentWards = [];
       return;
     }
 
     const province = regions.find(r => r.slug === provinceSlug);
     if (!province || !province.wards.length) {
-      selectWard.disabled = true;
-      selectWard.innerHTML = '<option value="">-- Không có dữ liệu Phường/Xã --</option>';
+      selectWardInput.disabled = true;
+      selectWardInput.placeholder = '-- Không có dữ liệu Phường/Xã --';
+      currentWards = [];
       return;
     }
 
-    selectWard.disabled = false;
-    selectWard.className = "w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-blue";
-    selectWard.innerHTML = '<option value="">-- Chọn Phường / Xã / Đặc khu --</option>';
+    selectWardInput.disabled = false;
+    selectWardInput.placeholder = 'Gõ để tìm kiếm Phường / Xã...';
+    selectWardInput.className = "w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-blue";
+    currentWards = province.wards;
+    renderDropdown(currentWards);
+  });
 
-    // Tạo danh sách Phường/Xã phẳng không phân nhóm huyện
-    province.wards.forEach(w => {
-      const opt = document.createElement('option');
-      opt.value = w.slug;
-      opt.textContent = w.name;
-      selectWard.appendChild(opt);
-    });
+  // Hiển thị dropdown khi focus vào Input tìm kiếm
+  selectWardInput.addEventListener('focus', () => {
+    if (currentWards.length) {
+      wardDropdownList.classList.remove('hidden');
+    }
+  });
+
+  // Lọc các mục dropdown khi người dùng gõ phím (fuzzy search không dấu)
+  selectWardInput.addEventListener('input', () => {
+    const query = removeAccents(selectWardInput.value.trim());
+    if (!query) {
+      renderDropdown(currentWards);
+      return;
+    }
+    const filtered = currentWards.filter(w => removeAccents(w.name).includes(query));
+    renderDropdown(filtered);
+    wardDropdownList.classList.remove('hidden');
+  });
+
+  // Đóng dropdown khi click ra ngoài vùng bộ chọn
+  document.addEventListener('click', (e) => {
+    const combobox = document.getElementById('wardCombobox');
+    if (combobox && !combobox.contains(e.target)) {
+      wardDropdownList.classList.add('hidden');
+    }
   });
 
   // Nhấn nút Tra cứu theo khu vực -> Chuyển hướng tới trang SEO Phường/Xã
   btnSearchRegion.addEventListener('click', () => {
     const provinceSlug = selectProvince.value;
-    const wardSlug = selectWard.value;
+    const wardSlug = selectWardValue.value;
 
     if (!provinceSlug || !wardSlug) {
-      alert('Vui lòng chọn đầy đủ cả Tỉnh/Thành phố và Phường/Xã/Đặc khu nhé!');
+      alert('Vui lòng nhập tìm kiếm và chọn Phường/Xã/Đặc khu từ danh sách gợi ý nhé!');
       return;
     }
 
