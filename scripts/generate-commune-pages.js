@@ -5,8 +5,9 @@ import { getSlug } from '../src/utils/slugify.js';
 
 const __dirname = path.resolve();
 
-// 15 Merged Provinces of Miền Bắc (Phase 1 & Phase 2)
+// Full 34 Merged Provinces after sáp nhập (Phases 1, 2, 3, 4)
 const mergedProvinces = [
+  // Miền Bắc (Phase 1 & Phase 2)
   { name: "Thành phố Hà Nội", slug: "ha-noi", codes: ["01"] },
   { name: "Tỉnh Quảng Ninh", slug: "quang-ninh", codes: ["22"] },
   { name: "Tỉnh Bắc Ninh", slug: "bac-ninh", codes: ["24", "27"] }, // Bắc Giang & Bắc Ninh
@@ -21,7 +22,30 @@ const mergedProvinces = [
   { name: "Tỉnh Thái Nguyên", slug: "thai-nguyen", codes: ["06", "19"] }, // Bắc Kạn & Thái Nguyên
   { name: "Tỉnh Phú Thọ", slug: "phu-tho", codes: ["26", "17", "25"] }, // Vĩnh Phúc, Hòa Bình & Phú Thọ
   { name: "Tỉnh Hưng Yên", slug: "hung-yen", codes: ["34", "33"] }, // Thái Bình & Hưng Yên
-  { name: "Tỉnh Ninh Bình", slug: "ninh-binh", codes: ["35", "36", "37"] } // Hà Nam, Nam Định & Ninh Bình
+  { name: "Tỉnh Ninh Bình", slug: "ninh-binh", codes: ["35", "36", "37"] }, // Hà Nam, Nam Định & Ninh Bình
+
+  // Miền Nam (Phase 3)
+  { name: "Thành phố Hồ Chí Minh", slug: "ho-chi-minh", codes: ["77", "74", "79"] }, // Bà Rịa-Vũng Tàu, Bình Dương & TP. HCM
+  { name: "Tỉnh Đồng Nai", slug: "dong-nai", codes: ["70", "75"] }, // Bình Phước & Đồng Nai
+  { name: "Tỉnh Tây Ninh", slug: "tay-ninh", codes: ["80", "72"] }, // Long An & Tây Ninh
+  { name: "Thành phố Cần Thơ", slug: "can-tho", codes: ["94", "93", "92"] }, // Sóc Trăng, Hậu Giang & Cần Thơ
+  { name: "Tỉnh Vĩnh Long", slug: "vinh-long", codes: ["83", "86", "84"] }, // Bến Tre, Vĩnh Long & Trà Vinh
+  { name: "Tỉnh Đồng Tháp", slug: "dong-thap", codes: ["82", "87"] }, // Tiền Giang & Đồng Tháp
+  { name: "Tỉnh Cà Mau", slug: "ca-mau", codes: ["95", "96"] }, // Bạc Liêu & Cà Mau
+  { name: "Tỉnh An Giang", slug: "an-giang", codes: ["91", "89"] }, // Kiên Giang & An Giang
+
+  // Miền Trung (Phase 4)
+  { name: "Thành phố Huế", slug: "hue", codes: ["46"] }, // Thừa Thiên Huế
+  { name: "Tỉnh Hà Tĩnh", slug: "ha-tinh", codes: ["42"] },
+  { name: "Tỉnh Nghệ An", slug: "nghe-an", codes: ["40"] },
+  { name: "Tỉnh Thanh Hóa", slug: "thanh-hoa", codes: ["38"] },
+  { name: "Tỉnh Quảng Trị", slug: "quang-tri", codes: ["44", "45"] }, // Quảng Bình & Quảng Trị
+  { name: "Thành phố Đà Nẵng", slug: "da-nang", codes: ["49", "48"] }, // Quảng Nam & Đà Nẵng
+  { name: "Tỉnh Quảng Ngãi", slug: "quang-ngai", codes: ["62", "51"] }, // Kon Tum & Quảng Ngãi
+  { name: "Tỉnh Gia Lai", slug: "gia-lai", codes: ["52", "64"] }, // Bình Định & Gia Lai
+  { name: "Tỉnh Khánh Hòa", slug: "khanh-hoa", codes: ["58", "56"] }, // Ninh Thuận & Khánh Hòa
+  { name: "Tỉnh Lâm Đồng", slug: "lam-dong", codes: ["67", "60", "68"] }, // Đắk Nông, Bình Thuận & Lâm Đồng
+  { name: "Tỉnh Đắk Lắk", slug: "dak-lak", codes: ["54", "66"] } // Phú Yên & Đắk Lắk
 ];
 
 async function generateData() {
