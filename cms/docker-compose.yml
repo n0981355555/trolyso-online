@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: trolyso_cms_db
+    restart: always
+    environment:
+      POSTGRES_DB: trolyso_cms
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: thaonguyen_postgres_secret_2026
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  cms:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: trolyso_cms_app
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - DATABASE_URL=postgresql://postgres:thaonguyen_postgres_secret_2026@postgres:5432/trolyso_cms?schema=public
+      - JWT_SECRET=trolyso_super_secret_jwt_key_2026
+      - JWT_REFRESH_SECRET=trolyso_super_secret_refresh_jwt_key_2026
+    volumes:
+      # Map thư mục Astro của dự án cha vào /app để backend ghi được tệp tĩnh
+      - ../:/app
+      - /app/cms/node_modules
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

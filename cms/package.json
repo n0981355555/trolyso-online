@@ -1,0 +1,29 @@
+{
+  "name": "trolyso-cms",
+  "version": "1.0.0",
+  "description": "Backend CMS for Astro statically generated pages",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node src/server.js",
+    "start": "node src/server.js",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:generate": "prisma generate",
+    "prisma:seed": "node prisma/seed.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.12.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "googleapis": "^134.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "sharp": "^0.33.3",
+    "simple-git": "^3.23.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.12.1"
+  }
+}

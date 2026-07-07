@@ -2,6 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 
 const posts = [
+  /* DYNAMIC_POSTS_START */
+  {
+    title: "Lịch Cắt Điện: Cách Tra Cứu Nhanh 63 Tỉnh Thành & Mẹo Ứng Phó",
+    description: "Cập nhật lịch cắt điện mới nhất hôm nay tại Hà Nội, TP.HCM và 63 tỉnh thành. Hướng dẫn 4 cách tra cứu lịch mất điện EVN nhanh chóng, chính xác qua Zalo, App.",
+    slug: "lichcatdien",
+    category: "Tiện ích",
+    date: "08/07/2026",
+    readTime: "5 phút",
+    badge: "Mới"
+  },
+
   {
     title: "Hướng Dẫn Xem Bài Tarot Online Và Cách Đọc Ý Nghĩa 22 Lá Ẩn Chính",
     description: "Tìm hiểu cách xem bài tarot online hàng ngày chính xác nhất. Hướng dẫn chi tiết ý nghĩa 22 lá bài ẩn chính trong tình yêu, công việc và sức khỏe.",
@@ -245,6 +256,7 @@ const posts = [
     readTime: "3 phút",
     badge: "Kế toán"
   }
+  /* DYNAMIC_POSTS_END */
 ];
 
 function getGroupByCategory(category: string) {

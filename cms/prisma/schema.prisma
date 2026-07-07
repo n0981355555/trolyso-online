@@ -1,0 +1,112 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String     @id @default(uuid())
+  email        String     @unique
+  password     String
+  name         String
+  avatar       String?
+  role         String     @default("VIEWER") // ADMIN, EDITOR, AUTHOR, VIEWER
+  isActive     Boolean    @default(true)
+  lastLogin    DateTime?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  posts        Post[]
+  revisions    Revision[]
+}
+
+model Post {
+  id             String     @id @default(uuid())
+  title          String
+  slug           String     @unique
+  description    String
+  content        String     // JSON string from EditorJS
+  status         String     @default("DRAFT") // DRAFT, PUBLISHED, SCHEDULED, TRASH
+  publishDate    DateTime?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  
+  // SEO Meta
+  keywords       String?
+  canonicalUrl   String?
+  robots         String     @default("index, follow")
+  ogTitle        String?
+  ogDescription  String?
+  ogImage        String?
+  altImage       String?
+  caption        String?
+  twitterCard    String     @default("summary_large_image")
+  readingTime    Int        @default(5)
+  
+  // Authors & Verification (E-E-A-T)
+  authorId       String
+  author         User       @relation(fields: [authorId], references: [id])
+  editorName     String?    // Người kiểm duyệt chuyên môn
+  editorTitle    String?    // Chức danh người kiểm duyệt
+  
+  // Relations
+  categoryId     String?
+  category       Category?  @relation(fields: [categoryId], references: [id])
+  tags           TagOnPost[]
+  revisions      Revision[]
+  
+  // Elements
+  ctaLink        String?    // Nút dẫn về Calculator tương ứng
+  ctaText        String?
+  references     String?    // JSON String
+  relatedPosts   String?    // JSON String
+}
+
+model Revision {
+  id          String   @id @default(uuid())
+  postId      String
+  post        Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  title       String
+  content     String
+  updatedById String
+  updatedBy   User     @relation(fields: [updatedById], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+model Category {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  color       String?  @default("#3b82f6")
+  posts       Post[]
+}
+
+model Tag {
+  id    String      @id @default(uuid())
+  name  String      @unique
+  slug  String      @unique
+  posts TagOnPost[]
+}
+
+model TagOnPost {
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tagId  String
+  tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([postId, tagId])
+}
+
+model Media {
+  id        String   @id @default(uuid())
+  filename  String
+  url       String
+  alt       String?
+  caption   String?
+  size      Int
+  mimeType  String
+  createdAt DateTime @default(now())
+}

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-full bg-slate-900">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - CMS Trợ Lý Số</title>
+  
+  <!-- CSS & Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- EditorJS CDNs -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
+  
+  <!-- ChartJS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Outfit', 'sans-serif'] },
+          colors: {
+            brand: {
+              darkBg: '#0f172a',
+              darkCard: '#1e293b',
+              blue: '#3b82f6',
+              border: '#334155'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Styling to make EditorJS match the dark theme */
+    .ce-block__content, .ce-toolbar__content {
+      max-width: 100%;
+    }
+    .codex-editor__redactor {
+      padding-bottom: 80px !important;
+    }
+    .ce-paragraph, .ce-header, .cdx-list__item, .cdx-input {
+      color: #cbd5e1; /* slate-300 */
+    }
+    .cdx-input {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+    }
+    .ce-toolbar__plus, .ce-toolbar__settings-btn {
+      background-color: #334155;
+      color: #f8fafc;
+    }
+    .ce-toolbar__plus:hover, .ce-toolbar__settings-btn:hover {
+      background-color: #475569;
+    }
+    .ce-conversion-tool, .ce-settings__plugin-zone, .ce-popover {
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      color: #f8fafc;
+    }
+    .ce-popover-item__icon, .ce-popover-item__title {
+      color: #cbd5e1;
+    }
+    .ce-popover-item:hover {
+      background-color: #334155;
+    }
+  </style>
+</head>
+<body class="h-full flex overflow-hidden text-slate-100">
+  
+  <!-- App Container -->
+  <div class="flex flex-1 w-full overflow-hidden">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="w-64 bg-slate-950 border-r border-slate-800 flex flex-col justify-between hidden md:flex">
+      <div class="p-6">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <span class="font-extrabold text-lg tracking-wide text-white">TRỢ LÝ SỐ</span>
+        </div>
+        
+        <nav class="space-y-1.5" aria-label="Menu quản trị">
+          <a href="#" onclick="showSection('dashboard')" id="nav-dashboard" class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white rounded-xl hover:bg-slate-900 transition font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z" />
+            </svg>
+            Tổng quan
+          </a>
+          <a href="#" onclick="showSection('posts')" id="nav-posts" class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white rounded-xl hover:bg-slate-900 transition font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+            </svg>
+            Bài viết
+          </a>
+          <a href="#" onclick="showSection('media')" id="nav-media" class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white rounded-xl hover:bg-slate-900 transition font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Thư viện ảnh
+          </a>
+          <a href="#" onclick="showSection('categories')" id="nav-categories" class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white rounded-xl hover:bg-slate-900 transition font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Danh mục & Thẻ
+          </a>
+          <a href="#" onclick="showSection('users')" id="nav-users" class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-white rounded-xl hover:bg-slate-900 transition font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            Thành viên
+          </a>
+        </nav>
+      </div>
+
+      <!-- User footer profile -->
+      <div class="p-4 border-t border-slate-800 flex items-center gap-3 bg-slate-950/60">
+        <div id="userAvatar" class="w-9 h-9 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center">A</div>
+        <div class="flex-1 min-w-0">
+          <p id="userName" class="text-sm font-semibold truncate text-white">Admin</p>
+          <span id="userRole" class="text-[10px] uppercase font-bold text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded">ADMIN</span>
+        </div>
+        <button onclick="handleLogout()" class="text-slate-400 hover:text-red-400 transition" aria-label="Đăng xuất">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col bg-slate-900 overflow-hidden relative">
+      
+      <!-- Top header -->
+      <header class="h-16 border-b border-slate-800 px-6 flex items-center justify-between">
+        <h2 id="sectionTitle" class="text-xl font-bold text-white">Tổng quan</h2>
+        <div class="flex items-center gap-4">
+          <span class="text-xs font-semibold px-3 py-1 bg-green-500/10 border border-green-500/20 text-green-400 rounded-full flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-ping"></span>
+            Kết nối VPS ổn định
+          </span>
+        </div>
+      </header>
+
+      <!-- Dynamic Sections Viewport -->
+      <div id="contentViewport" class="flex-1 overflow-y-auto p-6">
+        
+        <!-- SECTION 1: DASHBOARD -->
+        <section id="sec-dashboard" class="space-y-6">
+          <!-- Count Stats Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+            <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl flex items-center justify-between">
+              <div>
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Tổng số bài viết</p>
+                <h3 id="stat-total-posts" class="text-3xl font-extrabold text-white">0</h3>
+              </div>
+              <div class="p-3 bg-blue-600/10 border border-blue-500/20 rounded-2xl text-blue-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                </svg>
+              </div>
+            </div>
+            <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl flex items-center justify-between">
+              <div>
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Đã xuất bản</p>
+                <h3 id="stat-pub-posts" class="text-3xl font-extrabold text-green-400">0</h3>
+              </div>
+              <div class="p-3 bg-green-500/10 border border-green-500/20 rounded-2xl text-green-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </div>
+            <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl flex items-center justify-between">
+              <div>
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Bản nháp</p>
+                <h3 id="stat-draft-posts" class="text-3xl font-extrabold text-amber-400">0</h3>
+              </div>
+              <div class="p-3 bg-amber-500/10 border border-amber-500/20 rounded-2xl text-amber-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+              </div>
+            </div>
+            <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl flex items-center justify-between">
+              <div>
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Thùng rác</p>
+                <h3 id="stat-trash-posts" class="text-3xl font-extrabold text-red-400">0</h3>
+              </div>
+              <div class="p-3 bg-red-500/10 border border-red-500/20 rounded-2xl text-red-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Analytics Charts & GSC Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- GA4 Views Chart -->
+            <div class="md:col-span-2 p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4">
+              <div class="flex items-center justify-between">
+                <h4 class="font-bold text-white flex items-center gap-2">
+                  📈 Lượt truy cập (Google Analytics 4)
+                  <span id="ga4-status" class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded-full font-bold">API Kết nối</span>
+                </h4>
+                <div class="text-right">
+                  <span id="ga4-views-total" class="text-xl font-extrabold text-white">0</span>
+                  <p class="text-[10px] text-slate-400 font-medium">30 ngày qua</p>
+                </div>
+              </div>
+              <div class="h-64 relative">
+                <canvas id="visitorsChart"></canvas>
+              </div>
+            </div>
+
+            <!-- GSC Top Search Queries -->
+            <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4">
+              <h4 class="font-bold text-white flex items-center gap-2">
+                🔍 Từ khóa tìm kiếm (GSC)
+                <span class="text-[10px] bg-indigo-500/10 text-indigo-400 px-2 py-0.5 rounded-full font-bold">Top 5 click</span>
+              </h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                  <thead>
+                    <tr class="border-b border-slate-700 text-slate-400">
+                      <th class="py-2">Từ khóa</th>
+                      <th class="py-2 text-right">Clicks</th>
+                      <th class="py-2 text-right">Vị trí</th>
+                    </tr>
+                  </thead>
+                  <tbody id="gsc-keywords-body" class="divide-y divide-slate-700/40 text-slate-300">
+                    <!-- Dynamic queries loaded here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module Expansion Status Card -->
+          <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4">
+            <h4 class="font-bold text-white">🔌 Trạng thái các Module kết nối tích hợp</h4>
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-4 text-center">
+              <div class="p-4 bg-slate-900 border border-slate-700 rounded-2xl">
+                <div class="text-xs text-slate-400 font-semibold mb-2">Google Analytics</div>
+                <span class="px-2 py-0.5 bg-green-500/10 text-green-400 border border-green-500/20 text-[10px] font-bold rounded-full">Đang Chạy</span>
+              </div>
+              <div class="p-4 bg-slate-900 border border-slate-700 rounded-2xl">
+                <div class="text-xs text-slate-400 font-semibold mb-2">Google Search Console</div>
+                <span class="px-2 py-0.5 bg-green-500/10 text-green-400 border border-green-500/20 text-[10px] font-bold rounded-full">Đang Chạy</span>
+              </div>
+              <div class="p-4 bg-slate-900 border border-slate-700/40 rounded-2xl opacity-60">
+                <div class="text-xs text-slate-500 font-semibold mb-2">Google Ads</div>
+                <span class="px-2 py-0.5 bg-slate-800 text-slate-400 text-[10px] font-bold rounded-full">Chờ Cấu Hình</span>
+              </div>
+              <div class="p-4 bg-slate-900 border border-slate-700/40 rounded-2xl opacity-60">
+                <div class="text-xs text-slate-500 font-semibold mb-2">PageSpeed Insights</div>
+                <span class="px-2 py-0.5 bg-slate-800 text-slate-400 text-[10px] font-bold rounded-full">Chờ Cấu Hình</span>
+              </div>
+              <div class="p-4 bg-slate-900 border border-slate-700/40 rounded-2xl opacity-60">
+                <div class="text-xs text-slate-500 font-semibold mb-2">Bing Webmaster</div>
+                <span class="px-2 py-0.5 bg-slate-800 text-slate-400 text-[10px] font-bold rounded-full">Chờ Cấu Hình</span>
+              </div>
+              <div class="p-4 bg-slate-900 border border-slate-700/40 rounded-2xl opacity-60">
+                <div class="text-xs text-slate-500 font-semibold mb-2">Microsoft Clarity</div>
+                <span class="px-2 py-0.5 bg-slate-800 text-slate-400 text-[10px] font-bold rounded-full">Chờ Cấu Hình</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: POSTS LIST -->
+        <section id="sec-posts" class="hidden space-y-6">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <h3 class="text-lg font-bold text-white">Danh sách bài viết</h3>
+              <span id="posts-count-badge" class="px-2 py-0.5 bg-slate-800 text-slate-300 rounded text-xs">0</span>
+            </div>
+            <button onclick="openEditor()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 active:scale-[0.98] transition font-bold rounded-xl text-sm flex items-center gap-1.5 shadow-lg shadow-blue-500/20">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+              Viết bài mới
+            </button>
+          </div>
+
+          <!-- Filter & Search Toolbar -->
+          <div class="flex flex-col md:flex-row gap-4 justify-between bg-slate-800 p-4 rounded-2xl border border-slate-700/60">
+            <input type="text" id="postSearchInput" oninput="filterPostsList()" placeholder="Tìm bài viết theo tiêu đề, slug..." class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm max-w-md w-full">
+            <div class="flex gap-3">
+              <select id="postFilterStatus" onchange="filterPostsList()" class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl focus:outline-none text-sm">
+                <option value="ALL">Tất cả trạng thái</option>
+                <option value="PUBLISHED">Đã xuất bản</option>
+                <option value="DRAFT">Bản nháp</option>
+                <option value="TRASH">Thùng rác</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Table Container -->
+          <div class="overflow-x-auto bg-slate-800 border border-slate-700/60 rounded-3xl shadow-xl">
+            <table class="w-full text-left text-sm">
+              <thead class="bg-slate-950/40 text-slate-400 text-xs font-bold uppercase tracking-wider">
+                <tr class="border-b border-slate-700/60">
+                  <th class="px-6 py-4">Bài viết</th>
+                  <th class="px-6 py-4">Chuyên mục</th>
+                  <th class="px-6 py-4">Tác giả</th>
+                  <th class="px-6 py-4">Ngày cập nhật</th>
+                  <th class="px-6 py-4">Trạng thái</th>
+                  <th class="px-6 py-4 text-right">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="posts-table-body" class="divide-y divide-slate-700/40 text-slate-300">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION 3: POST EDITOR (WRITE/EDIT) -->
+        <section id="sec-editor" class="hidden space-y-6">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+            <div class="flex items-center gap-3">
+              <button onclick="showSection('posts')" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-slate-300 transition" aria-label="Quay lại">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+              </button>
+              <h3 id="editorSectionTitle" class="text-lg font-bold text-white">Soạn thảo bài viết chuẩn SEO</h3>
+            </div>
+            <div class="flex gap-3">
+              <button onclick="savePost('DRAFT')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 active:scale-[0.98] transition rounded-xl text-sm font-bold border border-slate-700">Lưu nháp</button>
+              <button onclick="savePost('PUBLISHED')" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 active:scale-[0.98] transition rounded-xl text-sm font-bold text-white shadow-lg shadow-blue-500/20">Xuất bản (Publish)</button>
+            </div>
+          </div>
+
+          <!-- Main Editor Workspace Layout -->
+          <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            
+            <!-- Left Side: Content Fields & Editor -->
+            <div class="lg:col-span-3 space-y-6">
+              
+              <!-- Core Title & Slug card -->
+              <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4">
+                <div>
+                  <label for="postTitle" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Tiêu đề bài viết (H1)</label>
+                  <input type="text" id="postTitle" oninput="handleTitleInput(this.value)" placeholder="Ví dụ: Lương Gross là gì? Hướng dẫn cách tính chi tiết..." class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-slate-500">
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label for="postSlug" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">URL Slug (Tiếng Việt không dấu)</label>
+                    <input type="text" id="postSlug" placeholder="luong-gross-la-gi" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-slate-500">
+                  </div>
+                  <div>
+                    <label for="postCategory" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Chuyên mục</label>
+                    <select id="postCategory" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                      <!-- Loaded dynamically -->
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- E-E-A-T Author & Reviewer Settings -->
+              <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4">
+                <h4 class="font-bold text-white text-sm">👔 Cấu hình Tác giả & Kiểm duyệt chuyên môn (E-E-A-T)</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label for="postEditorName" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Tên người kiểm duyệt</label>
+                    <input type="text" id="postEditorName" placeholder="Ví dụ: Luật sư Nguyễn Văn A" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                  </div>
+                  <div>
+                    <label for="postEditorTitle" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Chức danh người kiểm duyệt</label>
+                    <input type="text" id="postEditorTitle" placeholder="Ví dụ: Thạc sĩ Luật, Kiểm toán viên CPA" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Featured Hero Image Card -->
+              <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4">
+                <h4 class="font-bold text-white text-sm">🖼️ Hình ảnh đại diện bài viết (Hero Image)</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div class="md:col-span-2 space-y-3">
+                    <div>
+                      <label for="postOgImage" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Đường dẫn ảnh đại diện (Định dạng WebP tối ưu)</label>
+                      <div class="flex gap-2">
+                        <input type="text" id="postOgImage" placeholder="/images/blog/luong-gross-la-gi.webp" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-slate-500">
+                        <button type="button" onclick="openMediaModal('postOgImage')" class="px-4 py-3 bg-slate-700 hover:bg-slate-600 rounded-2xl font-bold text-xs">Chọn ảnh</button>
+                      </div>
+                    </div>
+                    <div>
+                      <label for="postAltImage" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Alt mô tả ảnh (Tiếng Việt không dấu)</label>
+                      <input type="text" id="postAltImage" placeholder="luong-gross-la-gi-hero" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                    </div>
+                    <div>
+                      <label for="postCaption" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Chú thích ảnh hiển thị (Caption)</label>
+                      <input type="text" id="postCaption" placeholder="Mô tả chi tiết nội dung hình ảnh" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                    </div>
+                  </div>
+                  
+                  <!-- Preview image container -->
+                  <div class="border border-slate-700 rounded-2xl bg-slate-900 overflow-hidden flex items-center justify-center min-h-[180px] p-2 relative">
+                    <img id="ogImagePreview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-10 w-10 text-slate-600' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'/%3E%3C/svg%3E" alt="Preview Image" class="max-w-full max-h-[160px] rounded-xl object-contain">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Main EditorJS Card -->
+              <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4">
+                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Nội dung bài viết</label>
+                <div class="p-4 bg-slate-900 border border-slate-700 rounded-2xl min-h-[450px]">
+                  <div id="editorjs"></div>
+                </div>
+              </div>
+
+              <!-- CTA & References Cards -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- CTA Config -->
+                <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4">
+                  <h4 class="font-bold text-white text-sm">💡 Cấu hình Nút hành động CTA (Calculators)</h4>
+                  <div>
+                    <label for="postCtaLink" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Đường dẫn công cụ tương ứng</label>
+                    <select id="postCtaLink" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                      <option value="">Không có CTA</option>
+                      <option value="/">Tính lương Gross Net</option>
+                      <option value="/calculators/tinh-bhxh-1-lan/">Tính bảo hiểm xã hội 1 lần</option>
+                      <option value="/calculators/tinh-thue-tncn/">Tính thuế thu nhập cá nhân</option>
+                      <option value="/calculators/tao-ma-qr/">Trình tạo mã QR</option>
+                      <option value="/calculators/tinh-bmi/">Tính chỉ số BMI</option>
+                      <option value="/calculators/xem-tarot/">Xem bói bài Tarot</option>
+                      <option value="/calculators/speedtest/">Đo tốc độ mạng</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="postCtaText" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Chữ hiển thị trên Nút</label>
+                    <input type="text" id="postCtaText" placeholder="Ví dụ: Tính lương Gross sang Net ngay" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                  </div>
+                </div>
+
+                <!-- References & Sources -->
+                <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4">
+                  <h4 class="font-bold text-white text-sm">📚 Tài liệu tham khảo & Nguồn uy tín</h4>
+                  <div class="space-y-3">
+                    <textarea id="postReferences" rows="4" placeholder='[{"name":"Cổng Thông tin Điện tử Chính phủ","url":"https://chinhphu.vn","desc":"Nghị định 125 về xử phạt hành chính thuế"}]' class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white text-xs font-mono"></textarea>
+                    <p class="text-[10px] text-slate-400">Nhập danh sách nguồn uy tín định dạng JSON Array chứa các đối tượng có thuộc tính name, url, desc.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            
+            <!-- Right Side: SEO Realtime Audit Panel (RankMath-like) -->
+            <div class="space-y-6">
+              
+              <!-- SEO Score Indicator -->
+              <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl text-center space-y-4">
+                <h4 class="font-bold text-white text-sm">Chấm điểm SEO (RankMath)</h4>
+                <div class="relative w-28 h-28 mx-auto flex items-center justify-center">
+                  <svg class="w-full h-full transform -rotate-90">
+                    <circle cx="56" cy="56" r="48" stroke="#334155" stroke-width="8" fill="transparent" />
+                    <circle id="seoCircleProgress" cx="56" cy="56" r="48" stroke="#ef4444" stroke-width="8" fill="transparent" stroke-dasharray="301.6" stroke-dashoffset="301.6" class="transition-all duration-500" />
+                  </svg>
+                  <span id="seoScoreText" class="absolute text-2xl font-extrabold text-white">0</span>
+                </div>
+                <div id="seoVerdict" class="text-xs font-semibold px-3 py-1.5 bg-red-500/10 border border-red-500/20 text-red-400 rounded-full inline-block">Cần tối ưu SEO</div>
+              </div>
+
+              <!-- SEO Meta Settings -->
+              <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4">
+                <h4 class="font-bold text-white text-sm">⚙️ Cấu hình SEO Meta</h4>
+                <div>
+                  <label for="postKeywords" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Từ khóa chính bài viết</label>
+                  <input type="text" id="postKeywords" oninput="runSeoAudit()" placeholder="Ví dụ: luong gross" class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                </div>
+                <div>
+                  <label for="postDescription" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Mô tả Meta Description</label>
+                  <textarea id="postDescription" oninput="runSeoAudit()" rows="3" placeholder="Tối đa 150-160 ký tự..." class="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-white text-sm"></textarea>
+                </div>
+              </div>
+
+              <!-- SEO Audit Checklist Card -->
+              <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4">
+                <h4 class="font-bold text-white text-sm">📝 Danh sách kiểm tra SEO</h4>
+                <div id="seoChecklistContainer" class="space-y-3 max-h-[300px] overflow-y-auto text-xs pr-1">
+                  <!-- Checklist values dynamically populated -->
+                </div>
+              </div>
+
+              <!-- Revision History Card -->
+              <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4">
+                <h4 class="font-bold text-white text-sm">⏳ Lịch sử phiên bản (Revisions)</h4>
+                <div id="revisionsContainer" class="space-y-2.5 max-h-[220px] overflow-y-auto text-xs pr-1">
+                  <p class="text-slate-400 italic">Không có phiên bản lưu nháp cũ nào.</p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        <!-- SECTION 4: MEDIA LIBRARY -->
+        <section id="sec-media" class="hidden space-y-6">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-white">Thư viện hình ảnh</h3>
+            <div class="flex gap-2">
+              <label for="imageUploadInput" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 active:scale-[0.98] transition font-bold rounded-xl text-sm flex items-center gap-1.5 cursor-pointer shadow-lg shadow-blue-500/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                </svg>
+                Tải ảnh mới lên
+              </label>
+              <input type="file" id="imageUploadInput" onchange="handleImageUpload(event)" class="hidden" accept="image/*">
+            </div>
+          </div>
+
+          <!-- Drag and Drop Dropzone -->
+          <div id="mediaDropzone" class="border-2 border-dashed border-slate-700 hover:border-blue-500 transition rounded-3xl p-12 text-center bg-slate-800/40 relative">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-slate-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <p class="font-medium text-slate-300">Kéo thả hình ảnh vào đây để tự động tải lên và tối ưu WebP</p>
+            <p class="text-xs text-slate-500 mt-2">Dung lượng tối đa 5MB. Định dạng PNG, JPG, GIF, WEBP</p>
+          </div>
+
+          <!-- Media Gallery Grid -->
+          <div id="mediaGalleryGrid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
+            <!-- Populated dynamically -->
+          </div>
+        </section>
+
+        <!-- SECTION 5: CATEGORIES & TAGS -->
+        <section id="sec-categories" class="hidden space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Category Management Card -->
+            <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4">
+              <h4 class="font-bold text-white">📂 Quản lý chuyên mục</h4>
+              <form id="catForm" onsubmit="handleCreateCategory(event)" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label for="catName" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Tên chuyên mục</label>
+                    <input type="text" id="catName" required placeholder="Thuế" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white">
+                  </div>
+                  <div>
+                    <label for="catSlug" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Slug</label>
+                    <input type="text" id="catSlug" required placeholder="thue" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white">
+                  </div>
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                  <div class="col-span-2">
+                    <label for="catDesc" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Mô tả ngắn</label>
+                    <input type="text" id="catDesc" placeholder="Kiến thức và cẩm nang thuế" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white">
+                  </div>
+                  <div>
+                    <label for="catColor" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Màu sắc đại diện</label>
+                    <input type="color" id="catColor" value="#3b82f6" class="w-full h-10 p-1 bg-slate-900 border border-slate-700 rounded-xl cursor-pointer">
+                  </div>
+                </div>
+                <button type="submit" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 font-bold rounded-xl text-sm transition">Tạo chuyên mục</button>
+              </form>
+              <div class="overflow-y-auto max-h-[250px] divide-y divide-slate-700/40">
+                <table class="w-full text-xs text-left">
+                  <thead>
+                    <tr class="text-slate-400 border-b border-slate-700">
+                      <th class="py-2">Chuyên mục</th>
+                      <th class="py-2">Slug</th>
+                      <th class="py-2 text-right">Hành động</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cat-table-body">
+                    <!-- Dynamically populated -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Tags Management Card -->
+            <div class="p-6 bg-slate-800 border border-slate-700/60 rounded-3xl space-y-4">
+              <h4 class="font-bold text-white">🏷️ Quản lý Thẻ (Tags)</h4>
+              <form id="tagForm" onsubmit="handleCreateTag(event)" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label for="tagName" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Tên thẻ</label>
+                    <input type="text" id="tagName" required placeholder="Lương Net" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white">
+                  </div>
+                  <div>
+                    <label for="tagSlug" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Slug</label>
+                    <input type="text" id="tagSlug" required placeholder="luong-net" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white">
+                  </div>
+                </div>
+                <button type="submit" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 font-bold rounded-xl text-sm transition">Tạo Thẻ</button>
+              </form>
+              <div id="tagsContainer" class="flex flex-wrap gap-2.5 max-h-[300px] overflow-y-auto p-2 bg-slate-900 rounded-2xl border border-slate-800">
+                <!-- Tags populated here -->
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- SECTION 6: USERS MANAGEMENT (ADMIN ONLY) -->
+        <section id="sec-users" class="hidden space-y-6">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-white">Quản lý tài khoản quản trị</h3>
+            <button onclick="openUserModal()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 font-bold rounded-xl text-sm transition shadow-lg shadow-blue-500/20">Thêm tài khoản mới</button>
+          </div>
+
+          <div class="overflow-x-auto bg-slate-800 border border-slate-700/60 rounded-3xl">
+            <table class="w-full text-left text-sm">
+              <thead class="bg-slate-950/40 text-slate-400 text-xs font-bold uppercase">
+                <tr class="border-b border-slate-700">
+                  <th class="px-6 py-4">Thành viên</th>
+                  <th class="px-6 py-4">Email / ID</th>
+                  <th class="px-6 py-4">Quyền hạn (Role)</th>
+                  <th class="px-6 py-4">Trạng thái</th>
+                  <th class="px-6 py-4">Đăng nhập cuối</th>
+                  <th class="px-6 py-4 text-right">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="users-table-body" class="divide-y divide-slate-700/40 text-slate-300">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- MEDIA SELECTOR MODAL -->
+  <div id="mediaModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border border-slate-800 w-full max-w-4xl h-[600px] rounded-3xl flex flex-col overflow-hidden text-slate-100">
+      <header class="p-6 border-b border-slate-800 flex justify-between items-center">
+        <h4 class="text-lg font-bold">Chọn ảnh từ thư viện</h4>
+        <button onclick="closeMediaModal()" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </header>
+      <div class="flex-1 overflow-y-auto p-6">
+        <div id="modalMediaGrid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- USER FORM MODAL -->
+  <div id="userModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border border-slate-800 w-full max-w-md rounded-3xl p-6 text-slate-100">
+      <div class="flex justify-between items-center mb-6">
+        <h4 id="userModalTitle" class="text-lg font-bold">Tạo tài khoản quản trị</h4>
+        <button onclick="closeUserModal()" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <form id="userModalForm" onsubmit="handleSaveUser(event)" class="space-y-4">
+        <input type="hidden" id="modalUserId">
+        <div>
+          <label for="modalUserName" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Họ tên</label>
+          <input type="text" id="modalUserName" required class="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white">
+        </div>
+        <div>
+          <label for="modalUserEmail" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Tên tài khoản (Email / Username)</label>
+          <input type="text" id="modalUserEmail" required class="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white">
+        </div>
+        <div>
+          <label for="modalUserPassword" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Mật khẩu</label>
+          <input type="password" id="modalUserPassword" class="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white" placeholder="Bỏ trống nếu không thay đổi">
+        </div>
+        <div>
+          <label for="modalUserRole" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Quyền hạn (Role)</label>
+          <select id="modalUserRole" class="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-white">
+            <option value="ADMIN">ADMIN</option>
+            <option value="EDITOR">EDITOR</option>
+            <option value="AUTHOR">AUTHOR</option>
+            <option value="VIEWER">VIEWER</option>
+          </select>
+        </div>
+        <div>
+          <label for="modalUserActive" class="flex items-center gap-2 cursor-pointer mt-4">
+            <input type="checkbox" id="modalUserActive" checked class="w-4 h-4 rounded accent-blue-600 bg-slate-800 border-slate-700">
+            <span class="text-sm font-semibold">Cho phép hoạt động</span>
+          </label>
+        </div>
+        <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-500 font-bold rounded-xl text-sm transition mt-6">Lưu thông tin</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Custom APP Client logic JS -->
+  <script src="/app.js"></script>
+</body>
+</html>
