@@ -650,7 +650,13 @@
   <div id="mediaModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-900 border border-slate-800 w-full max-w-4xl h-[600px] rounded-3xl flex flex-col overflow-hidden text-slate-100">
       <header class="p-6 border-b border-slate-800 flex justify-between items-center">
-        <h4 class="text-lg font-bold">Chọn ảnh từ thư viện</h4>
+        <div class="flex items-center gap-4">
+          <h4 class="text-lg font-bold">Chọn ảnh từ thư viện</h4>
+          <label class="px-4 py-2.5 bg-blue-600 hover:bg-blue-500 rounded-xl text-xs font-bold cursor-pointer transition flex items-center gap-1.5 text-white">
+            📥 Tải ảnh mới từ máy tính
+            <input type="file" id="modalMediaUploadInput" accept="image/*" class="hidden" onchange="handleModalImageUpload(event)">
+          </label>
+        </div>
         <button onclick="closeMediaModal()" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl transition">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />

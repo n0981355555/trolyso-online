@@ -75,6 +75,13 @@
   <!-- Blog Posts -->
   <!-- DYNAMIC_POSTS_START -->
   <url>
+    <loc>https://trolyso.online/blog/lichcatdien/</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://trolyso.online/blog/huong-dan-tinh-thue-tncn/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>

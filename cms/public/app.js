@@ -795,6 +795,36 @@ async function handleImageUpload(e) {
   }
 }
 
+// Modal upload handler
+async function handleModalImageUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append('file', file);
+  
+  console.log('📸 Uploading & optimizing image inside modal...');
+
+  const res = await apiFetch('/api/media/upload', {
+    method: 'POST',
+    body: formData
+  });
+
+  if (res && res.ok) {
+    const data = await res.json();
+    alert('Tải ảnh mới từ máy tính & Tự động tối ưu WebP thành công!');
+    
+    // Automatically select the newly uploaded image!
+    selectImageForField(data.file.url);
+    
+    // Clear file input value so same file can be selected again if needed
+    document.getElementById('modalMediaUploadInput').value = '';
+  } else if (res) {
+    const error = await res.json();
+    alert(`Lỗi upload: ${error.message || 'Không xác định'}`);
+  }
+}
+
 async function handleDeleteMedia(id) {
   if (!confirm('Bạn có chắc chắn muốn xóa tệp tin ảnh này khỏi thư viện?')) return;
   const res = await apiFetch(`/api/media/${id}`, { method: 'DELETE' });
