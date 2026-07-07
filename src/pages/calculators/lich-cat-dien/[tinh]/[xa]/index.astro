@@ -7,33 +7,21 @@ import path from 'path';
 
 // getStaticPaths dùng để sinh tĩnh toàn bộ các trang Phường/Xã cho 4 tỉnh giai đoạn 1
 export async function getStaticPaths() {
-  const mappedRegions = [
-    { name: "Thành phố Hà Nội", slug: "ha-noi", codes: [1] },
-    { name: "Tỉnh Bắc Ninh", slug: "bac-ninh", codes: [24, 27] },
-    { name: "Tỉnh Quảng Ninh", slug: "quang-ninh", codes: [22] },
-    { name: "Thành phố Hải Phòng", slug: "hai-phong", codes: [2, 30] }
-  ];
-  
   const paths = [];
   
-  mappedRegions.forEach(target => {
-    const matchingRaw = rawRegions.filter(r => target.codes.includes(r.code));
+  rawRegions.forEach(prov => {
     const wards = [];
-    
-    matchingRaw.forEach(prov => {
-      prov.districts.forEach(dist => {
-        dist.wards.forEach(w => {
-          wards.push({
-            name: w.name,
-            rawSlug: getSlug(w.name),
-            districtName: dist.name,
-            code: w.code
-          });
+    prov.districts.forEach(dist => {
+      dist.wards.forEach(w => {
+        wards.push({
+          name: w.name,
+          rawSlug: getSlug(w.name),
+          districtName: dist.name,
+          code: w.code
         });
       });
     });
     
-    // Đếm trùng lặp để xử lý slug
     const slugCounts = {};
     wards.forEach(w => {
       slugCounts[w.rawSlug] = (slugCounts[w.rawSlug] || 0) + 1;
@@ -46,11 +34,11 @@ export async function getStaticPaths() {
         
       paths.push({
         params: {
-          tinh: target.slug,
+          tinh: prov.slug,
           xa: finalSlug
         },
         props: {
-          provinceName: target.name,
+          provinceName: prov.name,
           wardName: w.name,
           districtName: w.districtName,
           code: w.code

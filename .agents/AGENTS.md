@@ -26,8 +26,10 @@ Mỗi khi người dùng yêu cầu viết bài viết mới (Blog Post) chuẩn
 * Đăng ký URL bài viết vào cơ sở dữ liệu tìm kiếm nhanh `searchIndex` trong `src/layouts/Layout.astro`.
 * Đăng ký URL bài viết vào sơ đồ trang web `public/sitemap.xml`.
 
-## 4. Quy tắc nhắc nhở Đẩy mã nguồn (Push Git)
-* Sau mỗi lần cập nhật mã nguồn thành công, Agent bắt buộc phải nhắc nhở người dùng thực hiện push code lên GitHub và hướng dẫn cách làm chi tiết bằng GitHub Desktop.
+## 4. Quy tắc nhắc nhở Đẩy mã nguồn (Push Git) & Kiểm thử
+* Sau mỗi lần cập nhật mã nguồn thành công, Agent bắt buộc phải tự động chạy lệnh `npm run preview` hoặc `npm run dev` ở chế độ nền (background task) để tạo môi trường kiểm thử cục bộ.
+* Sau đó, Agent phải cung cấp đường link Localhost (ví dụ: `http://localhost:4321/...`) và yêu cầu người dùng kiểm tra kỹ giao diện, tính năng trên máy cá nhân trước.
+* Chỉ sau khi nhắc người dùng test Localhost xong, Agent mới được phép nhắc nhở người dùng thực hiện push code lên GitHub và hướng dẫn cách làm chi tiết bằng GitHub Desktop kèm nội dung commit dựng sẵn.
 
 ## 5. Quy tắc Thiết kế Công cụ & Tối ưu Trải nghiệm (E-E-A-T & Lighthouse)
 * **Tích hợp Đa ngôn ngữ (Việt - Anh):** Tất cả các công cụ mới phải hỗ trợ chuyển đổi ngôn ngữ Việt - Anh đồng bộ thông qua đối tượng `translations` trong `src/layouts/Layout.astro` và kiểm tra trạng thái `localStorage.getItem("lang") === "en"` trong script tính toán.

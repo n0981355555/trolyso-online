@@ -3,37 +3,18 @@ import Layout from '../../../layouts/Layout.astro';
 import rawRegions from '../../../data/regions.json';
 import { getSlug } from '../../../utils/slugify.js';
 
-// Nhóm 6 tỉnh hành chính cũ thành 4 tỉnh/thành sáp nhập mới
-const mappedRegions = [
-  {
-    name: "Thành phố Hà Nội",
-    slug: "ha-noi"
-  },
-  {
-    name: "Tỉnh Bắc Ninh",
-    slug: "bac-ninh"
-  },
-  {
-    name: "Tỉnh Quảng Ninh",
-    slug: "quang-ninh"
-  },
-  {
-    name: "Thành phố Hải Phòng",
-    slug: "hai-phong"
-  }
-];
+// Tự động ánh xạ các tỉnh hành chính từ file regions.json đã sinh
+const mappedRegions = rawRegions.map(r => ({
+  name: r.name,
+  slug: r.slug,
+  code: r.code
+}));
 
 // Định dạng dữ liệu Phường/Xã cho từng Tỉnh và xử lý trùng lặp slug
 const processedRegions = mappedRegions.map(target => {
   const wards = [];
   
-  const matchingRaw = rawRegions.filter(r => {
-    if (target.slug === 'ha-noi') return r.code === 1;
-    if (target.slug === 'bac-ninh') return r.code === 24 || r.code === 27;
-    if (target.slug === 'quang-ninh') return r.code === 22;
-    if (target.slug === 'hai-phong') return r.code === 2 || r.code === 30;
-    return false;
-  });
+  const matchingRaw = rawRegions.filter(r => r.code === target.code);
   
   matchingRaw.forEach(prov => {
     prov.districts.forEach(dist => {
