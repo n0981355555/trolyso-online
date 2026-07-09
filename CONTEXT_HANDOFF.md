@@ -5,6 +5,21 @@
 > [!IMPORTANT]
 > **Hướng dẫn cho Agent mới:** Hãy đọc kỹ tài liệu này để nắm bắt toàn bộ trạng thái hiện tại của dự án Trợ Lý Số (trolyso.online) mà không cần yêu cầu người dùng giải thích lại từ đầu.
 
+## 🔑 Thông tin Tài khoản & Truy cập (Ghi nhớ)
+
+> [!WARNING]
+> Nếu sau này anh chuyển kho chứa mã nguồn (Repository) này từ chế độ riêng tư (Private) sang công khai (Public), hãy nhớ xóa thông tin mật khẩu ở mục này để tránh lộ lọt thông tin bảo mật!
+
+* **Tài khoản CMS Admin (Production & Local):**
+  * Đường dẫn Production: **[https://cms.trolyso.online](https://cms.trolyso.online)**
+  * Đường dẫn Local: **`http://localhost:5000`**
+  * Tài khoản: **`admin`**
+  * Mật khẩu: **`thaonguyen1`**
+* **Thông tin VPS (aaPanel):**
+  * Địa chỉ IP VPS: **`180.93.1.246`**
+  * Đường dẫn truy cập aaPanel: **`http://180.93.1.246:38376/ap_sess_OwnDPsUeTkz8fBc5KKfRXODp4PO71dD`**
+  * *(Lưu ý: Mật khẩu đăng nhập aaPanel và mật khẩu SSH root của VPS do anh quản lý riêng).*
+
 ---
 
 ## 1. Các Tính Năng Đã Hoàn Thành Gần Đây (Mới Nhất)
