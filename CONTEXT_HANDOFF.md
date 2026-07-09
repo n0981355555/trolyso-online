@@ -7,47 +7,71 @@
 
 ---
 
-## 1. Các Tính Năng Đã Hoàn Thành Gần Đây
+## 1. Các Tính Năng Đã Hoàn Thành Gần Đây (Mới Nhất)
 
-### A. Công cụ Tính Lương Hưu Dự Kiến
-* **Đường dẫn:** `src/pages/calculators/tinh-luong-huu/index.astro`
-* **Nội dung:** Giải thuật toán tự động tính lộ trình nghỉ hưu theo Nghị định 135/2020/NĐ-CP, tính tỷ lệ hưởng lương hưu tối đa 75% và tính trợ cấp một lần cho các năm đóng dư. Hỗ trợ song ngữ Anh - Việt.
+### A. Hệ thống CMS Quản trị Nội dung tự động xuất bản sang Astro
+* **Mô tả:** Hệ thống quản trị nội dung hoàn chỉnh chạy bằng NodeJS (Express, Prisma ORM, SQLite) kết nối với Astro Frontend.
+* **Quy trình hoạt động:** 
+  * Khi nhấn xuất bản (Publish) một bài viết trong CMS, backend sẽ gọi tệp tự động sinh bài viết `astro-generator.js` để ghi trực tiếp tệp Astro tương ứng vào thư mục `src/pages/blog/<slug>/index.astro`.
+  * Đồng thời, backend tự động thêm bài viết vào danh mục bài viết `src/pages/blog/index.astro`, nạp URL vào searchIndex của `src/layouts/Layout.astro`, và cập nhật tệp sơ đồ trang web `public/sitemap.xml`.
 
-### B. Bài viết SEO "Tính Tuổi Nghỉ Hưu 2026"
-* **Đường dẫn:** `src/pages/blog/tinh-tuoi-nghi-huu-2026/index.astro`
-* **Nội dung:** Tích hợp Mục lục neo liên kết (TOC), CTA dẫn về công cụ tính lương hưu. Hình ảnh WebP tối ưu chuẩn SEO.
+### B. Tính năng chèn ảnh SEO nâng cao (`AstroImage`) & Upload trực tiếp từ máy tính
+* **Mô tả:** Tích hợp khối chèn ảnh tùy chỉnh trong EditorJS (`AstroImage`) cho phép chèn 5-10 ảnh vào bất kỳ vị trí nào trong bài viết.
+* **Tải ảnh máy tính:** Ngay trong modal chọn ảnh, người dùng có thể tải trực tiếp ảnh từ máy tính cá nhân. Hệ thống tự động tối ưu hóa qua thư viện **Sharp** sang định dạng `.webp` dung lượng dưới 100KB, lưu vào `public/images/blog/` và hiển thị ảnh trực quan (Preview).
+* **Alt và Chú thích:** Mỗi ảnh bắt buộc điền thẻ `alt` mô tả (tiếng Việt không dấu) và `caption` chú thích hiển thị ngay dưới ảnh.
 
-### C. Trình Tạo Ảnh AI Miễn Phí (Đã Khắc Phục Lỗi)
-* **Đường dẫn:** `src/pages/calculators/tao-anh-ai/index.astro`
-* **Cơ chế hoạt động:** 
-  * Tích hợp gọi API qua cổng công cộng miễn phí: `https://image.pollinations.ai/prompt/...`
-  * Đã khắc phục lỗi **401 Unauthorized** (bằng cách chuyển sang cổng public proxy) và lỗi **504 Gateway Timeout** (bằng cách bổ sung bộ chọn mô hình AI).
-  * **Tính năng nổi bật:** Có bộ chọn **Mô hình AI** động (`Flux` - đẹp nhất, `Ideogram Turbo` - siêu nhanh 2-3s không nghẽn, `GPT Image` - nghệ thuật, `Z-Image` - sáng tạo).
-  * Đã khắc phục lỗi **báo lỗi sớm (onerror)** bằng biến cờ trạng thái `isGenerating`.
+### C. Công cụ quét Calculators động làm link đích CTA
+* **Mô tả:** Backend quét thư mục `src/pages/calculators/`, đọc tiêu đề trong thẻ `<Layout>` để lấy danh sách các công cụ hiện có (bao gồm cả Lịch cắt điện).
+* **Giao diện:** Danh sách công cụ tự động hiển thị trong ô lựa chọn liên kết của nút hành động (CTA) ở màn hình viết bài mà không cần cấu hình cứng.
+
+### D. Bộ dựng liên kết nội bộ (Related Posts)
+* **Mô tả:** Giao diện cho phép nhập nhanh các bài viết liên quan (Tiêu đề, Slug, Chuyên mục) để chèn hộp liên kết nội bộ tự động dưới bài viết giúp tăng chỉ số SEO On-page.
 
 ---
 
-## 2. Quy Trình Viết & Đăng Bài SEO Chuẩn Website (Checklist Bắt Buộc)
+## 2. Trạng Thái Triển Khai trên VPS (aaPanel)
+Hệ thống đã được thiết lập chạy ngầm ổn định trên VPS với cấu hình:
+1. **Tên miền chính (Astro Frontend):** `https://trolyso.online` (Chạy static file từ thư mục `dist/` do Nginx quản lý).
+2. **Tên miền phụ quản trị (CMS Backend):** `https://cms.trolyso.online`
+   * Được cấu hình thông qua **Reverse Proxy** (Proxy ngược) trong aaPanel: proxy từ `/` sang cổng nội bộ `http://127.0.0.1:5000`.
+   * Cài đặt chứng chỉ bảo mật SSL Let's Encrypt (đã cấu hình *Force HTTPS*).
+   * Cơ sở dữ liệu SQLite cục bộ được tách khỏi Git (`.gitignore`) để tránh xung đột dữ liệu giữa Local và VPS.
+3. **Cách khởi động lại CMS ngầm trên VPS (PM2):**
+   * Truy cập Terminal của VPS:
+     ```bash
+     cd /www/wwwroot/trolyso.online/cms
+     pm2 restart "trolyso-cms" || pm2 start src/server.js --name "trolyso-cms"
+     ```
 
-Khi người dùng yêu cầu viết hoặc đăng bài viết blog chuẩn SEO mới, Agent tiếp theo cần tuân thủ nghiêm ngặt quy trình 3 bước sau:
+---
 
-### Bước 1: Tạo trang blog mới
-* Tạo file tại: `src/pages/blog/<slug-viet-tat-khong-dau>/index.astro`.
+## 3. Quy Trình Viết & Đăng Bài SEO Chuẩn Website (Checklist Bắt Buộc)
+
+Khi người dùng yêu cầu viết hoặc đăng bài viết blog chuẩn SEO mới, Agent tiếp theo cần tuân thủ nghiêm ngặt quy trình sau:
+
+### Bước 1: Cấu trúc bài viết chuẩn SEO
 * Nội dung chứa: Tiêu đề H1, các phân đoạn H2/H3 rõ ràng, có bảng biểu hoặc hộp lưu ý làm nổi bật nội dung.
 * **Mục lục bài viết (Table of Contents):** Chứa các neo liên kết (anchor link) đặt dưới đoạn mở bài để nhảy nhanh đến các thẻ H2/H3.
-* **Call To Action (CTA):** Đặt ở cuối bài viết dẫn link về công cụ tính toán tương ứng trên website để tăng tỷ lệ chuyển đổi.
+* **Call To Action (CTA):** Đặt ở cuối bài viết dẫn link về công cụ tương ứng trên website để tăng tỷ lệ chuyển đổi.
+* **Hộp tác giả (E-E-A-T Author Box):** Bắt buộc chèn ở đầu trang bài viết với thông tin chuyên môn rõ ràng.
 
 ### Bước 2: Tối ưu hình ảnh chuẩn SEO
-* **Định dạng & Dung lượng:** Bắt buộc dùng định dạng thế hệ mới `.webp`, nén dung lượng dưới 100KB để tối ưu PageSpeed.
-* **Tên file ảnh:** Đặt tên tiếng Việt không dấu, nối bằng dấu gạch ngang (Ví dụ: `tinh-tuoi-nghi-huu-2026-hero.webp`).
+* **Mật độ:** Trung bình từ 350 - 400 từ / 1 ảnh.
+* **Định dạng & Dung lượng:** Bắt buộc dùng định dạng thế hệ mới `.webp` nén dưới 100KB.
+* **Hiển thị hình ảnh:** Tuyệt đối không dùng các class bóp kích thước như `max-h-[300px]` hay `object-cover`. Sử dụng class chuẩn: `class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm"`.
 * **Thẻ Alt:** Điền mô tả chi tiết bằng tiếng Việt không dấu, viết thường, nối bằng dấu gạch ngang (Ví dụ: `alt="huong-dan-tra-cuu-tuoi-nghi-huu-2026"`). Tuyệt đối không để trống alt.
+* **Chú thích ảnh (Image Captions):** Ngay dưới mỗi ảnh chèn thẻ mô tả nội dung bằng tiếng Việt chuẩn: `<p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình: [Mô tả chi tiết nội dung hình ảnh]</p>`.
+* **Quy chuẩn prompt tạo ảnh AI (Style Guide):** Bắt buộc sử dụng prompt mô tả phong cách thiết kế đồng bộ sau:
+  * `Flat Vector Illustration, cute cartoon characters in modern SaaS style with slightly large heads, dark blue outlines, light pastel colors, bright white background, clean layout, vector website UI mockups, simple illustrative icons, financial infographics, minimal shadows, soft lines, style similar to Storyset, DrawKit, ManyPixels, unDraw, professional, friendly, modern, highly detailed, no photorealistic, no 3D, no anime, no watermark, no text.`
 
 ### Bước 3: Đồng bộ hóa toàn hệ thống
-* **Danh mục Blog:** Thêm thông tin bài viết (Tiêu đề, slug, mô tả, ngày đăng, ảnh đại diện) vào đầu mảng `posts` trong file `src/pages/blog/index.astro`.
+* **Danh mục Blog:** Thêm thông tin bài viết vào đầu mảng `posts` trong file `src/pages/blog/index.astro`.
 * **Tìm kiếm nhanh:** Đăng ký URL bài viết vào cơ sở dữ liệu `searchIndex` trong file `src/layouts/Layout.astro`.
 * **Sơ đồ trang web:** Đăng ký URL bài viết vào file `public/sitemap.xml`.
 
 ---
 
-## 3. Trạng Thái Hiện Tại & Đồng Bộ
-Mọi tính năng đã được kiểm thử biên dịch `npm run build` thành công 100%, không phát sinh bất kỳ lỗi nào. Bối cảnh dự án đã sẵn sàng để tiếp tục phát triển.
+## 4. Môi trường phát triển cục bộ (Localhost)
+Khi chạy ở local (máy cá nhân), hãy khởi động đồng thời cả 2 máy chủ:
+* **Astro Frontend (cổng 4321):** Chạy `npm run dev` ở thư mục gốc.
+* **CMS Backend (cổng 5000):** Chạy `npm run dev` ở thư mục `/cms`.
