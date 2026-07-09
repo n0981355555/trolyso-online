@@ -7,6 +7,8 @@ export function editorJsToHtml(contentJsonStr) {
     const data = JSON.parse(contentJsonStr);
     if (!data.blocks || !Array.isArray(data.blocks)) return '';
     
+    let imgCounter = 2; // Since Hero Image is always "Hình 1"
+    
     return data.blocks.map(block => {
       switch (block.type) {
         case 'header':
@@ -64,10 +66,11 @@ export function editorJsToHtml(contentJsonStr) {
           
         case 'image':
           const imageUrl = block.data.file ? block.data.file.url : (block.data.url || '');
+          const currentImgIndex = imgCounter++;
           return `
             <div class="my-8">
               <img src="${imageUrl}" alt="${block.data.alt || 'hinh-minh-hoa'}" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" loading="lazy" />
-              ${block.data.caption ? `<p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình: ${block.data.caption}</p>` : ''}
+              ${block.data.caption ? `<p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình ${currentImgIndex}: ${block.data.caption}</p>` : ''}
             </div>
           `;
           
@@ -261,11 +264,11 @@ export function generateAstroPage(post, author, category) {
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               ${related.map(rel => `
-                <a href="/blog/${rel.slug}/" class="group block p-5 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:border-brand-blue transition shadow-sm">
+                <a href="/blog/${rel.slug}/" class="group block p-5 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300 shadow-sm">
                   <span class="text-xs font-semibold text-brand-blue bg-blue-50 dark:bg-blue-950/30 px-2.5 py-1 rounded-full mb-3 inline-block">
                     ${rel.category || 'Cẩm nang'}
                   </span>
-                  <h4 class="font-bold text-slate-800 dark:text-slate-100 group-hover:text-brand-blue transition line-clamp-2">
+                  <h4 class="font-bold text-slate-800 dark:text-slate-100 group-hover:text-brand-blue dark:group-hover:text-brand-mint transition duration-200 line-clamp-2">
                     ${rel.title}
                   </h4>
                 </a>
@@ -295,11 +298,11 @@ export function generateAstroPage(post, author, category) {
   let tocHtml = '';
   if (toc.length > 0) {
     tocHtml = `
-      <div class="my-8 p-6 bg-slate-50 dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800">
+      <div class="my-8 p-6 bg-slate-50 dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300">
         <h3 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-3">📋 Mục lục bài viết</h3>
         <nav class="space-y-1.5">
           ${toc.map(item => `
-            <a href="#${item.id}" class="block text-sm text-slate-600 dark:text-slate-400 hover:text-brand-blue transition ${item.level === 3 ? 'pl-4 text-xs' : 'font-medium'}">
+            <a href="#${item.id}" class="block text-sm text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200 ${item.level === 3 ? 'pl-4 text-xs' : 'font-medium'}">
               • ${item.text}
             </a>
           `).join('')}
@@ -332,7 +335,7 @@ import Layout from '../../../layouts/Layout.astro';
     </h1>
 
     <!-- 3. E-E-A-T Author Box & Mentorship metadata -->
-    <div class="flex flex-wrap items-center gap-4 p-5 bg-slate-50 dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl mb-8 text-sm">
+    <div class="flex flex-wrap items-center gap-4 p-5 bg-slate-50 dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl mb-8 text-sm hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300">
       <div class="flex items-center gap-3">
         ${author.avatar ? `<img src="${author.avatar}" alt="${author.name}" class="w-10 h-10 rounded-full object-cover" />` : `<div class="w-10 h-10 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold">${author.name.charAt(0)}</div>`}
         <div>
@@ -348,7 +351,7 @@ import Layout from '../../../layouts/Layout.astro';
         </div>
       ` : ''}
       <div class="h-8 w-px bg-slate-200 dark:bg-slate-800 hidden sm:block"></div>
-      <div class="ml-auto flex items-center gap-4 text-xs text-slate-400">
+      <div class="sm:ml-auto flex items-center gap-4 text-xs text-slate-400">
         <div>📅 Cập nhật: ${updatedDate}</div>
         <div>⏱️ ${post.readingTime} phút đọc</div>
       </div>
@@ -358,7 +361,7 @@ import Layout from '../../../layouts/Layout.astro';
     ${post.ogImage ? `
       <div class="mb-8">
         <img src="${post.ogImage}" alt="${post.altImage || 'hinh-anh-hero'}" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
-        ${post.caption ? `<p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình: ${post.caption}</p>` : ''}
+        ${post.caption ? `<p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 1: ${post.caption}</p>` : ''}
       </div>
     ` : ''}
 
