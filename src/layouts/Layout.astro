@@ -11,7 +11,7 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
 <html lang="vi" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
@@ -82,14 +82,39 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
       html:not(.dark) a.group {
         box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 16px -6px rgba(15, 23, 42, 0.04) !important;
       }
+
+      /* Global responsiveness fixes */
+      html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+      main {
+        width: 100%;
+        min-width: 0;
+      }
+      /* Ensure text wraps correctly and never overflows */
+      p, h1, h2, h3, h4, h5, h6, li, span, a {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      }
+      /* Ensure all images and media fit their containers */
+      img, video {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+      /* Ensure code blocks scroll horizontally instead of stretching parent */
+      pre {
+        max-width: 100%;
+        overflow-x: auto;
+      }
     </style>
   </head>
   <body class="bg-slate-50 dark:bg-brand-darkBg text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
     <!-- Header -->
     <header class="bg-white/80 dark:bg-brand-darkCard/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50 transition-colors">
-      <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="max-w-6xl mx-auto px-3 sm:px-4 py-3 sm:py-4 flex justify-between items-center">
         <!-- Logo -->
-        <a href="/" class="text-2xl sm:text-3xl font-heading font-extrabold flex items-center select-none tracking-tight">
+        <a href="/" class="text-xl sm:text-2xl md:text-3xl font-heading font-extrabold flex items-center select-none tracking-tight shrink-0">
           <span class="text-[#0063b6] dark:text-white transition-colors">trolyso</span><span class="text-[#49a2dc] transition-colors">.online</span>
         </a>
         
@@ -111,7 +136,7 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
           </a>
           
           <!-- Theme Toggle Button -->
-          <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:ring-2 hover:ring-slate-300 dark:hover:ring-slate-700 transition" aria-label="Toggle theme">
+          <button id="themeToggle" class="p-2 sm:p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:ring-2 hover:ring-slate-300 dark:hover:ring-slate-700 transition" aria-label="Toggle theme">
             <!-- Sun Icon (shown in dark mode) -->
             <svg id="themeSun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707-.707m12.728 0l-.707.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 115.52 12a9 9 0 0112.728 12.728z"></path>
