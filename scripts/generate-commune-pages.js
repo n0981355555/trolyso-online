@@ -126,24 +126,31 @@ async function generateData() {
 
         sitemapUrls.push(`  <url>\n    <loc>https://trolyso.com${url}</loc>\n    <changefreq>daily</changefreq>\n    <priority>0.8</priority>\n  </url>`);
         
-        searchEntries.push(`          { title: "Lịch cắt điện ${unitType} ${cleanWardName} - ${prov.name}", desc: "Tra cứu lịch cúp điện chi tiết tại ${unitType.toLowerCase()} ${cleanWardName}, ${prov.name} hôm nay.", url: "${url}" }`);
+        searchEntries.push({
+          title: `Lịch cắt điện ${unitType} ${cleanWardName} - ${prov.name}`,
+          desc: `Tra cứu lịch cúp điện chi tiết tại ${unitType.toLowerCase()} ${cleanWardName}, ${prov.name} hôm nay.`,
+          url: url
+        });
       });
     });
   });
 
-  // Inject into Layout.astro
-  const layoutPath = path.join(__dirname, 'src/layouts/Layout.astro');
-  let layoutContent = fs.readFileSync(layoutPath, 'utf8');
+  // Write to search-index.json
+  const searchIndexPath = path.join(__dirname, 'public/search-index.json');
+  let baseEntries = [];
+  if (fs.existsSync(searchIndexPath)) {
+    try {
+      baseEntries = JSON.parse(fs.readFileSync(searchIndexPath, 'utf8')).filter(item => 
+        !(item.url.startsWith('/calculators/lich-cat-dien/') && item.url !== '/calculators/lich-cat-dien/')
+      );
+    } catch (e) {
+      console.error("Error reading existing search-index.json:", e);
+    }
+  }
   
-  // Clean up any previously injected dynamic entries if we re-run
-  layoutContent = layoutContent.replace(/\/\* DYNAMIC_COMMUNES_START \*\/[\s\S]*?\/\* DYNAMIC_COMMUNES_END \*\//, '');
-  
-  // Inject new entries
-  const injectionStr = `/* DYNAMIC_COMMUNES_START */\n${searchEntries.join(',\n')}\n/* DYNAMIC_COMMUNES_END */\n`;
-  layoutContent = layoutContent.replace('        ];', `${injectionStr}        ];`);
-  
-  fs.writeFileSync(layoutPath, layoutContent);
-  console.log(`Injected ${searchEntries.length} items into Layout.astro searchIndex.`);
+  const finalSearchIndex = [...baseEntries, ...searchEntries];
+  fs.writeFileSync(searchIndexPath, JSON.stringify(finalSearchIndex, null, 2), 'utf8');
+  console.log(`Updated search-index.json with ${searchEntries.length} communes. Total entries: ${finalSearchIndex.length}`);
 
   // Inject into sitemap.xml
   const sitemapPath = path.join(__dirname, 'public/sitemap.xml');

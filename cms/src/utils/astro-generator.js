@@ -444,35 +444,34 @@ export function updateBlogIndex(post, categoryName) {
 }
 
 export function updateSearchIndex(post) {
-  const layoutPath = path.resolve('../src/layouts/Layout.astro');
-  if (!fs.existsSync(layoutPath)) return;
+  const searchIndexPath = path.resolve('../public/search-index.json');
+  if (!fs.existsSync(searchIndexPath)) {
+    console.error('❌ Could not find search-index.json');
+    return;
+  }
   
-  let content = fs.readFileSync(layoutPath, 'utf8');
-  
-  const searchRecord = {
-    title: `Bài viết: ${post.title}`,
-    desc: post.description,
-    url: `/blog/${post.slug}/`
-  };
-  
-  const recordString = `          { title: "${searchRecord.title.replace(/"/g, '\\"')}", desc: "${searchRecord.desc.replace(/"/g, '\\"')}", url: "${searchRecord.url}" },\n`;
-  
-  const marker = '/* DYNAMIC_POSTS_START */';
-  const insertIndex = content.indexOf(marker);
-  
-  if (insertIndex !== -1) {
-    const before = content.slice(0, insertIndex + marker.length);
-    const after = content.slice(insertIndex + marker.length);
+  try {
+    const indexData = JSON.parse(fs.readFileSync(searchIndexPath, 'utf8'));
+    const targetUrl = `/blog/${post.slug}/`;
     
-    if (!content.includes(`url: "/blog/${post.slug}/"`)) {
-      content = before + '\n' + recordString + after;
-      fs.writeFileSync(layoutPath, content, 'utf8');
-      console.log('✅ Layout searchIndex updated successfully.');
+    const exists = indexData.some(item => item.url === targetUrl);
+    if (!exists) {
+      const searchRecord = {
+        title: `Bài viết: ${post.title}`,
+        desc: post.description,
+        url: targetUrl
+      };
+      
+      // Chèn bài viết mới vào đầu mảng
+      indexData.unshift(searchRecord);
+      
+      fs.writeFileSync(searchIndexPath, JSON.stringify(indexData, null, 2), 'utf8');
+      console.log('✅ search-index.json updated successfully.');
     } else {
-      console.log('ℹ️ Layout searchIndex already contains this blog url, skipping update.');
+      console.log('ℹ️ search-index.json already contains this blog url, skipping update.');
     }
-  } else {
-    console.error('❌ Could not find /* DYNAMIC_POSTS_START */ in Layout.astro');
+  } catch (e) {
+    console.error('❌ Error updating search-index.json:', e.message);
   }
 }
 
