@@ -1,0 +1,465 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Công Cụ Tính Lãi Suất Vay Trả Góp & Gửi Tiết Kiệm Online Chuẩn 2026"
+  description="Máy tính lãi suất ngân hàng online chính xác nhất. Hỗ trợ tính lãi vay trả góp hàng tháng (dư nợ giảm dần/dư nợ gốc) và lãi gửi tiết kiệm của 15+ ngân hàng Việt Nam."
+>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tính lãi suất</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Máy Tính Lãi Suất Vay & Gửi Tiết Kiệm 2026
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Tính toán lịch trả nợ vay hàng tháng hoặc tính tiền lãi gửi tiết kiệm ngân hàng chính xác theo biểu lãi suất của các ngân hàng lớn tại Việt Nam.
+      </p>
+    </div>
+
+    <!-- Tool Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 lg:grid-cols-12 mb-12 transition-colors">
+      
+      <!-- Left inputs (7 cols) -->
+      <div class="p-6 sm:p-10 lg:col-span-7">
+        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+          📝 Nhập thông số tính toán
+        </h2>
+
+        <div class="space-y-5">
+          <!-- Loại tính toán -->
+          <div>
+            <label for="calcType" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Loại tính toán</label>
+            <select id="calcType" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-semibold text-base">
+              <option value="loan">Vay vốn ngân hàng (Trả góp)</option>
+              <option value="savings">Gửi tiết kiệm ngân hàng</option>
+            </select>
+          </div>
+
+          <!-- Lựa chọn Ngân hàng -->
+          <div>
+            <label for="bankSelect" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Ngân hàng áp dụng lãi suất</label>
+            <select id="bankSelect" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-medium">
+              <option value="vietcombank">Vietcombank</option>
+              <option value="bidv">BIDV</option>
+              <option value="vietinbank">VietinBank</option>
+              <option value="agribank">Agribank</option>
+              <option value="techcombank">Techcombank</option>
+              <option value="mbbank">MB Bank</option>
+              <option value="vpbank">VPBank</option>
+              <option value="acb">ACB</option>
+              <option value="sacombank">Sacombank</option>
+              <option value="vib">VIB</option>
+              <option value="tpbank">TPBank</option>
+              <option value="custom" selected>Tùy chỉnh (Tự nhập % lãi suất)</option>
+            </select>
+          </div>
+
+          <!-- Số tiền Vay/Gửi -->
+          <div>
+            <label id="amountLabel" for="amountInput" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Số tiền vay (VND)</label>
+            <input type="number" id="amountInput" value="500000000" step="10000000" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
+          </div>
+
+          <!-- Kỳ hạn (Tháng) -->
+          <div>
+            <label for="durationInput" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Kỳ hạn gửi / vay (tháng)</label>
+            <input type="number" id="durationInput" value="60" min="1" max="360" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold" />
+          </div>
+
+          <!-- Lãi suất (% năm) -->
+          <div>
+            <label for="rateInput" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Lãi suất (% / năm)</label>
+            <input type="number" id="rateInput" value="7.5" step="0.1" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
+          </div>
+
+          <!-- Phương án trả nợ vay (Chỉ hiện khi chọn Vay vốn) -->
+          <div id="methodWrapper">
+            <label for="loanMethod" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Phương thức trả nợ</label>
+            <select id="loanMethod" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-medium">
+              <option value="reducing">Dư nợ giảm dần (Gốc đều, lãi giảm dần)</option>
+              <option value="flat">Dư nợ gốc (Gốc và lãi cố định hàng tháng)</option>
+            </select>
+          </div>
+
+          <button id="btnCalculate" class="w-full bg-brand-blue hover:bg-blue-700 dark:bg-brand-mint dark:hover:bg-emerald-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg">
+            ⚡ Tính Lãi Suất
+          </button>
+        </div>
+      </div>
+
+      <!-- Right outputs (5 cols) -->
+      <div class="p-6 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 lg:col-span-5 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-slate-800">
+        <div>
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+            📊 Kết quả tính toán
+          </h2>
+
+          <div class="space-y-6">
+            <!-- Tổng số tiền gốc -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span class="text-xs font-semibold text-slate-400 block mb-1">TỔNG SỐ TIỀN GỐC</span>
+              <span id="resPrincipal" class="text-xl font-extrabold text-slate-800 dark:text-slate-100">500,000,000đ</span>
+            </div>
+
+            <!-- Tổng số tiền lãi -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span id="resInterestLabel" class="text-xs font-semibold text-slate-400 block mb-1">TỔNG TIỀN LÃI PHẢI TRẢ</span>
+              <span id="resInterest" class="text-xl font-extrabold text-red-500 dark:text-red-400">95,312,500đ</span>
+            </div>
+
+            <!-- Tổng số tiền gốc + lãi -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span id="resTotalLabel" class="text-xs font-semibold text-slate-400 block mb-1">TỔNG GỐC + LÃI PHẢI TRẢ</span>
+              <span id="resTotal" class="text-xl font-extrabold text-brand-blue dark:text-brand-mint">595,312,500đ</span>
+            </div>
+
+            <!-- Kỳ thanh toán đầu tiên (Chỉ hiện khi chọn Vay vốn) -->
+            <div id="resMonthlyWrapper" class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span id="resMonthlyLabel" class="text-xs font-semibold text-slate-400 block mb-1">THÀNH TOÁN THÁNG ĐẦU</span>
+              <span id="resMonthly" class="text-xl font-extrabold text-slate-800 dark:text-slate-100">11,458,333đ / tháng</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-400 dark:text-slate-500 italic mt-6 leading-relaxed">
+          *Lưu ý: Bảng tính mang tính chất tham khảo. Lãi suất thực tế có thể thay đổi tùy thuộc vào biên độ điều chỉnh của từng ngân hàng tại từng thời điểm.
+        </p>
+      </div>
+    </div>
+
+    <!-- Detailed Schedule Table (For Loans) -->
+    <div id="scheduleSection" class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 mb-12">
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+        📅 Lịch thanh toán chi tiết từng tháng
+      </h3>
+      <div id="scheduleTableWrapper" class="relative max-h-96 overflow-hidden transition-all duration-500">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse text-left">
+            <thead>
+              <tr class="bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 font-semibold border-b border-slate-200 dark:border-slate-700">
+                <th class="px-4 py-3 text-center">Kỳ thanh toán</th>
+                <th class="px-4 py-3 text-right">Dư nợ đầu kỳ (VND)</th>
+                <th class="px-4 py-3 text-right">Tiền gốc hàng tháng (VND)</th>
+                <th class="px-4 py-3 text-right">Tiền lãi hàng tháng (VND)</th>
+                <th class="px-4 py-3 text-right">Tổng thanh toán (VND)</th>
+                <th class="px-4 py-3 text-right">Dư nợ cuối kỳ (VND)</th>
+              </tr>
+            </thead>
+            <tbody id="scheduleBody" class="divide-y divide-slate-100 dark:divide-slate-800">
+              <!-- Dynamic rows generated by script -->
+            </tbody>
+          </table>
+        </div>
+        <div id="scheduleFadeOverlay" class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-brand-darkCard to-transparent pointer-events-none"></div>
+      </div>
+      
+      <!-- Toggle Button -->
+      <div class="flex justify-center mt-6">
+        <button id="btnToggleSchedule" class="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold rounded-xl transition-all duration-300 flex items-center gap-2 hover:scale-105 active:scale-95 hover:-translate-y-0.5 shadow-sm hover:shadow-md">
+          <span id="btnToggleText">Xem bảng đầy đủ</span>
+          <span id="btnToggleIcon">▼</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- E-E-A-T Handbook Section -->
+    <div class="mt-12 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
+        📚 Cẩm Nang Hướng Dẫn Tính Lãi Suất Ngân Hàng
+      </h2>
+      <div class="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 space-y-4">
+        <h3>1. Công thức tính Lãi Suất Vay Trả Góp</h3>
+        <p>Có hai phương thức phổ biến để tính tiền lãi và số tiền trả góp hàng tháng:</p>
+        
+        <h4>A. Phương pháp Dư nợ giảm dần (Cách tính phổ biến nhất)</h4>
+        <p>Số tiền lãi được tính trên số tiền thực tế bạn còn nợ ngân hàng sau khi đã trừ đi phần tiền gốc đã trả trong các tháng trước. Lịch thanh toán chi tiết bao gồm:</p>
+        <ul>
+          <li><strong>Tiền gốc hàng tháng cố định:</strong> <code>Tiền gốc = Số tiền vay ban đầu / Tổng số tháng vay</code>.</li>
+          <li><strong>Tiền lãi tháng đầu tiên:</strong> <code>Tiền lãi = Dư nợ ban đầu * (Lãi suất năm / 12)</code>.</li>
+          <li><strong>Tiền lãi các tháng tiếp theo:</strong> <code>Tiền lãi = Dư nợ còn lại thực tế * (Lãi suất năm / 12)</code>.</li>
+        </ul>
+        
+        <h4>B. Phương pháp Dư nợ gốc (Lãi phẳng)</h4>
+        <p>Tiền lãi hàng tháng được giữ cố định theo số tiền vay ban đầu suốt thời hạn vay. Công thức tính như sau:</p>
+        <ul>
+          <li><code>Tiền lãi hàng tháng = Số tiền vay ban đầu * (Lãi suất năm / 12)</code>.</li>
+          <li><code>Tổng số tiền phải trả cố định hàng tháng = Tiền gốc + Tiền lãi hàng tháng</code>.</li>
+        </ul>
+
+        <h3>2. Công thức tính lãi suất gửi tiết kiệm</h3>
+        <p>Đối với tiền gửi tiết kiệm có kỳ hạn thông thường, số tiền lãi nhận được khi cuối kỳ được tính như sau:</p>
+        <p class="font-bold p-3 bg-slate-50 dark:bg-slate-900 rounded-lg text-slate-800 dark:text-slate-200">
+          Tiền lãi = Số tiền gửi * Lãi suất (% / năm) * (Số tháng gửi / 12)
+        </p>
+        
+        <h3>3. Căn cứ pháp lý liên quan</h3>
+        <p>Quy trình tính toán lãi suất vay và huy động của các ngân hàng thương mại Việt Nam tuân thủ các văn bản quy định pháp luật của Ngân hàng Nhà nước:</p>
+        <ul>
+          <li><strong>Thông tư 39/2016/TT-NHNN:</strong> Quy định về hoạt động cho vay của tổ chức tín dụng đối với khách hàng.</li>
+          <li><strong>Thông tư 48/2018/TT-NHNN:</strong> Quy định về việc nhận tiền gửi tiết kiệm của các tổ chức tín dụng đối với người dân Việt Nam.</li>
+        </ul>
+
+        <div class="mt-8 border-t border-slate-100 dark:border-slate-800 pt-6">
+          <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">💬 Câu hỏi thường gặp (FAQ)</h3>
+          <div class="space-y-4">
+            <details class="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition-all hover:shadow-sm">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none">
+                <span>Dư nợ giảm dần là gì?</span>
+                <span class="transition group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Dư nợ giảm dần là phương pháp tính lãi suất vay dựa trên số tiền nợ gốc thực tế còn lại của bạn sau khi đã trừ đi phần tiền gốc đã trả qua các tháng trước.</p>
+            </details>
+            <details class="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition-all hover:shadow-sm">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none">
+                <span>Lãi suất thả nổi là gì và biên độ điều chỉnh thế nào?</span>
+                <span class="transition group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Lãi suất thả nổi là lãi suất vay được điều chỉnh định kỳ theo thị trường. Thông thường được xác định bằng: Lãi suất cơ sở (hoặc lãi suất huy động 12 tháng của ngân hàng) + Biên độ cố định (dao động từ 3% - 4.5%).</p>
+            </details>
+            <details class="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition-all hover:shadow-sm">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none">
+                <span>Lãi suất gửi tiết kiệm online có cao hơn gửi tại quầy không?</span>
+                <span class="transition group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Có, hầu hết các ngân hàng hiện nay đều niêm yết mức lãi suất gửi tiết kiệm trực tuyến (online) cao hơn từ 0,1% - 0,4%/năm so với gửi trực tiếp tại quầy giao dịch truyền thống.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-950/30 rounded-xl border border-blue-100 dark:border-blue-900 text-center">
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            👉 Bạn muốn hiểu sâu hơn về các quy định phạt trả nợ trước hạn hoặc mẹo đàm phán lãi suất vay? 
+            <a href="/blog/cach-tinh-lai-suat-vay-tiet-kiem/" class="text-brand-blue dark:text-brand-mint font-bold hover:underline">Xem bài hướng dẫn chi tiết cách tính lãi suất vay ngân hàng & gửi tiết kiệm tại đây</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import interestRates from '../../../data/interest-rates.json';
+
+  const calcType = document.getElementById('calcType') as HTMLSelectElement;
+  const bankSelect = document.getElementById('bankSelect') as HTMLSelectElement;
+  const amountInput = document.getElementById('amountInput') as HTMLInputElement;
+  const amountLabel = document.getElementById('amountLabel') as HTMLLabelElement;
+  const durationInput = document.getElementById('durationInput') as HTMLInputElement;
+  const rateInput = document.getElementById('rateInput') as HTMLInputElement;
+  const methodWrapper = document.getElementById('methodWrapper') as HTMLDivElement;
+  const loanMethod = document.getElementById('loanMethod') as HTMLSelectElement;
+  
+  const resPrincipal = document.getElementById('resPrincipal') as HTMLSpanElement;
+  const resInterestLabel = document.getElementById('resInterestLabel') as HTMLSpanElement;
+  const resInterest = document.getElementById('resInterest') as HTMLSpanElement;
+  const resTotalLabel = document.getElementById('resTotalLabel') as HTMLSpanElement;
+  const resTotal = document.getElementById('resTotal') as HTMLSpanElement;
+  const resMonthlyWrapper = document.getElementById('resMonthlyWrapper') as HTMLDivElement;
+  const resMonthlyLabel = document.getElementById('resMonthlyLabel') as HTMLSpanElement;
+  const resMonthly = document.getElementById('resMonthly') as HTMLSpanElement;
+  
+  const scheduleSection = document.getElementById('scheduleSection') as HTMLDivElement;
+  const scheduleTableWrapper = document.getElementById('scheduleTableWrapper') as HTMLDivElement;
+  const scheduleFadeOverlay = document.getElementById('scheduleFadeOverlay') as HTMLDivElement;
+  const btnToggleSchedule = document.getElementById('btnToggleSchedule') as HTMLButtonElement;
+  const btnToggleText = document.getElementById('btnToggleText') as HTMLSpanElement;
+  const btnToggleIcon = document.getElementById('btnToggleIcon') as HTMLSpanElement;
+  const scheduleBody = document.getElementById('scheduleBody') as HTMLTableSectionElement;
+  const btnCalculate = document.getElementById('btnCalculate');
+
+  let isExpanded = false;
+
+  function toggleSchedule() {
+    isExpanded = !isExpanded;
+    if (isExpanded) {
+      scheduleTableWrapper.style.maxHeight = 'none';
+      scheduleFadeOverlay.classList.add('hidden');
+      btnToggleText.innerText = "Thu gọn bảng";
+      btnToggleIcon.innerText = "▲";
+    } else {
+      scheduleTableWrapper.style.maxHeight = '24rem';
+      scheduleFadeOverlay.classList.remove('hidden');
+      btnToggleText.innerText = "Xem bảng đầy đủ";
+      btnToggleIcon.innerText = "▼";
+      scheduleSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  btnToggleSchedule?.addEventListener('click', toggleSchedule);
+
+  // Load rate based on selection
+  function updateRate() {
+    const type = calcType.value;
+    const bankId = bankSelect.value;
+    
+    if (bankId === 'custom') {
+      return;
+    }
+    
+    const bank = interestRates.find(b => b.id === bankId);
+    if (bank) {
+      if (type === 'loan') {
+        rateInput.value = bank.loanRate.toString();
+      } else {
+        rateInput.value = bank.savingsRate.toString();
+      }
+    }
+  }
+
+  // Handle calculator mode change
+  function toggleInputs() {
+    const type = calcType.value;
+    updateRate();
+
+    if (type === 'loan') {
+      amountLabel.innerText = "Số tiền vay (VND)";
+      methodWrapper.classList.remove('hidden');
+      resMonthlyWrapper.classList.remove('hidden');
+      resInterestLabel.innerText = "TỔNG TIỀN LÃI PHẢI TRẢ";
+      resTotalLabel.innerText = "TỔNG GỐC + LÃI PHẢI TRẢ";
+      scheduleSection.classList.remove('hidden');
+    } else {
+      amountLabel.innerText = "Số tiền gửi tiết kiệm (VND)";
+      methodWrapper.classList.add('hidden');
+      resMonthlyWrapper.classList.add('hidden');
+      resInterestLabel.innerText = "TỔNG TIỀN LÃI NHẬN ĐƯỢC";
+      resTotalLabel.innerText = "TỔNG TIỀN GỐC + LÃI CUỐI KỲ";
+      scheduleSection.classList.add('hidden');
+    }
+  }
+
+  // Format currency
+  function formatVND(val: number) {
+    return val.toLocaleString('vi-VN') + 'đ';
+  }
+
+  // Calculation logic
+  function calculate() {
+    const type = calcType.value;
+    const amount = parseFloat(amountInput.value) || 0;
+    const duration = parseInt(durationInput.value) || 0;
+    const annualRate = (parseFloat(rateInput.value) || 0) / 100;
+    const monthlyRate = annualRate / 12;
+
+    resPrincipal.innerText = formatVND(amount);
+
+    if (type === 'loan') {
+      const method = loanMethod.value;
+      let totalInterest = 0;
+      let html = '';
+
+      if (method === 'reducing') {
+        // Dư nợ giảm dần
+        const fixedPrincipal = amount / duration;
+        let remainingBalance = amount;
+        
+        for (let i = 1; i <= duration; i++) {
+          const interest = remainingBalance * monthlyRate;
+          totalInterest += interest;
+          const totalPayment = fixedPrincipal + interest;
+          const nextBalance = remainingBalance - fixedPrincipal;
+
+          html += `
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition">
+              <td class="px-4 py-3 text-center font-medium text-slate-700 dark:text-slate-300">Tháng ${i}</td>
+              <td class="px-4 py-3 text-right text-slate-600 dark:text-slate-400">${formatVND(remainingBalance)}</td>
+              <td class="px-4 py-3 text-right text-slate-800 dark:text-slate-200 font-medium">${formatVND(fixedPrincipal)}</td>
+              <td class="px-4 py-3 text-right text-red-500 dark:text-red-400">${formatVND(interest)}</td>
+              <td class="px-4 py-3 text-right text-brand-blue dark:text-brand-mint font-bold">${formatVND(totalPayment)}</td>
+              <td class="px-4 py-3 text-right text-slate-600 dark:text-slate-400">${formatVND(Math.max(0, nextBalance))}</td>
+            </tr>
+          `;
+          remainingBalance = nextBalance;
+        }
+
+        const firstMonthPayment = fixedPrincipal + (amount * monthlyRate);
+        resMonthly.innerText = `${formatVND(Math.round(firstMonthPayment))} (giảm dần)`;
+        resMonthlyLabel.innerText = "THÀNH TOÁN THÁNG ĐẦU";
+
+      } else {
+        // Dư nợ gốc
+        const fixedPrincipal = amount / duration;
+        const fixedInterest = amount * monthlyRate;
+        totalInterest = fixedInterest * duration;
+        const totalPayment = fixedPrincipal + fixedInterest;
+
+        for (let i = 1; i <= duration; i++) {
+          const prevBalance = amount - (fixedPrincipal * (i - 1));
+          const nextBalance = amount - (fixedPrincipal * i);
+          
+          html += `
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition">
+              <td class="px-4 py-3 text-center font-medium text-slate-700 dark:text-slate-300">Tháng ${i}</td>
+              <td class="px-4 py-3 text-right text-slate-600 dark:text-slate-400">${formatVND(prevBalance)}</td>
+              <td class="px-4 py-3 text-right text-slate-800 dark:text-slate-200 font-medium">${formatVND(fixedPrincipal)}</td>
+              <td class="px-4 py-3 text-right text-red-500 dark:text-red-400">${formatVND(fixedInterest)}</td>
+              <td class="px-4 py-3 text-right text-brand-blue dark:text-brand-mint font-bold">${formatVND(totalPayment)}</td>
+              <td class="px-4 py-3 text-right text-slate-600 dark:text-slate-400">${formatVND(Math.max(0, nextBalance))}</td>
+            </tr>
+          `;
+        }
+
+        resMonthly.innerText = `${formatVND(Math.round(totalPayment))} / tháng`;
+        resMonthlyLabel.innerText = "THÀNH TOÁN CỐ ĐỊNH";
+      }
+
+      resInterest.innerText = formatVND(Math.round(totalInterest));
+      resTotal.innerText = formatVND(Math.round(amount + totalInterest));
+      scheduleBody.innerHTML = html;
+
+      // Handle table collapse logic based on number of months
+      if (duration <= 6) {
+        scheduleTableWrapper.style.maxHeight = 'none';
+        scheduleFadeOverlay.classList.add('hidden');
+        btnToggleSchedule.classList.add('hidden');
+      } else {
+        isExpanded = false;
+        scheduleTableWrapper.style.maxHeight = '24rem';
+        scheduleFadeOverlay.classList.remove('hidden');
+        btnToggleSchedule.classList.remove('hidden');
+        btnToggleText.innerText = "Xem bảng đầy đủ";
+        btnToggleIcon.innerText = "▼";
+      }
+
+    } else {
+      // Gửi tiết kiệm
+      const totalInterest = amount * annualRate * (duration / 12);
+      resInterest.innerText = formatVND(Math.round(totalInterest));
+      resTotal.innerText = formatVND(Math.round(amount + totalInterest));
+    }
+  }
+
+  // Event listeners
+  calcType.addEventListener('change', toggleInputs);
+  bankSelect.addEventListener('change', updateRate);
+  btnCalculate?.addEventListener('click', calculate);
+
+  // Initialize
+  toggleInputs();
+  calculate();
+</script>

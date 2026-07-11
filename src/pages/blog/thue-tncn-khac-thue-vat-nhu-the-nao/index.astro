@@ -1,0 +1,345 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Thuế TNCN Khác Thuế VAT Như Thế Nào? So Sánh & Phân Biệt Chi Tiết" 
+  description="Phân biệt thuế TNCN và thuế VAT chi tiết từ A-Z. Tìm hiểu bản chất thuế trực thu và gián thu, đối tượng chịu thuế và cơ chế khấu trừ chi tiết."
+>
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <!-- 1. Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-slate-400 dark:text-slate-500 mb-6" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint transition duration-200">Trang chủ</a>
+      <span>/</span>
+      <a href="/blog/" class="hover:text-brand-blue dark:hover:text-brand-mint transition duration-200">Blog</a>
+      <span>/</span>
+      <span class="text-slate-600 dark:text-slate-400 line-clamp-1">Phân biệt thuế TNCN và thuế VAT</span>
+    </nav>
+
+    <!-- 2. H1 Title -->
+    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800 dark:text-slate-100 leading-tight mb-6">
+      Thuế TNCN Khác Thuế VAT Như Thế Nào? So Sánh & Phân Biệt Chi Tiết
+    </h1>
+
+    <!-- 3. E-E-A-T Author Box & Mentorship metadata -->
+    <div class="flex flex-wrap items-center gap-4 p-5 bg-slate-50 dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl mb-8 text-sm hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold">P</div>
+        <div>
+          <p class="text-xs text-slate-400">Biên soạn bởi</p>
+          <p class="font-bold text-slate-700 dark:text-slate-300">Phương Nam Tax</p>
+        </div>
+      </div>
+      
+      <div class="h-8 w-px bg-slate-200 dark:bg-slate-800 hidden sm:block"></div>
+      <div>
+        <p class="text-xs text-slate-400">Kiểm duyệt chuyên môn</p>
+        <p class="font-bold text-slate-700 dark:text-slate-300">Đặng Trần Lâm <span class="text-xs font-normal text-slate-400">(Cố vấn cao cấp Thuế doanh nghiệp - Hội viên CPA Việt Nam)</span></p>
+      </div>
+      
+      <div class="h-8 w-px bg-slate-200 dark:bg-slate-800 hidden sm:block"></div>
+      <div class="sm:ml-auto flex items-center gap-4 text-xs text-slate-400">
+        <div>📅 Cập nhật: 11/7/2026</div>
+        <div>⏱️ 12 phút đọc</div>
+      </div>
+    </div>
+
+    <!-- 4. Hero Image -->
+    <div class="mb-8">
+      <img src="/images/blog/so-sanh-thue-tncn-vat-hero.webp" alt="thue-tncn-khac-thue-vat-nhu-the-nao" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+      <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 1: Phân biệt bản chất thuế thu nhập cá nhân (TNCN) và thuế giá trị gia tăng (VAT).</p>
+    </div>
+
+    <!-- 5. Sapo -->
+    <p class="text-lg font-medium text-slate-700 dark:text-slate-200 leading-relaxed mb-8 border-b border-slate-100 dark:border-slate-800 pb-6">
+      Trong hệ thống chính sách tài khóa của Việt Nam, thuế thu nhập cá nhân (TNCN) và thuế giá trị gia tăng (VAT) là hai sắc thuế trụ cột mang lại nguồn thu lớn cho ngân sách nhà nước. Tuy nhiên, đối với người dân và hộ kinh doanh, sự khác biệt giữa hai loại thuế này thường chưa được hiểu đúng bản chất. Vậy <strong>thuế TNCN khác thuế VAT như thế nào</strong>? Việc <strong>phân biệt thuế tncn và thuế vat</strong> dựa trên những tiêu chí cốt lõi nào? Bài viết chuyên sâu dưới đây sẽ phân tích toàn diện hai sắc thuế này dưới góc nhìn của chuyên gia thuế.
+    </p>
+
+    <!-- 6. Table of Contents -->
+    <div class="my-8 p-6 bg-slate-50 dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300">
+      <h3 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-3">📋 Mục lục bài viết</h3>
+      <nav class="space-y-1.5">
+        <a href="#tong-quan-ve-hai-sac-thue-tncn-va-vat" class="block text-sm text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200 font-medium">
+          • 1. Tổng quan về hai sắc thuế TNCN và thuế VAT
+        </a>
+        <a href="#ban-chat-thue-truc-thu-va-gian-thu" class="block text-sm text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200 font-medium">
+          • 2. Bản chất thuế trực thu và gián thu khác nhau thế nào?
+        </a>
+        <a href="#thue-truc-thu-tncn" class="block text-sm text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200 pl-4 text-xs">
+          • 2.1. Thuế trực thu (Ví dụ: Thuế thu nhập cá nhân TNCN)
+        </a>
+        <a href="#thue-gian-thu-vat" class="block text-sm text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200 pl-4 text-xs">
+          • 2.2. Thuế gián thu (Ví dụ: Thuế giá trị gia tăng VAT)
+        </a>
+        <a href="#so-sanh-chi-tiet-cac-tieu-chi-phan-biet" class="block text-sm text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200 font-medium">
+          • 3. Bảng so sánh chi tiết các tiêu chí phân biệt thuế TNCN và thuế VAT
+        </a>
+        <a href="#cach-tinh-va-ke-khai" class="block text-sm text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200 font-medium">
+          • 4. Cơ chế tự tính và kê khai của hai loại thuế này đối với người dân
+        </a>
+        <a href="#hoan-thue-va-quyet-toan" class="block text-sm text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200 font-medium">
+          • 5. Cơ chế hoàn thuế và quyết toán thuế
+        </a>
+        <a href="#ket-luan" class="block text-sm text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200 font-medium">
+          • Kết Luận
+        </a>
+      </nav>
+    </div>
+
+    <!-- 7. Main Article HTML Content -->
+    <article class="prose prose-slate dark:prose-invert max-w-none">
+      <h2 id="tong-quan-ve-hai-sac-thue-tncn-va-vat" class="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-8 mb-4">1. Tổng quan về hai sắc thuế TNCN và thuế VAT</h2>
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+        Thuế là nghĩa vụ chuyển giao tài chính bắt buộc của các tổ chức, cá nhân cho nhà nước nhằm phục vụ lợi ích công cộng và chi tiêu công. Trong các sắc thuế, thuế thu nhập cá nhân (TNCN) trực tiếp tác động tới túi tiền thu nhập của người lao động, trong khi thuế giá trị gia tăng (VAT) được tính trực tiếp vào chi phí tiêu dùng của mọi sản phẩm dịch vụ hàng ngày.
+      </p>
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+        Hiểu rõ bản chất <b>so sánh thuế giá trị gia tăng và thuế thu nhập cá nhân</b> giúp người nộp thuế chủ động hơn trong việc tối ưu hóa tài chính của bản thân, thực hiện quyết toán thuế đúng hạn và kiểm soát hóa đơn mua sắm của gia đình.
+      </p>
+
+      <h2 id="ban-chat-thue-truc-thu-va-gian-thu" class="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-8 mb-4">2. Bản chất thuế trực thu và gián thu khác nhau thế nào?</h2>
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+        Để hiểu sâu sắc sự khác biệt, trước hết chúng ta cần phân loại hai sắc thuế này theo bản chất kinh tế học tài chính:
+      </p>
+
+      <h3 id="thue-truc-thu-tncn" class="text-xl font-bold text-slate-800 dark:text-slate-100 mt-6 mb-3">2.1. Thuế trực thu (Ví dụ: Thuế thu nhập cá nhân TNCN)</h3>
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+        Thuế trực thu là loại thuế mà người nộp thuế đồng thời là người chịu thuế thực tế. Nhà nước thu trực tiếp từ nguồn thu nhập hoặc tài sản của người nộp thuế. Do đó, người nộp thuế không thể chuyển giao nghĩa vụ đóng thuế này sang cho người khác.
+      </p>
+
+      <div class="mb-8">
+        <img src="/images/blog/so-sanh-thue-tncn-vat-direct.webp" alt="thue-truc-thu-tncn-viet-nam" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+        <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 2: Thuế TNCN là thuế trực thu, người làm ra thu nhập phải trực tiếp nộp cho nhà nước.</p>
+      </div>
+
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+        <b>Bản chất thuế thu nhập cá nhân:</b> Là thuế tính trực tiếp trên phần thu nhập chịu thuế của từng cá nhân (từ tiền lương, tiền công, đầu tư vốn, chuyển nhượng bất động sản...). Nếu thu nhập của bạn chưa đạt mức chịu thuế hoặc có nhiều người phụ thuộc được giảm trừ gia cảnh, số tiền thuế TNCN bạn phải đóng có thể bằng không.
+      </p>
+
+      <h3 id="thue-gian-thu-vat" class="text-xl font-bold text-slate-800 dark:text-slate-100 mt-6 mb-3">2.2. Thuế gián thu (Ví dụ: Thuế giá trị gia tăng VAT)</h3>
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+        Ngược lại, thuế gián thu là thuế tính trên giá trị hàng hóa, dịch vụ được tiêu dùng. Người nộp thuế (đơn vị sản xuất, kinh doanh) thực hiện thu hộ thuế thông qua giá bán sản phẩm và nộp lại cho nhà nước, còn người thực sự chịu thuế chính là người tiêu dùng cuối cùng mua sản phẩm đó.
+      </p>
+
+      <div class="mb-8">
+        <img src="/images/blog/so-sanh-thue-tncn-vat-indirect.webp" alt="thue-gian-thu-vat-tieu-dung" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+        <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 3: Thuế VAT là thuế gián thu, được tính cộng trực tiếp vào giá bán của hàng hóa dịch vụ tiêu dùng.</p>
+      </div>
+
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+        <b>Bản chất thuế giá trị gia tăng:</b> Bất kể mức thu nhập của bạn cao hay thấp, khi bạn mua một chai nước, một chiếc máy tính hay ăn uống tại nhà hàng, bạn đều chịu mức thuế suất VAT như nhau (thường là 8% hoặc 10% cộng thêm vào giá sản phẩm). Thuế VAT không xét đến hoàn cảnh giảm trừ gia cảnh của người chịu thuế.
+      </p>
+
+      <h2 id="so-sanh-chi-tiet-cac-tieu-chi-phan-biet" class="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-8 mb-4">3. Bảng so sánh chi tiết các tiêu chí phân biệt thuế TNCN và thuế VAT</h2>
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+        Để giúp bạn có cái nhìn tổng quan, dưới đây là bảng so sánh cụ thể các tiêu chuẩn phân biệt giữa hai sắc thuế này:
+      </p>
+
+      <div class="mb-8">
+        <img src="/images/blog/so-sanh-thue-tncn-vat-table.webp" alt="bang-so-sanh-thue-tncn-va-vat" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+        <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 4: Bảng so sánh tóm tắt các đặc trưng cơ bản phân biệt thuế TNCN và thuế VAT.</p>
+      </div>
+
+      <table class="w-full text-sm border-collapse text-left my-6 border border-slate-200 dark:border-slate-800">
+        <thead>
+          <tr class="bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 font-bold text-slate-800 dark:text-slate-200">
+            <th class="px-4 py-3 border-r border-slate-200 dark:border-slate-800">Tiêu chí so sánh</th>
+            <th class="px-4 py-3 border-r border-slate-200 dark:border-slate-800">Thuế thu nhập cá nhân (TNCN)</th>
+            <th class="px-4 py-3">Thuế giá trị gia tăng (VAT)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
+          <tr>
+            <td class="px-4 py-3 border-r border-slate-200 dark:border-slate-800 font-semibold">1. Loại thuế</td>
+            <td class="px-4 py-3 border-r border-slate-200 dark:border-slate-800">Thuế trực thu</td>
+            <td class="px-4 py-3">Thuế gián thu</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 border-r border-slate-200 dark:border-slate-800 font-semibold">2. Đối tượng chịu thuế</td>
+            <td class="px-4 py-3 border-r border-slate-200 dark:border-slate-800">Cá nhân có thu nhập chịu thuế vượt mức giảm trừ quy định.</td>
+            <td class="px-4 py-3">Người tiêu dùng cuối cùng mua và sử dụng hàng hóa, dịch vụ chịu thuế.</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 border-r border-slate-200 dark:border-slate-800 font-semibold">3. Cơ sở tính thuế</td>
+            <td class="px-4 py-3 border-r border-slate-200 dark:border-slate-800">Thu nhập chịu thuế thực tế sau khi giảm trừ gia cảnh.</td>
+            <td class="px-4 py-3">Giá trị tăng thêm của hàng hóa, dịch vụ phát sinh từ sản xuất đến tiêu dùng.</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 border-r border-slate-200 dark:border-slate-800 font-semibold">4. Cách tính thuế</td>
+            <td class="px-4 py-3 border-r border-slate-200 dark:border-slate-800">Áp dụng Biểu thuế lũy tiến từng phần (từ 5% - 35%) hoặc thuế suất toàn phần.</td>
+            <td class="px-4 py-3">Áp dụng thuế suất cố định theo nhóm mặt hàng (0%, 5%, 8%, 10%).</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-3 border-r border-slate-200 dark:border-slate-800 font-semibold">5. Giảm trừ hoàn cảnh</td>
+            <td class="px-4 py-3 border-r border-slate-200 dark:border-slate-800">Có (giảm trừ gia cảnh bản thân, người phụ thuộc, đóng bảo hiểm).</td>
+            <td class="px-4 py-3">Không (tính cào bằng trên giá bán hàng hóa cho mọi người tiêu dùng).</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="cach-tinh-va-ke-khai" class="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-8 mb-4">4. Cơ chế tự tính và kê khai của hai loại thuế này đối với người dân</h2>
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+        Sự khác biệt về cách thức đóng thuế cũng là điểm quan trọng cần lưu ý:
+      </p>
+      <ul class="list-disc pl-6 text-slate-600 dark:text-slate-300 mb-6">
+        <li class="mb-2"><b>Thuế TNCN:</b> Thông thường, đối với cá nhân đi làm công ăn lương, doanh nghiệp chi trả thu nhập sẽ thực hiện khấu trừ tại nguồn 10% hoặc tính lũy tiến hàng tháng trước khi trả lương, sau đó thay mặt cá nhân nộp tiền về kho bạc nhà nước. Cuối năm, cá nhân phải tự thực hiện hoặc ủy quyền quyết toán thuế để xác định số tiền thừa/thiếu.</li>
+        <li class="mb-2"><b>Thuế VAT:</b> Được cộng trực tiếp vào giá mua sản phẩm. Người dân không phải làm bất kỳ thủ tục kê khai thuế VAT nào với Chi cục Thuế. Việc kê khai và nộp thuế GTGT hoàn toàn do bên bán hàng thực hiện (theo phương pháp khấu trừ hoặc phương pháp trực tiếp trên doanh thu).</li>
+      </ul>
+
+      <h2 id="hoan-thue-va-quyet-toan" class="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-8 mb-4">5. Cơ chế hoàn thuế và quyết toán thuế</h2>
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+        Một điểm khác biệt lớn mang lại lợi ích trực tiếp về tiền mặt cho người dân là cơ chế hoàn thuế:
+      </p>
+
+      <div class="mb-8">
+        <img src="/images/blog/so-sanh-thue-tncn-vat-refund.webp" alt="quy-trinh-hoan-thue-tncn-va-vat" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+        <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 5: Người nộp thuế TNCN có cơ hội nhận lại tiền hoàn thuế nếu số tiền tạm nộp trong năm lớn hơn số thực tế phải nộp.</p>
+      </div>
+
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+        - <b>Hoàn thuế TNCN:</b> Diễn ra rất phổ biến đối với cá nhân đi làm. Nếu trong năm bạn bị tạm khấu trừ thuế nhiều hơn số thuế thực tế phải nộp (sau khi tính giảm trừ gia cảnh cả năm), khi làm quyết toán thuế TNCN, cơ quan thuế sẽ chuyển khoản trả lại số tiền nộp thừa này vào tài khoản ngân hàng của bạn.
+        <br />- <b>Hoàn thuế VAT:</b> Chỉ áp dụng đối với doanh nghiệp (như doanh nghiệp xuất khẩu, dự án đầu tư mới) đáp ứng đủ các điều kiện khắt khe của Luật Thuế giá trị gia tăng. Người tiêu dùng cá nhân <b>hoàn toàn không được hoàn lại thuế VAT</b> đã tiêu dùng mua sắm hàng ngày.
+      </p>
+
+      <h2 id="ket-luan" class="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-8 mb-4">Kết Luận</h2>
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+        Tóm lại, <strong>thuế TNCN khác thuế VAT như thế nào</strong>? Thuế TNCN là thuế đánh vào thu nhập làm ra (trực thu, có giảm trừ gia cảnh), còn thuế VAT đánh vào hành vi tiêu dùng chi tiêu (gián thu, cào bằng trên giá bán). Hiểu rõ bản chất hai loại thuế này sẽ giúp bạn lên kế hoạch tối ưu thu nhập và chi tiêu thông minh hơn.
+      </p>
+    </article>
+
+    <!-- 8. Call To Action (CTA) -->
+    <div class="my-10 p-6 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-3xl text-white text-center shadow-lg">
+      <h4 class="text-xl font-extrabold mb-2">💡 Bạn muốn tự tính toán số thuế của mình?</h4>
+      <p class="text-sm text-blue-100 mb-6">Hãy sử dụng các công cụ tính thuế TNCN lũy tiến và tính thuế VAT tự động của Trợ Lý Số để phân tích số liệu chuẩn xác nhất.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/calculators/tinh-thue-tncn/" class="px-6 py-3 bg-white text-brand-blue font-bold rounded-2xl hover:bg-slate-100 hover:scale-105 active:scale-95 hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-lg" aria-label="Tính thuế TNCN">
+          🚀 Tính thuế TNCN
+        </a>
+        <a href="/calculators/tinh-thue-vat/" class="px-6 py-3 bg-slate-800 text-white font-bold rounded-2xl hover:bg-slate-700 hover:scale-105 active:scale-95 hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-lg" aria-label="Tính thuế VAT">
+          📊 Tính thuế VAT Online
+        </a>
+      </div>
+    </div>
+
+    <!-- 9. References -->
+    <div class="mt-12 p-6 bg-slate-50 dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800">
+      <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4 flex items-center gap-2">
+        📚 Tài liệu tham khảo & Nguồn uy tín
+      </h3>
+      <ul class="space-y-3">
+        <li>
+          <a href="https://gdt.gov.vn" target="_blank" rel="noopener noreferrer" class="text-brand-blue dark:text-brand-mint hover:text-blue-700 dark:hover:text-emerald-400 hover:underline font-medium text-sm block transition duration-200">
+            🔗 Luật Thuế Thu Nhập Cá Nhân số 04/2007/QH12 chính thức nước Cộng hòa Xã hội Chủ nghĩa Việt Nam
+          </a>
+          <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Văn bản quy định chi tiết đối tượng nộp thuế, thu nhập chịu thuế và cách tính thuế TNCN lũy tiến.</p>
+        </li>
+        <li>
+          <a href="https://gdt.gov.vn" target="_blank" rel="noopener noreferrer" class="text-brand-blue dark:text-brand-mint hover:text-blue-700 dark:hover:text-emerald-400 hover:underline font-medium text-sm block transition duration-200">
+            🔗 Luật Thuế Giá Trị Gia Tăng số 13/2008/QH12 chính thức nước Cộng hòa Xã hội Chủ nghĩa Việt Nam
+          </a>
+          <p class="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Văn bản quy định chi tiết đối tượng chịu thuế VAT, các mức thuế suất và phương thức nộp thuế gián thu.</p>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 10. Related Articles & Internal Links -->
+    <div class="mt-8 border-t border-slate-200 dark:border-slate-800 pt-8">
+      <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100 mb-6">
+        📰 Bài viết liên quan hữu ích
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <a href="/blog/huong-dan-tinh-thue-tncn/" class="group block p-5 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300 shadow-sm">
+          <span class="text-xs font-semibold text-brand-blue bg-blue-50 dark:bg-blue-950/30 px-2.5 py-1 rounded-full mb-3 inline-block">
+            Tài chính
+          </span>
+          <h4 class="font-bold text-slate-800 dark:text-slate-100 group-hover:text-brand-blue dark:group-hover:text-brand-mint transition duration-200 line-clamp-2">
+            Hướng dẫn tính thuế thu nhập cá nhân mới nhất năm 2026
+          </h4>
+        </a>
+        <a href="/blog/cach-tinh-thue-gia-tri-gia-tang-vat/" class="group block p-5 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300 shadow-sm">
+          <span class="text-xs font-semibold text-brand-blue bg-blue-50 dark:bg-blue-950/30 px-2.5 py-1 rounded-full mb-3 inline-block">
+            Thuế & Kế toán
+          </span>
+          <h4 class="font-bold text-slate-800 dark:text-slate-100 group-hover:text-brand-blue dark:group-hover:text-brand-mint transition duration-200 line-clamp-2">
+            Thuế VAT Là Gì? Hướng Dẫn Cách Tính Thuế Giá Trị Gia Tăng Online Từ A-Z
+          </h4>
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Thuế TNCN Khác Thuế VAT Như Thế Nào? So Sánh & Phân Biệt Chi Tiết",
+  "description": "Phân biệt thuế TNCN và thuế VAT chi tiết từ A-Z. Tìm hiểu bản chất thuế trực thu và gián thu, đối tượng chịu thuế và cơ chế khấu trừ chi tiết.",
+  "image": "/images/blog/so-sanh-thue-tncn-vat-hero.webp",
+  "datePublished": "2026-07-11T15:00:00.000Z",
+  "dateModified": "2026-07-11T15:00:00.000Z",
+  "author": {
+    "@type": "Person",
+    "name": "Phương Nam Tax"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Trợ Lý Số",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://trolyso.online/favicon.png"
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Trang chủ",
+      "item": "https://trolyso.online/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://trolyso.online/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Phân biệt thuế TNCN và thuế VAT",
+      "item": "https://trolyso.online/blog/thue-tncn-khac-thue-vat-nhu-the-nao/"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Thuế TNCN và thuế VAT thuế nào cao hơn?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Không thể so sánh trực tiếp vì cơ chế tính khác nhau. Thuế VAT áp dụng cố định (thường là 8% hoặc 10%) cho giá trị hàng hóa tiêu dùng. Thuế TNCN tính theo lũy tiến từ 5% đến 35% trên phần thu nhập chịu thuế của từng cá nhân."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tôi làm công nhân đi làm ăn lương thì phải đóng cả hai thuế đúng không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Đúng vậy. Khi đi làm nhận lương, nếu thu nhập vượt mức giảm trừ gia cảnh bạn sẽ đóng thuế TNCN. Đồng thời, khi bạn tiêu dùng mua sắm hàng ngày (như đi siêu thị, mua điện thoại), bạn đã gián tiếp đóng thuế VAT được cộng vào giá sản phẩm."
+      }
+    }
+  ]
+}
+</script>

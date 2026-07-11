@@ -1,0 +1,263 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Công Cụ Tính Thuế VAT Online 2026 - Tự Động, Chính Xác Nhất"
+  description="Công cụ tính thuế giá trị gia tăng (VAT) online 8% và 10% theo 2 chiều (tính xuôi/tính ngược). Xem công thức tính thuế VAT và ví dụ minh họa chi tiết."
+>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tính thuế VAT</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Công Cụ Tính Thuế Giá Trị Gia Tăng (VAT)
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Tính nhanh số tiền thuế VAT 8% hoặc 10% xuôi và ngược chính xác từ số tiền nhập vào phục vụ cho nghiệp vụ kế toán, hóa đơn.
+      </p>
+    </div>
+
+    <!-- Tool Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors">
+      
+      <!-- Left inputs (7 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-7">
+        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+          📝 Nhập số tiền & Thuế suất
+        </h2>
+
+        <div class="space-y-5">
+          <!-- Chiều tính thuế -->
+          <div>
+            <label for="vatDirection" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Phương thức tính</label>
+            <select id="vatDirection" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-semibold">
+              <option value="forward">Tính xuôi (Từ giá CHƯA thuế ➔ Tổng giá CÓ thuế)</option>
+              <option value="backward">Tính ngược (Từ tổng giá CÓ thuế ➔ Giá gốc CHƯA thuế)</option>
+            </select>
+          </div>
+
+          <!-- Nhập số tiền -->
+          <div>
+            <label id="vatAmountLabel" for="vatAmountInput" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Giá tiền chưa có thuế (VND)</label>
+            <input type="number" id="vatAmountInput" value="10000000" step="1000000" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
+          </div>
+
+          <!-- Mức thuế suất -->
+          <div>
+            <label for="vatRateSelect" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Thuế suất VAT (%)</label>
+            <select id="vatRateSelect" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-medium">
+              <option value="10">10% (Thuế suất chuẩn thông thường)</option>
+              <option value="8">8% (Giảm thuế theo Nghị quyết quốc hội)</option>
+              <option value="5">5% (Thuế suất ưu đãi cho y tế, giáo dục, nước sạch)</option>
+              <option value="0">0% (Thuế suất cho xuất khẩu)</option>
+              <option value="custom">Tùy chỉnh % khác</option>
+            </select>
+          </div>
+
+          <!-- Nhập % tùy chỉnh -->
+          <div id="customVatRateWrapper" class="hidden">
+            <label for="customVatRate" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Thuế suất tự nhập (%)</label>
+            <input type="number" id="customVatRate" value="10" min="0" max="100" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold" />
+          </div>
+
+          <button id="btnCalculate" class="w-full bg-brand-blue hover:bg-blue-700 dark:bg-brand-mint dark:hover:bg-emerald-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg">
+            ⚡ Tính Thuế VAT
+          </button>
+        </div>
+      </div>
+
+      <!-- Right outputs (5 cols) -->
+      <div class="p-6 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 md:col-span-5 flex flex-col justify-between border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800">
+        <div>
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+            📊 Kết quả tính toán
+          </h2>
+
+          <div class="space-y-6">
+            <!-- Giá chưa thuế -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span class="text-xs font-semibold text-slate-400 block mb-1">GIÁ TRƯỚC THUẾ (CHƯA VAT)</span>
+              <span id="resNet" class="text-xl font-extrabold text-slate-800 dark:text-slate-100">10,000,000đ</span>
+            </div>
+
+            <!-- Tiền thuế VAT -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span class="text-xs font-semibold text-slate-400 block mb-1">TIỀN THUẾ VAT</span>
+              <span id="resVatAmount" class="text-xl font-extrabold text-red-500 dark:text-red-400">1,000,000đ</span>
+            </div>
+
+            <!-- Tổng tiền sau thuế -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span class="text-xs font-semibold text-slate-400 block mb-1">TỔNG GIÁ SAU THUẾ (BẢO GỒM VAT)</span>
+              <span id="resGross" class="text-xl font-extrabold text-brand-blue dark:text-brand-mint">11,000,000đ</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 border-t border-slate-200 dark:border-slate-800 pt-6">
+          <p class="text-xs text-slate-400 dark:text-slate-500 leading-relaxed italic">
+            *Lưu ý: Mức giảm thuế VAT xuống 8% áp dụng cho một số nhóm ngành sản phẩm theo quy định hỗ trợ của Nhà nước. Vui lòng kiểm tra mã ngành kinh doanh để áp dụng đúng mức thuế suất.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- E-E-A-T Handbook Section -->
+    <div class="mt-12 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
+        📚 Hướng Dẫn Cách Tính Thuế Giá Trị Gia Tăng (VAT)
+      </h2>
+      <div class="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 space-y-4">
+        <h3>1. Khái niệm Thuế VAT</h3>
+        <p>Thuế giá trị gia tăng (VAT - Value Added Tax) là thuế gián thu tính trên khoản giá trị tăng thêm của hàng hóa, dịch vụ phát sinh trong quá trình từ sản xuất, lưu thông đến tiêu dùng. Người chịu thuế cuối cùng chính là người tiêu dùng sản phẩm.</p>
+        
+        <h3>2. Công thức tính thuế VAT xuôi (Tính thuế cộng thêm vào giá gốc)</h3>
+        <p>Khi bạn có giá chưa có thuế VAT (giá tịnh) và muốn cộng thêm thuế suất để ra tổng tiền phải thanh toán trên hóa đơn:</p>
+        <ul>
+          <li><code>Tiền thuế VAT = Giá chưa thuế * Thuế suất (%)</code></li>
+          <li><code>Tổng thanh toán (Giá có thuế) = Giá chưa thuế + Tiền thuế VAT = Giá chưa thuế * (1 + Thuế suất)</code></li>
+        </ul>
+        <p><strong>Ví dụ:</strong> Giá chưa thuế của máy tính là 10.000.000đ, thuế VAT 10%. Số tiền thuế VAT = 1.000.000đ, tổng tiền thanh toán = 11.000.000đ.</p>
+
+        <h3>3. Công thức tính thuế VAT ngược (Tính bóc tách thuế ra khỏi tổng tiền)</h3>
+        <p>Khi hóa đơn ghi tổng tiền đã bao gồm thuế VAT (Giá gộp) và kế toán cần bóc tách để tìm giá trị gốc trước thuế và tiền thuế cụ thể:</p>
+        <ul>
+          <li><code>Giá chưa thuế (Net Price) = Giá đã có thuế / (1 + Thuế suất)</code></li>
+          <li><code>Tiền thuế VAT = Giá đã có thuế - Giá chưa thuế = Giá chưa thuế * Thuế suất</code></li>
+        </ul>
+        <p><strong>Ví dụ:</strong> Tổng tiền thanh toán ăn uống là 1.080.000đ đã gồm 8% VAT. Giá trị bữa ăn trước thuế = 1.080.000 / 1.08 = 1.000.000đ. Số tiền thuế VAT = 80.000đ.</p>
+
+        <h3>4. Căn cứ pháp lý</h3>
+        <ul>
+          <li><strong>Luật Thuế Giá Trị Gia Tăng số 13/2008/QH12</strong> và các luật sửa đổi, bổ sung liên quan.</li>
+          <li><strong>Nghị định số 44/2023/NĐ-CP</strong> và các văn bản gia hạn về chính sách giảm thuế giá trị gia tăng từ 10% xuống 8% áp dụng cho một số nhóm hàng hóa, dịch vụ nhất định nhằm kích cầu tiêu dùng.</li>
+        </ul>
+
+        <div class="mt-8 border-t border-slate-100 dark:border-slate-800 pt-6">
+          <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">💬 Câu hỏi thường gặp (FAQ)</h3>
+          <div class="space-y-4">
+            <details class="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition-all hover:shadow-sm">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none">
+                <span>Làm sao bóc tách giá trước thuế VAT nhanh nhất?</span>
+                <span class="transition group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Công thức bóc tách thuế VAT ngược: <code>Giá chưa thuế = Giá đã bao gồm thuế / (1 + Thuế suất)</code>. Ví dụ: Với thuế suất 8%, chia tổng số tiền cho 1.08. Với thuế suất 10%, chia cho 1.10.</p>
+            </details>
+            <details class="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition-all hover:shadow-sm">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none">
+                <span>Đối tượng nào được áp dụng mức thuế suất VAT 8%?</span>
+                <span class="transition group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Mức thuế suất 8% áp dụng cho các nhóm hàng hóa, dịch vụ đang chịu mức thuế suất 10% được giảm theo chính sách kích cầu tiêu dùng của Chính phủ, ngoại trừ một số lĩnh vực đặc thù như viễn thông, tài chính, ngân hàng, chứng khoán, bất động sản, kim loại và sản phẩm hóa chất.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl border border-emerald-100 dark:border-emerald-900 text-center">
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            👉 Bạn muốn tham khảo thêm nhiều ví dụ tính thuế VAT ngược xuôi hoặc các đối tượng được miễn thuế? 
+            <a href="/blog/cach-tinh-thue-gia-tri-gia-tang-vat/" class="text-brand-blue dark:text-brand-mint font-bold hover:underline">Xem bài viết hướng dẫn chi tiết cách tính thuế giá trị gia tăng (VAT) tại đây</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const vatDirection = document.getElementById('vatDirection') as HTMLSelectElement;
+  const vatAmountLabel = document.getElementById('vatAmountLabel') as HTMLLabelElement;
+  const vatAmountInput = document.getElementById('vatAmountInput') as HTMLInputElement;
+  const vatRateSelect = document.getElementById('vatRateSelect') as HTMLSelectElement;
+  const customVatRateWrapper = document.getElementById('customVatRateWrapper') as HTMLDivElement;
+  const customVatRate = document.getElementById('customVatRate') as HTMLInputElement;
+  
+  const resNet = document.getElementById('resNet') as HTMLSpanElement;
+  const resVatAmount = document.getElementById('resVatAmount') as HTMLSpanElement;
+  const resGross = document.getElementById('resGross') as HTMLSpanElement;
+  const btnCalculate = document.getElementById('btnCalculate');
+
+  function toggleCustomRate() {
+    if (vatRateSelect.value === 'custom') {
+      customVatRateWrapper.classList.remove('hidden');
+    } else {
+      customVatRateWrapper.classList.add('hidden');
+    }
+  }
+
+  function toggleDirection() {
+    if (vatDirection.value === 'forward') {
+      vatAmountLabel.innerText = "Giá tiền chưa có thuế (VND)";
+    } else {
+      vatAmountLabel.innerText = "Tổng tiền đã bao gồm thuế (VND)";
+    }
+  }
+
+  function formatVND(val: number) {
+    return Math.round(val).toLocaleString('vi-VN') + 'đ';
+  }
+
+  function calculate() {
+    const direction = vatDirection.value;
+    const amount = parseFloat(vatAmountInput.value) || 0;
+    
+    let rate = 10;
+    if (vatRateSelect.value === 'custom') {
+      rate = parseFloat(customVatRate.value) || 0;
+    } else {
+      rate = parseFloat(vatRateSelect.value) || 0;
+    }
+    
+    const rateDecimal = rate / 100;
+    let net = 0;
+    let vatAmount = 0;
+    let gross = 0;
+
+    if (direction === 'forward') {
+      // Xuôi: từ net ra gross
+      net = amount;
+      vatAmount = net * rateDecimal;
+      gross = net + vatAmount;
+    } else {
+      // Ngược: từ gross ra net
+      gross = amount;
+      net = gross / (1 + rateDecimal);
+      vatAmount = gross - net;
+    }
+
+    resNet.innerText = formatVND(net);
+    resVatAmount.innerText = formatVND(vatAmount);
+    resGross.innerText = formatVND(gross);
+  }
+
+  vatRateSelect.addEventListener('change', toggleCustomRate);
+  vatDirection.addEventListener('change', toggleDirection);
+  btnCalculate?.addEventListener('click', calculate);
+
+  // Initial call
+  calculate();
+</script>

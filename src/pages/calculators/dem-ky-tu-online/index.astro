@@ -1,0 +1,241 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Công Cụ Đếm Ký Tự & Đếm Từ Online Chuẩn SEO 2026 - Trợ Lý Số"
+  description="Công cụ đếm ký tự online miễn phí và đếm từ văn bản theo thời gian thực. Đếm chính xác số ký tự (có/không khoảng trắng), số câu, số dòng hữu ích cho copywriter."
+>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Đếm ký tự online</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Công Cụ Đếm Ký Tự & Đếm Từ Văn Bản
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Dán hoặc viết văn bản trực tiếp vào khung dưới đây để kiểm tra số ký tự, từ, dòng và câu theo thời gian thực.
+      </p>
+    </div>
+
+    <!-- Tool Layout -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden p-6 sm:p-10 mb-12 transition-colors">
+      
+      <!-- Text Area input -->
+      <div class="mb-6">
+        <label for="textInput" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Nhập hoặc dán văn bản của bạn:</label>
+        <textarea id="textInput" placeholder="Bắt đầu viết hoặc dán văn bản của bạn vào đây để đếm..." class="w-full h-80 px-4 py-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue text-slate-800 dark:text-slate-100 font-medium text-base resize-y"></textarea>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap gap-3 mb-8">
+        <button id="btnClear" class="px-5 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-semibold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+          🧹 Xóa văn bản
+        </button>
+        <button id="btnCopy" class="px-5 py-2.5 bg-brand-blue hover:bg-blue-700 text-white font-semibold rounded-xl transition shadow-md">
+          📋 Sao chép văn bản
+        </button>
+      </div>
+
+      <!-- Counter Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <!-- Từ -->
+        <div class="bg-slate-50 dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-800 text-center">
+          <span class="text-xs font-bold text-slate-400 block mb-1">SỐ TỪ (WORDS)</span>
+          <span id="wordCount" class="text-2xl font-extrabold text-brand-blue dark:text-brand-mint">0</span>
+        </div>
+
+        <!-- Ký tự có khoảng trắng -->
+        <div class="bg-slate-50 dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-800 text-center">
+          <span class="text-xs font-bold text-slate-400 block mb-1">KÝ TỰ (CÓ K.TRẮNG)</span>
+          <span id="charCountWithSpace" class="text-2xl font-extrabold text-slate-800 dark:text-slate-100">0</span>
+        </div>
+
+        <!-- Ký tự không khoảng trắng -->
+        <div class="bg-slate-50 dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-800 text-center">
+          <span class="text-xs font-bold text-slate-400 block mb-1">KÝ TỰ (KHÔNG K.TRẮNG)</span>
+          <span id="charCountNoSpace" class="text-2xl font-extrabold text-slate-800 dark:text-slate-100">0</span>
+        </div>
+
+        <!-- Số câu -->
+        <div class="bg-slate-50 dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-800 text-center">
+          <span class="text-xs font-bold text-slate-400 block mb-1">SỐ CÂU (SENTENCES)</span>
+          <span id="sentenceCount" class="text-2xl font-extrabold text-slate-800 dark:text-slate-100">0</span>
+        </div>
+
+        <!-- Số dòng -->
+        <div class="bg-slate-50 dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-800 text-center col-span-2 md:col-span-1">
+          <span class="text-xs font-bold text-slate-400 block mb-1">SỐ DÒNG (PARAGRAPHS)</span>
+          <span id="paragraphCount" class="text-2xl font-extrabold text-slate-800 dark:text-slate-100">0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- E-E-A-T Handbook Section -->
+    <div class="mt-12 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
+        📚 Hướng Dẫn Cách Tính Số Từ Và Ký Tự Trong Viết Lách
+      </h2>
+      <div class="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 space-y-4">
+        <h3>1. Ý nghĩa của việc đếm ký tự và từ</h3>
+        <p>Kiểm soát độ dài văn bản là kỹ năng quan trọng đối với copywriter, dịch giả, lập trình viên và người tối ưu hóa SEO:</p>
+        <ul>
+          <li><strong>Viết tiêu đề & mô tả SEO (Meta Title/Description):</strong> Google giới hạn tiêu đề hiển thị tối đa khoảng 60 ký tự và mô tả tối đa khoảng 150-160 ký tự. Vượt quá kích thước này sẽ bị cắt bớt bằng dấu ba chấm (...).</li>
+          <li><strong>Viết quảng cáo (Facebook Ads, Google Ads):</strong> Facebook giới hạn số từ hiển thị trước nút "Xem thêm", còn Google Ads giới hạn nghiêm ngặt số ký tự cho tiêu đề (30 ký tự) và mô tả (90 ký tự).</li>
+          <li><strong>Dịch thuật thương mại:</strong> Nhiều đơn vị dịch thuật áp dụng cách tính phí dịch vụ dựa trên số từ (Word count) của văn bản gốc.</li>
+        </ul>
+
+        <h3>2. Cách tính số từ và ký tự chuẩn</h3>
+        <ul>
+          <li><strong>Ký tự (Characters):</strong> Là tổng tất cả các chữ cái, con số, dấu câu, ký hiệu đặc biệt và khoảng trắng trong đoạn văn bản.</li>
+          <li><strong>Số từ (Word count):</strong> Được xác định bằng các cụm ký tự liền nhau ngăn cách bởi dấu khoảng trắng (Space), dấu tab hoặc dấu xuống dòng.</li>
+          <li><strong>Số câu (Sentences):</strong> Đoạn văn bản kết thúc bằng các dấu chấm (.), dấu chấm hỏi (?), hoặc dấu chấm cảm (!).</li>
+          <li><strong>Số dòng/đoạn (Paragraphs):</strong> Số lần nhấn nút Enter xuống dòng trong văn bản.</li>
+        </ul>
+
+        <h3>3. Các quy chuẩn giới hạn ký tự phổ biến trên mạng xã hội</h3>
+        <table class="w-full text-sm border-collapse text-left my-4">
+          <thead>
+            <tr class="bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">
+              <th class="px-4 py-2 font-semibold">Nền tảng / Mục tiêu</th>
+              <th class="px-4 py-2 font-semibold">Giới hạn ký tự tối ưu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-slate-100 dark:border-slate-800">
+              <td class="px-4 py-2">Tiêu đề bài viết Google (Meta Title)</td>
+              <td class="px-4 py-2">50 - 60 ký tự</td>
+            </tr>
+            <tr class="border-b border-slate-100 dark:border-slate-800">
+              <td class="px-4 py-2">Mô tả bài viết Google (Meta Description)</td>
+              <td class="px-4 py-2">150 - 160 ký tự</td>
+            </tr>
+            <tr class="border-b border-slate-100 dark:border-slate-800">
+              <td class="px-4 py-2">Tiêu đề quảng cáo Google Ads</td>
+              <td class="px-4 py-2">Tối đa 30 ký tự</td>
+            </tr>
+            <tr class="border-b border-slate-100 dark:border-slate-800">
+              <td class="px-4 py-2">Bài đăng Twitter (X) thông thường</td>
+              <td class="px-4 py-2">Tối đa 280 ký tự</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="mt-8 border-t border-slate-100 dark:border-slate-800 pt-6">
+          <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">💬 Câu hỏi thường gặp (FAQ)</h3>
+          <div class="space-y-4">
+            <details class="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition-all hover:shadow-sm">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none">
+                <span>Khoảng trắng có được tính là ký tự không?</span>
+                <span class="transition group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Có. Dấu cách (khoảng trắng) được tính là một ký tự trong chuẩn đo lường tiêu chuẩn. Tuy nhiên, công cụ đếm ký tự của Trợ Lý Số cung cấp cả hai chỉ số: ký tự có khoảng trắng và ký tự không tính khoảng trắng để bạn dễ lựa chọn.</p>
+            </details>
+            <details class="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition-all hover:shadow-sm">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none">
+                <span>Độ dài một bài viết chuẩn SEO thông thường là bao nhiêu từ?</span>
+                <span class="transition group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Một bài viết chuẩn SEO thường đạt tối thiểu từ 1.000 từ trở lên đối với chủ đề thông thường, và từ 2.000 - 3.000 từ đối với các bài viết chuyên sâu (pillar content) để đảm bảo bao phủ đầy đủ từ khóa chính và các từ khóa vệ tinh liên quan.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-950/30 rounded-xl border border-blue-100 dark:border-blue-900 text-center">
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            👉 Bạn muốn tìm hiểu thêm về cách kiểm tra độ dài các thẻ tiêu đề SEO, mô tả Google hoặc bài viết quảng cáo? 
+            <a href="/blog/cong-cu-dem-ky-tu-online-mien-phi/" class="text-brand-blue dark:text-brand-mint font-bold hover:underline">Xem bài viết hướng dẫn chi tiết cách đếm ký tự & từ tại đây</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const textInput = document.getElementById('textInput') as HTMLTextAreaElement;
+  const btnClear = document.getElementById('btnClear');
+  const btnCopy = document.getElementById('btnCopy');
+  
+  const wordCount = document.getElementById('wordCount') as HTMLSpanElement;
+  const charCountWithSpace = document.getElementById('charCountWithSpace') as HTMLSpanElement;
+  const charCountNoSpace = document.getElementById('charCountNoSpace') as HTMLSpanElement;
+  const sentenceCount = document.getElementById('sentenceCount') as HTMLSpanElement;
+  const paragraphCount = document.getElementById('paragraphCount') as HTMLSpanElement;
+
+  function countText() {
+    const text = textInput.value;
+
+    // 1. Count characters with spaces
+    const charsWithSpace = text.length;
+
+    // 2. Count characters without spaces
+    const charsNoSpace = text.replace(/\s/g, '').length;
+
+    // 3. Count words
+    // Match any sequence of non-whitespace characters
+    const wordsArray = text.trim().match(/\S+/g);
+    const words = wordsArray ? wordsArray.length : 0;
+
+    // 4. Count sentences
+    // Match end of sentence marks (. ! ?)
+    const sentencesArray = text.match(/[^\.!\?]+[\.!\?]+/g);
+    const sentences = sentencesArray ? sentencesArray.length : (text.trim() ? 1 : 0);
+
+    // 5. Count lines / paragraphs
+    const paragraphsArray = text.split('\n').filter(line => line.trim() !== '');
+    const paragraphs = paragraphsArray.length;
+
+    // Update UI
+    wordCount.innerText = words.toLocaleString('vi-VN');
+    charCountWithSpace.innerText = charsWithSpace.toLocaleString('vi-VN');
+    charCountNoSpace.innerText = charsNoSpace.toLocaleString('vi-VN');
+    sentenceCount.innerText = sentences.toLocaleString('vi-VN');
+    paragraphCount.innerText = paragraphs.toLocaleString('vi-VN');
+  }
+
+  function clearText() {
+    textInput.value = '';
+    countText();
+  }
+
+  async function copyText() {
+    if (!textInput.value) return;
+    try {
+      await navigator.clipboard.writeText(textInput.value);
+      alert('✅ Đã sao chép văn bản vào bộ nhớ tạm!');
+    } catch (err) {
+      console.error('Failed to copy text:', err);
+    }
+  }
+
+  textInput.addEventListener('input', countText);
+  btnClear?.addEventListener('click', clearText);
+  btnCopy?.addEventListener('click', copyText);
+
+  // Init
+  countText();
+</script>

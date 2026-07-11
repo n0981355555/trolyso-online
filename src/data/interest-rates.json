@@ -1,0 +1,68 @@
+[
+  {
+    "id": "vietcombank",
+    "name": "Vietcombank",
+    "savingsRate": 4.8,
+    "loanRate": 6.0
+  },
+  {
+    "id": "bidv",
+    "name": "BIDV",
+    "savingsRate": 4.7,
+    "loanRate": 6.2
+  },
+  {
+    "id": "vietinbank",
+    "name": "VietinBank",
+    "savingsRate": 4.7,
+    "loanRate": 6.1
+  },
+  {
+    "id": "agribank",
+    "name": "Agribank",
+    "savingsRate": 4.7,
+    "loanRate": 6.0
+  },
+  {
+    "id": "techcombank",
+    "name": "Techcombank",
+    "savingsRate": 5.2,
+    "loanRate": 6.8
+  },
+  {
+    "id": "mbbank",
+    "name": "MB Bank",
+    "savingsRate": 5.1,
+    "loanRate": 6.9
+  },
+  {
+    "id": "vpbank",
+    "name": "VPBank",
+    "savingsRate": 5.4,
+    "loanRate": 7.2
+  },
+  {
+    "id": "acb",
+    "name": "ACB",
+    "savingsRate": 5.0,
+    "loanRate": 6.5
+  },
+  {
+    "id": "sacombank",
+    "name": "Sacombank",
+    "savingsRate": 5.2,
+    "loanRate": 7.0
+  },
+  {
+    "id": "vib",
+    "name": "VIB",
+    "savingsRate": 5.3,
+    "loanRate": 7.1
+  },
+  {
+    "id": "tpbank",
+    "name": "TPBank",
+    "savingsRate": 5.1,
+    "loanRate": 6.8
+  }
+]
