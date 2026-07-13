@@ -1,0 +1,379 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Công Cụ Giải Thích Regex Online Tiếng Việt - Trực Quan, Real-time"
+  description="Công cụ giải nghĩa biểu thức chính quy (Regular Expression) trực quan bằng tiếng Việt. Kiểm tra so khớp chuỗi văn bản theo thời gian thực cho lập trình viên."
+>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Regex Explainer</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Trình Giải Thích & Kiểm Tra Regex Tiếng Việt
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Dán biểu thức chính quy (Regex) của bạn để giải nghĩa chi tiết từng ký hiệu bằng tiếng Việt và kiểm tra so khớp chuỗi văn bản tức thì.
+      </p>
+    </div>
+
+    <!-- Tool Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors">
+      
+      <!-- Left inputs (7 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-7 space-y-6">
+        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+          💻 Nhập Regex & Chuỗi thử nghiệm
+        </h2>
+
+        <!-- Regex Input -->
+        <div>
+          <label for="regexInput" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Biểu thức chính quy (Regular Expression)</label>
+          <div class="relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 font-mono text-slate-400">/</span>
+            <input type="text" id="regexInput" value="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" class="w-full pl-8 pr-16 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-mono font-bold text-base" />
+            <span class="absolute right-4 top-1/2 -translate-y-1/2 font-mono text-slate-400">/g</span>
+          </div>
+        </div>
+
+        <!-- Options / Flags -->
+        <div class="flex flex-wrap gap-4 bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+          <span class="text-xs font-bold text-slate-500 uppercase tracking-wider self-center mr-2">Flags:</span>
+          <label class="inline-flex items-center text-xs font-semibold text-slate-700 dark:text-slate-300 cursor-pointer">
+            <input type="checkbox" id="flagGlobal" checked class="rounded border-slate-300 dark:border-slate-700 text-brand-blue focus:ring-brand-blue mr-1.5" />
+            Global (g)
+          </label>
+          <label class="inline-flex items-center text-xs font-semibold text-slate-700 dark:text-slate-300 cursor-pointer">
+            <input type="checkbox" id="flagIgnoreCase" checked class="rounded border-slate-300 dark:border-slate-700 text-brand-blue focus:ring-brand-blue mr-1.5" />
+            Case Insensitive (i)
+          </label>
+          <label class="inline-flex items-center text-xs font-semibold text-slate-700 dark:text-slate-300 cursor-pointer">
+            <input type="checkbox" id="flagMultiline" class="rounded border-slate-300 dark:border-slate-700 text-brand-blue focus:ring-brand-blue mr-1.5" />
+            Multiline (m)
+          </label>
+        </div>
+
+        <!-- Test String Input -->
+        <div>
+          <label for="testString" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Chuỗi văn bản thử nghiệm (Test String)</label>
+          <textarea id="testString" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-mono text-sm">contact@trolyso.online
+admin_subdomain@service.com.vn
+this is an invalid email address</textarea>
+        </div>
+
+        <!-- Highlight Result -->
+        <div>
+          <span class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Kết quả so khớp trực quan (Visual Matching)</span>
+          <div id="highlightResult" class="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 font-mono text-sm leading-relaxed whitespace-pre-wrap break-all min-h-[100px] overflow-y-auto"></div>
+        </div>
+      </div>
+
+      <!-- Right outputs (5 cols) -->
+      <div class="p-6 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 md:col-span-5 flex flex-col justify-between border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800">
+        <div>
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+            💡 Giải thích chi tiết ký tự
+          </h2>
+
+          <div class="space-y-4">
+            <!-- Tình trạng Regex -->
+            <div id="resStatus" class="p-3.5 rounded-xl border font-bold text-xs flex items-center gap-2 bg-emerald-50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-900 text-emerald-700 dark:text-emerald-400">
+              ✅ Biểu thức Regex hợp lệ!
+            </div>
+
+            <!-- List of matched explanations -->
+            <div class="space-y-3 max-h-[400px] overflow-y-auto pr-2" id="explanationList">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 border-t border-slate-200 dark:border-slate-800 pt-6">
+          <p class="text-xs text-slate-400 dark:text-slate-500 leading-relaxed italic">
+            *Công cụ sử dụng Javascript phía máy khách để phân tích cú pháp biểu thức chính quy theo tiêu chuẩn ECMA-262 (JS RegExp).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- E-E-A-T Handbook Section -->
+    <div class="mt-12 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
+        📚 Cẩm Nang Hướng Dẫn Về Biểu Thức Chính Quy (Regex)
+      </h2>
+      <div class="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 space-y-4">
+        <h3>1. Biểu thức chính quy (Regex) là gì?</h3>
+        <p>Biểu thức chính quy (Regular Expression - gọi tắt là Regex hoặc RegExp) là một chuỗi các ký tự đặc biệt định nghĩa một khuôn mẫu tìm kiếm (search pattern). Regex được sử dụng rộng rãi trong các ngôn ngữ lập trình để tìm kiếm, thay thế, kiểm tra tính hợp lệ của dữ liệu (như email, số điện thoại, định dạng ngày tháng) rất nhanh chóng.</p>
+
+        <h3>2. Các ký tự đặc biệt thường dùng trong Regex</h3>
+        <table class="w-full text-sm border-collapse border border-slate-200 dark:border-slate-800">
+          <thead>
+            <tr class="bg-slate-50 dark:bg-slate-900">
+              <th class="border border-slate-200 dark:border-slate-800 p-2 text-left">Ký hiệu</th>
+              <th class="border border-slate-200 dark:border-slate-800 p-2 text-left">Ý nghĩa giải thích</th>
+              <th class="border border-slate-200 dark:border-slate-800 p-2 text-left">Ví dụ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-slate-200 dark:border-slate-800 p-2 font-mono font-bold">^</td>
+              <td class="border border-slate-200 dark:border-slate-800 p-2">Đánh dấu bắt đầu của chuỗi hoặc dòng.</td>
+              <td class="border border-slate-200 dark:border-slate-800 p-2 font-mono">^abc</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 dark:border-slate-800 p-2 font-mono font-bold">$</td>
+              <td class="border border-slate-200 dark:border-slate-800 p-2">Đánh dấu kết thúc của chuỗi hoặc dòng.</td>
+              <td class="border border-slate-200 dark:border-slate-800 p-2 font-mono">xyz$</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 dark:border-slate-800 p-2 font-mono font-bold">\d</td>
+              <td class="border border-slate-200 dark:border-slate-800 p-2">Khớp với bất kỳ chữ số nào từ 0 đến 9. Tương đương [0-9].</td>
+              <td class="border border-slate-200 dark:border-slate-800 p-2 font-mono">\d{3} (khớp 3 chữ số)</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 dark:border-slate-800 p-2 font-mono font-bold">\w</td>
+              <td class="border border-slate-200 dark:border-slate-800 p-2">Khớp với chữ cái, chữ số hoặc dấu gạch dưới. Tương đương [a-zA-Z0-9_].</td>
+              <td class="border border-slate-200 dark:border-slate-800 p-2 font-mono">\w+</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 dark:border-slate-800 p-2 font-mono font-bold">+</td>
+              <td class="border border-slate-200 dark:border-slate-800 p-2">Lặp lại ký tự đứng trước từ 1 lần trở lên (tham lam).</td>
+              <td class="border border-slate-200 dark:border-slate-800 p-2 font-mono">a+</td>
+            </tr>
+            <tr>
+              <td class="border border-slate-200 dark:border-slate-800 p-2 font-mono font-bold">*</td>
+              <td class="border border-slate-200 dark:border-slate-800 p-2">Lặp lại ký tự đứng trước từ 0 lần trở lên.</td>
+              <td class="border border-slate-200 dark:border-slate-800 p-2 font-mono">a*</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- FAQ Section -->
+        <div class="mt-8 border-t border-slate-100 dark:border-slate-800 pt-6">
+          <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">💬 Câu hỏi thường gặp (FAQ)</h3>
+          <div class="space-y-4">
+            <details class="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition-all hover:shadow-sm">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none flex-wrap gap-2">
+                <span>Làm cách nào để kiểm tra khớp chính xác ký tự đặc biệt như dấu chấm . hoặc dấu hỏi ?</span>
+                <span class="transition group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Trong Regex, các ký tự như `.` hay `?` được coi là ký tự đặc biệt có chức năng điều khiển. Để khớp chính xác ký tự chữ của chúng, bạn bắt buộc phải thêm dấu gạch chéo ngược `\` đứng trước (Ví dụ: dùng `\.` để khớp dấu chấm, hoặc `\?` để khớp dấu hỏi).</p>
+            </details>
+            <details class="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition-all hover:shadow-sm">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none flex-wrap gap-2">
+                <span>Giải thích chế độ Greedy (Tham lam) và Lazy (Lười biếng) của toán tử lặp?</span>
+                <span class="transition group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Mặc định, các toán tử lặp như `*` hay `+` là "Greedy" (Tham lam) - chúng sẽ cố gắng so khớp nhiều ký tự nhất có thể. Để chuyển sang chế độ "Lazy" (Lười biếng) - khớp ít ký tự nhất để thỏa mãn biểu thức, bạn chỉ cần thêm dấu `?` ngay phía sau toán tử lặp (Ví dụ: `.*?` thay vì `.*`).</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-950/30 rounded-xl border border-blue-100 dark:border-blue-900 text-center">
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            👉 Bạn muốn tham khảo thêm các mẫu Regex thông dụng cho Email, Điện thoại, Mật khẩu có độ bảo mật cao? 
+            <a href="/blog/giai-thich-bieu-thuc-chinh-quy-regex-tieng-viet/" class="text-brand-blue dark:text-brand-mint font-bold hover:underline transition duration-200">Xem bài viết hướng dẫn lập trình Regex chi tiết tại đây</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const regexInput = document.getElementById('regexInput') as HTMLInputElement;
+  const testString = document.getElementById('testString') as HTMLTextAreaElement;
+  const flagGlobal = document.getElementById('flagGlobal') as HTMLInputElement;
+  const flagIgnoreCase = document.getElementById('flagIgnoreCase') as HTMLInputElement;
+  const flagMultiline = document.getElementById('flagMultiline') as HTMLInputElement;
+
+  const highlightResult = document.getElementById('highlightResult') as HTMLDivElement;
+  const resStatus = document.getElementById('resStatus') as HTMLDivElement;
+  const explanationList = document.getElementById('explanationList') as HTMLDivElement;
+
+  // Dictionary of Regex tokens and their Vietnamese explanations
+  const tokenDict: { pattern: RegExp; desc: string; category: string }[] = [
+    { pattern: /\^/g, desc: "Bắt đầu của chuỗi hoặc bắt đầu của dòng (nếu chọn Multiline flag).", category: "Neo (Anchors)" },
+    { pattern: /\$/g, desc: "Kết thúc của chuỗi hoặc kết thúc của dòng (nếu chọn Multiline flag).", category: "Neo (Anchors)" },
+    { pattern: /\\d/g, desc: "Bất kỳ chữ số nào từ 0-9.", category: "Lớp ký tự" },
+    { pattern: /\\D/g, desc: "Bất kỳ ký tự nào KHÔNG phải chữ số (ngược lại của \\d).", category: "Lớp ký tự" },
+    { pattern: /\\w/g, desc: "Bất kỳ ký tự chữ cái (không dấu), chữ số hoặc dấu gạch dưới [a-zA-Z0-9_].", category: "Lớp ký tự" },
+    { pattern: /\\W/g, desc: "Bất kỳ ký tự nào KHÔNG phải chữ cái, số hay dấu gạch dưới.", category: "Lớp ký tự" },
+    { pattern: /\\s/g, desc: "Ký tự khoảng trắng (bao gồm dấu cách, tab, xuống dòng).", category: "Lớp ký tự" },
+    { pattern: /\\S/g, desc: "Bất kỳ ký tự nào KHÔNG phải khoảng trắng.", category: "Lớp ký tự" },
+    { pattern: /\./g, desc: "Bất kỳ ký tự đơn nào (ngoại trừ ký tự dòng mới \\n).", category: "Lớp ký tự" },
+    { pattern: /\+/g, desc: "Khớp từ 1 lần trở lên (toán tử lặp lại tham lam).", category: "Số lượng (Quantifiers)" },
+    { pattern: /\*/g, desc: "Khớp từ 0 lần trở lên (toán tử lặp lại tham lam).", category: "Số lượng (Quantifiers)" },
+    { pattern: /\?/g, desc: "Có hoặc không (khớp 0 hoặc 1 lần).", category: "Số lượng (Quantifiers)" },
+    { pattern: /\|/g, desc: "Lựa chọn thay thế (toán tử HOẶC). Khớp với vế trước HOẶC vế sau.", category: "Phép toán logic" },
+    { pattern: /\[a-z\]/g, desc: "Một ký tự chữ cái thường từ a đến z.", category: "Nhóm ký tự" },
+    { pattern: /\[A-Z\]/g, desc: "Một ký tự chữ cái hoa từ A đến Z.", category: "Nhóm ký tự" },
+    { pattern: /\[0-9\]/g, desc: "Một chữ số bất kỳ từ 0 đến 9.", category: "Nhóm ký tự" },
+    { pattern: /\{(\d+)\}/g, desc: "Lặp lại chính xác số lần quy định.", category: "Số lượng (Quantifiers)" },
+    { pattern: /\{(\d+),(\d+)\}/g, desc: "Lặp lại trong khoảng từ số lần tối thiểu đến tối đa.", category: "Số lượng (Quantifiers)" }
+  ];
+
+  function escapeHtml(text: string) {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function processRegex() {
+    const rawPattern = regexInput.value;
+    const text = testString.value;
+
+    let flags = "";
+    if (flagGlobal.checked) flags += "g";
+    if (flagIgnoreCase.checked) flags += "i";
+    if (flagMultiline.checked) flags += "m";
+
+    if (!rawPattern) {
+      resStatus.className = "p-3.5 rounded-xl border font-bold text-xs flex items-center gap-2 bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-900 text-amber-700 dark:text-amber-400";
+      resStatus.innerText = "⚠️ Hãy nhập một biểu thức Regex để phân tích.";
+      highlightResult.innerText = text;
+      explanationList.innerHTML = "";
+      return;
+    }
+
+    try {
+      const reg = new RegExp(rawPattern, flags);
+      resStatus.className = "p-3.5 rounded-xl border font-bold text-xs flex items-center gap-2 bg-emerald-50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-900 text-emerald-700 dark:text-emerald-400";
+      resStatus.innerText = "✅ Biểu thức Regex hợp lệ!";
+
+      // 1. Highlight matches in test string
+      if (text) {
+        if (flags.includes('g')) {
+          let html = "";
+          let lastIndex = 0;
+          let match;
+          let safeLoop = 0;
+
+          while ((match = reg.exec(text)) !== null && safeLoop < 1000) {
+            safeLoop++;
+            // Prevent infinite loop if regex matches empty string
+            if (match.index === reg.lastIndex) {
+              reg.lastIndex++;
+            }
+            
+            const before = text.slice(lastIndex, match.index);
+            const matchedText = match[0];
+            html += escapeHtml(before) + `<span class="bg-yellow-200 dark:bg-yellow-600/80 text-slate-900 dark:text-white px-1.5 py-0.5 rounded font-bold border border-yellow-300 dark:border-yellow-500">${escapeHtml(matchedText)}</span>`;
+            lastIndex = reg.lastIndex;
+          }
+          
+          html += escapeHtml(text.slice(lastIndex));
+          highlightResult.innerHTML = html;
+        } else {
+          // Single match
+          const match = text.match(reg);
+          if (match && match.index !== undefined) {
+            const before = text.slice(0, match.index);
+            const matchedText = match[0];
+            const after = text.slice(match.index + matchedText.length);
+            highlightResult.innerHTML = escapeHtml(before) + `<span class="bg-yellow-200 dark:bg-yellow-600/80 text-slate-900 dark:text-white px-1.5 py-0.5 rounded font-bold border border-yellow-300 dark:border-yellow-500">${escapeHtml(matchedText)}</span>` + escapeHtml(after);
+          } else {
+            highlightResult.innerHTML = escapeHtml(text);
+          }
+        }
+      } else {
+        highlightResult.innerHTML = `<span class="text-slate-400 italic">Văn bản kiểm tra trống...</span>`;
+      }
+
+      // 2. Generate explanations
+      const explanations: string[] = [];
+      
+      // Simple character scanner for explanation items
+      if (rawPattern.includes('^')) explanations.push(`<li><strong>^</strong>: ${tokenDict[0].desc}</li>`);
+      if (rawPattern.includes('$')) explanations.push(`<li><strong>$</strong>: ${tokenDict[1].desc}</li>`);
+      if (rawPattern.includes('\\d')) explanations.push(`<li><strong>\\d</strong>: Bất kỳ chữ số nào từ 0 đến 9.</li>`);
+      if (rawPattern.includes('\\w')) explanations.push(`<li><strong>\\w</strong>: Chữ cái, chữ số hoặc dấu gạch dưới (tương đương [a-zA-Z0-9_]).</li>`);
+      if (rawPattern.includes('\\s')) explanations.push(`<li><strong>\\s</strong>: Ký tự khoảng trắng (dấu cách, tab, xuống dòng).</li>`);
+      if (rawPattern.includes('+')) explanations.push(`<li><strong>+</strong>: Lặp lại ký tự đứng trước 1 hoặc nhiều lần (Greedy).</li>`);
+      if (rawPattern.includes('*')) explanations.push(`<li><strong>*</strong>: Lặp lại ký tự đứng trước 0 hoặc nhiều lần (Greedy).</li>`);
+      if (rawPattern.includes('?')) explanations.push(`<li><strong>?</strong>: Lặp lại 0 hoặc 1 lần (có hoặc không có).</li>`);
+      if (rawPattern.includes('|')) explanations.push(`<li><strong>|</strong>: Phép tuyển (HOẶC) logic. Khớp với biểu thức bên trái hoặc bên phải.</li>`);
+      
+      const captureGroupCount = (rawPattern.match(/\((?!\?)/g) || []).length;
+      if (captureGroupCount > 0) {
+        explanations.push(`<li><strong>( ... )</strong>: Tìm thấy <strong>${captureGroupCount} nhóm bắt giữ (Capture Group)</strong> dùng để trích xuất dữ liệu.</li>`);
+      }
+
+      const bracketMatches = rawPattern.match(/\[([^\]]+)\]/g);
+      if (bracketMatches) {
+        bracketMatches.forEach(item => {
+          explanations.push(`<li><strong>${escapeHtml(item)}</strong>: Khớp với bất kỳ ký tự nào nằm trong tập hợp ký tự: <code>${escapeHtml(item.slice(1, -1))}</code>.</li>`);
+        });
+      }
+
+      const curlyMatches = rawPattern.match(/\{(\d+),?(\d+)?\}/g);
+      if (curlyMatches) {
+        curlyMatches.forEach(item => {
+          explanations.push(`<li><strong>${item}</strong>: Quy định số lượng lặp lại của ký tự đứng trước nó.</li>`);
+        });
+      }
+
+      if (explanations.length > 0) {
+        explanationList.innerHTML = `<ul class="space-y-2 list-disc pl-5 text-sm text-slate-600 dark:text-slate-400">${explanations.join("")}</ul>`;
+      } else {
+        explanationList.innerHTML = `<p class="text-xs text-slate-400 italic">Không phát hiện ký tự điều khiển đặc biệt nào trong biểu thức đơn giản này.</p>`;
+      }
+
+    } catch (err: any) {
+      resStatus.className = "p-3.5 rounded-xl border font-bold text-xs flex items-center gap-2 bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-900 text-red-700 dark:text-red-400";
+      resStatus.innerText = "❌ Cú pháp Regex không hợp lệ: " + err.message;
+      highlightResult.innerText = text;
+      explanationList.innerHTML = "";
+    }
+  }
+
+  // Bind Events
+  regexInput.addEventListener('input', processRegex);
+  testString.addEventListener('input', processRegex);
+  flagGlobal.addEventListener('change', processRegex);
+  flagIgnoreCase.addEventListener('change', processRegex);
+  flagMultiline.addEventListener('change', processRegex);
+
+  // Initialize
+  processRegex();
+</script>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BusinessApplication",
+    "name": "Công Cụ Regex Explainer Giải Thích Tiếng Việt",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "url": "https://trolyso.online/calculators/regex-explainer/",
+    "description": "Giải thích chi tiết biểu thức chính quy (Regex) và kiểm tra so khớp chuỗi văn bản trực tiếp theo thời gian thực dành cho lập trình viên."
+  }
+</script>

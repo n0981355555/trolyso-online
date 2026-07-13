@@ -1,189 +1,138 @@
 import fs from 'fs';
 import path from 'path';
 
-const blogIndexFile = path.resolve('src/pages/blog/index.astro');
-const sitemapFile = path.resolve('public/sitemap.xml');
-const searchIndexFile = path.resolve('public/search-index.json');
+// 1. Update src/pages/blog/index.astro
+const blogIndexPath = 'c:/Users/JUNE/Desktop/trolyso-online/src/pages/blog/index.astro';
+let blogContent = fs.readFileSync(blogIndexPath, 'utf8');
 
-const today = new Date().toISOString().split('T')[0];
+const postsInsertIdx = blogContent.indexOf('/* DYNAMIC_POSTS_START */');
+if (postsInsertIdx === -1) {
+  throw new Error("Could not find dynamic posts start in blog index");
+}
 
-const newBlogPosts = [
+const newPostsString = `
   {
-    title: "Thuế TNCN Khác Thuế VAT Như Thế Nào? So Sánh & Phân Biệt Chi Tiết",
-    description: "Phân biệt thuế TNCN và thuế VAT chi tiết từ A-Z. Tìm hiểu bản chất thuế trực thu và gián thu, đối tượng chịu thuế và cơ chế khấu trừ chi tiết.",
-    slug: "thue-tncn-khac-thue-vat-nhu-the-nao",
-    category: "Cẩm nang",
-    date: "11/07/2026",
+    title: "Cách Tính Chế Độ Thai Sản Cho Cả Bố Và Mẹ Chuẩn Luật Mới Nhất",
+    description: "Hướng dẫn chi tiết cách tính chế độ thai sản tự động dành cho cả bố và mẹ theo quy định mới của Luật Bảo hiểm xã hội. Chi tiết tiền nghỉ phép, tiền trợ cấp thai sản và trợ cấp một lần.",
+    slug: "cach-tinh-che-do-thai-san-cho-bo-me",
+    category: "Bảo hiểm",
+    date: "13/07/2026",
     readTime: "12 phút",
     badge: "Mới"
   },
   {
-    title: "Cách Tính Tiền Lương Ngày Phép Chưa Nghỉ Chuẩn Luật Lao Động 2026",
-    description: "Hướng dẫn chi tiết cách tính tiền lương ngày phép chưa nghỉ hết theo quy định mới nhất của Bộ luật Lao động. Công thức tính và ví dụ cụ thể cho nhân sự.",
-    slug: "cach-tinh-tien-luong-ngay-phep-chua-nghi",
-    category: "Cẩm nang",
-    date: "11/07/2026",
+    title: "Cách Tính Điểm Hòa Vốn Trong Kinh Doanh Ăn Uống, Cafe Cho Người Mới",
+    description: "Hướng dẫn chi tiết cách tính điểm hòa vốn (Break-even Point) trong kinh doanh nhà hàng, quán ăn, quán cafe từ A-Z. Công thức định phí, biến phí và ví dụ số cụ thể.",
+    slug: "cach-tinh-diem-hoa-von-kinh-doanh-an-uong",
+    category: "Kế toán",
+    date: "13/07/2026",
     readTime: "12 phút",
     badge: "Mới"
   },
   {
-    title: "Công Cụ Đếm Ký Tự Online: Cách Đếm Từ & Đoạn Văn Bản Miễn Phí 2026",
-    description: "Công cụ đếm ký tự online miễn phí và đếm số từ văn bản theo thời gian thực. Hướng dẫn cách đếm số từ chuẩn xác nhất cho copywriter và viết bài chuẩn SEO.",
-    slug: "cong-cu-dem-ky-tu-online-mien-phi",
-    category: "Cẩm nang",
-    date: "11/07/2026",
-    readTime: "5 phút",
+    title: "Giải Thích Biểu Thức Chính Quy (Regex) Bằng Tiếng Việt Dễ Hiểu Nhất",
+    description: "Regex là gì? Hướng dẫn học biểu thức chính quy (Regular Expression) từ cơ bản đến nâng cao. Bảng tra cứu ký tự Regex thông dụng và ví dụ dễ hiểu.",
+    slug: "giai-thich-bieu-thuc-chinh-quy-regex-tieng-viet",
+    category: "Công nghệ",
+    date: "13/07/2026",
+    readTime: "10 phút",
     badge: "Mới"
+  },`;
+
+const insertPosition = postsInsertIdx + '/* DYNAMIC_POSTS_START */'.length;
+blogContent = blogContent.slice(0, insertPosition) + newPostsString + blogContent.slice(insertPosition);
+fs.writeFileSync(blogIndexPath, blogContent, 'utf8');
+console.log("Updated blog/index.astro with 3 new posts!");
+
+// 2. Prepend search items to public/search-index.json
+const searchIndexPath = 'c:/Users/JUNE/Desktop/trolyso-online/public/search-index.json';
+let searchIndex = JSON.parse(fs.readFileSync(searchIndexPath, 'utf8'));
+
+const newSearchItems = [
+  {
+    "title": "Công cụ: Tính Chế Độ Thai Sản Cho Bố & Mẹ",
+    "desc": "Tính tự động thời gian nghỉ phép thai sản và số tiền trợ cấp một lần, hàng tháng cho cả bố và mẹ theo BHXH Việt Nam.",
+    "url": "/calculators/tinh-che-do-thai-san/"
   },
   {
-    title: "Thuế VAT Là Gì? Hướng Dẫn Cách Tính Thuế Giá Trị Gia Tăng Online Từ A-Z",
-    description: "Tìm hiểu thuế VAT là gì và cách tính thuế giá trị gia tăng (VAT) online 8% và 10% chính xác nhất theo 2 chiều tính xuôi và tính ngược chi tiết.",
-    slug: "cach-tinh-thue-gia-tri-gia-tang-vat",
-    category: "Cẩm nang",
-    date: "11/07/2026",
-    readTime: "6 phút",
-    badge: "Mới"
+    "title": "Công cụ: Tính Điểm Hòa Vốn Kinh Doanh (BEP)",
+    "desc": "Tính tự động sản lượng hòa vốn, doanh số hòa vốn và mục tiêu lợi nhuận cho các chủ quán ăn, nhà hàng, cafe, shop bán lẻ.",
+    "url": "/calculators/tinh-diem-hoa-von/"
   },
   {
-    title: "Cách Tính Lãi Suất Vay Ngân Hàng & Gửi Tiết Kiệm Online Chuẩn Nhất 2026",
-    description: "Hướng dẫn chi tiết cách tính lãi suất vay ngân hàng trả góp (dư nợ giảm dần/lũy tiến) và gửi tiết kiệm online. Công thức và ví dụ cụ thể dễ hiểu.",
-    slug: "cach-tinh-lai-suat-vay-tiet-kiem",
-    category: "Cẩm nang",
-    date: "11/07/2026",
-    readTime: "6 phút",
-    badge: "Mới"
+    "title": "Công cụ: Regex Explainer Giải Thích Tiếng Việt",
+    "desc": "Giải thích chi tiết biểu thức chính quy (Regex) và kiểm tra so khớp chuỗi văn bản trực tiếp theo thời gian thực dành cho lập trình viên.",
+    "url": "/calculators/regex-explainer/"
+  },
+  {
+    "title": "Bài viết: Cách Tính Chế Độ Thai Sản Cho Cả Bố Và Mẹ Chuẩn Luật Mới Nhất",
+    "desc": "Hướng dẫn chi tiết cách tính chế độ thai sản tự động dành cho cả bố và mẹ theo quy định mới của Luật Bảo hiểm xã hội. Chi tiết tiền nghỉ phép, tiền trợ cấp thai sản và trợ cấp một lần.",
+    "url": "/blog/cach-tinh-che-do-thai-san-cho-bo-me/"
+  },
+  {
+    "title": "Bài viết: Cách Tính Điểm Hòa Vốn Trong Kinh Doanh Ăn Uống, Cafe Cho Người Mới",
+    "desc": "Hướng dẫn chi tiết cách tính điểm hòa vốn (Break-even Point) trong kinh doanh nhà hàng, quán ăn, quán cafe từ A-Z. Công thức định phí, biến phí và ví dụ số cụ thể.",
+    "url": "/blog/cach-tinh-diem-hoa-von-kinh-doanh-an-uong/"
+  },
+  {
+    "title": "Bài viết: Giải Thích Biểu Thức Chính Quy (Regex) Bằng Tiếng Việt Dễ Hiểu Nhất",
+    "desc": "Regex là gì? Hướng dẫn học biểu thức chính quy (Regular Expression) từ cơ bản đến nâng cao. Bảng tra cứu ký tự Regex thông dụng và ví dụ dễ hiểu.",
+    "url": "/blog/giai-thich-bieu-thuc-chinh-quy-regex-tieng-viet/"
   }
 ];
 
-const newTools = [
-  {
-    title: "Công cụ: Tính Lãi Suất Vay Trả Góp & Gửi Tiết Kiệm",
-    desc: "Tính toán lịch trả nợ vay hàng tháng hoặc tính tiền lãi gửi tiết kiệm ngân hàng chính xác của các ngân hàng lớn.",
-    url: "/calculators/tinh-lai-suat/"
-  },
-  {
-    title: "Công cụ: Tính Thuế VAT Online",
-    desc: "Tính nhanh số tiền thuế VAT 8% hoặc 10% xuôi và ngược chính xác phục vụ cho kế toán và hóa đơn.",
-    url: "/calculators/tinh-thue-vat/"
-  },
-  {
-    title: "Công cụ: Đếm Ký Tự & Đếm Từ Online",
-    desc: "Dán hoặc viết văn bản trực tiếp để đếm số ký tự, từ, dòng và câu theo thời gian thực mượt mà.",
-    url: "/calculators/dem-ky-tu-online/"
-  }
-];
+searchIndex = [...newSearchItems, ...searchIndex];
+fs.writeFileSync(searchIndexPath, JSON.stringify(searchIndex, null, 2), 'utf8');
+console.log("Updated search-index.json with 6 new items!");
 
-function syncBlogIndex() {
-  console.log('🔄 Syncing blog index...');
-  let content = fs.readFileSync(blogIndexFile, 'utf8');
-  const marker = '/* DYNAMIC_POSTS_START */';
-  const insertIndex = content.indexOf(marker);
+// 3. Update public/sitemap.xml
+const sitemapPath = 'c:/Users/JUNE/Desktop/trolyso-online/public/sitemap.xml';
+let sitemapContent = fs.readFileSync(sitemapPath, 'utf8');
 
-  if (insertIndex === -1) {
-    console.error('❌ Could not find DYNAMIC_POSTS_START in blog index');
-    return;
-  }
-
-  let postsString = '';
-  for (const post of newBlogPosts) {
-    if (!content.includes(`slug: "${post.slug}"`)) {
-      postsString += `  {\n    title: "${post.title}",\n    description: "${post.description}",\n    slug: "${post.slug}",\n    category: "${post.category}",\n    date: "${post.date}",\n    readTime: "${post.readTime}",\n    badge: "${post.badge}"\n  },\n\n`;
-    }
-  }
-
-  if (postsString) {
-    const before = content.slice(0, insertIndex + marker.length);
-    const after = content.slice(insertIndex + marker.length);
-    content = before + '\n' + postsString + after;
-    fs.writeFileSync(blogIndexFile, content, 'utf8');
-    console.log('✅ Blog index synced successfully.');
-  } else {
-    console.log('ℹ️ Blog index already up to date.');
-  }
+const sitemapInsertIdx = sitemapContent.indexOf('  <!-- Homepage -->');
+if (sitemapInsertIdx === -1) {
+  throw new Error("Could not find sitemap body start");
 }
 
-function syncSitemap() {
-  console.log('🔄 Syncing sitemap...');
-  let content = fs.readFileSync(sitemapFile, 'utf8');
-  const marker = '<!-- DYNAMIC_POSTS_START -->';
-  const insertIndex = content.indexOf(marker);
+const newSitemapUrls = `  <!-- New Calculators & Blog Posts 2026 -->
+  <url>
+    <loc>https://trolyso.online/calculators/tinh-che-do-thai-san/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://trolyso.online/calculators/tinh-diem-hoa-von/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://trolyso.online/calculators/regex-explainer/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://trolyso.online/blog/cach-tinh-che-do-thai-san-cho-bo-me/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolyso.online/blog/cach-tinh-diem-hoa-von-kinh-doanh-an-uong/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://trolyso.online/blog/giai-thich-bieu-thuc-chinh-quy-regex-tieng-viet/</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+`;
 
-  if (insertIndex === -1) {
-    console.error('❌ Could not find DYNAMIC_POSTS_START in sitemap');
-    return;
-  }
-
-  let sitemapBlock = '';
-  
-  // Add tools
-  for (const tool of newTools) {
-    const fullUrl = `https://trolyso.online${tool.url}`;
-    if (!content.includes(fullUrl)) {
-      sitemapBlock += `  <url>\n    <loc>${fullUrl}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>\n`;
-    }
-  }
-
-  // Add blog posts
-  for (const post of newBlogPosts) {
-    const fullUrl = `https://trolyso.online/blog/${post.slug}/`;
-    if (!content.includes(fullUrl)) {
-      sitemapBlock += `  <url>\n    <loc>${fullUrl}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
-    }
-  }
-
-  if (sitemapBlock) {
-    const before = content.slice(0, insertIndex + marker.length);
-    const after = content.slice(insertIndex + marker.length);
-    content = before + '\n' + sitemapBlock + after;
-    fs.writeFileSync(sitemapFile, content, 'utf8');
-    console.log('✅ Sitemap synced successfully.');
-  } else {
-    console.log('ℹ️ Sitemap already up to date.');
-  }
-}
-
-function syncSearchIndex() {
-  console.log('🔄 Syncing search index...');
-  const indexData = JSON.parse(fs.readFileSync(searchIndexFile, 'utf8'));
-
-  let updated = false;
-
-  // Add tools
-  for (const tool of newTools) {
-    const exists = indexData.some(item => item.url === tool.url);
-    if (!exists) {
-      indexData.unshift({
-        title: tool.title,
-        desc: tool.desc,
-        url: tool.url
-      });
-      updated = true;
-    }
-  }
-
-  // Add blog posts
-  for (const post of newBlogPosts) {
-    const targetUrl = `/blog/${post.slug}/`;
-    const exists = indexData.some(item => item.url === targetUrl);
-    if (!exists) {
-      indexData.unshift({
-        title: `Bài viết: ${post.title}`,
-        desc: post.description,
-        url: targetUrl
-      });
-      updated = true;
-    }
-  }
-
-  if (updated) {
-    fs.writeFileSync(searchIndexFile, JSON.stringify(indexData, null, 2), 'utf8');
-    console.log('✅ Search index synced successfully.');
-  } else {
-    console.log('ℹ️ Search index already up to date.');
-  }
-}
-
-syncBlogIndex();
-syncSitemap();
-syncSearchIndex();
-console.log('🎉 All sync tasks completed!');
+sitemapContent = sitemapContent.slice(0, sitemapInsertIdx) + newSitemapUrls + sitemapContent.slice(sitemapInsertIdx);
+fs.writeFileSync(sitemapPath, sitemapContent, 'utf8');
+console.log("Updated sitemap.xml with 6 new URLs!");

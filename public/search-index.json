@@ -1,5 +1,35 @@
 [
   {
+    "title": "Công cụ: Tính Chế Độ Thai Sản Cho Bố & Mẹ",
+    "desc": "Tính tự động thời gian nghỉ phép thai sản và số tiền trợ cấp một lần, hàng tháng cho cả bố và mẹ theo BHXH Việt Nam.",
+    "url": "/calculators/tinh-che-do-thai-san/"
+  },
+  {
+    "title": "Công cụ: Tính Điểm Hòa Vốn Kinh Doanh (BEP)",
+    "desc": "Tính tự động sản lượng hòa vốn, doanh số hòa vốn và mục tiêu lợi nhuận cho các chủ quán ăn, nhà hàng, cafe, shop bán lẻ.",
+    "url": "/calculators/tinh-diem-hoa-von/"
+  },
+  {
+    "title": "Công cụ: Regex Explainer Giải Thích Tiếng Việt",
+    "desc": "Giải thích chi tiết biểu thức chính quy (Regex) và kiểm tra so khớp chuỗi văn bản trực tiếp theo thời gian thực dành cho lập trình viên.",
+    "url": "/calculators/regex-explainer/"
+  },
+  {
+    "title": "Bài viết: Cách Tính Chế Độ Thai Sản Cho Cả Bố Và Mẹ Chuẩn Luật Mới Nhất",
+    "desc": "Hướng dẫn chi tiết cách tính chế độ thai sản tự động dành cho cả bố và mẹ theo quy định mới của Luật Bảo hiểm xã hội. Chi tiết tiền nghỉ phép, tiền trợ cấp thai sản và trợ cấp một lần.",
+    "url": "/blog/cach-tinh-che-do-thai-san-cho-bo-me/"
+  },
+  {
+    "title": "Bài viết: Cách Tính Điểm Hòa Vốn Trong Kinh Doanh Ăn Uống, Cafe Cho Người Mới",
+    "desc": "Hướng dẫn chi tiết cách tính điểm hòa vốn (Break-even Point) trong kinh doanh nhà hàng, quán ăn, quán cafe từ A-Z. Công thức định phí, biến phí và ví dụ số cụ thể.",
+    "url": "/blog/cach-tinh-diem-hoa-von-kinh-doanh-an-uong/"
+  },
+  {
+    "title": "Bài viết: Giải Thích Biểu Thức Chính Quy (Regex) Bằng Tiếng Việt Dễ Hiểu Nhất",
+    "desc": "Regex là gì? Hướng dẫn học biểu thức chính quy (Regular Expression) từ cơ bản đến nâng cao. Bảng tra cứu ký tự Regex thông dụng và ví dụ dễ hiểu.",
+    "url": "/blog/giai-thich-bieu-thuc-chinh-quy-regex-tieng-viet/"
+  },
+  {
     "title": "Bài viết: Cách Tính Lãi Suất Vay Ngân Hàng & Gửi Tiết Kiệm Online Chuẩn Nhất 2026",
     "desc": "Hướng dẫn chi tiết cách tính lãi suất vay ngân hàng trả góp (dư nợ giảm dần/lũy tiến) và gửi tiết kiệm online. Công thức và ví dụ cụ thể dễ hiểu.",
     "url": "/blog/cach-tinh-lai-suat-vay-tiet-kiem/"

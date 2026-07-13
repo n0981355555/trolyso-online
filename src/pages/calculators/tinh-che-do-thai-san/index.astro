@@ -1,0 +1,374 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Công Cụ Tính Chế Độ Thai Sản Online 2026 - Chuẩn BHXH Việt Nam"
+  description="Công cụ tính chế độ thai sản tự động dành cho cả bố và mẹ. Tính số ngày nghỉ phép, tiền trợ cấp thai sản và trợ cấp một lần theo Luật Bảo hiểm xã hội mới nhất."
+>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tính chế độ thai sản</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Máy Tính Chế Độ Thai Sản Cho Bố & Mẹ
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Tính nhanh số ngày nghỉ thai sản được phép và số tiền trợ cấp thai sản nhận về từ BHXH theo mức lương cơ sở mới nhất 2.340.000đ.
+      </p>
+    </div>
+
+    <!-- Active Mode Selector (Tabs) -->
+    <div class="flex justify-center mb-8">
+      <div class="bg-slate-100 dark:bg-slate-800 p-1.5 rounded-2xl inline-flex gap-1.5 shadow-inner">
+        <button id="tabMother" class="px-6 py-3 rounded-xl font-bold text-sm transition duration-200 bg-white dark:bg-brand-darkCard text-slate-900 dark:text-white shadow-sm flex items-center gap-2">
+          🤰 Dành Cho Mẹ
+        </button>
+        <button id="tabFather" class="px-6 py-3 rounded-xl font-bold text-sm transition duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-2">
+          🧔 Dành Cho Bố
+        </button>
+      </div>
+    </div>
+
+    <!-- Tool Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors">
+      
+      <!-- Left inputs (7 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-7">
+        
+        <!-- MOTHER SECTION -->
+        <div id="sectionMother" class="space-y-6">
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+            📝 Thông tin thai sản của Mẹ
+          </h2>
+
+          <!-- Lương đóng BHXH bình quân -->
+          <div>
+            <label for="motherSalary" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Lương bình quân đóng BHXH 6 tháng trước sinh (VND)</label>
+            <input type="number" id="motherSalary" value="10000000" step="500000" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
+          </div>
+
+          <!-- Hình thức sinh con -->
+          <div>
+            <label for="motherDeliveryType" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Hình thức sinh con</label>
+            <select id="motherDeliveryType" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-semibold">
+              <option value="normal">Sinh thường / Mổ sinh thường 1 con</option>
+              <option value="twins">Sinh đôi (2 con)</option>
+              <option value="triplets">Sinh ba trở lên</option>
+            </select>
+          </div>
+
+          <!-- Đóng đủ BHXH -->
+          <div>
+            <label for="motherEligible" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Đóng BHXH đủ 6 tháng trong 12 tháng trước sinh?</label>
+            <select id="motherEligible" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-semibold">
+              <option value="yes">Đầy đủ (Có đủ điều kiện hưởng trợ cấp)</option>
+              <option value="no">Không đủ (Chỉ được nghỉ thai sản không hưởng trợ cấp)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- FATHER SECTION -->
+        <div id="sectionFather" class="space-y-6 hidden">
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+            📝 Thông tin thai sản của Bố
+          </h2>
+
+          <!-- Lương đóng BHXH bình quân của Bố -->
+          <div>
+            <label for="fatherSalary" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Lương bình quân đóng BHXH 6 tháng trước sinh của Bố (VND)</label>
+            <input type="number" id="fatherSalary" value="10000000" step="500000" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
+          </div>
+
+          <!-- Hình thức sinh của Vợ -->
+          <div>
+            <label for="fatherDeliveryType" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Hình thức sinh con của Vợ</label>
+            <select id="fatherDeliveryType" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-semibold">
+              <option value="normal_1">Vợ sinh thường 1 con</option>
+              <option value="csection_1">Vợ sinh mổ / Phẫu thuật 1 con</option>
+              <option value="twins_normal">Vợ sinh đôi thường</option>
+              <option value="twins_csection">Vợ sinh đôi mổ / Phẫu thuật</option>
+            </select>
+          </div>
+
+          <!-- Vợ có đóng BHXH không -->
+          <div>
+            <label for="wifeHasBhxh" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Người vợ có tham gia đóng BHXH không?</label>
+            <select id="wifeHasBhxh" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-semibold">
+              <option value="yes">Có tham gia đóng BHXH</option>
+              <option value="no">Không đóng BHXH (Chồng sẽ nhận thêm trợ cấp 1 lần thế vợ)</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="btnCalculate" class="w-full mt-6 bg-brand-blue hover:bg-blue-700 dark:bg-brand-mint dark:hover:bg-emerald-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg">
+          ⚡ Tính Toán Chế Độ Thai Sản
+        </button>
+      </div>
+
+      <!-- Right outputs (5 cols) -->
+      <div class="p-6 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 md:col-span-5 flex flex-col justify-between border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800">
+        <div>
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+            📊 Kết quả chế độ
+          </h2>
+
+          <div class="space-y-6">
+            <!-- Số ngày nghỉ -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span class="text-xs font-semibold text-slate-400 block mb-1">THỜI GIAN NGHỈ PHÉP CHO PHÉP</span>
+              <span id="resDays" class="text-xl font-extrabold text-slate-800 dark:text-slate-100">180 ngày (6 tháng)</span>
+            </div>
+
+            <!-- Tiền trợ cấp thai sản BHXH -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span class="text-xs font-semibold text-slate-400 block mb-1">TIỀN TRỢ CẤP THAI SẢN (HÀNG THÁNG)</span>
+              <span id="resMaternityAllow" class="text-xl font-extrabold text-slate-800 dark:text-slate-100">60,000,000đ</span>
+            </div>
+
+            <!-- Trợ cấp 1 lần -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span class="text-xs font-semibold text-slate-400 block mb-1">TRỢ CẤP 1 LẦN KHI SINH CON (TÀI TRỢ TỪ LƯƠNG CƠ SỞ)</span>
+              <span id="resOneTimeAllow" class="text-xl font-extrabold text-red-500 dark:text-red-400">4,680,000đ</span>
+            </div>
+
+            <!-- Tổng cộng tiền nhận được -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span class="text-xs font-semibold text-slate-400 block mb-1">TỔNG TIỀN TRỢ CẤP THAI SẢN NHẬN VỀ</span>
+              <span id="resTotal" class="text-2xl font-extrabold text-brand-blue dark:text-brand-mint">64,680,000đ</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 border-t border-slate-200 dark:border-slate-800 pt-6">
+          <p class="text-xs text-slate-400 dark:text-slate-500 leading-relaxed italic">
+            *Lưu ý: Mức trợ cấp tính theo lương cơ sở 2.340.000 VND áp dụng cho các trường hợp sinh con từ tháng 7/2024 đến năm 2026. Lương đóng BHXH tối đa không quá 20 lần lương cơ sở (46.800.000 VND).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- E-E-A-T Handbook Section -->
+    <div class="mt-12 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
+        📚 Hướng Dẫn Cách Tính Chế Độ Thai Sản Mới Nhất
+      </h2>
+      <div class="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 space-y-4">
+        <h3>1. Điều kiện hưởng chế độ thai sản</h3>
+        <p>Lao động nữ sinh con phải tham gia đóng Bảo hiểm xã hội từ <strong>đủ 06 tháng trở lên</strong> trong thời gian 12 tháng trước khi sinh con thì mới đủ điều kiện hưởng tiền trợ cấp thai sản.</p>
+        
+        <h3>2. Công thức tính chế độ thai sản dành cho Mẹ</h3>
+        <p>Khoản trợ cấp cho người mẹ bao gồm 2 phần:</p>
+        <ul>
+          <li><strong>Tiền trợ cấp hàng tháng:</strong> <code>Tiền nhận = Lương bình quân đóng BHXH 6 tháng trước sinh * 6 tháng</code>. (Nếu sinh đôi thì được tính thêm 1 tháng lương cho con thứ hai).</li>
+          <li><strong>Trợ cấp 1 lần khi sinh con (Tả lót):</strong> <code>Tiền nhận = 2 * Lương cơ sở = 2 * 2.340.000đ = 4.680.000đ</code> per con.</li>
+        </ul>
+
+        <h3>3. Công thức tính chế độ thai sản dành cho Bố</h3>
+        <p>Lao động nam đang đóng BHXH khi vợ sinh con sẽ được hưởng quyền lợi:</p>
+        <ul>
+          <li><strong>Số ngày nghỉ chăm vợ đẻ:</strong> 05 ngày (sinh thường), 07 ngày (vợ sinh mổ/sinh non), 10 ngày (sinh đôi thường), 14 ngày (sinh đôi mổ).</li>
+          <li><strong>Tiền trợ cấp BHXH trả cho ngày nghỉ:</strong> <code>Tiền nhận = (Lương đóng BHXH của bố / 24 ngày) * Số ngày được nghỉ phép</code>.</li>
+          <li><strong>Trợ cấp một lần (nếu vợ không tham gia BHXH):</strong> Bố sẽ được hưởng khoản trợ cấp một lần thay cho vợ bằng <code>4.680.000đ</code> cho mỗi con.</li>
+        </ul>
+
+        <h3>4. Căn cứ pháp lý</h3>
+        <ul>
+          <li><strong>Luật Bảo hiểm xã hội số 58/2014/QH13.</strong></li>
+          <li><strong>Nghị định số 73/2024/NĐ-CP</strong> quy định mức lương cơ sở mới nhất là 2.340.000đ áp dụng từ năm 2024 đến năm 2026.</li>
+        </ul>
+
+        <!-- FAQ Section -->
+        <div class="mt-8 border-t border-slate-100 dark:border-slate-800 pt-6">
+          <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">💬 Câu hỏi thường gặp (FAQ)</h3>
+          <div class="space-y-4">
+            <details class="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition-all hover:shadow-sm">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none flex-wrap gap-2">
+                <span>Vợ sinh con mà vợ không đóng BHXH thì chồng được nhận trợ cấp không?</span>
+                <span class="transition group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Có. Nếu người vợ không tham gia đóng BHXH nhưng người chồng đã đóng BHXH đủ 6 tháng trong vòng 12 tháng trước khi sinh con, người chồng sẽ được nhận khoản trợ cấp một lần bằng 4.680.000đ (2 lần lương cơ sở) thay cho vợ.</p>
+            </details>
+            <details class="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition-all hover:shadow-sm">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none flex-wrap gap-2">
+                <span>Thời gian tối đa để nộp hồ sơ thai sản là bao lâu?</span>
+                <span class="transition group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Trong thời hạn 45 ngày kể từ ngày trở lại làm việc sau thời gian nghỉ thai sản, người lao động có trách nhiệm nộp hồ sơ cho người sử dụng lao động để giải quyết chế độ.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-950/30 rounded-xl border border-blue-100 dark:border-blue-900 text-center">
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            👉 Bạn muốn biết hồ sơ thai sản cần chuẩn bị những giấy tờ gì để rút BHXH nhanh nhất? 
+            <a href="/blog/cach-tinh-che-do-thai-san-cho-bo-me/" class="text-brand-blue dark:text-brand-mint font-bold hover:underline transition duration-200">Xem bài viết hướng dẫn chi tiết chế độ thai sản cho bố và mẹ tại đây</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Tab switching logic
+  const tabMother = document.getElementById('tabMother') as HTMLButtonElement;
+  const tabFather = document.getElementById('tabFather') as HTMLButtonElement;
+  const sectionMother = document.getElementById('sectionMother') as HTMLDivElement;
+  const sectionFather = document.getElementById('sectionFather') as HTMLDivElement;
+
+  const motherSalary = document.getElementById('motherSalary') as HTMLInputElement;
+  const motherDeliveryType = document.getElementById('motherDeliveryType') as HTMLSelectElement;
+  const motherEligible = document.getElementById('motherEligible') as HTMLSelectElement;
+
+  const fatherSalary = document.getElementById('fatherSalary') as HTMLInputElement;
+  const fatherDeliveryType = document.getElementById('fatherDeliveryType') as HTMLSelectElement;
+  const wifeHasBhxh = document.getElementById('wifeHasBhxh') as HTMLSelectElement;
+
+  const resDays = document.getElementById('resDays') as HTMLSpanElement;
+  const resMaternityAllow = document.getElementById('resMaternityAllow') as HTMLSpanElement;
+  const resOneTimeAllow = document.getElementById('resOneTimeAllow') as HTMLSpanElement;
+  const resTotal = document.getElementById('resTotal') as HTMLSpanElement;
+  const btnCalculate = document.getElementById('btnCalculate');
+
+  let activeTab: 'mother' | 'father' = 'mother';
+
+  function switchTab(tab: 'mother' | 'father') {
+    activeTab = tab;
+    if (tab === 'mother') {
+      tabMother.className = "px-6 py-3 rounded-xl font-bold text-sm transition duration-200 bg-white dark:bg-brand-darkCard text-slate-900 dark:text-white shadow-sm flex items-center gap-2";
+      tabFather.className = "px-6 py-3 rounded-xl font-bold text-sm transition duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-2";
+      sectionMother.classList.remove('hidden');
+      sectionFather.classList.add('hidden');
+    } else {
+      tabFather.className = "px-6 py-3 rounded-xl font-bold text-sm transition duration-200 bg-white dark:bg-brand-darkCard text-slate-900 dark:text-white shadow-sm flex items-center gap-2";
+      tabMother.className = "px-6 py-3 rounded-xl font-bold text-sm transition duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-2";
+      sectionFather.classList.remove('hidden');
+      sectionMother.classList.add('hidden');
+    }
+    calculate();
+  }
+
+  function formatVND(val: number) {
+    return val.toLocaleString('vi-VN') + 'đ';
+  }
+
+  const BASIC_SALARY = 2340000; // Lương cơ sở 2026
+
+  function calculate() {
+    if (activeTab === 'mother') {
+      const salary = Math.min(46800000, parseFloat(motherSalary.value) || 0); // Max 20 times basic salary
+      const delivery = motherDeliveryType.value;
+      const eligible = motherEligible.value === 'yes';
+
+      let days = 180; // 6 months standard
+      let multiplier = 6;
+      let count = 1;
+
+      if (delivery === 'twins') {
+        days = 210;
+        multiplier = 7;
+        count = 2;
+      } else if (delivery === 'triplets') {
+        days = 240;
+        multiplier = 8;
+        count = 3;
+      }
+
+      resDays.innerText = `${days} ngày (${multiplier} tháng)`;
+
+      if (!eligible) {
+        resMaternityAllow.innerText = "0đ";
+        resOneTimeAllow.innerText = "0đ";
+        resTotal.innerText = "0đ";
+        return;
+      }
+
+      const maternityAllowVal = salary * multiplier;
+      const oneTimeAllowVal = BASIC_SALARY * 2 * count;
+      const totalVal = maternityAllowVal + oneTimeAllowVal;
+
+      resMaternityAllow.innerText = formatVND(maternityAllowVal);
+      resOneTimeAllow.innerText = formatVND(oneTimeAllowVal);
+      resTotal.innerText = formatVND(totalVal);
+
+    } else {
+      // Father
+      const salary = Math.min(46800000, parseFloat(fatherSalary.value) || 0);
+      const delivery = fatherDeliveryType.value;
+      const wifeInsurance = wifeHasBhxh.value === 'yes';
+
+      let days = 5;
+      if (delivery === 'csection_1') {
+        days = 7;
+      } else if (delivery === 'twins_normal') {
+        days = 10;
+      } else if (delivery === 'twins_csection') {
+        days = 14;
+      }
+
+      resDays.innerText = `${days} ngày làm việc`;
+
+      // Father's allowance for leave days: (Salary / 24) * days
+      const paternityAllowVal = Math.round((salary / 24) * days);
+      
+      // One-time allowance if wife has no insurance: 2 * basic salary = 4.680.000
+      let oneTimeAllowVal = 0;
+      if (!wifeInsurance) {
+        const isMultiple = delivery.startsWith('twins');
+        oneTimeAllowVal = BASIC_SALARY * 2 * (isMultiple ? 2 : 1);
+      }
+
+      const totalVal = paternityAllowVal + oneTimeAllowVal;
+
+      resMaternityAllow.innerText = formatVND(paternityAllowVal);
+      resOneTimeAllow.innerText = formatVND(oneTimeAllowVal);
+      resTotal.innerText = formatVND(totalVal);
+    }
+  }
+
+  // Bind Events
+  tabMother.addEventListener('click', () => switchTab('mother'));
+  tabFather.addEventListener('click', () => switchTab('father'));
+  btnCalculate?.addEventListener('click', calculate);
+
+  // Initialize
+  calculate();
+</script>
+
+<!-- WebApplication & FAQPage JSON-LD Schemas -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinanceApplication",
+    "name": "Công Cụ Tính Chế Độ Thai Sản Online",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "url": "https://trolyso.online/calculators/tinh-che-do-thai-san/",
+    "description": "Tính tự động thời gian nghỉ phép thai sản và số tiền trợ cấp một lần, hàng tháng cho cả bố và mẹ theo BHXH Việt Nam."
+  }
+</script>

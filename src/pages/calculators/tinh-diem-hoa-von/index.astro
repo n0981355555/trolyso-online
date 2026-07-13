@@ -1,0 +1,314 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Công Cụ Tính Điểm Hòa Vốn Online - Cho Quán Cafe, Nhà Hàng, Shop"
+  description="Công cụ tính điểm hòa vốn (Break-even Point) tự động miễn phí. Tính sản lượng và doanh số cần đạt để hòa vốn kinh doanh dựa trên định phí và biến phí."
+>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tính điểm hòa vốn</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Công Cụ Tính Điểm Hòa Vốn Kinh Doanh (BEP)
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Tính chính xác sản lượng bán ra và doanh số tối thiểu cần đạt để quán ăn, quán cafe hoặc shop bán hàng của bạn bắt đầu có lãi.
+      </p>
+    </div>
+
+    <!-- Tool Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors">
+      
+      <!-- Left inputs (7 cols) -->
+      <div class="p-6 sm:p-10 md:col-span-7 space-y-6">
+        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+          📝 Nhập chi phí & Doanh thu dự kiến
+        </h2>
+
+        <!-- Định phí cố định -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">1. Định phí hàng tháng (Cố định)</h3>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="rentCost" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Mặt bằng / Thuê nhà (VND)</label>
+              <input type="number" id="rentCost" value="15000000" step="1000000" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-sm" />
+            </div>
+            <div>
+              <label for="salaryCost" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Lương nhân viên cố định (VND)</label>
+              <input type="number" id="salaryCost" value="12000000" step="1000000" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-sm" />
+            </div>
+            <div>
+              <label for="utilityCost" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Điện nước, Internet, Khác (VND)</label>
+              <input type="number" id="utilityCost" value="3000000" step="500000" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-sm" />
+            </div>
+            <div>
+              <label for="marketingCost" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Marketing / Quảng cáo (VND)</label>
+              <input type="number" id="marketingCost" value="2000000" step="500000" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-sm" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Biến phí & Giá bán -->
+        <div class="space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+          <h3 class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">2. Giá bán & Biến phí đơn vị</h3>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="sellingPrice" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Giá bán trung bình/sản phẩm (VND)</label>
+              <input type="number" id="sellingPrice" value="35000" step="5000" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-sm" />
+            </div>
+            <div>
+              <label for="variableCost" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Biến phí (Giá vốn)/sản phẩm (VND)</label>
+              <input type="number" id="variableCost" value="12000" step="1000" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-sm" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Mục tiêu lợi nhuận -->
+        <div class="space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+          <h3 class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">3. Lợi nhuận mục tiêu (Tùy chọn)</h3>
+          <div>
+            <label for="targetProfit" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Lợi nhuận mong muốn hàng tháng (VND)</label>
+            <input type="number" id="targetProfit" value="15000000" step="1000000" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-sm" />
+          </div>
+        </div>
+
+        <button id="btnCalculate" class="w-full bg-brand-blue hover:bg-blue-700 dark:bg-brand-mint dark:hover:bg-emerald-600 text-white font-bold py-4 px-6 rounded-xl transition duration-200 shadow-lg">
+          ⚡ Tính Điểm Hòa Vốn
+        </button>
+      </div>
+
+      <!-- Right outputs (5 cols) -->
+      <div class="p-6 sm:p-10 bg-slate-50/50 dark:bg-slate-900/50 md:col-span-5 flex flex-col justify-between border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800">
+        <div>
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+            📊 Phân tích tài chính
+          </h2>
+
+          <div class="space-y-5">
+            <!-- Tổng định phí -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span class="text-xs font-semibold text-slate-400 block mb-1">TỔNG ĐỊNH PHÍ CỐ ĐỊNH / THÁNG</span>
+              <span id="resTotalFixed" class="text-lg font-extrabold text-slate-800 dark:text-slate-100">32,000,000đ</span>
+            </div>
+
+            <!-- Tỉ lệ số dư đảm phí -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span class="text-xs font-semibold text-slate-400 block mb-1">SỐ DƯ ĐẢM PHÍ (LÃI GỘP TRÊN ĐƠN VỊ)</span>
+              <span id="resContributionMargin" class="text-lg font-extrabold text-slate-800 dark:text-slate-100">23,000đ (65.7%)</span>
+            </div>
+
+            <!-- Điểm hòa vốn sản lượng -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span class="text-xs font-semibold text-slate-400 block mb-1">SẢN LƯỢNG HÒA VỐN (CẦN BÁN)</span>
+              <span id="resBreakEvenQty" class="text-xl font-extrabold text-red-500 dark:text-red-400">1,392 sản phẩm / tháng</span>
+              <span id="resBreakEvenDailyQty" class="text-xs text-slate-400 block mt-1">(Tương đương ~47 sản phẩm / ngày)</span>
+            </div>
+
+            <!-- Doanh thu hòa vốn -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700/50">
+              <span class="text-xs font-semibold text-slate-400 block mb-1">DOANH THU HÒA VỐN TỐI THIỂU</span>
+              <span id="resBreakEvenRev" class="text-xl font-extrabold text-brand-blue dark:text-brand-mint">48,720,000đ / tháng</span>
+            </div>
+
+            <!-- Doanh số đạt mục tiêu -->
+            <div id="targetWrapper" class="bg-blue-50/50 dark:bg-blue-950/20 p-4 rounded-xl border border-blue-100 dark:border-blue-900/40">
+              <span class="text-xs font-bold text-brand-blue dark:text-brand-mint block mb-1">MỤC TIÊU LỢI NHUẬN (CẦN ĐẠT)</span>
+              <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                Cần bán: <strong id="resTargetQty" class="text-brand-blue dark:text-brand-mint">2,044 sản phẩm</strong> (~69 ly/ngày)<br/>
+                Doanh thu: <strong id="resTargetRev" class="text-slate-800 dark:text-white">71,540,000đ</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 border-t border-slate-200 dark:border-slate-800 pt-6">
+          <p class="text-xs text-slate-400 dark:text-slate-500 leading-relaxed italic">
+            *Cách tính điểm hòa vốn BEP: Định phí / (Giá bán - Biến phí). Lợi nhuận gộp đơn vị càng cao, số lượng sản phẩm cần bán để hòa vốn càng ít.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- E-E-A-T Handbook Section -->
+    <div class="mt-12 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
+        📚 Cẩm Nang Hướng Dẫn Tính Điểm Hòa Vốn Kinh Doanh
+      </h2>
+      <div class="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 space-y-4">
+        <h3>1. Điểm hòa vốn (Break-even Point) là gì?</h3>
+        <p>Điểm hòa vốn là điểm mà tại đó <strong>Tổng doanh thu bằng Tổng chi phí</strong>, nghĩa là hoạt động kinh doanh không thu được lợi nhuận nhưng cũng không bị lỗ vốn. Vượt qua mốc này, mỗi sản phẩm bán ra mới bắt đầu mang lại lợi nhuận thực tế cho bạn.</p>
+
+        <h3>2. Công thức tính điểm hòa vốn cơ bản</h3>
+        <p>Để tính được điểm hòa vốn, bạn cần phân loại rõ ràng 2 nhóm chi phí:</p>
+        <ul>
+          <li><strong>Định phí (Fixed Costs):</strong> Những chi phí cố định phải trả dù bạn có bán được hàng hay không (Ví dụ: thuê mặt bằng, lương nhân viên cố định, khấu hao máy móc thiết bị).</li>
+          <li><strong>Biến phí (Variable Costs):</strong> Chi phí phát sinh trực tiếp theo từng sản phẩm bán ra (Ví dụ: giá vốn nguyên vật liệu cafe, bao bì, ống hút, hộp xốp).</li>
+        </ul>
+        <p>Công thức tính sản lượng hòa vốn:</p>
+        <div class="bg-slate-50 dark:bg-slate-900 p-4 rounded-xl font-mono text-xs text-slate-800 dark:text-slate-200">
+          Sản lượng hòa vốn (Q) = Định phí / (Giá bán - Biến phí đơn vị)
+        </div>
+        <p>Công thức tính doanh thu hòa vốn:</p>
+        <div class="bg-slate-50 dark:bg-slate-900 p-4 rounded-xl font-mono text-xs text-slate-800 dark:text-slate-200">
+          Doanh thu hòa vốn = Sản lượng hòa vốn * Giá bán
+        </div>
+
+        <h3>3. Ví dụ thực tế dễ hiểu</h3>
+        <p>Bạn mở một xe cafe mang đi (take-away):</p>
+        <ul>
+          <li>Định phí (Mặt bằng + Khấu hao xe + Điện cố định) = <strong>5.000.000đ/tháng</strong>.</li>
+          <li>Giá bán trung bình = <strong>20.000đ/ly</strong>.</li>
+          <li>Biến phí (Cà phê hạt + Sữa + Cốc nhựa + Túi chữ T) = <strong>8.000đ/ly</strong>.</li>
+          <li>Lãi gộp trên mỗi ly cafe = 20.000đ - 8.000đ = <strong>12.000đ</strong>.</li>
+          <li>Số ly cafe cần bán để hòa vốn = 5.000.000đ / 12.000đ = <strong>417 ly/tháng</strong> (khoảng 14 ly/ngày). Từ ly thứ 15 trở đi trong ngày, bạn mới bắt đầu có lãi thực tế bỏ túi.</li>
+        </ul>
+
+        <!-- FAQ Section -->
+        <div class="mt-8 border-t border-slate-100 dark:border-slate-800 pt-6">
+          <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">💬 Câu hỏi thường gặp (FAQ)</h3>
+          <div class="space-y-4">
+            <details class="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition-all hover:shadow-sm">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none flex-wrap gap-2">
+                <span>Làm thế nào để hạ điểm hòa vốn xuống thấp hơn?</span>
+                <span class="transition group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Có 3 cách chính: 1) Cắt giảm định phí cố định (như đàm phán giảm tiền thuê nhà, tối ưu số nhân viên trực ca). 2) Giảm biến phí đơn vị (tìm nhà cung cấp nguyên liệu rẻ hơn nhưng vẫn đảm bảo chất lượng). 3) Tăng giá bán sản phẩm nếu có khả năng định vị thương hiệu tốt hơn.</p>
+            </details>
+            <details class="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition-all hover:shadow-sm">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none flex-wrap gap-2">
+                <span>Tại sao kinh doanh đạt doanh số hòa vốn rồi mà tôi vẫn cảm thấy thiếu tiền mặt?</span>
+                <span class="transition group-open:rotate-180">▼</span>
+              </summary>
+              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Hòa vốn kế toán khác với hòa vốn dòng tiền. Bạn có thể hòa vốn trên giấy tờ nhưng tiền mặt đang bị kẹt ở hàng tồn kho, công nợ khách hàng chưa thu được, hoặc bạn phải trả gốc vay ngân hàng (khoản này không nằm trong chi phí tính hòa vốn).</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-950/30 rounded-xl border border-blue-100 dark:border-blue-900 text-center">
+          <p class="text-sm text-slate-600 dark:text-slate-400">
+            👉 Bạn chuẩn bị khởi nghiệp kinh doanh ăn uống và muốn biết thêm các mẹo tối ưu chi phí vận hành? 
+            <a href="/blog/cach-tinh-diem-hoa-von-kinh-doanh-an-uong/" class="text-brand-blue dark:text-brand-mint font-bold hover:underline transition duration-200">Xem bài phân tích chuyên sâu cách lập kế hoạch hòa vốn tại đây</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const rentCost = document.getElementById('rentCost') as HTMLInputElement;
+  const salaryCost = document.getElementById('salaryCost') as HTMLInputElement;
+  const utilityCost = document.getElementById('utilityCost') as HTMLInputElement;
+  const marketingCost = document.getElementById('marketingCost') as HTMLInputElement;
+  const sellingPrice = document.getElementById('sellingPrice') as HTMLInputElement;
+  const variableCost = document.getElementById('variableCost') as HTMLInputElement;
+  const targetProfit = document.getElementById('targetProfit') as HTMLInputElement;
+
+  const resTotalFixed = document.getElementById('resTotalFixed') as HTMLSpanElement;
+  const resContributionMargin = document.getElementById('resContributionMargin') as HTMLSpanElement;
+  const resBreakEvenQty = document.getElementById('resBreakEvenQty') as HTMLSpanElement;
+  const resBreakEvenDailyQty = document.getElementById('resBreakEvenDailyQty') as HTMLSpanElement;
+  const resBreakEvenRev = document.getElementById('resBreakEvenRev') as HTMLSpanElement;
+  const resTargetQty = document.getElementById('resTargetQty') as HTMLSpanElement;
+  const resTargetRev = document.getElementById('resTargetRev') as HTMLSpanElement;
+
+  const btnCalculate = document.getElementById('btnCalculate');
+
+  function formatVND(val: number) {
+    return Math.round(val).toLocaleString('vi-VN') + 'đ';
+  }
+
+  function calculate() {
+    // 1. Calculate total fixed cost
+    const rent = parseFloat(rentCost.value) || 0;
+    const salary = parseFloat(salaryCost.value) || 0;
+    const utility = parseFloat(utilityCost.value) || 0;
+    const marketing = parseFloat(marketingCost.value) || 0;
+    const totalFixed = rent + salary + utility + marketing;
+
+    resTotalFixed.innerText = formatVND(totalFixed);
+
+    // 2. Variable Cost & Price
+    const price = parseFloat(sellingPrice.value) || 0;
+    const variable = parseFloat(variableCost.value) || 0;
+
+    // Margin
+    const unitMargin = price - variable;
+    const marginRatio = price > 0 ? (unitMargin / price) * 100 : 0;
+
+    resContributionMargin.innerText = `${formatVND(unitMargin)} (${marginRatio.toFixed(1)}%)`;
+
+    if (unitMargin <= 0) {
+      resBreakEvenQty.innerText = "N/A (Lãi gộp ≤ 0, không thể hòa vốn)";
+      resBreakEvenDailyQty.innerText = "Hãy tăng giá bán hoặc giảm biến phí!";
+      resBreakEvenRev.innerText = "N/A";
+      resTargetQty.innerText = "N/A";
+      resTargetRev.innerText = "N/A";
+      return;
+    }
+
+    // 3. Break even quantity
+    const bepQty = totalFixed / unitMargin;
+    const bepDailyQty = bepQty / 30;
+    const bepRev = bepQty * price;
+
+    resBreakEvenQty.innerText = `${Math.ceil(bepQty).toLocaleString('vi-VN')} sản phẩm / tháng`;
+    resBreakEvenDailyQty.innerText = `(Tương đương ~${Math.ceil(bepDailyQty).toLocaleString('vi-VN')} sản phẩm / ngày)`;
+    resBreakEvenRev.innerText = formatVND(bepRev);
+
+    // 4. Target Profit
+    const desiredProfit = parseFloat(targetProfit.value) || 0;
+    const targetQtyVal = (totalFixed + desiredProfit) / unitMargin;
+    const targetDailyQty = targetQtyVal / 30;
+    const targetRevVal = targetQtyVal * price;
+
+    resTargetQty.innerText = `${Math.ceil(targetQtyVal).toLocaleString('vi-VN')} sản phẩm / tháng (~${Math.ceil(targetDailyQty).toLocaleString('vi-VN')} sp/ngày)`;
+    resTargetRev.innerText = formatVND(targetRevVal);
+  }
+
+  // Event bindings
+  btnCalculate?.addEventListener('click', calculate);
+
+  // Initial call
+  calculate();
+</script>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BusinessApplication",
+    "name": "Công Cụ Tính Điểm Hòa Vốn Kinh Doanh",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "url": "https://trolyso.online/calculators/tinh-diem-hoa-von/",
+    "description": "Tính tự động sản lượng hòa vốn, doanh số hòa vốn và mục tiêu lợi nhuận cho các chủ quán ăn, nhà hàng, cafe, shop bán lẻ."
+  }
+</script>

@@ -1,0 +1,174 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Biểu Thức Chính Quy Regex Là Gì? Hướng Dẫn Học Regex Dễ Hiểu Nhất - Trợ Lý Số"
+  description="Regex là gì? Hướng dẫn học biểu thức chính quy (Regular Expression) từ cơ bản đến nâng cao. Bảng tra cứu ký tự Regex thông dụng và ví dụ dễ hiểu."
+>
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/blog/" class="hover:text-brand-blue dark:hover:text-brand-mint">Blog</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500 text-xs truncate max-w-[200px]">Giải thích biểu thức chính quy Regex</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Article Header -->
+    <div class="border-b border-slate-200 dark:border-slate-800 pb-8 mb-8">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-xs font-bold text-brand-blue dark:text-brand-mint bg-blue-50 dark:bg-blue-950 px-2.5 py-1 rounded-md">
+          Công nghệ
+        </span>
+        <span class="text-xs text-slate-400">Cập nhật: 13/07/2026</span>
+      </div>
+      
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white leading-tight mb-6">
+        Biểu Thức Chính Quy Regex Là Gì? Hướng Dẫn Giải Nghĩa Các Ký Tự Đặc Biệt Từ Cơ Bản Đến Nâng Cao
+      </h1>
+
+      <!-- Author Box for E-E-A-T -->
+      <div class="flex items-center gap-3 bg-slate-100 dark:bg-slate-800/50 p-4 rounded-2xl hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300">
+        <div class="w-10 h-10 rounded-full bg-purple-500 text-white flex items-center justify-center font-bold text-sm">
+          DEV
+        </div>
+        <div class="text-xs sm:text-sm">
+          <div class="font-bold text-slate-800 dark:text-slate-200">Được biên soạn bởi: Kỹ sư Phần mềm Phạm Hoàng Long</div>
+          <div class="text-slate-400">Cố vấn giải pháp lập trình và bảo mật web - Trợ Lý Số</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Image -->
+    <div class="mb-8">
+      <img src="/images/blog/regex-explainer-hero.webp" alt="regex-explainer-hero" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+      <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 1: Regex là công cụ cực mạnh để tìm kiếm nâng cao và kiểm tra hợp lệ dữ liệu văn bản</p>
+    </div>
+
+    <!-- Article Content -->
+    <div class="prose prose-slate dark:prose-invert max-w-none text-base leading-relaxed space-y-6">
+      
+      <p>
+        Nếu bạn từng học lập trình hoặc xử lý dữ liệu hệ thống, chắc hẳn đã từng nghe đến thuật ngữ **Regex** (Regular Expression). Nhìn qua, Regex trông giống như một dãy ký tự lộn xộn, vô nghĩa và rất khó đọc như <code>^([a-zA-Z0-9_\-\.]+)@...</code>. Tuy nhiên, khi đã làm quen, Regex sẽ trở thành cánh tay đắc lực giúp bạn giải quyết các bài toán so khớp chuỗi phức tạp chỉ trong một dòng code duy nhất.
+      </p>
+
+      <!-- Table of Contents -->
+      <div class="bg-slate-50 dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 p-5 rounded-2xl my-6 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300">
+        <h4 class="font-bold text-slate-900 dark:text-white mb-3 mt-0">Mục lục bài viết:</h4>
+        <ul class="list-disc pl-5 space-y-1 text-sm">
+          <li><a href="#regex-la-gi" class="hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">1. Định nghĩa Regex là gì và ứng dụng thực tế</a></li>
+          <li><a href="#tra-cuu-ky-tu" class="hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">2. Bảng tra cứu nhanh các ký tự đặc biệt trong Regex</a></li>
+          <li><a href="#nhom-kho-khan" class="hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">3. Phân biệt các toán tử lặp và Capture Groups nâng cao</a></li>
+          <li><a href="#kiem-tra-regex" class="hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">4. Cách sử dụng công cụ kiểm tra và giải thích Regex trực quan</a></li>
+        </ul>
+      </div>
+
+      <h2 id="regex-la-gi" class="text-xl font-heading font-bold text-slate-900 dark:text-white pt-4">1. Định nghĩa Regex là gì và ứng dụng thực tế</h2>
+      <p>
+        Regex (biểu thức chính quy) là một công cụ mô tả các khuôn mẫu văn bản để máy tính thực hiện việc tìm kiếm và lọc. Hầu hết các ngôn ngữ lập trình hiện đại như Javascript, Python, Java, PHP, C# đều hỗ trợ Regex.
+      </p>
+      <p>
+        Các ứng dụng thực tế phổ biến nhất của Regex bao gồm:
+      </p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><strong>Kiểm tra dữ liệu nhập (Validation):</strong> Xác nhận xem email của khách hàng có gõ đúng định dạng hay không, số điện thoại có đủ 10 chữ số hay mật khẩu có chứa ký tự viết hoa và ký tự đặc biệt không.</li>
+        <li><strong>Tìm kiếm và thay thế nâng cao (Search & Replace):</strong> Tìm kiếm hàng loạt từ khóa viết sai chính tả trong một bài viết dài nghìn trang và thay thế hàng loạt.</li>
+        <li><strong>Trích xuất dữ liệu (Data Scraping):</strong> Quét mã nguồn trang web để bóc tách lấy toàn bộ địa chỉ email hoặc đường dẫn URL ảnh.</li>
+      </ul>
+
+      <h2 id="tra-cuu-ky-tu" class="text-xl font-heading font-bold text-slate-900 dark:text-white pt-4">2. Bảng tra cứu nhanh các ký tự đặc biệt trong Regex</h2>
+      <p>
+        Dưới đây là các lớp ký tự cơ sở bạn bắt buộc phải ghi nhớ khi làm việc với Regex:
+      </p>
+      
+      <div class="mb-8">
+        <img src="/images/blog/regex-explainer-body-1.webp" alt="regex-explainer-body-1" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+        <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 2: Chinh phục Regex giúp lập trình viên viết code ngắn gọn và xử lý dữ liệu chuyên nghiệp</p>
+      </div>
+
+      <ul>
+        <li><strong><code>\d</code>:</strong> Khớp với chữ số bất kỳ (từ 0 đến 9).</li>
+        <li><strong><code>\w</code>:</strong> Khớp với ký tự chữ (gồm chữ cái viết thường, viết hoa, chữ số và dấu gạch dưới <code>_</code>).</li>
+        <li><strong><code>\s</code>:</strong> Khớp với ký tự khoảng trắng (dấu cách space, tab, xuống dòng).</li>
+        <li><strong><code>.</code>:</strong> Khớp với bất kỳ ký tự đơn nào ngoại trừ dấu xuống dòng.</li>
+        <li><strong><code>\</code> (Escape character):</strong> Ký tự thoát dùng để báo cho Regex biết ta muốn so khớp chính xác ký tự đặc biệt đứng sau (Ví dụ: <code>\.</code> khớp dấu chấm thực sự, <code>\?</code> khớp dấu hỏi).</li>
+      </ul>
+
+      <h2 id="nhom-kho-khan" class="text-xl font-heading font-bold text-slate-900 dark:text-white pt-4">3. Phân biệt các toán tử lặp và Capture Groups nâng cao</h2>
+      <p>
+        Khi ghép nối các ký tự lại, chúng ta sử dụng các toán tử lặp để xác định tần suất xuất hiện của ký tự đó:
+      </p>
+      <ul>
+        <li><strong><code>+</code> (Khớp từ 1 lần trở lên):</strong> Ví dụ <code>\d+</code> sẽ khớp với một hoặc nhiều chữ số đứng cạnh nhau (như <code>123</code>, <code>9</code>).</li>
+        <li><strong><code>*</code> (Khớp từ 0 lần trở lên):</strong> Khớp ngay cả khi không xuất hiện ký tự đó.</li>
+        <li><strong><code>?</code> (Khớp 0 hoặc 1 lần):</strong> Dùng khi một ký tự có thể có hoặc không xuất hiện (Ví dụ: <code>https?</code> khớp cả <code>http</code> và <code>https</code>).</li>
+        <li><strong><code>( ... )</code> (Capture Group):</strong> Gom cụm các ký tự lại để thao tác và lưu trữ lại kết quả khớp để tái sử dụng hoặc trích xuất sau này.</li>
+      </ul>
+
+      <!-- CTA Tool Card -->
+      <div class="bg-gradient-to-r from-purple-500 to-indigo-600 rounded-2xl p-6 sm:p-8 text-white my-8 shadow-lg shadow-purple-500/10">
+        <h4 class="text-xl font-bold mb-2">Trình Kiểm Tra & Giải Nghĩa Regex Trực Quan</h4>
+        <p class="text-sm opacity-90 mb-6">Bạn gặp khó khăn khi đọc hiểu các chuỗi Regex phức tạp? Hãy dán chuỗi Regex của bạn vào công cụ của chúng tôi để được dịch giải chi tiết từng ký tự sang tiếng Việt.</p>
+        <a href="/calculators/regex-explainer/" aria-label="Đến công cụ Regex Explainer" class="inline-block bg-white text-purple-600 font-bold px-6 py-3 rounded-xl hover:bg-slate-100 transition shadow-md text-sm hover:scale-105 active:scale-95 hover:-translate-y-0.5 transition-all duration-300">
+          👉 Thử công cụ Regex Explainer ngay
+        </a>
+      </div>
+
+      <h2 id="kiem-tra-regex" class="text-xl font-heading font-bold text-slate-900 dark:text-white pt-4">4. Cách sử dụng công cụ kiểm tra và giải thích Regex trực quan</h2>
+      <p>
+        Khi viết một biểu thức Regex dài, việc kiểm tra xem nó có hoạt động đúng logic hay không rất tốn thời gian nếu chạy bằng cách build ứng dụng. Thay vào đó, bạn nên sử dụng các công cụ **Regex Tester & Explainer** trực tuyến.
+      </p>
+      <p>
+        Công cụ **Regex Explainer** của Trợ Lý Số hỗ trợ lập trình viên:
+      </p>
+      <ol class="list-decimal pl-6 space-y-1">
+        <li>Dịch từng thành phần trong biểu thức chính quy sang tiếng Việt dễ hiểu từng bước một.</li>
+        <li>Bôi màu nổi bật (Highlight) các ký tự trùng khớp trong đoạn văn bản thử nghiệm theo thời gian thực (real-time).</li>
+        <li>Hỗ trợ chuyển đổi đầy đủ các loại flags như g (Global), i (Case Insensitive), m (Multiline) để kiểm soát kết quả so khớp chính xác nhất.</li>
+      </ol>
+
+      <!-- Useful links & Sources -->
+      <div class="mt-12 border-t border-slate-200 dark:border-slate-800 pt-8 space-y-6">
+        <div class="hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300 border border-slate-100 dark:border-slate-800 p-5 rounded-2xl">
+          <h4 class="font-bold text-slate-900 dark:text-white mt-0 mb-3">📍 Tài liệu tham khảo & Nguồn uy tín:</h4>
+          <ul class="list-none pl-0 space-y-2 text-sm text-slate-500">
+            <li>
+              📖 <strong>Mozilla Developer Network (MDN) Web Docs</strong> - Tài liệu chuẩn về Regular Expressions trong JavaScript.
+            </li>
+            <li>
+              🌐 <a href="https://regex101.com/" target="_blank" rel="noopener" class="text-brand-blue dark:text-brand-mint hover:underline font-semibold">Regex101 (regex101.com)</a> - Cộng đồng lập trình viên và trang web debug Regex nổi tiếng toàn cầu.
+            </li>
+          </ul>
+        </div>
+
+        <div class="hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300 border border-slate-100 dark:border-slate-800 p-5 rounded-2xl">
+          <h4 class="font-bold text-slate-900 dark:text-white mt-0 mb-3">🔗 Bài viết liên quan hữu ích:</h4>
+          <ul class="list-disc pl-5 space-y-1 text-sm text-brand-blue dark:text-brand-mint">
+            <li>
+              <a href="/blog/huong-dan-tao-ma-vietqr/" class="hover:underline">Cách Tạo Mã VietQR Động Tích Hợp API Thanh Toán</a>
+            </li>
+            <li>
+              <a href="/blog/huong-dan-nen-anh-webp/" class="hover:underline">Mẹo Nén Ảnh WebP Hàng Loạt Giúp Tải Trang Dưới 1 Giây</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</Layout>

@@ -98,10 +98,21 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- Quick Access Directory -->
     <div id="calculators">
-      <h3 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6">Các công cụ tiện ích khác:</h3>
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
+        <h3 class="text-xl font-heading font-bold text-slate-900 dark:text-white m-0">Các công cụ tiện ích khác:</h3>
+        <!-- Category Filter Tabs (TinyWow style) -->
+        <div class="flex flex-wrap gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-2xl">
+          <button class="calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 bg-white dark:bg-brand-darkCard text-slate-900 dark:text-white shadow-sm" data-category="all" aria-label="Tất cả công cụ">✨ Tất cả</button>
+          <button class="calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200" data-category="finance" aria-label="Công cụ tài chính và thuế">💰 Tài chính & Thuế</button>
+          <button class="calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200" data-category="insurance" aria-label="Công cụ bảo hiểm và lương">🛡️ Bảo hiểm & Lương</button>
+          <button class="calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200" data-category="office" aria-label="Công cụ văn phòng và PDF">📂 Văn phòng & PDF</button>
+          <button class="calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200" data-category="utility" aria-label="Công cụ tiện ích và học tập">🌐 Tiện ích & Học tập</button>
+          <button class="calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200" data-category="dev" aria-label="Công cụ lập trình viên">💻 Lập trình</button>
+        </div>
+      </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- 1. BHXH Card -->
-        <a href="/calculators/tinh-bhxh-1-lan/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/tinh-bhxh-1-lan/" data-category="insurance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
           <div>
             <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-brand-mint flex items-center justify-center font-bold mb-4">
               🛡️
@@ -119,7 +130,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 2. Thuế TNCN Card -->
-        <a href="/calculators/tinh-thue-tncn/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/tinh-thue-tncn/" data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
           <div>
             <div class="w-12 h-12 rounded-xl bg-red-50 dark:bg-red-950 text-red-500 flex items-center justify-center font-bold mb-4">
               📊
@@ -137,7 +148,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 3. Tính Lương Hưu Dự Kiến -->
-        <a href="/calculators/tinh-luong-huu/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/tinh-luong-huu/" data-category="insurance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
           <div>
             <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-brand-mint flex items-center justify-center font-bold mb-4">
               💼
@@ -155,7 +166,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 4. Tính Tiền Chậm Nộp Thuế Card -->
-        <a href="/calculators/tinh-tien-cham-nop-thue/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/tinh-tien-cham-nop-thue/" data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
           <div>
             <div class="w-12 h-12 rounded-xl bg-orange-50 dark:bg-orange-950 text-orange-500 flex items-center justify-center font-bold mb-4">
               💸
@@ -173,7 +184,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 5. VietQR Card -->
-        <a href="/calculators/tao-ma-qr/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/tao-ma-qr/" data-category="dev" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
           <div>
             <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 text-brand-blue flex items-center justify-center font-bold mb-4">
               💳
@@ -191,7 +202,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 6. Đọc Số Thành Chữ Card -->
-        <a href="/calculators/doc-so-thanh-chu/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/doc-so-thanh-chu/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
           <div>
             <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-500 flex items-center justify-center font-bold mb-4">
               🔢
@@ -209,7 +220,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 7. Máy Tính Lãi Suất Ngân Hàng -->
-        <a href="/calculators/tinh-lai-suat/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/tinh-lai-suat/" data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
           <div>
             <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 text-brand-blue flex items-center justify-center font-bold mb-4">
               📈
@@ -227,7 +238,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 8. Tính Thuế Giá Trị Gia Tăng (VAT) -->
-        <a href="/calculators/tinh-thue-vat/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/tinh-thue-vat/" data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
           <div>
             <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-brand-mint flex items-center justify-center font-bold mb-4">
               🧾
@@ -245,7 +256,7 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 9. Đếm Ký Tự & Số Từ Online -->
-        <a href="/calculators/dem-ky-tu-online/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/dem-ky-tu-online/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
           <div>
             <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-500 flex items-center justify-center font-bold mb-4">
               ✍️
@@ -267,7 +278,7 @@ import Layout from '../layouts/Layout.astro';
       <div id="expandedTools" class="hidden mt-6 animate-fade-in">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- 7. Chữ Ký Email Card -->
-          <a href="/calculators/chu-ky-email/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/chu-ky-email/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-950 text-amber-500 flex items-center justify-center font-bold mb-4">
                 ✍️
@@ -285,7 +296,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 8. Nén Ảnh WebP Card -->
-          <a href="/calculators/nen-anh/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/nen-anh/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-cyan-50 dark:bg-cyan-950 text-cyan-500 flex items-center justify-center font-bold mb-4">
                 📷
@@ -303,7 +314,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 9. Tạo Văn Bản Hành Chính -->
-          <a href="/calculators/tao-van-ban/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/tao-van-ban/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-500 flex items-center justify-center font-bold mb-4">
                 📄
@@ -321,7 +332,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 10. Tạo Ảnh AI Miễn Phí -->
-          <a href="/calculators/tao-anh-ai/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/tao-anh-ai/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-500 flex items-center justify-center font-bold mb-4">
                 🎨
@@ -339,7 +350,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 11. Tính Chỉ Số BMI Cơ Thể -->
-          <a href="/calculators/tinh-bmi/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/tinh-bmi/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-brand-mint flex items-center justify-center font-bold mb-4">
                 ⚖️
@@ -357,7 +368,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 12. Giải Phương Trình Bậc 2, 3 -->
-          <a href="/calculators/giai-phuong-trinh/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/giai-phuong-trinh/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 text-brand-blue flex items-center justify-center font-bold mb-4">
                 🧮
@@ -375,7 +386,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 13. Đếm Ngày Yêu Nhau -->
-          <a href="/calculators/dem-ngay-yeu-nhau/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/dem-ngay-yeu-nhau/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-red-50 dark:bg-red-950 text-red-500 flex items-center justify-center font-bold mb-4">
                 ❤️
@@ -393,7 +404,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 14. Lịch Vạn Niên & Âm Lịch -->
-          <a href="/calculators/lich-van-nien/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/lich-van-nien/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-950 text-amber-500 flex items-center justify-center font-bold mb-4">
                 📅
@@ -411,7 +422,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 15. Kiểm Tra Tốc Độ Mạng (Speedtest) -->
-          <a href="/calculators/speedtest/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/speedtest/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-rose-50 dark:bg-rose-950 text-rose-500 flex items-center justify-center font-bold mb-4">
                 ⚡
@@ -429,7 +440,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 16. Gộp Nhiều File PDF -->
-          <a href="/calculators/gop-pdf/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/gop-pdf/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-red-50 dark:bg-red-950 text-red-500 flex items-center justify-center font-bold mb-4">
                 ➕
@@ -447,7 +458,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 17. Chuyển PDF Sang Word -->
-          <a href="/calculators/pdf-sang-word/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/pdf-sang-word/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-500 flex items-center justify-center font-bold mb-4">
                 🔁
@@ -465,7 +476,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 18. Chuyển Word Sang PDF -->
-          <a href="/calculators/word-sang-pdf/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/word-sang-pdf/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-teal-50 dark:bg-teal-950 text-teal-500 flex items-center justify-center font-bold mb-4">
                 🔄
@@ -483,7 +494,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 19. Tra Cứu Mã Số Thuế -->
-          <a href="/calculators/tra-cuu-mst/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/tra-cuu-mst/" data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-950 text-amber-500 flex items-center justify-center font-bold mb-4">
                 🏢
@@ -501,7 +512,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 20. Tạo CV Xin Việc Online -->
-          <a href="/calculators/tao-cv/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/tao-cv/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-rose-50 dark:bg-rose-950 text-rose-500 flex items-center justify-center font-bold mb-4">
                 💼
@@ -519,7 +530,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 21. Xem Bói Bài Tarot Online -->
-          <a href="/calculators/xem-tarot/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/xem-tarot/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-500 flex items-center justify-center font-bold mb-4">
                 🔮
@@ -537,7 +548,7 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 22. Tra Cứu Lịch Cắt Điện -->
-          <a href="/calculators/lich-cat-dien/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/lich-cat-dien/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-950 text-amber-500 flex items-center justify-center font-bold mb-4">
                 ⚡
@@ -554,35 +565,17 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </a>
 
-          <!-- 23. Máy Tính Lãi Suất Ngân Hàng -->
-          <a href="/calculators/tinh-lai-suat/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 text-brand-blue flex items-center justify-center font-bold mb-4">
-                📈
-              </div>
-              <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:hover:text-brand-mint transition mb-2">
-                Máy Tính Lãi Suất Gửi & Vay
-              </h4>
-              <p class="text-sm text-slate-500 dark:text-slate-400">
-                Tính toán lãi suất vay mua nhà, vay trả góp dư nợ giảm dần hoặc tính tiền lãi gửi tiết kiệm ngân hàng chính xác.
-              </p>
-            </div>
-            <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
-              Mở công cụ <span>→</span>
-            </div>
-          </a>
-
-          <!-- 24. Tính Thuế Giá Trị Gia Tăng (VAT) -->
-          <a href="/calculators/tinh-thue-vat/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <!-- 26. Tính Chế Độ Thai Sản Card -->
+          <a href="/calculators/tinh-che-do-thai-san/" data-category="insurance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-brand-mint flex items-center justify-center font-bold mb-4">
-                🧾
+                🤰
               </div>
-              <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:hover:text-brand-mint transition mb-2">
-                Tính Thuế Giá Trị Gia Tăng (VAT)
+              <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
+                Tính Chế Độ Thai Sản
               </h4>
               <p class="text-sm text-slate-500 dark:text-slate-400">
-                Tính thuế VAT xuôi và bóc tách thuế VAT ngược nhanh chóng theo các mức thuế suất 8%, 10% chuẩn quy định.
+                Tính thời gian nghỉ phép và tiền trợ cấp thai sản nhận từ BHXH cho cả bố và mẹ chuẩn luật mới.
               </p>
             </div>
             <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
@@ -590,24 +583,42 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </a>
 
-          <!-- 25. Đếm Ký Tự & Số Từ Online -->
-          <a href="/calculators/dem-ky-tu-online/" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <!-- 27. Tính Điểm Hòa Vốn Card -->
+          <a href="/calculators/tinh-diem-hoa-von/" data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-500 flex items-center justify-center font-bold mb-4">
-                ✍️
+              <div class="w-12 h-12 rounded-xl bg-orange-50 dark:bg-orange-950 text-orange-500 flex items-center justify-center font-bold mb-4">
+                📈
               </div>
-              <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:hover:text-brand-mint transition mb-2">
-                Đếm Ký Tự & Số Từ Online
+              <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
+                Tính Điểm Hòa Vốn Kinh Doanh
               </h4>
               <p class="text-sm text-slate-500 dark:text-slate-400">
-                Đếm số ký tự (có/không khoảng trắng), số từ, số dòng và số câu thời gian thực hỗ trợ viết bài chuẩn SEO.
+                Tính sản lượng và doanh số bán hàng tối thiểu để bắt đầu có lãi cho quán cafe, cửa hàng FnB.
               </p>
             </div>
             <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
               Mở công cụ <span>→</span>
             </div>
           </a>
-        </div>
+
+          <!-- 28. Regex Explainer Card -->
+          <a href="/calculators/regex-explainer/" data-category="dev" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 text-brand-blue flex items-center justify-center font-bold mb-4">
+                💻
+              </div>
+              <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
+                Regex Explainer Tiếng Việt
+              </h4>
+              <p class="text-sm text-slate-500 dark:text-slate-400">
+                Giải nghĩa biểu thức chính quy (Regex) và kiểm tra so khớp chuỗi văn bản theo thời gian thực.
+              </p>
+            </div>
+            <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
+              Mở công cụ <span>→</span>
+            </div>
+          </a>
+</div>
       </div>
 
       <!-- View More Button -->
@@ -749,4 +760,54 @@ import Layout from '../layouts/Layout.astro';
   // Check on load and hash change
   window.addEventListener('load', checkHash);
   window.addEventListener('hashchange', checkHash);
+
+  // Category Filtering Logic (TinyWow Style)
+  const tabBtns = document.querySelectorAll('.calc-tab-btn');
+  const allCards = document.querySelectorAll('#calculators [data-category], #expandedTools [data-category]');
+
+  function filterTools(category: string) {
+    // Update tab active styling
+    tabBtns.forEach(btn => {
+      if (btn.getAttribute('data-category') === category) {
+        btn.className = "calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 bg-white dark:bg-brand-darkCard text-slate-900 dark:text-white shadow-sm";
+      } else {
+        btn.className = "calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200";
+      }
+    });
+
+    if (category === 'all') {
+      // Restore default layout (first 9 visible, rest hidden, show the Toggle button)
+      toggleTools(false);
+      btnToggleTools?.classList.remove('hidden');
+      
+      allCards.forEach((card, idx) => {
+        const parentGrid = card.parentElement?.parentElement;
+        if (parentGrid && parentGrid.id === 'expandedTools') {
+          card.classList.add('hidden');
+        } else {
+          card.classList.remove('hidden');
+        }
+      });
+    } else {
+      // Specific category: show all matches, hide toggle button, force expand container open
+      btnToggleTools?.classList.add('hidden');
+      expandedTools?.classList.remove('hidden');
+      
+      allCards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (cat === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+  }
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.getAttribute('data-category') || 'all';
+      filterTools(cat);
+    });
+  });
 </script>
