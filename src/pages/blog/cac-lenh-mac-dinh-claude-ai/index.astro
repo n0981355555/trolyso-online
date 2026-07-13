@@ -1,0 +1,264 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Các Lệnh Mặc Định Của Claude AI: Hướng Dẫn Chi Tiết A-Z"
+  description="Khám phá toàn bộ các lệnh mặc định của Claude AI như /explore, /style, /project, /artifact. Hướng dẫn cách dùng chi tiết giúp tối ưu hiệu suất làm việc của bạn."
+>
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/blog/" class="hover:text-brand-blue dark:hover:text-brand-mint">Blog</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500 text-xs truncate max-w-[200px]">Các lệnh mặc định Claude AI</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Article Header -->
+    <div class="border-b border-slate-200 dark:border-slate-800 pb-8 mb-8">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-xs font-bold text-brand-blue dark:text-brand-mint bg-blue-50 dark:bg-blue-950 px-2.5 py-1 rounded-md">
+          Công nghệ
+        </span>
+        <span class="text-xs text-slate-400">Cập nhật: 13/07/2026</span>
+      </div>
+      
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white leading-tight mb-6">
+        Các Lệnh Mặc Định Của Claude AI: Hướng Dẫn Sử Dụng Chi Tiết Từ A-Z (Chuẩn 2026)
+      </h1>
+
+      <!-- Author Box for E-E-A-T -->
+      <div class="flex items-center gap-3 bg-slate-100 dark:bg-slate-800/50 p-4 rounded-2xl border border-transparent hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300">
+        <div class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-sm">
+          CL
+        </div>
+        <div class="text-xs sm:text-sm">
+          <div class="font-bold text-slate-800 dark:text-slate-200">Được biên soạn bởi: Ban Biên Tập Công Nghệ Trợ Lý Số</div>
+          <div class="text-slate-400">Cố vấn nội dung: Kỹ sư Học máy & Xử lý ngôn ngữ tự nhiên (NLP Specialist)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Image -->
+    <div class="mb-8">
+      <img src="/images/blog/cac-lenh-mac-dinh-cua-claude-ai-hero.webp" alt="cac-lenh-mac-dinh-cua-claude-ai" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+      <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 1: Các lệnh mặc định của Claude AI mở ra giải pháp tối ưu hóa năng suất xử lý dữ liệu.</p>
+    </div>
+
+    <!-- Article Content -->
+    <div class="prose prose-slate dark:prose-invert max-w-none text-base leading-relaxed space-y-6">
+      
+      <p>
+        Bên cạnh sự nổi tiếng của ChatGPT, Claude AI (được phát triển bởi tập đoàn Anthropic) đang vươn lên mạnh mẽ như một thế lực hàng đầu trong ngành trí tuệ nhân tạo. Với khả năng viết văn phong tự nhiên, xử lý ngữ cảnh cực lớn (Context Window lên tới 200k tokens) và lập trình chính xác, Claude được giới chuyên môn đánh giá rất cao. Tuy nhiên, để tận dụng triệt để sức mạnh của trợ lý AI này, người dùng cần biết cách sử dụng hệ thống phím tắt và lệnh hệ thống. Bài viết này sẽ hướng dẫn chi tiết về <strong>các lệnh mặc định của Claude AI</strong> nhằm giúp bạn làm việc nhanh hơn gấp 10 lần.
+      </p>
+
+      <!-- Table of Contents -->
+      <div class="bg-slate-50 dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 p-5 rounded-2xl my-6 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300">
+        <h4 class="font-bold text-slate-900 dark:text-white mb-3 mt-0">Mục lục bài viết:</h4>
+        <ul class="list-disc pl-5 space-y-1 text-sm">
+          <li><a href="#tai-sao" class="text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">1. Tại sao nên sử dụng các lệnh mặc định của Claude AI?</a></li>
+          <li><a href="#bang-tong-hop" class="text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">2. Bảng tổng hợp các lệnh mặc định của Claude AI</a></li>
+          <li><a href="#chi-tiet-dung" class="text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">3. Chi tiết cách sử dụng và ví dụ thực tế cho từng lệnh</a></li>
+          <li><a href="#meo-ket-hop" class="text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">4. Mẹo tối ưu hóa hiệu suất làm việc khi kết hợp các lệnh</a></li>
+          <li><a href="#khac-phuc-loi" class="text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">5. Khắc phục lỗi thường gặp khi gõ lệnh hệ thống trong Claude</a></li>
+          <li><a href="#tai-lieu-tham-khao" class="text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">6. Tài liệu tham khảo và bài viết liên quan</a></li>
+        </ul>
+      </div>
+
+      <!-- Section 1 -->
+      <h2 id="tai-sao" class="text-2xl font-heading font-bold text-slate-900 dark:text-white pt-4">1. Tại Sao Nên Sử Dụng Các Lệnh Mặc Định Của Claude AI?</h2>
+      <p>
+        Trong quá trình tương tác với Claude AI, việc nhập các câu lệnh mô tả dài dòng có thể làm loãng ngữ cảnh hội thoại, khiến AI bị mất tập trung hoặc đưa ra câu trả lời quá dài dòng không cần thiết. Hệ thống các lệnh gạch chéo mặc định được sinh ra để khắc phục triệt để nhược điểm này:
+      </p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Định hướng trực tiếp bộ máy xử lý:</strong> Giúp chuyển đổi nhanh giữa các chế độ như xem trước code (Artifacts), truy vấn tài liệu dự án (Projects), hoặc thay đổi giọng điệu phản hồi.</li>
+        <li><strong>Tận dụng tối đa Context Window:</strong> Việc dùng lệnh gạch chéo ngắn gọn giúp giảm lượng token lãng phí cho các câu dẫn dắt dài dòng.</li>
+        <li><strong>Tăng tốc độ phản hồi:</strong> Claude bỏ qua bước phân tích ý định ngôn ngữ tự nhiên để đi trực tiếp vào xử lý tác vụ theo lệnh chỉ định.</li>
+      </ul>
+
+      <div class="my-8">
+        <img src="/images/blog/claude-ai-keyboard-shortcuts.webp" alt="claude-ai-keyboard-shortcuts" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+        <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 2: Hệ thống phím tắt và lệnh hệ thống tối ưu hóa luồng tương tác với mô hình Claude.</p>
+      </div>
+
+      <!-- Section 2 -->
+      <h2 id="bang-tong-hop" class="text-2xl font-heading font-bold text-slate-900 dark:text-white pt-4">2. Bảng Tổng Hợp Các Lệnh Mặc Định Của Claude AI</h2>
+      <p>
+        Dưới đây là bảng tổng hợp tất cả các lệnh gạch chéo mặc định phổ biến nhất trong hệ sinh thái Claude AI (bao gồm phiên bản Web Claude.ai và các công cụ bổ trợ chính thức):
+      </p>
+
+      <div class="overflow-x-auto my-6 border border-slate-200 dark:border-slate-800 rounded-2xl">
+        <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-800 text-sm">
+          <thead class="bg-slate-50 dark:bg-slate-900/50">
+            <tr>
+              <th class="px-4 py-3 text-left font-bold text-slate-900 dark:text-white">Lệnh (Command)</th>
+              <th class="px-4 py-3 text-left font-bold text-slate-900 dark:text-white">Chức năng chính của hệ thống</th>
+              <th class="px-4 py-3 text-left font-bold text-slate-900 dark:text-white">Ví dụ ứng dụng thực tế</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+            <tr>
+              <td class="px-4 py-3 font-mono text-brand-blue dark:text-brand-mint font-bold">/project</td>
+              <td class="px-4 py-3 text-slate-700 dark:text-slate-300">Truy xuất kiến thức từ kho tài liệu Dự án (Project Knowledge) được chỉ định.</td>
+              <td class="px-4 py-3 text-slate-600 dark:text-slate-400">`/project Báo cáo Q2 phân tích số liệu tài chính`</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-mono text-brand-blue dark:text-brand-mint font-bold">/style</td>
+              <td class="px-4 py-3 text-slate-700 dark:text-slate-300">Cài đặt hoặc thay đổi phong cách phản hồi của mô hình (Trang trọng, Ngắn gọn, v.v.).</td>
+              <td class="px-4 py-3 text-slate-600 dark:text-slate-400">`/style viết email từ chối ứng viên lịch sự`</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-mono text-brand-blue dark:text-brand-mint font-bold">/artifact</td>
+              <td class="px-4 py-3 text-slate-700 dark:text-slate-300">Yêu cầu mở hoặc quản lý bảng hiển thị độc lập (Artifact) để lập trình hoặc viết code.</td>
+              <td class="px-4 py-3 text-slate-600 dark:text-slate-400">`/artifact sinh giao diện đăng nhập bằng html`</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-mono text-brand-blue dark:text-brand-mint font-bold">/explore</td>
+              <td class="px-4 py-3 text-slate-700 dark:text-slate-300">Kích hoạt tính năng tìm kiếm sâu, tổng hợp dữ liệu từ nhiều nguồn tài liệu nội bộ.</td>
+              <td class="px-4 py-3 text-slate-600 dark:text-slate-400">`/explore tóm tắt các điểm chung trong 3 file pdf`</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-mono text-brand-blue dark:text-brand-mint font-bold">/clear</td>
+              <td class="px-4 py-3 text-slate-700 dark:text-slate-300">Xóa sạch lịch sử ngữ cảnh tạm thời của phiên chat hiện tại để giải phóng bộ nhớ.</td>
+              <td class="px-4 py-3 text-slate-600 dark:text-slate-400">`/clear`</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-mono text-brand-blue dark:text-brand-mint font-bold">/help</td>
+              <td class="px-4 py-3 text-slate-700 dark:text-slate-300">Hiển thị bảng phím tắt và định nghĩa nhanh các lệnh của hệ thống Claude.</td>
+              <td class="px-4 py-3 text-slate-600 dark:text-slate-400">`/help`</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="my-8">
+        <img src="/images/blog/claude-ai-artifacts-command.webp" alt="claude-ai-artifacts-command" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+        <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 3: Giao diện trực quan của bảng độc lập Artifact hiển thị mã nguồn web của Claude.</p>
+      </div>
+
+      <!-- Section 3 -->
+      <h2 id="chi-tiet-dung" class="text-2xl font-heading font-bold text-slate-900 dark:text-white pt-4">3. Chi Tiết Cách Sử Dụng Và Ví Dụ Thực Tế Cho Từng Lệnh</h2>
+      
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6">3.1 Lệnh /project - Quản Lý Dự Án Chuyên Sâu</h3>
+      <p>
+        Trong tài khoản Claude Pro và Team, tính năng **Projects** cho phép bạn tải lên hàng chục tệp tin tài liệu nội bộ làm cơ sở kiến thức riêng biệt cho từng dự án. Lệnh `/project` giúp bạn chỉ định trực tiếp Claude phải truy xuất từ tệp tin nào để trả lời câu hỏi, tránh việc AI lấy nhầm kiến thức từ các dự án khác.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-950/30 border-l-4 border-brand-blue dark:border-brand-mint p-4 rounded-r-xl my-4 text-sm">
+        <strong>Ví dụ sử dụng thực tế:</strong> Bạn nhập prompt: <br/>
+        <code class="font-mono bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-red-500">/project Kế hoạch marketing tìm các mục tiêu doanh thu của tuần sau</code> <br/>
+        Claude sẽ khóa ngữ cảnh và chỉ tìm đúng tài liệu trong thư mục "Kế hoạch marketing" để đưa ra dữ liệu chính xác nhất.
+      </div>
+
+      <div class="my-8">
+        <img src="/images/blog/claude-ai-project-knowledge.webp" alt="claude-ai-project-knowledge" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+        <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 4: Quản lý và liên kết tài liệu dự án khoa học giúp tăng độ chính xác của phản hồi.</p>
+      </div>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6">3.2 Lệnh /style - Thay Đổi Tông Giọng Và Định Dạng Viết</h3>
+      <p>
+        Một trong những phàn nàn của người dùng là AI thường viết quá rập khuôn hoặc quá dài dòng. Bằng việc sử dụng lệnh `/style`, bạn có thể cài đặt phong cách mặc định cho câu trả lời của Claude trong suốt phiên chat.
+      </p>
+      <p>
+        Các phong cách thông dụng bao gồm: **concise** (ngắn gọn), **formal** (trang trọng), **creative** (sáng tạo), hoặc định dạng theo quy định hành chính của Việt Nam.
+      </p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6">3.3 Lệnh /artifact - Tối Ưu Hóa Trình Lập Trình Và Soạn Thảo</h3>
+      <p>
+        Trình hiển thị **Artifacts** của Claude là tính năng xuất sắc nhất vượt trội hơn hẳn đối thủ. Khi bạn cần sinh mã nguồn HTML/CSS/JS, vẽ sơ đồ Mermaid, hoặc thiết kế tài liệu Markdown dài, lệnh `/artifact` ép buộc Claude mở bảng hiển thị độc lập bên phải màn hình để hiển thị mã nguồn trực quan. Bạn có thể xem trước (Preview) giao diện chạy thử ngay trên trình duyệt mà không cần phải cài đặt môi trường lập trình phức tạp.
+      </p>
+
+      <div class="my-8">
+        <img src="/images/blog/claude-ai-custom-style-prompt.webp" alt="claude-ai-custom-style-prompt" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+        <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 5: Thiết lập hướng dẫn hệ thống tùy chỉnh giúp định hình giọng điệu phản hồi của Claude.</p>
+      </div>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6">3.4 Lệnh /explore - Phân Tích Sâu Dữ Liệu Tổng Hợp</h3>
+      <p>
+        Khi bạn đối mặt với các file dữ liệu khổng lồ (báo cáo tài chính, tài liệu kỹ thuật dài hàng trăm trang), lệnh `/explore` giúp kích hoạt khả năng phân tích chuỗi dài. Claude sẽ chia nhỏ tệp dữ liệu, phân tích đa chiều và đưa ra kết luận logic chi tiết nhất.
+      </p>
+
+      <div class="my-8">
+        <img src="/images/blog/claude-ai-code-generation-command.webp" alt="claude-ai-code-generation-command" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+        <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 6: Sinh mã nguồn website lập trình giao diện trực tiếp trên bảng Artifacts của Claude.</p>
+      </div>
+
+      <!-- Section 4 -->
+      <h2 id="meo-ket-hop" class="text-2xl font-heading font-bold text-slate-900 dark:text-white pt-4">4. Mẹo Tối Ưu Hóa Hiệu Suất Làm Việc Khi Kết Hợp Các Lệnh</h2>
+      <p>
+        Để tận dụng tối đa sức mạnh của <strong>các lệnh mặc định của Claude AI</strong>, bạn nên ghi nhớ các mẹo thực hành sau:
+      </p>
+      <ol class="list-decimal pl-6 space-y-2">
+        <li><strong>Kiểm soát độ dài văn bản kết quả:</strong> Khi nhờ Claude viết các bài báo cáo, phân tích tài liệu dài qua lệnh `/artifact`, việc kiểm soát chính xác số từ rất quan trọng. Bạn có thể sử dụng kết hợp với các công cụ kiểm tra độ dài văn bản bên ngoài của chúng tôi để đo lường chính xác số từ viết ra.</li>
+        <li><strong>Kết hợp /project với /style:</strong> Luôn đặt cấu hình giọng điệu mặc định của bạn bằng lệnh `/style` ngay khi khởi tạo một `/project` mới để các câu trả lời sau đó luôn đồng điệu và đúng chuẩn.</li>
+      </ol>
+
+      <div class="my-8">
+        <img src="/images/blog/claude-ai-document-analysis.webp" alt="claude-ai-document-analysis" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+        <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 7: Khai thác khả năng đọc hiểu ngữ cảnh siêu lớn của Claude trong việc phân tích tệp tài liệu PDF nặng.</p>
+      </div>
+
+      <!-- Section 5 -->
+      <h2 id="khac-phuc-loi" class="text-2xl font-heading font-bold text-slate-900 dark:text-white pt-4">5. Khắc Phục Lỗi Thường Gặp Khi Gõ Lệnh Hệ Thống Trong Claude</h2>
+      <p>
+        Một số lỗi cơ bản thường gặp khiến hệ thống không nhận lệnh:
+      </p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><strong>Lỗi gõ phím viết thường/viết hoa:</strong> Các lệnh hệ thống của Claude bắt buộc phải viết bằng chữ thường (Ví dụ: `/project` là đúng, gõ `/PROJECT` hệ thống sẽ nhận diện sai và coi đó là văn bản thường).</li>
+        <li><strong>Nhầm lẫn giữa lệnh Web và API:</strong> Một số lệnh nâng cao chỉ hoạt động trên giao diện Web chính thức của Anthropic (`Claude.ai`), nếu bạn gọi qua API kết nối trung gian thì lệnh sẽ không được dịch nghĩa.</li>
+      </ul>
+
+      <div class="my-8">
+        <img src="/images/blog/to-uu-hieu-suat-claude-ai.webp" alt="to-uu-hieu-suat-claude-ai" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+        <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 8: Tiết kiệm tối đa thời gian tương tác bằng việc ứng dụng phím tắt gạch chéo.</p>
+      </div>
+
+      <!-- CTA Tool Card -->
+      <div class="bg-gradient-to-r from-emerald-600 to-teal-700 rounded-2xl p-6 sm:p-8 text-white my-8 shadow-lg shadow-emerald-500/10">
+        <h4 class="text-xl font-bold mb-2">Đo Lường Độ Dài Văn Bản Với Công Cụ Đếm Ký Tự Online</h4>
+        <p class="text-sm opacity-90 mb-6">Claude AI giới hạn số lượng ký tự nhập vào cho mỗi lượt gửi prompt để tránh tràn bộ nhớ đệm. Hãy sử dụng công cụ đếm ký tự của chúng tôi để chuẩn hóa độ dài prompt trước khi tương tác!</p>
+        <a href="/calculators/dem-ky-tu-online/" class="inline-block bg-white text-emerald-600 font-bold px-6 py-3 rounded-xl hover:bg-slate-100 transition shadow-md text-sm">
+          👉 Trải nghiệm công cụ đếm ký tự ngay
+        </a>
+      </div>
+
+      <!-- Section 6 -->
+      <h2 id="tai-lieu-tham-khao" class="text-2xl font-heading font-bold text-slate-900 dark:text-white pt-4">6. Tài Liệu Tham Khảo Và Bài Viết Liên Quan</h2>
+      
+      <h4 class="text-lg font-bold text-slate-800 dark:text-slate-200 mt-4 mb-2">Tài liệu tham khảo & Nguồn uy tín:</h4>
+      <ul class="list-disc pl-6 space-y-1 text-sm text-slate-500">
+        <li>Cẩm nang hướng dẫn sử dụng sản phẩm chính thức của Anthropic: [Anthropic Help Center](https://support.anthropic.com)</li>
+        <li>Chương trình hỗ trợ doanh nghiệp tiếp cận công nghệ số của Chính phủ Việt Nam: [chinhphu.vn](https://chinhphu.vn)</li>
+      </ul>
+
+      <h4 class="text-lg font-bold text-slate-800 dark:text-slate-200 mt-6 mb-2">Bài viết liên quan hữu ích:</h4>
+      <ul class="list-disc pl-6 space-y-1 text-sm">
+        <li>
+          <a href="/blog/cac-lenh-mac-dinh-chatgpt/" class="text-brand-blue dark:text-brand-mint hover:underline">
+            Các Lệnh Mặc Định Của Hệ Thống ChatGPT: Hướng Dẫn Chi Tiết A-Z (Chuẩn 2026)
+          </a>
+        </li>
+        <li>
+          <a href="/blog/cong-cu-dem-ky-tu-online-mien-phi/" class="text-brand-blue dark:text-brand-mint hover:underline">
+            Công Cụ Đếm Ký Tự Online: Cách Đếm Từ & Đoạn Văn Bản Miễn Phí 2026
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </main>
+</Layout>
