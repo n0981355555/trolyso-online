@@ -127,7 +127,7 @@ import Layout from '../layouts/Layout.astro';
           <button class="calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200" data-category="dev" aria-label="Công cụ lập trình viên">💻 Lập trình</button>
         </div>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div id="calculators-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- 1. BHXH Card -->
         <a href="/calculators/tinh-bhxh-1-lan/" data-category="insurance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
           <div>
@@ -289,11 +289,6 @@ import Layout from '../layouts/Layout.astro';
             Mở công cụ <span>→</span>
           </div>
         </a>
-      </div>
-
-      <!-- Expandable section (Xem thêm) -->
-      <div id="expandedTools" class="hidden mt-6 animate-fade-in">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- 7. Chữ Ký Email Card -->
           <a href="/calculators/chu-ky-email/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
             <div>
@@ -635,7 +630,6 @@ import Layout from '../layouts/Layout.astro';
               Mở công cụ <span>→</span>
             </div>
           </a>
-</div>
       </div>
 
       <!-- View More Button -->
@@ -738,33 +732,79 @@ import Layout from '../layouts/Layout.astro';
   // Initial Calculation
   calculateSalary();
 
-  // Directory expander toggle logic
+  // Directory expander & Category filtering logic (TinyWow style)
   const btnToggleTools = document.getElementById('btnToggleTools');
-  const expandedTools = document.getElementById('expandedTools');
   const btnToggleText = document.getElementById('btnToggleText');
   const btnToggleIcon = document.getElementById('btnToggleIcon');
+  const allCards = document.querySelectorAll('#calculators-grid [data-category]');
 
-  function toggleTools(show: boolean) {
-    if (show) {
-      expandedTools?.classList.remove('hidden');
-      if (btnToggleText) btnToggleText.innerText = "Thu gọn bớt";
-      if (btnToggleIcon) btnToggleIcon.innerText = "↑";
+  let isExpanded = false;
+  let currentCategory = 'all';
+
+  function updateVisibleTools() {
+    if (currentCategory === 'all') {
+      btnToggleTools?.classList.remove('hidden');
+      
+      allCards.forEach((card, idx) => {
+        if (isExpanded) {
+          card.classList.remove('hidden');
+        } else {
+          // Show only first 9 cards (indices 0 to 8)
+          if (idx < 9) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        }
+      });
+
+      if (btnToggleText) btnToggleText.innerText = isExpanded ? "Thu gọn bớt" : "Xem thêm công cụ";
+      if (btnToggleIcon) btnToggleIcon.innerText = isExpanded ? "↑" : "↓";
     } else {
-      expandedTools?.classList.add('hidden');
-      if (btnToggleText) btnToggleText.innerText = "Xem thêm công cụ";
-      if (btnToggleIcon) btnToggleIcon.innerText = "↓";
+      // Specific category: show all matching cards from the single grid, hide the toggle button
+      btnToggleTools?.classList.add('hidden');
+      
+      allCards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (cat === currentCategory) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
     }
   }
 
   btnToggleTools?.addEventListener('click', () => {
-    const isHidden = expandedTools?.classList.contains('hidden');
-    toggleTools(!!isHidden);
+    isExpanded = !isExpanded;
+    updateVisibleTools();
+  });
+
+  const tabBtns = document.querySelectorAll('.calc-tab-btn');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.getAttribute('data-category') || 'all';
+      currentCategory = cat;
+      isExpanded = false; // Reset expand state when switching category
+      updateVisibleTools();
+
+      // Update tab active styling
+      tabBtns.forEach(b => {
+        if (b.getAttribute('data-category') === cat) {
+          b.className = "calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 bg-white dark:bg-brand-darkCard text-slate-900 dark:text-white shadow-sm";
+        } else {
+          b.className = "calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200";
+        }
+      });
+    });
   });
 
   // Handle hash routing to expand tools list and scroll
   function checkHash() {
     if (window.location.hash === '#calculators') {
-      toggleTools(true);
+      isExpanded = true;
+      currentCategory = 'all';
+      updateVisibleTools();
       setTimeout(() => {
         const target = document.getElementById('calculators');
         if (target) {
@@ -775,56 +815,9 @@ import Layout from '../layouts/Layout.astro';
   }
 
   // Check on load and hash change
-  window.addEventListener('load', checkHash);
-  window.addEventListener('hashchange', checkHash);
-
-  // Category Filtering Logic (TinyWow Style)
-  const tabBtns = document.querySelectorAll('.calc-tab-btn');
-  const allCards = document.querySelectorAll('#calculators [data-category], #expandedTools [data-category]');
-
-  function filterTools(category: string) {
-    // Update tab active styling
-    tabBtns.forEach(btn => {
-      if (btn.getAttribute('data-category') === category) {
-        btn.className = "calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 bg-white dark:bg-brand-darkCard text-slate-900 dark:text-white shadow-sm";
-      } else {
-        btn.className = "calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200";
-      }
-    });
-
-    if (category === 'all') {
-      // Restore default layout (first 9 visible, rest hidden, show the Toggle button)
-      toggleTools(false);
-      btnToggleTools?.classList.remove('hidden');
-      
-      allCards.forEach((card, idx) => {
-        const parentGrid = card.parentElement?.parentElement;
-        if (parentGrid && parentGrid.id === 'expandedTools') {
-          card.classList.add('hidden');
-        } else {
-          card.classList.remove('hidden');
-        }
-      });
-    } else {
-      // Specific category: show all matches, hide toggle button, force expand container open
-      btnToggleTools?.classList.add('hidden');
-      expandedTools?.classList.remove('hidden');
-      
-      allCards.forEach(card => {
-        const cat = card.getAttribute('data-category');
-        if (cat === category) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-    }
-  }
-
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const cat = btn.getAttribute('data-category') || 'all';
-      filterTools(cat);
-    });
+  window.addEventListener('load', () => {
+    updateVisibleTools();
+    checkHash();
   });
+  window.addEventListener('hashchange', checkHash);
 </script>
