@@ -37,7 +37,10 @@ Mỗi khi người dùng yêu cầu viết bài viết mới (Blog Post) chuẩn
 
 ## 5. Quy tắc Thiết kế Công cụ & Tối ưu Trải nghiệm (E-E-A-T & Lighthouse)
 * **Tích hợp Đa ngôn ngữ (Việt - Anh):** Tất cả các công cụ mới phải hỗ trợ chuyển đổi ngôn ngữ Việt - Anh đồng bộ thông qua đối tượng `translations` trong `src/layouts/Layout.astro` và kiểm tra trạng thái `localStorage.getItem("lang") === "en"` trong script tính toán.
-* **Đảm bảo chuẩn E-E-A-T:** Mỗi bài viết blog mới bắt buộc phải chứa Hộp tác giả & Kiểm duyệt chuyên môn dạng Card (E-E-A-T Author Box) ở đầu trang với thông tin chuyên môn rõ ràng (như CPA, Thạc sĩ Luật, Chuyên gia Nhân sự...).
+* **Đảm bảo chuẩn E-E-A-T cho Bài viết:**
+  - Mỗi bài viết blog mới bắt buộc phải chứa Hộp tác giả & Kiểm duyệt chuyên môn dạng Card (E-E-A-T Author Box) ở đầu trang với thông tin chuyên môn rõ ràng.
+  - Bắt buộc chèn thẻ script cấu trúc dữ liệu **JSON-LD BlogPosting Schema** ở thẻ head của bài viết (chứa headline, description, image, datePublished, author, và publisher) để Google nhận diện thực thể bài viết tối ưu.
+  - Tích hợp các thẻ **Meta Open Graph (og:title, og:description, og:image)** để tối ưu hiển thị xem trước khi người dùng chia sẻ link lên mạng xã hội (Facebook, Zalo).
 * **Tối ưu hóa Lighthouse (Accessibility & Performance):**
   - Tất cả các nút, ô nhập liệu, bộ chọn và liên kết (đặc biệt là liên kết chỉ chứa SVG ở footer) phải có thẻ `aria-label` mô tả rõ ràng hành động.
   - Các tài nguyên như font chữ phải khai báo `preconnect`.

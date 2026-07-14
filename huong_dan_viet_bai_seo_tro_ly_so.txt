@@ -1,0 +1,213 @@
+HƯỚNG DẪN VIẾT BÀI CHUẨN SEO VÀ ĐỒNG BỘ HỆ THỐNG - TRỢ LÝ SỐ
+===========================================================
+
+Tài liệu này dành cho các Agent hoặc Chuyên viên SEO được thuê để viết bài, tối ưu hình ảnh, và tự động đồng bộ hóa dữ liệu lên hệ thống website Trợ Lý Số (https://trolyso.online).
+
+Mỗi khi xuất bản một bài viết blog mới, bạn phải tuân thủ tuyệt đối 4 bước quy chuẩn dưới đây:
+
+BƯỚC 1: KHỞI TẠO TRANG BLOG MỚI (FILE ASTRO)
+--------------------------------------------
+Tạo một file index.astro mới tại đường dẫn: 
+src/pages/blog/<slug-viet-tat-khong-dau>/index.astro
+
+MÃ NGUỒN MẪU CHUẨN CỦA MỘT BÀI VIẾT:
+----------------------------------
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="[Tiêu đề bài viết chứa từ khóa chính - Dưới 60 ký tự]"
+  description="[Mô tả ngắn chứa từ khóa chính - Khoảng 150-160 ký tự]"
+  image="/images/blog/[slug-ten-anh-hero].webp"
+>
+  <!-- 1. JSON-LD BlogPosting Schema (E-E-A-T) -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "[Tiêu đề bài viết]",
+      "description": "[Mô tả ngắn]",
+      "image": "https://trolyso.online/images/blog/[slug-ten-anh-hero].webp",
+      "datePublished": "2026-07-15T08:00:00+07:00",
+      "dateModified": "2026-07-15T08:00:00+07:00",
+      "author": {
+        "@type": "Person",
+        "name": "[Tên tác giả chuyên gia]",
+        "jobTitle": "[CPA / Luật sư / Chuyên gia Nhân sự...]"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trợ Lý Số",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://trolyso.online/logo.png"
+        }
+      }
+    }
+  </script>
+
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <!-- 2. BREADCRUMBS (Đường dẫn điều hướng) -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/blog/" class="hover:text-brand-blue dark:hover:text-brand-mint">Blog</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500 text-xs truncate max-w-[200px]">[Tiêu đề viết tắt]</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- 3. HEADER & E-E-A-T AUTHOR BOX -->
+    <div class="border-b border-slate-200 dark:border-slate-800 pb-8 mb-8">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-xs font-bold text-brand-blue dark:text-brand-mint bg-blue-50 dark:bg-blue-950 px-2.5 py-1 rounded-md">
+          [Chủ đề]
+        </span>
+        <span class="text-xs text-slate-400">Cập nhật: 15/07/2026</span>
+      </div>
+      
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white leading-tight mb-6">
+        [Tiêu đề H1 chứa từ khóa chính]
+      </h1>
+
+      <!-- Author Box (Có hiệu ứng hover sáng viền) -->
+      <div class="flex items-center gap-3 bg-slate-100 dark:bg-slate-800/50 p-4 rounded-2xl border border-transparent hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300">
+        <div class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-sm">
+          SP
+        </div>
+        <div class="text-xs sm:text-sm">
+          <div class="font-bold text-slate-800 dark:text-slate-200">Biên soạn bởi: [Tên tác giả]</div>
+          <div class="text-slate-400">Kiểm duyệt chuyên môn: [Hội đồng chuyên môn]</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. HERO IMAGE -->
+    <div class="mb-8">
+      <img src="/images/blog/[slug-anh-hero].webp" alt="[alt-tieng-viet-khong-dau]" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+      <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 1: [Mô tả chi tiết ảnh]</p>
+    </div>
+
+    <!-- 5. TABLE OF CONTENTS (Mục lục liên kết neo) -->
+    <div class="bg-slate-50 dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 p-5 rounded-2xl my-6 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300">
+      <h4 class="font-bold text-slate-900 dark:text-white mb-3 mt-0">Mục lục bài viết:</h4>
+      <ul class="list-disc pl-5 space-y-1 text-sm">
+        <li><a href="#id-muc-1" class="text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">1. [Tiêu đề H2 mục 1]</a></li>
+        <li><a href="#id-muc-2" class="text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">2. [Tiêu đề H2 mục 2]</a></li>
+      </ul>
+    </div>
+
+    <!-- 6. THÂN BÀI (Prose layout, chứa H2, H3, ảnh minh họa có caption) -->
+    <div class="prose prose-slate dark:prose-invert max-w-none text-base leading-relaxed space-y-6">
+      
+      <p>[Đoạn mở đầu chứa từ khóa chính từ 1-2 lần]</p>
+
+      <h2 id="id-muc-1">1. [Tiêu đề H2 mục 1]</h2>
+      <p>[Nội dung phân tích chi tiết...]</p>
+
+      <!-- Chèn ảnh minh họa: Mật độ 350 - 400 từ / 1 ảnh -->
+      <div class="my-8">
+        <img src="/images/blog/[slug-anh-body-1].webp" alt="[alt-viet-thuong-khong-dau]" class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+        <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">Hình 2: [Mô tả chi tiết nội dung hình ảnh]</p>
+      </div>
+
+      <h2 id="id-muc-2">2. [Tiêu đề H2 mục 2]</h2>
+      <p>[Nội dung phân tích...]</p>
+
+      <!-- 7. CTA CARD (Dẫn về công cụ tương ứng tăng tỷ lệ chuyển đổi) -->
+      <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-6 sm:p-8 text-white my-8 shadow-lg">
+        <h4 class="text-xl font-bold mb-2">[Tiêu đề kêu gọi dùng tool]</h4>
+        <p class="text-sm opacity-90 mb-6">[Lợi ích khi dùng tool trên web]</p>
+        <a href="/calculators/[slug-cong-cu]/" class="inline-block bg-white text-blue-600 font-bold px-6 py-3 rounded-xl hover:bg-slate-100 transition shadow-md text-sm">
+          👉 Trải nghiệm công cụ [Tên công cụ] ngay
+        </a>
+      </div>
+
+      <!-- 8. TÀI LIỆU THAM KHẢO & LIÊN KẾT NGOÀI -->
+      <h2 id="tai-lieu-tham-khao">Tài liệu tham khảo & Nguồn uy tín:</h2>
+      <ul class="list-disc pl-6 text-sm text-slate-500">
+        <li>Văn bản pháp luật của Chính phủ: [Tên Nghị định/Thông tư](URL)</li>
+      </ul>
+
+      <h2>Bài viết liên quan hữu ích:</h2>
+      <ul class="list-disc pl-6">
+        <li>
+          <a href="/blog/[slug-bai-lien-quan]/" class="text-brand-blue dark:text-brand-mint hover:underline">
+            [Tiêu đề bài viết liên quan khác trên web]
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </main>
+</Layout>
+
+
+BƯỚC 2: QUY ĐỊNH TỐI ƯU ẢNH CHUẨN SEO (RẤT QUAN TRỌNG)
+-----------------------------------------------------
+1. Mật độ: Cứ 350 - 400 từ phải có 1 ảnh minh họa (Gồm cả ảnh Hero và ảnh Thân bài).
+2. Định dạng: Bắt buộc dùng đuôi .webp. Kích thước chiều rộng cố định 800px, dung lượng bắt buộc dưới 100KB để tối ưu điểm PageSpeed.
+3. Tên file ảnh & Alt: Viết thường, tiếng Việt không dấu, nối bằng dấu gạch ngang.
+   - Ví dụ đúng: `tinh-luong-net-sang-gross-hero.webp`
+   - Alt đúng: `alt="cach-tinh-luong-net-sang-gross"`
+   - Tuyệt đối không để trống thẻ alt.
+4. Caption (Chú thích): Bắt buộc có thẻ `<p class="text-xs text-center text-slate-400 mt-2 italic font-normal">Hình [Số thứ tự]: [Mô tả chi tiết ảnh]</p>` ngay dưới thẻ img.
+5. Style Guide tạo ảnh AI (Nếu dùng Midjourney/DALL-E):
+   - Phong cách 01 (Vector SaaS Illustration): Flat Vector Illustration, cute cartoon characters in modern SaaS style with slightly large heads, dark blue outlines, light pastel colors, bright white background, clean layout, vector website UI mockups, simple illustrative icons, financial infographics, minimal shadows, soft lines, style similar to Storyset, DrawKit, ManyPixels, unDraw, professional, friendly, modern, highly detailed, no photorealistic, no 3D, no anime, no watermark, no text.
+   - Phong cách 02 (Chibi Watercolor): Cute kawaii chibi anime character, cozy Japanese manga illustration style, soft hand-drawn colored pencil outlines, gentle digital watercolor paint, warm pastel colors, light cream background, clean minimalist layout, soft lighting, highly detailed, friendly, professional, style similar to cozy Japanese lifestyle infographics, no photorealistic, no 3D, no watermark, no text.
+
+
+BƯỚC 3: ĐỒNG BỘ HÓA HỆ THỐNG SAU KHI ĐĂNG BÀI
+--------------------------------------------
+Mỗi khi viết xong 1 bài viết mới, phải cập nhật vào 3 file hệ thống:
+
+1. Thêm bài viết vào thẻ posts đầu mảng (để hiển thị ở đầu trang danh mục) tại:
+   src/pages/blog/index.astro
+   Định dạng Object:
+   {
+     title: "[Tiêu đề bài viết]",
+     description: "[Mô tả ngắn]",
+     slug: "[slug-thư-mục]",
+     category: "[Chuyên mục]",
+     date: "DD/MM/YYYY",
+     readTime: "[N] phút",
+     badge: "Mới"
+   },
+
+2. Thêm đường dẫn vào đầu mảng searchIndex tại:
+   public/search-index.json
+   Định dạng:
+   {
+     "title": "Bài viết: [Tiêu đề bài viết]",
+     "desc": "[Mô tả ngắn]",
+     "url": "/blog/[slug-thư-mục]/"
+   }
+
+3. Thêm thẻ URL vào đầu danh sách sitemap tại:
+   public/sitemap.xml
+   Định dạng:
+   <url>
+     <loc>https://trolyso.online/blog/[slug-thư-mục]/</loc>
+     <lastmod>YYYY-MM-DD</lastmod>
+     <changefreq>weekly</changefreq>
+     <priority>0.8</priority>
+   </url>
+
+
+BƯỚC 4: KIỂM TRA SẢN PHẨM (BUILD TEST)
+--------------------------------------
+Sau khi hoàn thành, phải chạy lệnh sau trên terminal thư mục gốc của dự án:
+npm run build
+Đảm bảo không có bất kỳ lỗi cú pháp hoặc lỗi biên dịch esbuild nào xảy ra (Build output trả về "Complete!").
