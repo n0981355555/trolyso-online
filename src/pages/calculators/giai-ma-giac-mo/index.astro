@@ -1,0 +1,295 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Giải Mã Giấc Mơ Online - Tra Cứu Sổ Mơ Số May Mắn Miễn Phí" 
+  description="Công cụ giải mã điềm báo giấc mơ online. Tra cứu ý nghĩa tâm linh và các con số may mắn tương ứng theo sổ mơ dân gian chuẩn xác."
+>
+  <main class="max-w-6xl mx-auto px-4 py-8 sm:py-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">
+            Trang chủ
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Giải mã giấc mơ</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        Giải Mã Giấc Mơ & Số May Mắn
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Điền chi tiết hoặc từ khóa về giấc mơ của bạn để tra cứu ý nghĩa điềm báo cát hung và nhận các con số tài lộc tương ứng.
+      </p>
+    </div>
+
+    <!-- Main Tool Box -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+      <!-- Input Card (Left Column) -->
+      <div class="lg:col-span-5 bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 transition-colors">
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <span>🔮</span> Nhập giấc mơ của bạn
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Dream Input -->
+          <div>
+            <label for="dreamInput" class="block text-sm font-bold text-slate-700 dark:text-slate-350 mb-2">
+              Bạn đã mơ thấy điều gì? (Nhập tiếng Việt)
+            </label>
+            <textarea 
+              id="dreamInput" 
+              rows="4"
+              placeholder="Ví dụ: tôi mơ thấy rắn cắn vào chân, nhặt được nhiều tiền vàng, bị mất xe..."
+              class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint focus:border-transparent text-slate-900 dark:text-white transition text-sm"
+            ></textarea>
+          </div>
+
+          <!-- Action Button -->
+          <button 
+            id="btnInterpret"
+            class="w-full py-4 bg-purple-600 hover:bg-purple-700 text-white font-extrabold rounded-xl shadow-lg shadow-purple-500/10 hover:scale-[1.02] active:scale-95 transition-all text-base"
+          >
+            GIẢI MÃ GIẤC MƠ
+          </button>
+        </div>
+      </div>
+
+      <!-- Result Card (Right Column) -->
+      <div class="lg:col-span-7 bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 transition-colors flex flex-col justify-between">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+            <span>📖</span> Điềm báo & Số tài lộc
+          </h2>
+
+          <!-- Result Display -->
+          <div id="resultBox" class="space-y-6">
+            <!-- Default placeholder -->
+            <div id="interpretPlaceholder" class="text-center py-12 text-slate-400 font-medium">
+              Nhập giấc mơ ở cột bên trái và nhấn nút để xem ý nghĩa tâm linh.
+            </div>
+
+            <!-- Real interpretation details -->
+            <div id="interpretResult" class="hidden space-y-6">
+              <!-- Meaning banner -->
+              <div class="p-5 bg-purple-50 dark:bg-purple-950/20 border border-purple-100 dark:border-purple-900/60 rounded-2xl">
+                <span class="block text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider mb-2">Ý nghĩa tâm linh:</span>
+                <p id="resMeaning" class="text-slate-800 dark:text-slate-200 text-sm leading-relaxed">
+                  Đang phân tích ý nghĩa giấc mơ...
+                </p>
+              </div>
+
+              <!-- Lucky Numbers block -->
+              <div>
+                <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Con số may mắn tương ứng:</span>
+                <div id="resNumbers" class="flex flex-wrap gap-2">
+                  <!-- Dynamic numbers here -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-450 dark:text-slate-500 leading-relaxed">
+          * Giải mã giấc mơ dựa trên tổng hợp sổ mơ dân gian, phong thủy phương Đông và tâm lý học phân tâm. Thông tin mang tính chất tham khảo giải trí.
+        </div>
+      </div>
+    </div>
+
+    <!-- Handbook Guide Section -->
+    <section class="max-w-4xl mx-auto bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm Nang Giải Mã Giấc Mơ & Ý Nghĩa Điềm Báo
+      </h2>
+      
+      <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4 text-sm">
+        <p>
+          Giấc mơ là tấm gương phản chiếu tâm lý tiềm thức của con người. Theo quan niệm phương Đông, giấc mơ còn mang các tín hiệu điềm báo tương lai (Cát hay Hung). Sổ mơ dân gian lưu giữ các con số gắn liền với các hiện tượng trong mơ để mang lại may mắn.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">1. Cách nhớ chi tiết để tra cứu chuẩn xác</h3>
+        <p>
+          Khi thức dậy, bạn nên ghi nhớ ngay các vật thể hoặc hành động chính xuất hiện trong mơ (Ví dụ: Mơ thấy rắn cắn khác với mơ thấy rắn bò vào nhà). Nhập các từ khóa ngắn gọn, rõ ràng sẽ giúp công cụ lọc kết quả sổ mơ chính xác nhất.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">2. Bản chất tâm lý học của giấc mơ</h3>
+        <p>
+          Nhà phân tâm học Sigmund Freud cho rằng giấc mơ thể hiện những ham muốn hoặc nỗi sợ hãi bị kìm nén của con người. Việc lý giải giấc mơ giúp bạn thấu hiểu bản thân, giảm căng thẳng lo âu trong cuộc sống thực tế.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const dreamInput = document.getElementById('dreamInput');
+    const btnInterpret = document.getElementById('btnInterpret');
+    
+    const interpretPlaceholder = document.getElementById('interpretPlaceholder');
+    const interpretResult = document.getElementById('interpretResult');
+    const resMeaning = document.getElementById('resMeaning');
+    const resNumbers = document.getElementById('resNumbers');
+
+    // Simple dictionary database
+    const dreamDb = [
+      {
+        keys: ['rắn', 'ran'],
+        meaning: 'Mơ thấy rắn là điềm báo về sức mạnh, sự cám dỗ, tái sinh hoặc có sự thay đổi lớn trong cuộc sống. Nếu rắn cắn, bạn sắp có tài lộc bất ngờ.',
+        numbers: [32, 42, 72]
+      },
+      {
+        keys: ['tiền', 'tien', 'nhặt được tiền', 'nhat duoc tien'],
+        meaning: 'Mơ thấy tiền thể hiện khao khát thành công, danh vọng hoặc nỗi lo âu về tài chính hiện tại. Nhặt được tiền là điềm báo tài vận sắp hanh thông.',
+        numbers: [02, 52, 82]
+      },
+      {
+        keys: ['chó', 'cho'],
+        meaning: 'Mơ thấy chó là điềm lành về tình bạn, sự trung thành và được bảo vệ. Nếu chó sủa, cảnh báo có sự bất hòa nhỏ sắp xảy ra.',
+        numbers: [29, 59, 95]
+      },
+      {
+        keys: ['mèo', 'meo'],
+        meaning: 'Mơ thấy mèo thể hiện trực giác nhạy bén, tính độc lập nhưng cũng cảnh báo có kẻ tiểu nhân đang nói xấu sau lưng bạn.',
+        numbers: [18, 58, 89]
+      },
+      {
+        keys: ['người chết', 'nguoi chet', 'xác chết', 'xac chet'],
+        meaning: 'Mơ thấy người chết thường là điềm lành báo hiệu sự kết thúc của những khó khăn cũ để đón nhận cơ hội tài lộc mới sắp gõ cửa.',
+        numbers: [43, 83]
+      },
+      {
+        keys: ['cá', 'ca'],
+        meaning: 'Mơ thấy cá biểu thị cho sự thịnh vượng, tài lộc dồi dào và gia đình sắp đón tin vui, sự sinh sôi nảy nở.',
+        numbers: [79, 56]
+      },
+      {
+        keys: ['rụng răng', 'rung rang', 'gãy răng', 'gay rang'],
+        meaning: 'Mơ thấy rụng răng phản ánh sự lo âu, căng thẳng về ngoại hình, năng lực bản thân hoặc lo lắng sức khỏe người thân trong gia đình.',
+        numbers: [31, 32, 52]
+      },
+      {
+        keys: ['đám cưới', 'dam cuoi', 'kết hôn', 'ket hon'],
+        meaning: 'Mơ thấy đám cưới biểu thị mong muốn gắn kết tình cảm lâu dài hoặc báo hiệu một giai đoạn khởi đầu mới đầy hy vọng.',
+        numbers: [07, 27, 92]
+      },
+      {
+        keys: ['lửa', 'lua', 'cháy', 'chay'],
+        meaning: 'Mơ thấy lửa hoặc cháy nhà thể hiện nhiệt huyết cháy bỏng, năng lượng dồi dào hoặc điềm báo gia đạo sắp phát tài phát lộc.',
+        numbers: [08, 48, 88]
+      },
+      {
+        keys: ['nước', 'nuoc', 'sông', 'song', 'biển', 'bien'],
+        meaning: 'Mơ thấy nước trong xanh là điềm báo tâm trí thanh thản, mọi sự hanh thông. Nước lũ dâng cao cảnh báo cảm xúc đang bị quá tải.',
+        numbers: [16, 66, 86]
+      },
+      {
+        keys: ['khóc', 'khoc'],
+        meaning: 'Mơ thấy mình khóc là dấu hiệu tâm lý đang tự giải tỏa những ức chế, lo âu ngoài đời thực, báo hiệu niềm vui sắp tới.',
+        numbers: [85, 45]
+      },
+      {
+        keys: ['bay', 'bay lượn', 'bay luon'],
+        meaning: 'Mơ thấy mình bay lượn thể hiện khát vọng tự do, muốn vượt lên trên các khó khăn hiện tại và đạt được thành tựu lớn.',
+        numbers: [05, 25, 45]
+      },
+      {
+        keys: ['ma', 'quỷ', 'quy'],
+        meaning: 'Mơ thấy ma quỷ phản ánh nỗi sợ hãi mơ hồ ẩn sâu trong tiềm thức hoặc những vương vấn từ quá khứ chưa thể buông bỏ.',
+        numbers: [72, 85]
+      },
+      {
+        keys: ['đi học', 'di hoc', 'đi thi', 'di thi'],
+        meaning: 'Mơ thấy đi thi hoặc đi học phản ánh áp lực thi cử, công việc hiện tại hoặc mong muốn học hỏi thêm kiến thức mới.',
+        numbers: [17, 71]
+      },
+      {
+        keys: ['vàng', 'vang'],
+        meaning: 'Mơ thấy vàng thể hiện ước muốn giàu sang phú quý nhưng cũng là lời cảnh báo cần thận trọng với lòng tham hoặc cạm bẫy tài chính.',
+        numbers: [18, 81]
+      },
+      {
+        keys: ['xe', 'tai nạn', 'tai nan', 'mất xe', 'mat xe'],
+        meaning: 'Mơ thấy mất xe hoặc tai nạn cảnh báo bạn nên cẩn trọng trong việc di chuyển và kiểm soát lộ trình định hướng cuộc sống.',
+        numbers: [00, 44]
+      }
+    ];
+
+    // Simple string hash helper to generate consistent lucky numbers for fallback
+    function getStringHash(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      return Math.abs(hash);
+    }
+
+    btnInterpret.addEventListener('click', () => {
+      const text = dreamInput.value.trim().toLowerCase();
+      if (!text) {
+        alert('Vui lòng nhập nội dung giấc mơ để lý giải.');
+        return;
+      }
+
+      btnInterpret.disabled = true;
+      btnInterpret.textContent = 'ĐANG GIẢI MÃ...';
+
+      setTimeout(() => {
+        let match = null;
+
+        // Try to match key terms
+        for (const item of dreamDb) {
+          if (item.keys.some(k => text.includes(k))) {
+            match = item;
+            break;
+          }
+        }
+
+        if (match) {
+          resMeaning.textContent = match.meaning;
+          renderNumbers(match.numbers);
+        } else {
+          // Fallback dynamic generation based on hash
+          const hashVal = getStringHash(text);
+          const num1 = hashVal % 100;
+          const num2 = (hashVal + 37) % 100;
+          const num3 = (hashVal + 73) % 100;
+
+          resMeaning.textContent = 'Giấc mơ của bạn phản ánh sự kết hợp độc đáo của các ký ức và cảm xúc sâu kín trong tuần qua. Sổ mơ dân gian nhận định đây là điềm báo trung tính khuyên bạn nên tin tưởng vào các kế hoạch cá nhân đang ấp ủ, rèn luyện sự bình tâm để đón nhận tài lộc tự nhiên.';
+          renderNumbers([num1, num2, num3]);
+        }
+
+        interpretPlaceholder.classList.add('hidden');
+        interpretResult.classList.remove('hidden');
+        btnInterpret.disabled = false;
+        btnInterpret.textContent = 'GIẢI MÃ GIẤC MƠ';
+      }, 800);
+    });
+
+    function renderNumbers(nums) {
+      resNumbers.innerHTML = '';
+      nums.forEach(num => {
+        const formatted = num.toString().padStart(2, '0');
+        const chip = document.createElement('span');
+        chip.className = "px-4 py-2.5 bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 font-extrabold rounded-xl text-lg border border-purple-100 dark:border-purple-900/60 shadow-sm animate-fade-in";
+        chip.textContent = formatted;
+        resNumbers.appendChild(chip);
+      });
+    }
+  </script>
+</Layout>
