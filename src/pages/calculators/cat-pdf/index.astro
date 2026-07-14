@@ -1,0 +1,326 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Cắt File PDF Online - Trích Xuất Trang PDF Miễn Phí" 
+  description="Công cụ cắt file PDF, tách trang PDF trực tuyến hoàn toàn miễn phí. Bảo mật tuyệt đối tại client-side, không tải file lên internet."
+>
+  <main class="max-w-6xl mx-auto px-4 py-8 sm:py-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">
+            Trang chủ
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Cắt PDF</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        Cắt & Tách File PDF Online
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Tách các trang bất kỳ trong file PDF ra thành một file mới trực tuyến nhanh chóng, bảo mật tuyệt đối tại trình duyệt của bạn.
+      </p>
+    </div>
+
+    <!-- Main Tool Box -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 mb-12 transition-colors max-w-3xl mx-auto">
+      
+      <!-- Drag & Drop Zone -->
+      <div id="dropZone" class="border-2 border-dashed border-slate-350 dark:border-slate-800 rounded-2xl p-8 text-center bg-slate-50 dark:bg-slate-900/40 hover:bg-slate-100 dark:hover:bg-slate-900/80 hover:border-brand-blue dark:hover:border-brand-mint transition cursor-pointer select-none">
+        <div class="w-16 h-16 bg-red-50 dark:bg-red-950/40 text-red-500 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
+          ✂️
+        </div>
+        <p class="text-slate-800 dark:text-slate-200 font-bold mb-1">
+          Kéo thả file PDF cần cắt vào đây hoặc click để chọn tệp
+        </p>
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          Chấp nhận file định dạng .pdf
+        </p>
+        <input type="file" id="fileInput" accept="application/pdf" class="hidden" />
+      </div>
+
+      <!-- File Details & Output Configuration -->
+      <div id="configContainer" class="hidden mt-8 space-y-6">
+        <div class="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-100 dark:border-slate-800/80">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Tài liệu đã tải lên:</h3>
+          <div class="flex justify-between items-center text-sm">
+            <div>
+              <span id="fileName" class="block font-bold text-slate-800 dark:text-slate-200">file-name.pdf</span>
+              <span id="fileSize" class="text-xs text-slate-450 dark:text-slate-500">0 KB</span>
+            </div>
+            <span class="px-3 py-1 bg-red-100 dark:bg-red-950/40 text-red-600 dark:text-red-400 rounded-lg text-xs font-bold">
+              Tổng số trang: <span id="totalPages">0</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Splitting range config -->
+        <div class="space-y-4">
+          <label class="block text-sm font-bold text-slate-700 dark:text-slate-350">
+            Chọn phương thức cắt:
+          </label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+            <label class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-900/30 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
+              <input type="radio" name="splitMethod" value="range" checked class="text-brand-blue focus:ring-brand-blue" />
+              <div>
+                <span class="block font-bold text-slate-800 dark:text-slate-200">Cắt theo khoảng trang</span>
+                <span class="text-xs text-slate-450 dark:text-slate-500">Ví dụ: trang 1 đến 5</span>
+              </div>
+            </label>
+            <label class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-900/30 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
+              <input type="radio" name="splitMethod" value="specific" class="text-brand-blue focus:ring-brand-blue" />
+              <div>
+                <span class="block font-bold text-slate-800 dark:text-slate-200">Chọn trang cụ thể</span>
+                <span class="text-xs text-slate-450 dark:text-slate-500">Ví dụ: 1, 3, 5-7</span>
+              </div>
+            </label>
+          </div>
+
+          <!-- Range inputs -->
+          <div id="rangeInputs" class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="pageFrom" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Từ trang</label>
+              <input type="number" id="pageFrom" value="1" min="1" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint text-slate-900 dark:text-white font-bold" />
+            </div>
+            <div>
+              <label for="pageTo" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Đến trang</label>
+              <input type="number" id="pageTo" value="1" min="1" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint text-slate-900 dark:text-white font-bold" />
+            </div>
+          </div>
+
+          <!-- Specific Pages input -->
+          <div id="specificInput" class="hidden">
+            <label for="pagesList" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Các trang muốn lấy (ngăn cách bằng dấu phẩy)</label>
+            <input type="text" id="pagesList" placeholder="Ví dụ: 1, 3, 5-8" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint text-slate-900 dark:text-white font-bold" />
+          </div>
+        </div>
+
+        <!-- Action Button -->
+        <button id="btnSplit" class="w-full py-4 bg-red-500 hover:bg-red-600 text-white font-extrabold rounded-2xl shadow-lg shadow-red-500/10 hover:scale-[1.02] active:scale-95 transition-all text-base">
+          CẮT VÀ TẢI FILE PDF MỚI
+        </button>
+      </div>
+
+      <div class="text-center mt-6">
+        <a href="/blog/huong-dan-cat-file-pdf-va-tach-trang-pdf-online/" class="text-xs text-brand-blue dark:text-brand-mint font-bold hover:underline">
+          Đọc cẩm nang cắt tệp tin PDF an toàn →
+        </a>
+      </div>
+    </div>
+
+    <!-- Handbook Guide Section -->
+    <section class="max-w-4xl mx-auto bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm Nang Cắt Và Trích Xuất Trang PDF
+      </h2>
+      
+      <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4 text-sm">
+        <p>
+          Cắt file PDF (PDF Splitting) là nhu cầu phổ biến khi bạn cần chia nhỏ một cuốn sách điện tử, trích xuất báo cáo tài chính hoặc lấy ra các hóa đơn cần thiết từ một tệp tin lớn để chia sẻ.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">1. Đảm bảo an toàn tài liệu cá nhân</h3>
+        <p>
+          Các tài liệu PDF như hợp đồng, sao kê ngân hàng rất nhạy cảm. Việc sử dụng các công cụ tải file lên server có nguy cơ lộ thông tin. Công cụ của chúng tôi chạy trực tiếp trên browser của bạn, bảo mật dữ liệu tuyệt đối.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">2. Hướng dẫn nhập định dạng trang để trích xuất</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong>Theo khoảng trang (Range):</strong> Nhập từ trang đầu đến trang cuối để cắt lấy một đoạn liên tiếp.</li>
+          <li><strong>Theo trang cụ thể (Specific Pages):</strong> Nhập các trang cách nhau bằng dấu phẩy. Bạn cũng có thể dùng dấu gạch ngang để biểu thị khoảng (Ví dụ: `1, 3, 5-8` sẽ trích xuất trang 1, trang 3, và từ trang 5 đến trang 8).</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- Load PDF-Lib via CDN -->
+  <script is:inline src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+
+  <script>
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const configContainer = document.getElementById('configContainer');
+    
+    const fileName = document.getElementById('fileName');
+    const fileSize = document.getElementById('fileSize');
+    const totalPages = document.getElementById('totalPages');
+
+    const splitMethods = document.getElementsByName('splitMethod');
+    const rangeInputs = document.getElementById('rangeInputs');
+    const specificInput = document.getElementById('specificInput');
+
+    const pageFrom = document.getElementById('pageFrom');
+    const pageTo = document.getElementById('pageTo');
+    const pagesList = document.getElementById('pagesList');
+    const btnSplit = document.getElementById('btnSplit');
+
+    let loadedFileBytes = null;
+    let loadedFileName = '';
+    let maxPages = 0;
+
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('border-brand-blue', 'dark:border-brand-mint');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('border-brand-blue', 'dark:border-brand-mint');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('border-brand-blue', 'dark:border-brand-mint');
+      const files = Array.from(e.dataTransfer.files).filter(f => f.type === 'application/pdf');
+      if (files.length > 0) handleFile(files[0]);
+    });
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length > 0) {
+        handleFile(fileInput.files[0]);
+      }
+    });
+
+    async function handleFile(file) {
+      loadedFileName = file.name;
+      fileName.textContent = file.name;
+      fileSize.textContent = (file.size / 1024).toFixed(1) + ' KB';
+
+      try {
+        loadedFileBytes = await file.arrayBuffer();
+        const pdfDoc = await PDFLib.PDFDocument.load(loadedFileBytes);
+        maxPages = pdfDoc.getPageCount();
+        totalPages.textContent = maxPages;
+
+        // Reset ranges
+        pageFrom.max = maxPages;
+        pageFrom.value = 1;
+        pageTo.max = maxPages;
+        pageTo.value = maxPages;
+
+        configContainer.classList.remove('hidden');
+        dropZone.classList.add('hidden');
+      } catch (err) {
+        console.error(err);
+        alert('Không thể đọc file PDF này. Vui lòng kiểm tra lại tính hợp lệ.');
+      }
+    }
+
+    // Toggle split methods
+    splitMethods.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        if (e.target.value === 'range') {
+          rangeInputs.classList.remove('hidden');
+          specificInput.classList.add('hidden');
+        } else {
+          rangeInputs.classList.add('hidden');
+          specificInput.classList.remove('hidden');
+        }
+      });
+    });
+
+    // Parse specific page formats (e.g. "1, 3, 5-8")
+    function parsePagesInput(str, max) {
+      const pages = [];
+      const parts = str.split(',');
+      for (let part of parts) {
+        part = part.trim();
+        if (part.includes('-')) {
+          const subparts = part.split('-');
+          const start = parseInt(subparts[0]);
+          const end = parseInt(subparts[1]);
+          if (!isNaN(start) && !isNaN(end)) {
+            for (let i = start; i <= end; i++) {
+              if (i >= 1 && i <= max) pages.push(i - 1);
+            }
+          }
+        } else {
+          const p = parseInt(part);
+          if (!isNaN(p) && p >= 1 && p <= max) {
+            pages.push(p - 1);
+          }
+        }
+      }
+      return [...new Set(pages)].sort((a, b) => a - b);
+    }
+
+    btnSplit.addEventListener('click', async () => {
+      if (!loadedFileBytes) return;
+
+      const method = Array.from(splitMethods).find(r => r.checked).value;
+      let targetPages = [];
+
+      if (method === 'range') {
+        const from = parseInt(pageFrom.value);
+        const to = parseInt(pageTo.value);
+        if (isNaN(from) || isNaN(to) || from < 1 || to < 1 || from > maxPages || to > maxPages || from > to) {
+          alert('Khoảng trang nhập vào không hợp lệ.');
+          return;
+        }
+        for (let i = from; i <= to; i++) {
+          targetPages.push(i - 1);
+        }
+      } else {
+        const rawList = pagesList.value;
+        if (!rawList) {
+          alert('Vui lòng điền danh sách các trang cần trích xuất.');
+          return;
+        }
+        targetPages = parsePagesInput(rawList, maxPages);
+        if (targetPages.length === 0) {
+          alert('Danh sách trang nhập vào không khớp với số trang của tệp tin.');
+          return;
+        }
+      }
+
+      btnSplit.disabled = true;
+      btnSplit.textContent = 'ĐANG TRÍCH XUẤT FILE...';
+
+      try {
+        const srcPdf = await PDFLib.PDFDocument.load(loadedFileBytes);
+        const destPdf = await PDFLib.PDFDocument.create();
+        
+        const copiedPages = await destPdf.copyPages(srcPdf, targetPages);
+        copiedPages.forEach(p => destPdf.addPage(p));
+
+        const bytes = await destPdf.save();
+        const blob = new Blob([bytes], { type: 'application/pdf' });
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `da-cat-${loadedFileName}`;
+        document.body.appendChild(link);
+        link.click();
+
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      } catch (err) {
+        console.error(err);
+        alert('Gặp lỗi khi xuất file PDF mới.');
+      } finally {
+        btnSplit.disabled = false;
+        btnSplit.textContent = 'CẮT VÀ TẢI FILE PDF MỚI';
+      }
+    });
+  </script>
+</Layout>

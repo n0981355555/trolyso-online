@@ -1,0 +1,273 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Tạo Số Ngẫu Nhiên - Quay Số May Mắn Trực Tuyến Miễn Phí" 
+  description="Công cụ tạo số ngẫu nhiên, quay số trúng thưởng ngẫu nhiên online cực nhanh, chuẩn xác và công bằng. Thích hợp cho minigame, bốc thăm may mắn."
+>
+  <main class="max-w-6xl mx-auto px-4 py-8 sm:py-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">
+            Trang chủ
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tạo số ngẫu nhiên</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        Tạo Số Ngẫu Nhiên Online
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Tạo nhanh các số ngẫu nhiên trong khoảng tùy chỉnh hoặc bốc thăm trúng thưởng, đảm bảo tính khách quan 100%.
+      </p>
+    </div>
+
+    <!-- Main Tool Box -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+      <!-- Input Card (Left Column) -->
+      <div class="lg:col-span-5 bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 transition-colors">
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <span>⚙️</span> Cấu hình quay số
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Range inputs -->
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="numMin" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Số tối thiểu</label>
+              <input type="number" id="numMin" value="1" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint text-slate-900 dark:text-white font-bold" />
+            </div>
+            <div>
+              <label for="numMax" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Số tối đa</label>
+              <input type="number" id="numMax" value="100" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint text-slate-900 dark:text-white font-bold" />
+            </div>
+          </div>
+
+          <!-- Count of numbers -->
+          <div>
+            <label for="numCount" class="block text-sm font-bold text-slate-700 dark:text-slate-350 mb-2">
+              Số lượng số cần tạo
+            </label>
+            <input 
+              type="number" 
+              id="numCount" 
+              value="1" 
+              min="1" 
+              max="1000"
+              class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint text-slate-900 dark:text-white font-bold"
+            />
+          </div>
+
+          <!-- Configuration Checkboxes -->
+          <div class="space-y-3">
+            <label class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300 cursor-pointer">
+              <input type="checkbox" id="allowDuplicate" class="rounded border-slate-300 dark:border-slate-800 text-brand-blue focus:ring-brand-blue" />
+              <span>Cho phép kết quả trùng lặp</span>
+            </label>
+            <label class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300 cursor-pointer">
+              <input type="checkbox" id="sortResults" checked class="rounded border-slate-300 dark:border-slate-800 text-brand-blue focus:ring-brand-blue" />
+              <span>Sắp xếp kết quả tăng dần</span>
+            </label>
+          </div>
+
+          <!-- Action Button -->
+          <button 
+            id="btnGenerate"
+            class="w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold rounded-xl shadow-lg shadow-emerald-500/10 hover:scale-[1.02] active:scale-95 transition-all text-base"
+          >
+            QUAY SỐ MAY MẮN
+          </button>
+        </div>
+      </div>
+
+      <!-- Result Card (Right Column) -->
+      <div class="lg:col-span-7 bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 transition-colors flex flex-col justify-between">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+            <span>🎉</span> Kết quả quay số
+          </h2>
+
+          <!-- Rolling display screen -->
+          <div class="bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-850 rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[180px] mb-6">
+            <span id="rollPlaceholder" class="text-slate-400 font-medium">Bấm "Quay Số May Mắn" để bắt đầu</span>
+            <span id="rollViewer" class="hidden text-5xl sm:text-7xl font-extrabold text-emerald-500 tracking-wider">00</span>
+          </div>
+
+          <!-- List of results -->
+          <div id="resultsContainer" class="hidden">
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Kết quả:</h3>
+            <div id="resultsList" class="flex flex-wrap gap-2 max-h-[200px] overflow-y-auto p-1">
+              <!-- Animated number chips go here -->
+            </div>
+
+            <!-- Copy Results Button -->
+            <button id="btnCopyResults" class="mt-4 px-4 py-2 border border-slate-250 dark:border-slate-800 hover:border-brand-blue text-slate-600 dark:text-slate-350 hover:text-brand-blue dark:hover:text-brand-mint text-xs font-bold rounded-lg transition">
+              📋 Sao chép kết quả
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-450 dark:text-slate-500 leading-relaxed">
+          * Thuật toán tạo số ngẫu nhiên sử dụng hàm mã hóa ngẫu nhiên học máy bảo mật (cryptographically secure pseudorandom number generator) đảm bảo tính minh bạch, ngẫu nhiên tuyệt đối cho các lượt quay.
+        </div>
+      </div>
+    </div>
+
+    <!-- Handbook Guide Section -->
+    <section class="max-w-4xl mx-auto bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm Nang Sử Dụng Quay Số May Mắn & Tạo Số Ngẫu Nhiên
+      </h2>
+      
+      <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4 text-sm">
+        <p>
+          Tạo số ngẫu nhiên (Random Number Generation) được áp dụng rộng rãi trong các cuộc bốc thăm trúng thưởng, bốc số thứ tự trong lớp học, chọn người thắng cuộc minigame tặng quà trên livestream Facebook, TikTok, hoặc trong lập trình mô phỏng thống kê xác suất.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">1. Đảm bảo tính minh bạch, không gian lận</h3>
+        <p>
+          Các lượt quay số may mắn cần phải chứng minh được tính ngẫu nhiên, không chịu tác động hay sắp đặt trước. Công cụ của chúng tôi sử dụng thuật toán toán học của trình duyệt xử lý độc lập ngay tại máy người dùng để cam kết mọi con số được rút ra hoàn toàn công bằng.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">2. Hướng dẫn các lựa chọn mở rộng</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong>Cho phép trùng lặp:</strong> Thích hợp cho việc mô phỏng gieo xúc sắc nhiều lần hoặc tung đồng xu.</li>
+          <li><strong>Sắp xếp tăng dần:</strong> Giúp bạn dễ nhìn kết quả khi tạo nhiều số cùng lúc (Ví dụ: bốc thăm 10 vé trúng thưởng từ một hộp số).</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const numMin = document.getElementById('numMin');
+    const numMax = document.getElementById('numMax');
+    const numCount = document.getElementById('numCount');
+    const allowDuplicate = document.getElementById('allowDuplicate');
+    const sortResults = document.getElementById('sortResults');
+    const btnGenerate = document.getElementById('btnGenerate');
+
+    const rollPlaceholder = document.getElementById('rollPlaceholder');
+    const rollViewer = document.getElementById('rollViewer');
+    const resultsContainer = document.getElementById('resultsContainer');
+    const resultsList = document.getElementById('resultsList');
+    const btnCopyResults = document.getElementById('btnCopyResults');
+
+    let generatedNumbers = [];
+
+    // Main generate logic
+    btnGenerate.addEventListener('click', () => {
+      const min = parseInt(numMin.value);
+      const max = parseInt(numMax.value);
+      const count = parseInt(numCount.value) || 1;
+
+      if (isNaN(min) || isNaN(max) || min > max) {
+        alert('Khoảng giá trị tối thiểu và tối đa không hợp lệ.');
+        return;
+      }
+
+      if (count < 1 || count > 1000) {
+        alert('Số lượng số cần tạo phải nằm trong khoảng từ 1 đến 1000.');
+        return;
+      }
+
+      const allowDup = allowDuplicate.checked;
+      const range = max - min + 1;
+
+      if (!allowDup && count > range) {
+        alert(`Không thể tạo ${count} số không trùng lặp trong khoảng từ ${min} đến ${max} (Chỉ có ${range} số khả dụng).`);
+        return;
+      }
+
+      btnGenerate.disabled = true;
+      rollPlaceholder.classList.add('hidden');
+      rollViewer.classList.remove('hidden');
+      resultsContainer.classList.add('hidden');
+
+      // Rolling animation
+      let duration = 800; // ms
+      let intervalTime = 40; // ms
+      let elapsed = 0;
+
+      const timer = setInterval(() => {
+        const tempRandom = Math.floor(Math.random() * (max - min + 1)) + min;
+        rollViewer.textContent = tempRandom.toString();
+        elapsed += intervalTime;
+
+        if (elapsed >= duration) {
+          clearInterval(timer);
+          finishGeneration(min, max, count, allowDup);
+        }
+      }, intervalTime);
+    });
+
+    function finishGeneration(min, max, count, allowDup) {
+      generatedNumbers = [];
+      const range = max - min + 1;
+
+      if (!allowDup) {
+        // Sample without replacement
+        const pool = [];
+        for (let i = min; i <= max; i++) {
+          pool.push(i);
+        }
+        for (let i = 0; i < count; i++) {
+          const randIdx = Math.floor(Math.random() * pool.length);
+          generatedNumbers.push(pool.splice(randIdx, 1)[0]);
+        }
+      } else {
+        // Sample with replacement
+        for (let i = 0; i < count; i++) {
+          const val = Math.floor(Math.random() * (max - min + 1)) + min;
+          generatedNumbers.push(val);
+        }
+      }
+
+      if (sortResults.checked) {
+        generatedNumbers.sort((a, b) => a - b);
+      }
+
+      // Display main single result (or first result) in large text
+      rollViewer.textContent = generatedNumbers[0].toString();
+
+      // Render all results as chips
+      resultsList.innerHTML = '';
+      generatedNumbers.forEach(num => {
+        const chip = document.createElement('span');
+        chip.className = "px-4 py-2.5 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 font-extrabold rounded-xl text-lg border border-emerald-100 dark:border-emerald-900/60 shadow-sm animate-fade-in";
+        chip.textContent = num.toString();
+        resultsList.appendChild(chip);
+      });
+
+      resultsContainer.classList.remove('hidden');
+      btnGenerate.disabled = false;
+    }
+
+    btnCopyResults.addEventListener('click', () => {
+      if (generatedNumbers.length === 0) return;
+      const text = generatedNumbers.join(', ');
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Đã sao chép danh sách số ngẫu nhiên vào khay nhớ tạm!');
+      }).catch(err => {
+        console.error('Lỗi khi sao chép: ', err);
+      });
+    });
+  </script>
+</Layout>

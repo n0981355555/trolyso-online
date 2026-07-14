@@ -1,0 +1,345 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Công Cụ Tính Lương Net Sang Gross Chuẩn 2026 - Tự Động & Chính Xác" 
+  description="Công cụ chuyển đổi lương Net sang Gross trực tuyến miễn phí. Tính toán chi tiết bảo hiểm BHXH, BHYT, BHTN và thuế TNCN theo quy định mới nhất."
+>
+  <main class="max-w-6xl mx-auto px-4 py-8 sm:py-12">
+    <!-- Breadcrumbs -->
+    <nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">
+            Trang chủ
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tính lương Net sang Gross</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        Tính Lương Net Sang Gross
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Chuyển đổi tiền lương thực nhận (Net) sang lương trước thuế (Gross) kèm theo chi tiết các khoản đóng bảo hiểm và thuế TNCN theo quy định 2026.
+      </p>
+    </div>
+
+    <!-- Main Tool Box -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+      <!-- Input Card (Left Column) -->
+      <div class="lg:col-span-5 bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 transition-colors">
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <span>⚙️</span> Thông tin tính lương
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Salary Input -->
+          <div>
+            <label for="netSalary" class="block text-sm font-bold text-slate-700 dark:text-slate-350 mb-2">
+              Thu nhập Net thực nhận (VND)
+            </label>
+            <div class="relative">
+              <input 
+                type="text" 
+                id="netSalary" 
+                placeholder="Ví dụ: 15,000,000"
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint focus:border-transparent text-slate-900 dark:text-white font-bold transition text-lg"
+              />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm">đ</span>
+            </div>
+          </div>
+
+          <!-- Dependents Input -->
+          <div>
+            <label for="dependents" class="block text-sm font-bold text-slate-700 dark:text-slate-350 mb-2">
+              Số người phụ thuộc (Người)
+            </label>
+            <div class="flex items-center gap-2">
+              <button type="button" id="btnMinusDep" class="w-11 h-11 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold rounded-xl transition">-</button>
+              <input 
+                type="number" 
+                id="dependents" 
+                value="0" 
+                min="0"
+                class="w-full text-center py-2.5 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-white font-bold focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint focus:border-transparent"
+              />
+              <button type="button" id="btnPlusDep" class="w-11 h-11 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold rounded-xl transition">+</button>
+            </div>
+          </div>
+
+          <!-- Region Select -->
+          <div>
+            <label for="region" class="block text-sm font-bold text-slate-700 dark:text-slate-350 mb-2">
+              Vùng tối thiểu (để tính trần BHTN)
+            </label>
+            <select 
+              id="region" 
+              class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint focus:border-transparent text-slate-900 dark:text-white transition"
+            >
+              <option value="1">Vùng I (Lương tối thiểu: 4.960.000đ)</option>
+              <option value="2">Vùng II (Lương tối thiểu: 4.410.000đ)</option>
+              <option value="3">Vùng III (Lương tối thiểu: 3.860.000đ)</option>
+              <option value="4">Vùng IV (Lương tối thiểu: 3.450.000đ)</option>
+            </select>
+          </div>
+
+          <!-- Action Button -->
+          <button 
+            id="btnCalculate"
+            class="w-full py-4 bg-brand-blue hover:bg-blue-600 text-white font-extrabold rounded-xl shadow-lg shadow-blue-500/10 hover:scale-[1.02] active:scale-95 transition-all text-base"
+          >
+            QUY ĐỔI SANG GROSS
+          </button>
+        </div>
+      </div>
+
+      <!-- Result Card (Right Column) -->
+      <div class="lg:col-span-7 bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 transition-colors flex flex-col justify-between">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+            <span>📊</span> Kết quả chi tiết (VND)
+          </h2>
+
+          <div class="space-y-4">
+            <!-- Gross Result Banner -->
+            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl p-5 text-white flex justify-between items-center">
+              <div>
+                <span class="block text-xs uppercase tracking-wider opacity-80">LƯƠNG GROSS PHẢI TRẢ</span>
+                <span id="resGross" class="text-2xl sm:text-3xl font-extrabold">0 đ</span>
+              </div>
+              <div class="text-right">
+                <span class="block text-xs uppercase tracking-wider opacity-80">NET THỰC NHẬN</span>
+                <span id="resNet" class="text-lg font-bold">0 đ</span>
+              </div>
+            </div>
+
+            <!-- Breakdown table -->
+            <div class="divide-y divide-slate-100 dark:divide-slate-800/80 text-sm">
+              <div class="py-3 flex justify-between">
+                <span class="text-slate-500 dark:text-slate-400">BHXH bắt buộc (8%)</span>
+                <span id="resBHXH" class="font-bold text-slate-800 dark:text-slate-200">0 đ</span>
+              </div>
+              <div class="py-3 flex justify-between">
+                <span class="text-slate-500 dark:text-slate-400">BHYT bắt buộc (1.5%)</span>
+                <span id="resBHYT" class="font-bold text-slate-800 dark:text-slate-200">0 đ</span>
+              </div>
+              <div class="py-3 flex justify-between">
+                <span class="text-slate-500 dark:text-slate-400">BHTN bắt buộc (1%)</span>
+                <span id="resBHTN" class="font-bold text-slate-800 dark:text-slate-200">0 đ</span>
+              </div>
+              <div class="py-3 flex justify-between bg-blue-50/50 dark:bg-blue-950/10 px-2 rounded-lg">
+                <span class="font-bold text-slate-850 dark:text-slate-300">Tổng đóng bảo hiểm</span>
+                <span id="resTotalIns" class="font-extrabold text-slate-900 dark:text-white">0 đ</span>
+              </div>
+              <div class="py-3 flex justify-between">
+                <span class="text-slate-500 dark:text-slate-400">Thuế thu nhập cá nhân (TNCN)</span>
+                <span id="resTax" class="font-bold text-red-500">0 đ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-450 dark:text-slate-500 leading-relaxed">
+          * Quy đổi ngược lương Net sang Gross dựa trên thuật toán tối ưu nhị phân chuẩn xác cao, bảo hiểm đóng trên mức lương Gross theo đúng Luật hiện hành 2026.
+        </div>
+      </div>
+    </div>
+
+    <!-- Handbook Guide Section -->
+    <section class="max-w-4xl mx-auto bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm Nang Tính Lương Net Sang Gross và Quy Định 2026
+      </h2>
+      
+      <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4 text-sm">
+        <p>
+          Trong đàm phán hợp đồng lao động, doanh nghiệp thường thỏa thuận trả lương Net (tiền thực nhận của người lao động) hoặc lương Gross (tiền lương tổng trước thuế và bảo hiểm). Việc quy đổi ngược từ Net sang Gross giúp bạn hiểu được giá trị đóng bảo hiểm thực tế của mình.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">1. Công thức quy đổi và tỷ lệ bảo hiểm bắt buộc</h3>
+        <p>
+          Lương Gross được phân chia như sau:
+        </p>
+        <p class="font-bold text-center text-lg text-brand-blue dark:text-brand-mint my-4">
+          Gross = Net + Bảo hiểm + Thuế TNCN
+        </p>
+        <p>
+          Trong đó, các khoản bảo hiểm được trích từ lương Gross của người lao động bao gồm:
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong>BHXH (Bảo hiểm xã hội):</strong> 8% (Trần đóng tối đa là 20 lần mức lương cơ sở = 46.800.000đ).</li>
+          <li><strong>BHYT (Bảo hiểm y tế):</strong> 1.5% (Trần đóng tối đa là 20 lần mức lương cơ sở = 46.800.000đ).</li>
+          <li><strong>BHTN (Bảo hiểm thất nghiệp):</strong> 1% (Trần đóng tối đa là 20 lần mức lương tối thiểu vùng, ví dụ Vùng I tối đa là 99.200.000đ).</li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-6">2. Mức giảm trừ gia cảnh thuế TNCN</h3>
+        <p>
+          Trước khi tính thuế TNCN, người lao động được giảm trừ:
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong>Giảm trừ cá nhân:</strong> 11.000.000 đ/tháng.</li>
+          <li><strong>Giảm trừ người phụ thuộc:</strong> 4.400.000 đ/người/tháng.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const netSalaryInput = document.getElementById('netSalary');
+    const dependentsInput = document.getElementById('dependents');
+    const regionSelect = document.getElementById('region');
+    const btnCalculate = document.getElementById('btnCalculate');
+
+    const btnMinusDep = document.getElementById('btnMinusDep');
+    const btnPlusDep = document.getElementById('btnPlusDep');
+
+    const resGross = document.getElementById('resGross');
+    const resNet = document.getElementById('resNet');
+    const resBHXH = document.getElementById('resBHXH');
+    const resBHYT = document.getElementById('resBHYT');
+    const resBHTN = document.getElementById('resBHTN');
+    const resTotalIns = document.getElementById('resTotalIns');
+    const resTax = document.getElementById('resTax');
+
+    // Format money helper
+    function formatMoney(num) {
+      return Math.round(num).toLocaleString('vi-VN') + ' đ';
+    }
+
+    // Parse input formatted text
+    netSalaryInput.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/[^0-9]/g, '');
+      if (value) {
+        e.target.value = parseInt(value).toLocaleString('vi-VN');
+      } else {
+        e.target.value = '';
+      }
+    });
+
+    btnMinusDep.addEventListener('click', () => {
+      let val = parseInt(dependentsInput.value) || 0;
+      if (val > 0) {
+        dependentsInput.value = (val - 1).toString();
+      }
+    });
+
+    btnPlusDep.addEventListener('click', () => {
+      let val = parseInt(dependentsInput.value) || 0;
+      dependentsInput.value = (val + 1).toString();
+    });
+
+    // Calculations logic
+    function calculateGrossFromNet(net, dependentsCount, regionNum) {
+      // Rates
+      const baseSalary = 2340000;
+      const ceilingBHXHBHYT = 20 * baseSalary; // 46,800,000
+      
+      const regionMinWages = {
+        1: 4960000,
+        2: 4410000,
+        3: 3860000,
+        4: 3450000
+      };
+      const minWage = regionMinWages[regionNum];
+      const ceilingBHTN = 20 * minWage;
+
+      // Personal exemptions
+      const personalExemption = 11000000;
+      const dependentExemption = dependentsCount * 4400000;
+
+      // Auxiliary: calculate Net from Gross
+      function calculateNet(gross) {
+        const bhxh = Math.min(gross, ceilingBHXHBHYT) * 0.08;
+        const bhyt = Math.min(gross, ceilingBHXHBHYT) * 0.015;
+        const bhtn = Math.min(gross, ceilingBHTN) * 0.01;
+        const totalInsurance = bhxh + bhyt + bhtn;
+
+        const taxableIncome = gross - totalInsurance - personalExemption - dependentExemption;
+        let tax = 0;
+        if (taxableIncome > 0) {
+          if (taxableIncome <= 5000000) {
+            tax = taxableIncome * 0.05;
+          } else if (taxableIncome <= 10000000) {
+            tax = taxableIncome * 0.10 - 250000;
+          } else if (taxableIncome <= 18000000) {
+            tax = taxableIncome * 0.15 - 750000;
+          } else if (taxableIncome <= 32000000) {
+            tax = taxableIncome * 0.20 - 1650000;
+          } else if (taxableIncome <= 52000000) {
+            tax = taxableIncome * 0.25 - 3250000;
+          } else if (taxableIncome <= 80000000) {
+            tax = taxableIncome * 0.30 - 5850000;
+          } else {
+            tax = taxableIncome * 0.35 - 9850000;
+          }
+        }
+        return {
+          net: gross - totalInsurance - tax,
+          bhxh,
+          bhyt,
+          bhtn,
+          totalInsurance,
+          tax
+        };
+      }
+
+      // Binary search algorithm for reverse matching
+      let low = net;
+      let high = net * 3;
+      let ans = net;
+      let steps = 0;
+
+      while (low <= high && steps < 100) {
+        let mid = (low + high) / 2;
+        let res = calculateNet(mid);
+        if (res.net >= net) {
+          ans = mid;
+          high = mid - 0.1;
+        } else {
+          low = mid + 0.1;
+        }
+        steps++;
+      }
+
+      return calculateNet(ans);
+    }
+
+    btnCalculate.addEventListener('click', () => {
+      const netVal = parseInt(netSalaryInput.value.replace(/[^0-9]/g, '')) || 0;
+      const depVal = parseInt(dependentsInput.value) || 0;
+      const regionVal = parseInt(regionSelect.value) || 1;
+
+      if (netVal === 0) {
+        alert('Vui lòng nhập mức thu nhập Net thực tế.');
+        return;
+      }
+
+      const res = calculateGrossFromNet(netVal, depVal, regionVal);
+      const grossVal = netVal + res.totalInsurance + res.tax;
+
+      resGross.textContent = formatMoney(grossVal);
+      resNet.textContent = formatMoney(netVal);
+      resBHXH.textContent = formatMoney(res.bhxh);
+      resBHYT.textContent = formatMoney(res.bhyt);
+      resBHTN.textContent = formatMoney(res.bhtn);
+      resTotalIns.textContent = formatMoney(res.totalInsurance);
+      resTax.textContent = formatMoney(res.tax);
+    });
+  </script>
+</Layout>
