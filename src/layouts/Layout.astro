@@ -262,12 +262,16 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
       searchInput?.addEventListener('mouseenter', loadSearchIndex);
 
       function removeVietnameseTones(str: string) {
-        return str
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
-          .replace(/đ/g, 'd')
-          .replace(/Đ/g, 'D')
-          .toLowerCase();
+        let result = str.toLowerCase();
+        result = result.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+        result = result.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+        result = result.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+        result = result.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+        result = result.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+        result = result.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+        result = result.replace(/đ/g, "d");
+        result = result.replace(/[^a-z0-9\s]/g, ""); // Keep only letters, numbers and spaces
+        return result.normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
       }
 
       searchInput?.addEventListener('input', async () => {
@@ -275,16 +279,23 @@ const { title, description = "Trợ Lý Số - Nền tảng công cụ trực tu
           await loadSearchIndex();
         }
         if (!searchIndex) return;
-        const query = removeVietnameseTones(searchInput.value.trim());
-        if (!query) {
+        const rawQuery = searchInput.value.trim();
+        if (!rawQuery) {
           searchDropdown?.classList.add('hidden');
           return;
         }
 
-        const results = searchIndex.filter(item => 
-          removeVietnameseTones(item.title).includes(query) || 
-          removeVietnameseTones(item.desc).includes(query)
-        );
+        const query = removeVietnameseTones(rawQuery);
+        const queryWords = query.split(/\s+/).filter(Boolean);
+        if (queryWords.length === 0) {
+          searchDropdown?.classList.add('hidden');
+          return;
+        }
+
+        const results = searchIndex.filter(item => {
+          const itemText = removeVietnameseTones(item.title + ' ' + (item.desc || ''));
+          return queryWords.every(word => itemText.includes(word));
+        });
 
         if (results.length === 0) {
           if (searchDropdown) {
