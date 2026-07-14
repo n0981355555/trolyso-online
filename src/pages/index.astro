@@ -29,11 +29,21 @@ import Layout from '../layouts/Layout.astro';
   <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
     
     <!-- Hero Section -->
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h1 class="text-4xl sm:text-5xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
-        Hộp Công Cụ Số <span class="text-brand-blue dark:text-brand-mint">Thông Minh</span> Cho Người Việt
+    <div class="text-center max-w-3xl mx-auto mb-16 relative">
+      <!-- Hero Search Bar (Premium SaaS Style) -->
+      <div class="max-w-md mx-auto mb-8 relative">
+        <input type="text" id="heroSearchInput" placeholder="Tìm kiếm công cụ, cẩm nang..." aria-label="Tìm kiếm nhanh công cụ và cẩm nang" class="w-full pl-12 pr-4 py-3.5 rounded-2xl border border-slate-200/60 dark:border-slate-800/50 bg-white/70 dark:bg-slate-900/60 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-bold text-sm transition-all shadow-sm hover:shadow-md" />
+        <svg class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <div id="heroSearchDropdown" class="absolute left-0 right-0 top-full mt-2 w-full bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl z-50 p-2 hidden max-h-80 overflow-y-auto">
+          <!-- Results -->
+        </div>
+      </div>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
+        Hộp Công Cụ Số <span class="bg-gradient-to-r from-brand-blue to-blue-500 dark:from-brand-mint dark:to-emerald-400 bg-clip-text text-transparent">Thông Minh</span> Cho Người Việt
       </h1>
-      <p class="text-lg text-slate-600 dark:text-slate-400">
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
         Các tiện ích tính toán tài chính, thuế, BHXH trực quan, bảo mật tuyệt đối 100% dữ liệu ngay trên trình duyệt của bạn.
       </p>
     </div>
@@ -117,23 +127,21 @@ import Layout from '../layouts/Layout.astro';
     <div id="calculators">
       <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
         <h3 class="text-xl font-heading font-bold text-slate-900 dark:text-white m-0">Các công cụ tiện ích khác:</h3>
-        <!-- Category Filter Tabs (TinyWow style) -->
-        <div class="flex flex-wrap gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-2xl">
-          <button class="calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 bg-white dark:bg-brand-darkCard text-slate-900 dark:text-white shadow-sm" data-category="all" aria-label="Tất cả công cụ">✨ Tất cả</button>
-          <button class="calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200" data-category="finance" aria-label="Công cụ tài chính và thuế">💰 Tài chính & Thuế</button>
-          <button class="calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200" data-category="insurance" aria-label="Công cụ bảo hiểm và lương">🛡️ Bảo hiểm & Lương</button>
-          <button class="calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200" data-category="office" aria-label="Công cụ văn phòng và PDF">📂 Văn phòng & PDF</button>
-          <button class="calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200" data-category="utility" aria-label="Công cụ tiện ích và học tập">🌐 Tiện ích & Học tập</button>
-          <button class="calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200" data-category="dev" aria-label="Công cụ lập trình viên">💻 Lập trình</button>
+        <!-- Category Filter Tabs (Responsive: Scrollable on mobile, flex on desktop) -->
+        <div class="flex overflow-x-auto lg:flex-wrap gap-1.5 bg-slate-100/80 dark:bg-slate-800/80 backdrop-blur-sm p-1.5 rounded-2xl border border-slate-200/40 dark:border-slate-800/40 max-w-full scrollbar-none shadow-sm select-none">
+          <button class="calc-tab-btn px-3.5 py-1.5 text-xs font-bold rounded-xl transition-all duration-200 bg-white dark:bg-brand-darkCard text-slate-900 dark:text-white shadow-sm flex items-center gap-1.5 shrink-0" data-category="all" aria-label="Tất cả công cụ">✨ Tất cả</button>
+          <button class="calc-tab-btn px-3.5 py-1.5 text-xs font-bold rounded-xl transition-all duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 flex items-center gap-1.5 shrink-0" data-category="finance" aria-label="Công cụ tài chính và thuế">💰 Tài chính & Thuế</button>
+          <button class="calc-tab-btn px-3.5 py-1.5 text-xs font-bold rounded-xl transition-all duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 flex items-center gap-1.5 shrink-0" data-category="insurance" aria-label="Công cụ bảo hiểm và lương">🛡️ Bảo hiểm & Lương</button>
+          <button class="calc-tab-btn px-3.5 py-1.5 text-xs font-bold rounded-xl transition-all duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 flex items-center gap-1.5 shrink-0" data-category="office" aria-label="Công cụ văn phòng và PDF">📂 Văn phòng & PDF</button>
+          <button class="calc-tab-btn px-3.5 py-1.5 text-xs font-bold rounded-xl transition-all duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 flex items-center gap-1.5 shrink-0" data-category="utility" aria-label="Công cụ tiện ích và học tập">🌐 Tiện ích & Học tập</button>
+          <button class="calc-tab-btn px-3.5 py-1.5 text-xs font-bold rounded-xl transition-all duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 flex items-center gap-1.5 shrink-0" data-category="dev" aria-label="Công cụ lập trình viên">💻 Lập trình</button>
         </div>
       </div>
       <div id="calculators-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- 1. BHXH Card -->
-        <a href="/calculators/tinh-bhxh-1-lan/" data-category="insurance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/tinh-bhxh-1-lan/"  data-category="insurance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-brand-mint flex items-center justify-center font-bold mb-4">
-              🛡️
-            </div>
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 text-brand-mint flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
             <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
               Tính Bảo Hiểm Xã Hội 1 Lần
             </h4>
@@ -147,11 +155,9 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 2. Thuế TNCN Card -->
-        <a href="/calculators/tinh-thue-tncn/" data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/tinh-thue-tncn/"  data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-red-50 dark:bg-red-950 text-red-500 flex items-center justify-center font-bold mb-4">
-              📊
-            </div>
+            <div class="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 text-brand-blue dark:text-blue-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg></div>
             <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
               Tính Thuế Thu Nhập Cá Nhân
             </h4>
@@ -165,11 +171,9 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 3. Tính Lương Hưu Dự Kiến -->
-        <a href="/calculators/tinh-luong-huu/" data-category="insurance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/tinh-luong-huu/"  data-category="insurance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-brand-mint flex items-center justify-center font-bold mb-4">
-              💼
-            </div>
+            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-500 dark:text-indigo-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 .621-.504 1.125-1.125 1.125H4.875A1.125 1.125 0 013.75 18.4V14.15m16.5 0a9 9 0 00-16.5 0m16.5 0v-2.25a2.25 2.25 0 00-2.25-2.25h-12a2.25 2.25 0 00-2.25 2.25v2.25m16.5 0h-16.5M12 10.5v3"/></svg></div>
             <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
               Tính Lương Hưu Dự Kiến
             </h4>
@@ -183,11 +187,9 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 4. Tính Tiền Chậm Nộp Thuế Card -->
-        <a href="/calculators/tinh-tien-cham-nop-thue/" data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/tinh-tien-cham-nop-thue/"  data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-orange-50 dark:bg-orange-950 text-orange-500 flex items-center justify-center font-bold mb-4">
-              💸
-            </div>
+            <div class="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0zM9 17.25h6m-6-3h6m-6-3h6"/></svg></div>
             <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
               Tính Tiền Chậm Nộp Thuế
             </h4>
@@ -201,11 +203,9 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 5. VietQR Card -->
-        <a href="/calculators/tao-ma-qr/" data-category="dev" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/tao-ma-qr/"  data-category="dev" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 text-brand-blue flex items-center justify-center font-bold mb-4">
-              💳
-            </div>
+            <div class="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 text-brand-blue dark:text-blue-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125v-2.25zM3.75 14.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125v-2.25zM14.625 3.75c-.621 0-1.125.504-1.125 1.125v2.25c0 .621.504 1.125 1.125 1.125h2.25c.621 0 1.125-.504 1.125-1.125v-2.25c0-.621-.504-1.125-1.125-1.125h-2.25zM14.625 14.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125v-2.25zM9.75 9.75h4.5v4.5h-4.5z"/></svg></div>
             <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
               Trình Tạo Mã VietQR Thanh Toán
             </h4>
@@ -219,11 +219,9 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 6. Đọc Số Thành Chữ Card -->
-        <a href="/calculators/doc-so-thanh-chu/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/doc-so-thanh-chu/"  data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-500 flex items-center justify-center font-bold mb-4">
-              🔢
-            </div>
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 dark:bg-purple-500/20 text-purple-500 dark:text-purple-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg></div>
             <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
               Đọc Số Thành Chữ Tiếng Việt
             </h4>
@@ -237,11 +235,9 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 7. Máy Tính Lãi Suất Ngân Hàng -->
-        <a href="/calculators/tinh-lai-suat/" data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/tinh-lai-suat/"  data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 text-brand-blue flex items-center justify-center font-bold mb-4">
-              📈
-            </div>
+            <div class="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 text-brand-blue dark:text-blue-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg></div>
             <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
               Máy Tính Lãi Suất Gửi & Vay
             </h4>
@@ -255,11 +251,9 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 8. Tính Thuế Giá Trị Gia Tăng (VAT) -->
-        <a href="/calculators/tinh-thue-vat/" data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/tinh-thue-vat/"  data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-brand-mint flex items-center justify-center font-bold mb-4">
-              🧾
-            </div>
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 text-brand-mint flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg></div>
             <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:hover:text-brand-mint transition mb-2">
               Tính Thuế Giá Trị Gia Tăng (VAT)
             </h4>
@@ -273,11 +267,9 @@ import Layout from '../layouts/Layout.astro';
         </a>
 
         <!-- 9. Đếm Ký Tự & Số Từ Online -->
-        <a href="/calculators/dem-ky-tu-online/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+        <a href="/calculators/dem-ky-tu-online/"  data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-500 flex items-center justify-center font-bold mb-4">
-              ✍️
-            </div>
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 dark:bg-purple-500/20 text-purple-500 dark:text-purple-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"/></svg></div>
             <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
               Đếm Ký Tự & Số Từ Online
             </h4>
@@ -290,11 +282,9 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </a>
           <!-- 7. Chữ Ký Email Card -->
-          <a href="/calculators/chu-ky-email/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/chu-ky-email/"  data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-950 text-amber-500 flex items-center justify-center font-bold mb-4">
-                ✍️
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Tạo Chữ Ký Email HTML
               </h4>
@@ -308,11 +298,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 8. Nén Ảnh WebP Card -->
-          <a href="/calculators/nen-anh/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/nen-anh/"  data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-cyan-50 dark:bg-cyan-950 text-cyan-500 flex items-center justify-center font-bold mb-4">
-                📷
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-500 dark:text-cyan-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.9 2.9m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V6.75zm.375 0a.375 0 11-.75 0 .375 0 01.75 0z"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Nén Ảnh WebP Tối Ưu
               </h4>
@@ -326,11 +314,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 9. Tạo Văn Bản Hành Chính -->
-          <a href="/calculators/tao-van-ban/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/tao-van-ban/"  data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-500 flex items-center justify-center font-bold mb-4">
-                📄
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-500 dark:text-indigo-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Tạo Văn Bản Hành Chính NĐ 30
               </h4>
@@ -344,11 +330,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 10. Tạo Ảnh AI Miễn Phí -->
-          <a href="/calculators/tao-anh-ai/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/tao-anh-ai/"  data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-500 flex items-center justify-center font-bold mb-4">
-                🎨
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-purple-500/10 dark:bg-purple-500/20 text-purple-500 dark:text-purple-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21l-5.104-1.813a1.875 1.875 0 01-1.096-1.096L1 13l5.104-.813a1.875 1.875 0 011.096 1.096L9 14.813l.813-.813a1.875 1.875 0 011.096-1.096L16 12.1l-5.104.813a1.875 1.875 0 01-1.096 1.096L9 15.904zm0 0l2.766 2.767m0-11.068L11.766 10.4m8.484-8.484l-2.766 2.766m0 0L14.716 2.06m2.767 2.767l2.766 2.766m-11.068 0L6.416 10.4M3.65 1.95L1.95 3.65"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Trình Tạo Ảnh AI Miễn Phí
               </h4>
@@ -362,11 +346,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 11. Tính Chỉ Số BMI Cơ Thể -->
-          <a href="/calculators/tinh-bmi/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/tinh-bmi/"  data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-brand-mint flex items-center justify-center font-bold mb-4">
-                ⚖️
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 text-brand-mint flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3m12-7a3 3 0 11-6 0 3 3 0 016 0zm0 14a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Tính Chỉ Số BMI Cơ Thể
               </h4>
@@ -380,11 +362,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 12. Giải Phương Trình Bậc 2, 3 -->
-          <a href="/calculators/giai-phuong-trinh/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/giai-phuong-trinh/"  data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 text-brand-blue flex items-center justify-center font-bold mb-4">
-                🧮
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 text-brand-blue dark:text-blue-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75V18m-3-3V18m-3-3V18m3-2.25h.008v.008h-.008v-.008zm0-2.25h.008v.008h-.008V10.5zm0-2.25h.008v.008h-.008V8.25zm-3 0h.008v.008h-.008V8.25zm0 2.25h.008v.008h-.008V10.5zm-3 0h.008v.008h-.008V10.5zm0-2.25h.008v.008h-.008V8.25zm9 9h.008v.008h-.008v-.008zm0-2.25h.008v.008h-.008V12.75zm3 0h.008v.008h-.008V12.75zm0-2.25h.008v.008h-.008V10.5zm0-2.25h.008v.008h-.008V8.25zm-9 9h.008v.008h-.008v-.008zM2.25 21h19.5a2.25 2.25 0 002.25-2.25V5.25A2.25 2.25 0 0021.75 3H2.25A2.25 2.25 0 000 5.25v13.5A2.25 2.25 0 002.25 21z"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Giải Phương Trình Bậc 2, 3
               </h4>
@@ -398,11 +378,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 13. Đếm Ngày Yêu Nhau -->
-          <a href="/calculators/dem-ngay-yeu-nhau/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/dem-ngay-yeu-nhau/"  data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-red-50 dark:bg-red-950 text-red-500 flex items-center justify-center font-bold mb-4">
-                ❤️
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-red-500/10 dark:bg-red-500/20 text-red-500 dark:text-red-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Đếm Ngày Yêu Nhau (Love Counter)
               </h4>
@@ -416,11 +394,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 14. Lịch Vạn Niên & Âm Lịch -->
-          <a href="/calculators/lich-van-nien/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/lich-van-nien/"  data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-950 text-amber-500 flex items-center justify-center font-bold mb-4">
-                📅
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm3-2.25h.008v.008H15v-.008zm0 3h.008V16.5H15v-.008zm-6-3h.008v.008H9v-.008zm0 3h.008V16.5H9v-.008z"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Lịch Vạn Niên & Âm Lịch
               </h4>
@@ -434,11 +410,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 15. Kiểm Tra Tốc Độ Mạng (Speedtest) -->
-          <a href="/calculators/speedtest/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/speedtest/"  data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-rose-50 dark:bg-rose-950 text-rose-500 flex items-center justify-center font-bold mb-4">
-                ⚡
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-rose-500/10 dark:bg-rose-500/20 text-rose-500 dark:text-rose-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Đo Tốc Độ Mạng (Speedtest)
               </h4>
@@ -452,11 +426,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 16. Gộp Nhiều File PDF -->
-          <a href="/calculators/gop-pdf/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/gop-pdf/"  data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-red-50 dark:bg-red-950 text-red-500 flex items-center justify-center font-bold mb-4">
-                ➕
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-red-500/10 dark:bg-red-500/20 text-red-500 dark:text-red-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Gộp Nhiều File PDF
               </h4>
@@ -470,11 +442,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 17. Chuyển PDF Sang Word -->
-          <a href="/calculators/pdf-sang-word/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/pdf-sang-word/"  data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-500 flex items-center justify-center font-bold mb-4">
-                🔁
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-500 dark:text-indigo-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.656 48.656 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3M3 12c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M3 12l-3 3m3-3l3-3"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Chuyển PDF Sang Word
               </h4>
@@ -488,11 +458,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 18. Chuyển Word Sang PDF -->
-          <a href="/calculators/word-sang-pdf/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/word-sang-pdf/"  data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-teal-50 dark:bg-teal-950 text-teal-500 flex items-center justify-center font-bold mb-4">
-                🔄
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-teal-500/10 dark:bg-teal-500/20 text-teal-500 dark:text-teal-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Chuyển Word Sang PDF
               </h4>
@@ -506,11 +474,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 19. Tra Cứu Mã Số Thuế -->
-          <a href="/calculators/tra-cuu-mst/" data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/tra-cuu-mst/"  data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-950 text-amber-500 flex items-center justify-center font-bold mb-4">
-                🏢
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21h10.5V3.75A1.125 1.125 0 0016.125 2.625h-8.25A1.125 1.125 0 006.75 3.75V21z"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Tra Cứu Mã Số Thuế
               </h4>
@@ -524,11 +490,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 20. Tạo CV Xin Việc Online -->
-          <a href="/calculators/tao-cv/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/tao-cv/"  data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-rose-50 dark:bg-rose-950 text-rose-500 flex items-center justify-center font-bold mb-4">
-                💼
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-rose-500/10 dark:bg-rose-500/20 text-rose-500 dark:text-rose-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zM9 7.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM12 15.75h-6a2.25 2.25 0 012.25-2.25h1.5a2.25 2.25 0 012.25 2.25z"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:hover:text-brand-mint transition mb-2">
                 Tạo CV Xin Việc Online
               </h4>
@@ -542,11 +506,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 21. Xem Bói Bài Tarot Online -->
-          <a href="/calculators/xem-tarot/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/xem-tarot/"  data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-500 flex items-center justify-center font-bold mb-4">
-                🔮
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-500 dark:text-indigo-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21l-5.104-1.813a1.875 1.875 0 01-1.096-1.096L1 13l5.104-.813a1.875 1.875 0 011.096 1.096L9 14.813l.813-.813a1.875 1.875 0 011.096-1.096L16 12.1l-5.104.813a1.875 1.875 0 01-1.096 1.096L9 15.904zm0 0l2.766 2.767m0-11.068L11.766 10.4m8.484-8.484l-2.766 2.766m0 0L14.716 2.06m2.767 2.767l2.766 2.766m-11.068 0L6.416 10.4M3.65 1.95L1.95 3.65"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:hover:text-brand-mint transition mb-2">
                 Xem Bói Bài Tarot Online
               </h4>
@@ -560,11 +522,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 22. Tra Cứu Lịch Cắt Điện -->
-          <a href="/calculators/lich-cat-dien/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/lich-cat-dien/"  data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-950 text-amber-500 flex items-center justify-center font-bold mb-4">
-                ⚡
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:hover:text-brand-mint transition mb-2">
                 Tra Cứu Lịch Cắt Điện
               </h4>
@@ -578,11 +538,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 26. Tính Chế Độ Thai Sản Card -->
-          <a href="/calculators/tinh-che-do-thai-san/" data-category="insurance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/tinh-che-do-thai-san/"  data-category="insurance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-brand-mint flex items-center justify-center font-bold mb-4">
-                🤰
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 text-brand-mint flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Tính Chế Độ Thai Sản
               </h4>
@@ -596,11 +554,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 27. Tính Điểm Hòa Vốn Card -->
-          <a href="/calculators/tinh-diem-hoa-von/" data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/tinh-diem-hoa-von/"  data-category="finance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-orange-50 dark:bg-orange-950 text-orange-500 flex items-center justify-center font-bold mb-4">
-                📈
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-orange-500/10 dark:bg-orange-500/20 text-orange-500 dark:text-orange-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3m12-7a3 3 0 11-6 0 3 3 0 016 0zm0 14a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Tính Điểm Hòa Vốn Kinh Doanh
               </h4>
@@ -614,11 +570,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 28. Regex Explainer Card -->
-          <a href="/calculators/regex-explainer/" data-category="dev" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/regex-explainer/"  data-category="dev" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 text-brand-blue flex items-center justify-center font-bold mb-4">
-                💻
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 text-brand-blue dark:text-blue-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Regex Explainer Tiếng Việt
               </h4>
@@ -632,11 +586,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 29. Tính Lương Net Sang Gross Card -->
-          <a href="/calculators/tinh-luong-net-sang-gross/" data-category="insurance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/tinh-luong-net-sang-gross/"  data-category="insurance" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 text-blue-500 flex items-center justify-center font-bold mb-4">
-                🔄
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 text-brand-blue dark:text-blue-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Tính Lương Net Sang Gross
               </h4>
@@ -650,11 +602,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 30. Cắt & Tách File PDF Card -->
-          <a href="/calculators/cat-pdf/" data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/cat-pdf/"  data-category="office" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-red-50 dark:bg-red-950 text-red-500 flex items-center justify-center font-bold mb-4">
-                ✂️
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-red-500/10 dark:bg-red-500/20 text-red-500 dark:text-red-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.864 4.243A4 4 0 1113.5 9.757m-5.636-5.514a4 4 0 00-5.637 5.637m5.636-5.513l3.654 3.654m0 0L13.5 6m-3.636 3.654L6.21 13.31a4 4 0 11-5.636-5.636m5.636 5.636l3.654-3.654m0 0L13.5 12"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Cắt & Tách File PDF
               </h4>
@@ -668,11 +618,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 31. Tạo Số Ngẫu Nhiên Card -->
-          <a href="/calculators/tao-so-ngau-nhien/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/tao-so-ngau-nhien/"  data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-500 flex items-center justify-center font-bold mb-4">
-                🎲
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 text-brand-mint flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H4.875c-.621 0-1.125.504-1.125 1.125v2.25c0 .621.504 1.125 1.125 1.125h3.375c.704 0 1.402-.03 2.09-.09m0-4.32a17.944 17.944 0 01-2.09 4.32m2.09-4.32c.704 0 1.402.03 2.09.09m-2.09-.09v4.32m2.09-4.23c.688.06 1.386.09 2.09.09h3.375c.621 0 1.125-.504 1.125-1.125v-2.25c0-.621-.504-1.125-1.125-1.125h-3.375c-.704 0-1.402.03-2.09.09m2.09 4.32a17.944 17.944 0 002.09-4.32m-2.09 4.32v-4.32m0 0a17.944 17.944 0 01-2.09-4.32M10.34 7.2a17.944 17.944 0 00-2.09 4.32m2.09-4.32c-.688-.06-1.386-.09-2.09-.09H4.875C4.254 7.11 3.75 7.614 3.75 8.235v2.25c0 .621.504 1.125 1.125 1.125h3.375c.704 0 1.402-.03 2.09-.09m2.09-4.32V7.2m0 0c.704 0 1.402.03 2.09.09h3.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-3.375c-.704 0-1.402-.03-2.09-.09m0-4.32a17.944 17.944 0 012.09 4.32m-2.09-4.32v4.32"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Tạo Số Ngẫu Nhiên
               </h4>
@@ -686,11 +634,9 @@ import Layout from '../layouts/Layout.astro';
           </a>
 
           <!-- 32. Giải Mã Giấc Mơ Card -->
-          <a href="/calculators/giai-ma-giac-mo/" data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl hover:shadow-lg transition flex flex-col justify-between">
+          <a href="/calculators/giai-ma-giac-mo/"  data-category="utility" class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden" class="class="group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-500 flex items-center justify-center font-bold mb-4">
-                🔮
-              </div>
+              <div class="w-12 h-12 rounded-xl bg-purple-500/10 dark:bg-purple-500/20 text-purple-500 dark:text-purple-400 flex items-center justify-center mb-4 transition-colors duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21l-5.104-1.813a1.875 1.875 0 01-1.096-1.096L1 13l5.104-.813a1.875 1.875 0 011.096 1.096L9 14.813l.813-.813a1.875 1.875 0 011.096-1.096L16 12.1l-5.104.813a1.875 1.875 0 01-1.096 1.096L9 15.904zm0 0l2.766 2.767m0-11.068L11.766 10.4m8.484-8.484l-2.766 2.766m0 0L14.716 2.06m2.767 2.767l2.766 2.766m-11.068 0L6.416 10.4M3.65 1.95L1.95 3.65"/></svg></div>
               <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2">
                 Giải Mã Giấc Mơ
               </h4>
@@ -863,9 +809,9 @@ import Layout from '../layouts/Layout.astro';
       // Update tab active styling
       tabBtns.forEach(b => {
         if (b.getAttribute('data-category') === cat) {
-          b.className = "calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 bg-white dark:bg-brand-darkCard text-slate-900 dark:text-white shadow-sm";
+          b.className = "calc-tab-btn px-3.5 py-1.5 text-xs font-bold rounded-xl transition-all duration-200 bg-white dark:bg-brand-darkCard text-slate-900 dark:text-white shadow-sm flex items-center gap-1.5 shrink-0";
         } else {
-          b.className = "calc-tab-btn px-3 py-1.5 text-xs font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200";
+          b.className = "calc-tab-btn px-3.5 py-1.5 text-xs font-bold rounded-xl transition-all duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 flex items-center gap-1.5 shrink-0";
         }
       });
     });

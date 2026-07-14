@@ -90,6 +90,29 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
     </script>
     
     <style is:global>
+      /* Background Grid Pattern */
+      body {
+        position: relative;
+      }
+      body::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: 
+          linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+        background-size: 24px 24px;
+        mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 65%, transparent 100%);
+        -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 65%, transparent 100%);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .dark body::before {
+        background-image: 
+          linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      }
+
       /* Global accessibility color contrast overrides in light mode */
       html:not(.dark) .text-slate-400 {
         color: #64748b !important;
@@ -108,10 +131,100 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
         box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 16px -6px rgba(15, 23, 42, 0.04) !important;
       }
 
+      /* Premium Button Upgrades (SaaS Style) */
+      button[class*="bg-brand-blue"],
+      button[class*="bg-blue-600"] {
+        background-image: linear-gradient(to bottom, #0070e3, #0056b3) !important;
+        border: 1px solid rgba(0, 99, 182, 0.2) !important;
+        box-shadow: 0 4px 12px -2px rgba(0, 112, 227, 0.2) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      button[class*="bg-brand-blue"]:hover,
+      button[class*="bg-blue-600"]:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 24px -4px rgba(0, 112, 227, 0.35) !important;
+        background-image: linear-gradient(to bottom, #007cfa, #005cc0) !important;
+      }
+      button[class*="bg-brand-blue"]:active,
+      button[class*="bg-blue-600"]:active {
+        transform: translateY(0px) scale(0.98) !important;
+        box-shadow: 0 2px 6px -1px rgba(0, 112, 227, 0.2) !important;
+      }
+
+      .dark button[class*="bg-brand-mint"],
+      .dark button[class*="dark:bg-brand-mint"],
+      .dark button[class*="bg-emerald-500"],
+      .dark button[class*="dark:bg-emerald-500"] {
+        background-image: linear-gradient(to bottom, #00f5d4, #00c49f) !important;
+        color: #020617 !important;
+        border: 1px solid rgba(0, 245, 212, 0.3) !important;
+        box-shadow: 0 4px 12px -2px rgba(0, 245, 212, 0.2) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      .dark button[class*="bg-brand-mint"]:hover,
+      .dark button[class*="dark:bg-brand-mint"]:hover,
+      .dark button[class*="bg-emerald-500"]:hover,
+      .dark button[class*="dark:bg-emerald-500"]:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 24px -4px rgba(0, 245, 212, 0.4) !important;
+        background-image: linear-gradient(to bottom, #26ffdf, #00d6ae) !important;
+      }
+      .dark button[class*="bg-brand-mint"]:active,
+      .dark button[class*="dark:bg-brand-mint"]:active,
+      .dark button[class*="bg-emerald-500"]:active,
+      .dark button[class*="dark:bg-emerald-500"]:active {
+        transform: translateY(0px) scale(0.98) !important;
+      }
+
+      button[class*="bg-red-500"],
+      button[class*="bg-rose-500"] {
+        background-image: linear-gradient(to bottom, #f43f5e, #e11d48) !important;
+        border: 1px solid rgba(244, 63, 94, 0.2) !important;
+        box-shadow: 0 4px 12px -2px rgba(244, 63, 94, 0.2) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      button[class*="bg-red-500"]:hover,
+      button[class*="bg-rose-500"]:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 24px -4px rgba(244, 63, 94, 0.35) !important;
+        background-image: linear-gradient(to bottom, #ff4d6d, #f22b53) !important;
+      }
+      button[class*="bg-red-500"]:active,
+      button[class*="bg-rose-500"]:active {
+        transform: translateY(0px) scale(0.98) !important;
+      }
+
+      button[class*="bg-slate-100"],
+      button[class*="bg-slate-200"],
+      button[class*="dark:bg-slate-800"],
+      button[class*="dark:bg-slate-700"],
+      button[class*="border-slate-200"] {
+        transition: all 0.25s ease !important;
+      }
+      button[class*="bg-slate-100"]:hover,
+      button[class*="bg-slate-200"]:hover,
+      button[class*="dark:bg-slate-800"]:hover {
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05) !important;
+      }
+      button[class*="bg-slate-100"]:active,
+      button[class*="bg-slate-200"]:active,
+      button[class*="dark:bg-slate-800"]:active {
+        transform: translateY(0px) scale(0.98) !important;
+      }
+
       /* Global responsiveness fixes */
       html, body {
         max-width: 100%;
         overflow-x: hidden;
+      }
+      /* Hide scrollbar utility class */
+      .scrollbar-none::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-none {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
       main {
         width: 100%;
@@ -134,43 +247,49 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
       }
     </style>
   </head>
-  <body class="bg-slate-50 dark:bg-brand-darkBg text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
-    <!-- Header -->
-    <header class="bg-white/80 dark:bg-brand-darkCard/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50 transition-colors">
-      <div class="max-w-6xl mx-auto px-3 sm:px-4 py-3 sm:py-4 flex justify-between items-center">
-        <!-- Logo -->
-        <a href="/" class="text-xl sm:text-2xl md:text-3xl font-heading font-extrabold flex items-center select-none tracking-tight shrink-0">
-          <span class="text-[#0063b6] dark:text-white transition-colors">trolyso</span><span class="text-[#49a2dc] transition-colors">.online</span>
-        </a>
-        
-        <!-- Dark Mode Toggle & Menu -->
-        <div class="flex items-center gap-3 sm:gap-4">
-          <!-- Search Bar -->
-          <div class="relative hidden sm:block">
-            <input type="text" id="globalSearchInput" placeholder="Tìm công cụ, bài viết..." aria-label="Tìm kiếm công cụ và bài viết" class="w-48 lg:w-56 pl-9 pr-4 py-2 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint text-xs font-medium transition-all" />
-            <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-            <div id="searchDropdown" class="absolute right-0 top-full mt-2 w-72 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-xl shadow-xl z-50 p-2 hidden max-h-80 overflow-y-auto">
-              <!-- Results -->
-            </div>
-          </div>
+  <body class="bg-slate-50 dark:bg-brand-darkBg text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300 relative overflow-x-hidden">
+    <!-- Glow Orbs (Ambient backgrounds) -->
+    <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] max-w-[600px] bg-blue-400/10 dark:bg-blue-600/5 blur-[120px] rounded-full pointer-events-none select-none z-0"></div>
+    <div class="absolute top-[5%] right-[-10%] w-[45vw] h-[45vw] max-w-[500px] bg-emerald-400/10 dark:bg-emerald-600/5 blur-[120px] rounded-full pointer-events-none select-none z-0"></div>
 
-          <a href="/blog/" class="text-sm font-semibold hover:text-brand-blue dark:hover:text-brand-mint">
-            Cẩm Nang
+    <!-- Header Capsule Glassmorphism -->
+    <header class="sticky top-0 z-50 w-full px-4 py-3 sm:py-4">
+      <div class="max-w-6xl mx-auto bg-white/70 dark:bg-brand-darkCard/75 backdrop-blur-md border border-slate-200/50 dark:border-slate-800/40 rounded-2xl shadow-sm transition-all duration-300">
+        <div class="px-4 py-3 flex justify-between items-center">
+          <!-- Logo -->
+          <a href="/" class="text-xl sm:text-2xl font-heading font-extrabold flex items-center select-none tracking-tight shrink-0">
+            <span class="text-[#0063b6] dark:text-white transition-colors">trolyso</span><span class="text-[#49a2dc] transition-colors">.online</span>
           </a>
           
-          <!-- Theme Toggle Button -->
-          <button id="themeToggle" class="p-2 sm:p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:ring-2 hover:ring-slate-300 dark:hover:ring-slate-700 transition" aria-label="Toggle theme">
-            <!-- Sun Icon (shown in dark mode) -->
-            <svg id="themeSun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707-.707m12.728 0l-.707.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 115.52 12a9 9 0 0112.728 12.728z"></path>
-            </svg>
-            <!-- Moon Icon (shown in light mode) -->
-            <svg id="themeMoon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-            </svg>
-          </button>
+          <!-- Dark Mode Toggle & Menu -->
+          <div class="flex items-center gap-3 sm:gap-4">
+            <!-- Search Bar -->
+            <div class="relative hidden sm:block">
+              <input type="text" id="globalSearchInput" placeholder="Tìm công cụ, bài viết..." aria-label="Tìm kiếm công cụ và bài viết" class="w-44 lg:w-52 pl-9 pr-4 py-2 rounded-full border border-slate-200/50 dark:border-slate-800/50 bg-slate-50/50 dark:bg-slate-900/50 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint text-xs font-medium transition-all" />
+              <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+              <div id="searchDropdown" class="absolute right-0 top-full mt-2 w-72 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-xl shadow-xl z-50 p-2 hidden max-h-80 overflow-y-auto">
+                <!-- Results -->
+              </div>
+            </div>
+
+            <a href="/blog/" class="text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint transition-colors">
+              Cẩm Nang
+            </a>
+            
+            <!-- Theme Toggle Button -->
+            <button id="themeToggle" class="p-2 rounded-xl bg-slate-100/50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-300 hover:ring-2 hover:ring-slate-300/40 dark:hover:ring-slate-700/40 transition" aria-label="Toggle theme">
+              <!-- Sun Icon (shown in dark mode) -->
+              <svg id="themeSun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707-.707m12.728 0l-.707.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 115.52 12a9 9 0 0112.728 12.728z"></path>
+              </svg>
+              <!-- Moon Icon (shown in light mode) -->
+              <svg id="themeMoon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </header>
@@ -258,9 +377,6 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
       });
 
       // Global Search Engine
-      const searchInput = document.getElementById('globalSearchInput') as HTMLInputElement;
-      const searchDropdown = document.getElementById('searchDropdown');
-
       let searchIndex = null;
       let isFetchingSearchIndex = false;
 
@@ -283,9 +399,6 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
         }
       }
 
-      searchInput?.addEventListener('focus', loadSearchIndex);
-      searchInput?.addEventListener('mouseenter', loadSearchIndex);
-
       function removeVietnameseTones(str: string) {
         let result = str.toLowerCase();
         result = result.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
@@ -299,52 +412,72 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
         return result.normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
       }
 
-      searchInput?.addEventListener('input', async () => {
-        if (!searchIndex) {
-          await loadSearchIndex();
-        }
-        if (!searchIndex) return;
-        const rawQuery = searchInput.value.trim();
-        if (!rawQuery) {
-          searchDropdown?.classList.add('hidden');
-          return;
-        }
+      function setupSearch(inputId: string, dropdownId: string) {
+        const input = document.getElementById(inputId) as HTMLInputElement;
+        const dropdown = document.getElementById(dropdownId);
+        if (!input || !dropdown) return;
 
-        const query = removeVietnameseTones(rawQuery);
-        const queryWords = query.split(/\s+/).filter(Boolean);
-        if (queryWords.length === 0) {
-          searchDropdown?.classList.add('hidden');
-          return;
-        }
+        input.addEventListener('focus', loadSearchIndex);
+        input.addEventListener('mouseenter', loadSearchIndex);
 
-        const results = searchIndex.filter(item => {
-          const itemText = removeVietnameseTones(item.title + ' ' + (item.desc || ''));
-          return queryWords.every(word => itemText.includes(word));
-        });
-
-        if (results.length === 0) {
-          if (searchDropdown) {
-            searchDropdown.innerHTML = `<div class="p-3 text-xs text-slate-400 text-center">Không tìm thấy kết quả phù hợp</div>`;
-            searchDropdown.classList.remove('hidden');
+        input.addEventListener('input', async () => {
+          if (!searchIndex) {
+            await loadSearchIndex();
           }
-          return;
-        }
+          if (!searchIndex) return;
+          const rawQuery = input.value.trim();
+          if (!rawQuery) {
+            dropdown.classList.add('hidden');
+            return;
+          }
 
-        if (searchDropdown) {
-          searchDropdown.innerHTML = results.map(item => `
+          const query = removeVietnameseTones(rawQuery);
+          const queryWords = query.split(/\s+/).filter(Boolean);
+          if (queryWords.length === 0) {
+            dropdown.classList.add('hidden');
+            return;
+          }
+
+          const results = searchIndex.filter(item => {
+            const itemText = removeVietnameseTones(item.title + ' ' + (item.desc || ''));
+            return queryWords.every(word => itemText.includes(word));
+          });
+
+          if (results.length === 0) {
+            dropdown.innerHTML = `<div class="p-3 text-xs text-slate-400 text-center">Không tìm thấy kết quả phù hợp</div>`;
+            dropdown.classList.remove('hidden');
+            return;
+          }
+
+          dropdown.innerHTML = results.map(item => `
             <a href="${item.url}" class="block p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-left transition select-none">
               <div class="font-semibold text-xs text-slate-900 dark:text-white">${item.title}</div>
               <div class="text-[10px] text-slate-400 line-clamp-1 mt-0.5">${item.desc}</div>
             </a>
           `).join('');
-          searchDropdown.classList.remove('hidden');
-        }
-      });
+          dropdown.classList.remove('hidden');
+        });
 
-      // Đóng dropdown khi click bên ngoài
-      document.addEventListener('click', (e) => {
-        if (e.target !== searchInput && e.target !== searchDropdown) {
-          searchDropdown?.classList.add('hidden');
+        // Đóng dropdown khi click bên ngoài
+        document.addEventListener('click', (e) => {
+          if (e.target !== input && e.target !== dropdown) {
+            dropdown.classList.add('hidden');
+          }
+        });
+      }
+
+      // Initialize
+      setupSearch('globalSearchInput', 'searchDropdown');
+      setupSearch('heroSearchInput', 'heroSearchDropdown');
+      setupSearch('mobileSearchInput', 'mobileSearchDropdown');
+
+      // Scroll threshold to show/hide the floating mobile search
+      const mobileFloatingSearch = document.getElementById('mobileFloatingSearch');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 250) {
+          mobileFloatingSearch?.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+        } else {
+          mobileFloatingSearch?.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
         }
       });
 
@@ -695,5 +828,15 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
         }
       }
     </script>
+    <!-- Floating Mobile Search Bar (App-like UX) -->
+    <div id="mobileFloatingSearch" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 w-[85%] max-w-[320px] bg-white/90 dark:bg-brand-darkCard/95 backdrop-blur-md border border-slate-200/60 dark:border-slate-800/50 rounded-full shadow-lg px-4 py-2 flex items-center gap-2 sm:hidden opacity-0 translate-y-10 pointer-events-none transition-all duration-300">
+      <svg class="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+      <input type="text" id="mobileSearchInput" placeholder="Tìm công cụ, cẩm nang..." aria-label="Tìm kiếm nhanh di động" class="w-full bg-transparent border-0 outline-none text-[11px] font-bold text-slate-800 dark:text-slate-200 placeholder-slate-400 focus:ring-0 p-0 focus:outline-none" />
+      <div id="mobileSearchDropdown" class="absolute bottom-full mb-3 left-0 right-0 w-full bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-xl p-2 hidden max-h-60 overflow-y-auto">
+        <!-- Results -->
+      </div>
+    </div>
   </body>
 </html>
