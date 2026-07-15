@@ -26,6 +26,199 @@ import Layout from '../layouts/Layout.astro';
   <!-- Background Decor -->
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
 
+  <!-- Floating 3D Shapes Background Decor (Premium SaaS Style) -->
+  <div class="absolute inset-x-0 top-0 bottom-0 overflow-hidden pointer-events-none select-none z-0 hidden sm:block">
+    <!-- LEFT SIDE SHAPES -->
+    <!-- Shape 1: Pink Cube (Top Left) -->
+    <div class="absolute left-[5%] top-[8%] opacity-75 animate-float-slow">
+      <svg class="w-12 h-12" viewBox="0 0 100 100" fill="none">
+        <defs>
+          <linearGradient id="pinkTop1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff758f" /><stop offset="100%" stop-color="#ff8fa3" /></linearGradient>
+          <linearGradient id="pinkLeft1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c9184a" /><stop offset="100%" stop-color="#ff4d6d" /></linearGradient>
+          <linearGradient id="pinkRight1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a4133c" /><stop offset="100%" stop-color="#c9184a" /></linearGradient>
+        </defs>
+        <polygon points="50,15 85,35 50,55 15,35" fill="url(#pinkTop1)" />
+        <polygon points="15,35 50,55 50,90 15,70" fill="url(#pinkLeft1)" />
+        <polygon points="50,55 85,35 85,70 50,90" fill="url(#pinkRight1)" />
+      </svg>
+    </div>
+
+    <!-- Shape 2: Orange Pyramid (Upper Left - Blurred) -->
+    <div class="absolute left-[16%] top-[22%] opacity-55 blur-[1.5px] animate-float-medium">
+      <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+        <defs>
+          <linearGradient id="orangeLeft1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffb703" /><stop offset="100%" stop-color="#fb8500" /></linearGradient>
+          <linearGradient id="orangeRight1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fb8500" /><stop offset="100%" stop-color="#d66200" /></linearGradient>
+        </defs>
+        <polygon points="50,10 15,80 50,90" fill="url(#orangeLeft1)" />
+        <polygon points="50,10 50,90 85,80" fill="url(#orangeRight1)" />
+      </svg>
+    </div>
+
+    <!-- Shape 3: Purple Sphere (Mid-Upper Left) -->
+    <div class="absolute left-[7%] top-[36%] opacity-85 animate-float-fast">
+      <svg class="w-8 h-8" viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="purpleSphere1" cx="30%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#e0aaff" />
+            <stop offset="50%" stop-color="#9d4edd" />
+            <stop offset="100%" stop-color="#5a189a" />
+          </radialGradient>
+        </defs>
+        <circle cx="50" cy="50" r="45" fill="url(#purpleSphere1)" />
+      </svg>
+    </div>
+
+    <!-- Shape 4: Mint Cube (Middle Left) -->
+    <div class="absolute left-[14%] top-[50%] opacity-80 animate-float-slow">
+      <svg class="w-12 h-12" viewBox="0 0 100 100" fill="none">
+        <defs>
+          <linearGradient id="mintTop1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#adf7d1" /><stop offset="100%" stop-color="#96e6b2" /></linearGradient>
+          <linearGradient id="mintLeft1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2ec4b6" /><stop offset="100%" stop-color="#0f9f90" /></linearGradient>
+          <linearGradient id="mintRight1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0f9f90" /><stop offset="100%" stop-color="#086e64" /></linearGradient>
+        </defs>
+        <polygon points="50,15 85,35 50,55 15,35" fill="url(#mintTop1)" />
+        <polygon points="15,35 50,55 50,90 15,70" fill="url(#mintLeft1)" />
+        <polygon points="50,55 85,35 85,70 50,90" fill="url(#mintRight1)" />
+      </svg>
+    </div>
+
+    <!-- Shape 5: Yellow Sphere (Mid-Lower Left - Blurred) -->
+    <div class="absolute left-[5%] top-[65%] opacity-70 blur-[1px] animate-float-medium">
+      <svg class="w-8 h-8" viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="yellowSphere1" cx="30%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#fff275" />
+            <stop offset="50%" stop-color="#ffb703" />
+            <stop offset="100%" stop-color="#d66200" />
+          </radialGradient>
+        </defs>
+        <circle cx="50" cy="50" r="45" fill="url(#yellowSphere1)" />
+      </svg>
+    </div>
+
+    <!-- Shape 6: Blue Pyramid (Lower Left) -->
+    <div class="absolute left-[15%] top-[78%] opacity-65 animate-float-fast">
+      <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+        <defs>
+          <linearGradient id="blueLeft1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4ea8de" /><stop offset="100%" stop-color="#0077b6" /></linearGradient>
+          <linearGradient id="blueRight1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0077b6" /><stop offset="100%" stop-color="#03045e" /></linearGradient>
+        </defs>
+        <polygon points="50,10 15,80 50,90" fill="url(#blueLeft1)" />
+        <polygon points="50,10 50,90 85,80" fill="url(#blueRight1)" />
+      </svg>
+    </div>
+
+    <!-- Shape 7: Pink Cube (Bottom Left) -->
+    <div class="absolute left-[6%] top-[92%] opacity-75 animate-float-slow">
+      <svg class="w-12 h-12" viewBox="0 0 100 100" fill="none">
+        <defs>
+          <linearGradient id="pinkTop2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff758f" /><stop offset="100%" stop-color="#ff8fa3" /></linearGradient>
+          <linearGradient id="pinkLeft2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c9184a" /><stop offset="100%" stop-color="#ff4d6d" /></linearGradient>
+          <linearGradient id="pinkRight2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a4133c" /><stop offset="100%" stop-color="#c9184a" /></linearGradient>
+        </defs>
+        <polygon points="50,15 85,35 50,55 15,35" fill="url(#pinkTop2)" />
+        <polygon points="15,35 50,55 50,90 15,70" fill="url(#pinkLeft2)" />
+        <polygon points="50,55 85,35 85,70 50,90" fill="url(#pinkRight2)" />
+      </svg>
+    </div>
+
+    <!-- RIGHT SIDE SHAPES -->
+    <!-- Shape 8: Mint Cube (Top Right) -->
+    <div class="absolute right-[6%] top-[10%] opacity-80 animate-float-medium">
+      <svg class="w-12 h-12" viewBox="0 0 100 100" fill="none">
+        <defs>
+          <linearGradient id="mintTop2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#adf7d1" /><stop offset="100%" stop-color="#96e6b2" /></linearGradient>
+          <linearGradient id="mintLeft2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2ec4b6" /><stop offset="100%" stop-color="#0f9f90" /></linearGradient>
+          <linearGradient id="mintRight2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0f9f90" /><stop offset="100%" stop-color="#086e64" /></linearGradient>
+        </defs>
+        <polygon points="50,15 85,35 50,55 15,35" fill="url(#mintTop2)" />
+        <polygon points="15,35 50,55 50,90 15,70" fill="url(#mintLeft2)" />
+        <polygon points="50,55 85,35 85,70 50,90" fill="url(#mintRight2)" />
+      </svg>
+    </div>
+
+    <!-- Shape 9: Yellow Sphere (Upper Right) -->
+    <div class="absolute right-[17%] top-[24%] opacity-75 animate-float-slow">
+      <svg class="w-8 h-8" viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="yellowSphere2" cx="30%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#fff275" />
+            <stop offset="50%" stop-color="#ffb703" />
+            <stop offset="100%" stop-color="#d66200" />
+          </radialGradient>
+        </defs>
+        <circle cx="50" cy="50" r="45" fill="url(#yellowSphere2)" />
+      </svg>
+    </div>
+
+    <!-- Shape 10: Blue Pyramid (Mid-Upper Right - Blurred) -->
+    <div class="absolute right-[8%] top-[38%] opacity-50 blur-[1.5px] animate-float-fast">
+      <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+        <defs>
+          <linearGradient id="blueLeft2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4ea8de" /><stop offset="100%" stop-color="#0077b6" /></linearGradient>
+          <linearGradient id="blueRight2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0077b6" /><stop offset="100%" stop-color="#03045e" /></linearGradient>
+        </defs>
+        <polygon points="50,10 15,80 50,90" fill="url(#blueLeft2)" />
+        <polygon points="50,10 50,90 85,80" fill="url(#blueRight2)" />
+      </svg>
+    </div>
+
+    <!-- Shape 11: Pink Cube (Middle Right) -->
+    <div class="absolute right-[15%] top-[52%] opacity-85 animate-float-medium">
+      <svg class="w-12 h-12" viewBox="0 0 100 100" fill="none">
+        <defs>
+          <linearGradient id="pinkTop3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff758f" /><stop offset="100%" stop-color="#ff8fa3" /></linearGradient>
+          <linearGradient id="pinkLeft3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c9184a" /><stop offset="100%" stop-color="#ff4d6d" /></linearGradient>
+          <linearGradient id="pinkRight3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a4133c" /><stop offset="100%" stop-color="#c9184a" /></linearGradient>
+        </defs>
+        <polygon points="50,15 85,35 50,55 15,35" fill="url(#pinkTop3)" />
+        <polygon points="15,35 50,55 50,90 15,70" fill="url(#pinkLeft3)" />
+        <polygon points="50,55 85,35 85,70 50,90" fill="url(#pinkRight3)" />
+      </svg>
+    </div>
+
+    <!-- Shape 12: Orange Pyramid (Mid-Lower Right) -->
+    <div class="absolute right-[6%] top-[66%] opacity-65 animate-float-slow">
+      <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+        <defs>
+          <linearGradient id="orangeLeft2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffb703" /><stop offset="100%" stop-color="#fb8500" /></linearGradient>
+          <linearGradient id="orangeRight2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fb8500" /><stop offset="100%" stop-color="#d66200" /></linearGradient>
+        </defs>
+        <polygon points="50,10 15,80 50,90" fill="url(#orangeLeft2)" />
+        <polygon points="50,10 50,90 85,80" fill="url(#orangeRight2)" />
+      </svg>
+    </div>
+
+    <!-- Shape 13: Purple Sphere (Lower Right - Blurred) -->
+    <div class="absolute right-[16%] top-[80%] opacity-75 blur-[1px] animate-float-fast">
+      <svg class="w-8 h-8" viewBox="0 0 100 100">
+        <defs>
+          <radialGradient id="purpleSphere2" cx="30%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#e0aaff" />
+            <stop offset="50%" stop-color="#9d4edd" />
+            <stop offset="100%" stop-color="#5a189a" />
+          </radialGradient>
+        </defs>
+        <circle cx="50" cy="50" r="45" fill="url(#purpleSphere2)" />
+      </svg>
+    </div>
+
+    <!-- Shape 14: Mint Cube (Bottom Right) -->
+    <div class="absolute right-[7%] top-[94%] opacity-80 animate-float-medium">
+      <svg class="w-12 h-12" viewBox="0 0 100 100" fill="none">
+        <defs>
+          <linearGradient id="mintTop3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#adf7d1" /><stop offset="100%" stop-color="#96e6b2" /></linearGradient>
+          <linearGradient id="mintLeft3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2ec4b6" /><stop offset="100%" stop-color="#0f9f90" /></linearGradient>
+          <linearGradient id="mintRight3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0f9f90" /><stop offset="100%" stop-color="#086e64" /></linearGradient>
+        </defs>
+        <polygon points="50,15 85,35 50,55 15,35" fill="url(#mintTop3)" />
+        <polygon points="15,35 50,55 50,90 15,70" fill="url(#mintLeft3)" />
+        <polygon points="50,55 85,35 85,70 50,90" fill="url(#mintRight3)" />
+      </svg>
+    </div>
+  </div>
+
   <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
     
     <!-- Hero Section -->
@@ -874,3 +1067,31 @@ import Layout from '../layouts/Layout.astro';
     }, 4000); // Transitions every 4 seconds
   }
 </script>
+
+<style>
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+  }
+  @keyframes floatMedium {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(12px) rotate(-8deg); }
+  }
+  @keyframes floatFast {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(12deg); }
+  }
+  
+  /* Apply animation only on desktop viewports to save mobile CPU/battery */
+  @media (min-width: 640px) {
+    .animate-float-slow {
+      animation: floatSlow 8s infinite ease-in-out;
+    }
+    .animate-float-medium {
+      animation: floatMedium 10s infinite ease-in-out;
+    }
+    .animate-float-fast {
+      animation: floatFast 12s infinite ease-in-out;
+    }
+  }
+</style>
