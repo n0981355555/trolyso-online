@@ -29,7 +29,7 @@ import Layout from '../layouts/Layout.astro';
   <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
     
     <!-- Hero Section -->
-    <div class="text-center max-w-3xl mx-auto mb-16 relative">
+    <div class="text-center max-w-4xl mx-auto mb-16 relative">
       <!-- Hero Search Bar (Premium SaaS Style) -->
       <div class="max-w-md mx-auto mb-8 relative">
         <input type="text" id="heroSearchInput" placeholder="Tìm kiếm công cụ, cẩm nang..." aria-label="Tìm kiếm nhanh công cụ và cẩm nang" class="w-full pl-12 pr-4 py-3.5 rounded-2xl border border-slate-200/60 dark:border-slate-800/50 bg-white/70 dark:bg-slate-900/60 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-bold text-sm transition-all shadow-sm hover:shadow-md" />
@@ -40,8 +40,12 @@ import Layout from '../layouts/Layout.astro';
           <!-- Results -->
         </div>
       </div>
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
-        Hộp Công Cụ Số <span class="bg-gradient-to-r from-brand-blue to-blue-500 dark:from-brand-mint dark:to-emerald-400 bg-clip-text text-transparent">Thông Minh</span> Cho Người Việt
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight select-none text-center">
+        <span class="block sm:inline sm:whitespace-nowrap">
+          <span class="block sm:inline">Hộp Công Cụ Số </span>
+          <span id="rotateWord" class="block sm:inline-block transition-all duration-500 ease-out transform scale-100 opacity-100 bg-gradient-to-r from-brand-blue to-blue-500 dark:from-brand-mint dark:to-emerald-400 bg-clip-text text-transparent pb-2 mt-1 sm:mt-0 select-none">Thông Minh</span>
+        </span>
+        <span class="block mt-1 sm:mt-2">Cho Người Việt</span>
       </h1>
       <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
         Các tiện ích tính toán tài chính, thuế, BHXH trực quan, bảo mật tuyệt đối 100% dữ liệu ngay trên trình duyệt của bạn.
@@ -838,4 +842,35 @@ import Layout from '../layouts/Layout.astro';
     checkHash();
   });
   window.addEventListener('hashchange', checkHash);
+
+  // Smooth word rotator (Smart <-> Utility)
+  const rotateWord = document.getElementById('rotateWord');
+  if (rotateWord) {
+    let isSmart = true;
+    setInterval(() => {
+      // 1. Fade out and scale down slightly
+      rotateWord.classList.remove('scale-100', 'opacity-100');
+      rotateWord.classList.add('scale-95', 'opacity-0');
+
+      setTimeout(() => {
+        if (isSmart) {
+          // Switch to "Tiện Ích"
+          rotateWord.textContent = 'Tiện Ích';
+          rotateWord.className = 'block sm:inline-block transition-all duration-500 ease-out transform scale-95 opacity-0 text-red-500 dark:text-rose-500 pb-2 mt-1 sm:mt-0 select-none';
+        } else {
+          // Switch to "Thông Minh"
+          rotateWord.textContent = 'Thông Minh';
+          rotateWord.className = 'block sm:inline-block transition-all duration-500 ease-out transform scale-95 opacity-0 bg-gradient-to-r from-brand-blue to-blue-500 dark:from-brand-mint dark:to-emerald-400 bg-clip-text text-transparent pb-2 mt-1 sm:mt-0 select-none';
+        }
+        isSmart = !isSmart;
+
+        // Force reflow
+        rotateWord.offsetHeight;
+        
+        // 2. Fade in and scale back to normal
+        rotateWord.classList.remove('scale-95', 'opacity-0');
+        rotateWord.classList.add('scale-100', 'opacity-100');
+      }, 400); // Swaps text halfway through transition
+    }, 4000); // Transitions every 4 seconds
+  }
 </script>
