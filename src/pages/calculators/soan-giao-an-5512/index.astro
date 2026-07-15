@@ -1,0 +1,966 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Công cụ soạn giáo án chuẩn công văn 5512"
+  description="Trình soạn giáo án trực tuyến theo khung kế hoạch bài dạy của Công văn 5512 Bộ Giáo dục. Tự động dàn trang, nạp bài mẫu Toán, Văn, Anh và xuất file Word chuẩn xác."
+>
+  <!-- JSON-LD WebApplication Schema -->
+  <script type="application/ld+json" slot="head" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Công cụ soạn giáo án chuẩn công văn 5512",
+      "description": "Ứng dụng giúp giáo viên soạn thảo kế hoạch bài dạy chuẩn khung Phụ lục IV theo Công văn 5512 của Bộ Giáo dục, xuất file Word (.doc) nhanh chóng.",
+      "operatingSystem": "All",
+      "applicationCategory": "EducationalApplication",
+      "browserRequirements": "Requires HTML5, CSS3, JavaScript support",
+      "url": "https://trolyso.online/calculators/soan-giao-an-5512/"
+    }
+  </script>
+
+  <!-- JSON-LD FAQPage Schema -->
+  <script type="application/ld+json" slot="head" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Khung giáo án Công văn 5512 gồm những phần chính nào?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Khung kế hoạch bài dạy ban hành kèm Công văn 5512 gồm 3 phần chính: I. Mục tiêu (Kiến thức, Năng lực, Phẩm chất); II. Thiết bị dạy học và học liệu; III. Tiến trình dạy học (gồm 4 hoạt động học tập chính)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bốn bước bắt buộc trong tổ chức thực hiện mỗi hoạt động là gì?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mỗi hoạt động dạy học phải được tổ chức theo 4 bước: Bước 1: Chuyển giao nhiệm vụ; Bước 2: Thực hiện nhiệm vụ; Bước 3: Báo cáo, thảo luận; Bước 4: Kết luận, nhận định."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Có xuất được giáo án 5512 ra file Word chỉnh sửa được không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có. Công cụ của Trợ Lý Số hỗ trợ xuất toàn bộ giáo án đã soạn thảo ra file Word (.doc) giữ nguyên định dạng bảng biểu, font Times New Roman tiêu chuẩn để in ấn nộp tổ chuyên môn."
+          }
+        }
+      ]
+    }
+  </script>
+
+  <main class="max-w-7xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200">
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint font-medium transition">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/calculators/" class="hover:text-brand-blue dark:hover:text-brand-mint font-medium transition">Công cụ</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Soạn giáo án chuẩn công văn 5512</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Title Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-2xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-3">
+        Công cụ soạn giáo án chuẩn công văn 5512
+      </h1>
+      <p class="text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-3xl mx-auto">
+        Công cụ tạo kế hoạch bài dạy chuẩn cấu trúc Phụ lục IV Công văn 5512/BGDĐT. Hỗ trợ nạp bài học mẫu cực nhanh cho môn Toán, Văn, Anh và xuất file Word miễn phí.
+      </p>
+    </div>
+
+    <!-- Quick Load Sample Bar -->
+    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-900/60 dark:to-slate-850/60 p-4 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl animate-bounce">💡</span>
+        <div>
+          <h4 class="font-bold text-slate-800 dark:text-slate-200 text-sm">Điền nhanh bài học mẫu để thử nghiệm:</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Hệ thống đã viết sẵn 3 giáo án mẫu hoàn chỉnh đúng chuẩn 5512.</p>
+        </div>
+      </div>
+      <div class="w-full sm:w-auto">
+        <select id="select-sample" class="w-full sm:w-64 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2 text-sm outline-none focus:border-brand-blue font-semibold transition">
+          <option value="">-- Chọn bài học mẫu --</option>
+          <option value="math">📐 Môn Toán: Hàm số lượng giác (Lớp 11)</option>
+          <option value="literature">✍️ Môn Ngữ văn: Vợ chồng A Phủ (Lớp 12)</option>
+          <option value="english">💬 Môn Tiếng Anh: Unit 1 - Generation Gap (Lớp 11)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Main Workspace Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- LEFT COLUMN: Input Form Panels (7 cols) -->
+      <div class="lg:col-span-6 space-y-6">
+        
+        <!-- Section: General Info Card -->
+        <details open class="group bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-base">
+            <span class="flex items-center gap-2">🏫 I. Thông tin chung</span>
+            <span class="text-slate-400 transition-transform duration-300 group-open:rotate-180">↓</span>
+          </summary>
+          <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Tên trường học</label>
+              <input type="text" id="in-school" placeholder="THPT Chuyên Hà Nội - Amsterdam" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Tổ chuyên môn</label>
+              <input type="text" id="in-dept" placeholder="Tổ Toán - Tin học" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Họ tên giáo viên</label>
+              <input type="text" id="in-teacher" placeholder="Nguyễn Văn A" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Môn học / Lớp</label>
+              <input type="text" id="in-subject" placeholder="Toán học - Lớp 11A1" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Tên bài dạy (Lesson Title)</label>
+              <input type="text" id="in-lesson" placeholder="HÀM SỐ LƯỢNG GIÁC VÀ ĐỒ THỊ" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2.5 text-sm font-bold text-slate-800 dark:text-slate-200 outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Thời lượng (Số tiết)</label>
+              <input type="text" id="in-duration" placeholder="2 tiết" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+            </div>
+          </div>
+        </details>
+
+        <!-- Section: Objectives Card -->
+        <details class="group bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-base">
+            <span class="flex items-center gap-2">🎯 II. Mục tiêu bài học</span>
+            <span class="text-slate-400 transition-transform duration-300 group-open:rotate-180">↓</span>
+          </summary>
+          <div class="mt-4 space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">1. Kiến thức</label>
+              <textarea id="in-obj-knowledge" rows="3" placeholder="- Học sinh phát biểu được định nghĩa hàm số lượng giác..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition resize-y"></textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">2. Năng lực</label>
+              <textarea id="in-obj-competence" rows="3" placeholder="- Năng lực tự chủ và tự học: Tự nghiên cứu bài giảng qua phiếu học tập...\n- Năng lực toán học: Tư duy và lập luận toán học thông qua vẽ đồ thị..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition resize-y"></textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">3. Phẩm chất</label>
+              <textarea id="in-obj-quality" rows="3" placeholder="- Chăm chỉ: Tích cực hoàn thành các nhiệm vụ cá nhân và nhóm...\n- Trung thực: Khách quan trong báo cáo kết quả thực hành..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition resize-y"></textarea>
+            </div>
+          </div>
+        </details>
+
+        <!-- Section: Equipment Card -->
+        <details class="group bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-base">
+            <span class="flex items-center gap-2">🛠️ III. Thiết bị dạy học & học liệu</span>
+            <span class="text-slate-400 transition-transform duration-300 group-open:rotate-180">↓</span>
+          </summary>
+          <div class="mt-4 space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Thiết bị của giáo viên</label>
+              <textarea id="in-equip-teacher" rows="2" placeholder="- Máy chiếu, máy tính kết nối internet.\n- Bộ phiếu học tập in sẵn, bảng phụ cho các nhóm." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition resize-y"></textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Thiết bị/Học liệu của học sinh</label>
+              <textarea id="in-equip-student" rows="2" placeholder="- Sách giáo khoa Toán 11, vở ghi chép.\n- Thước kẻ, compa, bút màu vẽ đồ thị." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition resize-y"></textarea>
+            </div>
+          </div>
+        </details>
+
+        <!-- Section: Activities Card (Progress) -->
+        <details class="group bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-base">
+            <span class="flex items-center gap-2">⚡ IV. Tiến trình dạy học (4 Hoạt động)</span>
+            <span class="text-slate-400 transition-transform duration-300 group-open:rotate-180">↓</span>
+          </summary>
+          <div class="mt-4 space-y-6">
+            
+            <!-- Activity Selector Tabs inside Form -->
+            <div class="flex bg-slate-100 dark:bg-slate-900 p-1 rounded-xl">
+              <button type="button" id="form-act-tab-1" class="w-1/4 py-1.5 text-xs font-bold rounded-lg bg-white dark:bg-brand-darkCard text-brand-blue dark:text-brand-mint shadow-sm transition">HĐ 1</button>
+              <button type="button" id="form-act-tab-2" class="w-1/4 py-1.5 text-xs font-bold rounded-lg text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition">HĐ 2</button>
+              <button type="button" id="form-act-tab-3" class="w-1/4 py-1.5 text-xs font-bold rounded-lg text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition">HĐ 3</button>
+              <button type="button" id="form-act-tab-4" class="w-1/4 py-1.5 text-xs font-bold rounded-lg text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition">HĐ 4</button>
+            </div>
+
+            <!-- Dynamic Activity Input Fields wrapper -->
+            <div class="space-y-4">
+              <h4 id="act-form-title" class="font-bold text-sm text-slate-400 uppercase tracking-wider">Hoạt động 1: Mở đầu/Khởi động</h4>
+              
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">a) Mục tiêu hoạt động</label>
+                <textarea id="in-act-goal" rows="2" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition resize-y"></textarea>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">b) Nội dung nhiệm vụ học sinh</label>
+                <textarea id="in-act-content" rows="2" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition resize-y"></textarea>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">c) Sản phẩm của học sinh</label>
+                <textarea id="in-act-product" rows="2" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition resize-y"></textarea>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">d) Các bước thực hiện (Tổ chức dạy học)</label>
+                <textarea id="in-act-steps" rows="6" placeholder="Bước 1 (Chuyển giao): GV giao nhiệm vụ...\nBước 2 (Thực hiện): HS hoạt động độc lập...\nBước 3 (Báo cáo): Đại diện nhóm báo cáo...\nBước 4 (Kết luận): GV nhận xét, kết luận..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition resize-y font-mono text-xs"></textarea>
+              </div>
+            </div>
+
+          </div>
+        </details>
+
+      </div>
+
+      <!-- RIGHT COLUMN: A4 Real-time Preview & Export Panel (6 cols) -->
+      <div class="lg:col-span-6 space-y-6">
+        
+        <!-- Export Action Bar -->
+        <div class="bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/60 p-4 rounded-2xl shadow-sm flex items-center justify-between gap-4">
+          <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Xem trước văn bản A4 và xuất giáo án:</span>
+          <button id="btn-export-word" class="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold py-2.5 px-5 rounded-xl shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 text-xs sm:text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Tải File Word (.doc)
+          </button>
+        </div>
+
+        <!-- A4 Page Container (White page, shadows, fixed padding) -->
+        <div class="bg-white dark:bg-white text-black p-8 sm:p-12 shadow-xl border border-slate-200/80 rounded-2xl overflow-y-auto max-h-[800px] font-serif leading-relaxed text-justify text-sm relative" style="font-family: 'Times New Roman', Times, serif; line-height: 1.5;">
+          
+          <!-- Lesson plan preview DOM content -->
+          <div id="preview-document-root" class="space-y-6 text-[13pt] text-black">
+            
+            <!-- School / Department headers -->
+            <table class="w-full border-none m-0 p-0 text-[12pt]">
+              <tr class="border-none">
+                <td class="w-1/2 text-center border-none p-0">
+                  <div id="p-school" class="font-normal uppercase">TRƯỜNG THPT CHUYÊN HÀ NỘI - AMSTERDAM</div>
+                  <div id="p-dept" class="font-bold">Tổ Toán - Tin học</div>
+                  <div class="w-24 h-px bg-black mx-auto mt-1"></div>
+                </td>
+                <td class="w-1/2 text-center border-none p-0">
+                  <div class="font-bold">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                  <div class="font-bold">Độc lập - Tự do - Hạnh phúc</div>
+                  <div class="w-36 h-px bg-black mx-auto mt-1"></div>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Title -->
+            <div class="text-center space-y-1 pt-6">
+              <div class="font-normal">KẾ HOẠCH BÀI DẠY (GIÁO ÁN 5512)</div>
+              <div class="font-bold text-lg uppercase" id="p-lesson">HÀM SỐ LƯỢNG GIÁC VÀ ĐỒ THỊ</div>
+              <div class="font-normal" id="p-meta">Môn học: Toán học - Lớp: 11A1 - Thời lượng: 2 tiết</div>
+              <div class="font-normal italic" id="p-teacher">Họ và tên giáo viên: Nguyễn Văn A</div>
+            </div>
+
+            <!-- I. Objectives -->
+            <div class="space-y-2">
+              <h3 class="font-bold text-[14pt]">I. MỤC TIÊU</h3>
+              <div class="pl-4 space-y-2">
+                <div>
+                  <h4 class="font-bold">1. Kiến thức</h4>
+                  <div id="p-obj-knowledge" class="whitespace-pre-line pl-4 font-normal text-slate-900">--</div>
+                </div>
+                <div>
+                  <h4 class="font-bold">2. Năng lực</h4>
+                  <div id="p-obj-competence" class="whitespace-pre-line pl-4 font-normal text-slate-900">--</div>
+                </div>
+                <div>
+                  <h4 class="font-bold">3. Phẩm chất</h4>
+                  <div id="p-obj-quality" class="whitespace-pre-line pl-4 font-normal text-slate-900">--</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- II. Equipment -->
+            <div class="space-y-2">
+              <h3 class="font-bold text-[14pt]">II. THIẾT BỊ DẠY HỌC VÀ HỌC LIỆU</h3>
+              <div class="pl-4 space-y-2">
+                <div>
+                  <h4 class="font-semibold inline">1. Thiết bị của giáo viên: </h4>
+                  <span id="p-equip-teacher" class="whitespace-pre-line font-normal text-slate-900">--</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold inline">2. Thiết bị/học liệu của học sinh: </h4>
+                  <span id="p-equip-student" class="whitespace-pre-line font-normal text-slate-900">--</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- III. Teaching Procedure -->
+            <div class="space-y-4">
+              <h3 class="font-bold text-[14pt]">III. TIẾN TRÌNH DẠY HỌC</h3>
+              
+              <!-- 4 Activities Loop -->
+              <div class="space-y-6 pl-4" id="p-activities-container">
+                <!-- Activity 1 -->
+                <div class="space-y-2">
+                  <h4 class="font-bold">Hoạt động 1: Xác định vấn đề/nhiệm vụ học tập/Mở đầu/Khởi động</h4>
+                  <div class="pl-4 space-y-1">
+                    <p class="font-normal"><strong class="font-bold">a) Mục tiêu:</strong> <span id="p-act1-goal">--</span></p>
+                    <p class="font-normal"><strong class="font-bold">b) Nội dung:</strong> <span id="p-act1-content">--</span></p>
+                    <p class="font-normal"><strong class="font-bold">c) Sản phẩm:</strong> <span id="p-act1-product">--</span></p>
+                    <div>
+                      <strong class="font-bold">d) Tổ chức thực hiện:</strong>
+                      <div id="p-act1-steps" class="whitespace-pre-line pl-4 font-mono text-xs text-slate-900 mt-1 leading-relaxed">--</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Activity 2 -->
+                <div class="space-y-2">
+                  <h4 class="font-bold">Hoạt động 2: Hình thành kiến thức mới/giải quyết vấn đề</h4>
+                  <div class="pl-4 space-y-1">
+                    <p class="font-normal"><strong class="font-bold">a) Mục tiêu:</strong> <span id="p-act2-goal">--</span></p>
+                    <p class="font-normal"><strong class="font-bold">b) Nội dung:</strong> <span id="p-act2-content">--</span></p>
+                    <p class="font-normal"><strong class="font-bold">c) Sản phẩm:</strong> <span id="p-act2-product">--</span></p>
+                    <div>
+                      <strong class="font-bold">d) Tổ chức thực hiện:</strong>
+                      <div id="p-act2-steps" class="whitespace-pre-line pl-4 font-mono text-xs text-slate-900 mt-1 leading-relaxed">--</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Activity 3 -->
+                <div class="space-y-2">
+                  <h4 class="font-bold">Hoạt động 3: Luyện tập</h4>
+                  <div class="pl-4 space-y-1">
+                    <p class="font-normal"><strong class="font-bold">a) Mục tiêu:</strong> <span id="p-act3-goal">--</span></p>
+                    <p class="font-normal"><strong class="font-bold">b) Nội dung:</strong> <span id="p-act3-content">--</span></p>
+                    <p class="font-normal"><strong class="font-bold">c) Sản phẩm:</strong> <span id="p-act3-product">--</span></p>
+                    <div>
+                      <strong class="font-bold">d) Tổ chức thực hiện:</strong>
+                      <div id="p-act3-steps" class="whitespace-pre-line pl-4 font-mono text-xs text-slate-900 mt-1 leading-relaxed">--</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Activity 4 -->
+                <div class="space-y-2">
+                  <h4 class="font-bold">Hoạt động 4: Vận dụng</h4>
+                  <div class="pl-4 space-y-1">
+                    <p class="font-normal"><strong class="font-bold">a) Mục tiêu:</strong> <span id="p-act4-goal">--</span></p>
+                    <p class="font-normal"><strong class="font-bold">b) Nội dung:</strong> <span id="p-act4-content">--</span></p>
+                    <p class="font-normal"><strong class="font-bold">c) Sản phẩm:</strong> <span id="p-act4-product">--</span></p>
+                    <div>
+                      <strong class="font-bold">d) Tổ chức thực hiện:</strong>
+                      <div id="p-act4-steps" class="whitespace-pre-line pl-4 font-mono text-xs text-slate-900 mt-1 leading-relaxed">--</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Handbooks and FAQ Sections -->
+    <div class="mt-16 border-t border-slate-200 dark:border-slate-800 pt-12 max-w-4xl mx-auto">
+      
+      <!-- Detailed Guide -->
+      <section class="max-w-none text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-6">
+        <h2 class="text-xl sm:text-2xl font-heading font-extrabold text-slate-900 dark:text-white">Cẩm nang soạn giáo án chuẩn Công văn 5512 của Bộ GD&ĐT</h2>
+        <p>
+          Công văn 5512/BGDĐT-GDTrH là văn bản hướng dẫn quan trọng điều chỉnh cấu trúc kế hoạch giáo dục của nhà trường, đặc biệt là mẫu giáo án bài dạy của giáo viên. Mục tiêu cao nhất của Công văn 5512 là chuyển từ phương pháp truyền thụ kiến thức một chiều sang phát triển toàn diện năng lực và phẩm chất của học sinh.
+        </p>
+
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">1. Cấu trúc 4 bước của mỗi hoạt động dạy học</h3>
+        <p>
+          Trong tiến trình dạy học của giáo án 5512, mọi hoạt động học tập của học sinh (Khởi động, Hình thành kiến thức, Luyện tập, Vận dụng) đều phải được tổ chức đầy đủ theo 4 bước chuyên biệt:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>Bước 1: Chuyển giao nhiệm vụ dạy học:</strong> Giáo viên trình bày rõ ràng nhiệm vụ học tập cho học sinh (câu hỏi, bài tập, yêu cầu thực hành). Học sinh tiếp nhận và hiểu rõ yêu cầu.</li>
+          <li><strong>Bước 2: Thực hiện nhiệm vụ học tập:</strong> Học sinh tự chủ nghiên cứu tài liệu, làm bài cá nhân hoặc thảo luận nhóm. Giáo viên theo dõi, hướng dẫn và hỗ trợ kịp thời đối với học sinh gặp khó khăn.</li>
+          <li><strong>Bước 3: Báo cáo kết quả và thảo luận:</strong> Đại diện học sinh/nhóm trình bày sản phẩm học tập trước lớp. Các học sinh/nhóm khác lắng nghe, phản biện và đóng góp ý kiến xây dựng.</li>
+          <li><strong>Bước 4: Kết luận, nhận định:</strong> Giáo viên chốt lại kiến thức cốt lõi, đưa ra nhận xét đánh giá quá trình làm việc của học sinh và chính thức hóa nội dung kiến thức bài dạy.</li>
+        </ul>
+
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">2. Phương pháp chuyển đổi giáo án sang file Microsoft Word giữ nguyên định dạng</h3>
+        <p>
+          Hệ thống của Trợ Lý Số hỗ trợ giáo viên thiết kế trực tiếp giáo án trên trình duyệt, sắp xếp thông tin dưới dạng bảng biểu chuẩn quy định. Khi bấm nút xuất tệp tin, công cụ sử dụng giải thuật chuyển đổi XML/HTML sang Word gốc, giúp thầy cô tải về tệp `.doc` có phông chữ Times New Roman 13pt tiêu chuẩn, căn lề lề chuẩn và có thể dễ dàng in ấn hoặc nộp cho Tổ trưởng chuyên môn thẩm định mà không cần chỉnh sửa lại layout.
+        </p>
+      </section>
+
+      <!-- FAQ Accordions -->
+      <section class="mt-12 space-y-4">
+        <h3 class="text-lg sm:text-xl font-heading font-extrabold text-slate-900 dark:text-white mb-6">Câu hỏi thường gặp (FAQ)</h3>
+        
+        <details class="group bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 hover:border-brand-blue dark:hover:border-brand-mint transition duration-300">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-sm sm:text-base">
+            <span>Có bắt buộc phải ghi chi tiết hoạt động của giáo viên và học sinh không?</span>
+            <span class="text-brand-blue dark:text-brand-mint transition-transform duration-300 group-open:rotate-180">↓</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
+            Có. Kế hoạch bài dạy theo Công văn 5512 yêu cầu giáo viên làm rõ các bước chuyển giao, thực hiện nhiệm vụ, báo cáo và nhận định. Do đó, việc ghi rõ hoạt động tương tác giữa thầy và trò giúp đảm bảo tính thực thi và hiệu quả của giờ học.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 hover:border-brand-blue dark:hover:border-brand-mint transition duration-300">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-sm sm:text-base">
+            <span>Giáo án mẫu sau khi tải về có chỉnh sửa được trên máy tính không?</span>
+            <span class="text-brand-blue dark:text-brand-mint transition-transform duration-300 group-open:rotate-180">↓</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
+            Có. File được tải về ở định dạng Word (.doc) nên bạn có thể tự do mở bằng Microsoft Word, Google Docs hoặc WPS Office trên máy tính và điện thoại để chỉnh sửa, thêm bớt nội dung bình thường.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 hover:border-brand-blue dark:hover:border-brand-mint transition duration-300">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-sm sm:text-base">
+            <span>Năng lực chung và năng lực đặc thù khác nhau như thế nào?</span>
+            <span class="text-brand-blue dark:text-brand-mint transition-transform duration-300 group-open:rotate-180">↓</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
+            Năng lực chung là các năng lực học sinh cần có ở mọi môn học (như tự chủ tự học, giao tiếp hợp tác). Năng lực đặc thù là năng lực chuyên biệt chỉ môn học đó phát triển mạnh mẽ nhất (như năng lực tính toán trong môn Toán, năng lực thẩm mỹ ngôn ngữ trong môn Ngữ văn).
+          </p>
+        </details>
+      </section>
+
+      <!-- CTA Box -->
+      <div class="mt-12 bg-slate-50 dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base mb-1">Muốn tìm hiểu kỹ hơn về hướng dẫn viết giáo án chuẩn 5512?</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Đọc ngay cẩm nang hướng dẫn đầy đủ cách viết giáo án chuẩn chuyên môn.</p>
+        </div>
+        <a href="/blog/huong-dan-soan-giao-an-chuan-cong-van-5512/" class="inline-block bg-brand-blue dark:bg-brand-mint text-white dark:text-slate-900 font-bold px-4 py-2 text-xs sm:text-sm rounded-xl hover:scale-105 transition-all text-center shrink-0">
+          Đọc cẩm nang ngay →
+        </a>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Sample Lesson Plans Data
+  const samples = {
+    math: {
+      school: "TRƯỜNG THPT CHUYÊN HÀ NỘI - AMSTERDAM",
+      dept: "Tổ Toán - Tin học",
+      teacher: "ThS. Nguyễn Văn A",
+      subject: "Toán học - Lớp 11A1",
+      lesson: "HÀM SỐ LƯỢNG GIÁC VÀ ĐỒ THỊ",
+      duration: "2 tiết",
+      knowledge: "- Học sinh phát biểu được định nghĩa các hàm số lượng giác y = sinx, y = cosx, y = tanx, y = cotx.\n- Xác định được tập xác định, tập giá trị, tính chẵn lẻ, tính tuần hoàn và chu kỳ của các hàm số lượng giác.\n- Nhận dạng và vẽ được đồ thị của các hàm số lượng giác cơ bản.",
+      competence: "- Năng lực tự chủ và tự học: Học sinh tự học thông qua phiếu học tập cá nhân, nghiên cứu trước SGK.\n- Năng lực giao tiếp và hợp tác: Học sinh làm việc nhóm hiệu quả để thảo luận về tính tuần hoàn và cách dựng đồ thị.\n- Năng lực giải quyết vấn đề và sáng tạo: Vận dụng hàm lượng giác để giải thích chu kỳ dao động của sóng nước.",
+      quality: "- Chăm chỉ: Nghiêm túc thực hiện các nhiệm vụ vẽ đồ thị tự học.\n- Trung thực: Khách quan trong việc báo cáo sản phẩm vẽ đồ thị của nhóm mình.",
+      equipTeacher: "- Máy chiếu, máy tính cài đặt Geogebra.\n- Phiếu học tập số 1, 2 in sẵn.",
+      equipStudent: "- Sách giáo khoa Giải tích 11.\n- Vở viết, thước kẻ, máy tính bỏ túi.",
+      activities: [
+        {
+          goal: "Kích thích tư duy học sinh về sự lặp lại tuần hoàn của chuyển động tròn đều.",
+          content: "Quan sát vòng quay mặt trời (Ferris Wheel), tính chiều cao của cabin so với mặt đất theo góc quay.",
+          product: "Bảng số liệu chiều cao tương ứng với các góc quay 0, 30, 60, 90 độ.",
+          steps: "Bước 1 (Chuyển giao): GV chiếu video vòng quay và yêu cầu học sinh thảo luận cặp đôi để tìm ra công thức liên hệ chiều cao.\nBước 2 (Thực hiện): HS thảo luận, ghi chép công thức.\nBước 3 (Báo cáo): Đại diện 1 cặp lên bảng viết công thức hàm sin.\nBước 4 (Kết luận): GV nhận xét, chốt kiến thức mở đầu về hàm số tuần hoàn."
+        },
+        {
+          goal: "Học sinh hiểu và xây dựng được tập xác định, chu kỳ và đồ thị hàm số y = sinx.",
+          content: "Đọc SGK, sử dụng đường tròn lượng giác để dựng các điểm trên đồ thị y = sinx trên đoạn [0; pi].",
+          product: "Đồ thị hàm số y = sinx hoàn chỉnh vẽ trên giấy A4.",
+          steps: "Bước 1 (Chuyển giao): GV chia nhóm 4 học sinh, giao phiếu học tập vẽ đồ thị bằng cách lấy các điểm lượng giác đặc biệt.\nBước 2 (Thực hiện): Các nhóm thực hiện vẽ đồ thị, GV đi quan sát hỗ trợ các nhóm gặp khó khăn.\nBước 3 (Báo cáo): Đại diện nhóm 2 treo sản phẩm lên bảng và trình bày tính chẵn lẻ của đồ thị.\nBước 4 (Kết luận): GV chuẩn hóa đồ thị bằng phần mềm Geogebra, kết luận các tính chất của hàm số."
+        },
+        {
+          goal: "Luyện tập kỹ năng tìm tập xác định, tính chẵn lẻ và giải toán đồ thị.",
+          content: "Giải bài tập 1, 2 trang 17 SGK Toán 11.",
+          product: "Lời giải chi tiết bài tập 1, 2 vào vở ghi.",
+          steps: "Bước 1 (Chuyển giao): GV yêu cầu HS hoạt động cá nhân làm bài tập tìm tập xác định.\nBước 2 (Thực hiện): HS độc lập làm bài.\nBước 3 (Báo cáo): Gọi 2 học sinh lên bảng trình bày lời giải.\nBước 4 (Kết luận): GV sửa lỗi trình bày, chốt phương pháp tìm tập xác định của hàm lượng giác."
+        },
+        {
+          goal: "Học sinh vận dụng hàm số lượng giác vào bài toán thực tiễn dao động cơ học.",
+          content: "Giải bài toán ứng dụng dao động của phao trên biển theo phương trình h(t) = 3cos(pi*t).",
+          product: "Công thức và thời điểm phao đạt chiều cao lớn nhất.",
+          steps: "Bước 1 (Chuyển giao): GV giao bài toán thực tiễn cho học sinh về nhà nghiên cứu.\nBước 2 (Thực hiện): HS làm bài ở nhà cá nhân.\nBước 3 (Báo cáo): HS gửi lời giải qua nền tảng học tập của lớp trước buổi học sau.\nBước 4 (Kết luận): GV nhận xét bài làm của học sinh vào đầu tiết học tiếp theo."
+        }
+      ]
+    },
+    literature: {
+      school: "TRƯỜNG THPT CHUYÊN HÀ NỘI - AMSTERDAM",
+      dept: "Tổ Ngữ văn",
+      teacher: "ThS. Trần Thị B",
+      subject: "Ngữ văn - Lớp 12A5",
+      lesson: "TÁC PHẨM VỢ CHỒNG A PHỦ (Tô Hoài)",
+      duration: "2 tiết",
+      knowledge: "- Hiểu được cuộc đời đau khổ, tủi nhục và sức sống tiềm tàng mạnh mẽ của nhân vật Mị và A Phủ.\n- Thấy được giá trị nhân đạo sâu sắc và giá trị hiện thực phơi bày bản chất tàn bạo của giai cấp thống trị miền núi.\n- Phân tích nghệ thuật xây dựng nhân vật độc đáo, miêu tả tâm lý nhân vật sắc sảo của Tô Hoài.",
+      competence: "- Năng lực tự chủ và tự học: Chủ động đọc tác phẩm, tóm tắt cốt truyện ở nhà.\n- Năng lực giao tiếp và hợp tác: Hợp tác nhóm thảo luận phân tích diễn biến tâm lý nhân vật Mị trong đêm đông cắt dây cởi trói cho A Phủ.\n- Năng lực ngôn ngữ: Trình bày, phản biện lưu loát các luận điểm cảm nhận văn học.",
+      quality: "- Nhân ái: Thấu hiểu và đồng cảm với số phận bất hạnh của người lao động vùng cao.\n- Trách nhiệm: Ý thức đấu tranh chống lại bất công trong cuộc sống xã hội.",
+      equipTeacher: "- Máy chiếu, sơ đồ tư duy hệ thống hóa tác phẩm.\n- Phiếu học tập phân tích tâm lý Mị trong đêm tình mùa xuân.",
+      equipStudent: "- Sách giáo khoa Ngữ văn 12 (Tập 2).\n- Vở ghi, các ghi chép chuẩn bị bài đọc trước ở nhà.",
+      activities: [
+        {
+          goal: "Tạo tâm thế học tập và định hướng học sinh tiếp cận đề tài Tây Bắc.",
+          content: "Lắng nghe ca khúc 'Để Mị nói cho mà nghe', quan sát hình ảnh thiên nhiên Tây Bắc để cảm thụ văn hóa.",
+          product: "Học sinh nêu được cảm nghĩ đầu tiên về vùng đất và con người Tây Bắc qua video.",
+          steps: "Bước 1 (Chuyển giao): GV chiếu hình ảnh hoa ban, ruộng bậc thang Tây Bắc và đặt câu hỏi khêu gợi cảm xúc.\nBước 2 (Thực hiện): HS quan sát, cảm nhận cá nhân.\nBước 3 (Báo cáo): 2 học sinh phát biểu cảm xúc chia sẻ trước lớp.\nBước 4 (Kết luận): GV dẫn dắt vào bài mới, giới thiệu tác giả Tô Hoài và tác phẩm Vợ chồng A Phủ."
+        },
+        {
+          goal: "Phân tích số phận bi kịch và sức sống tiềm tàng của nhân vật Mị.",
+          content: "Đọc diễn cảm đoạn trích, thảo luận nhóm về sự biến đổi tâm lý của Mị trong đêm tình mùa xuân ở Hồng Ngài.",
+          product: "Bảng so sánh trạng thái của Mị trước và trong đêm tình mùa xuân (Vẽ sơ đồ tư duy nhóm).",
+          steps: "Bước 1 (Chuyển giao): GV phát phiếu học tập số 1, yêu cầu các nhóm phân tích các chi tiết tiếng sáo, hành động Mị uống rượu và chuẩn bị đi chơi.\nBước 2 (Thực hiện): Nhóm HS thảo luận ghi kết quả lên bảng phụ.\nBước 3 (Báo cáo): Đại diện nhóm 1 trình bày, các nhóm khác nhận xét bổ sung.\nBước 4 (Kết luận): GV chốt lại quá trình hồi sinh sức sống của Mị dưới ngòi bút nhân đạo của Tô Hoài."
+        },
+        {
+          goal: "Củng cố kiến thức nghệ thuật xây dựng nhân vật và ngôn ngữ tác phẩm.",
+          content: "Viết đoạn văn ngắn (5-7 câu) cảm nhận về hình ảnh tiếng sáo trong đêm mùa xuân.",
+          product: "Đoạn văn cảm thụ văn học hoàn chỉnh viết vào vở.",
+          steps: "Bước 1 (Chuyển giao): GV giao viết đoạn văn nhanh tại lớp.\nBước 2 (Thực hiện): HS viết cá nhân.\nBước 3 (Báo cáo): Đọc 3 bài viết trước lớp.\nBước 4 (Kết luận): GV nhận xét, cho điểm khuyến khích và uốn nắn cách dùng từ, viết câu văn học."
+        },
+        {
+          goal: "Vận dụng bài học giá trị nhân đạo vào nhận thức thực tế cuộc sống.",
+          content: "Sưu tầm các câu chuyện, bài báo nói về các hoạt động hỗ trợ đồng bào dân tộc thiểu số nghèo vùng cao Tây Bắc ngày nay.",
+          product: "Danh sách 2-3 chương trình từ thiện xã hội có thông tin tóm tắt ngắn.",
+          steps: "Bước 1 (Chuyển giao): GV giao nhiệm vụ tìm kiếm thông tin ngoài giờ lên lớp.\nBước 2 (Thực hiện): HS tự tìm kiếm qua mạng internet.\nBước 3 (Báo cáo): Gửi bài viết ngắn lên trang Padlet của lớp.\nBước 4 (Kết luận): GV kiểm tra, nhận xét tổng kết tinh thần tương thân tương ái của học sinh."
+        }
+      ]
+    },
+    english: {
+      school: "TRƯỜNG THPT CHUYÊN HÀ NỘI - AMSTERDAM",
+      dept: "Foreign Language Department",
+      teacher: "MA. Nguyen Thi C",
+      subject: "English - Grade 11 (Global Success)",
+      lesson: "UNIT 1: GENERATION GAP - GETTING STARTED",
+      duration: "1 period (45 minutes)",
+      knowledge: "- Students can understand vocabulary related to family rules and generation gaps (nucleur family, extended family, conflict, tradition).\n- Identify the usage of modal verbs (must, have to, should).\n- Practice listening and reading comprehension skills about family discussions.",
+      competence: "- Communication and Collaboration: Work in pairs to talk about their own family rules.\n- Critical Thinking: Analyze causes of conflicts between generations in a family.",
+      quality: "- Respect: Show respect for different perspectives of family members.\n- Responsibility: Understand their duties and responsibilities in the family.",
+      equipTeacher: "- Laptop, projector, slides containing unit pictures.\n- Worksheet 1 for vocabulary matching.",
+      equipStudent: "- English Textbook Grade 11, notebook.\n- Mobile phones (for Kahoot quiz if allowed).",
+      activities: [
+        {
+          goal: "Warm up students' interest and lead in the new topic of Generation Gap.",
+          content: "Look at pictures of three generations living under one roof, guess the conflicts they may face.",
+          product: "Students' verbal answers listing common family arguments (hair style, study hours).",
+          steps: "Step 1 (Assign): Teacher shows images of family arguments and asks students to discuss the causes in pairs.\nStep 2 (Perform): Students discuss in English.\nStep 3 (Report): Call 2 students to share their ideas.\nStep 4 (Conclusion): Teacher introduces Unit 1 topic: Generation Gap."
+        },
+        {
+          goal: "Learn vocabulary and modal verbs usage through a conversation context.",
+          content: "Listen and read the dialogue between Sam and his grandmother. Complete worksheet matching task.",
+          product: "Correct matching results on the worksheet (1.extended family - c, 2.table manners - a...).",
+          steps: "Step 1 (Assign): Teacher plays the audio track and distributes worksheet 1.\nStep 2 (Perform): Students listen, read along, and match definitions.\nStep 3 (Report): Students call out answers, teacher checks and displays key.\nStep 4 (Conclusion): Teacher explains core terms and grammar usage of must vs should."
+        },
+        {
+          goal: "Practice using modal verbs to talk about family obligations.",
+          content: "Complete sentences using should, must, have to based on the dialogue context.",
+          product: "Completed exercise 3 in the textbook written in students' notebooks.",
+          steps: "Step 1 (Assign): Teacher requests students to work individually on exercise 3.\nStep 2 (Perform): Students write answers.\nStep 3 (Report): Call 3 students to write answers on board.\nStep 4 (Conclusion): Teacher corrects and concludes the grammar rules."
+        },
+        {
+          goal: "Apply vocabulary and modal verbs to describe students' own family rules.",
+          content: "Write a short paragraph (50-60 words) describing 3 main rules in your family.",
+          product: "A paragraph containing at least 2 modal verbs (must/should) in student's notebook.",
+          steps: "Step 1 (Assign): Teacher assigns the writing task as homework.\nStep 2 (Perform): Students write at home.\nStep 3 (Report): Submit via email/Google Classroom before next lesson.\nStep 4 (Conclusion): Teacher gives feedback on selected writings in the next unit."
+        }
+      ]
+    }
+  };
+
+  // State Management
+  let activeActIndex = 1; // 1 to 4
+  const actsData = [
+    { goal: "", content: "", product: "", steps: "" }, // HĐ 1
+    { goal: "", content: "", product: "", steps: "" }, // HĐ 2
+    { goal: "", content: "", product: "", steps: "" }, // HĐ 3
+    { goal: "", content: "", product: "", steps: "" }  // HĐ 4
+  ];
+
+  // DOM Input Elements
+  const inSchool = document.getElementById("in-school") as HTMLInputElement;
+  const inDept = document.getElementById("in-dept") as HTMLInputElement;
+  const inTeacher = document.getElementById("in-teacher") as HTMLInputElement;
+  const inSubject = document.getElementById("in-subject") as HTMLInputElement;
+  const inLesson = document.getElementById("in-lesson") as HTMLInputElement;
+  const inDuration = document.getElementById("in-duration") as HTMLInputElement;
+
+  const inKnowledge = document.getElementById("in-obj-knowledge") as HTMLTextAreaElement;
+  const inCompetence = document.getElementById("in-obj-competence") as HTMLTextAreaElement;
+  const inQuality = document.getElementById("in-obj-quality") as HTMLTextAreaElement;
+
+  const inEquipTeacher = document.getElementById("in-equip-teacher") as HTMLTextAreaElement;
+  const inEquipStudent = document.getElementById("in-equip-student") as HTMLTextAreaElement;
+
+  const inActGoal = document.getElementById("in-act-goal") as HTMLTextAreaElement;
+  const inActContent = document.getElementById("in-act-content") as HTMLTextAreaElement;
+  const inActProduct = document.getElementById("in-act-product") as HTMLTextAreaElement;
+  const inActSteps = document.getElementById("in-act-steps") as HTMLTextAreaElement;
+
+  // DOM Preview Elements
+  const pSchool = document.getElementById("p-school");
+  const pDept = document.getElementById("p-dept");
+  const pLesson = document.getElementById("p-lesson");
+  const pMeta = document.getElementById("p-meta");
+  const pTeacher = document.getElementById("p-teacher");
+
+  const pKnowledge = document.getElementById("p-obj-knowledge");
+  const pCompetence = document.getElementById("p-obj-competence");
+  const pQuality = document.getElementById("p-obj-quality");
+
+  const pEquipTeacher = document.getElementById("p-equip-teacher");
+  const pEquipStudent = document.getElementById("p-equip-student");
+
+  // Selection/Buttons
+  const selectSample = document.getElementById("select-sample") as HTMLSelectElement;
+  const btnExport = document.getElementById("btn-export-word");
+  const actFormTitle = document.getElementById("act-form-title");
+
+  // Activity Form Tabs
+  const formTabs = [
+    document.getElementById("form-act-tab-1"),
+    document.getElementById("form-act-tab-2"),
+    document.getElementById("form-act-tab-3"),
+    document.getElementById("form-act-tab-4")
+  ];
+
+  // Initialize event listeners to sync form data with Preview
+  const inputSyncList = [
+    { el: inSchool, p: pSchool, def: "TRƯỜNG THPT CHUYÊN HÀ NỘI - AMSTERDAM" },
+    { el: inDept, p: pDept, def: "Tổ Toán - Tin học" },
+    { el: inLesson, p: pLesson, def: "HÀM SỐ LƯỢNG GIÁC VÀ ĐỒ THỊ" },
+    { el: inTeacher, p: pTeacher, def: "Họ và tên giáo viên: Nguyễn Văn A", prefix: "Họ và tên giáo viên: " },
+    { el: inKnowledge, p: pKnowledge },
+    { el: inCompetence, p: pCompetence },
+    { el: inQuality, p: pQuality },
+    { el: inEquipTeacher, p: pEquipTeacher },
+    { el: inEquipStudent, p: pEquipStudent }
+  ];
+
+  inputSyncList.forEach(item => {
+    item.el?.addEventListener("input", () => {
+      updateSinglePreview(item);
+    });
+  });
+
+  // Dual fields trigger for Subject & Duration metadata
+  function syncMeta() {
+    if (pMeta) {
+      const sub = inSubject?.value || "Toán học - Lớp 11A1";
+      const dur = inDuration?.value || "2 tiết";
+      pMeta.textContent = `Môn học: ${sub} - Thời lượng: ${dur}`;
+    }
+  }
+  inSubject?.addEventListener("input", syncMeta);
+  inDuration?.addEventListener("input", syncMeta);
+
+  function updateSinglePreview(item: any) {
+    if (item.p) {
+      let val = item.el.value.trim();
+      if (!val && item.def) {
+        val = item.def;
+      }
+      if (item.prefix && val !== item.def) {
+        val = item.prefix + val;
+      }
+      item.p.textContent = val || "--";
+    }
+  }
+
+  // Activity tabs click listener
+  formTabs.forEach((tab, index) => {
+    tab?.addEventListener("click", () => {
+      // Save current activity form values to state
+      saveCurrentActState();
+
+      // Switch active tab styling
+      activeActIndex = index + 1;
+      formTabs.forEach((t, i) => {
+        t?.classList.remove("bg-white", "dark:bg-brand-darkCard", "text-brand-blue", "dark:text-brand-mint", "shadow-sm");
+        t?.classList.add("text-slate-500");
+      });
+      tab.classList.remove("text-slate-500");
+      tab.classList.add("bg-white", "dark:bg-brand-darkCard", "text-brand-blue", "dark:text-brand-mint", "shadow-sm");
+
+      // Update form fields title
+      if (actFormTitle) {
+        const titles = [
+          "Hoạt động 1: Xác định vấn đề/Nhiệm vụ học tập/Mở đầu/Khởi động",
+          "Hoạt động 2: Hình thành kiến thức mới/giải quyết vấn đề",
+          "Hoạt động 3: Luyện tập",
+          "Hoạt động 4: Vận dụng"
+        ];
+        actFormTitle.textContent = titles[index];
+      }
+
+      // Load new activity values from state to form inputs
+      const data = actsData[index];
+      if (inActGoal) inActGoal.value = data.goal;
+      if (inActContent) inActContent.value = data.content;
+      if (inActProduct) inActProduct.value = data.product;
+      if (inActSteps) inActSteps.value = data.steps;
+    });
+  });
+
+  // Save inputs to actsData state
+  function saveCurrentActState() {
+    const idx = activeActIndex - 1;
+    actsData[idx].goal = inActGoal?.value || "";
+    actsData[idx].content = inActContent?.value || "";
+    actsData[idx].product = inActProduct?.value || "";
+    actsData[idx].steps = inActSteps?.value || "";
+
+    // Sync straight to Preview Panel DOM
+    const pGoal = document.getElementById(`p-act${activeActIndex}-goal`);
+    const pContent = document.getElementById(`p-act${activeActIndex}-content`);
+    const pProduct = document.getElementById(`p-act${activeActIndex}-product`);
+    const pSteps = document.getElementById(`p-act${activeActIndex}-steps`);
+
+    if (pGoal) pGoal.textContent = actsData[idx].goal || "--";
+    if (pContent) pContent.textContent = actsData[idx].content || "--";
+    if (pProduct) pProduct.textContent = actsData[idx].product || "--";
+    if (pSteps) pSteps.textContent = actsData[idx].steps || "--";
+  }
+
+  // Add listeners to sync current activity inputs instantly to state & preview
+  [inActGoal, inActContent, inActProduct, inActSteps].forEach(input => {
+    input?.addEventListener("input", () => {
+      saveCurrentActState();
+    });
+  });
+
+  // Load sample template action
+  selectSample?.addEventListener("change", () => {
+    const key = selectSample.value;
+    if (!key) return;
+
+    const data = samples[key as keyof typeof samples];
+    if (!data) return;
+
+    // Fill form elements
+    if (inSchool) inSchool.value = data.school;
+    if (inDept) inDept.value = data.dept;
+    if (inTeacher) inTeacher.value = data.teacher;
+    if (inSubject) inSubject.value = data.subject;
+    if (inLesson) inLesson.value = data.lesson;
+    if (inDuration) inDuration.value = data.duration;
+
+    if (inKnowledge) inKnowledge.value = data.knowledge;
+    if (inCompetence) inCompetence.value = data.competence;
+    if (inQuality) inQuality.value = data.quality;
+
+    if (inEquipTeacher) inEquipTeacher.value = data.equipTeacher;
+    if (inEquipStudent) inEquipStudent.value = data.equipStudent;
+
+    // Fill all activity data state
+    data.activities.forEach((act, idx) => {
+      actsData[idx].goal = act.goal;
+      actsData[idx].content = act.content;
+      actsData[idx].product = act.product;
+      actsData[idx].steps = act.steps;
+
+      // Update previews for all 4 activities
+      const pGoal = document.getElementById(`p-act${idx + 1}-goal`);
+      const pContent = document.getElementById(`p-act${idx + 1}-content`);
+      const pProduct = document.getElementById(`p-act${idx + 1}-product`);
+      const pSteps = document.getElementById(`p-act${idx + 1}-steps`);
+
+      if (pGoal) pGoal.textContent = act.goal;
+      if (pContent) pContent.textContent = act.content;
+      if (pProduct) pProduct.textContent = act.product;
+      if (pSteps) pSteps.textContent = act.steps;
+    });
+
+    // Reset active tab values to HĐ 1 values
+    const actData = actsData[activeActIndex - 1];
+    if (inActGoal) inActGoal.value = actData.goal;
+    if (inActContent) inActContent.value = actData.content;
+    if (inActProduct) inActProduct.value = actData.product;
+    if (inActSteps) inActSteps.value = actData.steps;
+
+    // Trigger full manual preview sync
+    inputSyncList.forEach(item => updateSinglePreview(item));
+    syncMeta();
+  });
+
+  // Export to Microsoft Word (.doc) logic
+  btnExport?.addEventListener("click", () => {
+    const school = inSchool?.value.trim() || "TRƯỜNG THPT CHUYÊN HÀ NỘI - AMSTERDAM";
+    const dept = inDept?.value.trim() || "Tổ Toán - Tin học";
+    const teacher = inTeacher?.value.trim() || "Nguyễn Văn A";
+    const subject = inSubject?.value.trim() || "Toán học - Lớp 11A1";
+    const lesson = inLesson?.value.trim() || "HÀM SỐ LƯỢNG GIÁC VÀ ĐỒ THỊ";
+    const duration = inDuration?.value.trim() || "2 tiết";
+
+    const knowledge = (inKnowledge?.value.trim() || "--").replace(/\n/g, "<br/>");
+    const competence = (inCompetence?.value.trim() || "--").replace(/\n/g, "<br/>");
+    const quality = (inQuality?.value.trim() || "--").replace(/\n/g, "<br/>");
+
+    const equipT = (inEquipTeacher?.value.trim() || "--").replace(/\n/g, "<br/>");
+    const equipS = (inEquipStudent?.value.trim() || "--").replace(/\n/g, "<br/>");
+
+    // Gather all 4 activities HTML
+    const activitiesTitles = [
+      "Hoạt động 1: Xác định vấn đề/nhiệm vụ học tập/Mở đầu/Khởi động",
+      "Hoạt động 2: Hình thành kiến thức mới/giải quyết vấn đề",
+      "Hoạt động 3: Luyện tập",
+      "Hoạt động 4: Vận dụng"
+    ];
+
+    let activitiesHtml = "";
+    actsData.forEach((act, idx) => {
+      const g = (act.goal || "--").replace(/\n/g, "<br/>");
+      const c = (act.content || "--").replace(/\n/g, "<br/>");
+      const p = (act.product || "--").replace(/\n/g, "<br/>");
+      const s = (act.steps || "--").replace(/\n/g, "<br/>");
+
+      activitiesHtml += `
+        <div style="margin-top: 15pt; margin-bottom: 10pt;">
+          <h4 style="font-weight: bold; font-size: 13pt; margin: 0 0 5pt 0;">${activitiesTitles[idx]}</h4>
+          <div style="margin-left: 20pt; line-height: 1.5;">
+            <p style="margin: 3pt 0;"><strong style="font-weight: bold;">a) Mục tiêu:</strong> ${g}</p>
+            <p style="margin: 3pt 0;"><strong style="font-weight: bold;">b) Nội dung:</strong> ${c}</p>
+            <p style="margin: 3pt 0;"><strong style="font-weight: bold;">c) Sản phẩm:</strong> ${p}</p>
+            <p style="margin: 3pt 0;"><strong style="font-weight: bold;">d) Tổ chức thực hiện:</strong></p>
+            <div style="margin-left: 20pt; font-family: 'Courier New', Courier, monospace; font-size: 11pt; background-color: #f9f9f9; padding: 5pt; border: 1px solid #ddd;">
+              ${s}
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    const htmlContent = `
+      <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+      <head>
+        <title>Kế hoạch bài dạy 5512</title>
+        <!--[if gte mso 9]>
+        <xml>
+          <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>100</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+          </w:WordDocument>
+        </xml>
+        <![endif]-->
+        <style>
+          @page {
+            size: A4;
+            margin: 2cm 2cm 2cm 2cm;
+          }
+          body {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 13pt;
+            line-height: 1.45;
+            color: #000000;
+          }
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 12pt;
+          }
+          td {
+            padding: 6pt;
+            vertical-align: top;
+          }
+          h3 {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-top: 18pt;
+            margin-bottom: 6pt;
+          }
+          h4 {
+            font-size: 13pt;
+            font-weight: bold;
+            margin-top: 12pt;
+            margin-bottom: 4pt;
+          }
+        </style>
+      </head>
+      <body>
+        <!-- Header Info -->
+        <table style="width: 100%; border: none;">
+          <tr style="border: none;">
+            <td style="width: 50%; text-align: center; border: none; padding: 0;">
+              <div style="text-transform: uppercase;">${school}</div>
+              <div style="font-weight: bold;">${dept}</div>
+              <div style="margin-top: 2pt;">-----------------</div>
+            </td>
+            <td style="width: 50%; text-align: center; border: none; padding: 0;">
+              <div style="font-weight: bold;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+              <div style="font-weight: bold;">Độc lập - Tự do - Hạnh phúc</div>
+              <div style="margin-top: 2pt;">-----------------------</div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Title -->
+        <div style="text-align: center; margin-top: 25pt; margin-bottom: 25pt;">
+          <div style="font-size: 13pt; font-weight: normal;">KẾ HOẠCH BÀI DẠY (GIÁO ÁN CHUẨN 5512)</div>
+          <div style="font-size: 16pt; font-weight: bold; text-transform: uppercase; margin-top: 4pt;">${lesson}</div>
+          <div style="font-size: 13pt; margin-top: 4pt;">Môn học: ${subject} - Thời lượng: ${duration}</div>
+          <div style="font-size: 13pt; font-style: italic; margin-top: 4pt;">Họ và tên giáo viên: ${teacher}</div>
+        </div>
+
+        <!-- I. Objectives -->
+        <h3>I. MỤC TIÊU</h3>
+        <div style="margin-left: 20pt;">
+          <h4 style="margin: 6pt 0 3pt 0;">1. Kiến thức</h4>
+          <div style="margin-left: 20pt;">${knowledge}</div>
+          
+          <h4 style="margin: 8pt 0 3pt 0;">2. Năng lực</h4>
+          <div style="margin-left: 20pt;">${competence}</div>
+          
+          <h4 style="margin: 8pt 0 3pt 0;">3. Phẩm chất</h4>
+          <div style="margin-left: 20pt;">${quality}</div>
+        </div>
+
+        <!-- II. Equipment -->
+        <h3>II. THIẾT BỊ DẠY HỌC VÀ HỌC LIỆU</h3>
+        <div style="margin-left: 20pt; line-height: 1.5;">
+          <p style="margin: 4pt 0;"><strong style="font-weight: bold;">1. Thiết bị của giáo viên:</strong> ${equipT}</p>
+          <p style="margin: 4pt 0;"><strong style="font-weight: bold;">2. Thiết bị/học liệu của học sinh:</strong> ${equipS}</p>
+        </div>
+
+        <!-- III. Teaching Procedure -->
+        <h3>III. TIẾN TRÌNH DẠY HỌC</h3>
+        <div style="margin-left: 10pt;">
+          ${activitiesHtml}
+        </div>
+      </body>
+      </html>
+    `;
+
+    // Download file
+    const blob = new Blob([htmlContent], { type: "application/msword;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    // Clean file title for filename
+    const cleanTitle = lesson.toLowerCase().replace(/[^a-z0-9\s]/g, "").replace(/\s+/g, "-");
+    link.download = `giao-an-5512-${cleanTitle || "lesson-plan"}.doc`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  });
+
+  // Load default math sample on page load
+  window.addEventListener("DOMContentLoaded", () => {
+    if (selectSample) {
+      selectSample.value = "math";
+      const event = new Event("change");
+      selectSample.dispatchEvent(event);
+    }
+  });
+</script>
