@@ -59,7 +59,7 @@ import Layout from '../../../layouts/Layout.astro';
       <!-- Shuffle & Deal Action -->
       <div class="text-center mb-10">
         <button id="btnShuffle" class="px-8 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-emerald-500 dark:to-teal-600 text-white font-extrabold rounded-2xl shadow-md hover:scale-105 transition duration-200">
-          ⚡ XÀO BÀI & TRẢI BÀI
+          <svg class="w-4 h-4 inline-block align-middle mr-1.5 -mt-0.5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>XÀO BÀI & TRẢI BÀI
         </button>
       </div>
 
@@ -555,7 +555,7 @@ import Layout from '../../../layouts/Layout.astro';
       isShuffling = true;
       resultsPanel.classList.add('hidden');
       btnShuffle.disabled = true;
-      btnShuffle.textContent = "🔮 ĐANG XÀO BÀI...";
+      btnShuffle.innerHTML = "🔮 ĐANG XÀO BÀI...";
       
       // Clear container and show shuffling mock cards with dark cosmic layout
       cardsSpread.innerHTML = `
@@ -570,7 +570,7 @@ import Layout from '../../../layouts/Layout.astro';
       setTimeout(() => {
         isShuffling = false;
         btnShuffle.disabled = false;
-        btnShuffle.textContent = "⚡ XÀO BÀI & TRẢI BÀI";
+        btnShuffle.innerHTML = '<svg class="w-4 h-4 inline-block align-middle mr-1.5 -mt-0.5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>XÀO BÀI & TRẢI BÀI';
         dealCards();
       }, 1500);
     });
