@@ -1,0 +1,702 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Công Cụ Tính Điểm Học Bạ Trực Tuyến Chuẩn 2026 - Miễn Phí"
+  description="Công cụ tính điểm học bạ xét tuyển Đại học chuẩn xác nhất 2026. Hỗ trợ tính nhanh tổ hợp, tính full học bạ, nhân hệ số 2 và tự động tính điểm ưu tiên giảm dần từ 22.5 điểm."
+>
+  <!-- JSON-LD EducationApplication Schema -->
+  <script type="application/ld+json" slot="head" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationApplication",
+      "name": "Công Cụ Tính Điểm Học Bạ Online",
+      "description": "Ứng dụng trực tuyến giúp học sinh tính điểm xét tuyển học bạ Đại học chuẩn 2026, tự động tính điểm ưu tiên khu vực/đối tượng giảm dần từ mốc 22.5.",
+      "operatingSystem": "All",
+      "applicationCategory": "EducationalApplication",
+      "browserRequirements": "Requires HTML5, CSS3, JavaScript support",
+      "url": "https://trolyso.online/calculators/tinh-diem-hoc-ba/"
+    }
+  </script>
+
+  <!-- JSON-LD FAQPage Schema -->
+  <script type="application/ld+json" slot="head" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quy định điểm ưu tiên mới từ 22.5 điểm trở lên tính như thế nào?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Từ năm 2023 đến năm 2026, thí sinh đạt tổng điểm từ 22.5 trở lên (thang 30) sẽ bị giảm dần điểm ưu tiên theo công thức: Điểm ưu tiên thực tế = [(30 - Tổng điểm)/7.5] x Mức điểm ưu tiên tối đa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Xét học bạ lớp 12 tính điểm trung bình như thế nào?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Thông thường là lấy tổng điểm trung bình cả năm lớp 12 của 3 môn học trong tổ hợp xét tuyển cộng với điểm ưu tiên (nếu có)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Làm thế nào để tính điểm học bạ khi có môn chính nhân hệ số 2?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Khi môn chính nhân hệ số 2, tổng điểm tính theo thang 40 = Môn chính x 2 + Môn 2 + Môn 3. Quy đổi về thang 30 = [Tổng điểm thang 40 x 3/4] + Điểm ưu tiên."
+          }
+        }
+      ]
+    }
+  </script>
+
+  <main class="max-w-6xl mx-auto px-4 py-8 text-slate-800 dark:text-slate-200">
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint font-medium transition">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/calculators/" class="hover:text-brand-blue dark:hover:text-brand-mint font-medium transition">Công cụ</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tính điểm học bạ</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Tool Title -->
+    <div class="text-center mb-8">
+      <h1 class="text-2xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-3">
+        Công Cụ Tính Điểm Học Bạ Trực Tuyến 2026
+      </h1>
+      <p class="text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+        Tính điểm xét tuyển học bạ Đại học nhanh chóng. Tự động áp dụng công thức giảm điểm ưu tiên khi từ 22.5 điểm trở lên chuẩn Quy chế tuyển sinh của Bộ Giáo dục & Đào tạo.
+      </p>
+    </div>
+
+    <!-- Main Tool Container -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- LEFT PANEL: Inputs (Col: 7) -->
+      <div class="lg:col-span-7 bg-white dark:bg-brand-darkCard rounded-3xl border border-slate-200/60 dark:border-slate-800/60 shadow-sm p-6 sm:p-8 space-y-6">
+        
+        <!-- Mode Tabs -->
+        <div>
+          <label class="block text-xs font-bold text-slate-450 dark:text-slate-500 uppercase tracking-wider mb-2">Phương thức tính điểm</label>
+          <div class="grid grid-cols-3 gap-2 bg-slate-100 dark:bg-slate-900 p-1 rounded-xl">
+            <button id="tab-quick" class="py-2.5 text-xs sm:text-sm font-semibold rounded-lg bg-white dark:bg-brand-darkCard text-brand-blue dark:text-brand-mint shadow-sm transition-all duration-300">
+              Tính Nhanh
+            </button>
+            <button id="tab-full" class="py-2.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-500 dark:text-slate-450 hover:text-slate-800 dark:hover:text-slate-200 transition-all duration-300">
+              Học Bạ Đầy Đủ
+            </button>
+            <button id="tab-scale" class="py-2.5 text-xs sm:text-sm font-semibold rounded-lg text-slate-500 dark:text-slate-450 hover:text-slate-800 dark:hover:text-slate-200 transition-all duration-300">
+              Hệ Số 2 (Môn Chính)
+            </button>
+          </div>
+        </div>
+
+        <!-- Shared Priority Points Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-50 dark:bg-slate-900/40 p-4 rounded-2xl border border-slate-150 dark:border-slate-850">
+          <div>
+            <label for="select-kv" class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5">Khu vực ưu tiên</label>
+            <select id="select-kv" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-brand-blue dark:focus:border-brand-mint transition">
+              <option value="0">Khu vực 3 (KV3) - 0.0 điểm</option>
+              <option value="0.25">Khu vực 2 (KV2) - 0.25 điểm</option>
+              <option value="0.5">Khu vực 2 NT (KV2-NT) - 0.5 điểm</option>
+              <option value="0.75">Khu vực 1 (KV1) - 0.75 điểm</option>
+            </select>
+          </div>
+          <div>
+            <label for="select-ut" class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5">Đối tượng ưu tiên</label>
+            <select id="select-ut" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-brand-blue dark:focus:border-brand-mint transition">
+              <option value="0">Không thuộc diện ưu tiên - 0 điểm</option>
+              <option value="2.0">Nhóm ưu tiên UT1 (Đối tượng 01-04) - 2.0 điểm</option>
+              <option value="1.0">Nhóm ưu tiên UT2 (Đối tượng 05-07) - 1.0 điểm</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- MODE 1: TÍNH NHANH (Active by default) -->
+        <div id="mode-quick-container" class="space-y-4">
+          <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider">Nhập điểm trung bình 3 môn:</h3>
+          <div class="grid grid-cols-3 gap-4">
+            <div>
+              <label for="quick-m1" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Môn 1</label>
+              <input type="number" step="0.01" min="0" max="10" id="quick-m1" placeholder="8.5" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue dark:focus:border-brand-mint transition font-bold" />
+            </div>
+            <div>
+              <label for="quick-m2" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Môn 2</label>
+              <input type="number" step="0.01" min="0" max="10" id="quick-m2" placeholder="8.0" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue dark:focus:border-brand-mint transition font-bold" />
+            </div>
+            <div>
+              <label for="quick-m3" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Môn 3</label>
+              <input type="number" step="0.01" min="0" max="10" id="quick-m3" placeholder="7.5" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue dark:focus:border-brand-mint transition font-bold" />
+            </div>
+          </div>
+        </div>
+
+        <!-- MODE 2: HỌC BẠ ĐẦY ĐỦ (Hidden by default) -->
+        <div id="mode-full-container" class="hidden space-y-4">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider">Bảng điểm các môn học:</h3>
+            <select id="select-semesters" class="bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1 text-xs outline-none focus:border-brand-blue transition">
+              <option value="5">Xét 5 Học kỳ (Lớp 10, Lớp 11, HK1 Lớp 12)</option>
+              <option value="6">Xét 6 Học kỳ (Lớp 10, Lớp 11, Lớp 12)</option>
+              <option value="12">Xét cả năm Lớp 12</option>
+            </select>
+          </div>
+          
+          <p class="text-xs text-slate-500 italic">Nhập điểm tổng kết trung bình môn theo phương thức đã chọn:</p>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div>
+              <label for="full-toan" class="block text-xs text-slate-500 mb-1">📐 Toán học</label>
+              <input type="number" step="0.01" min="0" max="10" id="full-toan" placeholder="8.5" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-1.5 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-semibold" />
+            </div>
+            <div>
+              <label for="full-van" class="block text-xs text-slate-500 mb-1">✍️ Ngữ văn</label>
+              <input type="number" step="0.01" min="0" max="10" id="full-van" placeholder="7.8" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-1.5 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-semibold" />
+            </div>
+            <div>
+              <label for="full-anh" class="block text-xs text-slate-500 mb-1">💬 Tiếng Anh</label>
+              <input type="number" step="0.01" min="0" max="10" id="full-anh" placeholder="8.2" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-1.5 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-semibold" />
+            </div>
+            <div>
+              <label for="full-ly" class="block text-xs text-slate-500 mb-1">⚡ Vật lý</label>
+              <input type="number" step="0.01" min="0" max="10" id="full-ly" placeholder="8.0" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-1.5 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-semibold" />
+            </div>
+            <div>
+              <label for="full-hoa" class="block text-xs text-slate-500 mb-1">🧪 Hóa học</label>
+              <input type="number" step="0.01" min="0" max="10" id="full-hoa" placeholder="7.5" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-1.5 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-semibold" />
+            </div>
+            <div>
+              <label for="full-sinh" class="block text-xs text-slate-500 mb-1">🌿 Sinh học</label>
+              <input type="number" step="0.01" min="0" max="10" id="full-sinh" placeholder="8.1" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-1.5 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-semibold" />
+            </div>
+            <div>
+              <label for="full-su" class="block text-xs text-slate-500 mb-1">📜 Lịch sử</label>
+              <input type="number" step="0.01" min="0" max="10" id="full-su" placeholder="7.0" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-1.5 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-semibold" />
+            </div>
+            <div>
+              <label for="full-dia" class="block text-xs text-slate-500 mb-1">🌍 Địa lý</label>
+              <input type="number" step="0.01" min="0" max="10" id="full-dia" placeholder="7.2" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-1.5 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-semibold" />
+            </div>
+            <div>
+              <label for="full-gdcd" class="block text-xs text-slate-500 mb-1">⚖️ GDCD</label>
+              <input type="number" step="0.01" min="0" max="10" id="full-gdcd" placeholder="9.0" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-1.5 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-semibold" />
+            </div>
+          </div>
+        </div>
+
+        <!-- MODE 3: HỆ SỐ 2 (Hidden by default) -->
+        <div id="mode-scale-container" class="hidden space-y-4">
+          <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider">Nhập điểm & chọn môn nhân đôi:</h3>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label for="scale-m1" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Điểm Môn 1</label>
+              <input type="number" step="0.01" min="0" max="10" id="scale-m1" placeholder="8.5" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-bold" />
+              <div class="mt-2 flex items-center justify-center gap-1.5">
+                <input type="radio" name="main-sub" id="main-m1" value="1" checked class="accent-brand-blue dark:accent-brand-mint" />
+                <label for="main-m1" class="text-xs text-slate-500 select-none">Môn chính (x2)</label>
+              </div>
+            </div>
+            <div>
+              <label for="scale-m2" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Điểm Môn 2</label>
+              <input type="number" step="0.01" min="0" max="10" id="scale-m2" placeholder="8.0" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-bold" />
+              <div class="mt-2 flex items-center justify-center gap-1.5">
+                <input type="radio" name="main-sub" id="main-m2" value="2" class="accent-brand-blue dark:accent-brand-mint" />
+                <label for="main-m2" class="text-xs text-slate-500 select-none">Môn chính (x2)</label>
+              </div>
+            </div>
+            <div>
+              <label for="scale-m3" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Điểm Môn 3</label>
+              <input type="number" step="0.01" min="0" max="10" id="scale-m3" placeholder="7.5" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm text-center outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-bold" />
+              <div class="mt-2 flex items-center justify-center gap-1.5">
+                <input type="radio" name="main-sub" id="main-m3" value="3" class="accent-brand-blue dark:accent-brand-mint" />
+                <label for="main-m3" class="text-xs text-slate-500 select-none">Môn chính (x2)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Button -->
+        <button id="btn-calc" class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold py-3.5 px-6 rounded-2xl shadow-md hover:shadow-lg hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 flex items-center justify-center gap-2">
+          <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+          <span id="btn-text">Tính Điểm Xét Tuyển</span>
+        </button>
+
+      </div>
+
+      <!-- RIGHT PANEL: Live Results & Optimal Combinations (Col: 5) -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <!-- Score Glow Card -->
+        <div class="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl border border-slate-800 p-6 sm:p-8 shadow-xl relative overflow-hidden group">
+          <div class="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-brand-blue/20 blur-3xl group-hover:bg-brand-blue/30 transition-colors duration-500"></div>
+          <div class="absolute -bottom-24 -left-24 w-48 h-48 rounded-full bg-brand-mint/10 blur-3xl group-hover:bg-brand-mint/20 transition-colors duration-500"></div>
+
+          <h3 class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2" id="res-title">Kết quả xét tuyển của bạn</h3>
+          
+          <div class="flex items-baseline gap-2 mb-4">
+            <span id="res-score" class="text-5xl sm:text-6xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-emerald-400 tracking-tight">0.00</span>
+            <span id="res-max-scale" class="text-slate-500 text-sm font-semibold">/30 điểm</span>
+          </div>
+
+          <div class="border-t border-slate-800/80 pt-4 space-y-2.5 text-sm">
+            <div class="flex justify-between">
+              <span class="text-slate-400" id="res-raw-label">Tổng điểm 3 môn:</span>
+              <span id="res-raw-score" class="font-bold text-slate-200">0.00</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400" id="res-bonus-label">Điểm ưu tiên thực nhận:</span>
+              <span id="res-bonus-score" class="font-bold text-brand-mint">0.00</span>
+            </div>
+          </div>
+
+          <!-- Formula details alert box -->
+          <div id="res-formula-container" class="hidden mt-4 bg-slate-800/40 border border-slate-700/60 p-3 rounded-xl text-xs text-slate-350 space-y-1">
+            <p class="font-bold text-slate-250">✏️ Chi tiết cách tính điểm ưu tiên:</p>
+            <p id="res-formula-text" class="italic font-normal">--</p>
+          </div>
+        </div>
+
+        <!-- Mode 2 optimal combinations list card -->
+        <div id="optimal-combinations-card" class="bg-white dark:bg-brand-darkCard rounded-3xl border border-slate-200/60 dark:border-slate-800/60 p-6 shadow-sm hidden space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/20 text-brand-mint flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
+            </div>
+            <h4 class="font-heading font-bold text-sm text-slate-900 dark:text-white" id="optimal-title">Tổ hợp môn đạt điểm cao nhất</h4>
+          </div>
+
+          <div id="optimal-combo-badge" class="bg-blue-50/50 dark:bg-slate-900/50 border border-brand-blue/20 p-4 rounded-2xl flex items-center justify-between">
+            <div>
+              <div id="optimal-combo-name" class="font-extrabold text-brand-blue dark:text-brand-mint text-lg">A00 (Toán, Lý, Hóa)</div>
+              <div id="optimal-combo-desc" class="text-xs text-slate-450 mt-0.5">Điểm 3 môn chưa cộng ưu tiên</div>
+            </div>
+            <div id="optimal-combo-raw" class="font-black text-2xl text-slate-800 dark:text-white">0.00</div>
+          </div>
+
+          <div class="space-y-2.5 text-xs text-slate-500" id="combinations-list">
+            <!-- Dynamic combinations list -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Handbooks and FAQ Sections -->
+    <div class="mt-16 border-t border-slate-200 dark:border-slate-800 pt-12 max-w-4xl mx-auto">
+      
+      <!-- Detailed Guide -->
+      <section class="max-w-none text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-6">
+        <h2 class="text-xl sm:text-2xl font-heading font-extrabold text-slate-900 dark:text-white">Cẩm nang tính điểm học bạ xét tuyển đại học</h2>
+        <p>
+          Phương thức xét học bạ THPT là một trong những phương thức tuyển sinh được đông đảo thí sinh lựa chọn nhất hiện nay do tính chủ động, giảm bớt áp lực thi cử và tăng cơ hội trúng tuyển sớm vào các trường Đại học mong muốn. Tuy nhiên, quy trình tính điểm xét tuyển có nhiều quy tắc phức tạp.
+        </p>
+
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">1. Cách tính điểm học bạ theo tổ hợp 3 môn</h3>
+        <p>
+          Thông thường, điểm xét tuyển học bạ của một tổ hợp 3 môn (ví dụ A00: Toán, Lý, Hóa) được tính theo công thức:
+        </p>
+        <div class="bg-slate-50 dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-center font-bold font-mono text-sm sm:text-base text-brand-blue dark:text-brand-mint">
+          Điểm Xét Tuyển = Điểm Môn 1 + Điểm Môn 2 + Điểm Môn 3 + Điểm Ưu Tiên
+        </div>
+        <p>
+          Trong đó, Điểm mỗi môn học được tính là điểm trung bình của môn học đó tùy theo hình thức của trường:
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-slate-650 dark:text-slate-350">
+          <li><strong>Xét 5 học kỳ:</strong> Điểm môn = (TB Cả năm Lớp 10 + TB Cả năm Lớp 11 + TB HK1 Lớp 12) / 3.</li>
+          <li><strong>Xét 6 học kỳ:</strong> Điểm môn = (TB Cả năm Lớp 10 + TB Cả năm Lớp 11 + TB Cả năm Lớp 12) / 3.</li>
+          <li><strong>Xét cả năm lớp 12:</strong> Điểm môn = Điểm TB cả năm Lớp 12 của môn đó.</li>
+        </ul>
+
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">2. Công thức giảm trừ điểm ưu tiên khi đạt từ 22.5 điểm</h3>
+        <p>
+          Áp dụng từ năm 2023 và duy trì ổn định đến 2026, Bộ Giáo dục và Đào tạo quy định: Thí sinh đạt tổng điểm 3 môn từ 22.5 trở lên (thang 30) sẽ không được cộng điểm ưu tiên tối đa nữa mà điểm này sẽ giảm dần đều về 0 khi tổng điểm đạt mốc tuyệt đối 30.
+        </p>
+        <p>
+          Điều này tránh hiện tượng "chênh lệch điểm ưu tiên" khiến những thí sinh có năng lực học tập xuất sắc bị bất lợi do không thuộc diện cộng điểm chính sách. Công cụ tính điểm học bạ của Trợ Lý Số đã tích hợp tự động thuật toán này để đảm bảo điểm xuất ra cho thí sinh là chính xác nhất.
+        </p>
+      </section>
+
+      <!-- FAQ Accordions -->
+      <section class="mt-12 space-y-4">
+        <h3 class="text-lg sm:text-xl font-heading font-extrabold text-slate-900 dark:text-white mb-6">Câu hỏi thường gặp (FAQ)</h3>
+        
+        <details class="group bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 hover:border-brand-blue dark:hover:border-brand-mint transition duration-300">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-sm sm:text-base">
+            <span>Khu vực 3 (KV3) có được cộng điểm ưu tiên không?</span>
+            <span class="text-brand-blue dark:text-brand-mint transition-transform duration-300 group-open:rotate-180">↓</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
+            Không. Theo quy định của Bộ GD&ĐT, học sinh thuộc Khu vực 3 (các quận nội thành thuộc thành phố trực thuộc Trung ương hoặc thành phố loại I) không được cộng điểm ưu tiên khu vực (điểm cộng = 0).
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 hover:border-brand-blue dark:hover:border-brand-mint transition duration-300">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-sm sm:text-base">
+            <span>Điểm môn chính nhân hệ số 2 được quy đổi về thang điểm 30 như thế nào?</span>
+            <span class="text-brand-blue dark:text-brand-mint transition-transform duration-300 group-open:rotate-180">↓</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
+            Với các trường có môn chính nhân hệ số 2 (Ví dụ ngành Ngôn ngữ Anh nhân đôi môn Tiếng Anh), điểm xét tuyển quy về thang 30 theo công thức: <strong>[(Môn chính x 2 + Môn 2 + Môn 3) x 3/4] + Điểm ưu tiên</strong>. Công thức này giúp điểm số trở lại hệ quy chiếu chuẩn 30 để xét tuyển bình đẳng.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 hover:border-brand-blue dark:hover:border-brand-mint transition duration-300">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-sm sm:text-base">
+            <span>Đăng ký xét tuyển học bạ ở đâu và khi nào?</span>
+            <span class="text-brand-blue dark:text-brand-mint transition-transform duration-300 group-open:rotate-180">↓</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
+            Học sinh đăng ký xét học bạ trực tiếp tại trang tuyển sinh của trường đại học mục tiêu (đối với các đợt xét tuyển sớm, thường bắt đầu từ tháng 3 - tháng 6). Sau đó, học sinh vẫn phải đăng ký nguyện vọng này lên Hệ thống tuyển sinh chung của Bộ GD&ĐT theo đúng thời gian quy định chung để được công nhận trúng tuyển chính thức.
+          </p>
+        </details>
+      </section>
+
+      <!-- CTA box to read the guide blog post -->
+      <div class="mt-12 bg-slate-50 dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base mb-1">Cần tìm hiểu chi tiết các hồ sơ và điều kiện xét tuyển?</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Đọc ngay cẩm nang hướng dẫn đầy đủ từ các chuyên gia hướng nghiệp.</p>
+        </div>
+        <a href="/blog/huong-dan-tinh-diem-hoc-ba-xet-dai-hoc/" class="inline-block bg-brand-blue dark:bg-brand-mint text-white dark:text-slate-900 font-bold px-4 py-2 text-xs sm:text-sm rounded-xl hover:scale-105 transition-all text-center shrink-0">
+          Đọc cẩm nang ngay →
+        </a>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Languages Translation Object
+  const translations = {
+    vi: {
+      btnCalc: "Tính Điểm Xét Tuyển",
+      resTitle: "Kết quả xét tuyển của bạn",
+      resRaw: "Tổng điểm 3 môn:",
+      resBonus: "Điểm ưu tiên thực nhận:",
+      optimalTitle: "Tổ hợp môn đạt điểm cao nhất",
+      optimalDesc: "Điểm 3 môn chưa cộng ưu tiên",
+      formulaTitle: "✏️ Chi tiết cách tính điểm ưu tiên:",
+      placeholderMain: "Môn chính (x2)",
+      max30: "/30 điểm",
+      max40: "/40 điểm"
+    },
+    en: {
+      btnCalc: "Calculate Admission Score",
+      resTitle: "Your Admission Results",
+      resRaw: "Total of 3 subjects:",
+      resBonus: "Actual priority points:",
+      optimalTitle: "Highest Scoring Combination",
+      optimalDesc: "3-subject raw score",
+      formulaTitle: "✏️ Priority point calculation details:",
+      placeholderMain: "Main subject (x2)",
+      max30: "/30 pts",
+      max40: "/40 pts"
+    }
+  };
+
+  // Helper translations getter
+  function getLang() {
+    return (localStorage.getItem("lang") === "en") ? "en" : "vi";
+  }
+
+  // Common Subject Combinations
+  const COMBINATIONS = [
+    { name: "A00", subjects: ["toan", "ly", "hoa"], label: "Toán, Lý, Hóa" },
+    { name: "A01", subjects: ["toan", "ly", "anh"], label: "Toán, Lý, Anh" },
+    { name: "B00", subjects: ["toan", "hoa", "sinh"], label: "Toán, Hóa, Sinh" },
+    { name: "C00", subjects: ["van", "su", "dia"], label: "Văn, Sử, Địa" },
+    { name: "D01", subjects: ["toan", "van", "anh"], label: "Toán, Văn, Anh" },
+    { name: "D07", subjects: ["toan", "hoa", "anh"], label: "Toán, Hóa, Anh" },
+    { name: "C02", subjects: ["toan", "van", "hoa"], label: "Toán, Văn, Hóa" },
+    { name: "C01", subjects: ["toan", "van", "ly"], label: "Toán, Văn, Lý" }
+  ];
+
+  // DOM Elements
+  const tabQuick = document.getElementById("tab-quick");
+  const tabFull = document.getElementById("tab-full");
+  const tabScale = document.getElementById("tab-scale");
+
+  const containerQuick = document.getElementById("mode-quick-container");
+  const containerFull = document.getElementById("mode-full-container");
+  const containerScale = document.getElementById("mode-scale-container");
+
+  const selectKv = document.getElementById("select-kv") as HTMLSelectElement;
+  const selectUt = document.getElementById("select-ut") as HTMLSelectElement;
+
+  const btnCalc = document.getElementById("btn-calc");
+  const btnText = document.getElementById("btn-text");
+
+  // Output Elements
+  const resScore = document.getElementById("res-score");
+  const resMaxScale = document.getElementById("res-max-scale");
+  const resRawScore = document.getElementById("res-raw-score");
+  const resBonusScore = document.getElementById("res-bonus-score");
+  const resFormulaContainer = document.getElementById("res-formula-container");
+  const resFormulaText = document.getElementById("res-formula-text");
+
+  const optimalCard = document.getElementById("optimal-combinations-card");
+  const optimalComboName = document.getElementById("optimal-combo-name");
+  const optimalComboRaw = document.getElementById("optimal-combo-raw");
+  const combinationsList = document.getElementById("combinations-list");
+
+  let activeMode = "quick"; // "quick" | "full" | "scale"
+
+  // Tab switching setup
+  function switchTab(mode: string) {
+    activeMode = mode;
+    
+    // Reset classes
+    [tabQuick, tabFull, tabScale].forEach(tab => {
+      tab?.classList.remove("bg-white", "dark:bg-brand-darkCard", "text-brand-blue", "dark:text-brand-mint", "shadow-sm");
+      tab?.classList.add("text-slate-500", "dark:text-slate-450");
+    });
+
+    const activeTab = mode === "quick" ? tabQuick : (mode === "full" ? tabFull : tabScale);
+    activeTab?.classList.remove("text-slate-500", "dark:text-slate-450");
+    activeTab?.classList.add("bg-white", "dark:bg-brand-darkCard", "text-brand-blue", "dark:text-brand-mint", "shadow-sm");
+
+    // Toggle panels
+    containerQuick?.classList.toggle("hidden", mode !== "quick");
+    containerFull?.classList.toggle("hidden", mode !== "full");
+    containerScale?.classList.toggle("hidden", mode !== "scale");
+
+    // Hide optimal card by default on tab switch
+    optimalCard?.classList.add("hidden");
+    resetOutputs();
+  }
+
+  function resetOutputs() {
+    if (resScore) resScore.textContent = "0.00";
+    if (resRawScore) resRawScore.textContent = "0.00";
+    if (resBonusScore) resBonusScore.textContent = "0.00";
+    resFormulaContainer?.classList.add("hidden");
+  }
+
+  tabQuick?.addEventListener("click", () => switchTab("quick"));
+  tabFull?.addEventListener("click", () => switchTab("full"));
+  tabScale?.addEventListener("click", () => switchTab("scale"));
+
+  // Calculate button action
+  btnCalc?.addEventListener("click", () => {
+    const lang = getLang();
+    const kvScore = parseFloat(selectKv?.value || "0");
+    const utScore = parseFloat(selectUt?.value || "0");
+    const pMax = kvScore + utScore;
+
+    if (activeMode === "quick") {
+      const m1 = parseFloat((document.getElementById("quick-m1") as HTMLInputElement).value || "0");
+      const m2 = parseFloat((document.getElementById("quick-m2") as HTMLInputElement).value || "0");
+      const m3 = parseFloat((document.getElementById("quick-m3") as HTMLInputElement).value || "0");
+
+      if (m1 <= 0 || m2 <= 0 || m3 <= 0 || m1 > 10 || m2 > 10 || m3 > 10) {
+        alert(lang === "en" ? "Please enter valid scores between 0 and 10." : "Vui lòng nhập điểm số hợp lệ từ 0 đến 10.");
+        return;
+      }
+
+      const rawScore = m1 + m2 + m3;
+      calculateAndDisplay(rawScore, pMax, 30);
+
+    } else if (activeMode === "scale") {
+      const m1 = parseFloat((document.getElementById("scale-m1") as HTMLInputElement).value || "0");
+      const m2 = parseFloat((document.getElementById("scale-m2") as HTMLInputElement).value || "0");
+      const m3 = parseFloat((document.getElementById("scale-m3") as HTMLInputElement).value || "0");
+
+      if (m1 <= 0 || m2 <= 0 || m3 <= 0 || m1 > 10 || m2 > 10 || m3 > 10) {
+        alert(lang === "en" ? "Please enter valid scores between 0 and 10." : "Vui lòng nhập điểm số hợp lệ từ 0 đến 10.");
+        return;
+      }
+
+      // Check which subject is multiplied by 2
+      const radios = document.getElementsByName("main-sub");
+      let selectedMain = 1;
+      for (let i = 0; i < radios.length; i++) {
+        if ((radios[i] as HTMLInputElement).checked) {
+          selectedMain = parseInt((radios[i] as HTMLInputElement).value);
+          break;
+        }
+      }
+
+      let rawScore40 = 0;
+      if (selectedMain === 1) {
+        rawScore40 = m1 * 2 + m2 + m3;
+      } else if (selectedMain === 2) {
+        rawScore40 = m1 + m2 * 2 + m3;
+      } else {
+        rawScore40 = m1 + m2 + m3 * 2;
+      }
+
+      // Normalized raw score on scale of 30
+      const rawScore30 = (rawScore40 * 3) / 4;
+      calculateAndDisplay(rawScore30, pMax, 30, rawScore40);
+
+    } else if (activeMode === "full") {
+      // Full Transcript calculation
+      const toan = parseFloat((document.getElementById("full-toan") as HTMLInputElement).value || "0");
+      const van = parseFloat((document.getElementById("full-van") as HTMLInputElement).value || "0");
+      const anh = parseFloat((document.getElementById("full-anh") as HTMLInputElement).value || "0");
+      const ly = parseFloat((document.getElementById("full-ly") as HTMLInputElement).value || "0");
+      const hoa = parseFloat((document.getElementById("full-hoa") as HTMLInputElement).value || "0");
+      const sinh = parseFloat((document.getElementById("full-sinh") as HTMLInputElement).value || "0");
+      const su = parseFloat((document.getElementById("full-su") as HTMLInputElement).value || "0");
+      const dia = parseFloat((document.getElementById("full-dia") as HTMLInputElement).value || "0");
+      const gdcd = parseFloat((document.getElementById("full-gdcd") as HTMLInputElement).value || "0");
+
+      const scores: Record<string, number> = { toan, van, anh, ly, hoa, sinh, su, dia, gdcd };
+      const nonZeroCount = Object.values(scores).filter(s => s > 0).length;
+
+      if (nonZeroCount < 3) {
+        alert(lang === "en" ? "Please enter scores for at least 3 subjects." : "Vui lòng nhập điểm của ít nhất 3 môn học.");
+        return;
+      }
+
+      // Compute scores for all combinations
+      const results: { name: string; label: string; score: number }[] = [];
+      COMBINATIONS.forEach(combo => {
+        let isValid = true;
+        let sum = 0;
+        combo.subjects.forEach(sub => {
+          if (scores[sub] <= 0 || scores[sub] > 10 || isNaN(scores[sub])) {
+            isValid = false;
+          } else {
+            sum += scores[sub];
+          }
+        });
+
+        if (isValid) {
+          results.push({ name: combo.name, label: combo.label, score: sum });
+        }
+      });
+
+      if (results.length === 0) {
+        alert(lang === "en" ? "No complete combinations found. Make sure subjects in combinations have scores." : "Không có tổ hợp môn nào đủ điểm. Hãy kiểm tra lại điểm nhập các môn.");
+        return;
+      }
+
+      // Sort combinations descending
+      results.sort((a, b) => b.score - a.score);
+
+      const best = results[0];
+      // Display the best combination
+      calculateAndDisplay(best.score, pMax, 30);
+
+      // Render optimal combinations list
+      if (optimalCard) optimalCard.classList.remove("hidden");
+      if (optimalComboName) optimalComboName.textContent = `${best.name} (${best.label})`;
+      if (optimalComboRaw) optimalComboRaw.textContent = best.score.toFixed(2);
+
+      if (combinationsList) {
+        combinationsList.innerHTML = "";
+        results.slice(1, 5).forEach(res => {
+          const div = document.createElement("div");
+          div.className = "flex justify-between items-center bg-slate-50 dark:bg-slate-900/30 p-2.5 rounded-xl border border-slate-150 dark:border-slate-850/50";
+          div.innerHTML = `
+            <div>
+              <span class="font-bold text-slate-800 dark:text-slate-200">${res.name}</span>
+              <span class="text-slate-400 ml-1.5 font-normal">(${res.label})</span>
+            </div>
+            <span class="font-semibold text-slate-700 dark:text-slate-350">${res.score.toFixed(2)}</span>
+          `;
+          combinationsList.appendChild(div);
+        });
+      }
+    }
+  });
+
+  // Calculate actual score using Ministry of Education rules
+  function calculateAndDisplay(rawScore30: number, pMax: number, scaleMax: number, rawScore40?: number) {
+    const lang = getLang();
+    let pActual = pMax;
+    let isReduced = false;
+
+    if (rawScore30 >= 22.5) {
+      pActual = ((30 - rawScore30) / 7.5) * pMax;
+      isReduced = pMax > 0 && rawScore30 < 30;
+    }
+
+    // Ensure final score caps at 30
+    let totalScore = rawScore30 + pActual;
+    if (totalScore > 30) totalScore = 30;
+
+    // Display
+    if (resScore) {
+      resScore.textContent = totalScore.toFixed(2);
+    }
+    if (resRawScore) {
+      if (rawScore40) {
+        resRawScore.textContent = `${rawScore30.toFixed(2)} (${rawScore40.toFixed(2)} TB)`;
+      } else {
+        resRawScore.textContent = rawScore30.toFixed(2);
+      }
+    }
+    if (resBonusScore) {
+      resBonusScore.textContent = `+${pActual.toFixed(2)}`;
+    }
+
+    // Display formula box
+    if (isReduced) {
+      resFormulaContainer?.classList.remove("hidden");
+      if (resFormulaText) {
+        resFormulaText.textContent = lang === "en" 
+          ? `Priority Points = [(30 - ${rawScore30.toFixed(2)}) / 7.5] x ${pMax.toFixed(2)} = ${pActual.toFixed(2)} pts (reduced because score >= 22.5)`
+          : `Điểm ưu tiên = [(30 - ${rawScore30.toFixed(2)}) / 7.5] x ${pMax.toFixed(2)} = ${pActual.toFixed(2)}đ (áp dụng công thức giảm dần khi điểm >= 22.5)`;
+      }
+    } else {
+      if (pMax > 0) {
+        resFormulaContainer?.classList.remove("hidden");
+        if (resFormulaText) {
+          resFormulaText.textContent = lang === "en"
+            ? `Priority Points = ${pMax.toFixed(2)} pts (full points since total score < 22.5)`
+            : `Điểm ưu tiên = ${pMax.toFixed(2)}đ (hưởng trọn điểm ưu tiên do tổng điểm < 22.5)`;
+        }
+      } else {
+        resFormulaContainer?.classList.add("hidden");
+      }
+    }
+  }
+
+  // Listen to language change broadcast from parent layout
+  window.addEventListener("languageChanged", () => {
+    const lang = getLang();
+    const t = translations[lang];
+
+    // Update labels
+    if (btnText) btnText.textContent = t.btnCalc;
+    const resTitle = document.getElementById("res-title");
+    if (resTitle) resTitle.textContent = t.resTitle;
+    const resRawLabel = document.getElementById("res-raw-label");
+    if (resRawLabel) resRawLabel.textContent = t.resRaw;
+    const resBonusLabel = document.getElementById("res-bonus-label");
+    if (resBonusLabel) resBonusLabel.textContent = t.resBonus;
+
+    const optTitle = document.getElementById("optimal-title");
+    if (optTitle) optTitle.textContent = t.optimalTitle;
+    const optDesc = document.getElementById("optimal-combo-desc");
+    if (optDesc) optDesc.textContent = t.optimalDesc;
+
+    if (resMaxScale) resMaxScale.textContent = t.max30;
+  });
+</script>
