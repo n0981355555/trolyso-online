@@ -1,0 +1,392 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Tra Cứu Mã Ngành Nghề Kinh Doanh Đăng Ký Doanh Nghiệp | trolyso.online"
+  description="Công cụ tra cứu nhanh mã ngành nghề kinh doanh cấp 4, cấp 5 chính xác nhất theo Quyết định 27/2018/QĐ-TTg của Tổng cục Thống kê phục vụ làm hồ sơ thành lập doanh nghiệp."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint font-medium transition duration-200">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint font-medium transition duration-200">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tra Cứu Mã Ngành Nghề</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <span class="px-3 py-1 text-xs font-semibold text-brand-blue dark:text-brand-mint bg-blue-50 dark:bg-blue-950/30 rounded-full mb-3 inline-block">Quyết Định 27/2018/QĐ-TTg</span>
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Tra Cứu Mã Ngành Nghề Kinh Doanh
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Tìm nhanh mã ngành kinh tế Việt Nam cấp 4, cấp 5 để đăng ký thành lập doanh nghiệp hoặc thay đổi đăng ký kinh doanh.
+      </p>
+    </div>
+
+    <!-- Main Tool Container -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 mb-12 transition-colors">
+      
+      <!-- Search Input Wrapper -->
+      <div class="max-w-2xl mx-auto mb-10 relative">
+        <label for="industrySearch" class="sr-only">Nhập tên ngành hoặc mã số để tìm kiếm</label>
+        <input 
+          type="text" 
+          id="industrySearch" 
+          placeholder="Nhập từ khóa (Ví dụ: quần áo, phần mềm, quán ăn, 6201...)" 
+          class="w-full pl-12 pr-4 py-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-semibold text-slate-800 dark:text-slate-100 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600"
+        />
+        <svg class="w-6 h-6 text-brand-blue dark:text-brand-mint absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
+
+      <!-- Search Stats -->
+      <div class="flex justify-between items-center mb-6 text-sm text-slate-500 dark:text-slate-400 pb-4 border-b border-slate-100 dark:border-slate-800">
+        <div>
+          <span>Danh sách ngành nghề: </span>
+          <span id="resultsCount" class="font-bold text-slate-800 dark:text-slate-200">0</span>
+          <span> kết quả khớp</span>
+        </div>
+        <button id="btnClearSearch" class="text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint text-xs font-semibold hidden transition">
+          Xóa tìm kiếm
+        </button>
+      </div>
+
+      <!-- Results Table -->
+      <div class="overflow-x-auto rounded-xl border border-slate-100 dark:border-slate-800">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="bg-slate-50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 font-bold border-b border-slate-100 dark:border-slate-800">
+              <th class="p-4 w-28">Mã Ngành</th>
+              <th class="p-4 w-1/3">Tên Ngành Cấp 4/5</th>
+              <th class="p-4">Nội Dung Chi Tiết / Diễn Giải</th>
+              <th class="p-4 w-24 text-center">Hành Động</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody" class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+            <!-- Dynamic Rows -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="hidden text-center py-16 text-slate-400 dark:text-slate-600">
+        <svg class="w-16 h-16 mx-auto mb-4 stroke-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p class="font-semibold text-lg text-slate-600 dark:text-slate-400 mb-2">Không tìm thấy mã ngành phù hợp</p>
+        <p class="text-sm">Hãy thử tìm bằng từ khóa khác hoặc tra cứu mã số ngắn hơn (Ví dụ: "46", "62").</p>
+      </div>
+    </div>
+
+    <!-- Cẩm nang hướng dẫn E-E-A-T ở cuối trang, nằm ngoài Tool Grid -->
+    <section class="mt-16 bg-slate-50 dark:bg-brand-darkCard rounded-2xl p-8 border border-slate-200/60 dark:border-slate-800/60 transition-colors">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm Nang Tra Cứu & Lựa Chọn Ngành Nghề Đăng Ký Kinh Doanh
+      </h2>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        <div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+            <span class="w-1.5 h-6 bg-brand-blue dark:bg-brand-mint rounded-full"></span>
+            Căn Cứ Pháp Lý & Nguyên Tắc Lựa Chọn
+          </h3>
+          <p class="mb-4">
+            Theo quy định tại <strong>Nghị định 01/2021/NĐ-CP</strong> và <strong>Quyết định 27/2018/QĐ-TTg</strong> của Thủ tướng Chính phủ, khi đăng ký thành lập doanh nghiệp hoặc bổ sung ngành nghề kinh doanh, người thành lập doanh nghiệp phải lựa chọn ngành kinh tế cấp 4 trong Hệ thống ngành kinh tế Việt Nam để ghi vào Giấy đề nghị đăng ký doanh nghiệp.
+          </p>
+          <p class="mb-4">
+            <strong>Ví dụ thực tế:</strong> Nếu doanh nghiệp của bạn kinh doanh bán lẻ quần áo, thời trang, bạn không thể ghi chung chung là "Kinh doanh quần áo". Bạn bắt buộc phải tra cứu mã ngành cấp 4 tương ứng là <strong>4771</strong> (Bán lẻ hàng may mặc, giày dép, hàng da và giả da trong các cửa hàng chuyên doanh) để ghi vào hồ sơ đăng ký.
+          </p>
+          <p>
+            Đối với các ngành nghề kinh doanh có điều kiện, doanh nghiệp cần đáp ứng đầy đủ các yêu cầu pháp lý (về vốn pháp định, chứng chỉ hành nghề hoặc giấy phép con) trước khi chính thức đi vào hoạt động.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+            <span class="w-1.5 h-6 bg-brand-blue dark:bg-brand-mint rounded-full"></span>
+            Hướng Dẫn Ghi Ngành Nghề Kinh Doanh Chính
+          </h3>
+          <p class="mb-4">
+            Mỗi doanh nghiệp chỉ được đăng ký duy nhất <strong>01 ngành nghề kinh doanh chính</strong>. Ngành nghề chính là ngành đóng góp tỷ trọng doanh thu cao nhất hoặc là hoạt động chủ chốt mà doanh nghiệp hướng đến.
+          </p>
+          <ul class="list-disc pl-5 space-y-2 mb-4">
+            <li><strong>Ngành cấp 4 (4 chữ số):</strong> Là cấp độ bắt buộc phải ghi trong hồ sơ chính thức gửi lên Sở Kế hoạch và Đầu tư.</li>
+            <li><strong>Ngành cấp 5 (5 chữ số) & Ngành tự viết thêm:</strong> Dùng để diễn giải chi tiết hơn mặt hàng hoặc phương thức hoạt động để làm rõ ngành cấp 4 đã đăng ký (Ví dụ: <em>Chi tiết: Bán lẻ quần áo trẻ em, đồ thể thao...</em>).</li>
+          </ul>
+          <p>
+            Anh chị có thể tìm đọc hướng dẫn chi tiết về cách đăng ký hồ sơ cũng như các sai lầm cần tránh tại bài viết phân tích chuyên sâu của Trợ Lý Số: <a href="/blog/huong-dan-tra-cuu-ma-nganh-nghe-kinh-doanh/" class="text-brand-blue dark:text-brand-mint font-bold hover:underline">Hướng dẫn đăng ký ngành nghề kinh doanh không bị trả hồ sơ</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Accordion (WCAG AA compliant contrast) -->
+      <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
+        <h3 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+          Câu Hỏi Thường Gặp Khi Đăng Ký Ngành Nghề Doanh Nghiệp (FAQ)
+        </h3>
+        <div class="space-y-4">
+          <details class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition duration-300 hover:border-brand-blue dark:hover:border-brand-mint">
+            <summary class="font-bold text-slate-800 dark:text-slate-100 cursor-pointer select-none list-none flex justify-between items-center">
+              <span>Không tìm thấy ngành nghề thực tế muốn làm trong hệ thống mã ngành?</span>
+              <span class="transition group-open:rotate-180 text-slate-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <p class="text-slate-600 dark:text-slate-300 text-sm mt-3 leading-relaxed">
+              Trường hợp ngành nghề muốn đăng ký chưa có trong Hệ thống ngành kinh tế Việt Nam nhưng được quy định tại các văn bản quy phạm pháp luật khác, Sở KH&ĐT sẽ ghi nhận ngành nghề đó dựa trên văn bản pháp luật hiện hành và ghi chú mã ngành tương ứng.
+            </p>
+          </details>
+
+          <details class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition duration-300 hover:border-brand-blue dark:hover:border-brand-mint">
+            <summary class="font-bold text-slate-800 dark:text-slate-100 cursor-pointer select-none list-none flex justify-between items-center">
+              <span>Doanh nghiệp đăng ký bao nhiêu ngành nghề kinh doanh tối đa?</span>
+              <span class="transition group-open:rotate-180 text-slate-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <p class="text-slate-600 dark:text-slate-300 text-sm mt-3 leading-relaxed">
+              Pháp luật Việt Nam không giới hạn số lượng ngành nghề kinh doanh doanh nghiệp được phép đăng ký. Doanh nghiệp có thể đăng ký nhiều ngành nghề khác nhau, miễn là không thuộc danh mục ngành nghề cấm đầu tư kinh doanh.
+            </p>
+          </details>
+
+          <details class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 transition duration-300 hover:border-brand-blue dark:hover:border-brand-mint">
+            <summary class="font-bold text-slate-800 dark:text-slate-100 cursor-pointer select-none list-none flex justify-between items-center">
+              <span>Mã ngành kinh doanh hộ cá thể có giống mã ngành doanh nghiệp không?</span>
+              <span class="transition group-open:rotate-180 text-slate-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <p class="text-slate-600 dark:text-slate-300 text-sm mt-3 leading-relaxed">
+              Có. Việc đăng ký mã ngành của Hộ kinh doanh cá thể cũng áp dụng Hệ thống ngành kinh tế Việt Nam cấp 4 tương tự như doanh nghiệp theo quy định mới nhất tại Nghị định 01/2021/NĐ-CP.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<!-- WebApplication & FAQPage JSON-LD Schemas -->
+<script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BusinessApplication",
+    "name": "Tra Cứu Mã Ngành Nghề Kinh Doanh Đăng Ký Doanh Nghiệp",
+    "description": "Công cụ tra cứu nhanh mã ngành nghề kinh doanh cấp 4, cấp 5 chính xác nhất theo quyết định của Tổng cục Thống kê phục vụ làm hồ sơ thành lập doanh nghiệp.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "url": "https://trolyso.online/calculators/tra-cuu-ma-nganh-nghe/",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "VND"
+    }
+  }
+</script>
+
+<script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Không tìm thấy ngành nghề thực tế muốn làm trong hệ thống mã ngành?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Trường hợp ngành nghề muốn đăng ký chưa có trong Hệ thống ngành kinh tế Việt Nam nhưng được quy định tại các văn bản quy phạm pháp luật khác, Sở KH&ĐT sẽ ghi nhận ngành nghề đó dựa trên văn bản pháp luật hiện hành và ghi chú mã ngành tương ứng."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Doanh nghiệp đăng ký bao nhiêu ngành nghề kinh doanh tối đa?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pháp luật Việt Nam không giới hạn số lượng ngành nghề kinh doanh doanh nghiệp được phép đăng ký. Doanh nghiệp có thể đăng ký nhiều ngành nghề khác nhau, miễn là không thuộc danh mục ngành nghề cấm đầu tư kinh doanh."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mã ngành kinh doanh hộ cá thể có giống mã ngành doanh nghiệp không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Có. Việc đăng ký mã ngành của Hộ kinh doanh cá thể cũng áp dụng Hệ thống ngành kinh tế Việt Nam cấp 4 tương tự như doanh nghiệp theo quy định mới nhất tại Nghị định 01/2021/NĐ-CP."
+        }
+      }
+    ]
+  }
+</script>
+
+<!-- Real-time Filter Script -->
+<script is:inline>
+  const vsicData = [
+    { code: '4641', name: 'Bán buôn vải, hàng may mặc, giày dép', desc: 'Bán buôn vải cuộn, quần áo thời trang nam nữ trẻ em, giày dép, mũ nón, phụ kiện thời trang.' },
+    { code: '4771', name: 'Bán lẻ hàng may mặc, giày dép, hàng da và giả da', desc: 'Bán lẻ quần áo, mũ nón, giày dép, phụ kiện thời trang tại cửa hàng chuyên doanh, shop thời trang.' },
+    { code: '6201', name: 'Lập trình máy vi tính', desc: 'Viết code phần mềm, phát triển ứng dụng di động, thiết kế website, lập trình hệ thống theo đơn đặt hàng.' },
+    { code: '6202', name: 'Tư vấn máy tính và quản trị hệ thống máy tính', desc: 'Tư vấn lựa chọn giải pháp phần cứng, cấu hình hệ thống máy tính, quản trị mạng doanh nghiệp.' },
+    { code: '6209', name: 'Hoạt động dịch vụ CNTT khác liên quan đến máy tính', desc: 'Dịch vụ cài đặt hệ điều hành, khôi phục dữ liệu máy tính, bảo trì phần cứng phần mềm tận nơi.' },
+    { code: '6311', name: 'Xử lý dữ liệu, cho thuê và các hoạt động liên quan', desc: 'Dịch vụ lưu trữ dữ liệu điện tử (Hosting), cho thuê máy chủ ảo (Cloud VPS), sao lưu dữ liệu.' },
+    { code: '6312', name: 'Cổng thông tin', desc: 'Vận hành các trang tin tức tổng hợp, thiết lập công cụ tìm kiếm trực tuyến, xây dựng trang mạng xã hội.' },
+    { code: '7310', name: 'Quảng cáo', desc: 'Chạy quảng cáo online (Facebook Ads, Google Ads), đại lý quảng cáo, thiết kế in ấn biển hiệu quảng cáo.' },
+    { code: '7320', name: 'Nghiên cứu thị trường và thăm dò dư luận', desc: 'Khảo sát nhu cầu khách hàng, thăm dò phản hồi thị trường về sản phẩm, thống kê phân tích số liệu.' },
+    { code: '7410', name: 'Hoạt động thiết kế chuyên dụng', desc: 'Thiết kế thời trang, thiết kế đồ họa (banner, logo), thiết kế trang trí nội thất công trình.' },
+    { code: '5610', name: 'Nhà hàng và các dịch vụ ăn uống phục vụ lưu động', desc: 'Kinh doanh quán ăn, nhà hàng tiệc cưới, quán cà phê, trà sữa, quán ăn vỉa hè lưu động.' },
+    { code: '5621', name: 'Cung cấp dịch vụ ăn uống theo hợp đồng', desc: 'Dịch vụ đặt cỗ tiệc tận nơi (Catering), cung cấp tiệc trọn gói cho hội nghị, sự kiện.' },
+    { code: '5629', name: 'Dịch vụ ăn uống khác', desc: 'Cung cấp suất ăn công nghiệp cho nhà máy, xí nghiệp, bếp ăn tập thể trường học, bệnh viện.' },
+    { code: '5630', name: 'Dịch vụ phục vụ đồ uống', desc: 'Kinh doanh quán bar, pub, vũ trường, quán bia hơi, phòng trà ca nhạc.' },
+    { code: '5510', name: 'Dịch vụ lưu trú ngắn ngày', desc: 'Kinh doanh khách sạn, nhà nghỉ, homestay, biệt thự nghỉ dưỡng (resort), căn hộ dịch vụ du lịch.' },
+    { code: '4931', name: 'Vận tải hành khách đường bộ nội thành, ngoại thành', desc: 'Vận tải hành khách bằng xe buýt, xe taxi truyền thống, taxi công nghệ, xe ôm công nghệ.' },
+    { code: '4932', name: 'Vận tải hành khách đường bộ khác', desc: 'Cho thuê xe ô tô tự lái kèm tài xế, vận chuyển hành khách theo hợp đồng du lịch, lữ hành.' },
+    { code: '4933', name: 'Vận tải hàng hóa bằng đường bộ', desc: 'Dịch vụ chuyển nhà trọn gói, xe tải chở hàng thuê, dịch vụ giao hàng chặng cuối.' },
+    { code: '7911', name: 'Đại lý du lịch', desc: 'Đại lý bán vé máy bay, vé tàu xe, bán và đặt giữ chỗ các tua du lịch của công ty lữ hành.' },
+    { code: '7912', name: 'Điều hành tua du lịch', desc: 'Tổ chức, thiết kế và điều hành trực tiếp các tua du lịch trong nước và quốc tế trọn gói.' },
+    { code: '8559', name: 'Giáo dục khác chưa được phân vào đâu', desc: 'Kinh doanh trung tâm ngoại ngữ (tiếng Anh, Hàn, Nhật), trung tâm gia sư dạy văn hóa, dạy kỹ năng mềm.' },
+    { code: '9610', name: 'Dịch vụ tắm hơi, massage và dịch vụ tăng cường sức khoẻ', desc: 'Kinh doanh cơ sở xông hơi massage, spa thư giãn làm đẹp, phòng tập thể hình (gym), yoga.' },
+    { code: '9631', name: 'Cắt tóc, làm đầu, gội đầu', desc: 'Dịch vụ tiệm cắt tóc nam nữ (hair salon), làm móng nail, trang điểm trang điểm cô dâu.' },
+    { code: '4100', name: 'Xây dựng nhà các loại', desc: 'Thi công xây dựng nhà ở dân dụng, biệt thự, nhà cao tầng, văn phòng cho thuê, nhà xưởng.' },
+    { code: '4321', name: 'Lắp đặt hệ thống điện', desc: 'Thi công hệ thống điện nước công trình, lắp đặt camera giám sát, hệ thống phòng cháy chữa cháy.' },
+    { code: '4322', name: 'Lắp đặt hệ thống cấp thoát nước, lò sưởi, điều hoà', desc: 'Lắp đặt điều hòa nhiệt độ cục bộ/trung tâm, đi đường ống cấp thoát nước công trình.' },
+    { code: '4330', name: 'Hoạt động hoàn thiện công trình xây dựng', desc: 'Thi công sơn nước, lát gạch men, ốp tường đá hoa cương, làm trần thạch cao thẩm mỹ.' },
+    { code: '4711', name: 'Bán lẻ lương thực, thực phẩm kinh doanh tổng hợp', desc: 'Kinh doanh cửa hàng tiện lợi, siêu thị mini, cửa hàng tạp hóa tổng hợp hộ gia đình.' },
+    { code: '4721', name: 'Bán lẻ lương thực trong cửa hàng chuyên doanh', desc: 'Bán lẻ gạo, ngô, khoai, sắn, bột mì tại đại lý chuyên doanh.' },
+    { code: '4722', name: 'Bán lẻ thực phẩm trong cửa hàng chuyên doanh', desc: 'Bán lẻ thịt cá, rau củ quả sạch, thực phẩm đông lạnh tại cửa hàng chuyên doanh.' },
+    { code: '4772', name: 'Bán lẻ thuốc, dụng cụ y tế, mỹ phẩm', desc: 'Mở nhà thuốc GPP, bán lẻ dược phẩm, dụng cụ y tế, cửa hàng mỹ phẩm trang điểm chăm sóc da.' },
+    { code: '4773', name: 'Bán lẻ hàng hóa mới khác trong cửa hàng chuyên doanh', desc: 'Bán lẻ hoa tươi trang trí, quà lưu niệm, đồ chơi trẻ em, sách báo văn phòng phẩm.' },
+    { code: '4791', name: 'Bán lẻ theo yêu cầu thư tín hoặc internet', desc: 'Kinh doanh bán hàng online trên mạng xã hội, sàn TMĐT (Shopee, Lazada, Tiktok Shop).' },
+    { code: '7020', name: 'Hoạt động tư vấn quản lý', desc: 'Tư vấn tái cấu trúc doanh nghiệp, tư vấn quản trị nguồn nhân lực, tư vấn lập dự án đầu tư.' },
+    { code: '6910', name: 'Hoạt động pháp luật', desc: 'Văn phòng luật sư bào chữa, tư vấn tranh chấp dân sự kinh tế, dịch vụ đại diện pháp lý.' },
+    { code: '6920', name: 'Hoạt động kế toán, kiểm toán và tư vấn về thuế', desc: 'Dịch vụ kế toán thuế trọn gói, làm báo cáo tài chính năm, quyết toán thuế doanh nghiệp.' },
+    { code: '1071', name: 'Sản xuất bánh mì, bánh ngọt, bánh quy', desc: 'Sản xuất và chế biến bánh mì, bánh sinh nhật, bánh quy các loại tại xưởng.' },
+    { code: '1410', name: 'May trang phục (trừ trang phục từ da lông thú)', desc: 'Xưởng may gia công quần áo thời trang, may đồng phục học sinh/công sở, may đo veston.' },
+    { code: '1811', name: 'In ấn', desc: 'In bao bì giấy, in sách báo tạp chí, in tem nhãn decal nhãn sản phẩm.' },
+    { code: '3100', name: 'Sản xuất giường, tủ, bàn, ghế', desc: 'Xưởng mộc gia công đồ gỗ nội thất gia đình, nội thất văn phòng làm việc.' }
+  ];
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('industrySearch');
+    const resultsBody = document.getElementById('resultsBody');
+    const resultsCount = document.getElementById('resultsCount');
+    const emptyState = document.getElementById('emptyState');
+    const btnClearSearch = document.getElementById('btnClearSearch');
+
+    function removeVietnameseTones(str) {
+      let result = str.toLowerCase();
+      result = result.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+      result = result.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+      result = result.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+      result = result.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+      result = result.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+      result = result.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+      result = result.replace(/đ/g, "d");
+      return result;
+    }
+
+    function renderResults(filtered) {
+      resultsBody.innerHTML = '';
+      
+      if (filtered.length === 0) {
+        emptyState.classList.remove('hidden');
+        resultsCount.textContent = '0';
+        return;
+      }
+      
+      emptyState.classList.add('hidden');
+      resultsCount.textContent = filtered.length.toString();
+
+      // Check current language
+      const isEn = localStorage.getItem('lang') === 'en';
+      const copyText = isEn ? 'Copy' : 'Sao chép';
+      const copiedText = isEn ? 'Copied' : 'Đã chép';
+
+      filtered.forEach(item => {
+        const row = document.createElement('tr');
+        row.className = 'hover:bg-slate-50 dark:hover:bg-slate-900/30 transition duration-150';
+        row.innerHTML = `
+          <td class="p-4 font-extrabold text-brand-blue dark:text-brand-mint text-base">${item.code}</td>
+          <td class="p-4 font-bold text-slate-800 dark:text-slate-100">${item.name}</td>
+          <td class="p-4 text-slate-500 dark:text-slate-400 text-xs">${item.desc}</td>
+          <td class="p-4 text-center">
+            <button 
+              class="copy-btn px-2.5 py-1.5 bg-slate-100 hover:bg-brand-blue hover:text-white dark:bg-slate-800 dark:hover:bg-brand-mint dark:hover:text-slate-900 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-bold transition-all flex items-center gap-1 mx-auto"
+              data-code="${item.code}"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
+              <span>${copyText}</span>
+            </button>
+          </td>
+        `;
+        resultsBody.appendChild(row);
+      });
+
+      // Hook copy action
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const code = btn.getAttribute('data-code');
+          navigator.clipboard.writeText(code).then(() => {
+            const span = btn.querySelector('span');
+            span.textContent = copiedText;
+            btn.classList.add('bg-emerald-500', 'text-white', 'dark:bg-emerald-500');
+            setTimeout(() => {
+              span.textContent = copyText;
+              btn.classList.remove('bg-emerald-500', 'text-white', 'dark:bg-emerald-500');
+            }, 1500);
+          });
+        });
+      });
+    }
+
+    // Initial render
+    renderResults(vsicData);
+
+    // Search input event listener
+    searchInput.addEventListener('input', () => {
+      const val = removeVietnameseTones(searchInput.value.trim());
+      
+      if (val === '') {
+        renderResults(vsicData);
+        btnClearSearch.classList.add('hidden');
+        return;
+      }
+      
+      btnClearSearch.classList.remove('hidden');
+      
+      const filtered = vsicData.filter(item => {
+        return removeVietnameseTones(item.code).includes(val) || 
+               removeVietnameseTones(item.name).includes(val) || 
+               removeVietnameseTones(item.desc).includes(val);
+      });
+      
+      renderResults(filtered);
+    });
+
+    // Clear search
+    btnClearSearch.addEventListener('click', () => {
+      searchInput.value = '';
+      btnClearSearch.classList.add('hidden');
+      renderResults(vsicData);
+      searchInput.focus();
+    });
+  });
+</script>
