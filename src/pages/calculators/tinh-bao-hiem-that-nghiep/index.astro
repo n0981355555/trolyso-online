@@ -1,0 +1,458 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Công Cụ Tính Bảo Hiểm Thất Nghiệp Online 2026 - Chuẩn BHXH"
+  description="Công cụ tính mức hưởng bảo hiểm thất nghiệp tự động. Kiểm tra điều kiện hưởng, tính số tháng được nhận và tổng tiền trợ cấp theo Luật Việc làm mới nhất."
+>
+  <!-- JSON-LD WebApplication Schema -->
+  <script type="application/ld+json" slot="head" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Công cụ tính bảo hiểm thất nghiệp trực tuyến",
+      "description": "Ứng dụng giúp người lao động kiểm tra điều kiện hưởng trợ cấp thất nghiệp, tính toán mức hưởng hàng tháng, số tháng được nhận và thời gian bảo lưu bảo hiểm xã hội.",
+      "operatingSystem": "All",
+      "applicationCategory": "FinanceApplication",
+      "browserRequirements": "Requires HTML5, CSS3, JavaScript support",
+      "url": "https://trolyso.online/calculators/tinh-bao-hiem-that-nghiep/"
+    }
+  </script>
+
+  <!-- JSON-LD FAQPage Schema -->
+  <script type="application/ld+json" slot="head" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Điều kiện để được hưởng trợ cấp thất nghiệp là gì?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Người lao động phải đáp ứng đủ 3 điều kiện: 1. Chấm dứt hợp đồng lao động đúng pháp luật (không bị sa thải kỷ luật hay tự ý nghỉ việc trái luật); 2. Đóng bảo hiểm thất nghiệp đủ 12 tháng trở lên trong vòng 24 tháng trước khi nghỉ việc; 3. Nộp hồ sơ hưởng trợ cấp tại Trung tâm dịch vụ việc làm trong thời hạn 3 tháng kể từ ngày chấm dứt hợp đồng."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mức hưởng trợ cấp thất nghiệp tối đa là bao nhiêu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mức hưởng hàng tháng bằng 60% mức bình quân tiền lương đóng bảo hiểm thất nghiệp của 06 tháng liền kề trước khi thất nghiệp. Tuy nhiên, mức hưởng tối đa bị khống chế không quá 5 lần mức lương tối thiểu vùng đối với khối doanh nghiệp (vùng I tối đa là 24.800.000đ/tháng) hoặc không quá 5 lần mức lương cơ sở đối với khối nhà nước (tối đa là 11.700.000đ/tháng)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Nộp hồ sơ muộn sau 3 tháng nghỉ việc có được hưởng trợ cấp không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nếu quá hạn 3 tháng kể từ ngày chấm dứt hợp đồng lao động mà người lao động chưa nộp hồ sơ hưởng trợ cấp thất nghiệp, thời gian đã đóng bảo hiểm thất nghiệp sẽ tự động được bảo lưu cộng dồn cho lần thất nghiệp tiếp theo."
+          }
+        }
+      ]
+    }
+  </script>
+
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Calculators</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tính bảo hiểm thất nghiệp</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Máy Tính Bảo Hiểm Thất Nghiệp Online
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+        Kiểm tra nhanh điều kiện hưởng trợ cấp, mức hưởng hàng tháng, số tháng được nhận và thời gian đóng dư được bảo lưu tự động chuẩn xác theo Nghị định mới nhất.
+      </p>
+    </div>
+
+    <!-- Tool Workspace Grid -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-12 transition-colors">
+      
+      <!-- LEFT: Inputs (7 columns) -->
+      <div class="p-6 sm:p-10 md:col-span-7 border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-800">
+        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+          📝 Nhập thông tin thất nghiệp
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Lý do chấm dứt hợp đồng -->
+          <div>
+            <label for="resignReason" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Lý do nghỉ việc / chấm dứt HĐLĐ</label>
+            <select id="resignReason" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-semibold text-sm">
+              <option value="legal">Chấm dứt hợp đồng đúng quy định / Hết hạn hợp đồng</option>
+              <option value="illegal">Tự ý bỏ việc (Đơn phương trái luật) / Bị sa thải do kỷ luật</option>
+            </select>
+          </div>
+
+          <!-- Thời hạn nộp hồ sơ -->
+          <div>
+            <label for="applyDeadline" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Thời gian nộp hồ sơ kể từ ngày nghỉ việc</label>
+            <select id="applyDeadline" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-semibold text-sm">
+              <option value="in_time">Trong vòng 3 tháng (Chưa quá 90 ngày)</option>
+              <option value="late">Đã quá 3 tháng (Quá hạn nộp hồ sơ)</option>
+            </select>
+          </div>
+
+          <!-- Thời gian đóng bảo hiểm thất nghiệp tích lũy -->
+          <div>
+            <label for="monthsContributed" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Tổng thời gian đóng BHTN chưa hưởng (Tháng)</label>
+            <div class="relative">
+              <input type="number" id="monthsContributed" value="36" min="0" max="600" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-slate-400 font-bold">Tháng</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-1.5">* Đóng đủ 12 tháng đến 36 tháng được hưởng 3 tháng trợ cấp.</p>
+          </div>
+
+          <!-- Mức lương bình quân đóng BHTN 6 tháng gần nhất -->
+          <div>
+            <label for="avgSalary" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Lương bình quân đóng BHTN 6 tháng cuối cùng (VND)</label>
+            <div class="relative">
+              <input type="number" id="avgSalary" value="7000000" step="500000" min="0" class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-bold text-lg text-brand-blue dark:text-brand-mint" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-slate-400 font-bold">VND</span>
+            </div>
+          </div>
+
+          <!-- Vùng làm việc (tính trần trợ cấp) -->
+          <div>
+            <label for="workRegion" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Khu vực / Chế độ làm việc (Áp dụng trần tối đa)</label>
+            <select id="workRegion" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue font-semibold text-sm">
+              <option value="region1">Vùng I (Mức lương tối thiểu: 4.960.000đ - Trần trợ cấp: 24.800.000đ)</option>
+              <option value="region2">Vùng II (Mức lương tối thiểu: 4.410.000đ - Trần trợ cấp: 22.050.000đ)</option>
+              <option value="region3">Vùng III (Mức lương tối thiểu: 3.860.000đ - Trần trợ cấp: 19.300.000đ)</option>
+              <option value="region4">Vùng IV (Mức lương tối thiểu: 3.450.000đ - Trần trợ cấp: 17.250.000đ)</option>
+              <option value="state">Khối Nhà nước (Lương cơ sở: 2.340.000đ - Trần trợ cấp: 11.700.000đ)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Results (5 columns) -->
+      <div class="p-6 sm:p-10 md:col-span-5 bg-slate-50/50 dark:bg-slate-900/30 flex flex-col justify-between">
+        <div>
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+            📊 Kết quả tính trợ cấp
+          </h2>
+
+          <div class="space-y-6">
+            <!-- Trạng thái đủ điều kiện -->
+            <div id="resultStatusBox" class="p-4 rounded-2xl border text-center transition-all duration-300">
+              <span id="resultStatusIcon" class="text-3xl block mb-2">✅</span>
+              <h3 id="resultStatusTitle" class="font-bold text-base mb-1">Đủ điều kiện hưởng trợ cấp</h3>
+              <p id="resultStatusDesc" class="text-xs text-slate-500 dark:text-slate-400">Bạn đáp ứng đầy đủ điều kiện hưởng theo quy định.</p>
+            </div>
+
+            <!-- Các chỉ số kết quả chi tiết -->
+            <div class="space-y-4 pt-2">
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-slate-500 dark:text-slate-400">Mức hưởng hàng tháng:</span>
+                <span id="monthlyAllowance" class="font-extrabold text-slate-900 dark:text-white text-lg">0 VND</span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-slate-500 dark:text-slate-400">Số tháng được hưởng:</span>
+                <span id="monthsEntitled" class="font-extrabold text-slate-900 dark:text-white text-lg">0 tháng</span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-slate-500 dark:text-slate-400">Thời gian đóng dư bảo lưu:</span>
+                <span id="monthsReserved" class="font-bold text-slate-600 dark:text-slate-400 text-sm">0 tháng</span>
+              </div>
+              <hr class="border-slate-200 dark:border-slate-800" />
+              <div class="bg-blue-500/10 dark:bg-blue-500/20 p-4 rounded-xl text-center">
+                <div class="text-xs text-slate-500 dark:text-slate-400 font-bold mb-1">TỔNG TRỢ CẤP DỰ KIẾN NHẬN:</div>
+                <div id="totalAllowance" class="text-2xl sm:text-3xl font-heading font-extrabold text-brand-blue dark:text-brand-mint">0 VND</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-xs text-slate-400 leading-relaxed border-t border-slate-200 dark:border-slate-800 pt-4">
+          * Lưu ý: Kết quả trên là dự toán tham khảo dựa theo quy định pháp luật hiện hành. Thời điểm tính thời gian đóng bảo hiểm xã hội bảo lưu có thể thay đổi sau khi cơ quan bảo hiểm rà soát hồ sơ chính thức.
+        </div>
+      </div>
+    </div>
+
+    <!-- E-E-A-T Guide Section -->
+    <div class="border-t border-slate-200 dark:border-slate-800 pt-12 mt-12 text-slate-700 dark:text-slate-300 leading-relaxed">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm nang bảo hiểm thất nghiệp Việt Nam mới nhất
+      </h2>
+      
+      <div class="space-y-6 text-sm sm:text-base">
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">1. Cách tính số tháng hưởng bảo hiểm thất nghiệp</h3>
+        <p>
+          Căn cứ theo Điều 50 Luật Việc làm, số tháng được hưởng trợ cấp thất nghiệp được tính dựa trên số năm đóng Bảo hiểm thất nghiệp (BHTN) tích lũy của người lao động:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Đóng đủ từ 12 đến 36 tháng:</strong> Được hưởng <strong>03 tháng</strong> trợ cấp.</li>
+          <li><strong>Sau đó, cứ đóng đủ thêm 12 tháng:</strong> Được hưởng thêm <strong>01 tháng</strong> trợ cấp.</li>
+          <li><strong>Mức hưởng tối đa:</strong> Không quá <strong>12 tháng</strong> trợ cấp.</li>
+          <li><strong>Thời gian đóng dư bảo lưu:</strong> Những tháng lẻ chưa tròn 12 tháng tiếp theo sẽ được cơ quan BHXH tự động bảo lưu làm căn cứ tính hưởng trợ cấp thất nghiệp cho lần tiếp theo.</li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">2. Ví dụ thực tế số liệu cụ thể</h3>
+        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80">
+          <p class="font-semibold mb-2">Ví dụ: Chị Nguyễn Thị B làm việc tại Vùng I, có tổng thời gian đóng BHTN chưa hưởng là 40 tháng. Mức lương bình quân đóng BHTN 6 tháng cuối cùng là 8.500.000đ.</p>
+          <ul class="list-decimal pl-5 space-y-1">
+            <li><strong>Số tháng hưởng trợ cấp:</strong> 36 tháng đầu tiên tương ứng 3 tháng hưởng. 4 tháng đóng dư được bảo lưu. Vậy chị B được hưởng <strong>3 tháng trợ cấp</strong>.</li>
+            <li><strong>Mức trợ cấp hàng tháng:</strong> \(60\% \times 8.500.000đ = 5.100.000đ/tháng\) (Mức này nhỏ hơn trần tối đa của Vùng I là 24.800.000đ, nên chị B nhận nguyên mức 5.100.000đ).</li>
+            <li><strong>Tổng số tiền nhận được:</strong> \(5.100.000đ \times 3 = 15.300.000đ\).</li>
+          </ul>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">3. Căn cứ pháp lý</h3>
+        <p>
+          Tính toán được xây dựng trên các văn bản quy phạm pháp luật chính thống của Việt Nam:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Luật Việc làm số 38/2013/QH13</strong> quy định về điều kiện và mức đóng bảo hiểm thất nghiệp.</li>
+          <li><strong>Nghị định 28/2015/NĐ-CP</strong> và các nghị định sửa đổi, bổ sung quy định chi tiết thi hành Luật Việc làm.</li>
+          <li><strong>Nghị định 74/2024/NĐ-CP</strong> điều chỉnh mức lương tối thiểu vùng mới nhất, làm căn cứ khống chế mức trần trợ cấp thất nghiệp cho khối doanh nghiệp tư nhân.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FAQ Accordion using <details> -->
+    <div class="mt-12 border-t border-slate-200 dark:border-slate-800 pt-12">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6 text-center">
+        Câu hỏi thường gặp về Bảo hiểm thất nghiệp
+      </h2>
+
+      <div class="max-w-4xl mx-auto space-y-4">
+        <details class="group bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm transition duration-300 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-base sm:text-lg">
+            <span>❓ Nghỉ việc tự nguyện (đúng luật) có được hưởng trợ cấp thất nghiệp không?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform duration-300">↓</span>
+          </summary>
+          <div class="mt-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Có. Nếu bạn đơn phương chấm dứt hợp đồng lao động đúng pháp luật (báo trước đúng thời hạn quy định trong HĐLĐ) hoặc thỏa thuận chấm dứt hợp đồng với công ty, bạn hoàn toàn được hưởng bảo hiểm thất nghiệp nếu đóng đủ 12 tháng BHTN trong vòng 24 tháng trước khi nghỉ việc.
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm transition duration-300 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-base sm:text-lg">
+            <span>❓ Hồ sơ làm trợ cấp thất nghiệp gồm những giấy tờ gì?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform duration-300">↓</span>
+          </summary>
+          <div class="mt-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Hồ sơ chuẩn bị gồm:
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+              <li>Đề nghị hưởng trợ cấp thất nghiệp (theo mẫu quy định).</li>
+              <li>Bản chính hoặc bản sao có chứng thực của Quyết định thôi việc / Biên bản thanh lý hợp đồng.</li>
+              <li>Sổ bảo hiểm xã hội đã được chốt (bản chính và bản photo).</li>
+              <li>Căn cước công dân và ảnh thẻ (để làm thẻ ATM nhận tiền trợ cấp).</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm transition duration-300 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-base sm:text-lg">
+            <span>❓ Có được hưởng trợ cấp thất nghiệp một lần thay vì nhận hàng tháng không?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform duration-300">↓</span>
+          </summary>
+          <div class="mt-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Không. Luật Việc làm hiện hành quy định trợ cấp thất nghiệp phải được nhận hàng tháng. Không còn chế độ chi trả gộp 1 lần. Nếu bạn có việc làm mới trong thời gian đang nhận trợ cấp, bạn phải thông báo ngay cho trung tâm dịch vụ việc làm để dừng hưởng, số tháng chưa hưởng còn lại sẽ được bảo lưu cộng dồn cho lần tiếp theo.
+          </div>
+        </details>
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/blog/huong-dan-tinh-bao-hiem-that-nghiep/" class="inline-flex items-center gap-2 text-brand-blue dark:text-brand-mint hover:underline font-bold text-sm">
+          Xem bài viết hướng dẫn chi tiết bảo hiểm thất nghiệp <span>→</span>
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  function calculate() {
+    const isEn = localStorage.getItem("lang") === "en";
+
+    // 1. Get input values
+    const resignReason = (document.getElementById("resignReason") as HTMLSelectElement).value;
+    const applyDeadline = (document.getElementById("applyDeadline") as HTMLSelectElement).value;
+    const monthsContributed = parseInt((document.getElementById("monthsContributed") as HTMLInputElement).value) || 0;
+    const avgSalary = parseFloat((document.getElementById("avgSalary") as HTMLInputElement).value) || 0;
+    const workRegion = (document.getElementById("workRegion") as HTMLSelectElement).value;
+
+    // 2. Select regions limit
+    let limit = 0;
+    if (workRegion === "region1") limit = 4960000 * 5; // 24.800.000đ
+    else if (workRegion === "region2") limit = 4410000 * 5; // 22.050.000đ
+    else if (workRegion === "region3") limit = 3860000 * 5; // 19.300.000đ
+    else if (workRegion === "region4") limit = 3450000 * 5; // 17.250.000đ
+    else if (workRegion === "state") limit = 2340000 * 5; // 11.700.000đ
+
+    // 3. Condition check
+    let eligible = true;
+    let failReason = "";
+
+    if (resignReason === "illegal") {
+      eligible = false;
+      failReason = isEn 
+        ? "Illegal contract termination or fired due to disciplinary action."
+        : "Nghỉ việc trái pháp luật hoặc bị sa thải kỷ luật không thuộc diện nhận trợ cấp.";
+    } else if (applyDeadline === "late") {
+      eligible = false;
+      failReason = isEn
+        ? "Late filing (more than 3 months from resignation). Contribution period is preserved."
+        : "Đã quá thời hạn 3 tháng làm hồ sơ. Số tháng đóng bảo hiểm sẽ được tự động bảo lưu.";
+    } else if (monthsContributed < 12) {
+      eligible = false;
+      failReason = isEn
+        ? "Under 12 months contribution. Contribution period is preserved."
+        : "Thời gian đóng bảo hiểm thất nghiệp dưới 12 tháng chưa đủ điều kiện hưởng.";
+    }
+
+    // 4. Calculate allowance
+    let monthlyAllowance = 0;
+    let monthsEntitled = 0;
+    let monthsReserved = 0;
+
+    if (eligible) {
+      // Monthly allowance = 60% average salary, capped at regional limit
+      monthlyAllowance = Math.min(avgSalary * 0.6, limit);
+
+      // Entitlement logic:
+      // First 12 to 36 months = 3 months entitled
+      // Each subsequent 12 months = +1 month entitled, capped at 12 months
+      if (monthsContributed >= 12) {
+        if (monthsContributed <= 36) {
+          monthsEntitled = 3;
+          monthsReserved = monthsContributed - 12; // Wait, actually standard law says contribution months are counted in groups of 12?
+          // No: "đủ 12 tháng đến đủ 36 tháng được hưởng 3 tháng trợ cấp". So if you have 35 months, you get 3 months and the extra 23 months are NOT preserved?
+          // Actually, under Law on Employment, BHXH preserves the remainder.
+          // Specifically, "sau khi hưởng, mỗi năm đóng dư (12 tháng dư) sẽ là 1 tháng trợ cấp thêm".
+          // If you have 36 months, you get 3 months. If you have 40 months:
+          // The first 36 months are spent to get 3 months (no, actually only 36 months are counted, leaving 4 months as excess reserved).
+          // Let's implement correct legal logic:
+          // Months entitled = 3 + Math.floor((monthsContributed - 36) / 12)
+          // Months entitled cannot exceed 12 months.
+          // Reserved months = monthsContributed - (used months)
+          // Used months = 12 * monthsEntitled? No, the first 3 months entitled requires 12-36 months of contribution.
+          // In practice, BHXH takes:
+          // If contribution <= 36: monthsEntitled = 3, monthsReserved = monthsContributed - 36? No!
+          // Actually, if contribution is e.g. 24 months, it is still in [12, 36] range, so monthsEntitled = 3. Is there any reserve?
+          // Under Vietnam Social Insurance guidelines, if you have 24 months, you get 3 months of allowance, and NO months are reserved (because 12 to 36 months are all converted to 3 months of benefits). Only months above 36 or those that do not make a full year (12 months) of added benefits are reserved.
+          // Wait, actually, the law says: "Cứ đóng đủ thêm 12 tháng thì được hưởng thêm 01 tháng trợ cấp".
+          // So if you have 40 months:
+          // - 36 months are used to get 3 months.
+          // - The remaining 4 months are reserved.
+          // If you have 48 months:
+          // - 48 months are used to get 4 months (3 months for 36 months + 1 month for additional 12 months).
+          // - 0 months reserved.
+          // So:
+          // If monthsContributed <= 36:
+          //   monthsEntitled = 3;
+          //   monthsReserved = 0; // No reserve if under 36 months, all are spent to get 3 months.
+          // If monthsContributed > 36:
+          //   const additionalMonths = monthsContributed - 36;
+          //   const additionalYears = Math.floor(additionalMonths / 12);
+          //   monthsEntitled = Math.min(3 + additionalYears, 12);
+          //   if (3 + additionalYears > 12) {
+          //     // Capped at 12 months. So all months corresponding to 12 months of entitlement (which is 36 + 9 * 12 = 144 months) are spent,
+          //     // and any excess above 144 is reserved.
+          //     monthsReserved = monthsContributed - 144;
+          //   } else {
+          //     monthsReserved = additionalMonths % 12;
+          //   }
+          
+          if (monthsContributed <= 36) {
+            monthsEntitled = 3;
+            monthsReserved = 0;
+          } else {
+            const additionalYears = Math.floor((monthsContributed - 36) / 12);
+            monthsEntitled = Math.min(3 + additionalYears, 12);
+            if (monthsEntitled === 12) {
+              monthsReserved = monthsContributed - 144; // 12 months of benefits requires 144 months of contribution
+            } else {
+              monthsReserved = (monthsContributed - 36) % 12;
+            }
+          }
+        }
+      }
+    }
+
+    const totalAllowance = monthlyAllowance * monthsEntitled;
+
+    // 5. Update DOM
+    const resultStatusBox = document.getElementById("resultStatusBox");
+    const resultStatusIcon = document.getElementById("resultStatusIcon");
+    const resultStatusTitle = document.getElementById("resultStatusTitle");
+    const resultStatusDesc = document.getElementById("resultStatusDesc");
+
+    const monthlyAllowanceEl = document.getElementById("monthlyAllowance");
+    const monthsEntitledEl = document.getElementById("monthsEntitled");
+    const monthsReservedEl = document.getElementById("monthsReserved");
+    const totalAllowanceEl = document.getElementById("totalAllowance");
+
+    if (!resultStatusBox || !resultStatusIcon || !resultStatusTitle || !resultStatusDesc || !monthlyAllowanceEl || !monthsEntitledEl || !monthsReservedEl || !totalAllowanceEl) return;
+
+    if (eligible) {
+      resultStatusBox.className = "p-4 rounded-2xl border text-center transition-all duration-300 bg-emerald-500/10 border-emerald-500/20 text-emerald-800 dark:text-emerald-400";
+      resultStatusIcon.textContent = "✅";
+      resultStatusTitle.textContent = isEn ? "Eligible for Allowance" : "Đủ điều kiện hưởng trợ cấp";
+      resultStatusDesc.textContent = isEn 
+        ? "You meet all legal requirements to receive benefits."
+        : "Bạn đáp ứng đầy đủ điều kiện hưởng trợ cấp thất nghiệp.";
+
+      monthlyAllowanceEl.textContent = formatCurrency(monthlyAllowance) + " VND";
+      monthsEntitledEl.textContent = monthsEntitled + (isEn ? " months" : " tháng");
+      monthsReservedEl.textContent = monthsReserved + (isEn ? " months" : " tháng");
+      totalAllowanceEl.textContent = formatCurrency(totalAllowance) + " VND";
+    } else {
+      resultStatusBox.className = "p-4 rounded-2xl border text-center transition-all duration-300 bg-rose-500/10 border-rose-500/20 text-rose-800 dark:text-rose-400";
+      resultStatusIcon.textContent = "❌";
+      resultStatusTitle.textContent = isEn ? "Not Eligible" : "Không đủ điều kiện";
+      resultStatusDesc.textContent = failReason;
+
+      monthlyAllowanceEl.textContent = "0 VND";
+      monthsEntitledEl.textContent = isEn ? "0 months" : "0 tháng";
+      monthsReservedEl.textContent = (applyDeadline === "late" || resignReason === "illegal" ? monthsContributed : 0) + (isEn ? " months" : " tháng"); // If late or illegal, all months are preserved
+      totalAllowanceEl.textContent = "0 VND";
+    }
+  }
+
+  function formatCurrency(num: number) {
+    return Math.round(num).toLocaleString('vi-VN');
+  }
+
+  // Bind events
+  const inputs = ['resignReason', 'applyDeadline', 'monthsContributed', 'avgSalary', 'workRegion'];
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    el?.addEventListener('change', calculate);
+    el?.addEventListener('input', calculate);
+  });
+
+  // Initial calculation
+  calculate();
+
+  // Re-calculate on language switch (since it changes state)
+  document.getElementById("langSelector")?.addEventListener("change", () => {
+    setTimeout(calculate, 100);
+  });
+</script>

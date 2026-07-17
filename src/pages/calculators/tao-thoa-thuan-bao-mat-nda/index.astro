@@ -1,0 +1,650 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Trình Tạo Thỏa Thuận Bảo Mật NDA Song Ngữ Việt - Anh Chuẩn Pháp Lý"
+  description="Công cụ tự động tạo biên bản thỏa thuận bảo mật thông tin (NDA) song ngữ Anh - Việt chuyên nghiệp. Live preview, sao chép và xuất file PDF/in nhanh chóng."
+>
+  <!-- JSON-LD WebApplication Schema -->
+  <script type="application/ld+json" slot="head" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Công cụ tạo thỏa thuận bảo mật thông tin NDA song ngữ",
+      "description": "Ứng dụng trực tuyến giúp doanh nghiệp tạo nhanh thỏa thuận bảo mật thông tin (NDA) song ngữ Việt - Anh, hỗ trợ xem trước thời gian thực, sao chép và in ấn.",
+      "operatingSystem": "All",
+      "applicationCategory": "BusinessApplication",
+      "browserRequirements": "Requires HTML5, CSS3, JavaScript support",
+      "url": "https://trolyso.online/calculators/tao-thoa-thuan-bao-mat-nda/"
+    }
+  </script>
+
+  <!-- JSON-LD FAQPage Schema -->
+  <script type="application/ld+json" slot="head" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Thỏa thuận bảo mật thông tin NDA song ngữ là gì?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "NDA (Non-Disclosure Agreement) là thỏa thuận pháp lý giữa hai hoặc nhiều bên nhằm cam kết không tiết lộ các thông tin mật, bí mật kinh doanh hoặc công nghệ được chia sẻ trong quá trình hợp tác. Bản song ngữ Việt - Anh phục vụ cho các giao dịch thương mại có yếu tố nước ngoài hoặc doanh nghiệp FDI."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Thời hạn bảo mật trong NDA thông thường là bao lâu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Thời hạn bảo mật thông thường dao động từ 2 đến 5 năm kể từ ngày chấm dứt hợp tác, hoặc có thể kéo dài vô thời hạn đối với các bí mật thương mại cốt lõi như mã nguồn phần mềm, công thức sản xuất."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mức phạt vi phạm NDA bao nhiêu là hợp lý?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mức phạt vi phạm thỏa thuận NDA do hai bên thỏa thuận và ghi rõ trong hợp đồng (Ví dụ: 100.000.000đ hoặc dựa theo giá trị thiệt hại thực tế phát sinh). Theo Bộ luật Dân sự Việt Nam, các bên tự do thỏa thuận mức phạt vi phạm trừ một số trường hợp cụ thể có luật chuyên ngành điều chỉnh."
+          }
+        }
+      ]
+    }
+  </script>
+
+  <style is:inline>
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printArea, #printArea * {
+        visibility: visible;
+      }
+      #printArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        color: #000;
+        background: #fff;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-7xl mx-auto px-4 py-8 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-6 no-print" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint font-medium transition">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/calculators/" class="hover:text-brand-blue dark:hover:text-brand-mint font-medium transition">Công cụ</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tạo NDA song ngữ</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header -->
+    <div class="text-center mb-8 no-print">
+      <h1 class="text-2xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-3">
+        Trình Tạo NDA Song Ngữ Việt - Anh
+      </h1>
+      <p class="text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-3xl mx-auto">
+        Tạo nhanh Thỏa thuận bảo mật thông tin (Non-Disclosure Agreement) song ngữ Anh - Việt chuẩn pháp lý. Điền form, xem trước trực quan và in/sao chép tức thì.
+      </p>
+    </div>
+
+    <!-- main workspace -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- LEFT FORM INPUTS (5 cols) -->
+      <div class="lg:col-span-5 space-y-6 no-print">
+        
+        <!-- Party A (Disclosing) -->
+        <div class="bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm">
+          <h3 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 text-sm sm:text-base">
+            🏢 Bên A: Bên tiết lộ thông tin (Disclosing Party)
+          </h3>
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Tên công ty / Cá nhân</label>
+              <input type="text" id="partyAName" value="Công ty TNHH Giải pháp Số Assistant" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-semibold" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Người đại diện</label>
+              <input type="text" id="partyARep" value="Nguyễn Văn A" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Chức vụ</label>
+                <input type="text" id="partyARole" value="Giám đốc" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Quốc tịch</label>
+                <input type="text" id="partyANat" value="Việt Nam" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Địa chỉ</label>
+              <input type="text" id="partyAAddr" value="Số 1 Cầu Giấy, Dịch Vọng, Cầu Giấy, Hà Nội" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Party B (Receiving) -->
+        <div class="bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm">
+          <h3 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 text-sm sm:text-base">
+            🤝 Bên B: Bên nhận thông tin (Receiving Party)
+          </h3>
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Tên công ty / Cá nhân</label>
+              <input type="text" id="partyBName" value="Công ty Cổ phần Công nghệ TechVibe" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-semibold" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Người đại diện</label>
+              <input type="text" id="partyBRep" value="Trần Thị B" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Chức vụ</label>
+                <input type="text" id="partyBRole" value="Giám đốc Công nghệ" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Quốc tịch</label>
+                <input type="text" id="partyBNat" value="Việt Nam" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Địa chỉ</label>
+              <input type="text" id="partyBAddr" value="Số 100 Điện Biên Phủ, Phường Đa Kao, Quận 1, TP. Hồ Chí Minh" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Agreement Terms -->
+        <div class="bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm">
+          <h3 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 text-sm sm:text-base">
+            ⚙️ Các điều khoản thỏa thuận (Agreement Terms)
+          </h3>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Mục đích chia sẻ thông tin (tiếng Việt)</label>
+              <textarea id="purposeVi" rows="2" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition resize-none">Hợp tác nghiên cứu phát triển dự án phần mềm và tích hợp hệ thống Trợ Lý Số.</textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Mục đích chia sẻ thông tin (tiếng Anh)</label>
+              <textarea id="purposeEn" rows="2" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition resize-none">Cooperation in research, development of software project, and integration of Digital Assistant system.</textarea>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Thời hạn bảo mật</label>
+                <select id="termYears" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs outline-none focus:border-brand-blue transition font-semibold">
+                  <option value="2">2 năm (2 Years)</option>
+                  <option value="3" selected>3 năm (3 Years)</option>
+                  <option value="5">5 năm (5 Years)</option>
+                  <option value="forever">Vô thời hạn (Forever)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Phạt vi phạm (VND)</label>
+                <input type="number" id="fineAmount" value="100000000" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-bold" />
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Địa danh ký kết</label>
+                <input type="text" id="signLocation" value="Hà Nội" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Ngày ký kết</label>
+                <input type="date" id="signDate" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT LIVE PREVIEW & EXPORTS (7 cols) -->
+      <div class="lg:col-span-7 flex flex-col gap-6">
+        
+        <!-- Toolbar actions -->
+        <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-100 dark:bg-slate-900 p-3 rounded-2xl border border-slate-200/50 dark:border-slate-800/50 no-print">
+          <span class="text-xs font-bold text-slate-500 dark:text-slate-400">📄 Bản xem trước song ngữ (A4 Layout)</span>
+          <div class="flex gap-2">
+            <button id="btnCopyNDA" class="px-4 py-2 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 font-bold text-xs rounded-xl flex items-center gap-1.5 transition">
+              📋 Sao chép
+            </button>
+            <button id="btnPrintNDA" class="px-4 py-2 bg-brand-blue dark:bg-brand-mint text-white dark:text-slate-950 font-bold text-xs rounded-xl flex items-center gap-1.5 transition">
+              🖨️ In / Xuất PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- A4 Page Preview Area -->
+        <div id="printArea" class="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-900 rounded-2xl shadow-lg p-6 sm:p-10 font-serif text-slate-900 dark:text-slate-100 text-xs leading-relaxed max-h-[700px] overflow-y-auto print:max-h-none print:overflow-visible transition-colors">
+          
+          <!-- Document Header -->
+          <div class="grid grid-cols-2 gap-6 text-center border-b border-slate-200 dark:border-slate-800 pb-6 mb-6">
+            <div>
+              <h2 class="font-bold text-sm uppercase">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h2>
+              <p class="font-bold text-[10px]">Độc lập - Tự do - Hạnh phúc</p>
+              <p class="text-[9px] mt-1">---***---</p>
+            </div>
+            <div>
+              <h2 class="font-bold text-sm uppercase">SOCIALIST REPUBLIC OF VIETNAM</h2>
+              <p class="font-bold text-[10px]">Independence - Freedom - Happiness</p>
+              <p class="text-[9px] mt-1">---***---</p>
+            </div>
+          </div>
+
+          <!-- Document Title -->
+          <div class="grid grid-cols-2 gap-6 text-center mb-8">
+            <div>
+              <h1 class="font-bold text-base uppercase">THỎA THUẬN BẢO MẬT THÔNG TIN</h1>
+              <p class="text-[10px] italic mt-1">(Dành cho hợp tác kinh doanh/phát triển sản phẩm)</p>
+            </div>
+            <div>
+              <h1 class="font-bold text-base uppercase">NON-DISCLOSURE AGREEMENT</h1>
+              <p class="text-[10px] italic mt-1">(For business cooperation/product development)</p>
+            </div>
+          </div>
+
+          <!-- Introduction preamble -->
+          <div class="grid grid-cols-2 gap-6 mb-6 text-justify">
+            <div>
+              <p>Thỏa thuận bảo mật thông tin này (sau đây gọi là "Thỏa thuận") được lập và ký kết vào ngày <span class="pv-sign-date-vi">...</span> tại <span class="pv-sign-location-vi">...</span> bởi các bên dưới đây:</p>
+            </div>
+            <div>
+              <p>This Non-Disclosure Agreement (hereinafter referred to as the "Agreement") is entered into on <span class="pv-sign-date-en">...</span> at <span class="pv-sign-location-en">...</span> by and between:</p>
+            </div>
+          </div>
+
+          <!-- PARTIES DETAILS -->
+          <div class="grid grid-cols-2 gap-6 mb-6">
+            <!-- Party A (Vi/En) -->
+            <div class="space-y-1">
+              <p class="font-bold uppercase">BÊN A (BÊN TIẾT LỘ):</p>
+              <p><strong>Tên:</strong> <span class="pv-party-a-name">...</span></p>
+              <p><strong>Người đại diện:</strong> <span class="pv-party-a-rep">...</span></p>
+              <p><strong>Chức vụ:</strong> <span class="pv-party-a-role">...</span></p>
+              <p><strong>Quốc tịch:</strong> <span class="pv-party-a-nat">...</span></p>
+              <p><strong>Địa chỉ:</strong> <span class="pv-party-a-addr">...</span></p>
+            </div>
+            <div class="space-y-1">
+              <p class="font-bold uppercase">PARTY A (DISCLOSING PARTY):</p>
+              <p><strong>Name:</strong> <span class="pv-party-a-name">...</span></p>
+              <p><strong>Representative:</strong> <span class="pv-party-a-rep">...</span></p>
+              <p><strong>Title:</strong> <span class="pv-party-a-role">...</span></p>
+              <p><strong>Nationality:</strong> <span class="pv-party-a-nat">...</span></p>
+              <p><strong>Address:</strong> <span class="pv-party-a-addr">...</span></p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6 mb-6">
+            <!-- Party B (Vi/En) -->
+            <div class="space-y-1">
+              <p class="font-bold uppercase">BÊN B (BÊN NHẬN):</p>
+              <p><strong>Tên:</strong> <span class="pv-party-b-name">...</span></p>
+              <p><strong>Người đại diện:</strong> <span class="pv-party-b-rep">...</span></p>
+              <p><strong>Chức vụ:</strong> <span class="pv-party-b-role">...</span></p>
+              <p><strong>Quốc tịch:</strong> <span class="pv-party-b-nat">...</span></p>
+              <p><strong>Địa chỉ:</strong> <span class="pv-party-b-addr">...</span></p>
+            </div>
+            <div class="space-y-1">
+              <p class="font-bold uppercase">PARTY B (RECEIVING PARTY):</p>
+              <p><strong>Name:</strong> <span class="pv-party-b-name">...</span></p>
+              <p><strong>Representative:</strong> <span class="pv-party-b-rep">...</span></p>
+              <p><strong>Title:</strong> <span class="pv-party-b-role">...</span></p>
+              <p><strong>Nationality:</strong> <span class="pv-party-b-nat">...</span></p>
+              <p><strong>Address:</strong> <span class="pv-party-b-addr">...</span></p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6 mb-6 text-justify">
+            <div>
+              <p class="italic">Xét rằng, các Bên mong muốn chia sẻ các thông tin bảo mật để phục vụ mục đích: <span class="pv-purpose-vi">...</span> (sau đây gọi là "Mục đích"). Các bên đồng ý ký kết Thỏa thuận này với các điều khoản dưới đây:</p>
+            </div>
+            <div>
+              <p class="italic">Whereas, the Parties wish to share confidential information for the purpose of: <span class="pv-purpose-en">...</span> (hereinafter referred to as the "Purpose"). The parties agree to enter into this Agreement under the following terms:</p>
+            </div>
+          </div>
+
+          <!-- SECTION 1: CONFIDENTIAL INFORMATION -->
+          <div class="grid grid-cols-2 gap-6 mb-6 text-justify">
+            <div>
+              <p class="font-bold">ĐIỀU 1: THÔNG TIN BẢO MẬT</p>
+              <p>
+                "Thông tin bảo mật" nghĩa là tất cả thông tin, dữ liệu, bí mật kinh doanh, thiết kế, mã nguồn phần mềm, thông tin kỹ thuật, tài chính hoặc thương mại do Bên tiết lộ cung cấp cho Bên nhận thông tin dưới bất kỳ hình thức nào (bằng văn bản, lời nói hoặc điện tử).
+              </p>
+            </div>
+            <div>
+              <p class="font-bold">ARTICLE 1: CONFIDENTIAL INFORMATION</p>
+              <p>
+                "Confidential Information" means all information, data, trade secrets, designs, software source code, technical, financial, or commercial information provided by Disclosing Party to Receiving Party in any form (written, oral, or electronic).
+              </p>
+            </div>
+          </div>
+
+          <!-- SECTION 2: OBLIGATIONS -->
+          <div class="grid grid-cols-2 gap-6 mb-6 text-justify">
+            <div>
+              <p class="font-bold">ĐIỀU 2: NGHĨA VỤ BẢO MẬT</p>
+              <p>
+                Bên nhận cam kết:
+                <ul class="list-disc pl-5 mt-1 space-y-1">
+                  <li>Chỉ sử dụng Thông tin bảo mật phục vụ đúng Mục đích hợp tác.</li>
+                  <li>Không tiết lộ cho bất kỳ bên thứ ba nào nếu không có sự đồng ý bằng văn bản của Bên tiết lộ.</li>
+                  <li>Áp dụng các biện pháp bảo vệ thông tin mật tương tự như tự bảo vệ tài sản của chính mình.</li>
+                </ul>
+              </p>
+            </div>
+            <div>
+              <p class="font-bold">ARTICLE 2: CONFIDENTIALITY OBLIGATIONS</p>
+              <p>
+                The Receiving Party undertakes to:
+                <ul class="list-disc pl-5 mt-1 space-y-1">
+                  <li>Use the Confidential Information solely for the Cooperation Purpose.</li>
+                  <li>Not disclose to any third party without prior written consent from the Disclosing Party.</li>
+                  <li>Apply security measures to protect confidential info similar to protecting its own assets.</li>
+                </ul>
+              </p>
+            </div>
+          </div>
+
+          <!-- SECTION 3: DURATION -->
+          <div class="grid grid-cols-2 gap-6 mb-6 text-justify">
+            <div>
+              <p class="font-bold">ĐIỀU 3: THỜI HẠN BẢO MẬT</p>
+              <p>
+                Nghĩa vụ bảo mật theo Thỏa thuận này có hiệu lực kể từ ngày ký và tiếp tục duy trì trong thời hạn <span class="pv-term-vi">...</span> kể từ khi chấm dứt hợp tác kinh doanh giữa hai bên.
+              </p>
+            </div>
+            <div>
+              <p class="font-bold">ARTICLE 3: TERM AND DURATION</p>
+              <p>
+                The confidentiality obligations under this Agreement shall take effect from the signing date and survive for <span class="pv-term-en">...</span> after the termination of cooperation.
+              </p>
+            </div>
+          </div>
+
+          <!-- SECTION 4: PENALTY -->
+          <div class="grid grid-cols-2 gap-6 mb-6 text-justify">
+            <div>
+              <p class="font-bold">ĐIỀU 4: XỬ LÝ VI PHẠM</p>
+              <p>
+                Trong trường hợp Bên nhận vi phạm bất kỳ điều khoản nào của Thỏa thuận này dẫn đến rò rỉ thông tin mật, Bên nhận phải chịu phạt vi phạm số tiền là <span class="pv-fine-vi">...</span> VNĐ, đồng thời phải bồi thường toàn bộ thiệt hại thực tế phát sinh cho Bên tiết lộ.
+              </p>
+            </div>
+            <div>
+              <p class="font-bold">ARTICLE 4: REMEDIES AND FINES</p>
+              <p>
+                In the event that the Receiving Party breaches any terms of this Agreement leading to leak of confidential info, the Receiving Party shall pay a fine of <span class="pv-fine-en">...</span> VND, and compensate Disclosing Party for all actual damages.
+              </p>
+            </div>
+          </div>
+
+          <!-- SECTION 5: GOVERNING LAW -->
+          <div class="grid grid-cols-2 gap-6 mb-6 text-justify">
+            <div>
+              <p class="font-bold">ĐIỀU 5: LUẬT ÁP DỤNG & TRANH CHẤP</p>
+              <p>
+                Thỏa thuận này được điều chỉnh và giải thích theo quy định của pháp luật nước Cộng hòa Xã hội Chủ nghĩa Việt Nam. Mọi tranh chấp nếu không thể giải quyết bằng thương lượng sẽ được đưa ra phân xử tại Tòa án có thẩm quyền tại Việt Nam.
+              </p>
+            </div>
+            <div>
+              <p class="font-bold">ARTICLE 5: GOVERNING LAW & DISPUTES</p>
+              <p>
+                This Agreement shall be governed by and construed in accordance with the laws of Vietnam. Any dispute that cannot be resolved through negotiation shall be referred to competent courts of Vietnam.
+              </p>
+            </div>
+          </div>
+
+          <!-- Signatures Section -->
+          <div class="grid grid-cols-2 gap-6 mt-12 text-center border-t border-slate-200 dark:border-slate-800 pt-8 print:break-inside-avoid">
+            <div>
+              <p class="font-bold uppercase">ĐẠI DIỆN BÊN A</p>
+              <p class="text-[9px] text-slate-400 dark:text-slate-500 italic">(Ký, ghi rõ họ tên và đóng dấu)</p>
+              <div class="h-20"></div>
+              <p class="font-bold pv-party-a-rep-sig">...</p>
+            </div>
+            <div>
+              <p class="font-bold uppercase">REPRESENTATIVE OF PARTY B</p>
+              <p class="text-[9px] text-slate-400 dark:text-slate-500 italic">(Signature, full name and stamp)</p>
+              <div class="h-20"></div>
+              <p class="font-bold pv-party-b-rep-sig">...</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- E-E-A-T Guide Section -->
+    <div class="border-t border-slate-200 dark:border-slate-800 pt-12 mt-12 text-slate-700 dark:text-slate-300 leading-relaxed no-print">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm nang thỏa thuận bảo mật thông tin (NDA) song ngữ
+      </h2>
+      
+      <div class="space-y-6 text-sm sm:text-base">
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">1. Tại sao doanh nghiệp cần ký thỏa thuận NDA?</h3>
+        <p>
+          Trong thời đại chuyển đổi số và hội nhập kinh tế toàn cầu, thông tin bí mật thương mại, cơ sở dữ liệu khách hàng, mã nguồn phần mềm, chiến lược marketing chính là tài sản sống còn của doanh nghiệp. Việc ký kết NDA trước khi chia sẻ thông tin mật giúp bảo vệ quyền sở hữu trí tuệ, tạo cơ sở pháp lý vững chắc khi xảy ra tranh chấp lộ lọt dữ liệu.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">2. Các điều khoản cốt lõi trong Thỏa thuận bảo mật song ngữ</h3>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Định nghĩa thông tin bảo mật (Scope of Confidential Information):</strong> Càng mô tả chi tiết càng tốt những gì được xem là bảo mật (ví dụ: file thiết kế, thông số kỹ thuật phần mềm, dữ liệu tài chính).</li>
+          <li><strong>Thời hạn bảo mật (Term and Duration):</strong> Hợp đồng thông thường có hiệu lực bảo mật từ 2 đến 5 năm kể từ khi kết thúc đàm phán hợp tác. Một số thông tin công nghệ cốt lõi có thể thỏa thuận bảo mật vô thời hạn.</li>
+          <li><strong>Điều khoản phạt và bồi thường (Penalty and Indemnity):</strong> Nêu rõ mức phạt tiền vi phạm cố định và nghĩa vụ bồi thường thiệt hại (Indirect/Direct damages) để răn đe bên nhận thông tin.</li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">3. Căn cứ pháp lý</h3>
+        <p>
+          Tính toán được xây dựng trên các văn bản quy phạm pháp luật chính thống của Việt Nam:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Bộ luật Dân sự số 91/2015/QH13</strong> quy định về quyền tự do thỏa thuận hợp đồng và các biện pháp bảo đảm thực hiện nghĩa vụ dân sự (phạt vi phạm).</li>
+          <li><strong>Luật Sở hữu trí tuệ số 50/2005/QH11 (sửa đổi, bổ sung năm 2022)</strong> bảo vệ bí mật kinh doanh trước các hành vi xâm phạm và sử dụng trái phép.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FAQ Accordion using <details> -->
+    <div class="mt-12 border-t border-slate-200 dark:border-slate-800 pt-12 no-print">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6 text-center">
+        Câu hỏi thường gặp về Thỏa thuận NDA song ngữ
+      </h2>
+
+      <div class="max-w-4xl mx-auto space-y-4">
+        <details class="group bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm transition duration-300 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-base sm:text-lg">
+            <span>❓ NDA song ngữ có giá trị pháp lý trước tòa án Việt Nam không?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform duration-300">↓</span>
+          </summary>
+          <div class="mt-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Có. Tại Việt Nam, tòa án thừa nhận các hợp đồng song ngữ. Trong trường hợp có sự mâu thuẫn giữa bản dịch Tiếng Việt và Tiếng Anh, phiên bản Tiếng Việt thông thường sẽ được ưu tiên áp dụng đối với các tranh chấp được xét xử tại Việt Nam, trừ khi hợp đồng có quy định khác về thứ tự ưu tiên ngôn ngữ.
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm transition duration-300 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none outline-none list-none text-base sm:text-lg">
+            <span>❓ Các thông tin nào không được coi là mật trong thỏa thuận NDA?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform duration-300">↓</span>
+          </summary>
+          <div class="mt-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Các thông tin sau đây không được tính là bảo mật: 
+            (1) Thông tin đã công khai rộng rãi với công chúng mà không phải do lỗi của bên nhận; 
+            (2) Thông tin mà bên nhận đã biết trước khi bên tiết lộ cung cấp; 
+            (3) Thông tin do bên nhận tự nghiên cứu độc lập mà không sử dụng thông tin mật;
+            (4) Thông tin buộc phải cung cấp theo quyết định của cơ quan nhà nước / tòa án có thẩm quyền.
+          </div>
+        </details>
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/blog/huong-dan-viet-nda-song-ngu-bao-mat-thong-tin/" class="inline-flex items-center gap-2 text-brand-blue dark:text-brand-mint hover:underline font-bold text-sm">
+          Xem bài viết hướng dẫn chi tiết soạn thảo NDA song ngữ <span>→</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+</Layout>
+
+<script>
+  function updatePreview() {
+    // 1. Get input values
+    const partyAName = (document.getElementById("partyAName") as HTMLInputElement).value;
+    const partyARep = (document.getElementById("partyARep") as HTMLInputElement).value;
+    const partyARole = (document.getElementById("partyARole") as HTMLInputElement).value;
+    const partyANat = (document.getElementById("partyANat") as HTMLInputElement).value;
+    const partyAAddr = (document.getElementById("partyAAddr") as HTMLInputElement).value;
+
+    const partyBName = (document.getElementById("partyBName") as HTMLInputElement).value;
+    const partyBRep = (document.getElementById("partyBRep") as HTMLInputElement).value;
+    const partyBRole = (document.getElementById("partyBRole") as HTMLInputElement).value;
+    const partyBNat = (document.getElementById("partyBNat") as HTMLInputElement).value;
+    const partyBAddr = (document.getElementById("partyBAddr") as HTMLInputElement).value;
+
+    const purposeVi = (document.getElementById("purposeVi") as HTMLTextAreaElement).value;
+    const purposeEn = (document.getElementById("purposeEn") as HTMLTextAreaElement).value;
+
+    const termYears = (document.getElementById("termYears") as HTMLSelectElement).value;
+    const fineAmount = parseFloat((document.getElementById("fineAmount") as HTMLInputElement).value) || 0;
+    const signLocation = (document.getElementById("signLocation") as HTMLInputElement).value;
+    const signDateVal = (document.getElementById("signDate") as HTMLInputElement).value;
+
+    // Format sign date
+    let signDateVi = "......";
+    let signDateEn = "......";
+    if (signDateVal) {
+      const d = new Date(signDateVal);
+      signDateVi = `ngày ${d.getDate()} tháng ${d.getMonth() + 1} năm ${d.getFullYear()}`;
+      // Format English Date: Month Day, Year
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      signDateEn = `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+    }
+
+    // Format term string
+    let termVi = "";
+    let termEn = "";
+    if (termYears === "forever") {
+      termVi = "vô thời hạn (không thời hạn)";
+      termEn = "indefinite (without time limit)";
+    } else {
+      termVi = `${termYears} năm`;
+      termEn = `${termYears} years`;
+    }
+
+    const fineStrVi = formatCurrency(fineAmount);
+    const fineStrEn = formatCurrency(fineAmount);
+
+    // 2. Set Preview text
+    updateTextNodes("pv-party-a-name", partyAName);
+    updateTextNodes("pv-party-a-rep", partyARep);
+    updateTextNodes("pv-party-a-role", partyARole);
+    updateTextNodes("pv-party-a-nat", partyANat);
+    updateTextNodes("pv-party-a-addr", partyAAddr);
+
+    updateTextNodes("pv-party-b-name", partyBName);
+    updateTextNodes("pv-party-b-rep", partyBRep);
+    updateTextNodes("pv-party-b-role", partyBRole);
+    updateTextNodes("pv-party-b-nat", partyBNat);
+    updateTextNodes("pv-party-b-addr", partyBAddr);
+
+    updateTextNodes("pv-purpose-vi", purposeVi);
+    updateTextNodes("pv-purpose-en", purposeEn);
+
+    updateTextNodes("pv-term-vi", termVi);
+    updateTextNodes("pv-term-en", termEn);
+
+    updateTextNodes("pv-fine-vi", fineStrVi);
+    updateTextNodes("pv-fine-en", fineStrEn);
+
+    updateTextNodes("pv-sign-location-vi", signLocation);
+    updateTextNodes("pv-sign-location-en", signLocation);
+
+    updateTextNodes("pv-sign-date-vi", signDateVi);
+    updateTextNodes("pv-sign-date-en", signDateEn);
+
+    updateTextNodes("pv-party-a-rep-sig", partyARep);
+    updateTextNodes("pv-party-b-rep-sig", partyBRep);
+  }
+
+  function updateTextNodes(className: string, val: string) {
+    document.querySelectorAll("." + className).forEach(el => {
+      el.textContent = val || "...";
+    });
+  }
+
+  function formatCurrency(num: number) {
+    return Math.round(num).toLocaleString('vi-VN');
+  }
+
+  // Initial date to today
+  const signDateInput = document.getElementById("signDate") as HTMLInputElement;
+  if (signDateInput && !signDateInput.value) {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    signDateInput.value = `${yyyy}-${mm}-${dd}`;
+  }
+
+  // Bind events
+  const inputs = ['partyAName', 'partyARep', 'partyARole', 'partyANat', 'partyAAddr', 
+                  'partyBName', 'partyBRep', 'partyBRole', 'partyBNat', 'partyBAddr', 
+                  'purposeVi', 'purposeEn', 'termYears', 'fineAmount', 'signLocation', 'signDate'];
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    el?.addEventListener('change', updatePreview);
+    el?.addEventListener('input', updatePreview);
+  });
+
+  // Action Buttons
+  const btnCopyNDA = document.getElementById("btnCopyNDA");
+  btnCopyNDA?.addEventListener("click", () => {
+    const printArea = document.getElementById("printArea");
+    if (!printArea) return;
+    
+    // Copy as plain text
+    const text = printArea.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const isEn = localStorage.getItem("lang") === "en";
+      const oldText = btnCopyNDA.innerHTML;
+      btnCopyNDA.innerHTML = isEn ? "✅ Copied!" : "✅ Đã sao chép!";
+      setTimeout(() => {
+        btnCopyNDA.innerHTML = oldText;
+      }, 2000);
+    });
+  });
+
+  const btnPrintNDA = document.getElementById("btnPrintNDA");
+  btnPrintNDA?.addEventListener("click", () => {
+    window.print();
+  });
+
+  // Initial update
+  updatePreview();
+</script>
