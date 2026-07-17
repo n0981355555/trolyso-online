@@ -1,0 +1,468 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Công Cụ Tính Lương Tăng Ca Làm Thêm Giờ 2026 Chuẩn Bộ Luật Lao Động"
+  description="Trình tính lương tăng ca, làm thêm giờ và làm việc ban đêm trực tuyến miễn phí. Tự động tính hệ số nhân lương theo ngày thường, ngày nghỉ, ngày lễ Tết."
+>
+  <!-- JSON-LD WebApplication Schema -->
+  <script type="application/ld+json" slot="head" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Công cụ tính lương tăng ca làm thêm giờ trực tuyến",
+      "description": "Ứng dụng trực tuyến giúp người lao động và nhân sự tính nhanh lương tăng ca, làm thêm giờ ban ngày, ban đêm ngày thường, ngày nghỉ và ngày lễ Tết chuẩn quy định Bộ luật Lao động.",
+      "operatingSystem": "All",
+      "applicationCategory": "FinanceApplication",
+      "browserRequirements": "Requires HTML5, CSS3, JavaScript support",
+      "url": "https://trolyso.online/calculators/tinh-luong-tang-ca/"
+    }
+  </script>
+
+  <!-- JSON-LD FAQPage Schema -->
+  <script type="application/ld+json" slot="head" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Hệ số tính lương tăng ca ngày lễ Tết ở Việt Nam là bao nhiêu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Theo Điều 98 Bộ luật Lao động 2019, người lao động làm thêm giờ vào ngày nghỉ lễ, Tết được hưởng ít nhất 300% đơn giá tiền lương ngày thường (chưa kể tiền lương ngày lễ, Tết đối với người lao động hưởng lương ngày). Tức là tổng cộng nhận được tối thiểu 400% tiền lương ngày thường."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Cách tính tiền lương làm thêm giờ ban đêm vào ngày lễ Tết?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tiền lương làm thêm giờ ban đêm vào ngày lễ Tết được tính theo công thức: 300% (ngày lễ) + 30% (làm đêm) + 20% x 300% (làm thêm ngày lễ) = 390% đơn giá lương ngày thường. Nếu là lao động hưởng lương tháng (được trả lương mặc định cho ngày lễ nghỉ), tổng thu nhập nhận về là 490%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Làm thêm giờ ngày thường được tính hệ số bao nhiêu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Làm thêm giờ ban ngày của ngày làm việc bình thường được hưởng ít nhất 150% tiền lương. Làm thêm giờ vào ban đêm của ngày bình thường được hưởng ít nhất 210% tiền lương."
+          }
+        }
+      ]
+    }
+  </script>
+
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.04),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-7xl mx-auto px-4 py-8 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint font-medium transition">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/calculators/" class="hover:text-brand-blue dark:hover:text-brand-mint font-medium transition">Công cụ</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tính lương tăng ca</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-2xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-3">
+        Máy Tính Lương Tăng Ca & Làm Thêm Giờ 2026
+      </h1>
+      <p class="text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-3xl mx-auto">
+        Tự động tính tiền lương tăng ca, làm thêm giờ ban ngày, ban đêm cho ngày thường, ngày nghỉ chủ nhật và ngày lễ Tết chuẩn quy định Bộ luật Lao động Việt Nam mới nhất.
+      </p>
+    </div>
+
+    <!-- main workspace -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- LEFT INPUT FORM (5 cols) -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <!-- Base Salary Parameters -->
+        <div class="bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm">
+          <h3 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 text-sm sm:text-base">
+            💰 Thông tin lương cơ bản & ngày công
+          </h3>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 mb-1">Mức lương làm căn cứ tính (VND)</label>
+              <input type="number" id="basicSalary" value="10000000" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:bg-white dark:focus:bg-brand-darkCard focus:border-brand-blue transition font-bold" />
+              <span class="text-[10px] text-slate-400 mt-1 block">(Thường là mức lương đóng bảo hiểm hoặc lương ghi trong hợp đồng lao động)</span>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Ngày công chuẩn/tháng</label>
+                <select id="standardDays" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:border-brand-blue transition font-semibold">
+                  <option value="22">22 ngày</option>
+                  <option value="24">24 ngày</option>
+                  <option value="26" selected>26 ngày (Mặc định)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 mb-1">Hình thức lương lễ</label>
+                <select id="holidayPayType" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-sm outline-none focus:border-brand-blue transition font-semibold">
+                  <option value="monthly" selected>Lương tháng (Đã trả 100%)</option>
+                  <option value="daily">Lương ngày/sản phẩm</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overtime Hours Inputs -->
+        <div class="bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm">
+          <h3 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 text-sm sm:text-base">
+            ⏱️ Nhập số giờ tăng ca (làm thêm giờ)
+          </h3>
+          <div class="space-y-4">
+            
+            <!-- Normal Day -->
+            <div class="border-b border-slate-100 dark:border-slate-800 pb-3">
+              <span class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-2">📅 Ngày làm việc bình thường (Hệ số: Ngày 150% - Đêm 210%)</span>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-[10px] text-slate-400 mb-1">Tăng ca ban ngày (giờ)</label>
+                  <input type="number" id="hoursNormalDay" value="4" min="0" step="0.5" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-1.5 text-xs outline-none focus:border-brand-blue transition" />
+                </div>
+                <div>
+                  <label class="block text-[10px] text-slate-400 mb-1">Tăng ca ban đêm (giờ)</label>
+                  <input type="number" id="hoursNormalNight" value="2" min="0" step="0.5" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-1.5 text-xs outline-none focus:border-brand-blue transition" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Weekend Day -->
+            <div class="border-b border-slate-100 dark:border-slate-800 pb-3">
+              <span class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-2">🏖️ Ngày nghỉ hằng tuần / Chủ nhật (Hệ số: Ngày 200% - Đêm 270%)</span>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-[10px] text-slate-400 mb-1">Tăng ca ban ngày (giờ)</label>
+                  <input type="number" id="hoursWeekendDay" value="0" min="0" step="0.5" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-1.5 text-xs outline-none focus:border-brand-blue transition" />
+                </div>
+                <div>
+                  <label class="block text-[10px] text-slate-400 mb-1">Tăng ca ban đêm (giờ)</label>
+                  <input type="number" id="hoursWeekendNight" value="0" min="0" step="0.5" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-1.5 text-xs outline-none focus:border-brand-blue transition" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Holiday Day -->
+            <div>
+              <span class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-2">🎉 Ngày lễ, Tết, ngày nghỉ hưởng lương (Hệ số: Ngày 300/400% - Đêm 390/490%)</span>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-[10px] text-slate-400 mb-1">Tăng ca ban ngày (giờ)</label>
+                  <input type="number" id="hoursHolidayDay" value="0" min="0" step="0.5" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-1.5 text-xs outline-none focus:border-brand-blue transition" />
+                </div>
+                <div>
+                  <label class="block text-[10px] text-slate-400 mb-1">Tăng ca ban đêm (giờ)</label>
+                  <input type="number" id="hoursHolidayNight" value="0" min="0" step="0.5" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-1.5 text-xs outline-none focus:border-brand-blue transition" />
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT RESULTS BREAKDOWN (7 cols) -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Results Card -->
+        <div class="bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-6 shadow-sm">
+          <h3 class="font-bold text-slate-900 dark:text-white mb-6 text-lg border-b border-slate-100 dark:border-slate-800 pb-3">
+            📋 Kết quả tính toán tiền lương tăng ca
+          </h3>
+
+          <div class="space-y-6">
+            <!-- Hourly rate summary -->
+            <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-900 p-4 rounded-xl">
+              <div>
+                <span class="text-xs text-slate-500 font-semibold block">Lương cơ bản tính theo giờ (Base hourly rate)</span>
+                <span class="text-[10px] text-slate-400 block">(Lương tháng / [Số ngày công x 8 giờ])</span>
+              </div>
+              <span class="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-200" id="resHourlyRate">0 VND/giờ</span>
+            </div>
+
+            <!-- Breakdown table -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-left text-slate-500 dark:text-slate-400">
+                <thead class="text-[10px] uppercase text-slate-400 bg-slate-50/50 dark:bg-slate-900/50 rounded-lg">
+                  <tr>
+                    <th scope="col" class="px-3 py-2.5 rounded-l-lg">Loại hình tăng ca</th>
+                    <th scope="col" class="px-3 py-2.5 text-center">Hệ số</th>
+                    <th scope="col" class="px-3 py-2.5 text-center">Số giờ</th>
+                    <th scope="col" class="px-3 py-2.5 text-right rounded-r-lg">Thành tiền</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                  <!-- Normal Day -->
+                  <tr>
+                    <td class="px-3 py-3 font-semibold text-slate-800 dark:text-slate-200">Ngày thường - Ban ngày</td>
+                    <td class="px-3 py-3 text-center font-semibold text-blue-600 dark:text-blue-400">150%</td>
+                    <td class="px-3 py-3 text-center" id="tdHoursND">0 giờ</td>
+                    <td class="px-3 py-3 text-right font-bold text-slate-700 dark:text-slate-350" id="tdAmountND">0 VND</td>
+                  </tr>
+                  <tr>
+                    <td class="px-3 py-3 font-semibold text-slate-800 dark:text-slate-200">Ngày thường - Ban đêm (22h - 6h)</td>
+                    <td class="px-3 py-3 text-center font-semibold text-blue-600 dark:text-blue-400">210%</td>
+                    <td class="px-3 py-3 text-center" id="tdHoursNN">0 giờ</td>
+                    <td class="px-3 py-3 text-right font-bold text-slate-700 dark:text-slate-350" id="tdAmountNN">0 VND</td>
+                  </tr>
+                  <!-- Weekend -->
+                  <tr>
+                    <td class="px-3 py-3 font-semibold text-slate-800 dark:text-slate-200">Ngày nghỉ hằng tuần - Ban ngày</td>
+                    <td class="px-3 py-3 text-center font-semibold text-orange-600 dark:text-orange-400">200%</td>
+                    <td class="px-3 py-3 text-center" id="tdHoursWD">0 giờ</td>
+                    <td class="px-3 py-3 text-right font-bold text-slate-700 dark:text-slate-350" id="tdAmountWD">0 VND</td>
+                  </tr>
+                  <tr>
+                    <td class="px-3 py-3 font-semibold text-slate-800 dark:text-slate-200">Ngày nghỉ hằng tuần - Ban đêm</td>
+                    <td class="px-3 py-3 text-center font-semibold text-orange-600 dark:text-orange-400">270%</td>
+                    <td class="px-3 py-3 text-center" id="tdHoursWN">0 giờ</td>
+                    <td class="px-3 py-3 text-right font-bold text-slate-700 dark:text-slate-350" id="tdAmountWN">0 VND</td>
+                  </tr>
+                  <!-- Holiday -->
+                  <tr>
+                    <td class="px-3 py-3 font-semibold text-slate-800 dark:text-slate-200">Ngày lễ, Tết - Ban ngày</td>
+                    <td class="px-3 py-3 text-center font-semibold text-rose-600 dark:text-rose-400" id="tdCoefHD">300%</td>
+                    <td class="px-3 py-3 text-center" id="tdHoursHD">0 giờ</td>
+                    <td class="px-3 py-3 text-right font-bold text-slate-700 dark:text-slate-350" id="tdAmountHD">0 VND</td>
+                  </tr>
+                  <tr>
+                    <td class="px-3 py-3 font-semibold text-slate-800 dark:text-slate-200">Ngày lễ, Tết - Ban đêm</td>
+                    <td class="px-3 py-3 text-center font-semibold text-rose-600 dark:text-rose-400" id="tdCoefHN">390%</td>
+                    <td class="px-3 py-3 text-center" id="tdHoursHN">0 giờ</td>
+                    <td class="px-3 py-3 text-right font-bold text-slate-700 dark:text-slate-350" id="tdAmountHN">0 VND</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Total boxes -->
+            <div class="grid grid-cols-2 gap-4 border-t border-slate-100 dark:border-slate-800 pt-6">
+              <div class="bg-blue-50/50 dark:bg-blue-950/20 p-4 rounded-2xl border border-blue-100/50 dark:border-blue-900/50">
+                <span class="text-[10px] text-slate-400 uppercase font-bold block mb-1">Tổng tiền lương tăng ca</span>
+                <span class="text-base sm:text-xl font-black text-brand-blue dark:text-brand-mint" id="resTotalOvertime">0 VND</span>
+              </div>
+              <div class="bg-emerald-50/50 dark:bg-emerald-950/20 p-4 rounded-2xl border border-emerald-100/50 dark:border-emerald-900/50">
+                <span class="text-[10px] text-slate-400 uppercase font-bold block mb-1">Tổng thu nhập tháng này</span>
+                <span class="text-base sm:text-xl font-black text-emerald-600 dark:text-emerald-400" id="resTotalIncome">0 VND</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- E-E-A-T Educational Guide Section -->
+    <div class="border-t border-slate-200 dark:border-slate-800 pt-12 mt-12 text-slate-700 dark:text-slate-300 leading-relaxed">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+        Cẩm nang quy định tính lương tăng ca làm thêm giờ mới nhất
+      </h2>
+      
+      <div class="space-y-6 text-sm sm:text-base">
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">1. Cách tính đơn giá lương theo giờ cơ bản</h3>
+        <p>
+          Theo quy định tại Thông tư 23/2015/TT-BLĐTBXH hướng dẫn thi hành một số điều về tiền lương, đơn giá tiền lương giờ làm việc bình thường của người lao động hưởng lương tháng được xác định như sau:
+        </p>
+        <div class="bg-slate-50 dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 font-mono text-xs sm:text-sm text-center">
+          Tiền lương giờ = Tiền lương tháng / (Số ngày làm việc bình thường trong tháng x 8 giờ)
+        </div>
+        <p>
+          Trong đó, số ngày làm việc bình thường trong tháng do doanh nghiệp tự quy định trong nội quy lao động (thông thường là 22 ngày đối với công ty nghỉ thứ Bảy, Chủ nhật, hoặc 26 ngày đối với doanh nghiệp chỉ nghỉ Chủ nhật).
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">2. Chi tiết hệ số tính lương tăng ca theo Bộ luật Lao động</h3>
+        <div class="overflow-x-auto my-4">
+          <table class="w-full text-xs sm:text-sm text-left text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-800">
+            <thead class="text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-900 font-bold">
+              <tr>
+                <th class="p-3 border border-slate-200 dark:border-slate-800">Thời điểm làm thêm giờ</th>
+                <th class="p-3 border border-slate-200 dark:border-slate-800 text-center">Hệ số ban ngày (6h - 22h)</th>
+                <th class="p-3 border border-slate-200 dark:border-slate-800 text-center">Hệ số ban đêm (22h - 6h sáng hôm sau)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="p-3 border border-slate-200 dark:border-slate-800 font-semibold text-slate-800 dark:text-slate-200">Ngày làm việc bình thường</td>
+                <td class="p-3 border border-slate-200 dark:border-slate-800 text-center text-blue-600 font-bold">150%</td>
+                <td class="p-3 border border-slate-200 dark:border-slate-800 text-center text-blue-600 font-bold">210%</td>
+              </tr>
+              <tr>
+                <td class="p-3 border border-slate-200 dark:border-slate-800 font-semibold text-slate-800 dark:text-slate-200">Ngày nghỉ hằng tuần (Chủ nhật/Thứ Bảy)</td>
+                <td class="p-3 border border-slate-200 dark:border-slate-800 text-center text-orange-600 font-bold">200%</td>
+                <td class="p-3 border border-slate-200 dark:border-slate-800 text-center text-orange-600 font-bold">270%</td>
+              </tr>
+              <tr>
+                <td class="p-3 border border-slate-200 dark:border-slate-800 font-semibold text-slate-800 dark:text-slate-200">Ngày lễ, Tết, ngày nghỉ có hưởng lương</td>
+                <td class="p-3 border border-slate-200 dark:border-slate-800 text-center text-rose-600 font-bold">300% (Tổng 400% đối với lương tháng)</td>
+                <td class="p-3 border border-slate-200 dark:border-slate-800 text-center text-rose-600 font-bold">390% (Tổng 490% đối với lương tháng)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">3. Căn cứ pháp lý</h3>
+        <p>
+          Máy tính và hướng dẫn này dựa trên:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Điều 98 Bộ luật Lao động số 45/2019/QH14</strong> ban hành ngày 20/11/2019 quy định về tiền lương làm thêm giờ, làm việc vào ban đêm.</li>
+          <li><strong>Nghị định số 145/2020/NĐ-CP</strong> quy định chi tiết và hướng dẫn thi hành một số điều của Bộ luật Lao động về điều kiện lao động và quan hệ lao động.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FAQ Section using <details> -->
+    <div class="mt-12 border-t border-slate-200 dark:border-slate-800 pt-12">
+      <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6 text-center">
+        Câu hỏi thường gặp về Lương Tăng Ca
+      </h2>
+
+      <div class="max-w-4xl mx-auto space-y-4">
+        <details class="group bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm transition duration-300 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none list-none text-base sm:text-lg">
+            <span>❓ Tiền lương làm thêm giờ ban đêm được tính cộng thêm như thế nào?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform duration-300">↓</span>
+          </summary>
+          <div class="mt-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Tiền lương làm thêm giờ ban đêm bao gồm: Tiền lương làm thêm ban ngày của ngày đó (150%, 200% hoặc 300%) cộng thêm 30% phụ cấp làm đêm cơ bản, và cộng thêm 20% tính trên đơn giá tiền lương giờ ban ngày của ngày làm việc bình thường hoặc của ngày nghỉ hằng tuần hoặc của ngày lễ, tết. Công thức tính tương đương hệ số lần lượt là 210% (ngày thường), 270% (chủ nhật) và 390% (ngày lễ).
+          </div>
+        </details>
+
+        <details class="group bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200/60 dark:border-slate-800/60 p-5 shadow-sm transition duration-300 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md">
+          <summary class="flex justify-between items-center font-bold text-slate-900 dark:text-white cursor-pointer select-none list-none text-base sm:text-lg">
+            <span>❓ Làm thêm ngày lễ có được bù ngày nghỉ khác không?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform duration-300">↓</span>
+          </summary>
+          <div class="mt-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Việc bố trí nghỉ bù sau những ngày làm thêm giờ do người sử dụng lao động và người lao động thỏa thuận trong thỏa ước lao động tập thể hoặc nội quy lao động. Tuy nhiên, dù được nghỉ bù, người sử dụng lao động vẫn phải trả đầy đủ tiền lương làm thêm giờ theo đúng hệ số quy định (tối thiểu 300%) cho những giờ thực tế làm thêm.
+          </div>
+        </details>
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/blog/cach-tinh-luong-tang-ca-ngay-le-2026/" class="inline-flex items-center gap-2 text-brand-blue dark:text-brand-mint hover:underline font-bold text-sm">
+          Xem bài viết hướng dẫn chi tiết cách tính lương tăng ca ngày lễ <span>→</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+</Layout>
+
+<script>
+  function calculateOvertime() {
+    // 1. Inputs
+    const basicSalary = parseFloat((document.getElementById("basicSalary") as HTMLInputElement).value) || 0;
+    const standardDays = parseFloat((document.getElementById("standardDays") as HTMLSelectElement).value) || 26;
+    const holidayPayType = (document.getElementById("holidayPayType") as HTMLSelectElement).value;
+
+    const hoursND = parseFloat((document.getElementById("hoursNormalDay") as HTMLInputElement).value) || 0;
+    const hoursNN = parseFloat((document.getElementById("hoursNormalNight") as HTMLInputElement).value) || 0;
+    
+    const hoursWD = parseFloat((document.getElementById("hoursWeekendDay") as HTMLInputElement).value) || 0;
+    const hoursWN = parseFloat((document.getElementById("hoursWeekendNight") as HTMLInputElement).value) || 0;
+    
+    const hoursHD = parseFloat((document.getElementById("hoursHolidayDay") as HTMLInputElement).value) || 0;
+    const hoursHN = parseFloat((document.getElementById("hoursHolidayNight") as HTMLInputElement).value) || 0;
+
+    // 2. Base hourly rate calculation
+    const hourlyRate = basicSalary / (standardDays * 8);
+    document.getElementById("resHourlyRate")!.textContent = formatCurrency(hourlyRate) + " VND/giờ";
+
+    // 3. Coefficients based on Law
+    const coefND = 1.5;
+    const coefNN = 2.1; // 1.5 + 0.3 + 1.5 * 0.2
+    const coefWD = 2.0;
+    const coefWN = 2.7; // 2.0 + 0.3 + 2.0 * 0.2
+    
+    // Holiday Coefficient
+    let coefHD = 3.0;
+    let coefHN = 3.9; // 3.0 + 0.3 + 3.0 * 0.2
+    
+    if (holidayPayType === "monthly") {
+      // If monthly worker, holiday is paid 100% standard salary (this is regular pay, so the overtime pay rate itself is 3.0 but the total received including regular pay is 4.0).
+      // Note: Article 98 says overtime pay itself is at least 300%. The UI should show the overtime pay rate (300%) or total including regular pay.
+      // Let's stick to the overtime pay rates: 300% (daytime) and 390% (nighttime) to calculate the overtime premium, and clearly display that this is in addition to the monthly salary.
+      coefHD = 3.0;
+      coefHN = 3.9;
+      
+      document.getElementById("tdCoefHD")!.textContent = "300% (+100% lương tháng)";
+      document.getElementById("tdCoefHN")!.textContent = "390% (+100% lương tháng)";
+    } else {
+      coefHD = 3.0;
+      coefHN = 3.9;
+      document.getElementById("tdCoefHD")!.textContent = "300%";
+      document.getElementById("tdCoefHN")!.textContent = "390%";
+    }
+
+    // 4. Calculations
+    const amountND = hoursND * hourlyRate * coefND;
+    const amountNN = hoursNN * hourlyRate * coefNN;
+    const amountWD = hoursWD * hourlyRate * coefWD;
+    const amountWN = hoursWN * hourlyRate * coefWN;
+    const amountHD = hoursHD * hourlyRate * coefHD;
+    const amountHN = hoursHN * hourlyRate * coefHN;
+
+    const totalOvertime = amountND + amountNN + amountWD + amountWN + amountHD + amountHN;
+    const totalIncome = basicSalary + totalOvertime;
+
+    // 5. Update UI values
+    updateRow("tdHoursND", "tdAmountND", hoursND, amountND);
+    updateRow("tdHoursNN", "tdAmountNN", hoursNN, amountNN);
+    updateRow("tdHoursWD", "tdAmountWD", hoursWD, amountWD);
+    updateRow("tdHoursWN", "tdAmountWN", hoursWN, amountWN);
+    updateRow("tdHoursHD", "tdAmountHD", hoursHD, amountHD);
+    updateRow("tdHoursHN", "tdAmountHN", hoursHN, amountHN);
+
+    document.getElementById("resTotalOvertime")!.textContent = formatCurrency(totalOvertime) + " VND";
+    document.getElementById("resTotalIncome")!.textContent = formatCurrency(totalIncome) + " VND";
+  }
+
+  function updateRow(hoursId: string, amountId: string, hours: number, amount: number) {
+    document.getElementById(hoursId)!.textContent = hours + " giờ";
+    document.getElementById(amountId)!.textContent = formatCurrency(amount) + " VND";
+  }
+
+  function formatCurrency(num: number) {
+    return Math.round(num).toLocaleString('vi-VN');
+  }
+
+  // Bind Events
+  const inputs = ["basicSalary", "standardDays", "holidayPayType", 
+                  "hoursNormalDay", "hoursNormalNight", 
+                  "hoursWeekendDay", "hoursWeekendNight", 
+                  "hoursHolidayDay", "hoursHolidayNight"];
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    el?.addEventListener("change", calculateOvertime);
+    el?.addEventListener("input", calculateOvertime);
+  });
+
+  // Initial calculation
+  calculateOvertime();
+</script>
