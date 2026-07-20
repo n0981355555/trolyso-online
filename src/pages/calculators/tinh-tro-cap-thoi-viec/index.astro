@@ -1,0 +1,342 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Máy Tính Trợ Cấp Thôi Việc & Mất Việc Làm Online - Chuẩn 2026"
+  description="Công cụ tính tự động tiền trợ cấp thôi việc (Điều 46) và trợ cấp mất việc làm (Điều 47) chuẩn Bộ luật Lao động 2019 mới nhất năm 2026."
+>
+  <main class="max-w-4xl mx-auto px-4 py-8 sm:py-12 w-full">
+    
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-brand-mint text-xs font-bold mb-3">
+        <span>💼</span> BỘ LUẬT LAO ĐỘNG 2019 & NGHỊ ĐỊNH 145/2020
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-3">
+        Máy Tính Trợ Cấp Thôi Việc & Mất Việc Làm
+      </h1>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Tính chính xác số tiền trợ cấp nghỉ việc người lao động được nhận từ doanh nghiệp, thời gian tính trợ cấp sau khi trừ BHTN và làm tròn tháng theo luật mới.
+      </p>
+    </div>
+
+    <!-- Main Tool Container -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-xl mb-12">
+      
+      <!-- Option Selector -->
+      <div class="mb-8">
+        <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-3">
+          1. Chọn loại trợ cấp cần tính <span class="text-red-500">*</span>
+        </label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <label id="lblThoiViec" class="flex items-center gap-3 p-4 rounded-2xl border-2 border-brand-blue dark:border-brand-mint bg-blue-50/50 dark:bg-blue-950/30 cursor-pointer transition-all">
+            <input type="radio" name="allowanceType" value="thoiViec" checked class="w-4 h-4 text-brand-blue focus:ring-brand-blue" />
+            <div>
+              <div class="font-bold text-sm text-slate-900 dark:text-white">Trợ Cấp Thôi Việc (Điều 46)</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400">Mỗi năm làm việc tính 1/2 tháng lương</div>
+            </div>
+          </label>
+
+          <label id="lblMatViec" class="flex items-center gap-3 p-4 rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 cursor-pointer transition-all">
+            <input type="radio" name="allowanceType" value="matViec" class="w-4 h-4 text-brand-blue focus:ring-brand-blue" />
+            <div>
+              <div class="font-bold text-sm text-slate-900 dark:text-white">Trợ Cấp Mất Việc Làm (Điều 47)</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400">Mỗi năm tính 1 tháng lương (Tối thiểu 2 tháng)</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Input Form Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        
+        <!-- Tổng thời gian làm việc -->
+        <div class="space-y-2">
+          <label class="block text-sm font-bold text-slate-700 dark:text-slate-300">
+            2. Tổng thời gian làm việc thực tế tại Cty
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <span class="text-xs text-slate-500">Số năm:</span>
+              <input type="number" id="inpWorkYears" min="0" value="3" class="w-full mt-1 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-sm font-bold focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint outline-none" />
+            </div>
+            <div>
+              <span class="text-xs text-slate-500">Số tháng:</span>
+              <input type="number" id="inpWorkMonths" min="0" max="11" value="4" class="w-full mt-1 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-sm font-bold focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint outline-none" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Thời gian đã đóng BHTN -->
+        <div class="space-y-2">
+          <label class="block text-sm font-bold text-slate-700 dark:text-slate-300">
+            3. Thời gian đã tham gia BHTN (được trừ đi)
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <span class="text-xs text-slate-500">Số năm:</span>
+              <input type="number" id="inpBhtnYears" min="0" value="2" class="w-full mt-1 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-sm font-bold focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint outline-none" />
+            </div>
+            <div>
+              <span class="text-xs text-slate-500">Số tháng:</span>
+              <input type="number" id="inpBhtnMonths" min="0" max="11" value="0" class="w-full mt-1 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-sm font-bold focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint outline-none" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Tiền lương bình quân 6 tháng -->
+        <div class="md:col-span-2 space-y-2">
+          <label class="block text-sm font-bold text-slate-700 dark:text-slate-300">
+            4. Tiền lương bình quân 6 tháng liền kề trước khi nghỉ việc (VNĐ) <span class="text-red-500">*</span>
+          </label>
+          <input type="number" id="inpAvgSalary" value="15000000" step="500000" class="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-base font-extrabold text-brand-blue dark:text-brand-mint focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint outline-none" />
+          <p class="text-xs text-slate-400">Bao gồm tiền lương công việc/chức danh + phụ cấp lương + các khoản bổ sung xác định trước.</p>
+        </div>
+      </div>
+
+      <!-- Result Display Card -->
+      <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+          <div>
+            <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1" id="resTitle">Tổng số tiền trợ cấp thôi việc nhận được</div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-brand-mint tracking-tight" id="resAmount">0 VNĐ</div>
+          </div>
+          <button id="btnCalc" class="px-6 py-3 bg-brand-mint text-slate-950 font-extrabold rounded-2xl hover:bg-emerald-400 transition-all shadow-lg text-sm shrink-0">
+            Tính lại ngay 🔄
+          </button>
+        </div>
+
+        <!-- Calculation details breakdown -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+          <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700">
+            <span class="text-slate-400 block mb-1">Thời gian tính trợ cấp:</span>
+            <span class="text-sm font-bold text-white" id="resCalcYears">1.5 năm (18 tháng)</span>
+          </div>
+          <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700">
+            <span class="text-slate-400 block mb-1">Quy tắc làm tròn:</span>
+            <span class="text-sm font-bold text-white" id="resRounding">Tình từ 1-6 tháng = 0.5 năm</span>
+          </div>
+          <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700">
+            <span class="text-slate-400 block mb-1">Hệ số trợ cấp:</span>
+            <span class="text-sm font-bold text-emerald-400" id="resMultiplier">0.5 tháng lương / năm</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- E-E-A-T Educational Guide Footer Section -->
+    <section class="mt-16 prose prose-slate dark:prose-invert max-w-none">
+      <div class="bg-white dark:bg-brand-darkCard rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-sm">
+        
+        <h2 class="text-2xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+          Cẩm Nang Hướng Dẫn Tính Trợ Cấp Thôi Việc & Mất Việc Làm
+        </h2>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mt-6 mb-2">1. Công Thức Tính Chuẩn Bộ Luật Lao Động 2019</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Theo Điều 46 và Điều 47 Bộ luật Lao động 2019, tiền trợ cấp được tính theo công thức:
+        </p>
+        
+        <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 font-mono text-xs sm:text-sm my-4">
+          <strong>Tiền trợ cấp thôi việc</strong> = Thời gian tính trợ cấp × (1/2) × Lương bình quân 6 tháng liền kề<br/>
+          <strong>Tiền trợ cấp mất việc làm</strong> = Thời gian tính trợ cấp × 1 × Lương bình quân 6 tháng (Tối thiểu 2 tháng lương)
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mt-6 mb-2">2. Quy Tắc Xác Định Thời Gian Và Làm Tròn Thời Gian</h3>
+        <ul class="text-sm text-slate-600 dark:text-slate-400 space-y-2 list-disc pl-5">
+          <li><strong>Thời gian tính trợ cấp</strong> = (Tổng thời gian làm việc thực tế tại doanh nghiệp) - (Thời gian đã tham gia Bảo hiểm thất nghiệp).</li>
+          <li><strong>Quy tắc làm tròn tháng:</strong> 
+            <ul>
+              <li>Dưới hoặc bằng 01 tháng: Không tính trợ cấp.</li>
+              <li>Từ trên 01 tháng đến đủ 06 tháng: Tính là <strong>1/2 năm (0.5 năm)</strong>.</li>
+              <li>Từ trên 06 tháng đến dưới 12 tháng: Tính là <strong>1 năm (1.0 năm)</strong>.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mt-6 mb-2">3. Ví Dụ Giả Định Số Cụ Thể</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <strong>Giả định:</strong> Anh Nguyễn Văn A làm việc tại Công ty X từ tháng 01/2021 đến tháng 05/2026 (Tổng 5 năm 4 tháng). Trong đó, thời gian Anh A đóng BHTN là 4 năm 0 tháng. Lương bình quân 6 tháng liền kề trước khi nghỉ việc là 12.000.000 VNĐ.
+        </p>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 p-4 rounded-2xl border border-emerald-200 dark:border-emerald-800 text-xs sm:text-sm text-slate-700 dark:text-slate-300 my-4 space-y-1">
+          <p>• Thời gian tính trợ cấp = 5 năm 4 tháng - 4 năm = 1 năm 4 tháng.</p>
+          <p>• 4 tháng dư được làm tròn thành <strong>0.5 năm</strong>. Tổng thời gian tính = <strong>1.5 năm</strong>.</p>
+          <p>• Số tiền trợ cấp thôi việc Anh A nhận được = 1.5 × (1/2) × 12.000.000 = <strong>9.000.000 VNĐ</strong>.</p>
+        </div>
+
+        <!-- FAQ Section -->
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mt-8 mb-4">Câu Hỏi Thường Gặp (FAQ)</h3>
+        <div class="space-y-3">
+          <details class="group p-4 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 cursor-pointer">
+            <summary class="font-bold text-sm text-slate-900 dark:text-white flex justify-between items-center">
+              <span>Doanh nghiệp phải trả tiền trợ cấp thôi việc trong thời hạn bao lâu?</span>
+              <span class="group-open:rotate-180 transition-transform">↓</span>
+            </summary>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
+              Trong thời hạn 14 ngày làm việc kể từ ngày chấm dứt hợp đồng lao động, người sử dụng lao động có trách nhiệm thanh toán đầy đủ tiền trợ cấp thôi việc cho người lao động. Trong một số trường hợp đặc biệt (như thiên tai, hỏa hoạn) có thể kéo dài nhưng không quá 30 ngày.
+            </p>
+          </details>
+
+          <details class="group p-4 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 cursor-pointer">
+            <summary class="font-bold text-sm text-slate-900 dark:text-white flex justify-between items-center">
+              <span>Trợ cấp thôi việc có phải đóng thuế TNCN không?</span>
+              <span class="group-open:rotate-180 transition-transform">↓</span>
+            </summary>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
+              Khoản trợ cấp thôi việc, mất việc làm chi trả đúng theo quy định của Bộ luật Lao động thì KHÔNG chịu thuế TNCN. Tuy nhiên, nếu doanh nghiệp chi trả thêm khoản hỗ trợ thôi việc vượt mức luật định từ 2.000.000 VNĐ/lần trở lên thì phần vượt đó phải nộp thuế TNCN 10%.
+            </p>
+          </details>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 flex flex-wrap justify-between items-center gap-4">
+          <div>
+            📖 Xem thêm bài viết chi tiết: 
+            <a href="/blog/huong-dan-tinh-tro-cap-thoi-viec-va-mat-viec-lam/" class="text-brand-blue dark:text-brand-mint font-bold hover:underline">
+              Hướng dẫn tính trợ cấp thôi việc & mất việc làm chuẩn 2026 →
+            </a>
+          </div>
+          <div>Căn cứ pháp lý: Bộ luật Lao động 2019 (Luật số 45/2019/QH14)</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</Layout>
+
+<!-- Schema JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FinanceApplication",
+  "name": "Máy Tính Trợ Cấp Thôi Việc & Mất Việc Làm Online",
+  "operatingSystem": "All",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "VND"
+  },
+  "description": "Công cụ tính tự động tiền trợ cấp thôi việc và trợ cấp mất việc làm theo Bộ luật Lao động 2019 mới nhất."
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Doanh nghiệp phải trả tiền trợ cấp thôi việc trong thời hạn bao lâu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Trong thời hạn 14 ngày làm việc kể từ ngày chấm dứt hợp đồng lao động, doanh nghiệp có trách nhiệm thanh toán đầy đủ tiền trợ cấp thôi việc."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Trợ cấp thôi việc có phải đóng thuế TNCN không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Khoản trợ cấp thôi việc chi trả đúng quy định luật lao động không chịu thuế TNCN."
+      }
+    }
+  ]
+})} />
+
+<script>
+  const radThoiViec = document.querySelector('input[value="thoiViec"]') as HTMLInputElement;
+  const radMatViec = document.querySelector('input[value="matViec"]') as HTMLInputElement;
+  const lblThoiViec = document.getElementById('lblThoiViec');
+  const lblMatViec = document.getElementById('lblMatViec');
+
+  const inpWorkYears = document.getElementById('inpWorkYears') as HTMLInputElement;
+  const inpWorkMonths = document.getElementById('inpWorkMonths') as HTMLInputElement;
+  const inpBhtnYears = document.getElementById('inpBhtnYears') as HTMLInputElement;
+  const inpBhtnMonths = document.getElementById('inpBhtnMonths') as HTMLInputElement;
+  const inpAvgSalary = document.getElementById('inpAvgSalary') as HTMLInputElement;
+
+  const resTitle = document.getElementById('resTitle');
+  const resAmount = document.getElementById('resAmount');
+  const resCalcYears = document.getElementById('resCalcYears');
+  const resRounding = document.getElementById('resRounding');
+  const resMultiplier = document.getElementById('resMultiplier');
+  const btnCalc = document.getElementById('btnCalc');
+
+  function calculateAllowance() {
+    const isThoiViec = radThoiViec.checked;
+    
+    // Toggle radio styling
+    if (isThoiViec) {
+      lblThoiViec?.classList.add('border-brand-blue', 'dark:border-brand-mint', 'bg-blue-50/50', 'dark:bg-blue-950/30');
+      lblThoiViec?.classList.remove('border-slate-200', 'dark:border-slate-800', 'bg-slate-50/50', 'dark:bg-slate-900/30');
+      
+      lblMatViec?.classList.remove('border-brand-blue', 'dark:border-brand-mint', 'bg-blue-50/50', 'dark:bg-blue-950/30');
+      lblMatViec?.classList.add('border-slate-200', 'dark:border-slate-800', 'bg-slate-50/50', 'dark:bg-slate-900/30');
+    } else {
+      lblMatViec?.classList.add('border-brand-blue', 'dark:border-brand-mint', 'bg-blue-50/50', 'dark:bg-blue-950/30');
+      lblMatViec?.classList.remove('border-slate-200', 'dark:border-slate-800', 'bg-slate-50/50', 'dark:bg-slate-900/30');
+      
+      lblThoiViec?.classList.remove('border-brand-blue', 'dark:border-brand-mint', 'bg-blue-50/50', 'dark:bg-blue-950/30');
+      lblThoiViec?.classList.add('border-slate-200', 'dark:border-slate-800', 'bg-slate-50/50', 'dark:bg-slate-900/30');
+    }
+
+    const workY = parseFloat(inpWorkYears.value) || 0;
+    const workM = parseFloat(inpWorkMonths.value) || 0;
+    const bhtnY = parseFloat(inpBhtnYears.value) || 0;
+    const bhtnM = parseFloat(inpBhtnMonths.value) || 0;
+    const avgSalary = parseFloat(inpAvgSalary.value) || 0;
+
+    const totalWorkMonths = workY * 12 + workM;
+    const totalBhtnMonths = bhtnY * 12 + bhtnM;
+
+    let calcMonths = totalWorkMonths - totalBhtnMonths;
+    if (calcMonths < 0) calcMonths = 0;
+
+    // Convert calcMonths to years & months
+    const remainYears = Math.floor(calcMonths / 12);
+    const remainMonths = calcMonths % 12;
+
+    // Rounding rule
+    let roundedYears = remainYears;
+    let roundText = "Không làm tròn (tròn năm)";
+    if (remainMonths > 0 && remainMonths <= 6) {
+      roundedYears += 0.5;
+      roundText = `${remainMonths} tháng lẻ ➔ Làm tròn 0.5 năm`;
+    } else if (remainMonths > 6) {
+      roundedYears += 1.0;
+      roundText = `${remainMonths} tháng lẻ ➔ Làm tròn 1.0 năm`;
+    }
+
+    let allowanceAmount = 0;
+    if (isThoiViec) {
+      if (resTitle) resTitle.innerText = "Tổng số tiền trợ cấp thôi việc nhận được";
+      allowanceAmount = roundedYears * 0.5 * avgSalary;
+      if (resMultiplier) resMultiplier.innerText = "0.5 tháng lương / năm";
+    } else {
+      if (resTitle) resTitle.innerText = "Tổng số tiền trợ cấp mất việc làm nhận được";
+      allowanceAmount = roundedYears * 1.0 * avgSalary;
+      // Minimum 2 months salary
+      if (allowanceAmount < 2 * avgSalary && totalWorkMonths >= 12) {
+        allowanceAmount = 2 * avgSalary;
+        if (resMultiplier) resMultiplier.innerText = "Tối thiểu 2.0 tháng lương";
+      } else {
+        if (resMultiplier) resMultiplier.innerText = "1.0 tháng lương / năm";
+      }
+    }
+
+    if (resAmount) resAmount.innerText = allowanceAmount.toLocaleString('vi-VN') + " VNĐ";
+    if (resCalcYears) resCalcYears.innerText = `${roundedYears} năm (gốc: ${remainYears}y ${remainMonths}m)`;
+    if (resRounding) resRounding.innerText = roundText;
+  }
+
+  [radThoiViec, radMatViec, inpWorkYears, inpWorkMonths, inpBhtnYears, inpBhtnMonths, inpAvgSalary].forEach(el => {
+    el?.addEventListener('input', calculateAllowance);
+    el?.addEventListener('change', calculateAllowance);
+  });
+
+  btnCalc?.addEventListener('click', calculateAllowance);
+
+  // Initial Calculation
+  calculateAllowance();
+</script>

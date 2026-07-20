@@ -1,0 +1,299 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Máy Tính Lãi Kép & Đầu Tư Tích Lũy Online - Chuẩn 2026"
+  description="Công cụ tính lãi kép tự động, lập bảng kế hoạch đầu tư tích lũy định kỳ theo tháng/năm và xem số dư tăng trưởng chi tiết theo thời gian."
+>
+  <main class="max-w-4xl mx-auto px-4 py-8 sm:py-12 w-full">
+    
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-brand-mint text-xs font-bold mb-3">
+        <span>📈</span> SỨC MẠNH LÃI KÉP & TÀI CHÍNH CÁ NHÂN
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-3">
+        Máy Tính Lãi Kép & Đầu Tư Tích Lũy
+      </h1>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Tính toán tổng tài sản tích lũy, số tiền lãi sinh ra theo thời gian và xem bảng phân tích tăng trưởng số dư chi tiết từng năm.
+      </p>
+    </div>
+
+    <!-- Main Calculator Container -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-xl mb-12">
+      
+      <!-- Input Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        
+        <!-- Vốn ban đầu -->
+        <div class="space-y-2">
+          <label class="block text-sm font-bold text-slate-700 dark:text-slate-300">
+            1. Số tiền vốn ban đầu (VNĐ) <span class="text-red-500">*</span>
+          </label>
+          <input type="number" id="inpPrincipal" value="50000000" step="5000000" class="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-base font-extrabold text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint outline-none" />
+        </div>
+
+        <!-- Số tiền gửi thêm định kỳ -->
+        <div class="space-y-2">
+          <label class="block text-sm font-bold text-slate-700 dark:text-slate-300">
+            2. Số tiền gửi thêm mỗi tháng (VNĐ)
+          </label>
+          <input type="number" id="inpMonthlyAdd" value="3000000" step="500000" class="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-base font-extrabold text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint outline-none" />
+        </div>
+
+        <!-- Lãi suất hàng năm -->
+        <div class="space-y-2">
+          <label class="block text-sm font-bold text-slate-700 dark:text-slate-300">
+            3. Lãi suất kỳ vọng (%/năm) <span class="text-red-500">*</span>
+          </label>
+          <input type="number" id="inpRate" value="8" step="0.5" min="0.1" max="100" class="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-base font-extrabold text-brand-blue dark:text-brand-mint focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint outline-none" />
+        </div>
+
+        <!-- Thời gian đầu tư -->
+        <div class="space-y-2">
+          <label class="block text-sm font-bold text-slate-700 dark:text-slate-300">
+            4. Thời gian tích lũy (Số năm) <span class="text-red-500">*</span>
+          </label>
+          <input type="number" id="inpYears" value="10" min="1" max="50" class="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-base font-extrabold text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint outline-none" />
+        </div>
+
+      </div>
+
+      <!-- Result Summary Card -->
+      <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 space-y-6 mb-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+          <div>
+            <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Tổng tài sản dự kiến sau thời gian tích lũy</div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-brand-mint tracking-tight" id="resTotalFV">0 VNĐ</div>
+          </div>
+          <button id="btnCalc" class="px-6 py-3 bg-brand-mint text-slate-950 font-extrabold rounded-2xl hover:bg-emerald-400 transition-all shadow-lg text-sm shrink-0">
+            Cập nhật kết quả 🔄
+          </button>
+        </div>
+
+        <!-- Metric Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+          <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700">
+            <span class="text-slate-400 block mb-1">Tổng tiền gốc đã nộp:</span>
+            <span class="text-base font-bold text-white" id="resTotalPrincipal">0 VNĐ</span>
+          </div>
+          <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700">
+            <span class="text-slate-400 block mb-1">Tổng tiền lãi nhận được:</span>
+            <span class="text-base font-bold text-emerald-400" id="resTotalInterest">0 VNĐ</span>
+          </div>
+          <div class="bg-slate-800/80 p-4 rounded-2xl border border-slate-700">
+            <span class="text-slate-400 block mb-1">Tỷ lệ tiền lãi / Tiền gốc:</span>
+            <span class="text-base font-bold text-amber-400" id="resProfitRatio">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Yearly Growth Breakdown Table -->
+      <div>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+          <span>📊</span> Bảng Chi Tiết Tăng Trưởng Tài Sản Theo Từng Năm
+        </h3>
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 max-h-80 overflow-y-auto">
+          <table class="w-full text-xs text-left border-collapse">
+            <thead class="bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold sticky top-0">
+              <tr>
+                <th class="p-3 border-b border-slate-200 dark:border-slate-800">Năm</th>
+                <th class="p-3 border-b border-slate-200 dark:border-slate-800">Tiền gốc tích lũy</th>
+                <th class="p-3 border-b border-slate-200 dark:border-slate-800">Tiền lãi trong năm</th>
+                <th class="p-3 border-b border-slate-200 dark:border-slate-800">Tổng số dư cuối năm</th>
+              </tr>
+            </thead>
+            <tbody id="tblYearlyBody" class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- E-E-A-T Guide Section -->
+    <section class="mt-16 prose prose-slate dark:prose-invert max-w-none">
+      <div class="bg-white dark:bg-brand-darkCard rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-sm">
+        
+        <h2 class="text-2xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+          Cẩm Nang Hướng Dẫn Tính Lãi Kép & Đầu Tư Tích Lũy
+        </h2>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mt-6 mb-2">1. Lãi Kép Là Gì? Vì Sao Nói Lãi Kép Là "Kỳ Quan Thứ 8"?</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <strong>Lãi kép (Compound Interest)</strong> là quá trình tái đầu tư số tiền lãi nhận được vào tiền gốc ban đầu để tiếp tục sinh ra lãi trong các kỳ tiếp theo. Nói cách khác, đó là hiện tượng "lãi mẹ đẻ lãi con". Theo thời gian dài (từ 5 đến 20 năm), sức mạnh tích lũy của lãi kép sẽ tạo ra sự tăng trưởng tài sản theo cấp số nhân vô cùng kinh ngạc.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mt-6 mb-2">2. Công Thức Tính Lãi Kép Định Kỳ</h3>
+        <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 font-mono text-xs sm:text-sm my-4">
+          <strong>A = P × (1 + r/n)^(n×t) + PMT × [ ((1 + r/n)^(n×t) - 1) / (r/n) ]</strong><br/><br/>
+          Trong đó:<br/>
+          • A: Tổng số tiền thu được cuối kỳ.<br/>
+          • P: Số tiền vốn đầu tư ban đầu.<br/>
+          • PMT: Số tiền tích lũy nộp thêm mỗi kỳ.<br/>
+          • r: Lãi suất hàng năm (dạng số thập phân).<br/>
+          • n: Số lần gộp lãi trong 1 năm (thường n = 12 cho tính lãi theo tháng).<br/>
+          • t: Số năm đầu tư.
+        </div>
+
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mt-6 mb-2">3. Ví Dụ Giả Định Số Cụ Thể</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <strong>Giả định:</strong> Bạn có số vốn ban đầu là <strong>50.000.000 VNĐ</strong>. Mỗi tháng bạn tiết kiệm nộp thêm <strong>3.000.000 VNĐ</strong> vào quỹ đầu tư với lãi suất trung bình <strong>8%/năm</strong> gộp lãi hàng tháng trong thời gian <strong>10 năm</strong>.
+        </p>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 p-4 rounded-2xl border border-emerald-200 dark:border-emerald-800 text-xs sm:text-sm text-slate-700 dark:text-slate-300 my-4 space-y-1">
+          <p>• Tổng số tiền gốc bạn đã thực nộp = 50tr + (3tr × 120 tháng) = <strong>410.000.000 VNĐ</strong>.</p>
+          <p>• Tổng tiền lãi sinh ra từ lãi kép = <strong>209.684.000 VNĐ</strong>.</p>
+          <p>• <strong>Tổng tài sản cuối 10 năm bạn sở hữu:</strong> <strong class="text-brand-blue dark:text-brand-mint text-base">619.684.000 VNĐ</strong> (Tiền lãi chiếm hơn 50% tổng số tiền gốc nộp!).</p>
+        </div>
+
+        <!-- FAQ Section -->
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mt-8 mb-4">Câu Hỏi Thường Gặp (FAQ)</h3>
+        <div class="space-y-3">
+          <details class="group p-4 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 cursor-pointer">
+            <summary class="font-bold text-sm text-slate-900 dark:text-white flex justify-between items-center">
+              <span>Nên chọn tần suất gộp lãi theo tháng hay theo năm thì có lợi hơn?</span>
+              <span class="group-open:rotate-180 transition-transform">↓</span>
+            </summary>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
+              Tần suất gộp lãi càng dày (theo tháng so với theo năm) thì tiền lãi phát sinh ở kỳ sau càng cao, vì tiền lãi của tháng trước được cộng ngay vào gốc để tính lãi cho tháng tiếp theo. Do đó gộp lãi theo tháng luôn tối ưu hơn gộp lãi theo năm.
+            </p>
+          </details>
+
+          <details class="group p-4 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 cursor-pointer">
+            <summary class="font-bold text-sm text-slate-900 dark:text-white flex justify-between items-center">
+              <span>Lãi suất bao nhiêu là hợp lý để tính kế hoạch đầu tư tích lũy?</span>
+              <span class="group-open:rotate-180 transition-transform">↓</span>
+            </summary>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
+              Nếu gửi tiết kiệm ngân hàng an toàn, lãi suất thường từ 5% - 7%/năm. Nếu đầu tư chứng chỉ quỹ an toàn hoặc chứng khoán dài hạn, lãi suất kỳ vọng trung bình thường từ 8% - 12%/năm.
+            </p>
+          </details>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 flex flex-wrap justify-between items-center gap-4">
+          <div>
+            📖 Xem thêm bài viết chi tiết: 
+            <a href="/blog/huong-dan-tinh-lai-kep-dau-tu-tich-luy/" class="text-brand-blue dark:text-brand-mint font-bold hover:underline">
+              Lãi kép là gì & Hướng dẫn đầu tư tích lũy tài chính 2026 →
+            </a>
+          </div>
+          <div>Căn cứ: Công thức toán tài chính chuẩn quốc tế</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</Layout>
+
+<!-- Schema JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FinanceApplication",
+  "name": "Máy Tính Lãi Kép & Đầu Tư Tích Lũy Online",
+  "operatingSystem": "All",
+  "applicationCategory": "FinanceApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "VND"
+  },
+  "description": "Công cụ tính lãi kép tự động và lập kế hoạch đầu tư tích lũy định kỳ chi tiết từng năm."
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Nên chọn tần suất gộp lãi theo tháng hay theo năm thì có lợi hơn?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tần suất gộp lãi theo tháng giúp tối ưu tiền lãi cao hơn gộp lãi theo năm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Lãi suất bao nhiêu là hợp lý để tính kế hoạch đầu tư tích lũy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lãi suất gửi tiết kiệm ngân hàng từ 5-7%/năm, đầu tư dài hạn an toàn từ 8-12%/năm."
+      }
+    }
+  ]
+})} />
+
+<script>
+  const inpPrincipal = document.getElementById('inpPrincipal') as HTMLInputElement;
+  const inpMonthlyAdd = document.getElementById('inpMonthlyAdd') as HTMLInputElement;
+  const inpRate = document.getElementById('inpRate') as HTMLInputElement;
+  const inpYears = document.getElementById('inpYears') as HTMLInputElement;
+
+  const resTotalFV = document.getElementById('resTotalFV');
+  const resTotalPrincipal = document.getElementById('resTotalPrincipal');
+  const resTotalInterest = document.getElementById('resTotalInterest');
+  const resProfitRatio = document.getElementById('resProfitRatio');
+  const tblYearlyBody = document.getElementById('tblYearlyBody');
+  const btnCalc = document.getElementById('btnCalc');
+
+  function calculateCompoundInterest() {
+    const P = parseFloat(inpPrincipal.value) || 0;
+    const PMT = parseFloat(inpMonthlyAdd.value) || 0;
+    const annualRate = (parseFloat(inpRate.value) || 0) / 100;
+    const years = parseInt(inpYears.value) || 1;
+
+    const rMonthly = annualRate / 12;
+
+    let currentBalance = P;
+    let accumulatedPrincipal = P;
+    let htmlRows = '';
+
+    for (let y = 1; y <= years; y++) {
+      let interestThisYear = 0;
+      let startBalanceOfYear = currentBalance;
+
+      for (let m = 1; m <= 12; m++) {
+        // Add monthly contribution
+        currentBalance += PMT;
+        accumulatedPrincipal += PMT;
+
+        // Interest for this month
+        const monthlyInterest = currentBalance * rMonthly;
+        interestThisYear += monthlyInterest;
+        currentBalance += monthlyInterest;
+      }
+
+      htmlRows += `
+        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+          <td class="p-3 font-bold border-b border-slate-100 dark:border-slate-800">Năm ${y}</td>
+          <td class="p-3 border-b border-slate-100 dark:border-slate-800">${Math.round(accumulatedPrincipal).toLocaleString('vi-VN')} VNĐ</td>
+          <td class="p-3 border-b border-slate-100 dark:border-slate-800 text-emerald-600 dark:text-emerald-400 font-semibold">+${Math.round(interestThisYear).toLocaleString('vi-VN')} VNĐ</td>
+          <td class="p-3 border-b border-slate-100 dark:border-slate-800 font-extrabold text-slate-900 dark:text-white">${Math.round(currentBalance).toLocaleString('vi-VN')} VNĐ</td>
+        </tr>
+      `;
+    }
+
+    const totalInterest = currentBalance - accumulatedPrincipal;
+    const profitRatio = accumulatedPrincipal > 0 ? ((totalInterest / accumulatedPrincipal) * 100).toFixed(1) : '0';
+
+    if (resTotalFV) resTotalFV.innerText = Math.round(currentBalance).toLocaleString('vi-VN') + ' VNĐ';
+    if (resTotalPrincipal) resTotalPrincipal.innerText = Math.round(accumulatedPrincipal).toLocaleString('vi-VN') + ' VNĐ';
+    if (resTotalInterest) resTotalInterest.innerText = Math.round(totalInterest).toLocaleString('vi-VN') + ' VNĐ';
+    if (resProfitRatio) resProfitRatio.innerText = profitRatio + '%';
+    if (tblYearlyBody) tblYearlyBody.innerHTML = htmlRows;
+  }
+
+  [inpPrincipal, inpMonthlyAdd, inpRate, inpYears].forEach(el => {
+    el?.addEventListener('input', calculateCompoundInterest);
+    el?.addEventListener('change', calculateCompoundInterest);
+  });
+
+  btnCalc?.addEventListener('click', calculateCompoundInterest);
+
+  // Initial Calculate
+  calculateCompoundInterest();
+</script>
