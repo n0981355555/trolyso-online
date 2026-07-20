@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import StatsBadge from '../components/StatsBadge.astro';
 ---
 
 <Layout 
@@ -380,8 +381,11 @@ import Layout from '../layouts/Layout.astro';
               Tính số tiền trợ cấp nghỉ việc, mất việc làm theo Bộ luật Lao động, trừ thời gian BHTN và làm tròn năm tự động.
             </p>
           </div>
-          <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
-            Mở công cụ <span>→</span>
+          <div class="mt-4 flex items-center justify-between">
+            <StatsBadge slug="tinh-tro-cap-thoi-viec" type="tool" showLiveDot={false} />
+            <div class="text-xs text-brand-blue dark:text-brand-mint font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
+              Mở công cụ <span>→</span>
+            </div>
           </div>
         </a>
 
@@ -400,8 +404,11 @@ import Layout from '../layouts/Layout.astro';
               Tính tổng tài sản nhận được theo thời gian, tiền lãi sinh ra và xem bảng phân tích tăng trưởng số dư chi tiết từng năm.
             </p>
           </div>
-          <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
-            Mở công cụ <span>→</span>
+          <div class="mt-4 flex items-center justify-between">
+            <StatsBadge slug="tinh-lai-kep" type="tool" showLiveDot={false} />
+            <div class="text-xs text-brand-blue dark:text-brand-mint font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
+              Mở công cụ <span>→</span>
+            </div>
           </div>
         </a>
 
@@ -420,8 +427,11 @@ import Layout from '../layouts/Layout.astro';
               Tính tiền lương làm thêm giờ (tăng ca), làm đêm ngày thường, ngày nghỉ chủ nhật và ngày lễ Tết chuẩn quy định.
             </p>
           </div>
-          <div class="text-xs text-brand-blue dark:text-brand-mint font-bold mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
-            Mở công cụ <span>→</span>
+          <div class="mt-4 flex items-center justify-between">
+            <StatsBadge slug="tinh-luong-tang-ca" type="tool" showLiveDot={false} />
+            <div class="text-xs text-brand-blue dark:text-brand-mint font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
+              Mở công cụ <span>→</span>
+            </div>
           </div>
         </a>
 

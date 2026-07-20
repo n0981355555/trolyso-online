@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import StatsBadge from '../../../components/StatsBadge.astro';
 ---
 
 <Layout 
@@ -10,8 +11,11 @@ import Layout from '../../../layouts/Layout.astro';
     
     <!-- Header -->
     <div class="text-center mb-10">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-brand-mint text-xs font-bold mb-3">
-        <span>💼</span> BỘ LUẬT LAO ĐỘNG 2019 & NGHỊ ĐỊNH 145/2020
+      <div class="inline-flex items-center justify-center gap-2 mb-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-brand-mint text-xs font-bold">
+          <span>💼</span> BỘ LUẬT LAO ĐỘNG 2019 & NGHỊ ĐỊNH 145/2020
+        </div>
+        <StatsBadge slug="tinh-tro-cap-thoi-viec" type="tool" showLiveDot={true} />
       </div>
       <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-3">
         Máy Tính Trợ Cấp Thôi Việc & Mất Việc Làm

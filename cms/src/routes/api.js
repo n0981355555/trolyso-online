@@ -8,6 +8,7 @@ import { uploadMiddleware, uploadImage, listMedia, deleteMedia } from '../contro
 import { getDashboardStats } from '../controllers/dashboard.js';
 import { getCalculators } from '../controllers/calculators.js';
 import { handleGithubWebhook } from '../controllers/webhook.js';
+import { getStats, getSingleStat, incrementStat } from '../controllers/stats.js';
 
 const router = express.Router();
 
@@ -55,6 +56,11 @@ router.get('/dashboard/stats', authenticateToken, getDashboardStats);
 
 // CALCULATORS/TOOLS DYNAMIC SCANNING ROUTE
 router.get('/calculators', authenticateToken, getCalculators);
+
+// STATS COUNTER ROUTES (PUBLIC NO AUTH REQUIRED)
+router.get('/stats', getStats);
+router.get('/stats/:slug', getSingleStat);
+router.post('/stats/increment', incrementStat);
 
 // GITHUB AUTOMATIC DEPLOYMENT WEBHOOK (NO AUTH TOKEN REQUIREMENT - SECURED BY HMAC-SHA256 SIGNATURE)
 router.post('/webhook/github-deploy', handleGithubWebhook);

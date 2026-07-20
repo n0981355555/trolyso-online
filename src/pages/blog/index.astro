@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import StatsBadge from '../../components/StatsBadge.astro';
 
 const posts = [
   /* DYNAMIC_POSTS_START */
@@ -615,12 +616,13 @@ function getCategorySlug(category: string) {
             </div>
 
             <div class="p-6 sm:p-8 space-y-3">
-              <div class="flex items-center gap-3 text-xs text-slate-400 font-medium">
-                <span>📅 {featuredPost.date}</span>
-                <span>•</span>
-                <span>⏱️ {featuredPost.readTime}</span>
-                <span>•</span>
-                <span class="text-brand-blue dark:text-brand-mint font-bold">Ban Biên Tập Trợ Lý Số</span>
+              <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400 font-medium">
+                <div class="flex items-center gap-3">
+                  <span>📅 {featuredPost.date}</span>
+                  <span>•</span>
+                  <span>⏱️ {featuredPost.readTime}</span>
+                </div>
+                <StatsBadge slug={featuredPost.slug} type="post" showLiveDot={true} />
               </div>
 
               <h3 class="text-xl sm:text-2xl font-heading font-extrabold text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition-colors leading-snug">
@@ -720,10 +722,13 @@ function getCategorySlug(category: string) {
 
             <!-- Card Content Body -->
             <div class="p-5 sm:p-6 space-y-2.5">
-              <div class="flex items-center gap-2 text-xs text-slate-400 font-medium">
-                <span>📅 {post.date}</span>
-                <span>•</span>
-                <span>⏱️ {post.readTime}</span>
+              <div class="flex items-center justify-between text-xs text-slate-400 font-medium">
+                <div class="flex items-center gap-2">
+                  <span>📅 {post.date}</span>
+                  <span>•</span>
+                  <span>⏱️ {post.readTime}</span>
+                </div>
+                <StatsBadge slug={post.slug} type="post" showLiveDot={false} />
               </div>
 
               <h3 class="text-base sm:text-lg font-heading font-bold text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition-colors line-clamp-2 leading-snug">

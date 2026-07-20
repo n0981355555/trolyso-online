@@ -890,6 +890,40 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
       <div id="mobileSearchDropdown" class="absolute bottom-full mb-3 left-0 right-0 w-full bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-xl p-2 hidden max-h-60 overflow-y-auto">
         <!-- Results -->
       </div>
-    </div>
+    <!-- Dynamic Live Stats Counter Client Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const pathname = window.location.pathname;
+        let slug = '';
+        let type = '';
+
+        if (pathname.startsWith('/blog/') && pathname !== '/blog/' && pathname !== '/blog') {
+          slug = pathname.replace(/^\/blog\//, '').replace(/\/$/, '');
+          type = 'post';
+        } else if (pathname.startsWith('/calculators/') && pathname !== '/calculators/' && pathname !== '/calculators') {
+          slug = pathname.replace(/^\/calculators\//, '').replace(/\/$/, '');
+          type = 'tool';
+        }
+
+        if (slug) {
+          const sessionKey = `visited_${type}_${slug}`;
+          if (!sessionStorage.getItem(sessionKey)) {
+            sessionStorage.setItem(sessionKey, '1');
+            setTimeout(() => {
+              fetch('/api/stats/increment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ slug, type })
+              }).then(res => res.json()).then(data => {
+                if (data.success && data.formatted) {
+                  const badges = document.querySelectorAll(`.stats-badge[data-slug="${slug}"] .stats-counter`);
+                  badges.forEach(el => { el.textContent = data.formatted; });
+                }
+              }).catch(() => {});
+            }, 2000);
+          }
+        }
+      });
+    </script>
   </body>
 </html>
