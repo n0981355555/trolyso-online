@@ -1,0 +1,232 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import StatsBadge from '../../../components/StatsBadge.astro';
+
+const blogPostSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Hướng Dẫn Cách Xem Radar Thời Tiết Chuẩn Xác Nhất 2026",
+  "description": "Cẩm nang hướng dẫn chi tiết cách xem radar thời tiết: Đọc bảng dải màu mây mưa dBZ, xác định tâm bão và phân tích tốc độ gió chuẩn khí tượng.",
+  "image": "https://trolyso.online/images/blog/huong-dan-xem-radar-thoi-tiet-hero.webp",
+  "datePublished": "2026-07-21",
+  "dateModified": "2026-07-21",
+  "author": {
+    "@type": "Person",
+    "name": "Chuyên Gia Khí Tượng & Ban Biên Tập Trợ Lý Số",
+    "jobTitle": "Cố vấn dữ liệu Khí tượng Thủy văn"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Trợ Lý Số",
+    "url": "https://trolyso.online"
+  }
+};
+---
+
+<Layout 
+  title="Hướng Dẫn Cách Xem Radar Thời Tiết Chuẩn Xác Nhất 2026"
+  description="Cẩm nang cách xem radar thời tiết trực tuyến: Hướng dẫn đọc dải màu mây mưa dBZ, soi đường đi bão lốc và chất lượng không khí mượt mà chuẩn xác."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(blogPostSchema)}></script>
+
+  <main class="max-w-4xl mx-auto px-4 py-8 sm:py-12 w-full">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6">
+      <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+      <span>/</span>
+      <a href="/blog/" class="hover:text-brand-blue dark:hover:text-brand-mint">Blog Tin Tức</a>
+      <span>/</span>
+      <span class="text-slate-600 dark:text-slate-300">Hướng Dẫn Xem Radar Thời Tiết</span>
+    </nav>
+
+    <!-- Post Title Header -->
+    <div class="space-y-4 mb-8">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="px-3 py-1 bg-emerald-500/10 text-emerald-600 dark:text-brand-mint text-xs font-extrabold rounded-full">
+          📡 KỸ NĂNG KHÍ TƯỢNG
+        </span>
+        <StatsBadge slug="huong-dan-xem-radar-thoi-tiet" type="post" showLiveDot={true} />
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
+        Hướng Dẫn Cách Xem Radar Thời Tiết Chuẩn Xác Nhất 2026
+      </h1>
+
+      <div class="flex items-center gap-4 text-xs font-medium text-slate-400 border-b border-slate-200 dark:border-slate-800 pb-4">
+        <span>📅 Ngày đăng: 21/07/2026</span>
+        <span>•</span>
+        <span>⏱️ Thời gian đọc: 7 phút (1,200 từ)</span>
+      </div>
+    </div>
+
+    <!-- EEAT Author Box -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 p-5 mb-8 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300 flex items-center gap-4">
+      <div class="w-14 h-14 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold text-xl shrink-0">
+        🧭
+      </div>
+      <div>
+        <div class="font-bold text-slate-900 dark:text-white text-base">Tác giả & Kiểm duyệt chuyên môn</div>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+          Biên soạn bởi <strong>Ban Biên Tập Trợ Lý Số</strong> | Hướng dẫn dựa trên tiêu chuẩn phản hồi sóng radar khí tượng quốc tế.
+        </p>
+      </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 mb-10 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300">
+      <div class="font-heading font-extrabold text-slate-900 dark:text-white text-lg mb-3 flex items-center gap-2">
+        <span>📋</span> Mục Lục Bài Viết
+      </div>
+      <ul class="space-y-2 text-sm font-medium">
+        <li>
+          <a href="#phan-1" class="text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">
+            1. Radar thời tiết là gì và nguyên lý hoạt động căn bản
+          </a>
+        </li>
+        <li>
+          <a href="#phan-2" class="text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">
+            2. Cách đọc bảng màu phản hồi ra-đa (dBZ) dự đoán độ to của mưa
+          </a>
+        </li>
+        <li>
+          <a href="#phan-3" class="text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">
+            3. Hướng dẫn soi tâm bão và tốc độ gió giật trên bản đồ
+          </a>
+        </li>
+        <li>
+          <a href="#phan-4" class="text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">
+            4. Mẹo xem radar thời tiết trên điện thoại di động mượt mà nhất
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Article Content -->
+    <article class="prose prose-slate dark:prose-invert max-w-none space-y-8 text-slate-700 dark:text-slate-300 leading-relaxed">
+      
+      <p class="text-base sm:text-lg font-medium leading-relaxed">
+        Radar thời tiết là một trong những thành tựu công nghệ quan trọng nhất của ngành khí tượng hiện đại. Trong bài viết này, chúng tôi sẽ <strong>hướng dẫn cách xem radar thời tiết</strong> từ A-Z giúp bạn dễ dàng làm chủ công cụ tra cứu mây mưa bão thời gian thực.
+      </p>
+
+      <!-- Hero Image -->
+      <div class="my-8">
+        <img 
+          src="/images/blog/huong-dan-xem-radar-thoi-tiet-hero.webp" 
+          alt="huong-dan-cach-xem-radar-thoi-tiet-hero" 
+          class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm"
+        />
+        <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">
+          Hình 1: Hướng dẫn quan sát màn hình phản hồi ra-đa thời tiết trực tuyến để nhận biết dải mây gây mưa.
+        </p>
+      </div>
+
+      <!-- Section 1 -->
+      <section id="phan-1" class="space-y-4">
+        <h2 class="text-2xl font-heading font-extrabold text-slate-900 dark:text-white">
+          1. Radar Thời Tiết Là Gì Và Nguyên Lý Hoạt Động Căn Bản
+        </h2>
+        <p>
+          Radar thời tiết (Weather Radar) hoạt động bằng cách phát ra các chùm sóng vô tuyến vào không trung. Khi chùm sóng chạm vào các giọt nước mưa, bông tuyết hoặc hạt băng trong đám mây, một phần năng lượng sóng sẽ phản hồi ngược trở lại trạm ra-đa.
+        </p>
+        <p>
+          Dựa trên thời gian di chuyển và độ mạnh của sóng phản hồi (đơn vị dBZ), máy tính sẽ dựng lại hình ảnh các khối mây mưa theo màu sắc trực quan trên bản đồ.
+        </p>
+      </section>
+
+      <!-- Section 2 -->
+      <section id="phan-2" class="space-y-4">
+        <h2 class="text-2xl font-heading font-extrabold text-slate-900 dark:text-white">
+          2. Cách Đọc Bảng Màu Phản Hồi Ra-đa (dBZ) Dự Đoán Độ To Của Mưa
+        </h2>
+        <p>
+          Màu sắc trên dải phản quang radar biểu thị độ đậm đặc của giọt nước trong không khí:
+        </p>
+
+        <!-- Layers Image -->
+        <div class="my-6">
+          <img 
+            src="/images/blog/ban-do-du-bao-thoi-tiet-layers.webp" 
+            alt="bang-mau-phan-hoi-radar-khi-tuong" 
+            class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm"
+          />
+          <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">
+            Hình 2: Phân tích dải màu sắc trên bản đồ ra-đa từ mưa phùn nhỏ đến dông lốc cực mạnh.
+          </p>
+        </div>
+
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>Xanh nhạt / Xanh lá (15 - 30 dBZ)</strong>: Mưa nhỏ, mưa lâm thâm, mưa phùn.</li>
+          <li><strong>Vàng / Cam (35 - 45 dBZ)</strong>: Mưa rào trung bình đến mưa to.</li>
+          <li><strong>Đỏ / Tím (> 50 dBZ)</strong>: Mưa rất to, dông kèm lốc xoáy hoặc mưa đá.</li>
+        </ul>
+      </section>
+
+      <!-- Section 3 -->
+      <section id="phan-3" class="space-y-4">
+        <h2 class="text-2xl font-heading font-extrabold text-slate-900 dark:text-white">
+          3. Hướng Dẫn Soi Tâm Bão Và Tốc Độ Gió Giật Trên Bản Đồ
+        </h2>
+        <p>
+          Khi truy cập <a href="/calculators/radar-thoi-tiet/" class="text-brand-blue dark:text-brand-mint font-bold hover:underline">Công cụ Radar Thời Tiết</a>, bạn hãy làm theo các bước sau để soi đường đi của bão:
+        </p>
+
+        <!-- Flow Image -->
+        <div class="my-6">
+          <img 
+            src="/images/blog/ban-do-du-bao-thoi-tiet-flow.webp" 
+            alt="cach-soi-tam-bao-tren-radar-thoi-tiet" 
+            class="w-full h-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm"
+          />
+          <p class="text-xs text-center text-slate-400 dark:text-slate-500 mt-2 italic font-normal">
+            Hình 3: Xác định tâm bão xoáy và bán kính vùng gió nguy hiểm trên ứng dụng radar thời tiết.
+          </p>
+        </div>
+
+        <ol class="list-decimal pl-6 space-y-2">
+          <li>Chọn lớp <strong>'Gió & Theo Dõi Bão'</strong> trên thanh công cụ.</li>
+          <li>Quan sát điểm xoắn ốc khép kín trên Biển Đông (đó là mắt bão / tâm áp thấp).</li>
+          <li>Bấm vào biểu tượng bất kỳ trên bản đồ để xem tốc độ gió theo km/h.</li>
+        </ol>
+      </section>
+
+      <!-- Section 4 -->
+      <section id="phan-4" class="space-y-4">
+        <h2 class="text-2xl font-heading font-extrabold text-slate-900 dark:text-white">
+          4. Mẹo Xem Radar Thời Tiết Trên Điện Thoại Di Động Mượt Mà Nhất
+        </h2>
+        <p>
+          Bạn nên truy cập bài viết <a href="/blog/ban-do-du-bao-thoi-tiet-viet-nam/" class="text-brand-blue dark:text-brand-mint font-bold hover:underline">Bản Đồ Dự Báo Thời Tiết Việt Nam Trực Tuyến</a> để cập nhật toàn bộ thông tin tổng quan về tình hình thiên tai và các khuyến cáo phòng tránh mới nhất năm 2026.
+        </p>
+      </section>
+
+    </article>
+
+    <!-- Call To Action (CTA Card) -->
+    <div class="my-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="space-y-2 text-center sm:text-left">
+        <h3 class="text-xl sm:text-2xl font-heading font-extrabold">Thực Hành Xem Radar Thời Tiết Ngay!</h3>
+        <p class="text-xs sm:text-sm text-emerald-100 max-w-xl">
+          Sử dụng ngay công cụ Radar Thời Tiết để tra cứu mưa bão thời gian thực trên 63 tỉnh thành.
+        </p>
+      </div>
+      <a href="/calculators/radar-thoi-tiet/" class="px-6 py-3 rounded-2xl bg-white text-emerald-600 font-extrabold text-sm hover:bg-emerald-50 transition-all shrink-0 shadow-md">
+        Mở Radar Thời Tiết ➔
+      </a>
+    </div>
+
+    <!-- Useful Links & References -->
+    <div class="border-t border-slate-200 dark:border-slate-800 pt-8 space-y-6">
+      <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-800 space-y-2">
+        <h4 class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+          <span>🏛️</span> Tài Liệu Tham Khảo Uy Tín:
+        </h4>
+        <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1 pl-5 list-disc">
+          <li><strong>Trung tâm Dự báo Khí tượng Thủy văn Quốc gia (NCHMF)</strong>: <a href="https://nchmf.gov.vn" target="_blank" rel="noopener noreferrer" class="text-brand-blue dark:text-brand-mint underline">nchmf.gov.vn</a></li>
+          <li><strong>Cổng Thông tin Điện tử Chính phủ</strong>: <a href="https://chinhphu.vn" target="_blank" rel="noopener noreferrer" class="text-brand-blue dark:text-brand-mint underline">chinhphu.vn</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+</Layout>

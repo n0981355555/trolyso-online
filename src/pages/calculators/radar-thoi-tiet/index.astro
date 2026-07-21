@@ -1,0 +1,309 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import StatsBadge from '../../../components/StatsBadge.astro';
+
+const faqs = [
+  {
+    question: "Radar Thời Tiết trên Trợ Lý Số cập nhật dữ liệu từ nguồn nào?",
+    answer: "Radar Thời Tiết trên Trợ Lý Số tích hợp trực tiếp dữ liệu khí tượng trực quan từ Windy, kết hợp với các mô hình dự báo toàn cầu hàng đầu như ECMWF (Châu Âu), GFS (Mỹ) và dữ liệu ảnh vệ tinh ra-đa thời tiết thời gian thực."
+  },
+  {
+    question: "Làm sao để biết khu vực nào đang có mưa rào hoặc dông bão?",
+    answer: "Bạn chọn lớp '🌧️ Mưa & Dông'. Các vệt màu xanh mây nhạt thể hiện mưa nhỏ, màu xanh lam/vàng là mưa vừa, màu cam/đỏ thể hiện mưa rào rất to kèm nguy cơ dông lốc, và màu tím thể hiện nguy cơ mưa đá hoặc bão mạnh."
+  },
+  {
+    question: "Công cụ có thể theo dõi hướng di chuyển của bão không?",
+    answer: "Có. Khi chọn lớp '🌀 Gió & Bão', bản đồ sẽ hiển thị luồng chuyển động của các xoáy nhiệt đới (bão/áp thấp). Bạn có thể xem vị trí tâm bão, bán kính gió mạnh và mốc thời gian dự báo di chuyển trong 3 - 7 ngày tới."
+  },
+  {
+    question: "Bản đồ radar thời tiết trực tuyến có làm chậm thiết bị không?",
+    answer: "Không. Bản đồ được tối ưu hóa rendering bằng công nghệ WebGL/Canvas trực tiếp trên trình duyệt của bạn, đảm bảo tải mượt mà trên cả điện thoại di động và máy tính mà không gây lag hay tốn dung lượng."
+  }
+];
+
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Radar Thời Tiết - Bản Đồ Dự Báo Thời Tiết Việt Nam Online",
+  "url": "https://trolyso.online/calculators/radar-thoi-tiet/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "VND"
+  },
+  "description": "Công cụ Radar Thời Tiết trực tuyến tra cứu bản đồ dự báo thời tiết, lượng mưa, theo dõi đường đi của bão và chất lượng không khí 63 tỉnh thành Việt Nam."
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<Layout 
+  title="Radar Thời Tiết - Bản Đồ Dự Báo Thời Tiết Việt Nam Online Miễn Phí 2026"
+  description="Tra cứu bản đồ dự báo thời tiết Việt Nam online: Xem radar lượng mưa, theo dõi đường đi bão lốc, nhiệt độ và chất lượng không khí AQI 63 tỉnh thành mượt mà."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+
+  <main class="max-w-6xl mx-auto px-4 py-8 sm:py-12 w-full">
+    
+    <!-- Header section -->
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center justify-center gap-2 mb-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 dark:bg-blue-500/20 text-brand-blue dark:text-brand-mint text-xs font-bold">
+          <span>📡</span> HỆ THỐNG RADAR KHÍ TƯỢNG VỆ TINH TRỰC TUYẾN 2026
+        </div>
+        <StatsBadge slug="radar-thoi-tiet" type="tool" showLiveDot={true} />
+      </div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold text-slate-900 dark:text-white mb-3 tracking-tight">
+        Radar Thời Tiết & Bản Đồ Dự Báo Mưa Bão
+      </h1>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
+        Theo dõi mây ra-đa thời gian thực, dự báo lượng mưa, áp thấp nhiệt đới, luồng gió và chất lượng không khí toàn bộ 63 tỉnh thành Việt Nam chuẩn xác nhất.
+      </p>
+    </div>
+
+    <!-- Quick Location Bar & Layer Controls -->
+    <div class="bg-white dark:bg-brand-darkCard rounded-3xl border border-slate-200 dark:border-slate-800 p-4 sm:p-6 shadow-xl mb-8 space-y-4">
+      
+      <!-- Top Control Bar: Layer Switcher & Quick Select -->
+      <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+        
+        <!-- Layer Buttons -->
+        <div class="flex flex-wrap items-center gap-2" id="layerButtons">
+          <button data-layer="rain" class="layer-btn active px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 bg-brand-blue text-white shadow-md">
+            🌧️ Mưa & Dông
+          </button>
+          <button data-layer="wind" class="layer-btn px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700">
+            🌀 Gió & Theo Dõi Bão
+          </button>
+          <button data-layer="temp" class="layer-btn px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700">
+            🌡️ Nhiệt Độ
+          </button>
+          <button data-layer="waves" class="layer-btn px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700">
+            🌊 Sóng Biển
+          </button>
+          <button data-layer="air" class="layer-btn px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700">
+            🌬️ Chất Lượng Không Khí (AQI)
+          </button>
+        </div>
+
+        <!-- Province Selector Dropdown -->
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-slate-500 dark:text-slate-400 whitespace-nowrap">📍 Khu vực:</span>
+          <select id="provinceSelect" aria-label="Chọn tỉnh thành xem thời tiết" class="w-full lg:w-48 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint cursor-pointer">
+            <option value="21.0285,105.8542,9">Hà Nội</option>
+            <option value="10.8231,106.6297,9">TP. Hồ Chí Minh</option>
+            <option value="16.0544,108.2022,9">Đà Nẵng</option>
+            <option value="20.8449,106.6881,9">Hải Phòng</option>
+            <option value="20.9599,107.0425,9">Quảng Ninh (Hạ Long)</option>
+            <option value="10.0452,105.7469,9">Cần Thơ</option>
+            <option value="12.2388,109.1967,9">Khánh Hòa (Nha Trang)</option>
+            <option value="16.4637,107.5909,9">Thừa Thiên Huế</option>
+            <option value="13.7820,109.2194,9">Bình Định (Quy Nhơn)</option>
+            <option value="9.6064,105.9800,9">Sóc Trăng</option>
+            <option value="10.3460,107.0843,9">Bà Rịa - Vũng Tàu</option>
+            <option value="21.3262,103.8438,8">Điện Biên - Tây Bắc</option>
+            <option value="17.4761,106.6006,8">Quảng Bình</option>
+            <option value="15.8801,108.3380,9">Quảng Nam (Hội An)</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Interactive Windy Radar Map Frame -->
+      <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[450px] sm:min-h-[550px] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-inner bg-slate-900">
+        <iframe 
+          id="windyFrame"
+          class="w-full h-full border-0"
+          src="https://embed.windy.com/embed2.html?lat=16.0544&lon=108.2022&detailLat=16.0544&detailLon=108.2022&width=100%25&height=550&zoom=6&level=surface&overlay=rain&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1"
+          title="Bản đồ radar thời tiết trực tuyến Windy"
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <!-- Quick Legend & Note -->
+      <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
+        <div class="flex items-center gap-4">
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-blue-400"></span> Mưa nhỏ</span>
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-yellow-400"></span> Mưa vừa</span>
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-red-500"></span> Mưa rất to / Dông</span>
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-purple-600"></span> Nguy cơ Bão / Lốc</span>
+        </div>
+        <div class="font-semibold text-slate-600 dark:text-slate-300">
+          Dữ liệu: ECMWF & GFS (Cập nhật thời gian thực)
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Related Articles SEO Box -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+      <a href="/blog/ban-do-du-bao-thoi-tiet-viet-nam/" class="group p-5 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition-all duration-300 flex items-center gap-4">
+        <div class="w-20 h-20 rounded-xl overflow-hidden shrink-0 bg-slate-100 dark:bg-slate-900">
+          <img src="/images/blog/ban-do-du-bao-thoi-tiet-hero.webp" alt="ban-do-du-bao-thoi-tiet-viet-nam" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+        </div>
+        <div class="space-y-1">
+          <span class="text-[11px] font-bold text-brand-blue dark:text-brand-mint">CẨM NANG THỜI TIẾT</span>
+          <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition-colors line-clamp-2">
+            Bản Đồ Dự Báo Thời Tiết Việt Nam Trực Tuyến & Cách Theo Dõi Mưa Bão
+          </h3>
+          <span class="text-xs text-slate-400 block">Đọc ngay →</span>
+        </div>
+      </a>
+
+      <a href="/blog/huong-dan-xem-radar-thoi-tiet/" class="group p-5 bg-white dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition-all duration-300 flex items-center gap-4">
+        <div class="w-20 h-20 rounded-xl overflow-hidden shrink-0 bg-slate-100 dark:bg-slate-900">
+          <img src="/images/blog/huong-dan-xem-radar-thoi-tiet-hero.webp" alt="huong-dan-xem-radar-thoi-tiet" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+        </div>
+        <div class="space-y-1">
+          <span class="text-[11px] font-bold text-brand-blue dark:text-brand-mint">KỸ NĂNG XEM RADAR</span>
+          <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition-colors line-clamp-2">
+            Hướng Dẫn Cách Xem Radar Thời Tiết Chuẩn Xác Nhất 2026
+          </h3>
+          <span class="text-xs text-slate-400 block">Đọc ngay →</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- EEAT Manual Guide Section (Outside Tool Grid) -->
+    <section class="bg-white dark:bg-brand-darkCard rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-sm space-y-8 mb-12">
+      
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+          Cẩm Nang Sử Dụng Bản Đồ Radar Thời Tiết & Theo Dõi Mưa Bão
+        </h2>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+          Radar thời tiết trực tuyến là công cụ đắc lực giúp người dân, tài xế, ngư dân và các doanh nghiệp chủ động theo dõi biến động khí tượng thời gian thực. Bằng việc tổng hợp ảnh ra-đa vệ tinh và mô hình dự báo toàn cầu, công cụ cho phép bạn soi chi tiết vùng mây gây mưa, tốc độ gió bão và nhiệt độ tại bất kỳ tọa độ nào ở Việt Nam.
+        </p>
+      </div>
+
+      <!-- Feature Highlights Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-brand-blue dark:text-brand-mint flex items-center justify-center font-bold text-lg">🌧️</div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Soi Vùng Mây Mưa Thời Gian Thực</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            Nhận biết chính xác cơn mưa sắp di chuyển đến khu vực của bạn trong 30 phút - 2 giờ tới thông qua dải phản hồi ra-đa màu sắc.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold text-lg">🌀</div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Theo Dõi Đường Đi Của Bão</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            Quan sát rõ tâm áp thấp nhiệt đới, bán kính gió xoáy nguy hiểm và hướng di chuyển dự báo của các cơn bão trên Biển Đông.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 space-y-2">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold text-lg">🌬️</div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Chất Lượng Không Khí AQI</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            Cập nhật chỉ số bụi mịn PM2.5, mây ô nhiễm tại các thành phố lớn như Hà Nội, TP.HCM để bảo vệ sức khỏe gia đình.
+          </p>
+        </div>
+      </div>
+
+      <!-- Legal & Official Sources -->
+      <div class="p-5 rounded-2xl bg-blue-50/50 dark:bg-slate-900/50 border border-blue-100 dark:border-slate-800 text-xs sm:text-sm text-slate-600 dark:text-slate-400 space-y-2">
+        <div class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <span>🏛️</span> Nguồn Dữ Liệu Khí Tượng & Pháp Lý Tham Chiếu:
+        </div>
+        <ul class="list-disc pl-5 space-y-1">
+          <li><strong>Trung tâm Dự báo Khí tượng Thủy văn Quốc gia (NCHMF)</strong>: <a href="https://nchmf.gov.vn" target="_blank" rel="noopener noreferrer" class="text-brand-blue dark:text-brand-mint underline">nchmf.gov.vn</a></li>
+          <li><strong>Tổng cục Khí tượng Thủy văn (Bộ Tài nguyên và Môi trường)</strong>.</li>
+          <li><strong>Luật Phòng, chống thiên tai</strong> số 33/2013/QH13 và Luật sửa đổi số 60/2020/QH14.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="bg-white dark:bg-brand-darkCard rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-sm mb-12">
+      <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white mb-6">
+        Câu Hỏi Thường Gặp (FAQ) Về Radar Thời Tiết
+      </h2>
+      <div class="space-y-4">
+        {faqs.map((faq, index) => (
+          <details class="group border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 [&_summary::-webkit-details-marker]:hidden bg-slate-50/50 dark:bg-slate-900/50 hover:border-brand-blue dark:hover:border-brand-mint transition-colors">
+            <summary class="flex items-center justify-between cursor-pointer gap-4">
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
+                {index + 1}. {faq.question}
+              </h3>
+              <span class="shrink-0 transition-transform duration-300 group-open:-rotate-180 text-brand-blue dark:text-brand-mint font-bold text-xl">
+                ↓
+              </span>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pt-2 border-t border-slate-200/60 dark:border-slate-800">
+              {faq.answer}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const iframe = document.getElementById('windyFrame') as HTMLIFrameElement;
+    const provinceSelect = document.getElementById('provinceSelect') as HTMLSelectElement;
+    const layerBtns = document.querySelectorAll('.layer-btn');
+
+    let currentOverlay = 'rain';
+    let currentLat = '16.0544';
+    let currentLon = '108.2022';
+    let currentZoom = '6';
+
+    function updateWindyIframe() {
+      if (!iframe) return;
+      const src = `https://embed.windy.com/embed2.html?lat=${currentLat}&lon=${currentLon}&detailLat=${currentLat}&detailLon=${currentLon}&width=100%25&height=550&zoom=${currentZoom}&level=surface&overlay=${currentOverlay}&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1`;
+      iframe.src = src;
+    }
+
+    // Province Dropdown Change
+    provinceSelect?.addEventListener('change', (e) => {
+      const target = e.target as HTMLSelectElement;
+      const parts = target.value.split(',');
+      if (parts.length === 3) {
+        currentLat = parts[0];
+        currentLon = parts[1];
+        currentZoom = parts[2];
+        updateWindyIframe();
+      }
+    });
+
+    // Layer Switcher Buttons
+    layerBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        layerBtns.forEach(b => {
+          b.classList.remove('active', 'bg-brand-blue', 'text-white', 'shadow-md');
+          b.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-200');
+        });
+        btn.classList.add('active', 'bg-brand-blue', 'text-white', 'shadow-md');
+        btn.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-200');
+
+        const layer = btn.getAttribute('data-layer');
+        if (layer === 'rain') currentOverlay = 'rain';
+        else if (layer === 'wind') currentOverlay = 'wind';
+        else if (layer === 'temp') currentOverlay = 'temp';
+        else if (layer === 'waves') currentOverlay = 'waves';
+        else if (layer === 'air') currentOverlay = 'cosc';
+
+        updateWindyIframe();
+      });
+    });
+  </script>
+</Layout>
