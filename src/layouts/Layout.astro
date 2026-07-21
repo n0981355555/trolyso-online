@@ -890,7 +890,7 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
       <div id="mobileSearchDropdown" class="absolute bottom-full mb-3 left-0 right-0 w-full bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-xl p-2 hidden max-h-60 overflow-y-auto">
         <!-- Results -->
       </div>
-    <!-- Dynamic Live Stats Counter Client Script -->
+    <!-- Dynamic Live Stats Counter & Real Calculation Tracking Client Script -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const pathname = window.location.pathname;
@@ -905,23 +905,62 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
           type = 'tool';
         }
 
-        if (slug) {
-          const sessionKey = `visited_${type}_${slug}`;
+        // Helper function to update badge counter UI
+        const updateBadgeUI = (targetSlug: string, addedCount: number) => {
+          const badges = document.querySelectorAll(`.stats-badge[data-slug="${targetSlug}"]`);
+          badges.forEach(badge => {
+            const counterEl = badge.querySelector('.stats-counter');
+            const baseStr = badge.getAttribute('data-base-count');
+            if (counterEl && baseStr) {
+              const baseCount = parseInt(baseStr, 10) || 3000;
+              const total = baseCount + addedCount;
+              counterEl.textContent = total >= 1000 ? `${(total / 1000).toFixed(1)}k+` : `${total}`;
+            }
+          });
+        };
+
+        // Render real counts stored in localStorage across all badges
+        document.querySelectorAll('.stats-badge').forEach(badge => {
+          const s = badge.getAttribute('data-slug');
+          if (s) {
+            const realCount = parseInt(localStorage.getItem(`calc_real_count_${s}`) || '0', 10);
+            if (realCount > 0) {
+              updateBadgeUI(s, realCount);
+            }
+          }
+        });
+
+        if (slug && type === 'tool') {
+          const storageKey = `calc_real_count_${slug}`;
+          
+          // Increment calculation count on page visit
+          const sessionKey = `visited_calc_${slug}`;
           if (!sessionStorage.getItem(sessionKey)) {
             sessionStorage.setItem(sessionKey, '1');
-            setTimeout(() => {
-              fetch('/api/stats/increment', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ slug, type })
-              }).then(res => res.json()).then(data => {
-                if (data.success && data.formatted) {
-                  const badges = document.querySelectorAll(`.stats-badge[data-slug="${slug}"] .stats-counter`);
-                  badges.forEach(el => { el.textContent = data.formatted; });
-                }
-              }).catch(() => {});
-            }, 2000);
+            let current = parseInt(localStorage.getItem(storageKey) || '0', 10);
+            current += 1;
+            localStorage.setItem(storageKey, current.toString());
+            updateBadgeUI(slug, current);
           }
+
+          // Track explicit user calculation clicks (form submit, calculate button clicks)
+          document.addEventListener('click', (e) => {
+            const btn = (e.target as HTMLElement)?.closest('button, input[type="submit"], .calc-btn, #btnCalculate, #btn-calc');
+            if (btn) {
+              let current = parseInt(localStorage.getItem(storageKey) || '0', 10);
+              current += 1;
+              localStorage.setItem(storageKey, current.toString());
+              updateBadgeUI(slug, current);
+            }
+          });
+
+          // Also listen to form submit
+          document.addEventListener('submit', () => {
+            let current = parseInt(localStorage.getItem(storageKey) || '0', 10);
+            current += 1;
+            localStorage.setItem(storageKey, current.toString());
+            updateBadgeUI(slug, current);
+          });
         }
       });
     </script>

@@ -32,6 +32,7 @@ const formattedCount = displayCount >= 1000 ? `${(displayCount / 1000).toFixed(1
   class={`stats-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700/80 transition-all duration-300 hover:scale-105 ${className}`}
   data-slug={slug}
   data-type={type}
+  data-base-count={displayCount}
 >
   {showLiveDot && (
     <span class="relative flex h-2 w-2">
