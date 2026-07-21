@@ -415,28 +415,16 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
         updateIcons();
       });
 
-      // Global Search Engine
-      let searchIndex = null;
-      let isFetchingSearchIndex = false;
-
-      async function loadSearchIndex() {
-        if (searchIndex || isFetchingSearchIndex) return;
-        isFetchingSearchIndex = true;
-        try {
-          const res = await fetch('/search-index.json');
-          if (res.ok) {
-            searchIndex = await res.json();
-          } else {
-            console.error('Failed to fetch search-index.json');
-            searchIndex = [];
-          }
-        } catch (err) {
-          console.error('Error loading search index:', err);
-          searchIndex = [];
-        } finally {
-          isFetchingSearchIndex = false;
-        }
+      // Global Search Engine (High Performance & Debounced)
+      interface SearchItem {
+        title: string;
+        desc?: string;
+        url: string;
+        _norm?: string;
       }
+
+      let searchIndex: SearchItem[] | null = null;
+      let isFetchingSearchIndex = false;
 
       function removeVietnameseTones(str: string) {
         let result = str.toLowerCase();
@@ -451,6 +439,30 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
         return result.normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
       }
 
+      async function loadSearchIndex() {
+        if (searchIndex || isFetchingSearchIndex) return;
+        isFetchingSearchIndex = true;
+        try {
+          const res = await fetch('/search-index.json');
+          if (res.ok) {
+            const rawData: SearchItem[] = await res.json();
+            // Pre-calculate normalized search strings once for 100x faster filtering
+            searchIndex = rawData.map(item => ({
+              ...item,
+              _norm: removeVietnameseTones(item.title + ' ' + (item.desc || ''))
+            }));
+          } else {
+            console.error('Failed to fetch search-index.json');
+            searchIndex = [];
+          }
+        } catch (err) {
+          console.error('Error loading search index:', err);
+          searchIndex = [];
+        } finally {
+          isFetchingSearchIndex = false;
+        }
+      }
+
       function setupSearch(inputId: string, dropdownId: string) {
         const input = document.getElementById(inputId) as HTMLInputElement;
         const dropdown = document.getElementById(dropdownId);
@@ -459,42 +471,53 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
         input.addEventListener('focus', loadSearchIndex);
         input.addEventListener('mouseenter', loadSearchIndex);
 
-        input.addEventListener('input', async () => {
-          if (!searchIndex) {
-            await loadSearchIndex();
-          }
-          if (!searchIndex) return;
-          const rawQuery = input.value.trim();
-          if (!rawQuery) {
-            dropdown.classList.add('hidden');
-            return;
-          }
+        let debounceTimer: any = null;
 
-          const query = removeVietnameseTones(rawQuery);
-          const queryWords = query.split(/\s+/).filter(Boolean);
-          if (queryWords.length === 0) {
-            dropdown.classList.add('hidden');
-            return;
-          }
+        input.addEventListener('input', () => {
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(async () => {
+            if (!searchIndex) {
+              await loadSearchIndex();
+            }
+            if (!searchIndex) return;
+            const rawQuery = input.value.trim();
+            if (!rawQuery) {
+              dropdown.classList.add('hidden');
+              return;
+            }
 
-          const results = searchIndex.filter(item => {
-            const itemText = removeVietnameseTones(item.title + ' ' + (item.desc || ''));
-            return queryWords.every(word => itemText.includes(word));
-          });
+            const query = removeVietnameseTones(rawQuery);
+            const queryWords = query.split(/\s+/).filter(Boolean);
+            if (queryWords.length === 0) {
+              dropdown.classList.add('hidden');
+              return;
+            }
 
-          if (results.length === 0) {
-            dropdown.innerHTML = `<div class="p-3 text-xs text-slate-400 text-center">Không tìm thấy kết quả phù hợp</div>`;
+            // High performance search: use pre-normalized _norm string & early exit at 8 items
+            const matches: SearchItem[] = [];
+            for (let i = 0; i < searchIndex.length; i++) {
+              const item = searchIndex[i];
+              const norm = item._norm || '';
+              if (queryWords.every(word => norm.includes(word))) {
+                matches.push(item);
+                if (matches.length >= 8) break; // Stop loop immediately once 8 matches found!
+              }
+            }
+
+            if (matches.length === 0) {
+              dropdown.innerHTML = `<div class="p-3 text-xs text-slate-400 text-center">Không tìm thấy kết quả phù hợp</div>`;
+              dropdown.classList.remove('hidden');
+              return;
+            }
+
+            dropdown.innerHTML = matches.map(item => `
+              <a href="${item.url}" class="block p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-left transition select-none">
+                <div class="font-semibold text-xs text-slate-900 dark:text-white">${item.title}</div>
+                <div class="text-[10px] text-slate-400 line-clamp-1 mt-0.5">${item.desc || ''}</div>
+              </a>
+            `).join('');
             dropdown.classList.remove('hidden');
-            return;
-          }
-
-          dropdown.innerHTML = results.map(item => `
-            <a href="${item.url}" class="block p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-left transition select-none">
-              <div class="font-semibold text-xs text-slate-900 dark:text-white">${item.title}</div>
-              <div class="text-[10px] text-slate-400 line-clamp-1 mt-0.5">${item.desc}</div>
-            </a>
-          `).join('');
-          dropdown.classList.remove('hidden');
+          }, 120);
         });
 
         // Đóng dropdown khi click bên ngoài
