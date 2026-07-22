@@ -285,6 +285,17 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
         overflow-x: auto;
       }
     </style>
+    <!-- Zalo Ads Tracker (Deferred Load for Performance) -->
+    <script is:inline>
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = "https://s.zzcdn.me/ztr/ztracker.js?id=7485344069380542464";
+          document.head.appendChild(script);
+        }, 1000);
+      });
+    </script>
   </head>
   <body class="bg-slate-50 dark:bg-brand-darkBg text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300 relative overflow-x-hidden">
     <!-- Glow Orbs (Ambient backgrounds) -->
