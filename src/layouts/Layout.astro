@@ -348,12 +348,31 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
     <slot />
 
     <!-- Footer -->
-    <footer class="bg-white dark:bg-brand-darkCard border-t border-slate-200 dark:border-slate-800 py-10 text-sm text-slate-500 dark:text-slate-400 mt-auto transition-colors">
-      <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-brand-darkCard border-t border-slate-200 dark:border-slate-800 py-12 text-sm text-slate-500 dark:text-slate-400 mt-auto transition-colors">
+      <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         
-        <!-- Copyright & Social Links -->
+        <!-- Column 1: Owner Information -->
+        <div class="flex flex-col gap-2.5 text-center md:text-left">
+          <h5 class="font-bold text-slate-800 dark:text-slate-200 text-base">THÔNG TIN LIÊN HỆ</h5>
+          <p class="font-semibold text-slate-700 dark:text-slate-300">Đơn vị chủ quản: Trợ Lý Số</p>
+          <p>📍 Địa chỉ: TDP Hòa Bình, Bố Hạ, Bắc Ninh</p>
+          <p>📞 Điện thoại: <a href="tel:0965585609" class="hover:text-brand-blue dark:hover:text-brand-mint font-semibold transition-colors">0965 585 609</a></p>
+          <p>✉️ Email: <a href="mailto:dungtn.tmu@gmail.com" class="hover:text-brand-blue dark:hover:text-brand-mint font-semibold transition-colors">dungtn.tmu@gmail.com</a></p>
+        </div>
+
+        <!-- Column 2: Legal Links -->
         <div class="flex flex-col items-center md:items-start gap-3">
-          <p>© 2026 Trợ Lý Số (trolyso.online). Bảo lưu mọi quyền.</p>
+          <h5 class="font-bold text-slate-800 dark:text-slate-200 text-base">CHÍNH SÁCH & QUY ĐỊNH</h5>
+          <div class="flex flex-col gap-2 text-center md:text-left">
+            <a href="/dieu-khoan/" class="hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition-colors">Điều khoản sử dụng</a>
+            <a href="/chinh-sach-bao-mat/" class="hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition-colors">Chính sách bảo mật</a>
+          </div>
+        </div>
+
+        <!-- Column 3: Social & Language & Copyright -->
+        <div class="flex flex-col items-center md:items-end gap-4">
+          <h5 class="font-bold text-slate-800 dark:text-slate-200 text-base">MẠNG XÃ HỘI</h5>
           <!-- Social Icons -->
           <div class="flex items-center gap-4">
             <!-- Điện thoại -->
@@ -365,7 +384,7 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
             <!-- Facebook -->
             <a href="https://www.facebook.com/profile.php?id=61591645321052" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-brand-blue dark:hover:text-brand-mint transition-colors" title="Facebook" aria-label="Facebook">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1V12h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/>
+                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3-2c-.55 0-1 .45-1 1V12h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/>
               </svg>
             </a>
             <!-- Gmail -->
@@ -375,15 +394,7 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
               </svg>
             </a>
           </div>
-        </div>
 
-        <!-- Footer Links & Language Switcher -->
-        <div class="flex flex-col items-center md:items-end gap-3">
-          <div class="flex gap-4">
-            <a href="/dieu-khoan/" class="hover:underline">Điều khoản</a>
-            <a href="/chinh-sach-bao-mat/" class="hover:underline">Chính sách bảo mật</a>
-          </div>
-          
           <!-- Language Selector -->
           <div class="flex items-center gap-2">
             <span class="text-xs text-slate-500 dark:text-slate-400">Ngôn ngữ:</span>
@@ -392,6 +403,8 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
               <option value="en">English (EN)</option>
             </select>
           </div>
+
+          <p class="text-xs text-slate-400 dark:text-slate-500 text-center md:text-right mt-2">© 2026 Trợ Lý Số (trolyso.online). Bảo lưu mọi quyền.</p>
         </div>
 
       </div>
