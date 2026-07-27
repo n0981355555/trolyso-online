@@ -1,5 +1,15 @@
 [
   {
+    "title": "Công cụ: Dựng Đồ Liên Quân Mobile - Lên Trang Bị Tướng Online",
+    "desc": "Trình dựng lối lên đồ trang bị cấp 3 cho các tướng Arena of Valor (Liên Quân) trực quan và tự động tính toán chỉ số sức mạnh thời gian thực.",
+    "url": "/calculators/build-do-lien-quan/"
+  },
+  {
+    "title": "Bài viết: Cách Lên Trang Bị Liên Quân Mobile Chuẩn Trực Quan Cho Game Thủ",
+    "desc": "Cẩm nang hướng dẫn chi tiết cách lên đồ Liên Quân Mobile chuẩn chiến thuật. Phân tích chỉ số trang bị cấp 3, công thức tính giảm sát thương và cách dùng công cụ dựng đồ.",
+    "url": "/blog/huong-dan-len-trang-bi-lien-quan-mobile/"
+  },
+  {
     "title": "Công cụ: Radar Thời Tiết & Bản Đồ Dự Báo Bão Trực Tuyến 2026",
     "desc": "Tra cứu bản đồ ra-đa thời gian thực: Soi vùng mây mưa, theo dõi đường đi của bão, nhiệt độ và chất lượng không khí 63 tỉnh thành.",
     "url": "/calculators/radar-thoi-tiet/"

@@ -1,0 +1,779 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import StatsBadge from '../../../components/StatsBadge.astro';
+---
+
+<Layout 
+  title="Trình Dựng Đồ, Lên Trang Bị Liên Quân Mobile Trực Quan Chuẩn 2026"
+  description="Công cụ lên đồ Liên Quân Mobile (AoV Builder) online miễn phí. Giúp tự động tính toán các chỉ số sức mạnh của tướng, giáp vật lý, giáp phép, % giảm sát thương, giảm hồi chiêu thời gian thực."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.03),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Công cụ</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500 font-medium">Lên đồ Liên Quân</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Trình Dựng Đồ & Lên Trang Bị Liên Quân
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Thiết lập lối lên đồ tối ưu cho các vị tướng Liên Quân Mobile, xem ngay các chỉ số sức mạnh chi tiết và tải ảnh thẻ build đồ về máy.
+      </p>
+    </div>
+
+    <!-- Main Tool Container -->
+    <div class="space-y-8">
+      
+      <!-- Hero & Build Selector -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Left: Hero Selection and Stats (5 cols) -->
+        <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800/80 p-6 lg:col-span-5 flex flex-col justify-between transition-all duration-300">
+          <div>
+            <h2 class="text-lg font-heading font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+              🛡️ Chọn Tướng & Chỉ Số
+            </h2>
+            
+            <!-- Hero Selection -->
+            <div class="space-y-4 mb-6">
+              <div>
+                <label for="heroSelect" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Lựa chọn Tướng</label>
+                <select id="heroSelect" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-bold text-slate-800 dark:text-slate-100">
+                  <!-- JS Dynamic -->
+                </select>
+              </div>
+
+              <!-- Hero Info Card -->
+              <div class="p-4 bg-slate-50 dark:bg-slate-900/60 border border-slate-200/50 dark:border-slate-800/50 rounded-xl flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center text-2xl" id="heroIcon">
+                  🛡️
+                </div>
+                <div>
+                  <div class="font-bold text-slate-900 dark:text-white" id="heroName">Arthur</div>
+                  <div class="text-xs text-slate-400" id="heroRole">Đỡ đòn / Đấu sĩ</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stats Panel -->
+            <h3 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">Thống kê sức mạnh thực tế</h3>
+            <div class="grid grid-cols-2 gap-3 text-sm">
+              <div class="p-3 bg-slate-50 dark:bg-slate-900/40 rounded-lg border border-slate-100 dark:border-slate-850">
+                <div class="text-xs text-slate-400 mb-0.5">Máu tối đa</div>
+                <div class="font-extrabold text-slate-800 dark:text-slate-200" id="statHp">3622</div>
+              </div>
+              <div class="p-3 bg-slate-50 dark:bg-slate-900/40 rounded-lg border border-slate-100 dark:border-slate-850">
+                <div class="text-xs text-slate-400 mb-0.5">Giảm hồi chiêu</div>
+                <div class="font-extrabold text-blue-500 dark:text-brand-mint" id="statCdr">0%</div>
+              </div>
+              <div class="p-3 bg-slate-50 dark:bg-slate-900/40 rounded-lg border border-slate-100 dark:border-slate-850">
+                <div class="text-xs text-slate-400 mb-0.5">Công vật lý</div>
+                <div class="font-extrabold text-orange-500" id="statAtk">164</div>
+              </div>
+              <div class="p-3 bg-slate-50 dark:bg-slate-900/40 rounded-lg border border-slate-100 dark:border-slate-850">
+                <div class="text-xs text-slate-400 mb-0.5">Công phép</div>
+                <div class="font-extrabold text-purple-500" id="statAp">0</div>
+              </div>
+              <div class="p-3 bg-slate-50 dark:bg-slate-900/40 rounded-lg border border-slate-100 dark:border-slate-850">
+                <div class="text-xs text-slate-400 mb-0.5">Giáp vật lý</div>
+                <div class="font-bold text-slate-800 dark:text-slate-200" id="statDef">139 <span class="text-xs font-normal text-slate-400" id="statDefPct">(18.8% giảm ST)</span></div>
+              </div>
+              <div class="p-3 bg-slate-50 dark:bg-slate-900/40 rounded-lg border border-slate-100 dark:border-slate-850">
+                <div class="text-xs text-slate-400 mb-0.5">Giáp phép</div>
+                <div class="font-bold text-slate-800 dark:text-slate-200" id="statMdef">80 <span class="text-xs font-normal text-slate-400" id="statMdefPct">(11.7% giảm ST)</span></div>
+              </div>
+              <div class="p-3 bg-slate-50 dark:bg-slate-900/40 rounded-lg border border-slate-100 dark:border-slate-850">
+                <div class="text-xs text-slate-400 mb-0.5">Tốc đánh</div>
+                <div class="font-extrabold text-slate-800 dark:text-slate-200" id="statAspd">0%</div>
+              </div>
+              <div class="p-3 bg-slate-50 dark:bg-slate-900/40 rounded-lg border border-slate-100 dark:border-slate-850">
+                <div class="text-xs text-slate-400 mb-0.5">Chí mạng</div>
+                <div class="font-extrabold text-red-500" id="statCrit">0%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Build Actions -->
+          <div class="mt-8 space-y-3 pt-6 border-t border-slate-200 dark:border-slate-800">
+            <button id="btnSaveBuild" class="w-full bg-brand-blue hover:bg-blue-700 dark:bg-brand-mint dark:hover:bg-emerald-600 text-white font-bold py-3 px-4 rounded-xl transition duration-200 shadow-md flex items-center justify-center gap-2" aria-label="Tải ảnh build đồ về máy">
+              📸 Tải Ảnh Thẻ Build Đồ
+            </button>
+            <button id="btnShareBuild" class="w-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 font-bold py-3 px-4 rounded-xl transition duration-200 flex items-center justify-center gap-2" aria-label="Sao chép liên kết chia sẻ build đồ">
+              🔗 Sao Chép Link Chia Sẻ
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Current 6 Items & Item Selector (7 cols) -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <!-- Sticky 6 Items Bar -->
+          <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800/80 p-6 transition-all duration-300">
+            <div class="flex justify-between items-center mb-4">
+              <h2 class="text-lg font-heading font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                🗡️ Lối lên đồ hiện tại
+              </h2>
+              <button id="btnClearBuild" class="text-xs font-bold text-red-500 dark:text-red-400 hover:underline" aria-label="Xóa tất cả trang bị đang chọn">Xóa Tất Cả</button>
+            </div>
+            
+            <!-- 6 Build Slots -->
+            <div class="grid grid-cols-6 gap-2 sm:gap-4 justify-items-center">
+              {[...Array(6)].map((_, i) => (
+                <div class="build-slot flex flex-col items-center group relative cursor-pointer" data-slot={i}>
+                  <div class="w-11 h-11 sm:w-16 sm:h-16 rounded-full border-2 border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 flex items-center justify-center text-xl sm:text-2xl text-slate-400 transition hover:border-brand-blue dark:hover:border-brand-mint select-none overflow-hidden relative shadow-sm">
+                    <span class="slot-number group-hover:hidden transition-all">{i + 1}</span>
+                    <span class="slot-add hidden group-hover:inline text-brand-blue dark:text-brand-mint transition-all">+</span>
+                    <img class="slot-img w-full h-full object-cover hidden" alt="trang-bi" />
+                    <!-- Delete floating button -->
+                    <div class="slot-delete absolute top-0 right-0 bg-red-500 text-white w-4 h-4 rounded-full text-[9px] items-center justify-center hidden shadow-md">✕</div>
+                  </div>
+                  <span class="slot-name text-[9px] sm:text-xxs text-center font-bold text-slate-500 mt-1 truncate w-12 sm:w-16">Trống</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Items Grid Database -->
+          <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800/80 p-6 transition-all duration-300">
+            <!-- Tabs -->
+            <div class="flex border-b border-slate-200 dark:border-slate-800 overflow-x-auto gap-2 pb-1 scrollbar-thin">
+              <button class="item-tab-btn px-4 py-2 text-xs font-bold rounded-t-xl bg-brand-blue text-white shrink-0" data-cat="atk" aria-label="Trang bị công vật lý">Công vật lý</button>
+              <button class="item-tab-btn px-4 py-2 text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 rounded-t-xl shrink-0" data-cat="ap" aria-label="Trang bị công phép">Công phép</button>
+              <button class="item-tab-btn px-4 py-2 text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 rounded-t-xl shrink-0" data-cat="def" aria-label="Trang bị phòng thủ">Phòng thủ</button>
+              <button class="item-tab-btn px-4 py-2 text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 rounded-t-xl shrink-0" data-cat="speed" aria-label="Trang bị tốc chạy">Tốc chạy</button>
+              <button class="item-tab-btn px-4 py-2 text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 rounded-t-xl shrink-0" data-cat="supp" aria-label="Trang bị trợ thủ">Trợ thủ</button>
+              <button class="item-tab-btn px-4 py-2 text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 rounded-t-xl shrink-0" data-cat="jg" aria-label="Trang bị đi rừng">Đi rừng</button>
+            </div>
+
+            <!-- Items List -->
+            <div id="itemsGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-6 max-h-[360px] overflow-y-auto pr-1">
+              <!-- JS Dynamic -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Hidden canvas for generating image card -->
+    <canvas id="buildCanvas" class="hidden"></canvas>
+
+    <!-- Guide & Info Sections (E-E-A-T) -->
+    <div class="border-t border-slate-200 dark:border-slate-800/80 pt-16 mt-16 max-w-4xl mx-auto space-y-12">
+      
+      <!-- Content Guide -->
+      <article class="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed">
+        <h2 class="text-2xl font-heading font-extrabold text-slate-900 dark:text-white mb-6">
+          Hướng Dẫn Cách Lên Đồ & Tính Sức Mạnh Tướng Liên Quân Mobile
+        </h2>
+        
+        <p>
+          Trong Liên Quân Mobile, một lối lên trang bị (build đồ) thông minh và phù hợp với tình huống trận đấu chính là chìa khóa chiếm 50% tỷ lệ chiến thắng. Công cụ này được thiết kế để giúp bạn mô phỏng trực quan, tính toán chi tiết sự thay đổi chỉ số sức mạnh của các vị tướng khi mang trên mình các món trang bị cấp 3 khác nhau.
+        </p>
+
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">1. Công Thức Tính Tỷ Lệ Giảm Sát Thương</h3>
+        <p>
+          Khi lên các món đồ phòng thủ cộng Giáp vật lý hoặc Giáp phép, game sử dụng một công thức phi tuyến tính để quy đổi điểm giáp thành phần trăm giảm sát thương nhận vào:
+        </p>
+        <div class="bg-slate-50 dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-center my-6">
+          <p class="font-mono text-base font-bold text-slate-800 dark:text-slate-200">
+            Tỷ lệ giảm sát thương (%) = [ Giáp / (Giáp + 600) ] x 100%
+          </p>
+        </div>
+        <p>
+          <strong>Ví dụ thực tế:</strong>
+          <br />• Nếu tướng có <strong>600 giáp</strong>: Tỷ lệ giảm sát thương là \(600 / (600 + 600) = 50\%\). Bạn sẽ chỉ nhận một nửa sát thương vật lý từ kẻ địch.
+          <br />• Nếu tướng có <strong>1800 giáp</strong>: Tỷ lệ giảm sát thương là \(1800 / (1800 + 600) = 75\%\). 
+          <br /><em>Nhận xét: Điểm giáp càng cao thì hiệu quả giảm sát thương biên sẽ giảm dần (Diminishing returns). Do đó, đấu sĩ hoặc đỡ đòn nên cân bằng giữa giáp và lượng máu tối đa.</em>
+        </p>
+
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">2. Các Giới Hạn Chỉ Số Quan Trọng Trong Liên Quân</h3>
+        <ul>
+          <li><strong>Giảm hồi chiêu (Cooldown Reduction):</strong> Tối đa là <strong>40%</strong>. Mọi nguồn giảm hồi chiêu vượt quá mốc này từ trang bị, ngọc bổ trợ hay phù hiệu đều sẽ vô hiệu.</li>
+          <li><strong>Tốc độ đánh (Attack Speed):</strong> Tối đa là <strong>200%</strong>.</li>
+          <li><strong>Tốc độ chạy (Movement Speed):</strong> Giới hạn cơ bản, có cơ chế giảm hiệu ứng khi vượt ngưỡng cao để tránh tướng chạy quá nhanh.</li>
+        </ul>
+
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">3. Gợi ý lối lên đồ phổ biến cho các vai trò</h3>
+        <div class="overflow-x-auto my-6 border border-slate-200 dark:border-slate-850 rounded-xl">
+          <table class="w-full text-sm text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50 dark:bg-slate-900/60 text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800">
+                <th class="p-3 font-bold">Vị trí (Lane)</th>
+                <th class="p-3 font-bold">Trang bị cốt lõi khuyên dùng</th>
+                <th class="p-3 font-bold">Mục tiêu chỉ số</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-slate-200 dark:border-slate-850">
+                <td class="p-3 font-semibold">Đấu sĩ đi Top (Solo)</td>
+                <td class="p-3">Giày kiên cường, Thương Longinus, Phức hợp kiếm, Huân chương Troy, Giáp hộ mệnh</td>
+                <td class="p-3">Đạt 35% - 40% Giảm hồi chiêu, giáp tầm 900+</td>
+              </tr>
+              <tr class="border-b border-slate-200 dark:border-slate-850">
+                <td class="p-3 font-semibold">Xạ thủ (AD Carry)</td>
+                <td class="p-3">Giày du mục, Kiếm Fafnir, Thánh kiếm, Diệt thần cung, Nanh Fenrir</td>
+                <td class="p-3">Tốc đánh tối thiểu 120%+, tỷ lệ chí mạng > 50%</td>
+              </tr>
+              <tr class="border-b border-slate-200 dark:border-slate-850">
+                <td class="p-3 font-semibold">Pháp sư Đường giữa (Mid)</td>
+                <td class="p-3">Giày thuật sĩ, Trượng bùng nổ, Vương miện Hecate, Trượng hỗn mang, Sách thánh</td>
+                <td class="p-3">Công phép đạt trên 1200+, xuyên giáp phép đạt 40%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- FAQ Section (FAQPage Schema compatible) -->
+      <div class="space-y-6">
+        <h3 class="text-xl font-heading font-extrabold text-slate-900 dark:text-white">
+          Câu Hỏi Thường Gặp (FAQs)
+        </h3>
+        
+        <div class="space-y-4">
+          <details class="group bg-white dark:bg-brand-darkCard rounded-xl border border-slate-250 dark:border-slate-800/80 p-4 transition duration-300">
+            <summary class="font-bold text-slate-900 dark:text-white cursor-pointer select-none list-none flex justify-between items-center">
+              <span>Tại sao lên trang bị giảm hồi chiêu quá 40% chỉ số trên công cụ vẫn giữ nguyên ở 40%?</span>
+              <span class="text-slate-400 group-open:rotate-180 transition duration-200">▼</span>
+            </summary>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
+              Theo quy tắc vật lý trong trò chơi Liên Quân Mobile, chỉ số Giảm hồi chiêu bị giới hạn tối đa (Cap) ở mức 40%. Việc lên thêm đồ hồi chiêu sẽ không mang lại tác dụng bổ sung. Công cụ này được thiết kế dựa trên đúng cơ chế game để phản ánh chính xác sức mạnh tướng.
+            </p>
+          </details>
+
+          <details class="group bg-white dark:bg-brand-darkCard rounded-xl border border-slate-250 dark:border-slate-800/80 p-4 transition duration-300">
+            <summary class="font-bold text-slate-900 dark:text-white cursor-pointer select-none list-none flex justify-between items-center">
+              <span>Nội tại duy nhất của các trang bị trùng nhau có được cộng dồn không?</span>
+              <span class="text-slate-400 group-open:rotate-180 transition duration-200">▼</span>
+            </summary>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
+              Không. Các trang bị ghi là "Nội tại duy nhất" trùng tên (Ví dụ: Nội tại của Thương Longinus và Thương Xuyên Phá, hoặc hai chiếc Vương miện Hecate) sẽ không cộng dồn hiệu ứng nội tại. Bạn chỉ nhận được các chỉ số cơ bản (Máu, Công vật lý...) từ món đồ thứ hai.
+            </p>
+          </details>
+
+          <details class="group bg-white dark:bg-brand-darkCard rounded-xl border border-slate-250 dark:border-slate-800/80 p-4 transition duration-300">
+            <summary class="font-bold text-slate-900 dark:text-white cursor-pointer select-none list-none flex justify-between items-center">
+              <span>Cách chia sẻ lối lên đồ của tôi cho bạn bè như thế nào?</span>
+              <span class="text-slate-400 group-open:rotate-180 transition duration-200">▼</span>
+            </summary>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
+              Bạn chỉ cần nhấn nút <strong>"Sao Chép Link Chia Sẻ"</strong> ở phía bên trái. Công cụ sẽ tạo một đường dẫn mã hóa đặc biệt. Khi bạn gửi link này cho bạn bè, họ chỉ cần mở ra là hệ thống sẽ tự động hiển thị tướng và 6 trang bị bạn đã thiết lập trước đó.
+            </p>
+          </details>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+</Layout>
+
+<!-- Client scripts for interactivity -->
+<script is:inline>
+  const isEn = localStorage.getItem("lang") === "en";
+
+  const TRANSLATIONS = {
+    // Roles
+    'Đỡ đòn / Đấu sĩ': 'Tank / Warrior',
+    'Xạ thủ': 'Marksman',
+    'Đấu sĩ': 'Warrior',
+    'Sát thủ': 'Assassin',
+    'Pháp sư': 'Mage',
+    'Trợ thủ': 'Support',
+    'Pháp sư / Sát thủ': 'Mage / Assassin',
+    'Đấu sĩ / Đỡ đòn': 'Warrior / Tank',
+
+    // Item stats descriptions
+    '+200 Công vật lý': '+200 Physical Attack',
+    '+60 Công vật lý, +30% Tốc đánh': '+60 Physical Attack, +30% Attack Speed',
+    '+75 Công vật lý, +10% Hồi chiêu, +40% Xuyên giáp': '+75 Physical Attack, +10% Cooldown Red., +40% Armor Pierce',
+    '+80 Công vật lý, +15% Hồi chiêu, +500 Máu': '+80 Physical Attack, +15% Cooldown Red., +500 HP',
+    '+70 Công vật lý, +15% Tốc đánh, +10% Hồi chiêu, +500 Máu': '+70 Physical Attack, +15% Attack Speed, +10% Cooldown Red., +500 HP',
+    '+35% Tốc đánh, +25% Chí mạng, +7% Tốc chạy': '+35% Attack Speed, +25% Critical Rate, +7% Movement Speed',
+    '+30% Tốc đánh, +20% Chí mạng, +5% Tốc chạy': '+30% Attack Speed, +20% Critical Rate, +5% Movement Speed',
+    '+200 Công phép': '+200 Magic Attack',
+    '+200 Công phép, +5% Tốc chạy': '+200 Magic Attack, +5% Movement Speed',
+    '+140 Công phép, +10% Hồi chiêu, +25% Hút máu phép': '+140 Magic Attack, +10% Cooldown Red., +25% Magic Lifesteal',
+    '+400 Công phép, +1400 Máu': '+400 Magic Attack, +1400 HP',
+    '+180 Công phép, +10% Hồi chiêu, +40% Xuyên phép': '+180 Magic Attack, +10% Cooldown Red., +40% Magic Pierce',
+    '+140 Công phép, +850 Máu, +5% Tốc chạy': '+140 Magic Attack, +850 HP, +5% Movement Speed',
+    '+275 Giáp, +1200 Máu': '+275 Armor, +1200 HP',
+    '+240 Giáp phép, +1200 Máu, +5% Tốc chạy': '+240 Magic Defense, +1200 HP, +5% Movement Speed',
+    '+360 Giáp phép, +1000 Máu, +10% Hồi chiêu': '+360 Magic Defense, +1000 HP, +10% Cooldown Red.',
+    '+300 Giáp, +1200 Máu': '+300 Armor, +1200 HP',
+    '+2000 Máu': '+2000 HP',
+    '+120 Giáp, +120 Giáp phép, Hồi sinh': '+120 Armor, +120 Magic Defense, Resurrect',
+    '+250 Giáp, +10% Hồi chiêu, +800 Máu': '+250 Armor, +10% Cooldown Red., +800 HP',
+    '+110 Giáp phép, +60 Tốc chạy, +35% Kháng hiệu ứng': '+110 Magic Defense, +60 Movement Speed, +35% Resistance',
+    '+110 Giáp, +60 Tốc chạy': '+110 Armor, +60 Movement Speed',
+    '+60 Tốc chạy, +15% Hồi chiêu': '+60 Movement Speed, +15% Cooldown Red.',
+    '+60 Tốc chạy, +25% Tốc đánh': '+60 Movement Speed, +25% Attack Speed',
+    '+60 Tốc chạy': '+60 Movement Speed',
+    '+10% Hồi chiêu, +600 Máu, Tạo lá chắn': '+10% Cooldown Red., +600 HP, Shield active',
+    '+10% Hồi chiêu, +600 Máu, Soi tàng hình': '+10% Cooldown Red., +600 HP, Vision active',
+    '+10% Hồi chiêu, +5% Tốc chạy, Gây sát thương': '+10% Cooldown Red., +5% Movement Speed, Burn active',
+    '+120 Giáp, +250 Máu': '+120 Armor, +250 HP',
+    '+80 Công vật lý, +10% Hồi chiêu': '+80 Physical Attack, +10% Cooldown Red.',
+    '+120 Công phép, +10% Hồi chiêu': '+120 Magic Attack, +10% Cooldown Red.',
+    '+15 Công vật lý, +15% Tốc đánh, +10% Hút máu': '+15 Physical Attack, +15% Attack Speed, +10% Lifesteal',
+    
+    // Item names
+    'Nanh Fenrir': 'Fenrir\'s Tooth',
+    'Kiếm Fafnir': 'Fafnir\'s Talon',
+    'Kiếm Muramasa': 'Muramasa',
+    'Thương Longinus': 'Spear of Longinus',
+    'Phức Hợp Kiếm': 'Omni Arms',
+    'Song Đao Bão Táp': 'Slikk\'s Sting',
+    'Vuốt Hung Tàn': 'Devil\'s Handshake',
+    'Vương Miện Hecate': 'Hecate\'s Diadem',
+    'Trượng Bùng Nổ': 'Boomstick',
+    'Quyền Trượng Rhea': 'Rhea\'s Blessing',
+    'Sách Thánh': 'Holy of Holies',
+    'Trượng Hỗn Mang': 'Staff of Nuul',
+    'Trượng Băng': 'Frosty\'s Revenge',
+    'Khiên Thất Truyền': 'The Aegis',
+    'Giáp Gaia': 'Gaia\'s Standard',
+    'Huân Chương Troy': 'Medallion of Troy',
+    'Giáp Thống Khổ': 'Shield of Lost',
+    'Phù Chú Trường Sinh': 'Amulet of Longevity',
+    'Giáp Hộ Mệnh': 'Ancestral Glory',
+    'Áo Choàng Băng': 'Frost Cape',
+    'Giày Kiên Cường': 'Gilded Greaves',
+    'Giày Hộ Vệ': 'Sonic Boots',
+    'Giày Thuật Sĩ': 'Flashy Boots',
+    'Giày Du Mục': 'War Boots',
+    'Giày Hermes': 'Hermes\' Select',
+    'Phụ Trợ Đại Địa': 'Earth Supporter',
+    'Phụ Trợ Thủy Triều': 'Water Supporter',
+    'Phụ Trợ Liệt Hỏa': 'Fire Supporter',
+    'Rìu Leviathan': 'Leviathan',
+    'Kiếm Truy Hồn': 'Soulreaver',
+    'Gươm Loki': 'Loki\'s Cover',
+    'Cung Bão Tố': 'Whispering Wind',
+
+    // UI strings
+    'Trống': 'Empty',
+    'giảm ST': 'reduction',
+    'Vượt': 'Exceeded',
+  };
+
+  function t(text) {
+    if (!isEn) return text;
+    return TRANSLATIONS[text] || text;
+  }
+
+  // Hero Database
+  const HEROES = [
+    { id: 'arthur', name: 'Arthur', icon: '🛡️', role: 'Đỡ đòn / Đấu sĩ', hp: 3622, atk: 164, ap: 0, def: 139, mdef: 80, aspd: 0, crit: 0, speed: 390 },
+    { id: 'valhein', name: 'Valhein', icon: '🏹', role: 'Xạ thủ', hp: 3235, atk: 178, ap: 0, def: 89, mdef: 80, aspd: 0, crit: 0, speed: 360 },
+    { id: 'florentino', name: 'Florentino', icon: '⚔️', role: 'Đấu sĩ', hp: 3432, atk: 170, ap: 0, def: 110, mdef: 80, aspd: 0, crit: 0, speed: 390 },
+    { id: 'nakroth', name: 'Nakroth', icon: '💨', role: 'Sát thủ', hp: 3122, atk: 172, ap: 0, def: 92, mdef: 80, aspd: 0, crit: 0, speed: 380 },
+    { id: 'krixi', name: 'Krixi', icon: '🦋', role: 'Pháp sư', hp: 3089, atk: 153, ap: 0, def: 83, mdef: 80, aspd: 0, crit: 0, speed: 350 },
+    { id: 'alice', name: 'Alice', icon: '✨', role: 'Trợ thủ', hp: 3120, atk: 148, ap: 0, def: 88, mdef: 80, aspd: 0, crit: 0, speed: 360 },
+    { id: 'tulen', name: 'Tulen', icon: '⚡', role: 'Pháp sư / Sát thủ', hp: 3200, atk: 158, ap: 0, def: 95, mdef: 80, aspd: 0, crit: 0, speed: 360 },
+    { id: 'elsu', name: 'Elsu', icon: '🎯', role: 'Xạ thủ', hp: 3310, atk: 188, ap: 0, def: 90, mdef: 80, aspd: 0, crit: 0, speed: 360 },
+    { id: 'yorn', name: 'Yorn', icon: '🔥', role: 'Xạ thủ', hp: 3180, atk: 175, ap: 0, def: 85, mdef: 80, aspd: 0, crit: 0, speed: 350 },
+    { id: 'maloch', name: 'Maloch', icon: '👹', role: 'Đấu sĩ / Đỡ đòn', hp: 3850, atk: 170, ap: 0, def: 125, mdef: 80, aspd: 0, crit: 0, speed: 380 }
+  ];
+
+  // Items Database
+  const ITEMS = [
+    // Công vật lý (atk)
+    { id: 'nanh-fenrir', name: 'Nanh Fenrir', cat: 'atk', icon: '🗡️', desc: '+200 Công vật lý', stats: { atk: 200 } },
+    { id: 'kiem-fafnir', name: 'Kiếm Fafnir', cat: 'atk', icon: '⚔️', desc: '+60 Công vật lý, +30% Tốc đánh', stats: { atk: 60, aspd: 30 } },
+    { id: 'kiem-muramasa', name: 'Kiếm Muramasa', cat: 'atk', icon: '🛡️', desc: '+75 Công vật lý, +10% Hồi chiêu, +40% Xuyên giáp', stats: { atk: 75, cdr: 10 } },
+    { id: 'thuong-longinus', name: 'Thương Longinus', cat: 'atk', icon: '🔱', desc: '+80 Công vật lý, +15% Hồi chiêu, +500 Máu', stats: { atk: 80, cdr: 15, hp: 500 } },
+    { id: 'phuc-hop-kiem', name: 'Phức Hợp Kiếm', cat: 'atk', icon: '💠', desc: '+70 Công vật lý, +15% Tốc đánh, +10% Hồi chiêu, +500 Máu', stats: { atk: 70, aspd: 15, cdr: 10, hp: 500 } },
+    { id: 'song-dao-bao-tap', name: 'Song Đao Bão Táp', cat: 'atk', icon: '🌪️', desc: '+35% Tốc đánh, +25% Chí mạng, +7% Tốc chạy', stats: { aspd: 35, crit: 25, speed: 7 } },
+    { id: 'vuot-hung-tan', name: 'Vuốt Hung Tàn', cat: 'atk', icon: '🐾', desc: '+30% Tốc đánh, +20% Chí mạng, +5% Tốc chạy', stats: { aspd: 30, crit: 20, speed: 5 } },
+
+    // Công phép (ap)
+    { id: 'vuong-mien-hecate', name: 'Vương Miện Hecate', cat: 'ap', icon: '👑', desc: '+200 Công phép', stats: { ap: 200 } },
+    { id: 'truong-bung-no', name: 'Trượng Bùng Nổ', cat: 'ap', icon: '💥', desc: '+200 Công phép, +5% Tốc chạy', stats: { ap: 200, speed: 5 } },
+    { id: 'quyen-truong-rhea', name: 'Quyền Trượng Rhea', cat: 'ap', icon: '🔮', desc: '+140 Công phép, +10% Hồi chiêu, +25% Hút máu phép', stats: { ap: 140, cdr: 10 } },
+    { id: 'sach-thanh', name: 'Sách Thánh', cat: 'ap', icon: '📖', desc: '+400 Công phép, +1400 Máu', stats: { ap: 400, hp: 1400 } },
+    { id: 'truong-hon-mang', name: 'Trượng Hỗn Mang', cat: 'ap', icon: '🌪️', desc: '+180 Công phép, +10% Hồi chiêu, +40% Xuyên phép', stats: { ap: 180, cdr: 10 } },
+    { id: 'truong-bang', name: 'Trượng Băng', cat: 'ap', icon: '❄️', desc: '+140 Công phép, +850 Máu, +5% Tốc chạy', stats: { ap: 140, hp: 850, speed: 5 } },
+
+    // Phòng thủ (def)
+    { id: 'khien-that-truyen', name: 'Khiên Thất Truyền', cat: 'def', icon: '🛡️', desc: '+275 Giáp, +1200 Máu', stats: { def: 275, hp: 1200 } },
+    { id: 'giap-gaia', name: 'Giáp Gaia', cat: 'def', icon: '🌿', desc: '+240 Giáp phép, +1200 Máu, +5% Tốc chạy', stats: { mdef: 240, hp: 1200, speed: 5 } },
+    { id: 'huan-chuong-troy', name: 'Huân Chương Troy', cat: 'def', icon: '🏅', desc: '+360 Giáp phép, +1000 Máu, +10% Hồi chiêu', stats: { mdef: 360, hp: 1000, cdr: 10 } },
+    { id: 'giap-thong-kho', name: 'Giáp Thống Khổ', cat: 'def', icon: '🔗', desc: '+300 Giáp, +1200 Máu', stats: { def: 300, hp: 1200 } },
+    { id: 'phu-chu-truong-sinh', name: 'Phù Chú Trường Sinh', cat: 'def', icon: '🧬', desc: '+2000 Máu', stats: { hp: 2000 } },
+    { id: 'giap-ho-menh', name: 'Giáp Hộ Mệnh', cat: 'def', icon: '👼', desc: '+120 Giáp, +120 Giáp phép, Hồi sinh', stats: { def: 120, mdef: 120 } },
+    { id: 'ao-choang-bang-gia', name: 'Áo Choàng Băng', cat: 'def', icon: '🧥', desc: '+250 Giáp, +10% Hồi chiêu, +800 Máu', stats: { def: 250, cdr: 10, hp: 800 } },
+
+    // Tốc chạy (speed)
+    { id: 'giay-kien-cuong', name: 'Giày Kiên Cường', cat: 'speed', icon: '🥾', desc: '+110 Giáp phép, +60 Tốc chạy, +35% Kháng hiệu ứng', stats: { mdef: 110, speed: 60 } },
+    { id: 'giay-ho-ve', name: 'Giày Hộ Vệ', cat: 'speed', icon: '👞', desc: '+110 Giáp, +60 Tốc chạy', stats: { def: 110, speed: 60 } },
+    { id: 'giay-thuat-si', name: 'Giày Thuật Sĩ', cat: 'speed', icon: '🧦', desc: '+60 Tốc chạy, +15% Hồi chiêu', stats: { speed: 60, cdr: 15 } },
+    { id: 'giay-du-moc', name: 'Giày Du Mục', cat: 'speed', icon: '👟', desc: '+60 Tốc chạy, +25% Tốc đánh', stats: { speed: 60, aspd: 25 } },
+    { id: 'giay-hermes', name: 'Giày Hermes', cat: 'speed', icon: '🏇', desc: '+60 Tốc chạy', stats: { speed: 60 } },
+
+    // Trợ thủ (supp)
+    { id: 'phu-tro-dai-dia', name: 'Phụ Trợ Đại Địa', cat: 'supp', icon: '🌍', desc: '+10% Hồi chiêu, +600 Máu, Tạo lá chắn', stats: { cdr: 10, hp: 600 } },
+    { id: 'phu-tro-thuy-trieu', name: 'Phụ Trợ Thủy Triều', cat: 'supp', icon: '🌊', desc: '+10% Hồi chiêu, +600 Máu, Soi tàng hình', stats: { cdr: 10, hp: 600 } },
+    { id: 'phu-tro-liet-hoa', name: 'Phụ Trợ Liệt Hỏa', cat: 'supp', icon: '🔥', desc: '+10% Hồi chiêu, +5% Tốc chạy, Gây sát thương', stats: { cdr: 10, speed: 5 } },
+
+    // Đi rừng (jg)
+    { id: 'riu-leviathan', name: 'Rìu Leviathan', cat: 'jg', icon: '🪓', desc: '+120 Giáp, +250 Máu', stats: { def: 120, hp: 250 } },
+    { id: 'kiem-truy-hon', name: 'Kiếm Truy Hồn', cat: 'jg', icon: '🗡️', desc: '+80 Công vật lý, +10% Hồi chiêu', stats: { atk: 80, cdr: 10 } },
+    { id: 'guom-loki', name: 'Gươm Loki', cat: 'jg', icon: '⚔️', desc: '+120 Công phép, +10% Hồi chiêu', stats: { ap: 120, cdr: 10 } },
+    { id: 'cung-bao-to', name: 'Cung Bão Tố', cat: 'jg', icon: '🏹', desc: '+15 Công vật lý, +15% Tốc đánh, +10% Hút máu', stats: { atk: 15, aspd: 15 } }
+  ];
+
+  // Current build state
+  let currentHero = HEROES[0];
+  let currentBuild = [null, null, null, null, null, null];
+  let selectedSlot = 0;
+
+  // DOM Elements
+  const heroSelect = document.getElementById('heroSelect');
+  const heroIcon = document.getElementById('heroIcon');
+  const heroName = document.getElementById('heroName');
+  const heroRole = document.getElementById('heroRole');
+  const itemsGrid = document.getElementById('itemsGrid');
+  const buildSlots = document.querySelectorAll('.build-slot');
+
+  // Stats DOM
+  const statHp = document.getElementById('statHp');
+  const statCdr = document.getElementById('statCdr');
+  const statAtk = document.getElementById('statAtk');
+  const statAp = document.getElementById('statAp');
+  const statDef = document.getElementById('statDef');
+  const statDefPct = document.getElementById('statDefPct');
+  const statMdef = document.getElementById('statMdef');
+  const statMdefPct = document.getElementById('statMdefPct');
+  const statAspd = document.getElementById('statAspd');
+  const statCrit = document.getElementById('statCrit');
+
+  // Initialize Hero List
+  HEROES.forEach(hero => {
+    const opt = document.createElement('option');
+    opt.value = hero.id;
+    opt.innerText = `${hero.name} (${t(hero.role)})`;
+    heroSelect.appendChild(opt);
+  });
+
+  // Switch Hero
+  function setHero(heroId) {
+    const hero = HEROES.find(h => h.id === heroId) || HEROES[0];
+    currentHero = hero;
+    heroSelect.value = hero.id;
+    heroIcon.innerText = hero.icon;
+    heroName.innerText = hero.name;
+    heroRole.innerText = t(hero.role);
+    updateStats();
+  }
+
+  // Set selected item slot
+  function highlightSlot(idx) {
+    selectedSlot = idx;
+    buildSlots.forEach((slot, i) => {
+      if (i === idx) {
+        slot.querySelector('.rounded-full').classList.add('ring-4', 'ring-brand-blue', 'dark:ring-brand-mint');
+      } else {
+        slot.querySelector('.rounded-full').classList.remove('ring-4', 'ring-brand-blue', 'dark:ring-brand-mint');
+      }
+    });
+  }
+
+  // Load items of a category
+  function loadItems(category) {
+    itemsGrid.innerHTML = '';
+    const filtered = ITEMS.filter(item => item.cat === category);
+    
+    filtered.forEach(item => {
+      const card = document.createElement('button');
+      card.className = "flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-blue dark:hover:border-brand-mint rounded-xl text-left transition select-none group focus:outline-none";
+      card.setAttribute('aria-label', `Chọn ${t(item.name)}`);
+      card.innerHTML = `
+        <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-xl shrink-0 group-hover:scale-110 transition duration-200">${item.icon}</div>
+        <div>
+          <div class="text-xs font-bold text-slate-800 dark:text-slate-200">${t(item.name)}</div>
+          <div class="text-[10px] text-slate-400 leading-snug mt-0.5">${t(item.desc)}</div>
+        </div>
+      `;
+      card.addEventListener('click', () => {
+        addItemToBuild(item);
+      });
+      itemsGrid.appendChild(card);
+    });
+  }
+
+  // Add item
+  function addItemToBuild(item) {
+    currentBuild[selectedSlot] = item;
+    
+    const slotEl = buildSlots[selectedSlot];
+    const nameEl = slotEl.querySelector('.slot-name');
+    const iconWrapper = slotEl.querySelector('.rounded-full');
+
+    iconWrapper.innerHTML = `<span class="text-2xl">${item.icon}</span><div class="slot-delete absolute top-0 right-0 bg-red-500 text-white w-4 h-4 rounded-full text-[9px] flex items-center justify-center shadow-md">✕</div>`;
+    nameEl.innerText = t(item.name);
+
+    iconWrapper.querySelector('.slot-delete').addEventListener('click', (e) => {
+      e.stopPropagation();
+      removeItemFromSlot(selectedSlot);
+    });
+
+    let nextSlot = (selectedSlot + 1) % 6;
+    highlightSlot(nextSlot);
+    
+    updateStats();
+    updateHash();
+  }
+
+  // Remove item from a slot
+  function removeItemFromSlot(idx) {
+    currentBuild[idx] = null;
+    const slotEl = buildSlots[idx];
+    const nameEl = slotEl.querySelector('.slot-name');
+    const iconWrapper = slotEl.querySelector('.rounded-full');
+
+    iconWrapper.innerHTML = `
+      <span class="slot-number group-hover:hidden transition-all">${idx + 1}</span>
+      <span class="slot-add hidden group-hover:inline text-brand-blue dark:text-brand-mint transition-all">+</span>
+    `;
+    nameEl.innerText = t('Trống');
+    
+    highlightSlot(idx);
+    updateStats();
+    updateHash();
+  }
+
+  // Calculate final stats
+  function updateStats() {
+    let hp = currentHero.hp;
+    let atk = currentHero.atk;
+    let ap = currentHero.ap;
+    let def = currentHero.def;
+    let mdef = currentHero.mdef;
+    let aspd = currentHero.aspd;
+    let crit = currentHero.crit;
+    let speed = currentHero.speed;
+    let cdr = 0;
+
+    currentBuild.forEach(item => {
+      if (item && item.stats) {
+        if (item.stats.hp) hp += item.stats.hp;
+        if (item.stats.atk) atk += item.stats.atk;
+        if (item.stats.ap) ap += item.stats.ap;
+        if (item.stats.def) def += item.stats.def;
+        if (item.stats.mdef) mdef += item.stats.mdef;
+        if (item.stats.aspd) aspd += item.stats.aspd;
+        if (item.stats.crit) crit += item.stats.crit;
+        if (item.stats.speed) {
+          if (item.cat === 'speed') {
+            speed += item.stats.speed;
+          } else {
+            speed += Math.round(currentHero.speed * (item.stats.speed / 100));
+          }
+        }
+        if (item.stats.cdr) cdr += item.stats.cdr;
+      }
+    });
+
+    const cdrCap = cdr > 40 ? 40 : cdr;
+
+    const physicalRed = Math.round((def / (def + 600)) * 1000) / 10;
+    const magicRed = Math.round((mdef / (mdef + 600)) * 1000) / 10;
+
+    statHp.innerText = hp;
+    statCdr.innerText = `${cdrCap}%` + (cdr > 40 ? ` (${t('Vượt')} ${cdr - 40}%)` : '');
+    if (cdr > 40) {
+      statCdr.classList.add('text-red-500');
+    } else {
+      statCdr.classList.remove('text-red-500');
+    }
+    statAtk.innerText = atk;
+    statAp.innerText = ap;
+    statDef.innerHTML = `${def} <span class="text-xs font-normal text-slate-400">(${physicalRed}% ${t('giảm ST')})</span>`;
+    statMdef.innerHTML = `${mdef} <span class="text-xs font-normal text-slate-400">(${magicRed}% ${t('giảm ST')})</span>`;
+    statAspd.innerText = `${aspd}%`;
+    statCrit.innerText = `${crit}%`;
+  }
+
+  // Update hash url
+  function updateHash() {
+    const itemIds = currentBuild.map(item => item ? item.id : 'null').join(',');
+    window.history.replaceState(null, null, `#hero=${currentHero.id}&items=${itemIds}`);
+  }
+
+  // Load from hash url
+  function loadFromHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    
+    const params = new URLSearchParams(hash.substring(1));
+    const heroId = params.get('hero');
+    const itemsStr = params.get('items');
+
+    if (heroId) {
+      setHero(heroId);
+    }
+    if (itemsStr) {
+      const ids = itemsStr.split(',');
+      ids.forEach((id, idx) => {
+        if (id && id !== 'null') {
+          const item = ITEMS.find(it => it.id === id);
+          if (item) {
+            selectedSlot = idx;
+            addItemToBuild(item);
+          }
+        }
+      });
+      highlightSlot(0);
+    }
+  }
+
+  // Trigger telemetry increment
+  function trackCalculations() {
+    try {
+      const key = 'calc_real_count_build-do-lien-quan';
+      localStorage.setItem(key, parseInt(localStorage.getItem(key) || '0') + 1);
+    } catch(e) {}
+  }
+
+  // Setup Event Listeners
+  heroSelect.addEventListener('change', (e) => {
+    setHero(e.target.value);
+    updateHash();
+    trackCalculations();
+  });
+
+  buildSlots.forEach((slot, i) => {
+    slot.addEventListener('click', () => {
+      highlightSlot(i);
+    });
+  });
+
+  document.getElementById('btnClearBuild').addEventListener('click', () => {
+    currentBuild.forEach((_, i) => {
+      removeItemFromSlot(i);
+    });
+    highlightSlot(0);
+  });
+
+  const tabBtns = document.querySelectorAll('.item-tab-btn');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      tabBtns.forEach(b => b.className = "item-tab-btn px-4 py-2 text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 rounded-t-xl shrink-0");
+      e.target.className = "item-tab-btn px-4 py-2 text-xs font-bold rounded-t-xl bg-brand-blue text-white shrink-0";
+      loadItems(e.target.dataset.cat);
+    });
+  });
+
+  document.getElementById('btnShareBuild').addEventListener('click', () => {
+    trackCalculations();
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      alert(isEn ? 'Build link copied successfully! You can send this link to your friends.' : 'Đã sao chép liên kết build đồ thành công! Bạn có thể gửi link này cho bạn bè.');
+    }).catch(err => {
+      alert(isEn ? 'Cannot copy link. Please copy it directly from address bar.' : 'Không thể sao chép liên kết. Hãy copy đường dẫn trực tiếp trên thanh địa chỉ.');
+    });
+  });
+
+  document.getElementById('btnSaveBuild').addEventListener('click', () => {
+    trackCalculations();
+    const canvas = document.getElementById('buildCanvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = 600;
+    canvas.height = 400;
+
+    const grad = ctx.createLinearGradient(0, 0, 600, 400);
+    grad.addColorStop(0, '#1e293b');
+    grad.addColorStop(1, '#0f172a');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 600, 400);
+
+    ctx.strokeStyle = '#38bdf8';
+    ctx.lineWidth = 4;
+    ctx.strokeRect(10, 10, 580, 380);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 24px Arial';
+    ctx.fillText(isEn ? 'ARENA OF VALOR HERO BUILD CARD' : 'THẺ LỐI LÊN ĐỒ LIÊN QUÂN MOBILE', 40, 50);
+
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '14px Arial';
+    ctx.fillText(isEn ? 'trolyso.online - Online Calculator Tools' : 'trolyso.online - Công cụ tính toán trực tuyến', 40, 75);
+
+    ctx.fillStyle = '#38bdf8';
+    ctx.font = 'bold 20px Arial';
+    ctx.fillText(isEn ? `${currentHero.icon} Hero: ${currentHero.name}` : `${currentHero.icon} Vị tướng: ${currentHero.name}`, 40, 120);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '14px Arial';
+    ctx.fillText(isEn ? `Role: ${t(currentHero.role)}` : `Vai trò: ${currentHero.role}`, 40, 145);
+
+    ctx.fillStyle = '#e2e8f0';
+    ctx.font = 'bold 13px Arial';
+    ctx.fillText(isEn ? `Max HP: ${statHp.innerText}` : `Máu tối đa: ${statHp.innerText}`, 40, 185);
+    ctx.fillText(isEn ? `Physical Attack: ${statAtk.innerText}` : `Công vật lý: ${statAtk.innerText}`, 40, 210);
+    ctx.fillText(isEn ? `Magic Attack: ${statAp.innerText}` : `Công phép: ${statAp.innerText}`, 40, 235);
+    ctx.fillText(isEn ? `Physical Defense: ${statDef.innerText.split(' ')[0]}` : `Giáp vật lý: ${statDef.innerText.split(' ')[0]}`, 40, 260);
+    ctx.fillText(isEn ? `Magic Defense: ${statMdef.innerText.split(' ')[0]}` : `Giáp phép: ${statMdef.innerText.split(' ')[0]}`, 40, 285);
+    ctx.fillText(isEn ? `Cooldown Red.: ${statCdr.innerText}` : `Giảm hồi chiêu: ${statCdr.innerText}`, 40, 310);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 16px Arial';
+    ctx.fillText(isEn ? 'Selected Items:' : 'Trang bị đã chọn:', 340, 120);
+
+    currentBuild.forEach((item, idx) => {
+      const y = 155 + (idx * 35);
+      ctx.fillStyle = item ? '#0ea5e9' : '#475569';
+      ctx.beginPath();
+      ctx.arc(360, y - 5, 12, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '14px Arial';
+      ctx.fillText(item ? item.icon : '-', 353, y);
+
+      ctx.fillStyle = item ? '#ffffff' : '#94a3b8';
+      ctx.font = 'bold 13px Arial';
+      ctx.fillText(item ? `${idx + 1}. ${t(item.name)}` : `${idx + 1}. ${isEn ? 'Empty' : 'Trống'}`, 385, y);
+    });
+
+    ctx.fillStyle = '#475569';
+    ctx.font = 'italic 11px Arial';
+    ctx.fillText(isEn ? 'Copyright © 2026 trolyso.online' : 'Bản quyền thuộc về trolyso.online 2026', 40, 360);
+
+    const link = document.createElement('a');
+    link.download = `build-do-${currentHero.id}-trolyso.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+
+  setHero('arthur');
+  highlightSlot(0);
+  loadItems('atk');
+  loadFromHash();
+</script>
