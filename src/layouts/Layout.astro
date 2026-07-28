@@ -313,16 +313,11 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
           
           <!-- Dark Mode Toggle & Menu -->
           <div class="flex items-center gap-3 sm:gap-4">
-            <!-- Search Bar -->
-            <div class="relative hidden sm:block">
-              <input type="text" id="globalSearchInput" placeholder="Tìm công cụ, bài viết..." aria-label="Tìm kiếm công cụ và bài viết" class="w-44 lg:w-52 pl-9 pr-4 py-2 rounded-full border border-slate-200/50 dark:border-slate-800/50 bg-slate-50/50 dark:bg-slate-900/50 focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint text-xs font-medium transition-all" />
-              <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-              </svg>
-              <div id="searchDropdown" class="absolute right-0 top-full mt-2 w-72 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-xl shadow-xl z-50 p-2 hidden max-h-80 overflow-y-auto">
-                <!-- Results -->
-              </div>
-            </div>
+
+
+            <a href="/calculators/" class="text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint transition-colors">
+              Công Cụ
+            </a>
 
             <a href="/blog/" class="text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-mint transition-colors">
               Cẩm Nang
@@ -469,12 +464,7 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
         try {
           const res = await fetch('/search-index.json');
           if (res.ok) {
-            const rawData: SearchItem[] = await res.json();
-            // Pre-calculate normalized search strings once for 100x faster filtering
-            searchIndex = rawData.map(item => ({
-              ...item,
-              _norm: removeVietnameseTones(item.title + ' ' + (item.desc || ''))
-            }));
+            searchIndex = await res.json();
           } else {
             console.error('Failed to fetch search-index.json');
             searchIndex = [];
@@ -517,12 +507,14 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
               return;
             }
 
-            // High performance search: use pre-normalized _norm string & early exit at 8 items
+            // High performance search: use lazy normalization & early exit at 8 items
             const matches: SearchItem[] = [];
             for (let i = 0; i < searchIndex.length; i++) {
               const item = searchIndex[i];
-              const norm = item._norm || '';
-              if (queryWords.every(word => norm.includes(word))) {
+              if (!item._norm) {
+                item._norm = removeVietnameseTones(item.title + ' ' + (item.desc || ''));
+              }
+              if (queryWords.every(word => item._norm.includes(word))) {
                 matches.push(item);
                 if (matches.length >= 8) break; // Stop loop immediately once 8 matches found!
               }
@@ -553,7 +545,6 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
       }
 
       // Initialize
-      setupSearch('globalSearchInput', 'searchDropdown');
       setupSearch('heroSearchInput', 'heroSearchDropdown');
       setupSearch('mobileSearchInput', 'mobileSearchDropdown');
 
@@ -572,6 +563,7 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
 
       const translations: Record<string, string> = {
         // Navigation & Search
+        "Công Cụ": "Tools",
         "Cẩm Nang": "Handbook",
         "Điều khoản": "Terms",
         "Chính sách bảo mật": "Privacy Policy",

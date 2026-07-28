@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/split-sitemaps.js",
     "preview": "astro preview",
     "astro": "astro",
     "generate:pages": "node scripts/generate-commune-pages.js"

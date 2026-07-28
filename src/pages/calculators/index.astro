@@ -1,0 +1,828 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StatsBadge from '../../components/StatsBadge.astro';
+
+// Full list of 44 calculators
+const calculators = [
+  {
+    slug: "kiem-tra-toc-do-go",
+    title: { vi: "Đo Tốc Độ Gõ Chữ", en: "Typing Speed Test" },
+    desc: {
+      vi: "Kiểm tra tốc độ đánh máy 10 ngón của bạn online: Tính từ gõ mỗi phút (WPM), số ký tự (CPM) và độ chính xác thực tế.",
+      en: "Test your 10-finger typing speed online: Calculate WPM, CPM, and real-time accuracy."
+    },
+    url: "/calculators/kiem-tra-toc-do-go/",
+    category: "utility",
+    icon: "⌨️",
+    color: "cyan"
+  },
+  {
+    slug: "build-do-lien-quan",
+    title: { vi: "Dựng Đồ Liên Quân Mobile", en: "AoV Hero Builder" },
+    desc: {
+      vi: "Thiết kế lối lên đồ trang bị cấp 3 cho các tướng Arena of Valor và tính toán chỉ số sức mạnh thời gian thực.",
+      en: "Design tier-3 item builds for Arena of Valor heroes and calculate stats dynamically."
+    },
+    url: "/calculators/build-do-lien-quan/",
+    category: "utility",
+    icon: "🛡️",
+    color: "blue"
+  },
+  {
+    slug: "radar-thoi-tiet",
+    title: { vi: "Radar Thời Tiết & Dự Báo Bão", en: "Weather Radar & Storm Tracker" },
+    desc: {
+      vi: "Theo dõi mây mưa thời gian thực, dự báo đường đi của bão, nhiệt độ và chất lượng không khí tại 63 tỉnh thành.",
+      en: "Track clouds and rain in real-time, storm path forecasts, temperatures and air quality for 63 provinces."
+    },
+    url: "/calculators/radar-thoi-tiet/",
+    category: "utility",
+    icon: "🌀",
+    color: "blue"
+  },
+  {
+    slug: "tinh-tro-cap-thoi-viec",
+    title: { vi: "Tính Trợ Cấp Thôi Việc", en: "Severance Pay Calculator" },
+    desc: {
+      vi: "Tính tiền trợ cấp thôi việc và mất việc theo Luật Lao động, tự động khấu trừ thời gian BHTN và làm tròn năm.",
+      en: "Calculate severance and job-loss allowances under Labor Law, auto-deducting UI time and rounding years."
+    },
+    url: "/calculators/tinh-tro-cap-thoi-viec/",
+    category: "insurance",
+    icon: "💼",
+    color: "indigo"
+  },
+  {
+    slug: "tinh-lai-kep",
+    title: { vi: "Tính Lãi Kép", en: "Compound Interest Calculator" },
+    desc: {
+      vi: "Công cụ tính lãi kép tích lũy theo chu kỳ tháng/năm, lập biểu đồ phát triển tài sản và dòng tiền tương lai.",
+      en: "Calculate compound interest dynamically with monthly/yearly cycles, charting asset growth and future cash flows."
+    },
+    url: "/calculators/tinh-lai-kep/",
+    category: "finance",
+    icon: "📈",
+    color: "emerald"
+  },
+  {
+    slug: "tinh-luong-tang-ca",
+    title: { vi: "Tính Lương Tăng Ca", en: "Overtime Pay Calculator" },
+    desc: {
+      vi: "Tính tiền lương làm thêm giờ ban ngày, ban đêm vào ngày thường, ngày nghỉ hàng tuần và ngày lễ Tết chuẩn Luật.",
+      en: "Calculate overtime pay for day, night, weekends and public holidays under the Labor Code."
+    },
+    url: "/calculators/tinh-luong-tang-ca/",
+    category: "insurance",
+    icon: "⏰",
+    color: "purple"
+  },
+  {
+    slug: "tinh-bao-hiem-that-nghiep",
+    title: { vi: "Tính Bảo Hiểm Thất Nghiệp", en: "Unemployment Insurance" },
+    desc: {
+      vi: "Tính mức hưởng trợ cấp thất nghiệp hàng tháng, số tháng được hưởng và tổng số tiền nhận được dựa trên quá trình đóng.",
+      en: "Calculate monthly unemployment benefit amount, duration and total payout based on insurance contributions."
+    },
+    url: "/calculators/tinh-bao-hiem-that-nghiep/",
+    category: "insurance",
+    icon: "🛡️",
+    color: "indigo"
+  },
+  {
+    slug: "tao-thoa-thuan-bao-mat-nda",
+    title: { vi: "Tạo Thỏa Thuận Bảo Mật NDA", en: "NDA Agreement Generator" },
+    desc: {
+      vi: "Tự động soạn thảo văn bản thỏa thuận bảo mật thông tin (NDA) song ngữ Việt - Anh chuẩn pháp lý.",
+      en: "Auto-generate bilingual Vietnamese-English Non-Disclosure Agreements (NDA) with legal standard templates."
+    },
+    url: "/calculators/tao-thoa-thuan-bao-mat-nda/",
+    category: "finance",
+    icon: "📝",
+    color: "slate"
+  },
+  {
+    slug: "soan-giao-an-5512",
+    title: { vi: "Soạn Giáo Án 5512", en: "Lesson Plan Creator (5512)" },
+    desc: {
+      vi: "Công cụ hỗ trợ giáo viên soạn thảo kế hoạch bài dạy chuẩn Công văn 5512 của Bộ Giáo dục cực nhanh.",
+      en: "Helper tool for teachers to design lesson plans following Dispatch 5512 of MOET rapidly."
+    },
+    url: "/calculators/soan-giao-an-5512/",
+    category: "utility",
+    icon: "📚",
+    color: "cyan"
+  },
+  {
+    slug: "tinh-diem-hoc-ba",
+    title: { vi: "Tính Điểm Học Bạ", en: "Academic Transcript Calc" },
+    desc: {
+      vi: "Tính điểm xét tuyển đại học theo học bạ THPT của tổ hợp môn xét tuyển học kỳ hoặc cả năm lớp 12.",
+      en: "Calculate university admission scores using high school academic transcripts for subject groups."
+    },
+    url: "/calculators/tinh-diem-hoc-ba/",
+    category: "utility",
+    icon: "🎓",
+    color: "cyan"
+  },
+  {
+    slug: "tra-cuu-ma-nganh-nghe",
+    title: { vi: "Tra Cứu Mã Ngành Nghề", en: "Business Line Code Search" },
+    desc: {
+      vi: "Tra cứu nhanh mã ngành nghề đăng ký kinh doanh theo Hệ thống ngành kinh tế Việt Nam mới nhất.",
+      en: "Quick search for business line codes under the latest Vietnamese Standard Industrial Classification."
+    },
+    url: "/calculators/tra-cuu-ma-nganh-nghe/",
+    category: "finance",
+    icon: "🔍",
+    color: "indigo"
+  },
+  {
+    slug: "kiem-tra-hoa-don-dien-tu",
+    title: { vi: "Kiểm Tra Hóa Đơn Điện Tử", en: "E-Invoice Validator" },
+    desc: {
+      vi: "Kiểm tra tính pháp lý, cấu trúc XML hóa đơn điện tử từ Tổng cục Thuế và phát hiện sai sót nhanh chóng.",
+      en: "Verify the legal validity and XML structure of electronic invoices from the General Department of Taxation."
+    },
+    url: "/calculators/kiem-tra-hoa-don-dien-tu/",
+    category: "finance",
+    icon: "🧾",
+    color: "emerald"
+  },
+  {
+    slug: "tinh-bhxh-1-lan",
+    title: { vi: "Tính BHXH 1 Lần", en: "One-time Social Insurance" },
+    desc: {
+      vi: "Tính toán số tiền rút bảo hiểm xã hội một lần dự kiến chuẩn quy định hiện hành theo mức đóng thực tế.",
+      en: "Calculate estimated lump-sum social insurance withdrawal amount based on historical contribution rates."
+    },
+    url: "/calculators/tinh-bhxh-1-lan/",
+    category: "insurance",
+    icon: "💰",
+    color: "purple"
+  },
+  {
+    slug: "tinh-thue-tncn",
+    title: { vi: "Tính Thuế TNCN", en: "PIT Calculator" },
+    desc: {
+      vi: "Tính toán số thuế thu nhập cá nhân phải nộp theo biểu thuế lũy tiến từng phần và các khoản giảm trừ gia cảnh.",
+      en: "Calculate personal income tax based on progressive tax tables and dependents deductions."
+    },
+    url: "/calculators/tinh-thue-tncn/",
+    category: "finance",
+    icon: "💵",
+    color: "emerald"
+  },
+  {
+    slug: "tinh-luong-huu",
+    title: { vi: "Tính Lương Hưu", en: "Pension Calculator" },
+    desc: {
+      vi: "Dự tính mức hưởng lương hưu hàng tháng của người lao động đóng BHXH bắt buộc hoặc tự nguyện khi về hưu.",
+      en: "Estimate monthly pension benefits for workers contributing to compulsory or voluntary social insurance."
+    },
+    url: "/calculators/tinh-luong-huu/",
+    category: "insurance",
+    icon: "👵",
+    color: "purple"
+  },
+  {
+    slug: "tinh-tien-cham-nop-thue",
+    title: { vi: "Tính Tiền Chậm Nộp Thuế", en: "Late Tax Penalty Calc" },
+    desc: {
+      vi: "Tính tiền chậm nộp thuế 0.03% mỗi ngày trên số tiền thuế chậm đóng và mức phạt hành chính tương ứng.",
+      en: "Calculate tax payment delay penalties (0.03% per day) on unpaid taxes and related administrative fines."
+    },
+    url: "/calculators/tinh-tien-cham-nop-thue/",
+    category: "finance",
+    icon: "⚖️",
+    color: "amber"
+  },
+  {
+    slug: "tao-ma-qr",
+    title: { vi: "Tạo Mã QR Chuyên Nghiệp", en: "Professional QR Code Generator" },
+    desc: {
+      vi: "Tạo nhanh mã QR cho liên kết, văn bản, Wifi, danh thiếp hoặc tài khoản ngân hàng chuyển khoản nhanh.",
+      en: "Create QR codes rapidly for links, text, Wifi, business cards or bank transfer accounts."
+    },
+    url: "/calculators/tao-ma-qr/",
+    category: "office",
+    icon: "📷",
+    color: "slate"
+  },
+  {
+    slug: "doc-so-thanh-chu",
+    title: { vi: "Đọc Số Thành Chữ", en: "Number to Words Converter" },
+    desc: {
+      vi: "Chuyển đổi dãy số lớn thành chữ tiếng Việt hoặc tiếng Anh tương ứng để viết hóa đơn, hợp đồng.",
+      en: "Convert large numbers into Vietnamese or English text strings for invoices and contracts."
+    },
+    url: "/calculators/doc-so-thanh-chu/",
+    category: "office",
+    icon: "🗣️",
+    color: "cyan"
+  },
+  {
+    slug: "tinh-lai-suat",
+    title: { vi: "Tính Lãi Suất", en: "Interest Rate Calculator" },
+    desc: {
+      vi: "Tính lãi suất vay, lãi gửi tiết kiệm ngân hàng theo hình thức dư nợ giảm dần hoặc lãi tính trên dư nợ gốc.",
+      en: "Calculate loan or savings interest rates using reducing balance or flat rate methods."
+    },
+    url: "/calculators/tinh-lai-suat/",
+    category: "finance",
+    icon: "🏦",
+    color: "emerald"
+  },
+  {
+    slug: "tinh-thue-vat",
+    title: { vi: "Tính Thuế VAT 10% & 8%", en: "VAT Calculator" },
+    desc: {
+      vi: "Tính nhanh giá trị thuế GTGT (8%, 10%) cộng vào hoặc tách ra khỏi tổng hóa đơn thanh toán.",
+      en: "Quickly compute VAT values (8%, 10%) added to or extracted from total invoice payments."
+    },
+    url: "/calculators/tinh-thue-vat/",
+    category: "finance",
+    icon: "🪙",
+    color: "emerald"
+  },
+  {
+    slug: "dem-ky-tu-online",
+    title: { vi: "Đếm Ký Tự Online", en: "Online Character Counter" },
+    desc: {
+      vi: "Đếm số từ, ký tự, khoảng trắng, số dòng và kiểm tra độ dài bài viết chuẩn độ dài ký tự SEO.",
+      en: "Count words, characters, spaces, lines and verify article length for SEO standards."
+    },
+    url: "/calculators/dem-ky-tu-online/",
+    category: "office",
+    icon: "🧮",
+    color: "slate"
+  },
+  {
+    slug: "chu-ky-email",
+    title: { vi: "Tạo Chữ Ký Email HTML", en: "HTML Email Signature" },
+    desc: {
+      vi: "Thiết kế chữ ký email cá nhân, doanh nghiệp chuyên nghiệp và xuất code HTML nhúng vào Gmail, Outlook.",
+      en: "Design professional email signatures for individuals or brands and export HTML code for Gmail/Outlook."
+    },
+    url: "/calculators/chu-ky-email/",
+    category: "office",
+    icon: "✉️",
+    color: "indigo"
+  },
+  {
+    slug: "nen-anh",
+    title: { vi: "Nén Ảnh WebP & PNG", en: "Image Compressor (WebP)" },
+    desc: {
+      vi: "Nén dung lượng ảnh không làm giảm chất lượng nhiều, chuyển đổi sang định dạng WebP tối ưu PageSpeed.",
+      en: "Compress image file sizes without sacrificing quality, converting to WebP for PageSpeed optimization."
+    },
+    url: "/calculators/nen-anh/",
+    category: "office",
+    icon: "🖼️",
+    color: "purple"
+  },
+  {
+    slug: "tao-van-ban",
+    title: { vi: "Tạo Văn Bản Hành Chính", en: "Official Document Formatter" },
+    desc: {
+      vi: "Hỗ trợ soạn thảo các văn bản, đơn từ hành chính thông dụng chuẩn thể thức quy định của Chính phủ.",
+      en: "Help draft popular official administrative letters conforming to government formatting regulations."
+    },
+    url: "/calculators/tao-van-ban/",
+    category: "office",
+    icon: "📋",
+    color: "slate"
+  },
+  {
+    slug: "tao-anh-ai",
+    title: { vi: "Tạo Ảnh Bằng Trí Tuệ Nhân Tạo AI", en: "AI Image Generator" },
+    desc: {
+      vi: "Tạo tác phẩm nghệ thuật, ảnh minh họa chất lượng cao từ mô tả văn bản tiếng Việt hoặc tiếng Anh.",
+      en: "Generate high-quality artwork and illustrations from text prompts in Vietnamese or English."
+    },
+    url: "/calculators/tao-anh-ai/",
+    category: "entertainment",
+    icon: "🎨",
+    color: "rose"
+  },
+  {
+    slug: "tinh-bmi",
+    title: { vi: "Tính Chỉ Số BMI Cơ Thể", en: "BMI Body Mass Index Calc" },
+    desc: {
+      vi: "Đo chỉ số khối cơ thể (BMI) để đánh giá tình trạng thừa cân, thiếu cân và tính trọng lượng lý tưởng của bạn.",
+      en: "Measure body mass index to evaluate obesity, underweight and calculate your ideal healthy weight."
+    },
+    url: "/calculators/tinh-bmi/",
+    category: "utility",
+    icon: "⚖️",
+    color: "emerald"
+  },
+  {
+    slug: "giai-phuong-trinh",
+    title: { vi: "Giải Phương Trình Bậc 2 & Bậc 3", en: "Equation Solver (Deg 2 & 3)" },
+    desc: {
+      vi: "Giải toán phương trình bậc 2, bậc 3 trực tuyến: Hiển thị các bước tính delta và tìm nghiệm chi tiết.",
+      en: "Solve quadratic and cubic equations online: Showing step-by-step delta calculations and roots."
+    },
+    url: "/calculators/giai-phuong-trinh/",
+    category: "utility",
+    icon: "➗",
+    color: "cyan"
+  },
+  {
+    slug: "dem-ngay-yeu-nhau",
+    title: { vi: "Đếm Ngày Yêu Nhau", en: "Love Days Counter" },
+    desc: {
+      vi: "Đếm số ngày yêu nhau của các cặp đôi, tính cột mốc kỷ niệm ngày yêu và lưu giữ bức ảnh tình yêu của bạn.",
+      en: "Count ongoing love days for couples, calculate anniversary milestones and store your love photos."
+    },
+    url: "/calculators/dem-ngay-yeu-nhau/",
+    category: "entertainment",
+    icon: "❤️",
+    color: "rose"
+  },
+  {
+    slug: "lich-van-nien",
+    title: { vi: "Lịch Vạn Niên & Lịch Âm", en: "Lunar Calendar & Perpetual" },
+    desc: {
+      vi: "Xem lịch âm dương hôm nay, đổi ngày dương lịch sang âm lịch, tìm giờ hoàng đạo và hướng xuất hành tốt.",
+      en: "View solar/lunar calendar today, convert solar date to lunar date, find auspicious hours and directions."
+    },
+    url: "/calculators/lich-van-nien/",
+    category: "entertainment",
+    icon: "📅",
+    color: "amber"
+  },
+  {
+    slug: "speedtest",
+    title: { vi: "Kiểm Tra Tốc Độ Mạng Speedtest", en: "Network Speedtest Online" },
+    desc: {
+      vi: "Đo tốc độ Download, Upload và độ trễ Ping đường truyền Internet mạng Wifi, 4G/5G trực tuyến thời gian thực.",
+      en: "Measure Download speed, Upload speed and Ping delay of your Internet connection (Wifi, 4G/5G) in real-time."
+    },
+    url: "/calculators/speedtest/",
+    category: "utility",
+    icon: "🚀",
+    color: "cyan"
+  },
+  {
+    slug: "gop-pdf",
+    title: { vi: "Gộp Nhiều File PDF", en: "Merge PDF Files" },
+    desc: {
+      vi: "Gộp nhiều tệp tin PDF riêng lẻ thành một file tài liệu duy nhất nhanh chóng, giữ nguyên định dạng.",
+      en: "Combine multiple PDF documents into a single consolidated file quickly, maintaining layout formatting."
+    },
+    url: "/calculators/gop-pdf/",
+    category: "office",
+    icon: "🖇️",
+    color: "indigo"
+  },
+  {
+    slug: "pdf-sang-word",
+    title: { vi: "Chuyển PDF Sang Word", en: "PDF to Word Converter" },
+    desc: {
+      vi: "Chuyển tài liệu từ PDF sang định dạng Word (.docx) trực tuyến miễn phí không bị lỗi font chữ.",
+      en: "Convert PDF documents to editable Word (.docx) format online for free without font breaking."
+    },
+    url: "/calculators/pdf-sang-word/",
+    category: "office",
+    icon: "🔁",
+    color: "blue"
+  },
+  {
+    slug: "word-sang-pdf",
+    title: { vi: "Chuyển Word Sang PDF", en: "Word to PDF Converter" },
+    desc: {
+      vi: "Chuyển đổi văn bản Word (.docx, .doc) sang định dạng PDF giữ nguyên căn lề và font chữ ban đầu.",
+      en: "Convert Word documents (.docx, .doc) to PDF format, preserving margins and original font faces."
+    },
+    url: "/calculators/word-sang-pdf/",
+    category: "office",
+    icon: "💾",
+    color: "rose"
+  },
+  {
+    slug: "tra-cuu-mst",
+    title: { vi: "Tra Cứu Mã Số Thuế", en: "Tax Identification Number Search" },
+    desc: {
+      vi: "Tra cứu mã số thuế cá nhân hoặc mã số thuế doanh nghiệp nhanh chóng, chính xác từ cổng thông tin Tổng cục Thuế.",
+      en: "Search for individual or business tax codes quickly and accurately from the Tax portal."
+    },
+    url: "/calculators/tra-cuu-mst/",
+    category: "finance",
+    icon: "🔍",
+    color: "indigo"
+  },
+  {
+    slug: "tao-cv",
+    title: { vi: "Tạo Mẫu CV Xin Việc PDF", en: "Resume / CV Builder PDF" },
+    desc: {
+      vi: "Tự tạo mẫu CV xin việc chuyên nghiệp, điền thông tin học vấn kinh nghiệm và tải về tệp PDF đẹp mắt.",
+      en: "Build professional resumes/CVs, input education and work histories, and download as elegant PDF."
+    },
+    url: "/calculators/tao-cv/",
+    category: "office",
+    icon: "👔",
+    color: "slate"
+  },
+  {
+    slug: "xem-tarot",
+    title: { vi: "Bói Bài Tarot Online Hàng Ngày", en: "Daily Tarot Reading" },
+    desc: {
+      vi: "Rút bài Tarot 3 lá đoán sự nghiệp, tình duyên, sức khỏe trong ngày hôm nay với lời giải nghĩa chi tiết.",
+      en: "Draw 3 Tarot cards to forecast your career, love and health today with detailed explanations."
+    },
+    url: "/calculators/xem-tarot/",
+    category: "entertainment",
+    icon: "🔮",
+    color: "purple"
+  },
+  {
+    slug: "lich-cat-dien",
+    title: { vi: "Tra Cứu Lịch Cắt Điện", en: "Power Outage Search" },
+    desc: {
+      vi: "Tra cứu thông tin lịch cắt điện, tạm ngừng cấp điện khu vực xã/phường trên khắp 63 tỉnh thành thời gian thực.",
+      en: "Search for power outage schedules and planned electricity cuts at commune level nationwide in real-time."
+    },
+    url: "/calculators/lich-cat-dien/",
+    category: "utility",
+    icon: "⚡",
+    color: "amber"
+  },
+  {
+    slug: "tinh-che-do-thai-san",
+    title: { vi: "Tính Chế Độ Thai Sản", en: "Maternity Allowance Calculator" },
+    desc: {
+      vi: "Tính tiền hưởng chế độ thai sản khi khám thai, nghỉ sinh con cho lao động nữ và trợ cấp một lần cho nam giới.",
+      en: "Calculate maternity benefits for prenatal checkups, maternity leave, and lump-sum payouts for husbands."
+    },
+    url: "/calculators/tinh-che-do-thai-san/",
+    category: "insurance",
+    icon: "👶",
+    color: "purple"
+  },
+  {
+    slug: "tinh-diem-hoa-von",
+    title: { vi: "Tính Điểm Hòa Vốn", en: "Break-even Point Calculator" },
+    desc: {
+      vi: "Tính điểm hòa vốn sản lượng và doanh số dựa trên định phí, biến phí và giá bán sản phẩm kinh doanh.",
+      en: "Calculate break-even point in units and sales based on fixed costs, variable costs and unit selling price."
+    },
+    url: "/calculators/tinh-diem-hoa-von/",
+    category: "finance",
+    icon: "📉",
+    color: "slate"
+  },
+  {
+    slug: "regex-explainer",
+    title: { vi: "Giải Thích Biểu Thức Chính Quy Regex", en: "Regex Explainer Tool" },
+    desc: {
+      vi: "Phân tích, giải thích chi tiết cấu trúc Regex của bạn và kiểm tra khớp chuỗi dữ liệu trực quan.",
+      en: "Analyze and explain your Regular Expressions (Regex) structure and test match patterns visually."
+    },
+    url: "/calculators/regex-explainer/",
+    category: "entertainment",
+    icon: "🧩",
+    color: "slate"
+  },
+  {
+    slug: "tinh-luong-net-sang-gross",
+    title: { vi: "Tính Lương Net Sang Gross", en: "Net to Gross Salary Calc" },
+    desc: {
+      vi: "Công cụ quy đổi lương Net sang lương Gross và ngược lại, chi tiết các khoản BHXH và Thuế TNCN khấu trừ.",
+      en: "Convert Net salary to Gross salary and vice versa, breaking down social insurance and progressive PIT deductions."
+    },
+    url: "/calculators/tinh-luong-net-sang-gross/",
+    category: "insurance",
+    icon: "🧮",
+    color: "indigo"
+  },
+  {
+    slug: "cat-pdf",
+    title: { vi: "Cắt / Chia File PDF", en: "Split / Cut PDF Document" },
+    desc: {
+      vi: "Tách trang PDF hoặc trích xuất một nhóm trang cụ thể thành file PDF mới trực tuyến nhanh chóng.",
+      en: "Separate PDF pages or extract a specific range of pages into a new PDF document online quickly."
+    },
+    url: "/calculators/cat-pdf/",
+    category: "office",
+    icon: "✂️",
+    color: "rose"
+  },
+  {
+    slug: "tao-so-ngau-nhien",
+    title: { vi: "Tạo Số Ngẫu Nhiên", en: "Random Number Generator" },
+    desc: {
+      vi: "Tạo một hoặc nhiều số ngẫu nhiên trong khoảng giá trị tùy chỉnh để quay số, quay số trúng thưởng.",
+      en: "Generate one or multiple random numbers in a custom range for lucky draws, raffles or selections."
+    },
+    url: "/calculators/tao-so-ngau-nhien/",
+    category: "utility",
+    icon: "🎲",
+    color: "cyan"
+  },
+  {
+    slug: "giai-ma-giac-mo",
+    title: { vi: "Giải Mã Điềm Báo Giấc Mơ", en: "Dream Interpreter Online" },
+    desc: {
+      vi: "Tra cứu ý nghĩa điềm báo tâm linh các giấc mơ của bạn và gợi ý các con số may mắn tương ứng chính xác.",
+      en: "Look up spiritual meanings of your dreams and suggest corresponding lucky numbers accurately."
+    },
+    url: "/calculators/giai-ma-giac-mo/",
+    category: "entertainment",
+    icon: "💭",
+    color: "purple"
+  }
+];
+---
+
+<Layout 
+  title="Công Cụ & Máy Tính Online - Trợ Lý Số"
+  description="Danh sách tổng hợp các công cụ tiện ích, tính toán tài chính, bảo hiểm, học tập, văn phòng và giải trí trực tuyến hoàn toàn miễn phí."
+>
+  <!-- Ambient background decor -->
+  <div class="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-blue-400/5 dark:from-blue-600/5 to-transparent pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Hero Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4" id="pageTitle">
+        Công Cụ & Máy Tính Tiện Ích Online
+      </h1>
+      <p class="text-base text-slate-500 dark:text-slate-400 leading-relaxed" id="pageDesc">
+        Tổng hợp tất cả các công cụ trực tuyến miễn phí của Trợ Lý Số. Chọn nhóm danh mục bên dưới hoặc tìm kiếm nhanh để bắt đầu.
+      </p>
+    </div>
+
+    <!-- Search & Tabs Container -->
+    <div class="mb-10 space-y-6">
+      
+      <!-- Live Search Box -->
+      <div class="max-w-xl mx-auto relative">
+        <input 
+          type="text" 
+          id="toolsSearchInput" 
+          placeholder="Tìm kiếm công cụ nhanh..." 
+          aria-label="Tìm kiếm công cụ"
+          class="w-full pl-12 pr-4 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white/70 dark:bg-brand-darkCard/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint text-sm transition-all shadow-sm"
+        />
+        <svg class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
+
+      <!-- Categories Filter Tabs -->
+      <div class="flex justify-start md:justify-center overflow-x-auto pb-2 scrollbar-none gap-2 px-1 select-none">
+        <button class="tab-btn px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition duration-200 bg-brand-blue text-white dark:bg-brand-mint dark:text-slate-950 flex items-center gap-1.5 shrink-0" data-category="all" id="tabAll">
+          🌟 <span class="tab-text">Tất cả</span>
+        </button>
+        <button class="tab-btn px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 bg-white dark:bg-brand-darkCard border border-slate-200/50 dark:border-slate-800/50 flex items-center gap-1.5 shrink-0" data-category="finance" id="tabFinance">
+          💵 <span class="tab-text">Tài chính & Thuế</span>
+        </button>
+        <button class="tab-btn px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 bg-white dark:bg-brand-darkCard border border-slate-200/50 dark:border-slate-800/50 flex items-center gap-1.5 shrink-0" data-category="insurance" id="tabInsurance">
+          🛡️ <span class="tab-text">Lương & Bảo hiểm</span>
+        </button>
+        <button class="tab-btn px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 bg-white dark:bg-brand-darkCard border border-slate-200/50 dark:border-slate-800/50 flex items-center gap-1.5 shrink-0" data-category="utility" id="tabEducation">
+          🎓 <span class="tab-text">Học tập & Giáo dục</span>
+        </button>
+        <button class="tab-btn px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 bg-white dark:bg-brand-darkCard border border-slate-200/50 dark:border-slate-800/50 flex items-center gap-1.5 shrink-0" data-category="office" id="tabOffice">
+          🖇️ <span class="tab-text">Văn phòng & PDF</span>
+        </button>
+        <button class="tab-btn px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition duration-200 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 bg-white dark:bg-brand-darkCard border border-slate-200/50 dark:border-slate-800/50 flex items-center gap-1.5 shrink-0" data-category="entertainment" id="tabEntertainment">
+          🔮 <span class="tab-text">Tiện ích & Giải trí</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Calculators Grid -->
+    <div id="calculators-index-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[200px]">
+      {calculators.map(calc => (
+        <a 
+          href={calc.url} 
+          data-category={calc.category}
+          data-title-vi={calc.title.vi}
+          data-title-en={calc.title.en}
+          data-desc-vi={calc.desc.vi}
+          data-desc-en={calc.desc.en}
+          class="calc-card group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+        >
+          <div>
+            <!-- Icon Wrapper -->
+            <div class={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors duration-300 text-2xl bg-slate-100 dark:bg-slate-800/60`}>
+              {calc.icon}
+            </div>
+            <!-- Title -->
+            <h4 class="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-mint transition mb-2 calc-card-title">
+              {calc.title.vi}
+            </h4>
+            <!-- Description -->
+            <p class="text-sm text-slate-500 dark:text-slate-400 calc-card-desc leading-relaxed">
+              {calc.desc.vi}
+            </p>
+          </div>
+          <div class="mt-4 flex items-center justify-between">
+            <StatsBadge slug={calc.slug} type="tool" showLiveDot={false} />
+            <div class="text-xs text-brand-blue dark:text-brand-mint font-bold flex items-center gap-1 group-hover:gap-2 transition-all open-tool-text">
+              Mở công cụ <span>→</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="text-center py-16 hidden">
+      <div class="text-5xl mb-4">🔍</div>
+      <h3 class="text-lg font-heading font-bold text-slate-800 dark:text-slate-200 mb-1" id="emptyTitle">Không tìm thấy công cụ</h3>
+      <p class="text-sm text-slate-500 dark:text-slate-400" id="emptyDesc">Vui lòng thử từ khóa khác hoặc chuyển danh mục.</p>
+    </div>
+
+  </main>
+</Layout>
+
+<script is:inline>
+  // Bilingual translations for static page elements
+  const pageTranslations = {
+    vi: {
+      title: "Công Cụ & Máy Tính Tiện Ích Online",
+      desc: "Tổng hợp tất cả các công cụ trực tuyến miễn phí của Trợ Lý Số. Chọn nhóm danh mục bên dưới hoặc tìm kiếm nhanh để bắt đầu.",
+      placeholder: "Tìm kiếm công cụ nhanh...",
+      tabAll: "Tất cả",
+      tabFinance: "Tài chính & Thuế",
+      tabInsurance: "Lương & Bảo hiểm",
+      tabEducation: "Học tập & Giáo dục",
+      tabOffice: "Văn phòng & PDF",
+      tabEntertainment: "Tiện ích & Giải trí",
+      openTool: "Mở công cụ",
+      emptyTitle: "Không tìm thấy công cụ",
+      emptyDesc: "Vui lòng thử từ khóa khác hoặc chuyển danh mục."
+    },
+    en: {
+      title: "Online Calculation & Helper Tools",
+      desc: "A comprehensive list of free web tools on TroLySo. Select a category tab below or perform a search to get started.",
+      placeholder: "Search tools quickly...",
+      tabAll: "All",
+      tabFinance: "Finance & Tax",
+      tabInsurance: "Salary & Insurance",
+      tabEducation: "Study & MOET",
+      tabOffice: "Office & PDF",
+      tabEntertainment: "Utilities & Fun",
+      openTool: "Open Tool",
+      emptyTitle: "No tools found",
+      emptyDesc: "Please try another keyword or switch categories."
+    }
+  };
+
+  function removeVietnameseTones(str) {
+    let result = str.toLowerCase();
+    result = result.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+    result = result.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+    result = result.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+    result = result.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+    result = result.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+    result = result.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+    result = result.replace(/đ/g, "d");
+    result = result.replace(/[^a-z0-9\s]/g, ""); 
+    return result.normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+  }
+
+  // Active state filter variables
+  let currentCategory = 'all';
+  let searchQuery = '';
+
+  const cards = document.querySelectorAll('.calc-card');
+  const searchInput = document.getElementById('toolsSearchInput');
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const emptyState = document.getElementById('empty-state');
+
+  // Load language settings
+  function updateLanguage() {
+    const lang = localStorage.getItem('lang') === 'en' ? 'en' : 'vi';
+    const dict = pageTranslations[lang];
+
+    // Page headers
+    const titleEl = document.getElementById('pageTitle');
+    const descEl = document.getElementById('pageDesc');
+    if (titleEl) titleEl.textContent = dict.title;
+    if (descEl) descEl.textContent = dict.desc;
+
+    // Search placeholder
+    if (searchInput) searchInput.placeholder = dict.placeholder;
+
+    // Tab texts
+    const tabAllText = document.querySelector('#tabAll .tab-text');
+    const tabFinanceText = document.querySelector('#tabFinance .tab-text');
+    const tabInsuranceText = document.querySelector('#tabInsurance .tab-text');
+    const tabEducationText = document.querySelector('#tabEducation .tab-text');
+    const tabOfficeText = document.querySelector('#tabOffice .tab-text');
+    const tabEntertainmentText = document.querySelector('#tabEntertainment .tab-text');
+
+    if (tabAllText) tabAllText.textContent = dict.tabAll;
+    if (tabFinanceText) tabFinanceText.textContent = dict.tabFinance;
+    if (tabInsuranceText) tabInsuranceText.textContent = dict.tabInsurance;
+    if (tabEducationText) tabEducationText.textContent = dict.tabEducation;
+    if (tabOfficeText) tabOfficeText.textContent = dict.tabOffice;
+    if (tabEntertainmentText) tabEntertainmentText.textContent = dict.tabEntertainment;
+
+    // Empty state
+    const emptyTitleEl = document.getElementById('emptyTitle');
+    const emptyDescEl = document.getElementById('emptyDesc');
+    if (emptyTitleEl) emptyTitleEl.textContent = dict.emptyTitle;
+    if (emptyDescEl) emptyDescEl.textContent = dict.emptyDesc;
+
+    // Card texts
+    cards.forEach(card => {
+      const titleVi = card.getAttribute('data-title-vi');
+      const titleEn = card.getAttribute('data-title-en');
+      const descVi = card.getAttribute('data-data-desc-vi') || card.getAttribute('data-desc-vi');
+      const descEn = card.getAttribute('data-data-desc-en') || card.getAttribute('data-desc-en');
+
+      const titleEl = card.querySelector('.calc-card-title');
+      const descEl = card.querySelector('.calc-card-desc');
+      const actionEl = card.querySelector('.open-tool-text');
+
+      if (titleEl) titleEl.textContent = lang === 'en' ? titleEn : titleVi;
+      if (descEl) descEl.textContent = lang === 'en' ? descEn : descVi;
+      if (actionEl) {
+        actionEl.innerHTML = `${dict.openTool} <span>→</span>`;
+      }
+    });
+  }
+
+  // Filter functionality
+  function filterTools() {
+    const lang = localStorage.getItem('lang') === 'en' ? 'en' : 'vi';
+    const normQuery = removeVietnameseTones(searchQuery);
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const category = card.getAttribute('data-category');
+      const title = card.getAttribute(`data-title-${lang}`).toLowerCase();
+      const desc = card.getAttribute(`data-desc-${lang}`).toLowerCase();
+      
+      const normTitle = removeVietnameseTones(title);
+      const normDesc = removeVietnameseTones(desc);
+
+      const matchesCategory = currentCategory === 'all' || category === currentCategory;
+      const matchesSearch = !searchQuery || 
+        normTitle.includes(normQuery) || 
+        normDesc.includes(normQuery);
+
+      if (matchesCategory && matchesSearch) {
+        card.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    if (visibleCount === 0) {
+      emptyState.classList.remove('hidden');
+    } else {
+      emptyState.classList.add('hidden');
+    }
+  }
+
+  // Search input handler
+  let searchTimeout = null;
+  searchInput?.addEventListener('input', (e) => {
+    searchQuery = e.target.value.trim();
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(filterTools, 100);
+  });
+
+  // Tab switcher handler
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Toggle active classes
+      tabButtons.forEach(b => {
+        b.classList.remove('bg-brand-blue', 'text-white', 'dark:bg-brand-mint', 'dark:text-slate-950');
+        b.classList.add('text-slate-500', 'hover:text-slate-800', 'dark:text-slate-400', 'dark:hover:text-slate-200', 'bg-white', 'dark:bg-brand-darkCard', 'border', 'border-slate-200/50', 'dark:border-slate-800/50');
+      });
+
+      btn.classList.add('bg-brand-blue', 'text-white', 'dark:bg-brand-mint', 'dark:text-slate-950');
+      btn.classList.remove('text-slate-500', 'hover:text-slate-800', 'dark:text-slate-400', 'dark:hover:text-slate-200', 'bg-white', 'dark:bg-brand-darkCard', 'border', 'border-slate-200/50', 'dark:border-slate-800/50');
+
+      currentCategory = btn.getAttribute('data-category');
+      filterTools();
+    });
+  });
+
+  // Listen to global i18n event
+  window.addEventListener('languageChanged', () => {
+    updateLanguage();
+    filterTools();
+  });
+
+  // Init translations
+  document.addEventListener('DOMContentLoaded', () => {
+    updateLanguage();
+    filterTools();
+  });
+  // Fallback if DOMContentLoaded already fired
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    updateLanguage();
+    filterTools();
+  }
+</script>
