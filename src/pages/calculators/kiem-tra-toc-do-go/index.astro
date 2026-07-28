@@ -1,0 +1,758 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import StatsBadge from '../../../components/StatsBadge.astro';
+---
+
+<Layout 
+  title="Kiểm Tra Tốc Độ Gõ Chữ, Đánh Máy Online Chuẩn i18n 2026 - Trợ Lý Số"
+  description="Công cụ kiểm tra tốc độ gõ phím (Typing Speed Test) online miễn phí. Đo chỉ số WPM, CPM, độ chính xác gõ phím thời gian thực và xuất chứng chỉ hình ảnh đẹp mắt."
+>
+  <!-- Background Decor -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.03),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/#calculators" class="hover:text-brand-blue dark:hover:text-brand-mint">Công cụ</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500 font-medium">Đo tốc độ gõ chữ</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 dark:bg-cyan-950/40 text-cyan-600 dark:text-cyan-400 text-xs font-bold mb-4 border border-cyan-100 dark:border-cyan-900/60">
+        ⌨️ Kiểm tra kỹ năng đánh máy
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">
+        Kiểm Tra Tốc Độ Gõ Chữ Online
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Đo chỉ số WPM (Từ mỗi phút), độ chính xác gõ phím thời gian thực và tải về chứng chỉ kết quả gõ phím của bạn.
+      </p>
+    </div>
+
+    <!-- Main Typing Test Interface -->
+    <div class="max-w-4xl mx-auto space-y-8">
+      
+      <!-- Top Settings bar -->
+      <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-md border border-slate-200/60 dark:border-slate-800/80 p-4 flex flex-wrap gap-4 items-center justify-between transition duration-300">
+        
+        <!-- Selection options -->
+        <div class="flex flex-wrap gap-3 items-center">
+          <!-- Language Select -->
+          <div class="flex items-center gap-2">
+            <label for="langSelect" class="text-xs font-bold text-slate-400 uppercase tracking-wider">Ngôn ngữ</label>
+            <select id="langSelect" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-cyan-500">
+              <option value="vi">Tiếng Việt</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+
+          <!-- Time Select -->
+          <div class="flex items-center gap-2">
+            <label for="timeSelect" class="text-xs font-bold text-slate-400 uppercase tracking-wider">Thời gian</label>
+            <select id="timeSelect" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-cyan-500">
+              <option value="30">30 giây</option>
+              <option value="60">60 giây</option>
+              <option value="120">120 giây</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Telemetry badge -->
+        <div class="flex items-center gap-3">
+          <StatsBadge slug="kiem-tra-toc-do-go" type="tool" showLiveDot={true} />
+        </div>
+      </div>
+
+      <!-- Main Typing Sandbox Container -->
+      <div class="bg-white dark:bg-brand-darkCard rounded-2xl shadow-xl border border-slate-200/60 dark:border-slate-800/80 p-6 sm:p-8 relative overflow-hidden transition-all duration-300">
+        
+        <!-- Live Stats Overlay -->
+        <div class="grid grid-cols-3 gap-4 mb-6 border-b border-slate-100 dark:border-slate-800 pb-4 text-center">
+          <div>
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Thời gian</div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-cyan-500 font-mono" id="liveTimer">60s</div>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">WPM</div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-slate-800 dark:text-slate-100 font-mono" id="liveWpm">0</div>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Chính xác</div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-500 font-mono" id="liveAccuracy">100%</div>
+          </div>
+        </div>
+
+        <!-- Keyboard Trigger Area -->
+        <div class="relative min-h-[140px] select-none cursor-text rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/20 p-4 focus-within:ring-2 focus-within:ring-cyan-500/30 transition duration-200" id="typingContainer">
+          
+          <!-- Hidden Input for Mobile Keyboards -->
+          <input 
+            type="text" 
+            id="hiddenInput" 
+            class="absolute inset-0 w-full h-full opacity-0 cursor-default select-none -z-10 focus:outline-none" 
+            autocomplete="off" 
+            autocorrect="off" 
+            autocapitalize="off" 
+            spellcheck="false"
+          />
+
+          <!-- Text overlay for caret and letters -->
+          <div id="wordsContainer" class="text-lg sm:text-xl font-mono leading-relaxed text-slate-400 dark:text-slate-600 break-words whitespace-pre-wrap select-none">
+            <!-- Dynamic words load -->
+          </div>
+
+          <!-- Click to focus overlay when blurred -->
+          <div id="blurOverlay" class="absolute inset-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-[2px] flex items-center justify-center rounded-xl cursor-pointer select-none transition-all duration-300">
+            <div class="text-sm font-bold text-slate-600 dark:text-slate-300 flex items-center gap-2 bg-white dark:bg-slate-800 px-4 py-2.5 rounded-xl shadow border border-slate-200/50 dark:border-slate-700/50">
+              ⌨️ <span id="overlayText">Bấm vào đây để bắt đầu gõ</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reset Button -->
+        <div class="flex justify-center mt-6">
+          <button id="btnReset" class="flex items-center gap-2 px-5 py-2.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-850 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl text-sm font-bold shadow-sm transition hover:scale-102 focus:outline-none" aria-label="Khởi động lại lượt gõ">
+            🔄 <span id="btnResetText">Lượt mới</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Result Card (Pop up / Hidden by default) -->
+      <div id="resultCard" class="hidden bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-2xl relative overflow-hidden transition-all duration-500 scale-95 opacity-0">
+        
+        <!-- Background Light Glow -->
+        <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none"></div>
+
+        <h3 class="text-xl sm:text-2xl font-heading font-extrabold text-center mb-6 text-cyan-400">🏆 Kết Quả Đánh Máy Của Bạn</h3>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mb-8">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <div class="text-xs font-bold text-cyan-300/80 uppercase tracking-wider mb-1">Tốc độ (WPM)</div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white font-mono" id="resWpm">0</div>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <div class="text-xs font-bold text-cyan-300/80 uppercase tracking-wider mb-1">Ký tự/phút (CPM)</div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white font-mono" id="resCpm">0</div>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <div class="text-xs font-bold text-cyan-300/80 uppercase tracking-wider mb-1">Độ chính xác</div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono" id="resAccuracy">0%</div>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4 col-span-2 md:col-span-1">
+            <div class="text-xs font-bold text-cyan-300/80 uppercase tracking-wider mb-1">Xếp hạng</div>
+            <div class="text-lg sm:text-xl font-extrabold text-amber-400 uppercase tracking-wider py-1.5" id="resRank">Trung Bình</div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <button id="btnDownloadCert" class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-bold rounded-xl shadow-lg transition hover:scale-103 focus:outline-none" aria-label="Tải ảnh chứng chỉ đánh máy">
+            📸 Tải ảnh chứng chỉ
+          </button>
+          <button id="btnShareResult" class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold rounded-xl shadow transition hover:scale-103 focus:outline-none" aria-label="Sao chép link kết quả gõ phím">
+            🔗 Sao chép liên kết
+          </button>
+          <button id="btnRetry" class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-xl shadow transition hover:scale-103 focus:outline-none" aria-label="Thử lại lượt gõ phím">
+            🔄 Thử lại
+          </button>
+        </div>
+
+        <!-- Hidden canvas for certificate generation -->
+        <canvas id="certCanvas" class="hidden"></canvas>
+      </div>
+
+    </div>
+
+    <!-- E-E-A-T Professional Handbook Content (Standard & SEO compliance) -->
+    <div class="mt-16 max-w-4xl mx-auto border-t border-slate-200 dark:border-slate-800/80 pt-12">
+      <div class="bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-200/60 dark:border-slate-800/65 p-6 sm:p-8">
+        
+        <h2 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-6">
+          ⌨️ Cẩm Nang Luyện Gõ 10 Ngón & Cách Tính Tốc Độ Đánh Máy Chuẩn Quốc Tế
+        </h2>
+
+        <div class="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed space-y-6 text-sm">
+          
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. WPM và CPM là gì? Công thức tính toán chuẩn</h3>
+          <p>
+            Trong đo lường tốc độ đánh máy, hai chỉ số phổ biến nhất được sử dụng trên toàn cầu là **WPM** (Words Per Minute - Số từ gõ mỗi phút) và **CPM** (Characters Per Minute - Số ký tự gõ mỗi phút).
+          </p>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>
+              <strong>Từ tiêu chuẩn (Standard Word):</strong> Để thống nhất sự khác biệt về độ dài giữa các từ ngắn (như "an", "đã") và từ dài (như "nghiên", "chương"), thế giới quy định một từ tiêu chuẩn có độ dài tương đương **5 ký tự** (bao gồm cả dấu cách).
+            </li>
+            <li>
+              <strong>Công thức tính WPM:</strong>
+              <div class="my-4 p-4 bg-slate-100 dark:bg-slate-900 rounded-xl font-mono text-center text-xs border border-slate-200/50 dark:border-slate-800">
+                WPM = (Tổng số ký tự gõ đúng / 5) / (Thời gian làm bài tính bằng phút)
+              </div>
+              Ví dụ: Nếu trong 60 giây (1 phút) bạn gõ đúng tổng cộng 250 ký tự, tốc độ gõ của bạn là: <code class="font-bold text-cyan-500">(250 / 5) / 1 = 50 WPM</code>.
+            </li>
+            <li>
+              <strong>Độ chính xác (Accuracy):</strong> Tỷ lệ phần trăm giữa số lượng ký tự gõ đúng so với tổng số lượng phím bạn đã nhấn trong suốt quá trình.
+            </li>
+          </ul>
+
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">2. Bảng phân cấp tốc độ đánh máy (WPM Standard)</h3>
+          <div class="overflow-x-auto my-4">
+            <table class="w-full text-left border-collapse border border-slate-200 dark:border-slate-800 text-xs">
+              <thead>
+                <tr class="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300">
+                  <th class="p-3 border border-slate-200 dark:border-slate-800 font-bold">Mức WPM</th>
+                  <th class="p-3 border border-slate-200 dark:border-slate-800 font-bold">Đánh giá phân loại</th>
+                  <th class="p-3 border border-slate-200 dark:border-slate-800 font-bold">Đặc trưng & Đối tượng áp dụng</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="p-3 border border-slate-200 dark:border-slate-800 font-bold text-red-500">&lt; 30 WPM</td>
+                  <td class="p-3 border border-slate-200 dark:border-slate-800">Chậm (Slow)</td>
+                  <td class="p-3 border border-slate-200 dark:border-slate-800">Người mới bắt đầu luyện phím, thường phải nhìn bàn phím.</td>
+                </tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-900/20">
+                  <td class="p-3 border border-slate-200 dark:border-slate-800 font-bold text-amber-500">30 - 50 WPM</td>
+                  <td class="p-3 border border-slate-200 dark:border-slate-800">Trung bình (Average)</td>
+                  <td class="p-3 border border-slate-200 dark:border-slate-800">Tốc độ phổ thông của người dùng máy tính thường xuyên.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 border border-slate-200 dark:border-slate-800 font-bold text-cyan-500">50 - 70 WPM</td>
+                  <td class="p-3 border border-slate-200 dark:border-slate-800">Nhanh (Fast)</td>
+                  <td class="p-3 border border-slate-200 dark:border-slate-800">Tốc độ tiêu chuẩn của dân văn phòng, lập trình viên, thư ký.</td>
+                </tr>
+                <tr class="bg-slate-50/50 dark:bg-slate-900/20">
+                  <td class="p-3 border border-slate-200 dark:border-slate-800 font-bold text-emerald-500">&gt; 70 WPM</td>
+                  <td class="p-3 border border-slate-200 dark:border-slate-800">Chuyên nghiệp (Professional)</td>
+                  <td class="p-3 border border-slate-200 dark:border-slate-800">Tốc độ của các chuyên gia tốc ký, game thủ hoặc người gõ 10 ngón thuần thục.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">3. Bí quyết giúp cải thiện tốc độ gõ chữ vượt trội</h3>
+          <p>
+            Nếu muốn bứt phá từ mức gõ trung bình lên mức chuyên nghiệp, bạn nên áp dụng các nguyên tắc công thái học cốt lõi sau:
+          </p>
+          <ol class="list-decimal pl-5 space-y-2">
+            <li>
+              <strong>Quy tắc đặt tay 10 ngón:</strong> Ngón trỏ tay trái luôn nằm ở phím <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold">F</kbd>, ngón trỏ tay phải ở phím <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold">J</kbd>. Cả hai phím này luôn có gờ nổi nhỏ để định vị vị trí không cần nhìn.
+            </li>
+            <li>
+              <strong>Tuyệt đối không nhìn bàn phím:</strong> Hãy tập trung mắt vào màn hình. Việc này ban đầu sẽ có nhiều lỗi sai, nhưng sẽ giúp xây dựng trí nhớ cơ bắp (muscle memory) phản xạ phím cho các ngón tay cực kỳ nhanh chóng.
+            </li>
+            <li>
+              <strong>Tư thế ngồi chuẩn văn phòng:</strong> Giữ thẳng lưng, khuỷu tay gập một góc 90 độ và đặt cổ tay thư giãn nhẹ nhàng, không tỳ mạnh cổ tay xuống mép bàn để tránh chấn thương khớp ngón tay lâu dài.
+            </li>
+          </ol>
+        </div>
+
+        <!-- FAQ Accordion section (SEO FAQ Schema Compliance) -->
+        <div class="mt-8 border-t border-slate-200 dark:border-slate-800 pt-8">
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-4">Câu Hỏi Thường Gặp (FAQs)</h3>
+          
+          <div class="space-y-4">
+            <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200/60 dark:border-slate-800/80 p-4 [&_summary::-webkit-details-marker]:hidden transition-all duration-300">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer select-none text-xs sm:text-sm">
+                <span>Tốc độ gõ bao nhiêu WPM thì được xem là đủ dùng cho công việc?</span>
+                <span class="transition duration-300 group-open:-rotate-180">▼</span>
+              </summary>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                Tốc độ từ 40 - 50 WPM là mức trung bình phổ thông, đủ đáp ứng các tác vụ soạn thảo tài liệu, email và trao đổi thông tin cơ bản. Đối với lập trình viên hoặc hành chính văn phòng chuyên nghiệp, tốc độ mong muốn là từ 60 WPM trở lên kèm độ chính xác trên 95%.
+              </p>
+            </details>
+
+            <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200/60 dark:border-slate-800/80 p-4 [&_summary::-webkit-details-marker]:hidden transition-all duration-300">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer select-none text-xs sm:text-sm">
+                <span>Tại sao độ chính xác lại quan trọng hơn tốc độ gõ?</span>
+                <span class="transition duration-300 group-open:-rotate-180">▼</span>
+              </summary>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                Khi gõ sai phím, bạn sẽ mất thêm thời gian nhấn Backspace để xóa và gõ lại từ đầu. Sự ngắt quãng này làm suy giảm nghiêm trọng luồng suy nghĩ và hiệu năng gõ thực tế. Do đó, hãy ưu tiên gõ đúng phím trước khi cố gắng gia tăng tốc độ gõ.
+              </p>
+            </details>
+
+            <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200/60 dark:border-slate-800/80 p-4 [&_summary::-webkit-details-marker]:hidden transition-all duration-300">
+              <summary class="flex justify-between items-center font-bold text-slate-800 dark:text-slate-200 cursor-pointer select-none text-xs sm:text-sm">
+                <span>Xem hướng dẫn luyện gõ phím 10 ngón chi tiết ở đâu?</span>
+                <span class="transition duration-300 group-open:-rotate-180">▼</span>
+              </summary>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                Bạn có thể đọc cẩm nang kinh nghiệm chi tiết của chúng tôi tại bài viết: 
+                <a href="/blog/bi-quyet-luyen-toc-do-go-ban-phim-nhanh/" class="text-cyan-500 hover:underline font-bold">Hướng Dẫn Bí Quyết Luyện Tốc Độ Gõ Bàn Phím Nhanh 10 Ngón</a>.
+              </p>
+            </details>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</Layout>
+
+<!-- Client side script for interactivity -->
+<script is:inline>
+  const isEn = localStorage.getItem("lang") === "en";
+
+  const TRANSLATIONS = {
+    // UI Localizations
+    'Đo tốc độ gõ chữ': 'Typing Speed Test',
+    'Kiểm Tra Tốc Độ Gõ Chữ Online': 'Online Typing Speed Test',
+    'Thời gian': 'Time',
+    'Chính xác': 'Accuracy',
+    'Bấm vào đây để bắt đầu gõ': 'Click here to start typing',
+    'Lượt mới': 'Restart',
+    'Tốc độ (WPM)': 'Speed (WPM)',
+    'Ký tự/phút (CPM)': 'Chars/Min (CPM)',
+    'Độ chính xác': 'Accuracy',
+    'Xếp hạng': 'Rank',
+    'Thử lại': 'Retry',
+    'giây': 'seconds',
+    'Ngôn ngữ': 'Language',
+    'Chậm': 'Slow',
+    'Trung bình': 'Average',
+    'Nhanh': 'Fast',
+    'Thần tốc': 'Super Fast',
+    'Bản dịch': 'Translation',
+
+    // Alerts
+    'Sao chép liên kết kết quả thành công!': 'Result link copied successfully!',
+    'Không thể sao chép liên kết.': 'Failed to copy result link.',
+
+    // Canvas Draw
+    'CHỨNG NHẬN TỐC ĐỘ GÕ PHÍM': 'TYPING SPEED CERTIFICATE',
+    'trolyso.online - Đo tốc độ gõ phím trực tuyến': 'trolyso.online - Online Typing Speed Test',
+    'Thông số đánh máy đạt được:': 'Typing Stats Reached:',
+    'Tốc độ gõ (WPM):': 'Typing Speed (WPM):',
+    'Số ký tự/phút (CPM):': 'Chars Per Minute (CPM):',
+    'Độ chính xác (%):': 'Accuracy Rate (%):',
+    'Đánh giá xếp hạng:': 'Typing Performance Rank:',
+    'Bản quyền thuộc về trolyso.online 2026': 'Copyright © 2026 trolyso.online'
+  };
+
+  function t(text) {
+    if (!isEn) return text;
+    return TRANSLATIONS[text] || text;
+  }
+
+  // Database of sample texts
+  const TEXTS = {
+    vi: [
+      "Mùa thu Hà Nội mang một nét đẹp rất riêng, nhẹ nhàng và trầm mặc. Những cơn gió heo may chớm lạnh khẽ lướt qua các con phố nhỏ cổ kính, làm xào xạc những tán lá vàng khô rơi trên vỉa hè.",
+      "Công nghệ thông tin đang thay đổi thế giới với tốc độ chóng mặt. Việc rèn luyện kỹ năng đánh máy nhanh và chính xác không chỉ giúp bạn nâng cao hiệu suất làm việc mà còn mở ra nhiều cơ hội phát triển nghề nghiệp mới.",
+      "Cuộc sống không phải là để chờ đợi những cơn bão qua đi, mà là học cách nhảy múa dưới những cơn mưa. Mỗi thử thách đều là một cơ hội để rèn luyện sự kiên nhẫn và lòng dũng cảm của bản thân.",
+      "Học hỏi là một hành trình kéo dài suốt đời, không có điểm kết thúc. Mỗi cuốn sách ta đọc, mỗi người ta gặp đều mang lại những bài học quý giá, giúp ta hoàn thiện nhân cách và tri thức của mình."
+    ],
+    en: [
+      "The quick brown fox jumps over the lazy dog. This classic phrase contains every letter in the English alphabet and is widely used for typing practice, testing keyboards, and display fonts.",
+      "Success is not final, failure is not fatal: it is the courage to continue that counts. In the journey of life, we must learn to embrace every obstacle as a stepping stone to greatness.",
+      "Technology is a useful servant but a dangerous master. As we navigate the digital era, finding a healthy balance between online connectivity and real-world relationships is more important than ever.",
+      "Reading is to the mind what exercise is to the body. A well-written book can transport you to different worlds, broaden your perspective, and foster deep empathy for people of all walks of life."
+    ]
+  };
+
+  // State Variables
+  let targetText = "";
+  let typedText = "";
+  let timerDuration = 60; // default 60s
+  let timeLeft = timerDuration;
+  let timerInterval = null;
+  let isTesting = false;
+  let testFinished = false;
+  
+  // Stats counter
+  let totalKeystrokes = 0;
+  let correctKeystrokes = 0;
+
+  // DOM Elements
+  const langSelect = document.getElementById('langSelect');
+  const timeSelect = document.getElementById('timeSelect');
+  const liveTimer = document.getElementById('liveTimer');
+  const liveWpm = document.getElementById('liveWpm');
+  const liveAccuracy = document.getElementById('liveAccuracy');
+  const wordsContainer = document.getElementById('wordsContainer');
+  const hiddenInput = document.getElementById('hiddenInput');
+  const blurOverlay = document.getElementById('blurOverlay');
+  const overlayText = document.getElementById('overlayText');
+  const btnReset = document.getElementById('btnReset');
+  const btnResetText = document.getElementById('btnResetText');
+  const resultCard = document.getElementById('resultCard');
+  const resWpm = document.getElementById('resWpm');
+  const resCpm = document.getElementById('resCpm');
+  const resAccuracy = document.getElementById('resAccuracy');
+  const resRank = document.getElementById('resRank');
+
+  const btnDownloadCert = document.getElementById('btnDownloadCert');
+  const btnShareResult = document.getElementById('btnShareResult');
+  const btnRetry = document.getElementById('btnRetry');
+
+  // Set Language Dropdown value and UI texts
+  if (isEn) {
+    langSelect.value = "en";
+    overlayText.innerText = t("Bấm vào đây để bắt đầu gõ");
+    btnResetText.innerText = t("Lượt mới");
+  }
+
+  // Load a new text sample
+  function initTest() {
+    // Clear old timers
+    clearInterval(timerInterval);
+    timerInterval = null;
+    isTesting = false;
+    testFinished = false;
+    
+    // Read selections
+    const selectedLang = langSelect.value;
+    timerDuration = parseInt(timeSelect.value);
+    timeLeft = timerDuration;
+
+    // Get random text
+    const list = TEXTS[selectedLang];
+    targetText = list[Math.floor(Math.random() * list.length)];
+    typedText = "";
+    
+    totalKeystrokes = 0;
+    correctKeystrokes = 0;
+
+    // Set UI elements
+    liveTimer.innerText = `${timeLeft}s`;
+    liveWpm.innerText = "0";
+    liveAccuracy.innerText = "100%";
+    
+    hiddenInput.value = "";
+    resultCard.classList.add('hidden');
+    resultCard.classList.remove('opacity-100', 'scale-100');
+
+    renderWords();
+    showBlurOverlay(true);
+  }
+
+  // Render text with spans for letter evaluation
+  function renderWords() {
+    wordsContainer.innerHTML = '';
+    
+    // Create letters elements
+    for (let i = 0; i < targetText.length; i++) {
+      const span = document.createElement('span');
+      span.innerText = targetText[i];
+      span.className = "letter border-l border-transparent text-slate-400 dark:text-slate-600";
+      
+      // Evaluation
+      if (i < typedText.length) {
+        if (typedText[i] === targetText[i]) {
+          span.className = "letter text-emerald-500 dark:text-emerald-400";
+        } else {
+          span.className = "letter text-red-500 bg-red-100 dark:bg-red-950/40 border-b-2 border-red-500";
+        }
+      } else if (i === typedText.length) {
+        // Active cursor indicator
+        span.className = "letter text-slate-900 dark:text-white border-l-2 border-cyan-500 font-bold bg-cyan-100/30 dark:bg-cyan-900/20";
+      }
+
+      wordsContainer.appendChild(span);
+    }
+  }
+
+  // Timer Tick
+  function startTimer() {
+    isTesting = true;
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      liveTimer.innerText = `${timeLeft}s`;
+
+      calculateRealTimeStats();
+
+      if (timeLeft <= 0) {
+        finishTest();
+      }
+    }, 1000);
+  }
+
+  // Real-time calculation
+  function calculateRealTimeStats() {
+    const elapsedMinutes = (timerDuration - timeLeft) / 60;
+    if (elapsedMinutes <= 0) return;
+
+    // Standard formula: WPM = (correct chars / 5) / time
+    const wpmVal = Math.round((correctKeystrokes / 5) / elapsedMinutes);
+    liveWpm.innerText = wpmVal;
+
+    const accVal = totalKeystrokes > 0 ? Math.round((correctKeystrokes / totalKeystrokes) * 100) : 100;
+    liveAccuracy.innerText = `${accVal}%`;
+  }
+
+  // Complete typing test
+  function finishTest() {
+    clearInterval(timerInterval);
+    isTesting = false;
+    testFinished = true;
+    hiddenInput.blur();
+
+    // Final scores
+    const elapsedMinutes = timerDuration / 60;
+    const finalWpm = Math.round((correctKeystrokes / 5) / elapsedMinutes);
+    const finalCpm = Math.round(correctKeystrokes / elapsedMinutes);
+    const finalAcc = totalKeystrokes > 0 ? Math.round((correctKeystrokes / totalKeystrokes) * 1000) / 10 : 100;
+
+    // Rate ranking
+    let rankText = t('Trung bình');
+    if (finalWpm < 30) {
+      rankText = t('Chậm');
+    } else if (finalWpm >= 50 && finalWpm < 70) {
+      rankText = t('Nhanh');
+    } else if (finalWpm >= 70) {
+      rankText = t('Thần tốc');
+    }
+
+    // Set UI outputs
+    resWpm.innerText = finalWpm;
+    resCpm.innerText = finalCpm;
+    resAccuracy.innerText = `${finalAcc}%`;
+    resRank.innerText = rankText;
+
+    // Show Card
+    resultCard.classList.remove('hidden');
+    setTimeout(() => {
+      resultCard.classList.add('opacity-100', 'scale-100');
+    }, 50);
+
+    // Increment local stats tracker
+    try {
+      const key = 'calc_real_count_kiem-tra-toc-do-go';
+      localStorage.setItem(key, parseInt(localStorage.getItem(key) || '0') + 1);
+    } catch(e) {}
+  }
+
+  // Overlay management
+  function showBlurOverlay(show) {
+    if (show) {
+      blurOverlay.classList.remove('hidden', 'opacity-0');
+    } else {
+      blurOverlay.classList.add('opacity-0');
+      setTimeout(() => blurOverlay.classList.add('hidden'), 200);
+      hiddenInput.focus();
+    }
+  }
+
+  // Key Event listener logic
+  hiddenInput.addEventListener('input', (e) => {
+    if (testFinished) return;
+
+    if (!isTesting && !testFinished) {
+      startTimer();
+    }
+
+    typedText = e.target.value;
+
+    // Prevent going past length
+    if (typedText.length > targetText.length) {
+      typedText = typedText.substring(0, targetText.length);
+      e.target.value = typedText;
+    }
+
+    // Count stats
+    totalKeystrokes = typedText.length;
+    correctKeystrokes = 0;
+
+    for (let i = 0; i < typedText.length; i++) {
+      if (typedText[i] === targetText[i]) {
+        correctKeystrokes++;
+      }
+    }
+
+    renderWords();
+
+    // Auto complete if text finished
+    if (typedText.length === targetText.length) {
+      finishTest();
+    }
+  });
+
+  // Handle Container Click to focus
+  document.getElementById('typingContainer').addEventListener('click', () => {
+    if (!testFinished) {
+      showBlurOverlay(false);
+    }
+  });
+
+  blurOverlay.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showBlurOverlay(false);
+  });
+
+  // Settings Change Listener
+  langSelect.addEventListener('change', initTest);
+  timeSelect.addEventListener('change', initTest);
+
+  // Resets
+  btnReset.addEventListener('click', initTest);
+  btnRetry.addEventListener('click', initTest);
+
+  // Share link copy
+  btnShareResult.addEventListener('click', () => {
+    const finalWpm = resWpm.innerText;
+    const finalAcc = resAccuracy.innerText;
+    const shareText = `Tôi đã đạt ${finalWpm} WPM và ${finalAcc} độ chính xác trên Trợ Lý Số! Kiểm tra tốc độ gõ phím của bạn tại: ${window.location.href}`;
+    
+    navigator.clipboard.writeText(shareText).then(() => {
+      alert(t('Sao chép liên kết kết quả thành công!'));
+    }).catch(() => {
+      alert(t('Không thể sao chép liên kết.'));
+    });
+  });
+
+  // Certificate Generator Canvas Draw
+  btnDownloadCert.addEventListener('click', () => {
+    const canvas = document.getElementById('certCanvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = 600;
+    canvas.height = 400;
+
+    // Linear background gradient
+    const grad = ctx.createLinearGradient(0, 0, 600, 400);
+    grad.addColorStop(0, '#0f172a'); // slate-900
+    grad.addColorStop(1, '#1e1b4b'); // indigo-950
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 600, 400);
+
+    // Decorative Borders
+    ctx.strokeStyle = '#06b6d4'; // cyan-500
+    ctx.lineWidth = 6;
+    ctx.strokeRect(15, 15, 570, 370);
+
+    ctx.strokeStyle = '#fbbf24'; // amber-400 thin border
+    ctx.lineWidth = 1;
+    ctx.strokeRect(20, 20, 560, 360);
+
+    // Title text
+    ctx.fillStyle = '#f8fafc';
+    ctx.font = 'bold 22px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(t('CHỨNG NHẬN TỐC ĐỘ GÕ PHÍM'), 300, 60);
+
+    // Subtitle URL
+    ctx.fillStyle = '#64748b';
+    ctx.font = '12px Arial';
+    ctx.fillText(t('trolyso.online - Đo tốc độ gõ phím trực tuyến'), 300, 85);
+
+    // Horizontal line
+    ctx.strokeStyle = '#334155';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(100, 110);
+    ctx.lineTo(500, 110);
+    ctx.stroke();
+
+    // Content headers
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '14px Arial';
+    ctx.fillText(t('Thông số đánh máy đạt được:'), 80, 145);
+
+    // WPM Large display
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '14px Arial';
+    ctx.fillText(t('Tốc độ gõ (WPM):'), 80, 185);
+    ctx.fillStyle = '#06b6d4'; // Cyan WPM score
+    ctx.font = 'bold 24px Arial';
+    ctx.fillText(resWpm.innerText, 280, 185);
+
+    // CPM score
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '14px Arial';
+    ctx.fillText(t('Số ký tự/phút (CPM):'), 80, 225);
+    ctx.fillStyle = '#38bdf8';
+    ctx.font = 'bold 18px Arial';
+    ctx.fillText(resCpm.innerText, 280, 225);
+
+    // Accuracy score
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '14px Arial';
+    ctx.fillText(t('Độ chính xác (%):'), 80, 265);
+    ctx.fillStyle = '#34d399'; // Emerald accuracy
+    ctx.font = 'bold 18px Arial';
+    ctx.fillText(resAccuracy.innerText, 280, 265);
+
+    // Performance Rank
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '14px Arial';
+    ctx.fillText(t('Đánh giá xếp hạng:'), 80, 305);
+    ctx.fillStyle = '#fbbf24'; // Amber rank
+    ctx.font = 'bold 18px Arial';
+    ctx.fillText(resRank.innerText, 280, 305);
+
+    // Copyright
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#475569';
+    ctx.font = 'italic 11px Arial';
+    ctx.fillText(t('Bản quyền thuộc về trolyso.online 2026'), 300, 355);
+
+    // Download triggering link
+    const link = document.createElement('a');
+    link.download = `typing-certificate-${resWpm.innerText}wpm-trolyso.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+
+  // Init call
+  initTest();
+</script>
+
+<!-- Structured JSON-LD Data for WebApplication & FAQPage Schema -->
+<script type="application/ld+json" is:inline>
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Công cụ kiểm tra tốc độ gõ phím online - Trợ Lý Số",
+      "description": "Ứng dụng kiểm tra tốc độ đánh máy 10 ngón online. Tính toán chỉ số WPM, CPM và độ chính xác gõ phím thời gian thực.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "All",
+      "url": "https://trolyso.online/calculators/kiem-tra-toc-do-go/",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "VND"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Tốc độ gõ bao nhiêu WPM thì được xem là đủ dùng cho công việc?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tốc độ từ 40 - 50 WPM là mức trung bình phổ thông, đủ đáp ứng các tác vụ soạn thảo tài liệu, email và trao đổi thông tin cơ bản. Đối với lập trình viên hoặc hành chính văn phòng chuyên nghiệp, tốc độ mong muốn là từ 60 WPM trở lên kèm độ chính xác trên 95%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Tại sao độ chính xác lại quan trọng hơn tốc độ gõ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Khi gõ sai phím, bạn sẽ mất thêm thời gian nhấn Backspace để xóa và gõ lại từ đầu. Sự ngắt quãng này làm suy giảm nghiêm trọng luồng suy nghĩ và hiệu năng gõ thực tế. Do đó, hãy ưu tiên gõ đúng phím trước khi cố gắng gia tăng tốc độ gõ."
+          }
+        }
+      ]
+    }
+  ]
+</script>

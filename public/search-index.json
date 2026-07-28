@@ -1,5 +1,15 @@
 [
   {
+    "title": "Công cụ: Đo Tốc Độ Gõ Chữ - Kiểm Tra Đánh Máy Online",
+    "desc": "Trình kiểm tra tốc độ đánh máy 10 ngón online. Tính toán chỉ số WPM, CPM, độ chính xác gõ phím thời gian thực và xuất chứng chỉ kết quả gõ phím.",
+    "url": "/calculators/kiem-tra-toc-do-go/"
+  },
+  {
+    "title": "Bài viết: Bí Quyết Luyện Tốc Độ Gõ Bàn Phím Nhanh 10 Ngón Chuẩn Khoa Học",
+    "desc": "Hướng dẫn chi tiết cách luyện gõ 10 ngón tay không nhìn bàn phím, tư thế ngồi công thái học và các bài tập cải thiện tốc độ đánh máy văn phòng.",
+    "url": "/blog/bi-quyet-luyen-toc-do-go-ban-phim-nhanh/"
+  },
+  {
     "title": "Công cụ: Dựng Đồ Liên Quân Mobile - Lên Trang Bị Tướng Online",
     "desc": "Trình dựng lối lên đồ trang bị cấp 3 cho các tướng Arena of Valor (Liên Quân) trực quan và tự động tính toán chỉ số sức mạnh thời gian thực.",
     "url": "/calculators/build-do-lien-quan/"
