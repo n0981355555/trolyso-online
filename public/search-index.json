@@ -1,5 +1,15 @@
 [
   {
+    "title": "Công cụ: Tạo Tờ Khai Thuế Online - Chuẩn HTKK 2026",
+    "desc": "Công cụ trực tuyến giúp tự động lập tờ khai quyết toán thuế TNCN (02/QT-TNCN), tờ khai hộ kinh doanh (01/CNKD) và thuế GTGT trực tiếp (01/GTGT), xuất file XML nộp HTKK.",
+    "url": "/calculators/tao-to-khai-thue/"
+  },
+  {
+    "title": "Bài viết: Hướng Dẫn Cách Tự Tạo Tờ Khai Thuế Online Chuẩn Nhất 2026",
+    "desc": "Cẩm nang hướng dẫn chi tiết cách kê khai và tự lập tờ khai quyết toán thuế TNCN, hộ kinh doanh và doanh nghiệp trực tiếp, kết xuất tệp XML nộp lên cơ quan thuế.",
+    "url": "/blog/huong-dan-tao-to-khai-thue-online/"
+  },
+  {
     "title": "Công cụ: Đo Tốc Độ Gõ Chữ - Kiểm Tra Đánh Máy Online",
     "desc": "Trình kiểm tra tốc độ đánh máy 10 ngón online. Tính toán chỉ số WPM, CPM, độ chính xác gõ phím thời gian thực và xuất chứng chỉ kết quả gõ phím.",
     "url": "/calculators/kiem-tra-toc-do-go/"

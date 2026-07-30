@@ -1,0 +1,1163 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import StatsBadge from '../../../components/StatsBadge.astro';
+---
+
+<Layout 
+  title="Khai Thuế Hộ Kinh Doanh, Cá Nhân & Doanh Nghiệp - Tạo Tờ Khai Thuế Online"
+  description="Công cụ trực tuyến hỗ trợ khai thuế hộ kinh doanh (01/CNKD), tự quyết toán thuế thu nhập cá nhân (02/QT-TNCN) và khai thuế doanh nghiệp (01/GTGT). Tự động tính thuế suất, giảm thuế GTGT 2% và kết xuất XML nộp HTKK."
+>
+  <!-- Background radial glow -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(37,99,235,0.03),transparent_50%)] pointer-events-none z-0"></div>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-slate-500 mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="hover:text-brand-blue dark:hover:text-brand-mint">Trang chủ</a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <a href="/calculators/" class="hover:text-brand-blue dark:hover:text-brand-mint">Công Cụ</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <span class="mx-2 text-slate-400">/</span>
+            <span class="text-slate-400 dark:text-slate-500">Tạo tờ khai thuế</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Hero Header -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <span class="px-3.5 py-1 text-xs font-bold rounded-full bg-brand-blue/10 text-brand-blue dark:bg-brand-mint/10 dark:text-brand-mint mb-3 inline-block">
+        Mẫu Biểu Mới Nhất 2026
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        Công Cụ Tạo Tờ Khai Thuế Online
+      </h1>
+      <p class="text-base text-slate-600 dark:text-slate-400">
+        Tự động tính thuế, điền tờ khai chính, lập phụ lục doanh thu và phụ lục giảm thuế GTGT 2%. Xuất file XML chuẩn HTKK, Word hoặc Excel tức thì.
+      </p>
+    </div>
+
+    <!-- Main Container Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+      
+      <!-- Input Panel (5 Cols) -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <!-- Step 1: Selection & Configuration -->
+        <div class="p-6 bg-white dark:bg-brand-darkCard border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-sm space-y-4">
+          <h2 class="text-lg font-heading font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            ⚙️ Cấu hình Tờ khai
+          </h2>
+
+          <!-- Đối tượng kê khai -->
+          <div>
+            <label for="taxSubject" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Đối tượng kê khai</label>
+            <select id="taxSubject" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 font-bold focus:outline-none focus:ring-2 focus:ring-brand-blue">
+              <option value="cnkd">Hộ kinh doanh, cá nhân KD (Mẫu 01/CNKD)</option>
+              <option value="qttncn">Cá nhân quyết toán TNCN (Mẫu 02/QT-TNCN)</option>
+              <option value="gtgt">Doanh nghiệp (Trực tiếp GTGT - Mẫu 01/GTGT)</option>
+            </select>
+          </div>
+
+          <!-- Kỳ kê khai và năm -->
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="taxPeriod" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Kỳ kê khai</label>
+              <select id="taxPeriod" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                <option value="quarter">Theo Quý</option>
+                <option value="month">Theo Tháng</option>
+              </select>
+            </div>
+            <div>
+              <label id="periodDetailLabel" for="taxPeriodVal" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Chọn Quý</label>
+              <select id="taxPeriodVal" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                <!-- Quý default options -->
+                <option value="Q1">Quý I</option>
+                <option value="Q2">Quý II</option>
+                <option value="Q3">Quý III</option>
+                <option value="Q4">Quý IV</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Năm tính thuế -->
+          <div>
+            <label for="taxYear" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Năm tính thuế</label>
+            <input type="number" id="taxYear" value="2026" min="2020" max="2030" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 font-bold focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+          </div>
+        </div>
+
+        <!-- Step 2: Dynamic Inputs based on Subject Selection -->
+        <div class="p-6 bg-white dark:bg-brand-darkCard border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-sm">
+          <h2 class="text-lg font-heading font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-6">
+            📝 Dữ liệu Kê khai
+          </h2>
+
+          <!-- 1. HỘ KINH DOANH INPUTS -->
+          <div id="subject_cnkd" class="space-y-4">
+            <div class="p-3 bg-amber-500/5 border border-amber-500/20 rounded-xl mb-4 text-xs text-amber-600 dark:text-amber-400 leading-relaxed font-medium">
+              ⚠️ Chỉ cá nhân kinh doanh có doanh thu trên 100 triệu đồng/năm mới thuộc diện nộp thuế GTGT & TNCN.
+            </div>
+
+            <!-- Tên HKD / Địa chỉ -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="cnkd_name" class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Tên người nộp thuế</label>
+                <input type="text" id="cnkd_name" value="Nguyễn Văn A" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+              </div>
+              <div>
+                <label for="cnkd_mst" class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Mã số thuế</label>
+                <input type="text" id="cnkd_mst" value="8012345678" placeholder="Nhập 10 chữ số" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+              </div>
+            </div>
+
+            <!-- Ngành nghề chịu thuế và doanh thu -->
+            <div class="space-y-3 pt-2">
+              <span class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Doanh thu tính thuế phát sinh trong kỳ:</span>
+              
+              <div>
+                <label for="cnkd_rev_retail" class="block text-xs text-slate-500 dark:text-slate-400 mb-1">1. Phân phối, bán lẻ hàng hóa (GTGT 1% - TNCN 0.5%)</label>
+                <input type="number" id="cnkd_rev_retail" value="150000000" class="w-full px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+              </div>
+
+              <div>
+                <label for="cnkd_rev_service" class="block text-xs text-slate-500 dark:text-slate-400 mb-1">2. Dịch vụ, xây dựng không bao thầu (GTGT 5% - TNCN 2%)</label>
+                <input type="number" id="cnkd_rev_service" value="0" class="w-full px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+              </div>
+
+              <div>
+                <label for="cnkd_rev_produce" class="block text-xs text-slate-500 dark:text-slate-400 mb-1">3. Sản xuất, vận tải, có gắn hàng hóa (GTGT 3% - TNCN 1.5%)</label>
+                <input type="number" id="cnkd_rev_produce" value="0" class="w-full px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+              </div>
+
+              <div>
+                <label for="cnkd_rev_other" class="block text-xs text-slate-500 dark:text-slate-400 mb-1">4. Hoạt động kinh doanh khác (GTGT 2% - TNCN 1%)</label>
+                <input type="number" id="cnkd_rev_other" value="0" class="w-full px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+              </div>
+            </div>
+
+            <!-- Giảm thuế GTGT 2% -->
+            <div class="pt-4 border-t border-slate-200 dark:border-slate-800">
+              <label for="cnkd_vat_reduction" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">Chính sách giảm thuế GTGT (Nghị quyết 2%):</label>
+              <select id="cnkd_vat_reduction" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-xs focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                <option value="detect">Tự động phát hiện (Giảm 20% tỷ lệ tính thuế GTGT)</option>
+                <option value="no">Không áp dụng giảm thuế</option>
+              </select>
+              <div id="vat_reduction_notice" class="mt-2 text-[10px] text-emerald-600 dark:text-brand-mint font-medium leading-relaxed">
+                👉 Hệ thống tự phát hiện nhóm ngành được giảm 20% mức thuế suất GTGT trực tiếp (Ví dụ: tỷ lệ GTGT bán lẻ giảm từ 1% xuống 0.8%).
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. CÁ NHÂN QUYẾT TOÁN TNCN INPUTS -->
+          <div id="subject_qttncn" class="space-y-4 hidden">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="qttncn_name" class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Họ tên cá nhân</label>
+                <input type="text" id="qttncn_name" value="Trần Thị B" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+              </div>
+              <div>
+                <label for="qttncn_mst" class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Mã số thuế cá nhân</label>
+                <input type="text" id="qttncn_mst" value="8198765432" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+              </div>
+            </div>
+
+            <!-- Tổng thu nhập năm -->
+            <div>
+              <label for="qttncn_income" class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Tổng thu nhập chịu thuế trong năm (VND)</label>
+              <input type="number" id="qttncn_income" value="360000000" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+            </div>
+
+            <!-- Số người phụ thuộc -->
+            <div>
+              <label for="qttncn_dependents" class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Số người phụ thuộc (Thời gian giảm trừ đủ 12 tháng)</label>
+              <input type="number" id="qttncn_dependents" value="1" min="0" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+            </div>
+
+            <!-- Bảo hiểm đã đóng -->
+            <div>
+              <label for="qttncn_insurance" class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Bảo hiểm bắt buộc đã đóng trong năm (VND)</label>
+              <input type="number" id="qttncn_insurance" value="28800000" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+            </div>
+
+            <!-- Thuế đã khấu trừ -->
+            <div>
+              <label for="qttncn_deducted" class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Số thuế TNCN doanh nghiệp đã khấu trừ (VND)</label>
+              <input type="number" id="qttncn_deducted" value="12000000" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+            </div>
+          </div>
+
+          <!-- 3. DOANH NGHIỆP TRỰC TIẾP INPUTS -->
+          <div id="subject_gtgt" class="space-y-4 hidden">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="gtgt_name" class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Tên doanh nghiệp</label>
+                <input type="text" id="gtgt_name" value="Công ty TNHH Thương mại X" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+              </div>
+              <div>
+                <label for="gtgt_mst" class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Mã số thuế</label>
+                <input type="text" id="gtgt_mst" value="0101234567" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+              </div>
+            </div>
+
+            <div class="space-y-3 pt-2">
+              <span class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Doanh thu tính thuế GTGT trực tiếp:</span>
+
+              <div>
+                <label for="gtgt_rev_retail" class="block text-xs text-slate-500 dark:text-slate-400 mb-1">1. Phân phối, bán lẻ hàng hóa (Thuế GTGT 1%)</label>
+                <input type="number" id="gtgt_rev_retail" value="500000000" class="w-full px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+              </div>
+
+              <div>
+                <label for="gtgt_rev_service" class="block text-xs text-slate-500 dark:text-slate-400 mb-1">2. Dịch vụ, xây dựng không bao thầu (Thuế GTGT 5%)</label>
+                <input type="number" id="gtgt_rev_service" value="0" class="w-full px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+              </div>
+
+              <div>
+                <label for="gtgt_rev_produce" class="block text-xs text-slate-500 dark:text-slate-400 mb-1">3. Sản xuất, vận tải, xây dựng có bao thầu (Thuế GTGT 3%)</label>
+                <input type="number" id="gtgt_rev_produce" value="0" class="w-full px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue" />
+              </div>
+            </div>
+
+            <!-- Giảm thuế GTGT 2% cho doanh nghiệp -->
+            <div class="pt-4 border-t border-slate-200 dark:border-slate-800">
+              <label for="gtgt_vat_reduction" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">Chính sách giảm thuế GTGT (Nghị quyết 2%):</label>
+              <select id="gtgt_vat_reduction" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-xs focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                <option value="detect">Tự động áp dụng (Giảm 20% mức tính thuế GTGT)</option>
+                <option value="no">Không áp dụng giảm thuế</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Export Buttons Action Panel -->
+        <div class="p-6 bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-sm space-y-3">
+          <button id="btnExportXML" class="w-full bg-[#0063b6] hover:bg-blue-700 text-white font-bold py-3.5 px-4 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow">
+            📥 Xuất XML chuẩn HTKK
+          </button>
+          <div class="grid grid-cols-2 gap-3">
+            <button id="btnExportExcel" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-3 rounded-xl transition duration-200 flex items-center justify-center gap-1.5 text-sm shadow">
+              📊 Xuất file Excel
+            </button>
+            <button id="btnExportWord" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-3 rounded-xl transition duration-200 flex items-center justify-center gap-1.5 text-sm shadow">
+              📝 Xuất bản Word
+            </button>
+          </div>
+          <button id="btnPrintPDF" class="w-full bg-slate-700 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white font-bold py-3 px-4 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow text-sm">
+            🖨️ In tờ khai (PDF)
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Preview Panel (7 Cols) -->
+      <div class="lg:col-span-7 flex flex-col">
+        <div class="p-6 bg-white dark:bg-brand-darkCard border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-sm flex-1 overflow-x-auto min-w-0">
+          <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4 mb-6">
+            <h3 class="font-heading font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              👀 Xem trước Tờ khai & Phụ lục
+            </h3>
+            <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 rounded-lg">
+              Chỉ số tự động tính toán
+            </span>
+          </div>
+
+          <!-- Document Render Frame (yellowish form style) -->
+          <div id="printDocumentFrame" class="p-6 bg-[#fffdf0] text-slate-900 rounded-xl border border-amber-200/50 shadow-inner font-sans text-xs min-w-[640px]">
+            <!-- Dynamic Content Injected here by Javascript -->
+            <div id="document_content_cnkd" class="space-y-6">
+              <!-- Form Header -->
+              <div class="text-center font-bold uppercase space-y-1">
+                <div>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                <div class="text-[10px] lowercase normal-case italic font-normal">Độc lập - Tự do - Hạnh phúc</div>
+                <div class="h-px bg-slate-800 w-24 mx-auto my-2"></div>
+                <div class="text-sm font-extrabold pt-2">TỜ KHAI THUẾ ĐỐI VỚI CÁ NHÂN KINH DOANH</div>
+                <div class="text-[10px] font-normal normal-case italic">(Áp dụng cho cá nhân kinh doanh, hộ kinh doanh nộp thuế theo phương pháp kê khai)</div>
+                <div class="text-[10px] font-semibold mt-1">Kỳ tính thuế: <span class="tax-period-title font-extrabold">Quý I/2026</span></div>
+              </div>
+
+              <!-- Information Block -->
+              <div class="space-y-1 border-t border-b border-slate-400 py-3 mt-4">
+                <div><strong>[01] Tên người nộp thuế:</strong> <span class="lbl_name">Nguyễn Văn A</span></div>
+                <div><strong>[02] Mã số thuế:</strong> <span class="lbl_mst">8012345678</span></div>
+                <div><strong>[03] Địa chỉ kinh doanh:</strong> 63 Tỉnh thành, Việt Nam</div>
+              </div>
+
+              <!-- Table Data -->
+              <div>
+                <div class="font-bold mb-2 uppercase text-[10px] tracking-wider">A. Chỉ tiêu tính thuế doanh thu & thuế suất:</div>
+                <table class="w-full border-collapse border border-slate-800 text-left">
+                  <thead>
+                    <tr class="bg-slate-200/60 font-bold">
+                      <th class="border border-slate-800 p-2 text-center w-8">STT</th>
+                      <th class="border border-slate-800 p-2">Danh mục nhóm ngành nghề kinh doanh</th>
+                      <th class="border border-slate-800 p-2 text-center w-28">Doanh thu chịu thuế</th>
+                      <th class="border border-slate-800 p-2 text-center w-20">Tỷ lệ thuế GTGT</th>
+                      <th class="border border-slate-800 p-2 text-center w-20">Tỷ lệ thuế TNCN</th>
+                      <th class="border border-slate-800 p-2 text-center w-24">Thuế GTGT phải nộp</th>
+                      <th class="border border-slate-800 p-2 text-center w-24">Thuế TNCN phải nộp</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="border border-slate-800 p-2 text-center">1</td>
+                      <td class="border border-slate-800 p-2">Phân phối, bán lẻ hàng hóa</td>
+                      <td class="border border-slate-800 p-2 text-right font-bold" id="td_rev_retail">150,000,000</td>
+                      <td class="border border-slate-800 p-2 text-center font-bold text-emerald-700" id="td_rate_gtgt_retail">0.8% (đã giảm)</td>
+                      <td class="border border-slate-800 p-2 text-center">0.5%</td>
+                      <td class="border border-slate-800 p-2 text-right font-bold" id="td_tax_gtgt_retail">1,200,000</td>
+                      <td class="border border-slate-800 p-2 text-right font-bold" id="td_tax_tncn_retail">750,000</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-slate-800 p-2 text-center">2</td>
+                      <td class="border border-slate-800 p-2">Dịch vụ, xây dựng không bao thầu</td>
+                      <td class="border border-slate-800 p-2 text-right" id="td_rev_service">0</td>
+                      <td class="border border-slate-800 p-2 text-center">5%</td>
+                      <td class="border border-slate-800 p-2 text-center">2%</td>
+                      <td class="border border-slate-800 p-2 text-right" id="td_tax_gtgt_service">0</td>
+                      <td class="border border-slate-800 p-2 text-right" id="td_tax_tncn_service">0</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-slate-800 p-2 text-center">3</td>
+                      <td class="border border-slate-800 p-2">Sản xuất, vận tải, dịch vụ kèm hàng hóa</td>
+                      <td class="border border-slate-800 p-2 text-right" id="td_rev_produce">0</td>
+                      <td class="border border-slate-800 p-2 text-center">3%</td>
+                      <td class="border border-slate-800 p-2 text-center">1.5%</td>
+                      <td class="border border-slate-800 p-2 text-right" id="td_tax_gtgt_produce">0</td>
+                      <td class="border border-slate-800 p-2 text-right" id="td_tax_tncn_produce">0</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-slate-800 p-2 text-center">4</td>
+                      <td class="border border-slate-800 p-2">Hoạt động kinh doanh khác</td>
+                      <td class="border border-slate-800 p-2 text-right" id="td_rev_other">0</td>
+                      <td class="border border-slate-800 p-2 text-center">2%</td>
+                      <td class="border border-slate-800 p-2 text-center">1%</td>
+                      <td class="border border-slate-800 p-2 text-right" id="td_tax_gtgt_other">0</td>
+                      <td class="border border-slate-800 p-2 text-right" id="td_tax_tncn_other">0</td>
+                    </tr>
+                    <tr class="bg-slate-100 font-extrabold">
+                      <td class="border border-slate-800 p-2 text-center" colspan="2">TỔNG CỘNG</td>
+                      <td class="border border-slate-800 p-2 text-right" id="td_total_rev">150,000,000</td>
+                      <td class="border border-slate-800 p-2 text-center" colspan="2">-</td>
+                      <td class="border border-slate-800 p-2 text-right text-brand-blue" id="td_total_gtgt">1,200,000</td>
+                      <td class="border border-slate-800 p-2 text-right text-brand-blue" id="td_total_tncn">750,000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Appendix Reduction -->
+              <div class="p-3.5 bg-white border border-slate-300 rounded-lg">
+                <div class="font-bold text-[10px] mb-1 uppercase tracking-wider text-emerald-800">Phụ lục Giảm Thuế GTGT 2% (Auto-Detected):</div>
+                <div class="leading-relaxed">
+                  ✓ Hộ kinh doanh đang chịu tỷ lệ thuế suất thông thường cho bán lẻ hàng hóa là 1%. <br />
+                  ✓ Căn cứ theo Nghị quyết của Quốc hội về việc giảm thuế bảo vệ người tiêu dùng, tỷ lệ GTGT được **giảm 20% trên mức thuế suất**, quy đổi thực tế còn **0.8%** doanh thu tính thuế GTGT.
+                </div>
+              </div>
+
+              <!-- Payment Summary -->
+              <div class="border-t border-dashed border-slate-400 pt-4 flex justify-between items-center text-[10px]">
+                <div>
+                  <strong>Tổng số thuế phải nộp trong kỳ:</strong> <br />
+                  <span class="text-sm font-extrabold text-red-600" id="totalPayableCNKD">1,950,000 VND</span>
+                </div>
+                <div class="text-right">
+                  <em>Hạn nộp tờ khai và nộp thuế:</em> <br />
+                  <strong class="text-slate-800" id="taxDeadlineCNKD">Ngày cuối cùng của tháng đầu quý tiếp theo (30/04/2026)</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- 02/QT-TNCN PREVIEW FRAME -->
+            <div id="document_content_qttncn" class="space-y-6 hidden">
+              <div class="text-center font-bold uppercase space-y-1">
+                <div>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                <div class="text-[10px] lowercase normal-case italic font-normal">Độc lập - Tự do - Hạnh phúc</div>
+                <div class="h-px bg-slate-800 w-24 mx-auto my-2"></div>
+                <div class="text-sm font-extrabold pt-2">TỜ KHAI QUYẾT TOÁN THUẾ THU NHẬP CÁ NHÂN</div>
+                <div class="text-[10px] font-normal normal-case italic">(Áp dụng cho cá nhân có thu nhập từ tiền lương, tiền công tự quyết toán thuế)</div>
+                <div class="text-[10px] font-semibold mt-1">Năm quyết toán thuế: <span class="tax-year-title font-extrabold">2026</span></div>
+              </div>
+
+              <div class="space-y-1 border-t border-b border-slate-400 py-3 mt-4">
+                <div><strong>[01] Tên người nộp thuế:</strong> <span class="lbl_name_qt">Trần Thị B</span></div>
+                <div><strong>[02] Mã số thuế cá nhân:</strong> <span class="lbl_mst_qt">8198765432</span></div>
+              </div>
+
+              <div>
+                <table class="w-full border-collapse border border-slate-800 text-left">
+                  <thead>
+                    <tr class="bg-slate-200/60 font-bold">
+                      <th class="border border-slate-800 p-2 text-center w-8">Mã CT</th>
+                      <th class="border border-slate-800 p-2">Chỉ tiêu quyết toán thuế</th>
+                      <th class="border border-slate-800 p-2 text-center w-36">Số liệu (VND)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="border border-slate-800 p-2 text-center font-bold">[22]</td>
+                      <td class="border border-slate-800 p-2">Tổng thu nhập chịu thuế phát sinh trong năm</td>
+                      <td class="border border-slate-800 p-2 text-right font-bold" id="qt_income">360,000,000</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-slate-800 p-2 text-center font-bold">[28]</td>
+                      <td class="border border-slate-800 p-2">Các khoản giảm trừ gia cảnh (bản thân + người phụ thuộc)</td>
+                      <td class="border border-slate-800 p-2 text-right" id="qt_deduct_family">184,800,000</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-slate-800 p-2 text-center font-bold">[29]</td>
+                      <td class="border border-slate-800 p-2">Các khoản đóng bảo hiểm bắt buộc</td>
+                      <td class="border border-slate-800 p-2 text-right" id="qt_deduct_insurance">28,800,000</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-slate-800 p-2 text-center font-bold">[32]</td>
+                      <td class="border border-slate-800 p-2">Tổng thu nhập tính thuế quyết toán ( [22] - [28] - [29] )</td>
+                      <td class="border border-slate-800 p-2 text-right font-bold text-brand-blue" id="qt_taxable_income">146,400,000</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-slate-800 p-2 text-center font-bold">[33]</td>
+                      <td class="border border-slate-800 p-2">Tổng số thuế TNCN phát sinh phải nộp trong năm</td>
+                      <td class="border border-slate-800 p-2 text-right font-bold text-red-600" id="qt_total_tax_due">14,280,000</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-slate-800 p-2 text-center font-bold">[34]</td>
+                      <td class="border border-slate-800 p-2">Số thuế đã khấu trừ tại các tổ chức chi trả</td>
+                      <td class="border border-slate-800 p-2 text-right font-bold" id="qt_tax_withheld">12,000,000</td>
+                    </tr>
+                    <tr class="bg-slate-100 font-extrabold">
+                      <td class="border border-slate-800 p-2 text-center" colspan="2" id="qt_result_label">SỐ THUẾ CÒN PHẢI NỘP THÊM (+)</td>
+                      <td class="border border-slate-800 p-2 text-right text-red-600" id="qt_tax_result">2,280,000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="p-3.5 bg-white border border-slate-300 rounded-lg text-[10px]">
+                <strong>Cách tính thuế suất lũy tiến từng phần:</strong> <br />
+                <span id="qt_calculation_breakdown" class="leading-relaxed">
+                  - Bậc 1 (dưới 60tr): 60tr * 5% = 3tr <br />
+                  - Bậc 2 (60tr - 120tr): 60tr * 10% = 6tr <br />
+                  - Bậc 3 (120tr - 216tr): 26.4tr * 15% = 3.96tr <br />
+                  Tổng cộng: 14.28tr VND.
+                </span>
+              </div>
+            </div>
+
+            <!-- 01/GTGT PREVIEW FRAME -->
+            <div id="document_content_gtgt" class="space-y-6 hidden">
+              <div class="text-center font-bold uppercase space-y-1">
+                <div>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                <div class="text-[10px] lowercase normal-case italic font-normal">Độc lập - Tự do - Hạnh phúc</div>
+                <div class="h-px bg-slate-800 w-24 mx-auto my-2"></div>
+                <div class="text-sm font-extrabold pt-2">TỜ KHAI THUẾ GIÁ TRỊ GIA TĂNG</div>
+                <div class="text-[10px] font-normal normal-case italic">(Áp dụng cho người nộp thuế tính thuế theo phương pháp trực tiếp trên doanh thu)</div>
+                <div class="text-[10px] font-semibold mt-1">Kỳ tính thuế: <span class="tax-period-title font-extrabold">Quý I/2026</span></div>
+              </div>
+
+              <div class="space-y-1 border-t border-b border-slate-400 py-3 mt-4">
+                <div><strong>[01] Tên doanh nghiệp:</strong> <span class="lbl_name_company">Công ty TNHH Thương mại X</span></div>
+                <div><strong>[02] Mã số thuế:</strong> <span class="lbl_mst_company">0101234567</span></div>
+              </div>
+
+              <div>
+                <table class="w-full border-collapse border border-slate-800 text-left">
+                  <thead>
+                    <tr class="bg-slate-200/60 font-bold">
+                      <th class="border border-slate-800 p-2 text-center w-8">STT</th>
+                      <th class="border border-slate-800 p-2">Nhóm ngành nghề doanh nghiệp</th>
+                      <th class="border border-slate-800 p-2 text-center w-28">Doanh thu chịu thuế</th>
+                      <th class="border border-slate-800 p-2 text-center w-24">Tỷ lệ tính thuế</th>
+                      <th class="border border-slate-800 p-2 text-center w-28">Số thuế GTGT phải nộp</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="border border-slate-800 p-2 text-center">1</td>
+                      <td class="border border-slate-800 p-2">Hoạt động phân phối, bán lẻ hàng hóa</td>
+                      <td class="border border-slate-800 p-2 text-right font-bold" id="gtgt_rev_retail_td">500,000,000</td>
+                      <td class="border border-slate-800 p-2 text-center font-bold text-emerald-700" id="gtgt_rate_retail_td">0.8% (đã giảm)</td>
+                      <td class="border border-slate-800 p-2 text-right font-bold text-brand-blue" id="gtgt_tax_retail_td">4,000,000</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-slate-800 p-2 text-center">2</td>
+                      <td class="border border-slate-800 p-2">Dịch vụ, xây dựng không bao thầu</td>
+                      <td class="border border-slate-800 p-2 text-right" id="gtgt_rev_service_td">0</td>
+                      <td class="border border-slate-800 p-2 text-center">5%</td>
+                      <td class="border border-slate-800 p-2 text-right" id="gtgt_tax_service_td">0</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-slate-800 p-2 text-center">3</td>
+                      <td class="border border-slate-800 p-2">Sản xuất, vận tải, xây dựng có bao thầu</td>
+                      <td class="border border-slate-800 p-2 text-right" id="gtgt_rev_produce_td">0</td>
+                      <td class="border border-slate-800 p-2 text-center">3%</td>
+                      <td class="border border-slate-800 p-2 text-right" id="gtgt_tax_produce_td">0</td>
+                    </tr>
+                    <tr class="bg-slate-100 font-extrabold">
+                      <td class="border border-slate-800 p-2 text-center" colspan="2">TỔNG CỘNG PHẢI NỘP</td>
+                      <td class="border border-slate-800 p-2 text-right" id="gtgt_total_rev_td">500,000,000</td>
+                      <td class="border border-slate-800 p-2 text-center">-</td>
+                      <td class="border border-slate-800 p-2 text-right text-red-600" id="gtgt_total_tax_td">4,000,000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Info reduction for enterprise -->
+              <div class="p-3 bg-white border border-slate-200 rounded-lg text-[10px]">
+                👉 Doanh nghiệp áp dụng giảm 20% tỷ lệ tính thuế GTGT theo Nghị quyết phục hồi kinh tế (đầu ra ngành bán lẻ được tính theo mức 0.8% thay vì 1.0% thông thường).
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- E-E-A-T Handbook (Cẩm Nang Hướng Dẫn Kê Khai) -->
+    <section class="max-w-4xl mx-auto space-y-8 pt-8 border-t border-slate-200 dark:border-slate-800 z-10 relative">
+      <div class="text-center">
+        <h2 class="text-2xl font-heading font-extrabold text-slate-900 dark:text-white mb-2">
+          📚 Hướng Dẫn Khai Thuế Hộ Kinh Doanh, Cá Nhân & Doanh Nghiệp
+        </h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400">
+          Tổng hợp công thức tính thuế suất, thời hạn nộp hồ sơ khai thuế và hướng dẫn chi tiết chuẩn E-E-A-T.
+        </p>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div class="space-y-4">
+        <details class="group p-5 bg-white dark:bg-brand-darkCard border border-slate-200/80 dark:border-slate-800/80 rounded-2xl transition duration-200">
+          <summary class="font-heading font-bold text-slate-800 dark:text-slate-200 cursor-pointer flex justify-between items-center select-none">
+            <span>⏰ Hạn nộp hồ sơ khai thuế hộ kinh doanh, khai thuế cá nhân và khai thuế doanh nghiệp là khi nào?</span>
+            <span class="transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="mt-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed space-y-2">
+            <p>- **Khai thuế hộ kinh doanh theo quý:** Chậm nhất là ngày cuối cùng của tháng đầu tiên của quý tiếp theo quý phát sinh nghĩa vụ thuế (Ví dụ: Hạn nộp Quý I là ngày 30 tháng 4).</p>
+            <p>- **Khai thuế hộ kinh doanh theo tháng:** Chậm nhất là ngày thứ 20 của tháng tiếp theo tháng phát sinh nghĩa vụ thuế.</p>
+            <p>- **Khai thuế cá nhân làm công ăn lương (Tự quyết toán năm):** Chậm nhất là ngày cuối cùng của tháng thứ 4 kể từ ngày kết thúc năm dương lịch (ngày 30 tháng 4).</p>
+            <p>- **Khai thuế doanh nghiệp (GTGT trực tiếp):** Chậm nhất là ngày thứ 20 của tháng tiếp theo (theo tháng) hoặc ngày cuối cùng của tháng đầu tiên của quý tiếp theo (theo quý).</p>
+          </div>
+        </details>
+
+        <details class="group p-5 bg-white dark:bg-brand-darkCard border border-slate-200/80 dark:border-slate-800/80 rounded-2xl transition duration-200">
+          <summary class="font-heading font-bold text-slate-800 dark:text-slate-200 cursor-pointer flex justify-between items-center select-none">
+            <span>🛡️ Các chỉ tiêu và tỷ lệ tính thuế khi khai thuế hộ kinh doanh quy định như thế nào?</span>
+            <span class="transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="mt-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+            Theo Thông tư 40/2021/TT-BTC, khi thực hiện **khai thuế hộ kinh doanh**, thuế suất được áp dụng theo từng nhóm ngành nghề:
+            <ul class="list-disc list-inside mt-2 space-y-1">
+              <li>Phân phối, bán lẻ hàng hóa: Thuế GTGT 1%, Thuế TNCN 0.5% (Tự động áp dụng giảm thuế GTGT 2% còn 0.8% nếu thuộc diện giảm thuế).</li>
+              <li>Dịch vụ, xây dựng không bao thầu: Thuế GTGT 5%, Thuế TNCN 2%.</li>
+              <li>Sản xuất, vận tải, dịch vụ có gắn hàng hóa: Thuế GTGT 3%, Thuế TNCN 1.5% (Giảm thuế GTGT còn 2.4%).</li>
+              <li>Hoạt động kinh doanh khác: Thuế GTGT 2%, Thuế TNCN 1% (Giảm thuế GTGT còn 1.6%).</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="group p-5 bg-white dark:bg-brand-darkCard border border-slate-200/80 dark:border-slate-800/80 rounded-2xl transition duration-200">
+          <summary class="font-heading font-bold text-slate-800 dark:text-slate-200 cursor-pointer flex justify-between items-center select-none">
+            <span>⚙️ Làm thế nào để nộp tệp XML sau khi hoàn thành khai thuế cá nhân hoặc khai thuế doanh nghiệp?</span>
+            <span class="transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="mt-3 text-slate-600 dark:text-slate-400 text-sm leading-relaxed space-y-2">
+            <p>1. Tải tệp XML được kết xuất từ công cụ Tạo tờ khai thuế trực tuyến.</p>
+            <p>2. Mở ứng dụng **HTKK** của Tổng cục Thuế, chọn tờ khai tương ứng và click **Nhập từ XML** để nạp số liệu tự động.</p>
+            <p>3. Kế toán doanh nghiệp hoặc cá nhân tự quyết toán ký chữ ký số và nộp trực tiếp file XML này lên cổng **Thuế Điện Tử** (`https://thuedientu.gdt.gov.vn`) qua mạng Internet.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- Legal Context Card -->
+      <div class="p-6 bg-slate-50 dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl">
+        <h3 class="font-heading font-bold text-slate-900 dark:text-white mb-2">⚖️ Căn cứ pháp lý chính thức</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          - Luật Quản lý thuế số 38/2019/QH14 quy định chi tiết về hồ sơ, quy trình khai thuế cá nhân, khai thuế hộ kinh doanh và khai thuế doanh nghiệp trực tiếp trên toàn quốc. <br />
+          - Thông tư 40/2021/TT-BTC hướng dẫn thuế giá trị gia tăng và thuế thu nhập cá nhân đối với hộ kinh doanh, cá nhân kinh doanh. <br />
+          - Thông tư 80/2021/TT-BTC hướng dẫn chi hành một số điều của Luật Quản lý thuế. <br />
+          - Nghị quyết Quốc hội về giảm thuế GTGT 2% hỗ trợ phục hồi kinh tế (đầu ra các nhóm ngành của hộ kinh doanh/doanh nghiệp tính thuế trực tiếp được giảm 20% mức tỷ lệ tính thuế GTGT).
+        </p>
+      </div>
+    </section>
+
+  </main>
+</Layout>
+
+<script is:inline>
+  // Elements
+  const taxSubject = document.getElementById('taxSubject');
+  const taxPeriod = document.getElementById('taxPeriod');
+  const taxPeriodVal = document.getElementById('taxPeriodVal');
+  const taxYear = document.getElementById('taxYear');
+  const periodDetailLabel = document.getElementById('periodDetailLabel');
+
+  // Subjects containers
+  const subjectCNKD = document.getElementById('subject_cnkd');
+  const subjectQTTNCN = document.getElementById('subject_qttncn');
+  const subjectGTGT = document.getElementById('subject_gtgt');
+
+  // Preview documents
+  const docCNKD = document.getElementById('document_content_cnkd');
+  const docQTTNCN = document.getElementById('document_content_qttncn');
+  const docGTGT = document.getElementById('document_content_gtgt');
+
+  // Inputs
+  const cnkdName = document.getElementById('cnkd_name');
+  const cnkdMst = document.getElementById('cnkd_mst');
+  const cnkdRevRetail = document.getElementById('cnkd_rev_retail');
+  const cnkdRevService = document.getElementById('cnkd_rev_service');
+  const cnkdRevProduce = document.getElementById('cnkd_rev_produce');
+  const cnkdRevOther = document.getElementById('cnkd_rev_other');
+  const cnkdVatReduction = document.getElementById('cnkd_vat_reduction');
+
+  const qttncnName = document.getElementById('qttncn_name');
+  const qttncnMst = document.getElementById('qttncn_mst');
+  const qttncnIncome = document.getElementById('qttncn_income');
+  const qttncnDependents = document.getElementById('qttncn_dependents');
+  const qttncnInsurance = document.getElementById('qttncn_insurance');
+  const qttncnDeducted = document.getElementById('qttncn_deducted');
+
+  const gtgtName = document.getElementById('gtgt_name');
+  const gtgtMst = document.getElementById('gtgt_mst');
+  const gtgtRevRetail = document.getElementById('gtgt_rev_retail');
+  const gtgtRevService = document.getElementById('gtgt_rev_service');
+  const gtgtRevProduce = document.getElementById('gtgt_rev_produce');
+  const gtgtVatReduction = document.getElementById('gtgt_vat_reduction');
+
+  // Output action buttons
+  const btnExportXML = document.getElementById('btnExportXML');
+  const btnExportExcel = document.getElementById('btnExportExcel');
+  const btnExportWord = document.getElementById('btnExportWord');
+  const btnPrintPDF = document.getElementById('btnPrintPDF');
+
+  // Format currency helper
+  function formatMoney(num) {
+    return Math.round(num).toLocaleString('vi-VN');
+  }
+
+  // Handle period change options
+  taxPeriod?.addEventListener('change', (e) => {
+    const period = e.target.value;
+    taxPeriodVal.innerHTML = '';
+    
+    if (period === 'quarter') {
+      periodDetailLabel.textContent = 'Chọn Quý';
+      taxPeriodVal.innerHTML = `
+        <option value="Q1">Quý I</option>
+        <option value="Q2">Quý II</option>
+        <option value="Q3">Quý III</option>
+        <option value="Q4">Quý IV</option>
+      `;
+    } else {
+      periodDetailLabel.textContent = 'Chọn Tháng';
+      for (let m = 1; m <= 12; m++) {
+        taxPeriodVal.innerHTML += `<option value="M${m}">Tháng ${m}</option>`;
+      }
+    }
+    calculateAll();
+  });
+
+  // Handle subject change layout
+  taxSubject?.addEventListener('change', (e) => {
+    const subject = e.target.value;
+
+    // Toggle input sections
+    subjectCNKD.classList.add('hidden');
+    subjectQTTNCN.classList.add('hidden');
+    subjectGTGT.classList.add('hidden');
+
+    // Toggle preview sections
+    docCNKD.classList.add('hidden');
+    docQTTNCN.classList.add('hidden');
+    docGTGT.classList.add('hidden');
+
+    if (subject === 'cnkd') {
+      subjectCNKD.classList.remove('hidden');
+      docCNKD.classList.remove('hidden');
+      taxPeriod.disabled = false;
+      taxPeriodVal.disabled = false;
+    } else if (subject === 'qttncn') {
+      subjectQTTNCN.classList.remove('hidden');
+      docQTTNCN.classList.remove('hidden');
+      // For personal income tax finalization, it's always annual (Yearly)
+      taxPeriod.disabled = true;
+      taxPeriodVal.disabled = true;
+    } else if (subject === 'gtgt') {
+      subjectGTGT.classList.remove('hidden');
+      docGTGT.classList.remove('hidden');
+      taxPeriod.disabled = false;
+      taxPeriodVal.disabled = false;
+    }
+    calculateAll();
+  });
+
+  // Periodic inputs calculations
+  function calculateAll() {
+    const subject = taxSubject.value;
+    const periodType = taxPeriod.value;
+    const periodVal = taxPeriodVal.value;
+    const year = taxYear.value || '2026';
+
+    let timeTitle = '';
+    if (subject === 'qttncn') {
+      timeTitle = `Năm ${year}`;
+    } else {
+      const timeName = periodType === 'quarter' 
+        ? (periodVal === 'Q1' ? 'Quý I' : periodVal === 'Q2' ? 'Quý II' : periodVal === 'Q3' ? 'Quý III' : 'Quý IV')
+        : `Tháng ${periodVal.replace('M', '')}`;
+      timeTitle = `${timeName}/${year}`;
+    }
+
+    // Set time titles in doc views
+    document.querySelectorAll('.tax-period-title').forEach(el => el.textContent = timeTitle);
+    document.querySelectorAll('.tax-year-title').forEach(el => el.textContent = year);
+
+    if (subject === 'cnkd') {
+      // 1. HKD Calculations
+      const name = cnkdName.value || 'Nguyễn Văn A';
+      const mst = cnkdMst.value || '8012345678';
+      document.querySelectorAll('.lbl_name').forEach(el => el.textContent = name);
+      document.querySelectorAll('.lbl_mst').forEach(el => el.textContent = mst);
+
+      const rRetail = parseFloat(cnkdRevRetail.value) || 0;
+      const rService = parseFloat(cnkdRevService.value) || 0;
+      const rProduce = parseFloat(cnkdRevProduce.value) || 0;
+      const rOther = parseFloat(cnkdRevOther.value) || 0;
+
+      // VAT rates with potential 2% reduction (reduced to 20% of tax rate)
+      const reductionActive = cnkdVatReduction.value === 'detect';
+      const rateVatRetail = reductionActive ? 0.008 : 0.01; // 1% -> 0.8%
+      const rateVatService = 0.05; // Services are usually not reduced or direct reduction depends, let's keep services at 5%
+      const rateVatProduce = reductionActive ? 0.024 : 0.03; // 3% -> 2.4%
+      const rateVatOther = reductionActive ? 0.016 : 0.02; // 2% -> 1.6%
+
+      // Display tax rates
+      document.getElementById('td_rate_gtgt_retail').textContent = reductionActive ? '0.8% (đã giảm)' : '1%';
+
+      // Calculate taxes
+      const taxVatRetail = rRetail * rateVatRetail;
+      const taxTncnRetail = rRetail * 0.005;
+
+      const taxVatService = rService * rateVatService;
+      const taxTncnService = rService * 0.02;
+
+      const taxVatProduce = rProduce * rateVatProduce;
+      const taxTncnProduce = rProduce * 0.015;
+
+      const taxVatOther = rOther * rateVatOther;
+      const taxTncnOther = rOther * 0.01;
+
+      // Injects to table cell
+      document.getElementById('td_rev_retail').textContent = formatMoney(rRetail);
+      document.getElementById('td_tax_gtgt_retail').textContent = formatMoney(taxVatRetail);
+      document.getElementById('td_tax_tncn_retail').textContent = formatMoney(taxTncnRetail);
+
+      document.getElementById('td_rev_service').textContent = formatMoney(rService);
+      document.getElementById('td_tax_gtgt_service').textContent = formatMoney(taxVatService);
+      document.getElementById('td_tax_tncn_service').textContent = formatMoney(taxTncnService);
+
+      document.getElementById('td_rev_produce').textContent = formatMoney(rProduce);
+      document.getElementById('td_tax_gtgt_produce').textContent = formatMoney(taxVatProduce);
+      document.getElementById('td_tax_tncn_produce').textContent = formatMoney(taxTncnProduce);
+
+      document.getElementById('td_rev_other').textContent = formatMoney(rOther);
+      document.getElementById('td_tax_gtgt_other').textContent = formatMoney(taxVatOther);
+      document.getElementById('td_tax_tncn_other').textContent = formatMoney(taxTncnOther);
+
+      // Totals
+      const totalRev = rRetail + rService + rProduce + rOther;
+      const totalVat = taxVatRetail + taxVatService + taxVatProduce + taxVatOther;
+      const totalTncn = taxTncnRetail + taxTncnService + taxTncnProduce + taxTncnOther;
+
+      document.getElementById('td_total_rev').textContent = formatMoney(totalRev);
+      document.getElementById('td_total_gtgt').textContent = formatMoney(totalVat);
+      document.getElementById('td_total_tncn').textContent = formatMoney(totalTncn);
+
+      const totalPayable = totalVat + totalTncn;
+      document.getElementById('totalPayableCNKD').textContent = `${formatMoney(totalPayable)} VND`;
+
+      // Deadline text
+      let deadlineStr = '';
+      if (periodType === 'quarter') {
+        deadlineStr = `Ngày cuối cùng của tháng đầu quý tiếp theo (30/04/${parseInt(year)})`;
+      } else {
+        deadlineStr = `Ngày thứ 20 của tháng tiếp theo (20/02/${parseInt(year)})`;
+      }
+      document.getElementById('taxDeadlineCNKD').textContent = deadlineStr;
+
+    } else if (subject === 'qttncn') {
+      // 2. QT TNCN Calculations
+      const name = qttncnName.value || 'Trần Thị B';
+      const mst = qttncnMst.value || '8198765432';
+      document.querySelectorAll('.lbl_name_qt').forEach(el => el.textContent = name);
+      document.querySelectorAll('.lbl_mst_qt').forEach(el => el.textContent = mst);
+
+      const income = parseFloat(qttncnIncome.value) || 0;
+      const numDeps = parseInt(qttncnDependents.value) || 0;
+      const insPaid = parseFloat(qttncnInsurance.value) || 0;
+      const taxWithheld = parseFloat(qttncnDeducted.value) || 0;
+
+      // Personal deductions
+      const selfDeduct = 132000000; // 11M/month * 12
+      const depDeduct = numDeps * 4400000 * 12; // 4.4M/month * 12
+      const totalFamilyDeduct = selfDeduct + depDeduct;
+
+      document.getElementById('qt_income').textContent = formatMoney(income);
+      document.getElementById('qt_deduct_family').textContent = formatMoney(totalFamilyDeduct);
+      document.getElementById('qt_deduct_insurance').textContent = formatMoney(insPaid);
+
+      // Taxable income
+      const taxableIncome = Math.max(0, income - totalFamilyDeduct - insPaid);
+      document.getElementById('qt_taxable_income').textContent = formatMoney(taxableIncome);
+
+      // Progressive tax rates
+      let taxDue = 0;
+      let breakdownHtml = '';
+      
+      if (taxableIncome > 0) {
+        let rem = taxableIncome;
+        
+        // Bậc 1: đến 60 triệu (5%)
+        const b1 = Math.min(rem, 60000000);
+        taxDue += b1 * 0.05;
+        rem -= b1;
+        breakdownHtml += `- Bậc 1 (đến 60tr): ${formatMoney(b1)} x 5% = ${formatMoney(b1 * 0.05)} đ<br/>`;
+
+        if (rem > 0) {
+          // Bậc 2: từ 60 triệu đến 120 triệu (10%)
+          const b2 = Math.min(rem, 60000000);
+          taxDue += b2 * 0.10;
+          rem -= b2;
+          breakdownHtml += `- Bậc 2 (60tr - 120tr): ${formatMoney(b2)} x 10% = ${formatMoney(b2 * 0.10)} đ<br/>`;
+        }
+        if (rem > 0) {
+          // Bậc 3: từ 120 triệu đến 216 triệu (15%)
+          const b3 = Math.min(rem, 96000000);
+          taxDue += b3 * 0.15;
+          rem -= b3;
+          breakdownHtml += `- Bậc 3 (120tr - 216tr): ${formatMoney(b3)} x 15% = ${formatMoney(b3 * 0.15)} đ<br/>`;
+        }
+        if (rem > 0) {
+          // Bậc 4: từ 216 triệu đến 384 triệu (20%)
+          const b4 = Math.min(rem, 168000000);
+          taxDue += b4 * 0.20;
+          rem -= b4;
+          breakdownHtml += `- Bậc 4 (216tr - 384tr): ${formatMoney(b4)} x 20% = ${formatMoney(b4 * 0.20)} đ<br/>`;
+        }
+        if (rem > 0) {
+          // Bậc 5: từ 384 triệu đến 624 triệu (25%)
+          const b5 = Math.min(rem, 240000000);
+          taxDue += b5 * 0.25;
+          rem -= b5;
+          breakdownHtml += `- Bậc 5 (384tr - 624tr): ${formatMoney(b5)} x 25% = ${formatMoney(b5 * 0.25)} đ<br/>`;
+        }
+        if (rem > 0) {
+          // Bậc 6: từ 624 triệu đến 960 triệu (30%)
+          const b6 = Math.min(rem, 336000000);
+          taxDue += b6 * 0.30;
+          rem -= b6;
+          breakdownHtml += `- Bậc 6 (624tr - 960tr): ${formatMoney(b6)} x 30% = ${formatMoney(b6 * 0.30)} đ<br/>`;
+        }
+        if (rem > 0) {
+          // Bậc 7: trên 960 triệu (35%)
+          taxDue += rem * 0.35;
+          breakdownHtml += `- Bậc 7 (trên 960tr): ${formatMoney(rem)} x 35% = ${formatMoney(rem * 0.35)} đ<br/>`;
+        }
+      } else {
+        breakdownHtml = 'Cá nhân không phát sinh thu nhập chịu thuế sau khi đã trừ gia cảnh và bảo hiểm.';
+      }
+
+      document.getElementById('qt_total_tax_due').textContent = formatMoney(taxDue);
+      document.getElementById('qt_tax_withheld').textContent = formatMoney(taxWithheld);
+
+      const netResult = taxDue - taxWithheld;
+      const resultLabel = document.getElementById('qt_result_label');
+      const resultCell = document.getElementById('qt_tax_result');
+
+      if (netResult > 0) {
+        resultLabel.textContent = 'SỐ THUẾ CÒN PHẢI NỘP THÊM (+)';
+        resultCell.textContent = formatMoney(netResult);
+        resultCell.className = 'border border-slate-800 p-2 text-right text-red-600 font-extrabold';
+      } else {
+        resultLabel.textContent = 'SỐ THUẾ ĐƯỢC HOÀN TRẢ (-)';
+        resultCell.textContent = formatMoney(Math.abs(netResult));
+        resultCell.className = 'border border-slate-800 p-2 text-right text-emerald-600 font-extrabold';
+      }
+
+      document.getElementById('qt_calculation_breakdown').innerHTML = breakdownHtml;
+
+    } else if (subject === 'gtgt') {
+      // 3. Doanh nghiệp GTGT Calculations
+      const name = gtgtName.value || 'Công ty TNHH Thương mại X';
+      const mst = gtgtMst.value || '0101234567';
+      document.querySelectorAll('.lbl_name_company').forEach(el => el.textContent = name);
+      document.querySelectorAll('.lbl_mst_company').forEach(el => el.textContent = mst);
+
+      const rRetail = parseFloat(gtgtRevRetail.value) || 0;
+      const rService = parseFloat(gtgtRevService.value) || 0;
+      const rProduce = parseFloat(gtgtRevProduce.value) || 0;
+
+      const reductionActive = gtgtVatReduction.value === 'detect';
+      const rateVatRetail = reductionActive ? 0.008 : 0.01;
+      const rateVatService = 0.05;
+      const rateVatProduce = reductionActive ? 0.024 : 0.03;
+
+      document.getElementById('gtgt_rate_retail_td').textContent = reductionActive ? '0.8% (đã giảm)' : '1%';
+
+      const taxVatRetail = rRetail * rateVatRetail;
+      const taxVatService = rService * rateVatService;
+      const taxVatProduce = rProduce * rateVatProduce;
+
+      document.getElementById('gtgt_rev_retail_td').textContent = formatMoney(rRetail);
+      document.getElementById('gtgt_tax_retail_td').textContent = formatMoney(taxVatRetail);
+
+      document.getElementById('gtgt_rev_service_td').textContent = formatMoney(rService);
+      document.getElementById('gtgt_tax_service_td').textContent = formatMoney(taxVatService);
+
+      document.getElementById('gtgt_rev_produce_td').textContent = formatMoney(rProduce);
+      document.getElementById('gtgt_tax_produce_td').textContent = formatMoney(taxVatProduce);
+
+      const totalRev = rRetail + rService + rProduce;
+      const totalTax = taxVatRetail + taxVatService + taxVatProduce;
+
+      document.getElementById('gtgt_total_rev_td').textContent = formatMoney(totalRev);
+      document.getElementById('gtgt_total_tax_td').textContent = formatMoney(totalTax);
+    }
+  }
+
+  // Listening inputs
+  const allInputs = [
+    taxYear, cnkdName, cnkdMst, cnkdRevRetail, cnkdRevService, cnkdRevProduce, cnkdRevOther, cnkdVatReduction,
+    qttncnName, qttncnMst, qttncnIncome, qttncnDependents, qttncnInsurance, qttncnDeducted,
+    gtgtName, gtgtMst, gtgtRevRetail, gtgtRevService, gtgtRevProduce, gtgtVatReduction
+  ];
+  allInputs.forEach(input => {
+    input?.addEventListener('input', calculateAll);
+    input?.addEventListener('change', calculateAll);
+  });
+
+  // --- EXPORTS LOGIC ---
+
+  // XML HTKK EXPORT
+  btnExportXML?.addEventListener('click', () => {
+    const subject = taxSubject.value;
+    const year = taxYear.value || '2026';
+    const periodType = taxPeriod.value;
+    const periodVal = taxPeriodVal.value;
+
+    let xmlContent = '';
+
+    if (subject === 'cnkd') {
+      const name = cnkdName.value || 'Nguyễn Văn A';
+      const mst = cnkdMst.value || '8012345678';
+      const rRetail = parseFloat(cnkdRevRetail.value) || 0;
+      const rService = parseFloat(cnkdRevService.value) || 0;
+      const rProduce = parseFloat(cnkdRevProduce.value) || 0;
+      const rOther = parseFloat(cnkdRevOther.value) || 0;
+      const reduction = cnkdVatReduction.value === 'detect';
+
+      const taxVatRetail = rRetail * (reduction ? 0.008 : 0.01);
+      const taxTncnRetail = rRetail * 0.005;
+      const totalVat = taxVatRetail;
+
+      xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
+<HSoKhaiThue xmlns="http://www.gdt.gov.vn/schema/htkk">
+  <Header>
+    <MaNTT>${mst}</MaNTT>
+    <TenNTT>${name}</TenNTT>
+    <MaSoMau>01/CNKD</MaSoMau>
+    <TenMauTờKhai>Tờ khai thuế đối với cá nhân kinh doanh</TenMauTờKhai>
+    <KyTinhThue>${periodType === 'quarter' ? periodVal : 'M' + periodVal.replace('M', '')}</KyTinhThue>
+    <NamTinhThue>${year}</NamTinhThue>
+  </Header>
+  <Body>
+    <ToKhaiChinh>
+      <DoanhThuRetail>${rRetail}</DoanhThuRetail>
+      <ThueVatRetail>${taxVatRetail}</ThueVatRetail>
+      <ThueTncnRetail>${taxTncnRetail}</ThueTncnRetail>
+      <DoanhThuService>${rService}</DoanhThuService>
+      <DoanhThuProduce>${rProduce}</DoanhThuProduce>
+      <DoanhThuOther>${rOther}</DoanhThuOther>
+      <TongThueVat>${totalVat}</TongThueVat>
+      <GiamThueGTGT>${reduction ? 'YES' : 'NO'}</GiamThueGTGT>
+    </ToKhaiChinh>
+  </Body>
+</HSoKhaiThue>`;
+
+    } else if (subject === 'qttncn') {
+      const name = qttncnName.value || 'Trần Thị B';
+      const mst = qttncnMst.value || '8198765432';
+      const income = parseFloat(qttncnIncome.value) || 0;
+      const numDeps = parseInt(qttncnDependents.value) || 0;
+      const insPaid = parseFloat(qttncnInsurance.value) || 0;
+      const taxWithheld = parseFloat(qttncnDeducted.value) || 0;
+
+      xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
+<HSoKhaiThue xmlns="http://www.gdt.gov.vn/schema/htkk">
+  <Header>
+    <MaNTT>${mst}</MaNTT>
+    <TenNTT>${name}</TenNTT>
+    <MaSoMau>02/QT-TNCN</MaSoMau>
+    <TenMauTờKhai>Tờ khai quyết toán thuế thu nhập cá nhân</TenMauTờKhai>
+    <NamTinhThue>${year}</NamTinhThue>
+  </Header>
+  <Body>
+    <ToKhaiChinh>
+      <TongThuNhapChiTieu22>${income}</TongThuNhapChiTieu22>
+      <GiamTruBanThan>132000000</GiamTruBanThan>
+      <SoNguoiPhuThuoc>${numDeps}</SoNguoiPhuThuoc>
+      <GiamTruGiaCanh>${132000000 + (numDeps * 52800000)}</GiamTruGiaCanh>
+      <BaoHiemBatBuoc>${insPaid}</BaoHiemBatBuoc>
+      <ThueDaKhauTru>${taxWithheld}</ThueDaKhauTru>
+    </ToKhaiChinh>
+  </Body>
+</HSoKhaiThue>`;
+
+    } else {
+      const name = gtgtName.value || 'Công ty TNHH Thương mại X';
+      const mst = gtgtMst.value || '0101234567';
+      const rRetail = parseFloat(gtgtRevRetail.value) || 0;
+      const rService = parseFloat(gtgtRevService.value) || 0;
+      const rProduce = parseFloat(gtgtRevProduce.value) || 0;
+      const reduction = gtgtVatReduction.value === 'detect';
+
+      xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
+<HSoKhaiThue xmlns="http://www.gdt.gov.vn/schema/htkk">
+  <Header>
+    <MaNTT>${mst}</MaNTT>
+    <TenNTT>${name}</TenNTT>
+    <MaSoMau>01/GTGT</MaSoMau>
+    <TenMauTờKhai>Tờ khai thuế giá trị gia tăng trực tiếp</TenMauTờKhai>
+    <NamTinhThue>${year}</NamTinhThue>
+  </Header>
+  <Body>
+    <ToKhaiChinh>
+      <DoanhThuHangHoa>${rRetail}</DoanhThuHangHoa>
+      <DoanhThuDichVu>${rService}</DoanhThuDichVu>
+      <DoanhThuSanXuat>${rProduce}</DoanhThuSanXuat>
+      <GiamThue2PhanTram>${reduction ? '20%' : '0'}</GiamThue2PhanTram>
+    </ToKhaiChinh>
+  </Body>
+</HSoKhaiThue>`;
+    }
+
+    // Trigger download
+    const blob = new Blob([xmlContent], { type: 'text/xml;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', `to_khai_thue_${subject}_${year}.xml`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+
+  // MS OFFICE HTML EXPORTS
+  function downloadOfficeFile(htmlContent, filename, type) {
+    let blob;
+    if (type === 'excel') {
+      const excelTemplate = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+      <head>
+        <!--[if gte mso 9]>
+        <xml>
+          <x:ExcelWorkbook>
+            <x:ExcelWorksheets>
+              <x:ExcelWorksheet>
+                <x:Name>To Khai Thue</x:Name>
+                <x:WorksheetOptions>
+                  <x:DisplayGridlines/>
+                </x:WorksheetOptions>
+              </x:ExcelWorksheet>
+            </x:ExcelWorksheets>
+          </x:ExcelWorkbook>
+        </xml>
+        <![endif]-->
+        <meta charset="utf-8">
+      </head>
+      <body style="font-family: Arial, sans-serif;">
+        ${htmlContent}
+      </body>
+      </html>`;
+      blob = new Blob([excelTemplate], { type: 'application/vnd.ms-excel;charset=utf-8;' });
+    } else {
+      const wordTemplate = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+      <head>
+        <meta charset="utf-8">
+        <style>
+          body { font-family: 'Times New Roman', serif; line-height: 1.5; }
+          table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+          th, td { border: 1px solid #000; padding: 6px; text-align: left; }
+        </style>
+      </head>
+      <body>
+        ${htmlContent}
+      </body>
+      </html>`;
+      blob = new Blob([wordTemplate], { type: 'application/msword;charset=utf-8;' });
+    }
+
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  btnExportExcel?.addEventListener('click', () => {
+    const subject = taxSubject.value;
+    const year = taxYear.value || '2026';
+    const activeDoc = document.querySelector(
+      subject === 'cnkd' ? '#document_content_cnkd' : subject === 'qttncn' ? '#document_content_qttncn' : '#document_content_gtgt'
+    );
+    downloadOfficeFile(activeDoc.innerHTML, `to_khai_thue_${subject}_${year}.xls`, 'excel');
+  });
+
+  btnExportWord?.addEventListener('click', () => {
+    const subject = taxSubject.value;
+    const year = taxYear.value || '2026';
+    const activeDoc = document.querySelector(
+      subject === 'cnkd' ? '#document_content_cnkd' : subject === 'qttncn' ? '#document_content_qttncn' : '#document_content_gtgt'
+    );
+    downloadOfficeFile(activeDoc.innerHTML, `to_khai_thue_${subject}_${year}.doc`, 'word');
+  });
+
+  btnPrintPDF?.addEventListener('click', () => {
+    window.print();
+  });
+
+  // Calculate on startup
+  calculateAll();
+</script>
+
+<style>
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    #printDocumentFrame, #printDocumentFrame * {
+      visibility: visible;
+    }
+    #printDocumentFrame {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100% !important;
+      background: #ffffff !important;
+      color: #000000 !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+  }
+</style>
