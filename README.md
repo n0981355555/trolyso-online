@@ -14,7 +14,7 @@ Dưới đây là sơ đồ cấu trúc và chức năng chi tiết của các t
 trolyso-online/
 ├── .agents/                    # Quy tắc và cấu hình các tác nhân AI của dự án
 ├── public/                     # Các tài nguyên tĩnh công khai (sitemap, favicon, assets)
-│   ├── sitemap.xml             # Sơ đồ trang web chứa toàn bộ URL tĩnh và dynamic của dự án
+│   ├── sitemap.xml             # Sơ đồ trang web gốc chứa toàn bộ URL của dự án. (Xem chi tiết ở mục "Quy Tắc Khai Báo Sitemap")
 │   └── ...
 ├── scripts/                    # Các tập lệnh tự động hóa dự án
 │   └── generate-commune-pages.js # Script tự động sinh regions.json, cập nhật sitemap và searchIndex
@@ -109,3 +109,20 @@ Chạy thử bản đã build tĩnh trên localhost để kiểm tra trước kh
 ```bash
 npm run preview
 ```
+
+---
+
+## 🗺️ Quy Tắc Khai Báo Sitemap
+
+Dự án sử dụng cơ chế tự động phân tách sitemap (split sitemap) sau khi biên dịch (Post-build script) để tối ưu hóa SEO và tránh tệp sitemap bị quá tải dung lượng.
+
+### Cách thức hoạt động:
+1. **Sơ đồ trang web gốc:** Mọi URL mới (Trang chủ, bài viết blog mới, công cụ calculators mới, xã/phường sáp nhập mới...) **bắt buộc phải được khai báo trực tiếp vào file gốc** tại [public/sitemap.xml](file:///C:/Users/JUNE/Desktop/trolyso-online/public/sitemap.xml).
+2. **Cơ chế tự động phân tách khi build:** Khi chạy lệnh `npm run build`, hệ thống sẽ tự động chạy script [split-sitemaps.js](file:///C:/Users/JUNE/Desktop/trolyso-online/scripts/split-sitemaps.js) để đọc file gốc và phân tách thành:
+   - `sitemap-blog.xml`: Chứa toàn bộ bài viết blog (các đường dẫn bắt đầu bằng `/blog/`).
+   - `sitemap-lich-cat-dien.xml`: Chứa toàn bộ trang lịch mất điện cấp xã (các đường dẫn bắt đầu bằng `/calculators/lich-cat-dien/`).
+   - `sitemap-main.xml`: Chứa các trang calculators khác, trang chủ, trang chính sách điều khoản.
+   - `sitemap.xml` (ở thư mục `dist/`): Sẽ được ghi đè thành **Sitemap Index** (bản đồ chỉ mục) liên kết 3 sitemap con trên để Googlebot nhận diện.
+
+> [!IMPORTANT]
+> Tuyệt đối không chỉnh sửa thủ công các tệp sitemap trong thư mục `dist/` vì chúng sẽ bị ghi đè mỗi khi chạy lại lệnh build. Chỉ khai báo duy nhất vào [public/sitemap.xml](file:///C:/Users/JUNE/Desktop/trolyso-online/public/sitemap.xml).
