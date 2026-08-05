@@ -920,7 +920,83 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
         "👀 Xem trước Tờ khai & Phụ lục": "👀 Declaration Preview & Appendix",
         "Chỉ số tự động tính toán": "Automatically calculated figures",
         "Tạo Tờ Khai Thuế Online": "Tax Declaration Creator",
-        "Tự động tính thuế suất, hỗ trợ chính sách giảm thuế 2% và kết xuất XML nộp HTKK hoặc Thuế Điện Tử chuẩn xác.": "Auto calculate tax rates, support 2% tax reduction, and export XML to HTKK or Tax Department portal."
+        "Tự động tính thuế suất, hỗ trợ chính sách giảm thuế 2% và kết xuất XML nộp HTKK hoặc Thuế Điện Tử chuẩn xác.": "Auto calculate tax rates, support 2% tax reduction, and export XML to HTKK or Tax Department portal.",
+
+        // Category Filter Tabs (Homepage & General)
+        "Tất cả": "All",
+        "Tài chính & Thuế": "Finance & Tax",
+        "Bảo hiểm & Lương": "Insurance & Salary",
+        "Văn phòng & PDF": "Office & PDF",
+        "Tiện ích & Học tập": "Utilities & Study",
+        "Lập trình": "Programming",
+
+        // Add missing cards translations on Homepage
+        "Đo Tốc Độ Gõ Chữ": "Typing Speed Test",
+        "Kiểm tra tốc độ đánh máy 10 ngón của bạn online: Tính từ gõ mỗi phút (WPM), số ký tự (CPM) và độ chính xác thực tế.": "Test your 10-finger typing speed online: Calculate WPM, CPM, and real-time accuracy.",
+        "Radar Thời Tiết & Bản Đồ Dự Báo Bão": "Weather Radar & Storm Tracker Map",
+        "Tra cứu bản đồ ra-đa thời gian thực: Soi vùng mây mưa, theo dõi đường đi của bão, nhiệt độ và chất lượng không khí 63 tỉnh thành.": "Look up real-time weather radar: scan rain clouds, track storm paths, temperatures and air quality for 63 provinces.",
+        "Tính Trợ Cấp Thôi Việc & Mất Việc": "Severance & Job-loss Pay Calculator",
+        "Tính số tiền trợ cấp nghỉ việc, mất việc làm theo Bộ luật Lao động, trừ thời gian BHTN và làm tròn năm tự động.": "Calculate severance and job-loss allowances under the Labor Code, deducting UI time and rounding years automatically.",
+        "Máy Tính Lãi Kép & Đầu Tư Tích Lũy": "Compound Interest & Wealth Growth Calculator",
+        "Tính tổng tài sản nhận được theo thời gian, tiền lãi sinh ra và xem bảng phân tích tăng trưởng số dư chi tiết từng năm.": "Calculate total assets over time, interest earned, and view detailed annual balance growth breakdown.",
+        "Tính Bảo Hiểm Xã Hội 1 Lần": "One-time Social Insurance",
+        "Ước tính số tiền nhận về khi nhận bảo hiểm xã hội một lần chuẩn quy định mới nhất.": "Estimate your one-time social insurance payout under the latest regulations.",
+        "Tính Thuế Thu Nhập Cá Nhân": "Personal Income Tax",
+        "Tính nhanh số thuế TNCN phải nộp hàng tháng và hiển thị bảng phân tích chi tiết theo bậc lũy tiến.": "Quickly calculate monthly PIT payable and show detailed progressive brackets breakdown.",
+        "Trình Tạo Mã VietQR Thanh Toán": "VietQR Payment Generator",
+        "Tạo mã QR chuyển tiền ngân hàng tự động điền sẵn số tài khoản, số tiền và nội dung.": "Create bank transfer QR codes automatically pre-filled with account number, amount, and message.",
+        "Đọc Số Thành Chữ Tiếng Việt": "Number to Words Converter",
+        "Đổi số tiền thành chữ viết tiếng Việt chuẩn xác phục vụ viết hóa đơn đỏ và soạn hợp đồng.": "Convert currency numbers into accurate Vietnamese text for invoicing and drafting contracts.",
+        "Máy Tính Lãi Suất Gửi & Vay": "Savings & Loan Interest Calculator",
+        "Tính toán lãi suất vay mua nhà, vay trả góp dư nợ giảm dần hoặc tính tiền lãi gửi tiết kiệm ngân hàng chính xác.": "Calculate mortgage interest, reducing balance installment loans, or accurate bank savings interest.",
+        "Tính Thuế Giá Trị Gia Tăng (VAT)": "Value Added Tax (VAT) Calculator",
+        "Tính thuế VAT xuôi và bóc tách thuế VAT ngược nhanh chóng theo các mức thuế suất 8%, 10% chuẩn quy định.": "Quickly calculate direct VAT or extract indirect VAT based on statutory 8% and 10% tax rates.",
+        "Đếm Ký Tự & Số Từ Online": "Online Character & Word Counter",
+        "Đếm số ký tự (có/không khoảng trắng), số từ, số dòng và số câu thời gian thực hỗ trợ viết bài chuẩn SEO.": "Count characters (with/without spaces), words, lines, and sentences in real-time to assist SEO content writing.",
+        "Tạo Chữ Ký Email HTML": "HTML Email Signature Creator",
+        "Thiết kế chữ ký email HTML chuyên nghiệp, copy và dán trực tiếp vào Outlook, Gmail.": "Design professional HTML email signatures, copy and paste directly into Outlook or Gmail.",
+        "Nén Ảnh WebP Tối Ưu": "Optimized WebP Image Compressor",
+        "Nén tối ưu dung lượng hình ảnh và chuyển đổi sang định dạng WebP trực tuyến siêu nhẹ.": "Optimally compress image file size and convert to ultra-lightweight WebP format online.",
+        "Tạo Văn Bản Hành Chính NĐ 30": "Gov Doc Generator (ND 30)",
+        "Soạn thảo 15 loại văn bản quy phạm pháp luật và 29 loại văn bản hành chính đúng chuẩn lề và bố cục Chính phủ.": "Draft 15 types of legal documents and 29 types of administrative documents conforming to Government margin and layout regulations.",
+        "Tính Chỉ Số BMI Cơ Thể": "BMI Body Mass Index Calculator",
+        "Kiểm tra chỉ số khối cơ thể (BMI), đánh giá thể trạng sức khỏe và khoảng cân nặng lý tưởng.": "Check your body mass index (BMI), evaluate health status and ideal weight range.",
+        "Giải Phương Trình Bậc 2, 3": "Quadratic & Cubic Equation Solver",
+        "Giải phương trình bậc hai, bậc ba trực tuyến, hiển thị các bước giải Delta và vẽ đồ thị.": "Solve quadratic and cubic equations online, showing step-by-step Delta calculations and plotting graphs.",
+        "Đếm Ngày Yêu Nhau (Love Counter)": "Love Days Counter",
+        "Đo đếm chính xác thời gian bên nhau của các cặp đôi theo thời gian thực và lưu giữ kỷ niệm.": "Accurately measure time spent together for couples in real-time and preserve memories.",
+        "Lịch Vạn Niên & Âm Lịch": "Perpetual & Lunar Calendar",
+        "Xem lịch âm dương hôm nay, đổi ngày âm dương và tra cứu giờ hoàng đạo tốt lành mỗi ngày.": "View solar & lunar calendar today, convert dates, and look up auspicious hours daily.",
+        "Đo Tốc Độ Mạng (Speedtest)": "Network Speedtest",
+        "Kiểm tra tốc độ download, upload và ping của đường truyền internet wifi, 4G, 5G tức thì.": "Test download speed, upload speed, and ping of your internet connection (Wifi, 4G, 5G) instantly.",
+        "Gộp Nhiều File PDF": "Merge PDF Files",
+        "Ghép nối nhiều tệp tin PDF rời rạc thành một tài liệu duy nhất nhanh chóng, an toàn và bảo mật.": "Combine multiple scattered PDF files into a single document quickly, safely, and securely.",
+        "Chuyển PDF Sang Word": "Convert PDF to Word",
+        "Convert file PDF sang định dạng Word (.docx) không bị lỗi font chữ tiếng Việt, giữ nguyên bố cục.": "Convert PDF files to Word (.docx) format without Vietnamese font breaking, preserving layout.",
+        "Chuyển Word Sang PDF": "Convert Word to PDF",
+        "Đổi định dạng tệp Word (.docx) sang PDF trực tuyến, khóa bố cục căn lề và định dạng bảng biểu.": "Convert Word (.docx) file format to PDF online, locking margins layout and table formatting.",
+        "Tra Cứu Mã Số Thuế": "Tax Identification Number Lookup",
+        "Tìm kiếm thông tin công ty bằng MST tự động và xem hướng dẫn tra cứu mã số thuế cá nhân qua thẻ CCCD.": "Search company info by tax code automatically and view guidelines for personal tax code lookup via national ID.",
+        "Tạo CV Xin Việc Online": "Create Resume / CV Online",
+        "Tự viết hồ sơ xin việc, CV A4 tối giản trực quan và xuất file PDF chất lượng cao để nộp nhà tuyển dụng.": "Draft your job application, minimalist A4 CV visually and export high-quality PDF to submit to employers.",
+        "Xem Bói Bài Tarot Online": "Online Tarot Reading",
+        "Trải bài Tarot 1 lá hoặc 3 lá hằng ngày để nhận thông điệp định hướng tâm lý và chiêm nghiệm cuộc sống.": "Draw 1 or 3 daily Tarot cards to receive psychological guidance and life reflections.",
+        "Tra Cứu Lịch Cắt Điện": "Power Outage Schedule Lookup",
+        "Xem lịch cúp điện Hà Nội, Bắc Ninh, Hải Phòng, Quảng Ninh cập nhật liên tục từ EVN mỗi 6 tiếng.": "View power outage schedules for Hanoi, Bac Ninh, Hai Phong, Quang Ninh updated every 6 hours from EVN.",
+        "Tính Chế Độ Thai Sản": "Maternity Benefit Calculator",
+        "Tính thời gian nghỉ phép và tiền trợ cấp thai sản nhận từ BHXH cho cả bố và mẹ chuẩn luật mới.": "Calculate maternity leave duration and allowance received from social insurance for both parents under the new law.",
+        "Tính Điểm Hòa Vốn Kinh Doanh": "Business Break-even Point Calculator",
+        "Tính sản lượng và doanh số bán hàng tối thiểu để bắt đầu có lãi cho quán cafe, cửa hàng FnB.": "Calculate minimum sales volume and revenue to start turning a profit for coffee shops, FnB stores.",
+        "Regex Explainer Tiếng Việt": "Regex Explainer in Vietnamese",
+        "Giải nghĩa biểu thức chính quy (Regex) và kiểm tra so khớp chuỗi văn bản theo thời gian thực.": "Explain regular expressions (Regex) and test string pattern matching in real-time.",
+        "Tính Lương Net Sang Gross": "Convert Net to Gross Salary",
+        "Quy đổi thu nhập thực nhận (Net) sang Gross trước thuế và bảo hiểm bắt buộc theo luật lao động mới nhất.": "Convert net take-home pay to gross salary before tax and compulsory insurance under the latest labor law.",
+        "Cắt & Tách File PDF": "Split & Extract PDF Files",
+        "Tách lấy các trang tài liệu bất kỳ từ tệp tin PDF lớn hoàn toàn miễn phí, nhanh chóng và bảo mật.": "Extract any document pages from large PDF files completely free, quickly, and securely.",
+        "Tạo Số Ngẫu Nhiên": "Random Number Generator",
+        "Quay số may mắn bốc thăm trúng thưởng, sinh số ngẫu nhiên trong khoảng tùy chỉnh nhanh chóng.": "Lucky draw raffle numbers, generate random numbers in a custom range quickly.",
+        "Giải Mã Giấc Mơ": "Dream Interpretation",
+        "Tra cứu điềm báo giấc mơ cát hung và tìm các con số may mắn tương ứng theo sổ mơ dân gian.": "Look up dream portents and find corresponding lucky numbers according to folk dream books."
       };
 
       function translateTextNode(node: Node) {
@@ -987,10 +1063,7 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
 
           if (searchInput) searchInput.placeholder = "Search tools, articles...";
         } else {
-          if (localStorage.getItem('lang') === 'en') {
-            localStorage.setItem('lang', 'vi');
-            window.location.reload();
-          }
+          window.location.reload();
         }
       }
 

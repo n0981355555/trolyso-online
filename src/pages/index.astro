@@ -1399,7 +1399,10 @@ import StatsBadge from '../components/StatsBadge.astro';
         }
       });
 
-      if (btnToggleText) btnToggleText.innerText = isExpanded ? "Thu gọn bớt" : "Xem thêm công cụ";
+      if (btnToggleText) {
+        const isEn = localStorage.getItem('lang') === 'en';
+        btnToggleText.innerText = isExpanded ? (isEn ? "Collapse list" : "Thu gọn bớt") : (isEn ? "View more tools" : "Xem thêm công cụ");
+      }
       if (btnToggleIcon) btnToggleIcon.innerText = isExpanded ? "↑" : "↓";
     } else {
       // Specific category: show all matching cards from the single grid, hide the toggle button
