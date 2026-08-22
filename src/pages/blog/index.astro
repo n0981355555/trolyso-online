@@ -703,6 +703,9 @@ function getCategorySlug(category: string) {
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 rounded-xl"
                   loading="lazy"
                 />
+                {post.badge === "Mới nhất" && (
+                  <span class="absolute top-2 right-2 px-1.5 py-0.5 text-[8px] font-extrabold uppercase tracking-wider text-white bg-red-500 rounded-full animate-pulse z-10">NEW</span>
+                )}
               </div>
 
               <div class="flex-grow min-w-0 space-y-1.5">
@@ -765,6 +768,9 @@ function getCategorySlug(category: string) {
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded-t-3xl"
                 loading="lazy"
               />
+              {post.badge === "Mới nhất" && (
+                <span class="absolute top-3 right-3 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-white bg-red-500 rounded-full animate-pulse z-10">NEW</span>
+              )}
               <span class="absolute top-3 left-3 px-2.5 py-1 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-bold rounded-lg">
                 {post.category}
               </span>

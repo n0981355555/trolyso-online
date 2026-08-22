@@ -5,18 +5,6 @@ import StatsBadge from '../../components/StatsBadge.astro';
 // Full list of 44 calculators
 const calculators = [
   {
-    slug: "tao-to-khai-thue",
-    title: { vi: "Tạo Tờ Khai Thuế Online", en: "Tax Declaration Creator" },
-    desc: {
-      vi: "Tự động tính thuế suất, hỗ trợ chính sách giảm thuế 2% và kết xuất XML nộp HTKK hoặc Thuế Điện Tử chuẩn xác.",
-      en: "Auto calculate tax rates, support 2% tax reduction, and export XML to HTKK or Tax Department portal."
-    },
-    url: "/calculators/tao-to-khai-thue/",
-    category: "finance",
-    icon: "📝",
-    color: "blue"
-  },
-  {
     slug: "nhan-ban-van-ban-ai",
     title: { vi: "Nhân Bản Văn Bản AI", en: "Humanize AI Text" },
     desc: {
@@ -26,7 +14,8 @@ const calculators = [
     url: "/calculators/nhan-ban-van-ban-ai/",
     category: "office",
     icon: "✍️",
-    color: "purple"
+    color: "purple",
+    isNew: true
   },
   {
     slug: "xoa-dau-vet-anh-ai",
@@ -38,7 +27,20 @@ const calculators = [
     url: "/calculators/xoa-dau-vet-anh-ai/",
     category: "office",
     icon: "🖼️",
-    color: "pink"
+    color: "pink",
+    isNew: true
+  },
+  {
+    slug: "tao-to-khai-thue",
+    title: { vi: "Tạo Tờ Khai Thuế Online", en: "Tax Declaration Creator" },
+    desc: {
+      vi: "Tự động tính thuế suất, hỗ trợ chính sách giảm thuế 2% và kết xuất XML nộp HTKK hoặc Thuế Điện Tử chuẩn xác.",
+      en: "Auto calculate tax rates, support 2% tax reduction, and export XML to HTKK or Tax Department portal."
+    },
+    url: "/calculators/tao-to-khai-thue/",
+    category: "finance",
+    icon: "📝",
+    color: "blue"
   },
   {
     slug: "kiem-tra-toc-do-go",
@@ -643,6 +645,9 @@ const calculators = [
           data-desc-en={calc.desc.en}
           class="calc-card group p-6 bg-white dark:bg-brand-darkCard border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-blue/30 dark:hover:border-brand-mint/30 active:scale-[0.99] transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
         >
+          {calc.isNew && (
+            <span class="absolute top-2.5 right-2.5 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-white bg-red-500 rounded-full animate-pulse z-10">NEW</span>
+          )}
           <div>
             <!-- Icon Wrapper -->
             <div class={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors duration-300 text-2xl bg-slate-100 dark:bg-slate-800/60`}>

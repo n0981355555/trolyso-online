@@ -78,11 +78,13 @@ Mỗi khi người dùng yêu cầu tạo một công cụ tính toán tiện í
   - Chèn link trỏ sang bài blog hướng dẫn chi tiết: `<a href="/blog/<slug-bai-viet>/" ...>`.
   - Tích hợp schema cấu trúc JSON-LD (`FinanceApplication`/`BusinessApplication` & `FAQPage`).
 * **Bước 3: Đăng ký hiển thị ở Trang Chủ (`src/pages/index.astro`):**
-  - Đăng ký thẻ card của công cụ vào danh sách hiển thị mặc định (`#calculators` grid).
-  - Đăng ký đồng thời thẻ card vào danh sách mở rộng ẩn dưới nút bấm (`#expandedTools` grid).
-* **Bước 4: Đồng bộ tìm kiếm & Sitemap:**
+  - Đăng ký thẻ card của công cụ mới vào vị trí **ĐẦU TIÊN** trong danh sách hiển thị mặc định (`#calculators-grid`).
+  - Gắn nhãn tag **NEW** nhấp nháy cho card công cụ mới ở góc trên bên phải: `<span class="absolute top-2 right-2 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-white bg-red-500 rounded-full animate-pulse z-10">NEW</span>`.
+* **Bước 4: Đăng ký hiển thị ở Trang danh mục (`src/pages/calculators/index.astro`):**
+  - Đăng ký công cụ mới vào vị trí **ĐẦU TIÊN** của mảng `calculators` để nó hiển thị đầu tiên ở phần Tất cả.
+* **Bước 5: Đồng bộ tìm kiếm & Sitemap:**
   - Đăng ký URL công cụ vào sơ đồ trang web `public/sitemap.xml`.
   - Đăng ký URL công cụ vào cơ sở dữ liệu tìm kiếm nhanh `public/search-index.json`.
-* **Bước 5: Viết bài hướng dẫn SEO đi kèm** tại `src/pages/blog/<slug-huong-dan>/index.astro`, và đưa bài viết mới lên vị trí đầu tiên trong mảng `posts` của danh mục blog `src/pages/blog/index.astro`.
-* **Bước 6: Đồng bộ hiệu ứng hover & vi hoạt ảnh (micro-animations) trên nút bấm/link** của bài viết mới trước khi bàn giao.
+* **Bước 6: Viết bài hướng dẫn SEO đi kèm** tại `src/pages/blog/<slug-huong-dan>/index.astro`, đưa bài viết mới lên vị trí **ĐẦU TIÊN** trong mảng `posts` của danh mục blog `src/pages/blog/index.astro`, và gắn nhãn tag **NEW** tương tự cho bài viết mới để tăng độ chú ý.
+* **Bước 7: Đồng bộ hiệu ứng hover & vi hoạt ảnh (micro-animations) trên nút bấm/link** của bài viết mới trước khi bàn giao.
 
