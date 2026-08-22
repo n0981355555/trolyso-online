@@ -1,5 +1,15 @@
 [
   {
+    "title": "Công cụ: Nhân Bản Văn Bản AI - Bypass AI Detector",
+    "desc": "Làm mượt văn bản do ChatGPT, Gemini viết thành văn bản tự nhiên như con người để tránh bị các AI Detector (GPTZero, Copyleaks) phát hiện.",
+    "url": "/calculators/nhan-ban-van-ban-ai/"
+  },
+  {
+    "title": "Công cụ: Xóa Dấu Vết Ảnh AI - Remove Metadata & Watermark",
+    "desc": "Xóa metadata EXIF và làm nhiễu cấu trúc pixel để loại bỏ các watermark ẩn (SynthID) trên ảnh do AI tạo.",
+    "url": "/calculators/xoa-dau-vet-anh-ai/"
+  },
+  {
     "title": "Công cụ: Tạo Tờ Khai Thuế Online - Chuẩn HTKK 2026",
     "desc": "Công cụ trực tuyến giúp tự động lập tờ khai quyết toán thuế TNCN (02/QT-TNCN), tờ khai hộ kinh doanh (01/CNKD) và thuế GTGT trực tiếp (01/GTGT), xuất file XML nộp HTKK.",
     "url": "/calculators/tao-to-khai-thue/"

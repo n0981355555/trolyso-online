@@ -1,0 +1,381 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import StatsBadge from '../../../components/StatsBadge.astro';
+---
+
+<Layout 
+  title="Xóa Dấu Vết Ảnh AI - Strip EXIF Metadata & Watermark"
+  description="Công cụ trực tuyến giúp xóa bỏ hoàn toàn dữ liệu ẩn EXIF Metadata và làm nhiễu loạn các watermark ẩn (SynthID) trên ảnh do AI tạo."
+>
+  <!-- Schema SEO WebApplication & FAQPage -->
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://trolyso.online/calculators/xoa-dau-vet-anh-ai/#webapp",
+          "url": "https://trolyso.online/calculators/xoa-dau-vet-anh-ai/",
+          "name": "Xóa Dấu Vết Ảnh AI - Clean AI Image Footprints",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires HTML5, WebSockets",
+          "description": "Loại bỏ hoàn toàn thông tin ẩn EXIF, prompt tạo ảnh và làm xáo trộn các pixel chứa watermark ẩn tần số cao trên ảnh AI.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0.00",
+            "priceCurrency": "VND"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://trolyso.online/calculators/xoa-dau-vet-anh-ai/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "EXIF Metadata của ảnh AI chứa những gì?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Các mô hình như DALL-E 3 hoặc Midjourney thường tự động ghi các thông tin như: Prompt bạn nhập, tên phần mềm tạo ảnh, Seed, thời gian tạo... vào các thẻ metadata ẩn của file ảnh. Việc xóa EXIF giúp loại bỏ hoàn toàn các thông tin này."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Làm thế nào để xóa được Watermark ẩn (như SynthID)?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Watermark ẩn được nhúng dưới dạng các nhiễu tần số cao trong pixel màu sắc mà mắt thường không thấy. Bằng cách thay đổi nhẹ kích thước ảnh (resize giảm 1-2 pixel), làm mờ/làm nét nhẹ và nén lại (re-compress) chất lượng, cấu trúc pixel nhúng watermark sẽ bị phá vỡ hoàn toàn khiến các bộ máy quét không thể giải mã."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  </script>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- E-E-A-T Author Box -->
+    <div class="mb-8 p-5 bg-white/65 dark:bg-brand-darkCard/65 backdrop-blur-md border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300 flex flex-col sm:flex-row items-center gap-4">
+      <img src="/images/blog/authors/author-minh-tri.webp" alt="tác-giả-minh-trí" class="w-12 h-12 rounded-full border border-slate-100 dark:border-slate-700 shadow-sm" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=tri'" />
+      <div>
+        <p class="text-xs text-slate-400 dark:text-slate-500 font-semibold mb-0.5">Tác giả chuyên môn & Kiểm duyệt</p>
+        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 m-0">Nguyễn Minh Trí</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 m-0">Thạc sĩ Ngôn ngữ học ứng dụng - Kỹ sư AI Prompt Engineer tại Trolyso</p>
+      </div>
+    </div>
+
+    <!-- Title Header -->
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        Xóa Dấu Vết Ảnh AI
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+        Xóa bỏ hoàn toàn dữ liệu ẩn EXIF Metadata và làm nhiễu loạn các watermark ẩn (SynthID) trên ảnh do AI tạo.
+      </p>
+      <div class="mt-3 flex justify-center">
+        <StatsBadge slug="xoa-dau-vet-anh-ai" type="tool" showLiveDot={true} />
+      </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left sidebar: TOC -->
+      <div class="lg:col-span-3 p-5 bg-white/70 dark:bg-brand-darkCard/70 backdrop-blur-md border border-slate-200/50 dark:border-slate-800/50 rounded-2xl shadow-sm sticky top-24 hidden lg:block hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">Mục lục bài viết</h4>
+        <ul class="space-y-3 p-0 m-0 list-none text-xs font-semibold">
+          <li><a href="#tool-box" class="text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">1. Công cụ xử lý ảnh AI</a></li>
+          <li><a href="#metadata-exif" class="text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">2. Metadata & Watermark ẩn là gì?</a></li>
+          <li><a href="#bypass-theory" class="text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">3. Cách thức làm sạch pixel ảnh</a></li>
+          <li><a href="#faq-accordion" class="text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">4. Câu hỏi thường gặp (FAQ)</a></li>
+        </ul>
+      </div>
+
+      <!-- Main Tool Section -->
+      <div class="lg:col-span-9 space-y-8">
+        
+        <!-- Tool Box Card -->
+        <div id="tool-box" class="p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl shadow-md space-y-6">
+          
+          <!-- File Drop Zone -->
+          <div id="dropZone" class="border-2 border-dashed border-slate-200 dark:border-slate-800 hover:border-brand-blue dark:hover:border-brand-mint rounded-2xl p-8 text-center cursor-pointer transition bg-slate-50/30 dark:bg-slate-900/10 flex flex-col items-center justify-center min-h-[220px]">
+            <input type="file" id="fileInput" accept="image/*" class="hidden" />
+            
+            <div id="uploadPrompt" class="space-y-3">
+              <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center text-slate-400 mx-auto">
+                📁
+              </div>
+              <p class="text-sm font-bold text-slate-800 dark:text-slate-200 m-0">Kéo thả hình ảnh vào đây hoặc click để chọn ảnh</p>
+              <p class="text-xs text-slate-400 font-semibold m-0">Hỗ trợ định dạng: JPG, PNG, WEBP (Tối đa 5MB)</p>
+            </div>
+
+            <!-- Preview Image (Initially Hidden) -->
+            <div id="previewContainer" class="hidden relative max-w-xs mx-auto">
+              <img id="previewImage" src="" alt="preview" class="w-full h-auto rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+              <button id="btnRemoveFile" class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-black/75 text-white hover:bg-red-600 transition flex items-center justify-center text-xs font-bold shadow">×</button>
+            </div>
+
+          </div>
+
+          <!-- Configuration Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Select Format -->
+            <div class="flex flex-col space-y-1.5">
+              <label for="formatSelect" class="text-xs font-bold text-slate-800 dark:text-slate-200">Chọn định dạng</label>
+              <select id="formatSelect" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs font-bold text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-brand-blue">
+                <option value="webp">WebP (Tối ưu nhất - Nhẹ)</option>
+                <option value="png">PNG (Chất lượng gốc - Nặng)</option>
+              </select>
+            </div>
+
+            <!-- Select Quality -->
+            <div class="flex flex-col space-y-1.5">
+              <label for="qualitySelect" class="text-xs font-bold text-slate-800 dark:text-slate-200">Chọn chất lượng</label>
+              <select id="qualitySelect" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs font-bold text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-brand-blue">
+                <option value="95">95% (Khuyên dùng)</option>
+                <option value="90">90% (Nén nhiều hơn)</option>
+                <option value="100">100% (Không nén)</option>
+              </select>
+            </div>
+
+            <!-- Cleaning Mode -->
+            <div class="flex flex-col space-y-1.5">
+              <label for="modeSelect" class="text-xs font-bold text-slate-800 dark:text-slate-200">Chế độ làm sạch</label>
+              <select id="modeSelect" class="w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs font-bold text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-brand-blue">
+                <option value="advanced">Nâng cao (Xóa EXIF + Phá Watermark)</option>
+                <option value="basic">Cơ bản (Chỉ xóa EXIF)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button id="btnSubmit" class="px-8 py-3.5 bg-gradient-to-r from-brand-blue to-blue-600 dark:from-brand-mint dark:to-emerald-500 text-white dark:text-slate-900 font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] transition cursor-pointer select-none">
+              ⚡ Xóa dấu vết AI & Tải ảnh sạch
+            </button>
+          </div>
+
+          <!-- Process Info (Hidden Initially) -->
+          <div id="processInfo" class="hidden p-4 bg-slate-50 dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-800/50 rounded-xl text-center space-y-1">
+            <p id="infoText1" class="text-xs font-bold text-green-600 dark:text-brand-mint m-0">✓ Đã xóa EXIF Metadata!</p>
+            <p id="infoText2" class="text-xs font-bold text-green-600 dark:text-brand-mint m-0">✓ Đã phá vỡ cấu trúc Watermark ẩn!</p>
+          </div>
+
+        </div>
+
+        <!-- Section 2: Metadata explanation -->
+        <section id="metadata-exif" class="p-6 bg-white dark:bg-brand-darkCard border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-sm space-y-4">
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white m-0">Metadata & Watermark ẩn là gì?</h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed m-0">
+            Mỗi khi bạn tạo một bức ảnh bằng AI (Midjourney, DALL-E, Bing Image Creator), mô hình tạo ảnh sẽ tự động nhúng các dữ liệu nhận diện đặc trưng:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+              <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Thẻ Metadata EXIF</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed m-0">
+                Đây là các thẻ dữ liệu ẩn lưu trữ trong file ảnh. Nó chứa đoạn văn bản prompt bạn gõ, phiên bản AI tạo ảnh và các thông số cài đặt. Bất kỳ ai tải file ảnh gốc của bạn về đều có thể trích xuất các thông tin này dễ dàng.
+              </p>
+            </div>
+            <div class="p-4 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+              <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-1.5">Watermark vô hình (SynthID)</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed m-0">
+                Là các dấu hiệu số hóa được nhúng ở mức độ pixel và kênh tần số sâu trong cấu trúc ảnh. Chúng không thể nhìn thấy bằng mắt thường nhưng các máy quét bản quyền ảnh AI của Google hoặc Facebook sẽ phát hiện ra ngay lập tức.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Cleaning theory -->
+        <section id="bypass-theory" class="p-6 bg-white dark:bg-brand-darkCard border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-sm space-y-4">
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white m-0">Cách thức làm sạch pixel ảnh của Trolyso</h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed m-0">
+            Công cụ này xử lý file ảnh trực tiếp trên máy chủ bằng thư viện xử lý ảnh chất lượng cao:
+          </p>
+          <ul class="space-y-2 text-xs font-semibold text-slate-650 dark:text-slate-350 p-0 m-0 list-inside list-disc">
+            <li><strong class="text-slate-800 dark:text-white">Strip Metadata:</strong> Loại bỏ toàn bộ cấu trúc dữ liệu EXIF thô, trả ảnh về dạng tệp tin đồ họa tinh khiết nhất.</li>
+            <li><strong class="text-slate-800 dark:text-white">Pixel Re-mapping:</strong> Thay đổi kích thước ảnh cực nhỏ (ví dụ giảm đi 2 pixel chiều rộng) để thay đổi tọa độ nhúng watermark ẩn, bẻ gãy tần số quét của SynthID.</li>
+            <li><strong class="text-slate-800 dark:text-white">Noise & Re-compress:</strong> Nén lại ảnh bằng định dạng WebP với hệ số lượng tử hóa khác biệt, làm xáo trộn hoàn toàn dấu vân tay kỹ thuật số của AI mà không hề làm giảm chất lượng mắt thường nhìn thấy.</li>
+          </ul>
+        </section>
+
+        <!-- Section 4: FAQ Accordion -->
+        <section id="faq-accordion" class="p-6 bg-white dark:bg-brand-darkCard border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-sm space-y-4">
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white m-0">Câu hỏi thường gặp (FAQ)</h2>
+          <div class="space-y-3">
+            <details class="group p-4 bg-slate-50/50 dark:bg-slate-900/40 rounded-xl border border-slate-200/40 dark:border-slate-800/40 transition">
+              <summary class="text-sm font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none flex justify-between items-center select-none">
+                Chất lượng ảnh có bị giảm sút sau khi làm sạch không?
+                <span class="text-slate-400 group-open:rotate-180 transition-transform duration-200">↓</span>
+              </summary>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mt-2.5 m-0">
+                Không. Quá trình re-compress ở mức chất lượng 95% và resize nhẹ 2 pixel chỉ làm thay đổi nhẹ cấu trúc dữ liệu thô (để đánh lừa máy quét), hoàn toàn không thể phân biệt được bằng mắt thường và vẫn giữ nguyên độ sắc nét tối đa.
+              </p>
+            </details>
+            <details class="group p-4 bg-slate-50/50 dark:bg-slate-900/40 rounded-xl border border-slate-200/40 dark:border-slate-800/40 transition">
+              <summary class="text-sm font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none flex justify-between items-center select-none">
+                Hình ảnh tôi tải lên có được lưu lại trên máy chủ không?
+                <span class="text-slate-400 group-open:rotate-180 transition-transform duration-200">↓</span>
+              </summary>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mt-2.5 m-0">
+                Tuyệt đối không. Toàn bộ hình ảnh tải lên được xử lý bằng bộ nhớ đệm RAM tạm thời của Express và trả trực tiếp dữ liệu nhị phân về trình duyệt của bạn tải xuống ngay lập tức. Hệ thống của chúng tôi không lưu giữ bản sao hình ảnh của bạn trên ổ đĩa cứng.
+              </p>
+            </details>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+</Layout>
+
+<script>
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+  const uploadPrompt = document.getElementById('uploadPrompt');
+  const previewContainer = document.getElementById('previewContainer');
+  const previewImage = document.getElementById('previewImage') as HTMLImageElement;
+  const btnRemoveFile = document.getElementById('btnRemoveFile');
+  
+  const formatSelect = document.getElementById('formatSelect') as HTMLSelectElement;
+  const qualitySelect = document.getElementById('qualitySelect') as HTMLSelectElement;
+  const modeSelect = document.getElementById('modeSelect') as HTMLSelectElement;
+  const btnSubmit = document.getElementById('btnSubmit') as HTMLButtonElement;
+  const processInfo = document.getElementById('processInfo');
+
+  let activeFile: File | null = null;
+
+  // File Selector click trigger
+  dropZone?.addEventListener('click', () => {
+    if (!activeFile) fileInput?.click();
+  });
+
+  fileInput?.addEventListener('change', (e) => {
+    const files = fileInput.files;
+    if (files && files.length > 0) handleFile(files[0]);
+  });
+
+  // Drag and Drop implementation
+  dropZone?.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('border-brand-blue');
+  });
+
+  dropZone?.addEventListener('dragleave', () => {
+    dropZone.classList.remove('border-brand-blue');
+  });
+
+  dropZone?.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('border-brand-blue');
+    const files = e.dataTransfer?.files;
+    if (files && files.length > 0) handleFile(files[0]);
+  });
+
+  function handleFile(file: File) {
+    if (!file.type.startsWith('image/')) {
+      alert(localStorage.getItem('lang') === 'en' ? "Please upload an image file!" : "Vui lòng tải lên một tệp tin hình ảnh!");
+      return;
+    }
+    
+    // Check limit 5MB
+    if (file.size > 5 * 1024 * 1024) {
+      alert(localStorage.getItem('lang') === 'en' ? "File size exceeds 5MB!" : "Kích thước ảnh vượt quá 5MB!");
+      return;
+    }
+
+    activeFile = file;
+    
+    // Show Preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (previewImage) previewImage.src = reader.result as string;
+      uploadPrompt?.classList.add('hidden');
+      previewContainer?.classList.remove('hidden');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // Remove selected file
+  btnRemoveFile?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    activeFile = null;
+    if (fileInput) fileInput.value = '';
+    previewContainer?.classList.add('hidden');
+    uploadPrompt?.classList.remove('hidden');
+    processInfo?.classList.add('hidden');
+  });
+
+  // Call API clean image
+  btnSubmit?.addEventListener('click', async () => {
+    if (!activeFile) {
+      alert(localStorage.getItem('lang') === 'en' ? "Please select an image first!" : "Vui lòng chọn hình ảnh cần làm sạch trước!");
+      return;
+    }
+
+    const isEn = localStorage.getItem('lang') === 'en';
+    const oldText = btnSubmit.innerHTML;
+    
+    btnSubmit.innerHTML = isEn ? "Cleaning image..." : "Đang xử lý ảnh...";
+    btnSubmit.setAttribute('disabled', 'true');
+    btnSubmit.style.opacity = '0.7';
+
+    // Prepare FormData payload
+    const formData = new FormData();
+    formData.append('file', activeFile); // matching multer field name '.single("file")'
+    formData.append('format', formatSelect.value);
+    formData.append('quality', qualitySelect.value);
+    formData.append('mode', modeSelect.value);
+
+    try {
+      const response = await fetch('http://localhost:5000/api/tools/clean-image', {
+        method: 'POST',
+        body: formData // No custom headers, browser sets boundary auto
+      });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        
+        // Trigger download
+        const downloadUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = `trolyso-clean-image-${Date.now()}.${formatSelect.value}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(downloadUrl);
+
+        // Show Process Info
+        processInfo?.classList.remove('hidden');
+        const infoText2 = document.getElementById('infoText2');
+        if (infoText2) {
+          if (modeSelect.value === 'advanced') {
+            infoText2.classList.remove('hidden');
+          } else {
+            infoText2.classList.add('hidden');
+          }
+        }
+
+        // Track stats
+        await fetch('http://localhost:5000/api/stats/increment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug: 'xoa-dau-vet-anh-ai' })
+        }).catch(() => {});
+      } else {
+        const data = await response.json();
+        alert(data.message || (isEn ? "Failed to clean image" : "Lỗi xử lý hình ảnh từ máy chủ"));
+      }
+    } catch (err) {
+      console.error(err);
+      alert(isEn ? "Server connection failed" : "Không thể kết nối tới máy chủ");
+    } finally {
+      btnSubmit.innerHTML = oldText;
+      btnSubmit.removeAttribute('disabled');
+      btnSubmit.style.opacity = '1';
+    }
+  });
+</script>

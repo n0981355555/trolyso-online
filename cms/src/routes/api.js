@@ -9,6 +9,7 @@ import { getDashboardStats } from '../controllers/dashboard.js';
 import { getCalculators } from '../controllers/calculators.js';
 import { handleGithubWebhook } from '../controllers/webhook.js';
 import { getStats, getSingleStat, incrementStat } from '../controllers/stats.js';
+import { humanizeText, cleanImage } from '../controllers/aiTools.js';
 
 const router = express.Router();
 
@@ -64,5 +65,9 @@ router.post('/stats/increment', incrementStat);
 
 // GITHUB AUTOMATIC DEPLOYMENT WEBHOOK (NO AUTH TOKEN REQUIREMENT - SECURED BY HMAC-SHA256 SIGNATURE)
 router.post('/webhook/github-deploy', handleGithubWebhook);
+
+// PUBLIC AI TOOLS ENDPOINTS
+router.post('/tools/humanize-text', humanizeText);
+router.post('/tools/clean-image', uploadMiddleware, cleanImage);
 
 export default router;

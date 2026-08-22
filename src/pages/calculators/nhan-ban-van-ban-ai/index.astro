@@ -1,0 +1,289 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import StatsBadge from '../../../components/StatsBadge.astro';
+---
+
+<Layout 
+  title="Nhân Bản Văn Bản AI - Bypass AI Detector Chuẩn 2026"
+  description="Công cụ trực tuyến giúp chuyển đổi văn bản do ChatGPT, Claude, Gemini viết thành văn bản tự nhiên như con người, dễ dàng vượt qua các AI Detector."
+>
+  <!-- Schema SEO WebApplication & FAQPage -->
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://trolyso.online/calculators/nhan-ban-van-ban-ai/#webapp",
+          "url": "https://trolyso.online/calculators/nhan-ban-van-ban-ai/",
+          "name": "Nhân Bản Văn Bản AI - Bypass AI Detector",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires HTML5, WebSockets",
+          "description": "Làm mượt văn bản do AI viết thành giọng văn tự nhiên giống con người để tránh bị các AI Detector (GPTZero, Copyleaks) phát hiện.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0.00",
+            "priceCurrency": "VND"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://trolyso.online/calculators/nhan-ban-van-ban-ai/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Công cụ này hoạt động như thế nào?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Công cụ sử dụng mô hình trí tuệ nhân tạo (Gemini API) kết hợp với các thuật toán tối ưu hóa prompt chuyên sâu để phân tích, sắp xếp lại cấu trúc câu, loại bỏ các từ nối sáo rỗng rập khuôn của AI và đa dạng hóa độ dài câu để tạo ra văn bản tự nhiên nhất."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Các văn bản sau khi xử lý có vượt qua được GPTZero hay Copyleaks không?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Có. Thuật toán của chúng tôi được thiết kế để thay đổi chỉ số Perplexity (độ khó đoán của từ tiếp theo) và Burstiness (sự biến thiên độ dài câu), hai chỉ số cốt lõi mà các AI detector dùng để quét văn bản."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  </script>
+
+  <main class="max-w-6xl mx-auto px-4 py-12 w-full z-10 relative">
+    
+    <!-- E-E-A-T Author Box -->
+    <div class="mb-8 p-5 bg-white/65 dark:bg-brand-darkCard/65 backdrop-blur-md border border-slate-200/60 dark:border-slate-800/50 rounded-2xl shadow-sm hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300 flex flex-col sm:flex-row items-center gap-4">
+      <img src="/images/blog/authors/author-minh-tri.webp" alt="tác-giả-minh-trí" class="w-12 h-12 rounded-full border border-slate-100 dark:border-slate-700 shadow-sm" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=tri'" />
+      <div>
+        <p class="text-xs text-slate-400 dark:text-slate-500 font-semibold mb-0.5">Tác giả chuyên môn & Kiểm duyệt</p>
+        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 m-0">Nguyễn Minh Trí</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 m-0">Thạc sĩ Ngôn ngữ học ứng dụng - Kỹ sư AI Prompt Engineer tại Trolyso</p>
+      </div>
+    </div>
+
+    <!-- Title Header -->
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <h1 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+        Nhân Bản Văn Bản AI
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+        Làm mượt văn bản do ChatGPT, Gemini viết thành văn bản tự nhiên như con người để tránh bị AI Detector phát hiện.
+      </p>
+      <div class="mt-3 flex justify-center">
+        <StatsBadge slug="nhan-ban-van-ban-ai" type="tool" showLiveDot={true} />
+      </div>
+    </div>
+
+    <!-- Main Content Grid (TOC & 2 Columns) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left sidebar: Table of Contents (TOC) -->
+      <div class="lg:col-span-3 p-5 bg-white/70 dark:bg-brand-darkCard/70 backdrop-blur-md border border-slate-200/50 dark:border-slate-800/50 rounded-2xl shadow-sm sticky top-24 hidden lg:block hover:border-brand-blue dark:hover:border-brand-mint hover:shadow-md transition duration-300">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">Mục lục bài viết</h4>
+        <ul class="space-y-3 p-0 m-0 list-none text-xs font-semibold">
+          <li><a href="#tool-box" class="text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">1. Công cụ chuyển đổi văn bản</a></li>
+          <li><a href="#how-it-works" class="text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">2. Tại sao cần Humanize văn bản AI?</a></li>
+          <li><a href="#pricing-rules" class="text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">3. Căn cứ khoa học & Tối ưu SEO</a></li>
+          <li><a href="#faq-accordion" class="text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-mint hover:underline transition duration-200">4. Câu hỏi thường gặp (FAQ)</a></li>
+        </ul>
+      </div>
+
+      <!-- Main Tool Section -->
+      <div class="lg:col-span-9 space-y-8">
+        
+        <!-- Tool Box Card -->
+        <div id="tool-box" class="p-6 bg-white dark:bg-brand-darkCard border border-slate-200 dark:border-slate-800 rounded-2xl shadow-md space-y-6">
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Left Input -->
+            <div class="flex flex-col space-y-2">
+              <label for="inputText" class="text-sm font-bold text-slate-800 dark:text-slate-200">Nhập văn bản do AI tạo ra</label>
+              <textarea id="inputText" rows="12" placeholder="Dán văn bản do ChatGPT hoặc Gemini viết vào đây (tối đa 4000 từ)..." class="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue dark:focus:ring-brand-mint font-medium placeholder-slate-400 dark:text-white transition-all"></textarea>
+              <div class="flex justify-between text-xs text-slate-400 font-semibold px-1">
+                <span id="charCount">0 ký tự</span>
+                <span id="wordCount">0 từ</span>
+              </div>
+            </div>
+
+            <!-- Right Output -->
+            <div class="flex flex-col space-y-2">
+              <label for="outputText" class="text-sm font-bold text-slate-800 dark:text-slate-200">Văn bản đã được làm mượt (Kết quả):</label>
+              <textarea id="outputText" readonly rows="12" placeholder="Kết quả văn bản tự nhiên như người viết sẽ xuất hiện ở đây..." class="w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 text-sm focus:outline-none placeholder-slate-400 dark:text-white transition-all"></textarea>
+              <div class="flex justify-end px-1">
+                <button id="btnCopy" disabled class="px-3 py-1 text-xs font-bold text-slate-500 hover:text-brand-blue dark:hover:text-brand-mint border border-slate-200 dark:border-slate-800 rounded-lg bg-white dark:bg-slate-900 shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">📋 Sao chép văn bản</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button id="btnSubmit" class="px-8 py-3.5 bg-gradient-to-r from-brand-blue to-blue-600 dark:from-brand-mint dark:to-emerald-500 text-white dark:text-slate-900 font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] transition cursor-pointer select-none">
+              ⚡ Nhân Bản Văn Bản Ngay
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Section 2: Why it matters -->
+        <section id="how-it-works" class="p-6 bg-white dark:bg-brand-darkCard border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-sm space-y-4">
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white m-0">Tại sao cần Humanize văn bản AI?</h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed m-0">
+            Kể từ khi các mô hình ngôn ngữ lớn (LLM) phát triển, các nền t kiếm (Google) và giáo dục trường học đã sử dụng các hệ thống lọc AI (AI detectors) để phát hiện và giảm thứ hạng các nội dung viết bằng AI rập khuôn.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+            <div class="p-4 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+              <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-2">Đa dạng hóa Perplexity</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed m-0">
+                AI thường chọn các từ có xác suất xuất hiện cao nhất. Công cụ của chúng tôi thay đổi linh hoạt các từ đồng nghĩa tự nhiên để tăng tính bất ngờ trong văn phong.
+              </p>
+            </div>
+            <div class="p-4 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+              <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-2">Đồng bộ Burstiness</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed m-0">
+                Con người thường viết câu dài câu ngắn xen kẽ nhau. AI viết câu có độ dài rất đều nhau. Chúng tôi viết lại các câu thành nhiều nhịp điệu khác nhau.
+              </p>
+            </div>
+            <div class="p-4 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200/50 dark:border-slate-800/50">
+              <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-2">Bảo mật dữ liệu 100%</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed m-0">
+                Toàn bộ văn bản xử lý trực tiếp qua API an toàn bảo mật, cam kết không lưu lại dữ liệu văn bản của bạn trên bất kỳ hệ thống lưu trữ công cộng nào.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Căn cứ khoa học & Tối ưu SEO -->
+        <section id="pricing-rules" class="p-6 bg-white dark:bg-brand-darkCard border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-sm space-y-4">
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white m-0">Căn cứ khoa học & Tối ưu SEO Content</h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed m-0">
+            Theo tài liệu hướng dẫn về chất lượng của Google Search (Google E-E-A-T), thuật toán không phạt văn bản được hỗ trợ bởi AI, nhưng sẽ hạ thứ hạng nếu văn bản đó thiếu đi tính chuyên môn sâu sắc, trải nghiệm thực tế và giọng văn rập khuôn vô cảm.
+          </p>
+          <div class="p-4 border-l-4 border-brand-blue dark:border-brand-mint bg-slate-50 dark:bg-slate-900/40 rounded-r-xl">
+            <h4 class="text-xs uppercase tracking-wider text-brand-blue dark:text-brand-mint font-bold mb-1">Mẹo viết content chuẩn SEO 2026:</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed m-0">
+              Hãy chèn thêm các ví dụ số liệu thực tế, nghiên cứu ca lâm sàng (case study) hoặc trải nghiệm cá nhân của bạn vào bài viết sau khi được làm mượt bằng công cụ này để tăng tối đa điểm uy tín E-E-A-T trên Google.
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 4: FAQ Accordion -->
+        <section id="faq-accordion" class="p-6 bg-white dark:bg-brand-darkCard border border-slate-200/80 dark:border-slate-800/80 rounded-2xl shadow-sm space-y-4">
+          <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white m-0">Câu hỏi thường gặp (FAQ)</h2>
+          <div class="space-y-3">
+            <details class="group p-4 bg-slate-50/50 dark:bg-slate-900/40 rounded-xl border border-slate-200/40 dark:border-slate-800/40 transition">
+              <summary class="text-sm font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none flex justify-between items-center select-none">
+                Công cụ này có giới hạn số ký tự không?
+                <span class="text-slate-400 group-open:rotate-180 transition-transform duration-200">↓</span>
+              </summary>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mt-2.5 m-0">
+                Để đảm bảo tốc độ phản hồi nhanh nhất và hiệu quả xử lý, chúng tôi giới hạn mỗi lần nhập tối đa 4000 từ. Nếu bài viết của bạn dài hơn, hãy chia nhỏ bài viết thành nhiều đoạn để xử lý từng lần một.
+              </p>
+            </details>
+            <details class="group p-4 bg-slate-50/50 dark:bg-slate-900/40 rounded-xl border border-slate-200/40 dark:border-slate-800/40 transition">
+              <summary class="text-sm font-bold text-slate-800 dark:text-slate-200 cursor-pointer list-none flex justify-between items-center select-none">
+                Công cụ này có tính phí không?
+                <span class="text-slate-400 group-open:rotate-180 transition-transform duration-200">↓</span>
+              </summary>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mt-2.5 m-0">
+                Tính năng này hoàn toàn miễn phí và không yêu cầu tài khoản đăng nhập trên Trolyso. Chúng tôi tạo ra công cụ nhằm hỗ trợ cộng đồng làm SEO, Content Creator và học sinh sinh viên viết bài tự nhiên hơn.
+              </p>
+            </details>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+</Layout>
+
+<script>
+  const inputText = document.getElementById('inputText') as HTMLTextAreaElement;
+  const outputText = document.getElementById('outputText') as HTMLTextAreaElement;
+  const charCount = document.getElementById('charCount');
+  const wordCount = document.getElementById('wordCount');
+  const btnSubmit = document.getElementById('btnSubmit') as HTMLButtonElement;
+  const btnCopy = document.getElementById('btnCopy') as HTMLButtonElement;
+
+  // Real-time counter
+  inputText?.addEventListener('input', () => {
+    const text = inputText.value;
+    const chars = text.length;
+    const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+
+    if (charCount) charCount.innerText = `${chars} ký tự`;
+    if (wordCount) wordCount.innerText = `${words} từ`;
+  });
+
+  // Call API to Humanize Text
+  btnSubmit?.addEventListener('click', async () => {
+    const text = inputText.value.trim();
+    if (!text) {
+      alert(localStorage.getItem('lang') === 'en' ? "Please enter text to process!" : "Vui lòng nhập văn bản cần làm sạch!");
+      return;
+    }
+
+    const isEn = localStorage.getItem('lang') === 'en';
+    const oldText = btnSubmit.innerHTML;
+    
+    // Set Loading State
+    btnSubmit.innerHTML = isEn ? "Humanizing text with AI..." : "Đang xử lý văn bản bằng AI...";
+    btnSubmit.setAttribute('disabled', 'true');
+    btnSubmit.style.opacity = '0.7';
+
+    try {
+      const response = await fetch('http://localhost:5000/api/tools/humanize-text', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ text })
+      });
+
+      const data = await response.json();
+      if (response.ok && data.humanizedText) {
+        outputText.value = data.humanizedText;
+        btnCopy.removeAttribute('disabled');
+        
+        // Track stats
+        await fetch('http://localhost:5000/api/stats/increment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug: 'nhan-ban-van-ban-ai' })
+        }).catch(() => {});
+      } else {
+        alert(data.message || (isEn ? "Failed to process text" : "Đã xảy ra lỗi khi xử lý văn bản"));
+      }
+    } catch (err) {
+      console.error(err);
+      alert(isEn ? "Server connection failed" : "Không thể kết nối tới máy chủ");
+    } finally {
+      btnSubmit.innerHTML = oldText;
+      btnSubmit.removeAttribute('disabled');
+      btnSubmit.style.opacity = '1';
+    }
+  });
+
+  // Copy Result Text
+  btnCopy?.addEventListener('click', () => {
+    const text = outputText.value;
+    if (!text) return;
+
+    navigator.clipboard.writeText(text).then(() => {
+      const isEn = localStorage.getItem('lang') === 'en';
+      const originalText = btnCopy.innerHTML;
+      btnCopy.innerHTML = isEn ? "📋 Copied!" : "📋 Đã sao chép!";
+      btnCopy.classList.add('text-green-500');
+      
+      setTimeout(() => {
+        btnCopy.innerHTML = originalText;
+        btnCopy.classList.remove('text-green-500');
+      }, 2000);
+    });
+  });
+</script>
