@@ -399,7 +399,15 @@ const socialImageURL = new URL(image, Astro.site || 'https://trolyso.online').hr
             </select>
           </div>
 
-          <p class="text-xs text-slate-400 dark:text-slate-500 text-center md:text-right mt-2">© 2026 Trợ Lý Số (trolyso.online). Bảo lưu mọi quyền.</p>
+          <!-- DMCA Badge -->
+          <div class="mt-2 flex justify-center md:justify-end">
+            <a href="//www.dmca.com/Protection/Status.aspx?ID=b6015879-1bab-4412-a857-fc0d699fb02f" title="DMCA.com Protection Status" class="dmca-badge" target="_blank" rel="noopener noreferrer">
+              <img src="https://images.dmca.com/Badges/dmca-badge-w100-5x1-09.png?ID=b6015879-1bab-4412-a857-fc0d699fb02f" alt="DMCA.com Protection Status" class="transition hover:opacity-80" />
+            </a>
+            <script is:inline src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
+          </div>
+
+          <p class="text-xs text-slate-400 dark:text-slate-500 text-center md:text-right mt-1.5">© 2026 Trợ Lý Số (trolyso.online). Bảo lưu mọi quyền.</p>
         </div>
 
       </div>
